@@ -22,12 +22,16 @@ const REFRESH_TOKEN = gql`
   }
 `;
 
-interface ApolloServer extends NodeJS.Global {
+type NodeJSGlobal = typeof global;
+
+const isBrowser = typeof window !== 'undefined';
+
+interface ApolloServer extends NodeJSGlobal {
   fetch: typeof fetch;
 }
 
 // TODO: env URI
-if (!process.browser) {
+if (!isBrowser) {
   (global as ApolloServer).fetch = fetch;
 }
 
@@ -127,7 +131,7 @@ function create(
 
   // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
   const client = new ApolloClient({
-    connectToDevTools: process.browser,
+    connectToDevTools: isBrowser,
     ssrMode: false, // Disables forceFetch on the server (so queries are only run once)
     link: ApolloLink.from([errorLink, authLink, splitLink]),
     cache: new InMemoryCache().restore(initialState || {}),
@@ -162,7 +166,7 @@ export default function initApollo(
   linkOptions,
   initialState
 ): ApolloClient<NormalizedCacheObject> {
-  if (!process.browser) {
+  if (!isBrowser) {
     return create(linkOptions, initialState);
   }
 
