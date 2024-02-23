@@ -285,7 +285,7 @@ export const createCeremonies = async (subdomain: string) => {
     .add(+1, 'days')
     .format('YYYY-MM-DD');
 
-  const todayEvent = await senSHQFeedMessage({
+  const todayEvent = await sendSHQFeedMessage({
     subdomain,
     action: 'ShqFeed.find',
     data: {
