@@ -49,7 +49,8 @@ jobs:
         run: |
           yarn install
           cd email-verifier
-          yarn install --frozen-lockfile
+          yarn --update-checksums
+          yarn install
 
       - name: Lint
         run: |
