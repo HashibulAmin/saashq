@@ -22,15 +22,15 @@ on:
 
 jobs:
   client-portal:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - name: Use Node.js 14.20.x
-        uses: actions/setup-node@v1
+      - name: Use Node.js 16.10.x
+        uses: actions/setup-node@v4
         with:
-          node-version: 14.20.x
+          node-version: 16.10.x
 
       # https://github.com/actions/cache/blob/main/examples.md#node---yarn
       - name: Get yarn cache directory path
@@ -50,6 +50,7 @@ jobs:
         run: |
           cd client-portal
           rm -rf node_modules
+          yarn --update-checksums
           yarn install --frozen-lockfile
           yarn build
 
