@@ -59,6 +59,7 @@ jobs:
         run: |
           cd email-verifier
           rm -rf node_modules
+          yarn --update-checksums
           yarn install --frozen-lockfile --production
           yarn build
 
