@@ -1,4 +1,4 @@
-FROM node:18.19-alpine
+FROM node:18.17-alpine
 WORKDIR /client-portal/
 RUN chown -R node:node /client-portal
 COPY --chown=node:node . /client-portal
