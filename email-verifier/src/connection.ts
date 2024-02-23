@@ -38,7 +38,8 @@ export const connect = async (URL?: string, options?) => {
  */
 export const mongoStatus = () => {
   return new Promise((resolve, reject) => {
-    mongoose.connection.db.admin().ping((err, result) => {
+    const dbAdmin = mongoose.connection.db as any;
+    dbAdmin.admin().ping((err, result) => {
       if (err) {
         return reject(err);
       }
