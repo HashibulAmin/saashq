@@ -54,7 +54,7 @@ jobs:
 
       - name: Lint
         run: |
-          yarn lint email-verifier
+          yarn lint-staged email-verifier
 
       - name: Build
         run: |
