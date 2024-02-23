@@ -1,0 +1,71 @@
+import { gql } from '@apollo/client';
+import * as compose from 'lodash.flowright';
+import { Alert, withProps } from '@saashq/ui/src/utils';
+import Spinner from '@saashq/ui/src/components/Spinner';
+import React from 'react';
+import { graphql } from '@apollo/client/react/hoc';
+import { mutations, queries } from '../../graphql';
+import { ProductsConfigsQueryResponse, IConfigsMap } from '../../types';
+import { UomsQueryResponse } from '@saashq/ui-products/src/types';
+
+type Props = {
+  component: any;
+};
+type FinalProps = {
+  productsConfigsQuery: ProductsConfigsQueryResponse;
+  uomsQuery: UomsQueryResponse;
+  updateConfigs: (configsMap: IConfigsMap) => Promise<void>;
+} & Props;
+
+class SettingsContainer extends React.Component<FinalProps> {
+  render() {
+    const { updateConfigs, productsConfigsQuery, uomsQuery } = this.props;
+
+    // create or update action
+    const save = (map: IConfigsMap) => {
+      updateConfigs({
+        variables: { configsMap: map }
+      })
+        .then(() => {
+          productsConfigsQuery.refetch();
+          Alert.success('You successfully updated settings');
+        })
+        .catch(error => {
+          Alert.error(error.message);
+        });
+    };
+
+    const configs = productsConfigsQuery.productsConfigs || [];
+
+    const configsMap = {};
+
+    for (const config of configs) {
+      configsMap[config.code] = config.value;
+    }
+
+    const Component = this.props.component;
+    return (
+      <Component
+        {...this.props}
+        configsMap={configsMap}
+        save={save}
+        uoms={uomsQuery.uoms}
+        loading={productsConfigsQuery.loading || uomsQuery.loading}
+      />
+    );
+  }
+}
+
+export default withProps<Props>(
+  compose(
+    graphql<{}, ProductsConfigsQueryResponse>(gql(queries.productsConfigs), {
+      name: 'productsConfigsQuery'
+    }),
+    graphql<{}, UomsQueryResponse>(gql(queries.uoms), {
+      name: 'uomsQuery'
+    }),
+    graphql<{}>(gql(mutations.productsConfigsUpdate), {
+      name: 'updateConfigs'
+    })
+  )(SettingsContainer)
+);

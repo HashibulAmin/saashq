@@ -1,0 +1,13 @@
+{
+  "name": "crons",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "SAASHQ_TELEMETRY_DISABLED=1 DEBUG=saashq-workers* NODE_ENV=development nodemon src/index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@saashq/api-utils" : "*",
+    "node-schedule": "^1.3.2"
+  }
+}

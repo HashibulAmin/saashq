@@ -1,0 +1,16 @@
+import React from 'react';
+import GeneralRoutes from './generalRoutes';
+import { AppProvider } from 'coreui/appContext';
+import '@saashq/ui/src/styles/global-styles';
+import 'saashq-icon/css/saashq.min.css';
+import '@saashq/ui/src/styles/style.min.css';
+
+const App = () => {
+  return (
+    <AppProvider>
+      <GeneralRoutes />
+    </AppProvider>
+  );
+};
+
+export default App;

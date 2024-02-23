@@ -1,0 +1,17 @@
+{
+  "name": "builder",
+  "private": true,
+  "workspaces": [
+    "*"
+  ],
+  "scripts": {
+    "build": "yarn ts-node commands/build.ts",
+    "all": "yarn ts-node commands/try-building-everything.ts > build-$(date +%s).log 2>&1",
+    "all-in-place": "yarn ts-node commands/build-all-in-place.ts > build-$(date +%s).log 2>&1"
+  },
+  "devDependencies": {
+    "ts-node": "10.9.1",
+    "typescript": "4.9.5",
+    "@types/node": "18.17.1"
+  }
+}

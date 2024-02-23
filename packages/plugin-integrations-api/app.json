@@ -1,0 +1,58 @@
+{
+  "name": "saashq-integrations",
+  "description": "saashq integrations",
+  "keywords": ["node", "express", "graphql", "apollo"],
+  "website": "https://saashq.org",
+  "repository": "https://github.com/saashq-org/saashq-logger",
+  "logo": "https://raw.githubusercontent.com/saashq/saashq/main/ui/public/images/logo-dark.png",
+  "success_url": "/",
+  "env": {
+    "PORT": {
+      "description": "A port number",
+      "value": "3400"
+    },
+    "DOMAIN": {
+      "description": "Integration app domain",
+      "value": "https://saashq-integration.herokuapp.com"
+    },
+    "MAIN_APP_DOMAIN": {
+      "description": "saashq front app domain",
+      "value": "https://saashq.herokuapp.com"
+    },
+    "MAIN_API_DOMAIN": {
+      "description": "saashq-api domain",
+      "value": "https://saashq-api.herokuapp.com"
+    },
+    "MONGO_URL": {
+      "description": "Integration MONGO URL",
+      "value": "INTEGRATION_MONGO_URL"
+    },
+    "RABBITMQ_HOST": {
+      "description": "RABBITMQ_HOST",
+      "value": "copy and paste from saashq-api RABBITMQ_HOST config var"
+    },
+    "REDIS_HOST": {
+      "description": "REDIS_HOST",
+      "value": "copy and paste from saashq-api REDIS_HOST config var"
+    },
+    "REDIS_PORT": {
+      "description": "REDIS_PORT",
+      "value": "copy and paste from saashq-api REDIS_PORT config var"
+    },
+    "REDIS_PASSWORD": {
+      "description": "REDIS_PASSWORD",
+      "value": "copy and paste from saashq-api REDIS_PASSWORD config var"
+    }
+  },
+  "addons": [
+    {
+      "plan": "mongolab:sandbox",
+      "as": "MONGO"
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs"
+    }
+  ]
+}

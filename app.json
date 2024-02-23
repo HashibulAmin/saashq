@@ -1,0 +1,39 @@
+{
+  "name": "SaasHQ on Heroku",
+  "description": "Open source growth marketing platform",
+  "keywords": [
+    "Marketing",
+    "sales",
+    "customer engagement",
+    "customer support",
+    "CRM"
+  ],
+  "website": "https://saashq.org",
+  "repository": "https://github.com/saashq-org/saashq",
+  "logo": "https://raw.githubusercontent.com/saashq/saashq/main/ui/public/images/logo-dark.png",
+  "success_url": "/",
+  "env": {
+    "PORT": {
+      "description": "A port number that saashq will be running on",
+      "value": "3000"
+    },
+    "REACT_APP_CDN_HOST": {
+      "description": "SaasHQ Widget URL",
+      "value": "https://saashq-widget.herokuapp.com"
+    },
+    "REACT_APP_API_URL": {
+      "description": "SaasHQ API URL",
+      "value": "https://saashq-api.herokuapp.com"
+    },
+    "REACT_APP_API_SUBSCRIPTION_URL": {
+      "description": "SaasHQ API Subscriptions URL",
+      "value": "wss://saashq-api.herokuapp.com/subscriptions"
+    }
+  },
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "https://github.com/batnasan/heroku-buildpack-subdir"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+FROM saashq/runner
+WORKDIR /saashq-widgets
+COPY yarn.lock package.json ./
+RUN yarn install
+CMD ["yarn", "dev"]

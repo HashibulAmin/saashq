@@ -1,0 +1,98 @@
+#saashq-messenger-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 2147483647;
+}
+
+#saashq-messenger-container:after {
+  content: "";
+  position: absolute;
+  opacity: 0;
+  width: 300px;
+  height: 242px;
+  right: -300px;
+  bottom: -242px;
+  z-index: -1;
+  background: url('https://s3.amazonaws.com/saashq/radial06.png');
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: all 1s ease;
+}
+
+#saashq-messenger-iframe {
+  position: absolute !important;
+  bottom: 12px;
+  right: 12px;
+  border: none;
+  max-width: none;
+  min-height: auto;
+  z-index: 2147483647;
+}
+
+.saashq-messenger-hidden>iframe {
+  width: 72px;
+  height: 72px;
+  max-width: none;
+}
+
+.saashq-messenger-hidden {
+  background: none;
+}
+
+.saashq-messenger-shown {
+  width: 421px;
+  height: 100%;
+  height: calc(100% - 20px);
+  max-height: 780px;
+}
+
+.saashq-messenger-shown:after {
+  opacity: .9 !important;
+  right: -20px !important;
+  bottom: -20px !important;
+}
+
+.saashq-messenger-shown.small {
+  max-height: 310px;
+}
+
+.saashq-messenger-shown>iframe,
+.saashq-notifier-shown>iframe {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none;
+}
+
+.saashq-notifier-shown {
+  width: 370px;
+  height: 230px;
+}
+
+.saashq-notifier-shown.fullMessage {
+  height: 550px;
+  max-height: 100%;
+}
+
+@media only screen and (max-width: 420px) {
+  #saashq-messenger-container {
+    width: 100%;
+    max-height: none;
+  }
+
+  .saashq-messenger-shown {
+    height: 100%;
+  }
+
+  #saashq-messenger-iframe {
+    bottom: 0;
+    right: 0;
+  }
+
+  body.messenger-widget-shown.widget-mobile {
+    overflow: hidden;
+    position: absolute;
+    height: 100%;
+  }
+}

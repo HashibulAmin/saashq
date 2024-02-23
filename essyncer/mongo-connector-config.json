@@ -1,0 +1,88 @@
+{
+  "oplogFile": "oplog.timestamp",
+  "noDump": false,
+  "batchSize": 5000,
+  "verbosity": 3,
+  "continueOnError": true,
+  "logging": {
+    "type": "stream"
+  },
+  "namespaces": {
+    "saashq*.customers": {
+      "rename": "saashq*__customers._doc",
+      "excludeFields": ["urlVisits", "messengerData"]
+    },
+    "saashq*.companies": {
+      "rename": "saashq*__companies._doc"
+    },
+    "saashq*.conversations": {
+      "rename": "saashq*__conversations._doc"
+    },
+    "saashq*.conversation_messages": {
+      "rename": "saashq*__conversation_messages._doc"
+    },
+    "saashq*.integrations": {
+      "rename": "saashq*__integrations._doc"
+    },
+    "saashq*.deals": {
+      "rename": "saashq*__deals._doc"
+    },
+    "saashq*.purchases": {
+      "rename": "saashq*__purchases._doc"
+    },
+    "saashq*.brands": {
+      "rename": "saashq*__brands._doc"
+    },
+    "saashq*.users": {
+      "rename": "saashq*__users._doc"
+    },
+    "saashq*.channels": {
+      "rename": "saashq*__channels._doc"
+    },
+    "saashq*.stages": {
+      "rename": "saashq*__stages._doc"
+    },
+    "saashq*.pipelines": {
+      "rename": "saashq*__pipelines._doc"
+    },
+    "saashq*.tags": {
+      "rename": "saashq*__tags._doc"
+    },
+    "saashq*.tasks": {
+      "rename": "saashq*__tasks._doc"
+    },
+    "saashq*.tickets": {
+      "rename": "saashq*__tickets._doc"
+    },
+    "saashq*.engage_messages": {
+      "rename": "saashq*__engage_messages._doc"
+    },
+    "saashq*.segments": {
+      "rename": "saashq*__segments._doc"
+    },
+    "saashq*.fields": {
+      "rename": "saashq*__fields._doc"
+    },
+    "saashq*.conformities": {
+      "rename": "saashq*__conformities._doc"
+    },
+    "saashq*.fields_groups": {
+      "rename": "saashq*__fields_groups._doc"
+    }, 
+    "saashq*.products": {
+      "rename": "saashq*__products._doc"
+    }
+  },
+  "docManagers": [
+    {
+      "docManager": "elastic2_doc_manager",
+      "bulkSize": 10,
+      "uniqueKey": "_id",
+      "args": {
+        "clientOptions": {
+          "timeout": 5000
+        }
+      }
+    }
+  ]
+}

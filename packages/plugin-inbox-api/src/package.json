@@ -1,0 +1,10 @@
+{
+  "name": "@saashq/plugin-inbox-api",
+  "version": "1.0.0",
+  "scripts": {
+    "install-deps": "cd .saashq && yarn install",
+    "dev": "cd .saashq && yarn dev",
+    "build": "cd .saashq && yarn build",
+    "start": "cd .saashq/dist/plugin-inbox-api/.saashq && node src"
+  }
+}

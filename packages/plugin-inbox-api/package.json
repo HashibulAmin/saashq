@@ -1,0 +1,16 @@
+{
+  "name": "@saashq/plugin-inbox-api",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "build" : "tsc"
+  },
+  "dependencies": {
+    "@saashq/api-utils" : "*",
+    "moment-timezone": "^0.5.28",
+    "dayjs": "1.8.15",
+    "server-timing": "3.3.1",
+    "uuid-by-string": "^3.0.5",
+    "vm2": "^3.9.16"
+  }
+}

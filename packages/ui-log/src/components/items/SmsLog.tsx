@@ -1,0 +1,32 @@
+import {
+  ActivityDate,
+  FlexBody,
+  FlexCenterContent
+} from '@saashq/ui-log/src/activityLogs/styles';
+
+import { IActivityLogItemProps } from '@saashq/ui-log/src/activityLogs/types';
+import React from 'react';
+import Tip from '@saashq/ui/src/components/Tip';
+import dayjs from 'dayjs';
+
+export default function SmsLog({ activity }: IActivityLogItemProps) {
+  const { createdAt, content } = activity;
+
+  const renderContent = () => {
+    return (
+      <span>
+        SMS <strong>"{content && content.text}"</strong> has been sent to{' '}
+        <strong>{content && content.to}</strong>
+      </span>
+    );
+  };
+
+  return (
+    <FlexCenterContent>
+      <FlexBody>{renderContent()}</FlexBody>
+      <Tip text={dayjs(createdAt).format('llll')}>
+        <ActivityDate>{dayjs(createdAt).format('MMM D, h:mm A')}</ActivityDate>
+      </Tip>
+    </FlexCenterContent>
+  );
+}

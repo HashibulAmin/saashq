@@ -1,0 +1,12 @@
+{
+  "name": "@saashq/plugin-pricing-api",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "build" : "tsc"
+  },
+  "dependencies": {
+    "@saashq/api-utils": "*",
+    "dayjs": "1.8.15"
+  }
+}

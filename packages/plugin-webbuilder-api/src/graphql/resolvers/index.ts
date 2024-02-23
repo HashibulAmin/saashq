@@ -1,0 +1,21 @@
+import customScalars from '@saashq/api-utils/src/customScalars';
+
+import mutations from './mutations';
+import queries from './queries';
+import WebbuilderContentType from './contentType';
+import WebbuilderPage from './page';
+
+const resolvers: any = async () => ({
+  ...customScalars,
+  WebbuilderContentType,
+  WebbuilderPage,
+
+  Mutation: {
+    ...mutations
+  },
+  Query: {
+    ...queries
+  }
+});
+
+export default resolvers;
