@@ -6,6 +6,8 @@ import {
 } from '@saashq/api-utils/src/permissions';
 import { MONTHS } from '../../../constants';
 import { sendProductsMessage } from '../../../messageBroker';
+import { IPlanValues } from '../../../models/definitions/yearPlans';
+import { isNumberObject } from 'util/types';
 
 interface IListArgs {
   page: number;
@@ -143,7 +145,7 @@ const labelsQueries = {
     for (const plan in plans) {
       for (const month in MONTHS) {
         if (month) {
-          const planVals = Number(plan.values[month]);
+          const planVals = Number(Object(plan).values[month]);
           if (planVals !== undefined) {
             result[month] += planVals;
           }

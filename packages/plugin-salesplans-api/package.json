@@ -1,6 +1,7 @@
 {
   "name": "@saashq/plugin-salesplans-api",
   "version": "1.0.0",
+  "license": "MIT",
   "scripts": {
     "dev": "nodemon src/index.ts",
     "build" : "tsc"
