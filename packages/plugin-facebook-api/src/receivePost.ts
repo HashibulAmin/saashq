@@ -11,7 +11,7 @@ const receivePost = async (
 ) => {
   const integration = await models.Integrations.findOne({
     $and: [
-      { facebookPageIds: { $in: pageId } },
+      { facebookPageIds: { $in: pageId as unknown as string[] } },
       { kind: INTEGRATION_KINDS.POST },
     ],
   });

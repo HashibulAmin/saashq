@@ -206,7 +206,7 @@ const generateObjectToWait = ({
 }: {
   messages: any[];
   optionalConnects: any[];
-  conversation: { _id: string } & IConversation;
+  conversation: { _id?: string } & IConversation;
   customer: ICustomer;
 }) => {
   const obj: any = {};

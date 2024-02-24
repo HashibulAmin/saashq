@@ -93,7 +93,9 @@ const facebookQueries = {
     };
 
     if (senderId && senderId !== 'undefined') {
-      const customer = await models.Customers.findOne({ saashqApiId: senderId });
+      const customer = await models.Customers.findOne({
+        saashqApiId: senderId,
+      });
 
       if (customer && customer.userId) {
         query.senderId = customer.userId;
@@ -266,7 +268,7 @@ const facebookQueries = {
 
       const comment_ids = comment?.map((item) => item.comment_id);
       const search = await models.CommentConversationReply.find({
-        parentId: comment_ids,
+        parentId: comment_ids as any,
       })
         .sort(sort)
         .skip(skip || 0);

@@ -1,5 +1,6 @@
 import { putCreateLog as commonPutCreateLog } from '@saashq/api-utils/src/logUtils';
 import { IModels } from './connectionResolver';
+import { IUserDocument } from '@saashq/api-utils/src/types';
 
 const gatherDescriptions = (models, subdomain, logDoc) => {
   let description = '';
@@ -24,6 +25,6 @@ export const putCreateLog = async (
   await commonPutCreateLog(
     subdomain,
     { ...logDoc, description, extraDesc, type: `facebook:${logDoc.type}` },
-    customer,
+    customer as unknown as IUserDocument,
   );
 };
