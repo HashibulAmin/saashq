@@ -35,8 +35,8 @@ export const activityLogSchema = new Schema({
   createdAt: field({
     type: Date,
     required: true,
-    default: Date.now
-  })
+    default: Date.now,
+  }),
 });
 
 export interface IActivityLogModel extends Model<IActivityLogDocument> {
@@ -45,7 +45,7 @@ export interface IActivityLogModel extends Model<IActivityLogDocument> {
   removeActivityLog(contentId: string): void;
   removeActivityLogs(
     contentType: string,
-    contentIds: string[]
+    contentIds: string[],
   ): Promise<{ n: number; ok: number }>;
 }
 
@@ -60,17 +60,17 @@ export const loadClass = (models: IModels, subdomain: string) => {
     }
 
     public static async removeActivityLog(contentId: IActivityLogInput) {
-      await models.ActivityLogs.deleteMany({ contentId });
+      await models.ActivityLogs.deleteMany({ contentId } as any);
     }
 
     public static async removeActivityLogs(
       contentType: string,
-      contentIds: string[]
+      contentIds: string[],
     ) {
       // Removing every activity logs of contentType
       return models.ActivityLogs.deleteMany({
         contentType,
-        contentId: { $in: contentIds }
+        contentId: { $in: contentIds },
       });
     }
   }

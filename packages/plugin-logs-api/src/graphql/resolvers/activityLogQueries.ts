@@ -5,7 +5,10 @@ import { fetchService, getContentIds } from '../../messageBroker';
 import { IContext } from '../../connectionResolver';
 
 import { IActivityLogDocument } from '../../models/ActivityLogs';
-import { getService, getServices } from '@saashq/api-utils/src/serviceDiscovery';
+import {
+  getService,
+  getServices,
+} from '@saashq/api-utils/src/serviceDiscovery';
 
 export interface IListArgs {
   contentType: string;
@@ -76,7 +79,7 @@ const activityLogQueries = {
       }
     }
 
-    activities.push(...activityLogs);
+    activities.push(...(activityLogs as IActivityLogDocument[]));
 
     activities.sort((a, b) => {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
