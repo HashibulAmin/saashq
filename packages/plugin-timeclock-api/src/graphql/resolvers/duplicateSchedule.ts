@@ -4,10 +4,10 @@ import { IScheduleDocument } from '../../models/definitions/timeclock';
 export default {
   shifts(schedule: IScheduleDocument, {}, { models }: IContext, {}) {
     return models.Shifts.find({
-      _id: schedule.shiftIds,
-      scheduleId: schedule._id
+      _id: schedule.shiftIds as any,
+      scheduleId: schedule._id,
     }).sort({
-      shiftStart: -1
+      shiftStart: -1,
     });
   },
 
@@ -15,8 +15,8 @@ export default {
     return (
       schedule.userId && {
         __typename: 'User',
-        _id: schedule.userId
+        _id: schedule.userId,
       }
     );
-  }
+  },
 };
