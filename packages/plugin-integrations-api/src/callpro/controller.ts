@@ -104,7 +104,7 @@ const init = async (app) => {
       const inboxIntegration = await sendInboxMessage({
         subdomain,
         action: 'integrations.findOne',
-        data: { _id: integration.saashqApiId },
+        data: { _id: integration?.saashqApiId },
         isRPC: true,
         defaultValue: null,
       });
