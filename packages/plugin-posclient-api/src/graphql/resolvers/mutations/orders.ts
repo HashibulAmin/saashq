@@ -346,7 +346,7 @@ const ordersEdit = async (
   ) {
     const currentSlots = await models.PosSlots.find({
       posToken: config.token,
-      code: { $in: [order.slotCode, updatedOrder.slotCode] },
+      code: { $in: [order.slotCode, updatedOrder.slotCode] as string[] },
     }).lean();
 
     if (currentSlots.length) {
