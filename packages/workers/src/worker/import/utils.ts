@@ -16,6 +16,8 @@ import CustomWorker from '../workerUtil';
 import { debugWorkers } from '../debugger';
 import { getFileUploadConfigs } from '../../messageBroker';
 import { IModels } from '../../connectionResolvers';
+import { IImportHistoryModel } from '../../db/models/ImportHistory';
+import { promoCodeSchema } from '@saashq/api-utils/src/saas/definition';
 
 const { ELK_SYNCER } = process.env;
 
@@ -147,7 +149,7 @@ const importBulkStream = ({
     rowIndex: number,
     rows: any,
     contentType: string,
-  ) => Promise<void>;
+  ) => Promise<void | any>;
   associateContentType?: string;
   associateField?: string;
   mainAssociateField?: string;
@@ -384,15 +386,12 @@ export const receiveImportCreate = async (
 
   debugWorkers(config);
 
-  await models.ImportHistory.updateOne(
-    { _id: importHistoryId },
-    {
-      contentTypes,
-      userId: user._id,
-      date: Date.now(),
-      total,
-    },
-  );
+  await models.ImportHistory.updateOne({ _id: importHistoryId }, {
+    contentTypes,
+    userId: user._id,
+    date: Date.now(),
+    total,
+  } as unknown as IImportHistoryModel);
 
   const updateImportHistory = async (doc) => {
     return models.ImportHistory.updateOne({ _id: importHistoryId }, doc);
