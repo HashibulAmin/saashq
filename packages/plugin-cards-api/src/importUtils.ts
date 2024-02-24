@@ -34,7 +34,7 @@ export const prepareImportDocs = async (models: IModels, args) => {
   // Iterating field values
   for (const fieldValue of result) {
     const doc: any = {
-      customFieldsData: []
+      customFieldsData: [],
     };
 
     let colIndex: number = 0;
@@ -78,17 +78,17 @@ export const prepareImportDocs = async (models: IModels, args) => {
 
       const board = await models.Boards.findOne({
         name: boardName,
-        type: contentType
+        type: contentType,
       });
 
       const pipeline = await models.Pipelines.findOne({
-        boardId: board && board._id,
-        name: pipelineName
+        boardId: board && (board._id as any),
+        name: pipelineName,
       });
 
       const stage = await models.Stages.findOne({
-        pipelineId: pipeline && pipeline._id,
-        name: stageName
+        pipelineId: pipeline && (pipeline._id as any),
+        name: stageName,
       });
 
       doc.stageId = stage ? stage._id : '123';

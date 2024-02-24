@@ -3298,7 +3298,7 @@ const chartTemplates = [
         }).lean();
         if (taskCount) {
           tasks = taskCount.filter((task) => {
-            return task.assignedUserIds.some((userId) =>
+            return task.assignedUserIds?.some((userId) =>
               selectedUserIds.includes(userId),
             );
           });
@@ -3964,7 +3964,7 @@ const chartTemplates = [
         }).lean();
         if (taskCount) {
           tasks = taskCount.filter((task) => {
-            return task.assignedUserIds.some((userId) =>
+            return task.assignedUserIds?.some((userId) =>
               selectedUserIds.includes(userId),
             );
           });

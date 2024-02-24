@@ -108,6 +108,7 @@ export interface IPipelineDocument extends IPipeline, Document {
 }
 
 export interface IStage extends ICommonFields {
+  _id?: string | undefined;
   name?: string;
   probability?: string;
   pipelineId: string;

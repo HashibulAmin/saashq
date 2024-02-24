@@ -870,7 +870,10 @@ export const archivedItems = async (
   const stages = await models.Stages.find({ pipelineId }).lean();
 
   if (stages.length > 0) {
-    const filter = generateArhivedItemsFilter(params, stages);
+    const filter = generateArhivedItemsFilter(
+      params,
+      stages as IStageDocument[],
+    );
 
     return collection
       .find(filter)

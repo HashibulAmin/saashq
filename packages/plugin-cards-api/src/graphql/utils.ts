@@ -73,8 +73,8 @@ export const sendNotifications = async (
     content,
     contentType,
     invitedUsers,
-    removedUsers
-  }: IBoardNotificationParams
+    removedUsers,
+  }: IBoardNotificationParams,
 ) => {
   const stage = await models.Stages.getStage(item.stageId);
   const pipeline = await models.Pipelines.getPipeline(stage.pipelineId);
@@ -88,7 +88,7 @@ export const sendNotifications = async (
   const usersToExclude = [
     ...(removedUsers || []),
     ...(invitedUsers || []),
-    user._id
+    user._id,
   ];
 
   const notificationDoc = {
@@ -102,9 +102,9 @@ export const sendNotifications = async (
     link: `/${contentType}/board?id=${pipeline.boardId}&pipelineId=${pipeline._id}&itemId=${item._id}`,
 
     // exclude current user, invited user and removed users
-    receivers: (await notifiedUserIds(models, item)).filter(id => {
+    receivers: (await notifiedUserIds(models, item)).filter((id) => {
       return usersToExclude.indexOf(id) < 0;
-    })
+    }),
   };
 
   if (removedUsers && removedUsers.length > 0) {
@@ -114,7 +114,7 @@ export const sendNotifications = async (
         NOTIFICATION_TYPES[`${contentType.toUpperCase()}_REMOVE_ASSIGN`],
       action: `removed you from ${contentType}`,
       content: `'${item.name}'`,
-      receivers: removedUsers.filter(id => id !== user._id)
+      receivers: removedUsers.filter((id) => id !== user._id),
     });
 
     sendCoreMessage({
@@ -122,15 +122,16 @@ export const sendNotifications = async (
       action: 'sendMobileNotification',
       data: {
         title: `${item.name}`,
-        body: `${notificationDoc.createdUser?.details?.fullName ||
-          notificationDoc.createdUser?.details
-            ?.shortName} removed you from ${contentType}`,
-        receivers: removedUsers.filter(id => id !== user._id),
+        body: `${
+          notificationDoc.createdUser?.details?.fullName ||
+          notificationDoc.createdUser?.details?.shortName
+        } removed you from ${contentType}`,
+        receivers: removedUsers.filter((id) => id !== user._id),
         data: {
           type: contentType,
-          id: item._id
-        }
-      }
+          id: item._id,
+        },
+      },
     });
   }
 
@@ -140,7 +141,7 @@ export const sendNotifications = async (
       notifType: NOTIFICATION_TYPES[`${contentType.toUpperCase()}_ADD`],
       action: `invited you to the ${contentType}: `,
       content: `'${item.name}'`,
-      receivers: invitedUsers.filter(id => id !== user._id)
+      receivers: invitedUsers.filter((id) => id !== user._id),
     });
 
     sendCoreMessage({
@@ -148,20 +149,21 @@ export const sendNotifications = async (
       action: 'sendMobileNotification',
       data: {
         title: `${item.name}`,
-        body: `${notificationDoc.createdUser?.details?.fullName ||
-          notificationDoc.createdUser?.details
-            ?.shortName} invited you to the ${contentType}`,
-        receivers: invitedUsers.filter(id => id !== user._id),
+        body: `${
+          notificationDoc.createdUser?.details?.fullName ||
+          notificationDoc.createdUser?.details?.shortName
+        } invited you to the ${contentType}`,
+        receivers: invitedUsers.filter((id) => id !== user._id),
         data: {
           type: contentType,
-          id: item._id
-        }
-      }
+          id: item._id,
+        },
+      },
     });
   }
 
   sendNotification(subdomain, {
-    ...notificationDoc
+    ...notificationDoc,
   });
 };
 
@@ -187,7 +189,7 @@ const PERMISSION_MAP = {
     stagesEdit: 'dealStagesEdit',
     stagesRemove: 'dealStagesRemove',
     itemsSort: 'dealsSort',
-    updateTimeTracking: 'dealUpdateTimeTracking'
+    updateTimeTracking: 'dealUpdateTimeTracking',
   },
   ticket: {
     boardsAdd: 'ticketBoardsAdd',
@@ -202,7 +204,7 @@ const PERMISSION_MAP = {
     stagesEdit: 'ticketStagesEdit',
     stagesRemove: 'ticketStagesRemove',
     itemsSort: 'ticketsSort',
-    updateTimeTracking: 'ticketUpdateTimeTracking'
+    updateTimeTracking: 'ticketUpdateTimeTracking',
   },
   task: {
     boardsAdd: 'taskBoardsAdd',
@@ -217,7 +219,7 @@ const PERMISSION_MAP = {
     stagesEdit: 'taskStagesEdit',
     stagesRemove: 'taskStagesRemove',
     itemsSort: 'tasksSort',
-    updateTimeTracking: 'taskUpdateTimeTracking'
+    updateTimeTracking: 'taskUpdateTimeTracking',
   },
   growthHack: {
     boardsAdd: 'growthHackBoardsAdd',
@@ -236,7 +238,7 @@ const PERMISSION_MAP = {
     templatesDuplicate: 'growthHackTemplatesDuplicate',
     showTemplates: 'showGrowthHackTemplates',
     stagesRemove: 'growthHackStagesRemove',
-    itemsSort: 'growthHacksSort'
+    itemsSort: 'growthHacksSort',
   },
   purchase: {
     boardsAdd: 'purchaseBoardsAdd',
@@ -251,8 +253,8 @@ const PERMISSION_MAP = {
     stagesEdit: 'purchaseStagesEdit',
     stagesRemove: 'purchaseStagesRemove',
     itemsSort: 'purchasesSort',
-    updateTimeTracking: 'purchaseUpdateTimeTracking'
-  }
+    updateTimeTracking: 'purchaseUpdateTimeTracking',
+  },
 };
 
 export const checkPermission = async (
@@ -260,7 +262,7 @@ export const checkPermission = async (
   subdomain: string,
   type: string,
   user: IUserDocument,
-  mutationName: string
+  mutationName: string,
 ) => {
   checkLogin(user);
 
@@ -281,24 +283,24 @@ export const checkPermission = async (
 
 export const createConformity = async (
   subdomain: string,
-  { companyIds, customerIds, mainType, mainTypeId }: IConformityCreate
+  { companyIds, customerIds, mainType, mainTypeId }: IConformityCreate,
 ) => {
   const companyConformities: IConformityAdd[] = (companyIds || []).map(
-    companyId => ({
+    (companyId) => ({
       mainType,
       mainTypeId,
       relType: 'company',
-      relTypeId: companyId
-    })
+      relTypeId: companyId,
+    }),
   );
 
   const customerConformities: IConformityAdd[] = (customerIds || []).map(
-    customerId => ({
+    (customerId) => ({
       mainType,
       mainTypeId,
       relType: 'customer',
-      relTypeId: customerId
-    })
+      relTypeId: customerId,
+    }),
   );
 
   const allConformities = companyConformities.concat(customerConformities);
@@ -306,7 +308,7 @@ export const createConformity = async (
   sendCoreMessage({
     subdomain,
     action: 'conformities.addConformities',
-    data: allConformities
+    data: allConformities,
   });
 };
 
@@ -321,7 +323,7 @@ interface ILabelParams {
  */
 export const copyPipelineLabels = async (
   models: IModels,
-  params: ILabelParams
+  params: ILabelParams,
 ) => {
   const { item, doc, user } = params;
 
@@ -337,21 +339,21 @@ export const copyPipelineLabels = async (
   }
 
   const oldLabels = await models.PipelineLabels.find({
-    _id: { $in: item.labelIds }
+    _id: { $in: item.labelIds },
   }).lean();
 
   const updatedLabelIds: string[] = [];
 
   const existingLabels = await models.PipelineLabels.find({
-    name: { $in: oldLabels.map(o => o.name) },
-    colorCode: { $in: oldLabels.map(o => o.colorCode) },
-    pipelineId: newStage.pipelineId
+    name: { $in: oldLabels.map((o) => o.name) },
+    colorCode: { $in: oldLabels.map((o) => o.colorCode) },
+    pipelineId: newStage.pipelineId,
   }).lean();
 
   // index using only name and colorCode, since all pipelineIds are same
   const existingLabelsByUnique = _.indexBy(
     existingLabels,
-    ({ name, colorCode }) => JSON.stringify({ name, colorCode })
+    ({ name, colorCode }) => JSON.stringify({ name, colorCode }),
   );
 
   // Collect labels that don't exist on the new stage's pipeline here
@@ -368,7 +370,7 @@ export const copyPipelineLabels = async (
         colorCode: label.colorCode,
         pipelineId: newStage.pipelineId,
         createdAt: new Date(),
-        createdBy: user._id
+        createdBy: user._id,
       });
     } else {
       updatedLabelIds.push(exists._id);
@@ -377,17 +379,17 @@ export const copyPipelineLabels = async (
 
   // Insert labels that don't already exist on the new stage's pipeline
   const newLabels = await models.PipelineLabels.insertMany(notExistingLabels, {
-    ordered: false
+    ordered: false,
   });
 
-  for (const newLabel of newLabels) {
-    updatedLabelIds.push(newLabel._id);
+  for (const newLabel in newLabels) {
+    updatedLabelIds.push(Object(newLabel)._id);
   }
 
   await models.PipelineLabels.labelsLabel(
     newStage.pipelineId,
     item._id,
-    updatedLabelIds
+    updatedLabelIds,
   );
 };
 
@@ -403,24 +405,24 @@ interface IChecklistParams {
  */
 export const copyChecklists = async (
   models: IModels,
-  params: IChecklistParams
+  params: IChecklistParams,
 ) => {
   const { contentType, contentTypeId, targetContentId, user } = params;
 
   const originalChecklists = await models.Checklists.find({
     contentType,
-    contentTypeId
+    contentTypeId,
   }).lean();
 
   const clonedChecklists = await models.Checklists.insertMany(
-    originalChecklists.map(originalChecklist => ({
+    originalChecklists.map((originalChecklist) => ({
       contentType,
       contentTypeId: targetContentId,
       title: originalChecklist.title,
       createdUserId: user._id,
-      createdDate: new Date()
+      createdDate: new Date(),
     })),
-    { ordered: true }
+    { ordered: true },
   );
 
   const originalChecklistIdToClonedId = new Map<string, string>();
@@ -428,12 +430,12 @@ export const copyChecklists = async (
   for (let i = 0; i < originalChecklists.length; i++) {
     originalChecklistIdToClonedId.set(
       originalChecklists[i]._id,
-      clonedChecklists[i]._id
+      clonedChecklists[i]._id,
     );
   }
 
   const originalChecklistItems = await models.ChecklistItems.find({
-    checklistId: { $in: originalChecklists.map(x => x._id) }
+    checklistId: { $in: originalChecklists.map((x) => x._id) },
   }).lean();
 
   await models.ChecklistItems.insertMany(
@@ -443,9 +445,9 @@ export const copyChecklists = async (
       createdUserId: user._id,
       createdDate: new Date(),
       content,
-      order
+      order,
     })),
-    { ordered: false }
+    { ordered: false },
   );
 };
 
@@ -457,7 +459,7 @@ export const prepareBoardItemDoc = async (
     | IGrowthHackDocument
     | IPurchaseDocument,
   collection: string,
-  userId: string
+  userId: string,
 ) => {
   const doc = {
     ...item,
@@ -475,15 +477,15 @@ export const prepareBoardItemDoc = async (
     order: await getNewOrder({
       collection,
       stageId: item.stageId,
-      aboveItemId: item._id
+      aboveItemId: item._id,
     }),
 
-    attachments: (item.attachments || []).map(a => ({
+    attachments: (item.attachments || []).map((a) => ({
       url: a.url,
       name: a.name,
       type: a.type,
-      size: a.size
-    }))
+      size: a.size,
+    })),
   };
 
   return doc;
