@@ -30,12 +30,10 @@ const coverQueries = {
     }
 
     return paginate(
-      models.Covers.find(selector)
-        .sort({ createdAt: -1 })
-        .lean(),
+      models.Covers.find(selector).sort({ createdAt: -1 }).lean(),
       {
-        ...params
-      }
+        ...params,
+      },
     );
   },
 
@@ -46,7 +44,7 @@ const coverQueries = {
   async coverAmounts(
     _root,
     { _id, endDate }: { _id: string; endDate: Date },
-    { models, posUser, config }: IContext
+    { models, posUser, config }: IContext,
   ) {
     endDate = getPureDate(endDate);
 
@@ -63,10 +61,10 @@ const coverQueries = {
       .sort({ endDate: -1 })
       .lean();
     if (!lastCover) {
-      lastCover = {};
+      lastCover = null;
     }
 
-    const startDate = lastCover.endDate;
+    const startDate = lastCover?.endDate;
     const orderFilter: any = { posToken: config.token, userId: posUser._id };
     if (startDate) {
       orderFilter.paidDate = { $gte: startDate, $lte: endDate };
@@ -94,7 +92,7 @@ const coverQueries = {
     }
 
     return result;
-  }
+  },
 };
 
 export default coverQueries;

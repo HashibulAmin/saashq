@@ -147,8 +147,12 @@ const configMutations = {
       ],
     };
 
-    let sumCount = await models.Orders.find({ ...orderFilter }).count();
-    const orders = await models.Orders.find({ ...orderFilter })
+    let sumCount = await models.Orders.find({
+      ...(orderFilter as unknown as string[]),
+    }).count();
+    const orders = await models.Orders.find({
+      ...(orderFilter as unknown as string[]),
+    })
       .sort({ paidDate: 1 })
       .limit(100)
       .lean();

@@ -134,7 +134,7 @@ export const validateOrder = async (
       const result = await checkRemainders(
         subdomain,
         config,
-        checkProducts,
+        checkProducts as IProductDocument[],
         doc.branchId || config.branchId,
       );
 
@@ -581,7 +581,9 @@ export const prepareOrderDoc = async (
       (htpi) => (productsOfId[htpi] || {}).categoryId,
     );
     const categories = await models.ProductCategories.find({
-      _id: { $in: [...mapCatIds, ...hasTakeCatIds] },
+      _id: {
+        $in: [...(mapCatIds as string[]), ...(hasTakeCatIds as string[])],
+      },
     }).lean();
 
     const categoriesOfId = {};

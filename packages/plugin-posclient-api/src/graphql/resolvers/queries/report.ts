@@ -6,7 +6,7 @@ const reportQueries = {
   async dailyReport(
     _root,
     { posUserIds, posNumber }: { posUserIds: string[]; posNumber?: string },
-    { models, config }: IContext
+    { models, config }: IContext,
   ) {
     const report: any = {};
 
@@ -20,10 +20,10 @@ const reportQueries = {
     const orderQuery = {
       paidDate: { $ne: null },
       number: { $regex: new RegExp(beginNumber) },
-      posToken: config.token
+      posToken: config.token,
     };
     const users = await models.PosUsers.find({
-      _id: { $in: posUserIds }
+      _id: { $in: posUserIds },
     }).lean();
 
     for (const user of [...users, { _id: '' }]) {
@@ -35,8 +35,8 @@ const reportQueries = {
             cashAmount: '$cashAmount',
             receivableAmount: '$receivableAmount',
             mobileAmount: '$mobileAmount',
-            totalAmount: '$totalAmount'
-          }
+            totalAmount: '$totalAmount',
+          },
         },
         {
           $group: {
@@ -45,9 +45,9 @@ const reportQueries = {
             cashAmount: { $sum: '$cashAmount' },
             receivableAmount: { $sum: '$receivableAmount' },
             mobileAmount: { $sum: '$mobileAmount' },
-            totalAmount: { $sum: '$totalAmount' }
-          }
-        }
+            totalAmount: { $sum: '$totalAmount' },
+          },
+        },
       ]);
 
       const ordersAmount = ordersAmounts.length ? ordersAmounts[0] : {};
@@ -58,15 +58,15 @@ const reportQueries = {
         {
           $project: {
             type: '$paidAmounts.type',
-            amount: '$paidAmounts.amount'
-          }
+            amount: '$paidAmounts.amount',
+          },
         },
         {
           $group: {
             _id: '$type',
-            amount: { $sum: '$amount' }
-          }
-        }
+            amount: { $sum: '$amount' },
+          },
+        },
       ]);
 
       for (const amount of otherAmounts) {
@@ -75,43 +75,43 @@ const reportQueries = {
       }
 
       const orders = await models.Orders.find({
-        ...orderQuery,
-        userId: user._id
+        ...(orderQuery as any),
+        userId: user._id,
       }).lean();
-      const orderIds = orders.map(o => o._id);
+      const orderIds = orders.map((o) => o._id);
       const groupedItems = await models.OrderItems.aggregate([
         { $match: { orderId: { $in: orderIds } } },
         {
           $project: {
             productId: '$productId',
-            count: '$count'
-          }
+            count: '$count',
+          },
         },
         {
           $group: {
             _id: '$productId',
-            count: { $sum: '$count' }
-          }
-        }
+            count: { $sum: '$count' },
+          },
+        },
       ]);
 
-      const productIds = groupedItems.map(g => g._id);
+      const productIds = groupedItems.map((g) => g._id);
       const products = await models.Products.find(
         { _id: { $in: productIds } },
-        { _id: 1, code: 1, name: 1, categoryId: 1, prices: 1 }
+        { _id: 1, code: 1, name: 1, categoryId: 1, prices: 1 },
       ).lean();
       const productCategories = await models.ProductCategories.find(
         {
-          _id: { $in: products.map(p => p.categoryId) }
+          _id: { $in: products.map((p) => p.categoryId) as string[] },
         },
-        { _id: 1, code: 1, name: 1 }
+        { _id: 1, code: 1, name: 1 },
       )
         .sort({ order: 1 })
         .lean();
 
       const productById: { [_id: string]: IProductDocument } = {};
-      for (const product of products) {
-        productById[product._id] = product;
+      for (const product in products) {
+        productById[Object(product)._id] = <IProductDocument>(<unknown>product);
       }
 
       const categoryById = {};
@@ -125,14 +125,14 @@ const reportQueries = {
         const category = categoryById[product.categoryId || ''] || {
           _id: 'undefined',
           code: 'Unknown',
-          name: 'Unknown'
+          name: 'Unknown',
         };
 
         if (!Object.keys(items).includes(category._id)) {
           items[category._id] = {
             code: category.code,
             name: category.name,
-            products: []
+            products: [],
           };
         }
 
@@ -140,21 +140,21 @@ const reportQueries = {
           name: product.name,
           code: product.code,
           unitPrice: (product.prices || {})[config.token] || 0,
-          count: groupedItem.count
+          count: groupedItem.count,
         });
       }
 
       report[user._id] = {
         user,
         ordersAmounts: { ...ordersAmount, count: orders.length },
-        items
+        items,
       };
     }
 
     return {
-      report
+      report,
     };
-  }
+  },
 };
 
 export default reportQueries;

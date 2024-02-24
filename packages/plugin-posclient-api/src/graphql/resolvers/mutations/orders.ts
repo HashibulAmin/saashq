@@ -17,6 +17,7 @@ import {
 } from '../../../models/definitions/constants';
 import { IPaidAmount } from '../../../models/definitions/orders';
 import { IPosUserDocument } from '../../../models/definitions/posUsers';
+
 import { IContext, IOrderInput } from '../../types';
 import {
   checkOrderAmount,
@@ -34,6 +35,8 @@ import {
 } from '../../utils/orderUtils';
 import { checkSlotStatus } from '../../utils/slots';
 import { prepareSettlePayment } from '../../../utils';
+import { IOrderItemDocument } from '../../../models/definitions/orderItems';
+import { IPosSlotDocument } from '../../../models/definitions/slots';
 
 interface IPaymentBase {
   billType: string;
@@ -541,7 +544,7 @@ const orderMutations = {
         models,
         order,
         ebarimtConfig,
-        items,
+        items as IOrderItemDocument[],
         doc.billType,
         doc.registerNumber || order.registerNumber,
       );
@@ -660,8 +663,8 @@ const orderMutations = {
           _id: { $in: items.map((i) => i.productId) },
         }).lean();
         for (const item of items) {
-          const product = products.find((p) => p._id === item.productId) || {};
-          item.productName = `${product.code} - ${product.name}`;
+          const product = products.find((p) => p._id === item.productId);
+          item.productName = `${product?.code} - ${product?.name}`;
         }
       }
 

@@ -4,12 +4,12 @@ import {
   field,
   getDateFieldDefinition,
   schemaHooksWrapper,
-  schemaWrapper
+  schemaWrapper,
 } from './utils';
 import {
   PRODUCT_CATEGORY_STATUSES,
   PRODUCT_STATUSES,
-  PRODUCT_TYPES
+  PRODUCT_TYPES,
 } from './constants';
 
 interface IAttachment {
@@ -55,6 +55,7 @@ export interface IProduct extends IProductCommonFields {
   taxCode?: string;
   isCheckRems: { [token: string]: boolean };
   sameMasks?: string[];
+  unitPrice: number;
 }
 
 export interface IProductDocument extends IProduct, Document {
@@ -87,7 +88,7 @@ export interface IProductCategoryDocument extends IProductCategory, Document {
 const subUomSchema = new Schema({
   _id: field({ pkey: true }),
   uom: field({ type: String, label: 'Sub unit of measurement' }),
-  ratio: field({ type: Number, label: 'ratio of sub uom to main uom' })
+  ratio: field({ type: Number, label: 'ratio of sub uom to main uom' }),
 });
 
 export const productSchema = schemaWrapper(
@@ -101,12 +102,12 @@ export const productSchema = schemaWrapper(
       type: [String],
       optional: true,
       label: 'Barcodes',
-      index: true
+      index: true,
     }),
     barcodeDescription: field({
       type: String,
       optional: true,
-      label: 'Barcode Description'
+      label: 'Barcode Description',
     }),
     description: field({ type: String, optional: true, label: 'Description' }),
     attachment: field({ type: attachmentSchema }),
@@ -115,32 +116,32 @@ export const productSchema = schemaWrapper(
       type: String,
       enum: PRODUCT_TYPES.ALL,
       default: PRODUCT_TYPES.PRODUCT,
-      label: 'Type'
+      label: 'Type',
     }),
     tagIds: field({
       type: [String],
       optional: true,
       label: 'Tags',
-      index: true
+      index: true,
     }),
     uom: field({
       type: String,
       optional: true,
-      label: 'Main unit of measurement'
+      label: 'Main unit of measurement',
     }),
     subUoms: field({
       type: [subUomSchema],
       optional: true,
-      label: 'Sum unit of measurements'
+      label: 'Sum unit of measurements',
     }),
     prices: field({
       type: Object,
-      label: 'Unit price by token'
+      label: 'Unit price by token',
     }),
     customFieldsData: field({
       type: [customFieldSchema],
       optional: true,
-      label: 'Custom fields data'
+      label: 'Custom fields data',
     }),
     status: field({
       type: String,
@@ -149,7 +150,7 @@ export const productSchema = schemaWrapper(
       label: 'Status',
       default: 'active',
       esType: 'keyword',
-      index: true
+      index: true,
     }),
     vendorId: field({ type: String, optional: true, label: 'Vendor' }),
     mergedIds: field({ type: [String], optional: true }),
@@ -160,10 +161,10 @@ export const productSchema = schemaWrapper(
     isCheckRems: field({
       type: Object,
       optional: true,
-      label: 'check remainder by token'
+      label: 'check remainder by token',
     }),
-    sameMasks: field({ type: [String] })
-  })
+    sameMasks: field({ type: [String] }),
+  }),
 );
 
 export const productCategorySchema = schemaHooksWrapper(
@@ -183,20 +184,20 @@ export const productCategorySchema = schemaHooksWrapper(
       label: 'Status',
       default: 'active',
       esType: 'keyword',
-      index: true
+      index: true,
     }),
     createdAt: getDateFieldDefinition('Created at'),
     tokens: field({ type: [String] }),
     mask: field({ type: Object, label: 'Mask' }),
     isSimilarity: field({ type: Boolean, label: 'is Similiraties' }),
     similarities: field({
-      type: [{ id: String, groupId: String, fieldId: String, title: String }]
+      type: [{ id: String, groupId: String, fieldId: String, title: String }],
     }),
     maskType: field({
       type: String,
       optional: true,
-      label: 'Mask type'
-    })
+      label: 'Mask type',
+    }),
   }),
-  'saashq_productCategorySchema'
+  'saashq_productCategorySchema',
 );

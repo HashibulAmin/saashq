@@ -253,7 +253,7 @@ export const updateMobileAmount = async (
   }
 
   let order = await models.Orders.findOne(orderSelector).lean();
-  const sumMobileAmount = (order.mobileAmounts || []).reduce(
+  const sumMobileAmount = (order?.mobileAmounts || []).reduce(
     (sum, i) => sum + i.amount,
     0,
   );
@@ -264,7 +264,7 @@ export const updateMobileAmount = async (
 
   order = await models.Orders.findOne(orderSelector).lean();
 
-  const { billType, totalAmount, registerNumber, _id } = order;
+  const { billType, totalAmount, registerNumber, _id }: any = order;
 
   if (Math.round(totalAmount) === Math.round(sumMobileAmount)) {
     if (
@@ -283,7 +283,7 @@ export const updateMobileAmount = async (
     }
   }
 
-  if (order.isPre) {
+  if (order?.isPre) {
     const items = await models.OrderItems.find({ orderId: order._id });
     const config = await models.Configs.findOne({ token: posToken });
     if (config?.isOnline) {
@@ -291,8 +291,8 @@ export const updateMobileAmount = async (
         _id: { $in: items.map((i) => i.productId) },
       }).lean();
       for (const item of items) {
-        const product = products.find((p) => p._id === item.productId) || {};
-        item.productName = `${product.code} - ${product.name}`;
+        const product = products.find((p) => p._id === item.productId);
+        item.productName = `${product?.code} - ${product?.name}`;
       }
     }
 
@@ -316,9 +316,9 @@ export const updateMobileAmount = async (
     ordersOrdered: {
       ...order,
       mobileAmount: sumMobileAmount,
-      _id: order._id,
-      status: order.status,
-      customerId: order.customerId,
+      _id: order?._id,
+      status: order?.status,
+      customerId: order?.customerId,
     },
   });
 
