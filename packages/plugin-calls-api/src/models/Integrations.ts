@@ -2,7 +2,7 @@ import { Model } from 'mongoose';
 import {
   IIntegration,
   IIntegrationDocument,
-  integrationSchema
+  integrationSchema,
 } from './definitions/integrations';
 import { IModels } from '../connectionResolver';
 
@@ -14,20 +14,18 @@ export const loadIntegrationClass = (models: IModels) => {
   class Integration {
     public static async getIntegrations(userId: string) {
       const integrations = await models.Integrations.find({
-        'operators.userId': userId
+        'operators.userId': userId,
       }).lean();
 
       if (!integrations) {
         return [];
       }
-      const filteredIntegrations = integrations.map(
-        (integration: IIntegration) => {
-          const filteredOperators = integration.operators.filter(
-            operator => operator.userId === userId
-          );
-          return { ...integration, operators: filteredOperators };
-        }
-      );
+      const filteredIntegrations = integrations.map((integration: any) => {
+        const filteredOperators = integration.operators.filter(
+          (operator) => operator.userId === userId,
+        );
+        return { ...integration, operators: filteredOperators };
+      });
 
       return filteredIntegrations;
     }
