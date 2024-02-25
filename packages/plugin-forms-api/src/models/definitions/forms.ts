@@ -1,5 +1,5 @@
-import { Document, Schema } from "mongoose";
-import { field, schemaWrapper } from "./utils";
+import { Document, Schema } from 'mongoose';
+import { field, schemaWrapper } from './utils';
 
 export interface IForm {
   title: string;
@@ -30,22 +30,22 @@ export const formSchema = schemaWrapper(
     type: field({ type: String, required: true }),
     description: field({
       type: String,
-      optional: true
+      optional: true,
     }),
     buttonText: field({ type: String, optional: true }),
     code: field({ type: String }),
     createdUserId: field({ type: String }),
     createdDate: field({
       type: Date,
-      default: Date.now
+      default: Date.now,
     }),
 
     numberOfPages: field({
       type: Number,
       optional: true,
-      min: 1
-    })
-  })
+      min: 1,
+    }),
+  }),
 );
 
 export interface IFormSubmission {
@@ -53,7 +53,7 @@ export interface IFormSubmission {
   userId?: string;
   contentType?: string;
   contentTypeId?: string;
-  formId?: string;
+  formId?: string | undefined;
   formFieldId?: string;
   value?: JSON;
   submittedAt?: Date;
@@ -74,6 +74,6 @@ export const formSubmissionSchema = schemaWrapper(
     value: field({ type: Object, optional: true }),
     submittedAt: field({ type: Date, default: Date.now }),
     formId: field({ type: String, optional: true }),
-    formFieldId: field({ type: String, optional: true })
-  })
+    formFieldId: field({ type: String, optional: true }),
+  }),
 );

@@ -8,14 +8,14 @@ import {
   IForm,
   IFormDocument,
   IFormSubmission,
-  IFormSubmissionDocument
+  IFormSubmissionDocument,
 } from './definitions/forms';
 
 interface ISubmission {
   _id: string;
   value: any;
-  type?: string;
-  validation?: string;
+  type: string;
+  validation: string;
 }
 
 interface IError {
@@ -24,20 +24,20 @@ interface IError {
   text: string;
 }
 
-export interface IFormModel extends Model<IFormDocument> {
+export interface IFormModel extends Model<IFormDocument, any, any> {
   getForm(_id: string): Promise<IFormDocument>;
   generateCode(): string;
   createForm(doc: IForm, createdUserId: string): Promise<IFormDocument>;
 
   updateForm(
     _id,
-    { title, description, buttonText }: IForm
+    { title, description, buttonText }: IForm,
   ): Promise<IFormDocument>;
 
   removeForm(_id: string): void;
   duplicate(_id: string): Promise<IFormDocument>;
 
-  validate(formId: string, submissions: ISubmission[]): Promise<IError[]>;
+  //validate( formId: string, submission: ISubmission[]): Promise<IError>;
 }
 
 export const loadFormClass = (models: IModels) => {
@@ -75,7 +75,7 @@ export const loadFormClass = (models: IModels) => {
       return models.Forms.create({
         ...doc,
         createdDate: new Date(),
-        createdUserId
+        createdUserId,
       });
     }
 
@@ -86,7 +86,7 @@ export const loadFormClass = (models: IModels) => {
       await models.Forms.updateOne(
         { _id },
         { $set: doc },
-        { runValidators: true }
+        { runValidators: true },
       );
 
       return models.Forms.findOne({ _id });
@@ -99,7 +99,7 @@ export const loadFormClass = (models: IModels) => {
       // remove fields
       await models.Fields.deleteMany({
         contentType: 'form',
-        contentTypeId: _id
+        contentTypeId: _id,
       });
 
       return models.Forms.deleteOne({ _id });
@@ -116,9 +116,9 @@ export const loadFormClass = (models: IModels) => {
         {
           title: `${form.title} duplicated`,
           description: form.description,
-          type: form.type
+          type: form.type,
         },
-        form.createdUserId
+        form.createdUserId,
       );
 
       // duplicate fields ===================
@@ -135,7 +135,7 @@ export const loadFormClass = (models: IModels) => {
           options: field.options,
           isRequired: field.isRequired,
           order: field.order,
-          optionsValues: field?.optionsValues
+          optionsValues: field?.optionsValues,
         });
       }
 
@@ -148,7 +148,7 @@ export const loadFormClass = (models: IModels) => {
 
       for (const field of fields) {
         // find submission object by _id
-        const submission = submissions.find(sub => sub._id === field._id);
+        const submission = submissions.find((sub) => sub._id === field._id);
 
         if (!submission) {
           continue;
@@ -164,7 +164,7 @@ export const loadFormClass = (models: IModels) => {
           errors.push({
             fieldId: field._id,
             code: 'required',
-            text: 'Required'
+            text: 'Required',
           });
         }
 
@@ -177,7 +177,7 @@ export const loadFormClass = (models: IModels) => {
             errors.push({
               fieldId: field._id,
               code: 'invalidEmail',
-              text: 'Invalid email'
+              text: 'Invalid email',
             });
           }
 
@@ -189,7 +189,7 @@ export const loadFormClass = (models: IModels) => {
             errors.push({
               fieldId: field._id,
               code: 'invalidPhone',
-              text: 'Invalid phone'
+              text: 'Invalid phone',
             });
           }
 
@@ -201,7 +201,7 @@ export const loadFormClass = (models: IModels) => {
             errors.push({
               fieldId: field._id,
               code: 'invalidNumber',
-              text: 'Invalid number'
+              text: 'Invalid number',
             });
           }
 
@@ -210,7 +210,7 @@ export const loadFormClass = (models: IModels) => {
             errors.push({
               fieldId: field._id,
               code: 'invalidDate',
-              text: 'Invalid Date'
+              text: 'Invalid Date',
             });
           }
         }
