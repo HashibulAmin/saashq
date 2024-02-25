@@ -18,7 +18,7 @@ export const loadPeriodLockClass = (models: IModels) => {
      */
 
     public static async getPeriodLock(selector: FilterQuery<IPeriodLock>) {
-      const periodLock = await models.PeriodLocks.findOne(selector);
+      const periodLock = await models.PeriodLocks.findOne(selector as any);
 
       if (!periodLock) {
         throw new Error('PeriodLock not found');
@@ -149,7 +149,7 @@ export const loadPeriodLockClass = (models: IModels) => {
       }
 
       await models.StoredInterest.deleteMany({
-        _id: storedInterestList.map((a) => a._id),
+        _id: storedInterestList.map((a) => a._id) as any,
       });
       return models.PeriodLocks.deleteMany({ _id: { $in: _ids } });
     }

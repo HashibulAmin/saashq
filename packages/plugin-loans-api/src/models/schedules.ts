@@ -6,7 +6,7 @@ import { FilterQuery } from 'mongodb';
 export interface IScheduleModel extends Model<IScheduleDocument> {
   getLastSchedule(
     contractId: string,
-    payDate: Date
+    payDate: Date,
   ): Promise<IScheduleDocument>;
   getSchedule(selector: FilterQuery<IScheduleDocument>);
   createSchedule(doc: ISchedule);
@@ -50,7 +50,7 @@ export const loadScheduleClass = (models: IModels) => {
      * Remove Schedule
      */
     public static async removeSchedule(_ids: string[]) {
-      return models.Schedules.deleteMany({ _id: _ids });
+      return models.Schedules.deleteMany({ _id: _ids as any });
     }
 
     /**
@@ -59,7 +59,7 @@ export const loadScheduleClass = (models: IModels) => {
     public static async getLastSchedule(contractId: string, payDate: Date) {
       return models.Schedules.findOne({
         contractId: contractId,
-        payDate: { $lte: payDate }
+        payDate: { $lte: payDate },
       })
         .sort({ payDate: -1 })
         .lean();

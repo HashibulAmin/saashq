@@ -10,6 +10,7 @@ export interface IDefaultScheduleParam {
 }
 
 export interface ISchedule {
+  [x: string]: any;
   contractId: string;
   version: string;
   createdAt: Date;
@@ -59,19 +60,19 @@ export const scheduleSchema = schemaHooksWrapper(
     createdAt: field({
       type: Date,
       default: () => new Date(),
-      label: 'Created at'
+      label: 'Created at',
     }),
     status: field({
       type: String,
       label: 'Status',
       enum: SCHEDULE_STATUS.ALL,
       default: SCHEDULE_STATUS.PENDING,
-      required: true
+      required: true,
     }),
     payDate: field({
       type: Date,
       default: new Date(),
-      label: 'Created at'
+      label: 'Created at',
     }),
 
     balance: field({ type: Number, min: 0, label: 'Loan Balance' }),
@@ -80,121 +81,121 @@ export const scheduleSchema = schemaHooksWrapper(
     interestEve: field({
       type: Number,
       label: 'Loan Interest Eve month',
-      optional: true
+      optional: true,
     }),
     interestNonce: field({
       type: Number,
       label: 'Loan Interest Nonce',
-      optional: true
+      optional: true,
     }),
     payment: field({ type: Number, label: 'Loan Payment', optional: true }),
     insurance: field({
       type: Number,
       min: 0,
       label: 'Insurance',
-      optional: true
+      optional: true,
     }),
     debt: field({ type: Number, min: 0, label: 'Debt', optional: true }),
     commitmentInterest: field({
       type: Number,
       min: 0,
       label: 'commitmentInterest',
-      optional: true
+      optional: true,
     }),
     commitmentInterestEve: field({
       type: Number,
       label: 'Loan commitmentInterest Eve month',
-      optional: true
+      optional: true,
     }),
     commitmentInterestNonce: field({
       type: Number,
       label: 'Loan commitmentInterest Nonce',
-      optional: true
+      optional: true,
     }),
     total: field({ type: Number, label: 'Total Payment' }),
     didUndue: field({
       type: Number,
       min: 0,
       label: 'Did Undue',
-      optional: true
+      optional: true,
     }),
     didInterestEve: field({
       type: Number,
       label: 'Did Loan Interest eve',
-      optional: true
+      optional: true,
     }),
     didInterestNonce: field({
       type: Number,
       label: 'Did Loan Interest nonce',
-      optional: true
+      optional: true,
     }),
     didPayment: field({
       type: Number,
       label: 'Did Loan Payment',
-      optional: true
+      optional: true,
     }),
     didInsurance: field({
       type: Number,
       min: 0,
       label: 'Did Insurance',
-      optional: true
+      optional: true,
     }),
     didDebt: field({ type: Number, min: 0, label: 'Did Debt', optional: true }),
     didCommitmentInterest: field({
       type: Number,
       min: 0,
       label: 'commitmentInterest',
-      optional: true
+      optional: true,
     }),
     storedInterest: field({
       type: Number,
       min: 0,
       label: 'storedInterest',
-      optional: true
+      optional: true,
     }),
     didStoredInterest: field({
       type: Number,
       min: 0,
       label: 'storedInterest',
-      optional: true
+      optional: true,
     }),
     didTotal: field({
       type: Number,
       label: 'Did Total Payment',
-      optional: true
+      optional: true,
     }),
     surplus: field({ type: Number, min: 0, label: 'Surplus', optional: true }),
     scheduleDidPayment: field({
       type: Number,
       min: 0,
       label: 'scheduleDidPayment',
-      optional: true
+      optional: true,
     }),
     scheduleDidInterest: field({
       type: Number,
       min: 0,
       label: 'scheduleDidInterest',
-      optional: true
+      optional: true,
     }),
     scheduleDidStatus: field({
       type: String,
       enum: [
         SCHEDULE_STATUS.DONE,
         SCHEDULE_STATUS.LESS,
-        SCHEDULE_STATUS.PENDING
+        SCHEDULE_STATUS.PENDING,
       ],
       min: 0,
       label: 'scheduleDidInterest',
       default: SCHEDULE_STATUS.PENDING,
-      optional: true
+      optional: true,
     }),
 
     transactionIds: field({
       type: [String],
       label: 'transactions',
-      optional: true
+      optional: true,
     }),
-    isDefault: field({ type: Boolean, label: 'is default', default: true })
+    isDefault: field({ type: Boolean, label: 'is default', default: true }),
   }),
-  'saashq_scheduleSchema'
+  'saashq_scheduleSchema',
 );

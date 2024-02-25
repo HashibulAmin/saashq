@@ -131,6 +131,9 @@ export interface IContract {
 
 export interface IContractDocument extends IContract, Document {
   _id: string;
+  customerName: string;
+  customerLastName: string;
+  loanScheduleInfo: any;
 }
 
 export interface ICloseVariable {
