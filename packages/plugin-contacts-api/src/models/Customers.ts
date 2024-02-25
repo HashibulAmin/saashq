@@ -989,11 +989,11 @@ export const loadCustomerClass = (models: IModels, subdomain: string) => {
           : { emailValidationStatus: status };
 
       await models.Customers.updateMany(
-        { _id: { $in: customerIds } },
+        { _id: { $in: customerIds as any } },
         { $set: set },
       );
 
-      return models.Customers.find({ _id: { $in: customerIds } });
+      return models.Customers.find({ _id: { $in: customerIds as any } });
     }
   }
 

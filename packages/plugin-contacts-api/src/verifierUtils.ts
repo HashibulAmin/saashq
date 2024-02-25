@@ -101,7 +101,7 @@ export const validateBulk = async (
     const customersEmailStream = (
       models.Customers.find(
         {
-          primaryEmail: { $exists: true, $ne: null },
+          primaryEmail: { $exists: true, $ne: null } as any,
           $or: [
             { emailValidationStatus: 'unknown' },
             { emailValidationStatus: { $exists: false } },
@@ -145,7 +145,7 @@ export const validateBulk = async (
   const customersStream = (
     models.Customers.find(
       {
-        primaryPhone: { $exists: true, $ne: null },
+        primaryPhone: { $exists: true, $ne: null } as any,
         $or: [
           { phoneValidationStatus: 'unknown' },
           { phoneValidationStatus: { $exists: false } },
