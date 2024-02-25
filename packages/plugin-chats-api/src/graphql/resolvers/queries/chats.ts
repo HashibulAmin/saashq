@@ -249,14 +249,16 @@ const chatQueries = {
       attachments: { $exists: true, $type: 'array', $ne: [] },
     };
 
-    const list = await models.ChatMessages.find(filter)
+    const list = await models.ChatMessages.find(filter as any)
       .sort({ attachments: -1, createdAt: -1 })
       .skip(skip || 0)
       .limit(limit || 20);
 
     return {
       list,
-      totalCount: await models.ChatMessages.find(filter).countDocuments(),
+      totalCount: await models.ChatMessages.find(
+        filter as any,
+      ).countDocuments(),
     };
   },
 
