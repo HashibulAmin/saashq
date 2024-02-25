@@ -4,7 +4,7 @@ import { IModels } from '../connectionResolver';
 import {
   sendCardsMessage,
   sendCoreMessage,
-  sendFormsMessage
+  sendFormsMessage,
 } from '../messageBroker';
 
 export function generateDataLoaderBoards(models: IModels, subdomain: string) {
@@ -13,13 +13,13 @@ export function generateDataLoaderBoards(models: IModels, subdomain: string) {
       subdomain,
       action: 'boards.find',
       data: {
-        _id: { $in: ids }
+        _id: { $in: ids },
       },
       isRPC: true,
-      defaultValue: []
+      defaultValue: [],
     });
     const resultById = _.indexBy(result, '_id');
-    return ids.map(id => resultById[id]);
+    return ids.map((id) => resultById[id]);
   });
 }
 
@@ -29,52 +29,52 @@ export function generateDataLoaderField(models: IModels, subdomain: string) {
       subdomain,
       action: 'fields.find',
       data: {
-        query: { _id: { $in: ids } }
+        query: { _id: { $in: ids } },
       },
       isRPC: true,
-      defaultValue: []
+      defaultValue: [],
     });
     const resultById = _.indexBy(result, '_id');
-    return ids.map(id => resultById[id]);
+    return ids.map((id) => resultById[id]);
   });
 }
 
 export function generateDataLoaderPipelines(
   models: IModels,
-  subdomain: string
+  subdomain: string,
 ) {
   return new DataLoader<string, any>(async (ids: readonly string[]) => {
     const result = await sendCardsMessage({
       subdomain,
       action: 'pipelines.find',
       data: {
-        _id: { $in: ids }
+        _id: { $in: ids },
       },
       isRPC: true,
-      defaultValue: []
+      defaultValue: [],
     });
     const resultById = _.indexBy(result, '_id');
-    return ids.map(id => resultById[id]);
+    return ids.map((id) => resultById[id]);
   });
 }
 
 export function generateDataLoaderRiskAssessments(models: IModels) {
   return new DataLoader<string, any>(async (ids: readonly string[]) => {
     const result: any[] = await models.RiskAssessments.find({
-      _id: { $in: ids }
+      _id: { $in: ids as string[] },
     }).lean();
     const resultById = _.indexBy(result, '_id');
-    return ids.map(id => resultById[id]);
+    return ids.map((id) => resultById[id]);
   });
 }
 
 export function generateDataLoaderRiskIndicator(models: IModels) {
   return new DataLoader<string, any>(async (ids: readonly string[]) => {
     const result: any[] = await models.RiskIndicators.find({
-      _id: { $in: ids }
+      _id: { $in: ids as string[] },
     }).lean();
     const resultById = _.indexBy(result, '_id');
-    return ids.map(id => resultById[id]);
+    return ids.map((id) => resultById[id]);
   });
 }
 
@@ -84,13 +84,13 @@ export function generateDataLoaderStages(models: IModels, subdomain: string) {
       subdomain,
       action: 'stages.find',
       data: {
-        _id: { $in: ids }
+        _id: { $in: ids },
       },
       isRPC: true,
-      defaultValue: []
+      defaultValue: [],
     });
     const resultById = _.indexBy(result, '_id');
-    return ids.map(id => resultById[id]);
+    return ids.map((id) => resultById[id]);
   });
 }
 
@@ -100,12 +100,12 @@ export function generateDataLoaderUser(models: IModels, subdomain: string) {
       subdomain,
       action: 'users.find',
       data: {
-        query: { _id: { $in: ids } }
+        query: { _id: { $in: ids } },
       },
       isRPC: true,
-      defaultValue: []
+      defaultValue: [],
     });
     const resultById = _.indexBy(result, '_id');
-    return ids.map(id => resultById[id]);
+    return ids.map((id) => resultById[id]);
   });
 }

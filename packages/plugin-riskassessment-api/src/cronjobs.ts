@@ -12,33 +12,33 @@ const handleDailyJob = async ({ subdomain }) => {
 
   const plans = await models.Plans.find({
     createDate: {
-      $gte: new Date(tommorrow.startOf('day').toISOString()),
-      $lte: new Date(tommorrow.endOf('day').toISOString())
+      $gte: new Date(tommorrow.startOf('day').toISOString()) as any,
+      $lte: new Date(tommorrow.endOf('day').toISOString()) as any,
     },
-    status: 'active'
+    status: 'active',
   });
 
   if (!plans?.length) {
     console.log(
-      `As of ${NOW}, no plans at ${new Date(tommorrow.format('YYYY-MM-DD'))}`
+      `As of ${NOW}, no plans at ${new Date(tommorrow.format('YYYY-MM-DD'))}`,
     );
   }
 
   for (const plan of plans) {
     const schedules = await models.Schedules.find({
-      planId: plan._id
+      planId: plan._id,
     });
 
     if (!schedules?.length) {
       console.log(
-        `Not found schedules in risk assessment plan named ${plan.name} at: ${NOW}`
+        `Not found schedules in risk assessment plan named ${plan.name} at: ${NOW}`,
       );
     }
 
     const commonDoc = {
       startDate: plan.startDate,
       closeDate: plan.closeDate,
-      tagIds: plan.tagId ? [plan.tagId] : undefined
+      tagIds: plan.tagId ? [plan.tagId] : undefined,
     };
 
     const { configs, plannerId, structureType } = plan;
@@ -51,7 +51,7 @@ const handleDailyJob = async ({ subdomain }) => {
         name: schedule.name,
         userId: plannerId,
         stageId: configs.stageId,
-        assignedUserIds: schedule.assignedUserIds
+        assignedUserIds: schedule.assignedUserIds,
       };
 
       if (schedule?.customFieldsData) {
@@ -60,7 +60,7 @@ const handleDailyJob = async ({ subdomain }) => {
           action: 'fields.prepareCustomFieldsData',
           data: schedule.customFieldsData,
           isRPC: true,
-          defaultValue: schedule.customFieldsData
+          defaultValue: schedule.customFieldsData,
         });
       }
 
@@ -76,8 +76,8 @@ const handleDailyJob = async ({ subdomain }) => {
         action: `${configs.cardType}s.create`,
         data: payload,
         isRPC: true,
-        defaultValue: null
-      }).catch(err => {
+        defaultValue: null,
+      }).catch((err) => {
         console.log(err.message);
       });
 
@@ -85,20 +85,20 @@ const handleDailyJob = async ({ subdomain }) => {
         cardType: configs.cardType,
         cardId: newItem._id,
         indicatorId: schedule.indicatorId,
-        [`${fieldName}Id`]: schedule.structureTypeId || ''
-      }).catch(err => console.log(err.message));
+        [`${fieldName}Id`]: schedule.structureTypeId || '',
+      }).catch((err) => console.log(err.message));
 
       newItemIds = [...newItemIds, newItem._id];
     }
 
     console.log(
-      `created: ${newItemIds.length} items from audit plan named:${plan.name}`
+      `created: ${newItemIds.length} items from audit plan named:${plan.name}`,
     );
 
     try {
       await models.Plans.updateOne(
         { _id: plan._id },
-        { status: PLAN_STATUSES.ARCHIVED, cardIds: newItemIds }
+        { status: PLAN_STATUSES.ARCHIVED, cardIds: newItemIds },
       );
       console.log(`plan work done successfully`);
     } catch (error) {
@@ -110,5 +110,5 @@ const handleDailyJob = async ({ subdomain }) => {
 };
 
 export default {
-  handleDailyJob
+  handleDailyJob,
 };
