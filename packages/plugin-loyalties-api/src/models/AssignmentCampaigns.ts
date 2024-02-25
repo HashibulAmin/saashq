@@ -5,7 +5,7 @@ import { IModels } from '../connectionResolver';
 import {
   assignmentCampaignSchema,
   IAssignmentCampaign,
-  IAssignmentCampaignDocument
+  IAssignmentCampaignDocument,
 } from './definitions/assignmentCampaigns';
 import { IAssignmentDocument } from './definitions/assignments';
 
@@ -13,27 +13,27 @@ export interface IAssignmentCampaignModel
   extends Model<IAssignmentCampaignDocument> {
   getAssignmentCampaign(_id: string): Promise<IAssignmentCampaignDocument>;
   createAssignmentCampaign(
-    doc: IAssignmentCampaign
+    doc: IAssignmentCampaign,
   ): Promise<IAssignmentCampaignDocument>;
   updateAssignmentCampaign(
     _id: string,
-    doc: IAssignmentCampaign
+    doc: IAssignmentCampaign,
   ): Promise<IAssignmentCampaignDocument>;
   removeAssignmentCampaigns(_ids: string[]): void;
   awardAssignmentCampaign(
     _id: string,
-    customerId: string
+    customerId: string,
   ): Promise<IAssignmentDocument>;
 }
 
 export const loadAssignmentCampaignClass = (
   models: IModels,
-  _subdomain: string
+  _subdomain: string,
 ) => {
   class AssignmentCampaign {
     public static async getAssignmentCampaign(_id: string) {
       const assignmentCampaign = await models.AssignmentCampaigns.findOne({
-        _id
+        _id,
       });
 
       if (!assignmentCampaign) {
@@ -47,7 +47,7 @@ export const loadAssignmentCampaignClass = (
       const modifier = {
         ...doc,
         createdAt: new Date(),
-        modifiedAt: new Date()
+        modifiedAt: new Date(),
       };
 
       return models.AssignmentCampaigns.create(modifier);
@@ -55,11 +55,11 @@ export const loadAssignmentCampaignClass = (
 
     public static async updateAssignmentCampaign(
       _id: string,
-      doc: IAssignmentCampaign
+      doc: IAssignmentCampaign,
     ) {
       const modifier = {
         ...doc,
-        modifiedAt: new Date()
+        modifiedAt: new Date(),
       };
 
       return models.AssignmentCampaigns.updateOne({ _id }, { $set: modifier });
@@ -67,10 +67,10 @@ export const loadAssignmentCampaignClass = (
 
     public static async awardAssignmentCampaign(
       _id: string,
-      customerId: string
+      customerId: string,
     ) {
       const assignmentCampaign = await models.AssignmentCampaigns.findOne({
-        _id
+        _id,
       });
 
       if (!assignmentCampaign) {
@@ -81,7 +81,7 @@ export const loadAssignmentCampaignClass = (
         campaignId: assignmentCampaign.voucherCampaignId,
         ownerId: customerId,
         ownerType: 'customer',
-        status: 'new'
+        status: 'new',
       });
 
       return await models.Assignments.createAssignment({
@@ -90,28 +90,28 @@ export const loadAssignmentCampaignClass = (
         ownerId: customerId,
         status: 'new',
         voucherId: voucher._id,
-        voucherCampaignId: assignmentCampaign.voucherCampaignId
+        voucherCampaignId: assignmentCampaign.voucherCampaignId,
       });
     }
 
     public static async removeAssignmentCampaigns(ids: string[]) {
       const atAssignmentIds = await models.Assignments.find({
-        campaignId: { $in: ids }
+        campaignId: { $in: ids },
       }).distinct('campaignId');
 
       const campaignIds = [...atAssignmentIds];
 
-      const usedCampaignIds = ids.filter(id => campaignIds.includes(id));
-      const deleteCampaignIds = ids.map(id => !usedCampaignIds.includes(id));
+      const usedCampaignIds = ids.filter((id) => campaignIds.includes(id));
+      const deleteCampaignIds = ids.map((id) => !usedCampaignIds.includes(id));
       const now = new Date();
 
       await models.AssignmentCampaigns.updateMany(
         { _id: { $in: usedCampaignIds } },
-        { $set: { status: CAMPAIGN_STATUS.TRASH, modifiedAt: now } }
+        { $set: { status: CAMPAIGN_STATUS.TRASH, modifiedAt: now } },
       );
 
       return models.AssignmentCampaigns.deleteMany({
-        _id: { $in: deleteCampaignIds }
+        _id: { $in: deleteCampaignIds as unknown as string[] },
       });
     }
   }

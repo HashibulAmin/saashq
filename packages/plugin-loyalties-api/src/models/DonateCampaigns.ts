@@ -3,7 +3,7 @@ import { CAMPAIGN_STATUS } from './definitions/constants';
 import {
   donateCampaignSchema,
   IDonateCampaign,
-  IDonateCampaignDocument
+  IDonateCampaignDocument,
 } from './definitions/donateCampaigns';
 import { Model, model } from 'mongoose';
 import { validCampaign } from './utils';
@@ -13,22 +13,22 @@ export interface IDonateCampaignModel extends Model<IDonateCampaignDocument> {
   getDonateCampaign(_id: string): Promise<IDonateCampaignDocument>;
   createDonateCampaign(
     doc: IDonateCampaign,
-    userId: string
+    userId: string,
   ): Promise<IDonateCampaignDocument>;
   updateDonateCampaign(
     _id: string,
-    doc: IDonateCampaign
+    doc: IDonateCampaign,
   ): Promise<IDonateCampaignDocument>;
   removeDonateCampaigns(_ids: string[]): void;
 }
 
-const getSortAwards = awards => {
+const getSortAwards = (awards) => {
   return awards.sort((a, b) => a.minScore - b.minScore);
 };
 
 export const loadDonateCampaignClass = (
   models: IModels,
-  _subdomain: string
+  _subdomain: string,
 ) => {
   class DonateCampaign {
     public static async getDonateCampaign(_id: string) {
@@ -53,7 +53,7 @@ export const loadDonateCampaignClass = (
         throw new Error('Max score must be greather than level scores');
       }
 
-      const levels = awards.map(a => a.minScore);
+      const levels = awards.map((a) => a.minScore);
       if (levels.length > [...new Set(levels)].length) {
         throw new Error('Levels scores must be unique');
       }
@@ -61,7 +61,7 @@ export const loadDonateCampaignClass = (
 
     public static async createDonateCampaign(
       doc: IDonateCampaign,
-      userId: string
+      userId: string,
     ) {
       const modifier = {
         ...doc,
@@ -69,7 +69,7 @@ export const loadDonateCampaignClass = (
         createdBy: userId,
         updatedBy: userId,
         createdAt: new Date(),
-        modifiedAt: new Date()
+        modifiedAt: new Date(),
       };
 
       try {
@@ -83,12 +83,12 @@ export const loadDonateCampaignClass = (
 
     public static async updateDonateCampaign(
       _id: string,
-      doc: IDonateCampaign
+      doc: IDonateCampaign,
     ) {
       const modifier = {
         ...doc,
         awards: getSortAwards(doc.awards),
-        modifiedAt: new Date()
+        modifiedAt: new Date(),
       };
 
       try {
@@ -102,22 +102,22 @@ export const loadDonateCampaignClass = (
 
     public static async removeDonateCampaigns(ids: string[]) {
       const atDonateIds = await models.Donates.find({
-        campaignId: { $in: ids }
+        campaignId: { $in: ids },
       }).distinct('campaignId');
 
       const campaignIds = [...atDonateIds];
 
-      const usedCampaignIds = ids.filter(id => campaignIds.includes(id));
-      const deleteCampaignIds = ids.map(id => !usedCampaignIds.includes(id));
+      const usedCampaignIds = ids.filter((id) => campaignIds.includes(id));
+      const deleteCampaignIds = ids.map((id) => !usedCampaignIds.includes(id));
       const now = new Date();
 
       await models.DonateCampaigns.updateMany(
         { _id: { $in: usedCampaignIds } },
-        { $set: { status: CAMPAIGN_STATUS.TRASH, modifiedAt: now } }
+        { $set: { status: CAMPAIGN_STATUS.TRASH, modifiedAt: now } },
       );
 
       return models.DonateCampaigns.deleteMany({
-        _id: { $in: deleteCampaignIds }
+        _id: { $in: deleteCampaignIds as unknown as string[] },
       });
     }
   }

@@ -5,7 +5,7 @@ import { paginate } from '@saashq/api-utils/src/core';
 import { AssignmentCheckResponse, isInSegment } from '../../../utils';
 import {
   sendContactsMessage,
-  sendSegmentsMessage
+  sendSegmentsMessage,
 } from '../../../messageBroker';
 
 const generateFilter = (params: ICommonParams) => {
@@ -26,14 +26,14 @@ const generateFieldMaxValue = async (
   subdomain,
   fieldId,
   segments,
-  customerId
+  customerId,
 ) => {
   const customer = await sendContactsMessage({
     subdomain,
     action: 'customers.findOne',
     data: { _id: customerId },
     isRPC: true,
-    defaultValue: null
+    defaultValue: null,
   });
 
   //get property value and value to check from sub segments
@@ -41,29 +41,29 @@ const generateFieldMaxValue = async (
     for (const {
       propertyName,
       propertyValue,
-      propertyOperator
+      propertyOperator,
     } of conditions || []) {
       if (propertyName.includes(fieldId) && propertyOperator === 'numbere') {
         const { customFieldsData = [] } = customer || {};
 
         const customFieldData = customFieldsData.find(
-          customFieldData => customFieldData?.field === fieldId
+          (customFieldData) => customFieldData?.field === fieldId,
         );
 
         const segment = await sendSegmentsMessage({
           subdomain,
           action: 'findOne',
           data: {
-            'conditions.subSegmentId': _id
+            'conditions.subSegmentId': _id,
           },
           isRPC: true,
-          defaultValue: null
+          defaultValue: null,
         });
 
         return {
           checkValue: propertyValue,
           segmentId: segment?._id,
-          currentValue: customFieldData.value
+          currentValue: customFieldData.value,
         };
       }
     }
@@ -85,13 +85,13 @@ const assignmentQueries = {
 
     return {
       list,
-      totalCount
+      totalCount,
     };
   },
   async checkAssignment(
     _root,
     params: { customerId: string; _ids?: string[] },
-    { models, subdomain }: IContext
+    { models, subdomain }: IContext,
   ) {
     const { _ids, customerId } = params;
 
@@ -100,20 +100,19 @@ const assignmentQueries = {
     const filter: any = {
       status: 'active',
       startDate: { $lte: now },
-      endDate: { $gte: now }
+      endDate: { $gte: now },
     };
 
     if (_ids) {
       filter._id = { $in: _ids };
     }
 
-    const assignmentCampaigns = await models.AssignmentCampaigns.find(
-      filter
-    ).lean();
+    const assignmentCampaigns =
+      await models.AssignmentCampaigns.find(filter).lean();
 
     const assignments = await models.Assignments.find({
       ownerId: customerId,
-      campaignId: { $in: assignmentCampaigns.map(ac => ac._id) }
+      campaignId: { $in: assignmentCampaigns.map((ac) => ac._id) },
     });
 
     let positiveSegments: AssignmentCheckResponse[] = [];
@@ -123,18 +122,18 @@ const assignmentQueries = {
       return { status: 'checked' };
     }
 
-    for (const assignmentCampaign of assignmentCampaigns) {
+    for (const assignmentCampaign in assignmentCampaigns) {
       if (
-        !assignmentCampaign?.allowMultiWin &&
-        (assignments.map(a => a.campaignId) || []).includes(
-          assignmentCampaign._id
+        !Object(assignmentCampaign)?.allowMultiWin &&
+        (assignments.map((a) => a.campaignId) || []).includes(
+          Object(assignmentCampaign)._id,
         )
       ) {
         continue;
       }
 
-      if (assignmentCampaign.segmentIds) {
-        const segmentIds = assignmentCampaign.segmentIds;
+      if (Object(assignmentCampaign).segmentIds) {
+        const segmentIds = Object(assignmentCampaign).segmentIds;
 
         for (const segmentId of segmentIds) {
           const isIn = await isInSegment(subdomain, segmentId, customerId);
@@ -146,38 +145,38 @@ const assignmentQueries = {
           }
         }
 
-        if (assignmentCampaign?.fieldId) {
+        if (Object(assignmentCampaign)?.fieldId) {
           const subSegments = await sendSegmentsMessage({
             subdomain,
             action: 'findSubSegments',
             data: { segmentIds },
             isRPC: true,
-            defaultValue: []
+            defaultValue: [],
           });
 
           let { checkValue, currentValue, segmentId } =
             (await generateFieldMaxValue(
               subdomain,
-              assignmentCampaign.fieldId,
+              Object(assignmentCampaign).fieldId,
               subSegments,
-              customerId
+              customerId,
             )) || {};
 
           if (currentValue >= checkValue) {
-            positiveSegments = positiveSegments.map(positiveSegment =>
+            positiveSegments = positiveSegments.map((positiveSegment) =>
               positiveSegment.segmentId === segmentId
                 ? { ...positiveSegment, isIn: true }
-                : positiveSegment
+                : positiveSegment,
             );
 
             const count = Math.floor(currentValue / checkValue);
 
-            if (positiveSegments.every(segment => segment.isIn)) {
+            if (positiveSegments.every((segment) => segment.isIn)) {
               for (let i = 1; i <= count; i++) {
                 try {
                   await models.AssignmentCampaigns.awardAssignmentCampaign(
-                    assignmentCampaign._id,
-                    customerId
+                    Object(assignmentCampaign)._id,
+                    customerId,
                   );
 
                   await sendContactsMessage({
@@ -186,16 +185,17 @@ const assignmentQueries = {
                     data: {
                       selector: {
                         _id: customerId,
-                        'customFieldsData.field': assignmentCampaign.fieldId
+                        'customFieldsData.field':
+                          Object(assignmentCampaign).fieldId,
                       },
                       modifier: {
                         $set: {
                           'customFieldsData.$.value':
-                            currentValue - checkValue * count
-                        }
-                      }
+                            currentValue - checkValue * count,
+                        },
+                      },
                     },
-                    isRPC: true
+                    isRPC: true,
                   });
                 } catch (error) {
                   throw new Error(error.message);
@@ -204,11 +204,11 @@ const assignmentQueries = {
             }
           }
         } else {
-          if (positiveSegments.every(segment => segment.isIn)) {
+          if (positiveSegments.every((segment) => segment.isIn)) {
             try {
               await models.AssignmentCampaigns.awardAssignmentCampaign(
-                assignmentCampaign._id,
-                customerId
+                Object(assignmentCampaign)._id,
+                customerId,
               );
             } catch (error) {
               throw new Error(error.message);
@@ -220,14 +220,14 @@ const assignmentQueries = {
     return {
       status: 'checked',
       positive: positiveSegments,
-      negative: negativeSegments
+      negative: negativeSegments,
     };
-  }
+  },
 };
 
 checkPermission(assignmentQueries, 'assignmentsMain', 'showLoyalties', {
   list: [],
-  totalCount: 0
+  totalCount: 0,
 });
 
 export default assignmentQueries;

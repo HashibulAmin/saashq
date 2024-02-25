@@ -3,7 +3,7 @@ import { CAMPAIGN_STATUS } from './definitions/constants';
 import {
   spinCampaignSchema,
   ISpinCampaign,
-  ISpinCampaignDocument
+  ISpinCampaignDocument,
 } from './definitions/spinCampaigns';
 import { Model, model } from 'mongoose';
 import { validCampaign } from './utils';
@@ -14,12 +14,12 @@ export interface ISpinCampaignModel extends Model<ISpinCampaignDocument> {
   createSpinCampaign(doc: ISpinCampaign): Promise<ISpinCampaignDocument>;
   updateSpinCampaign(
     _id: string,
-    doc: ISpinCampaign
+    doc: ISpinCampaign,
   ): Promise<ISpinCampaignDocument>;
   removeSpinCampaigns(_ids: string[]): void;
 }
 
-const getSortAwards = awards => {
+const getSortAwards = (awards) => {
   return awards.sort((a, b) => a.minScore - b.minScore);
 };
 
@@ -57,7 +57,7 @@ export const loadSpinCampaignClass = (models: IModels, _subdomain: string) => {
       const modifier = {
         ...doc,
         createdAt: new Date(),
-        modifiedAt: new Date()
+        modifiedAt: new Date(),
       };
 
       return models.SpinCampaigns.create(modifier);
@@ -72,7 +72,7 @@ export const loadSpinCampaignClass = (models: IModels, _subdomain: string) => {
 
       const modifier = {
         ...doc,
-        modifiedAt: new Date()
+        modifiedAt: new Date(),
       };
 
       return models.SpinCampaigns.updateOne({ _id }, { $set: modifier });
@@ -80,26 +80,26 @@ export const loadSpinCampaignClass = (models: IModels, _subdomain: string) => {
 
     public static async removeSpinCampaigns(ids: string[]) {
       const atSpinIds = await models.Spins.find({
-        campaignId: { $in: ids }
+        campaignId: { $in: ids },
       }).distinct('campaignId');
 
       const atVoucherIds = await models.VoucherCampaigns.find({
-        spinCampaignId: { $in: ids }
+        spinCampaignId: { $in: ids },
       }).distinct('spinCampaignId');
 
       const campaignIds = [...atSpinIds, ...atVoucherIds];
-      const usedCampaignIds = ids.filter(id => campaignIds.includes(id));
+      const usedCampaignIds = ids.filter((id) => campaignIds.includes(id));
 
-      const deleteCampaignIds = ids.map(id => !usedCampaignIds.includes(id));
+      const deleteCampaignIds = ids.map((id) => !usedCampaignIds.includes(id));
       const now = new Date();
 
       await models.SpinCampaigns.updateMany(
         { _id: { $in: usedCampaignIds } },
-        { $set: { status: CAMPAIGN_STATUS.TRASH, modifiedAt: now } }
+        { $set: { status: CAMPAIGN_STATUS.TRASH, modifiedAt: now } },
       );
 
       return models.SpinCampaigns.deleteMany({
-        _id: { $in: deleteCampaignIds }
+        _id: { $in: deleteCampaignIds as unknown as string[] },
       });
     }
   }

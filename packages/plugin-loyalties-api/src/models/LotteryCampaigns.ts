@@ -7,23 +7,23 @@ import {
   ILotteryAward,
   ILotteryCampaign,
   ILotteryCampaignDocument,
-  lotteryCampaignSchema
+  lotteryCampaignSchema,
 } from './definitions/lotteryCampaigns';
 import { ILottery } from './definitions/lotteries';
 
 export interface ILotteryCampaignModel extends Model<ILotteryCampaignDocument> {
   getLotteryCampaign(_id: string): Promise<ILotteryCampaignDocument>;
   createLotteryCampaign(
-    doc: ILotteryCampaign
+    doc: ILotteryCampaign,
   ): Promise<ILotteryCampaignDocument>;
   updateLotteryCampaign(
     _id: string,
-    doc: ILotteryCampaign
+    doc: ILotteryCampaign,
   ): Promise<ILotteryCampaignDocument>;
   removeLotteryCampaigns(_ids: string[]): void;
   doLottery({
     campaignId,
-    awardId
+    awardId,
   }: {
     campaignId: string;
     awardId: string;
@@ -31,7 +31,7 @@ export interface ILotteryCampaignModel extends Model<ILotteryCampaignDocument> {
   getNextChar({
     campaignId,
     awardId,
-    prevChars
+    prevChars,
   }: {
     campaignId: string;
     awardId: string;
@@ -42,7 +42,7 @@ export interface ILotteryCampaignModel extends Model<ILotteryCampaignDocument> {
 
 export const loadLotteryCampaignClass = (
   models: IModels,
-  _subdomain: string
+  _subdomain: string,
 ) => {
   class LotteryCampaign {
     public static async getLotteryCampaign(_id: string) {
@@ -69,7 +69,7 @@ export const loadLotteryCampaignClass = (
       const modifier = {
         ...doc,
         createdAt: new Date(),
-        modifiedAt: new Date()
+        modifiedAt: new Date(),
       };
 
       return models.LotteryCampaigns.create(modifier);
@@ -77,7 +77,7 @@ export const loadLotteryCampaignClass = (
 
     public static async updateLotteryCampaign(
       _id: string,
-      doc: ILotteryCampaign
+      doc: ILotteryCampaign,
     ) {
       try {
         await this.validLotteryCampaign(doc);
@@ -87,7 +87,7 @@ export const loadLotteryCampaignClass = (
 
       const modifier = {
         ...doc,
-        modifiedAt: new Date()
+        modifiedAt: new Date(),
       };
 
       return models.LotteryCampaigns.updateOne({ _id }, { $set: modifier });
@@ -95,26 +95,26 @@ export const loadLotteryCampaignClass = (
 
     public static async removeLotteryCampaigns(ids: string[]) {
       const atLotteryIds = await models.Lotteries.find({
-        campaignId: { $in: ids }
+        campaignId: { $in: ids },
       }).distinct('campaignId');
 
       const atVoucherIds = await models.VoucherCampaigns.find({
-        lotteryCampaignId: { $in: ids }
+        lotteryCampaignId: { $in: ids },
       }).distinct('lotteryCampaignId');
 
       const campaignIds = [...atLotteryIds, ...atVoucherIds];
 
-      const usedCampaignIds = ids.filter(id => campaignIds.includes(id));
-      const deleteCampaignIds = ids.map(id => !usedCampaignIds.includes(id));
+      const usedCampaignIds = ids.filter((id) => campaignIds.includes(id));
+      const deleteCampaignIds = ids.map((id) => !usedCampaignIds.includes(id));
       const now = new Date();
 
       await models.LotteryCampaigns.updateMany(
         { _id: { $in: usedCampaignIds } },
-        { $set: { status: CAMPAIGN_STATUS.TRASH, modifiedAt: now } }
+        { $set: { status: CAMPAIGN_STATUS.TRASH, modifiedAt: now } },
       );
 
       return models.LotteryCampaigns.deleteMany({
-        _id: { $in: deleteCampaignIds }
+        _id: { $in: deleteCampaignIds as unknown as string[] },
       });
     }
 
@@ -122,7 +122,7 @@ export const loadLotteryCampaignClass = (
       const campaign = await (
         await models.LotteryCampaigns.getLotteryCampaign(campaignId)
       ).toObject();
-      const award = campaign.awards.find(a => a._id === awardId);
+      const award = campaign.awards.find((a) => a._id === awardId);
       if (!award) {
         throw new Error('not found award');
       }
@@ -135,21 +135,21 @@ export const loadLotteryCampaignClass = (
     }
 
     static async setLuckyLottery(campaign, award, luckyLottery) {
-      const awards = campaign.awards.map(a =>
+      const awards = campaign.awards.map((a) =>
         a._id === award._id
           ? { ...a, wonLotteryIds: [...a.wonLotteryIds, luckyLottery._id] }
-          : a
+          : a,
       );
 
       await models.LotteryCampaigns.updateOne(
         { _id: campaign._id },
-        { awards }
+        { awards },
       );
 
       const voucher = await models.Vouchers.createVoucher({
         campaignId: award.voucherCampaignId,
         ownerType: luckyLottery.ownerType,
-        ownerId: luckyLottery.ownerId
+        ownerId: luckyLottery.ownerId,
       });
       await models.Lotteries.updateOne(
         { _id: luckyLottery._id },
@@ -158,9 +158,9 @@ export const loadLotteryCampaignClass = (
             usedAt: new Date(),
             status: LOTTERY_STATUS.WON,
             voucherId: voucher._id,
-            awardId: award._id
-          }
-        }
+            awardId: award._id,
+          },
+        },
       );
     }
 
@@ -178,13 +178,12 @@ export const loadLotteryCampaignClass = (
     public static async doLottery({ campaignId, awardId }) {
       const { campaign, award } = await this.validDoLottery(
         campaignId,
-        awardId
+        awardId,
       );
 
       const filter = { campaignId, status: LOTTERY_STATUS.NEW };
-      const lotteriesCount = await models.Lotteries.find(
-        filter
-      ).countDocuments();
+      const lotteriesCount =
+        await models.Lotteries.find(filter).countDocuments();
 
       const random = Math.floor(randomBetween(0, lotteriesCount));
 
@@ -204,25 +203,24 @@ export const loadLotteryCampaignClass = (
     public static async getNextChar({ campaignId, awardId, prevChars }) {
       const { campaign, award } = await this.validDoLottery(
         campaignId,
-        awardId
+        awardId,
       );
 
       const randomNumber = getRandomNumber(campaign.numberFormat);
 
       const nextChar = randomNumber.substring(
         prevChars.length,
-        prevChars.length + 1
+        prevChars.length + 1,
       );
       const afterChars = `${prevChars}${nextChar}`;
       const filter = {
         campaignId,
         status: LOTTERY_STATUS.NEW,
-        formatNumber: new RegExp(`^${afterChars}.*`, 'g')
+        formatNumber: new RegExp(`^${afterChars}.*`, 'g'),
       };
 
-      const fitLotteriesCount = await models.Lotteries.find(
-        filter
-      ).countDocuments();
+      const fitLotteriesCount =
+        await models.Lotteries.find(filter).countDocuments();
 
       if (fitLotteriesCount === 1) {
         const luckyLottery = (await models.Lotteries.findOne(filter)) || {};
@@ -234,20 +232,18 @@ export const loadLotteryCampaignClass = (
           afterChars,
           fitLotteriesCount,
           luckyLottery: await models.Lotteries.findOne({
-            _id: (luckyLottery as any)._id
-          }).lean()
+            _id: (luckyLottery as any)._id,
+          }).lean(),
         };
       }
 
-      const fitLotteries = await models.Lotteries.find(filter)
-        .limit(10)
-        .lean();
+      const fitLotteries = await models.Lotteries.find(filter).limit(10).lean();
 
       return {
         nextChar,
         afterChars,
         fitLotteriesCount,
-        fitLotteries
+        fitLotteries,
       };
     }
   }
