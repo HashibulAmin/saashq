@@ -6,7 +6,7 @@ import { sendMessageBroker } from '../../messageBroker';
 export const calcInterest = ({
   balance,
   interestRate,
-  dayOfMonth = 30
+  dayOfMonth = 30,
 }: {
   balance: number;
   interestRate: number;
@@ -21,7 +21,7 @@ export const calcPerVirtual = (doc: IDefaultScheduleParam) => {
 
   const calcedInterest = calcInterest({
     balance: doc.leaseAmount,
-    interestRate: doc.interestRate
+    interestRate: doc.interestRate,
   });
 
   const totalPayment = loanPayment + calcedInterest;
@@ -30,7 +30,7 @@ export const calcPerVirtual = (doc: IDefaultScheduleParam) => {
     loanBalance,
     loanPayment,
     calcedInterest,
-    totalPayment
+    totalPayment,
   };
 };
 
@@ -82,7 +82,7 @@ export const getDatesDiffMonth = (fromDate: Date, toDate: Date) => {
   if (fDate.getMonth() === tDate.getMonth()) {
     return {
       diffEve: getDiffDay(fromDate, toDate),
-      diffNonce: 0
+      diffNonce: 0,
     };
   }
 
@@ -92,7 +92,7 @@ export const getDatesDiffMonth = (fromDate: Date, toDate: Date) => {
 
   return {
     diffEve: getDiffDay(fromDate, lastDate),
-    diffNonce: getDiffDay(lastDate, toDate)
+    diffNonce: getDiffDay(lastDate, toDate),
   };
 };
 
@@ -111,7 +111,7 @@ export const checkNextDay = (
   date: Date,
   weekends: number[],
   useHoliday: boolean,
-  perHolidays: IPerHoliday[]
+  perHolidays: IPerHoliday[],
 ) => {
   if (weekends.includes(date.getDay())) {
     date = new Date(date.getTime() - 1000 * 3600 * 24);
@@ -138,7 +138,7 @@ export const calcPerMonthEqual = async (
   payment: number,
   perHolidays: IPerHoliday[],
   nextDate: Date,
-  skipInterestCalcDate: Date
+  skipInterestCalcDate: Date,
 ) => {
   let nextDay = nextDate;
   nextDay = checkNextDay(nextDay, doc.weekends, doc.useHoliday, perHolidays);
@@ -152,7 +152,7 @@ export const calcPerMonthEqual = async (
       loanBalance,
       calcedInterestEve: 0,
       calcedInterestNonce: 0,
-      totalPayment
+      totalPayment,
     };
   }
 
@@ -161,13 +161,13 @@ export const calcPerMonthEqual = async (
   const calcedInterestEve = calcInterest({
     balance,
     interestRate: doc.interestRate,
-    dayOfMonth: diffEve
+    dayOfMonth: diffEve,
   });
 
   const calcedInterestNonce = calcInterest({
     balance,
     interestRate: doc.interestRate,
-    dayOfMonth: diffNonce
+    dayOfMonth: diffNonce,
   });
 
   const loanBalance = balance - payment;
@@ -178,7 +178,7 @@ export const calcPerMonthEqual = async (
     loanBalance,
     calcedInterestEve,
     calcedInterestNonce,
-    totalPayment
+    totalPayment,
   };
 };
 
@@ -191,7 +191,7 @@ export const getEqualPay = async ({
   useHoliday,
   perHolidays,
   paymentDates,
-  skipInterestCalcDate
+  skipInterestCalcDate,
 }: {
   startDate: Date;
   interestRate: number;
@@ -235,7 +235,7 @@ export const calcPerMonthFixed = async (
   total: number,
   perHolidays: IPerHoliday[],
   nextDate: Date | any,
-  skipInterestCalcDate: Date
+  skipInterestCalcDate: Date,
 ) => {
   let nextDay = nextDate;
   nextDay = checkNextDay(nextDay, doc.weekends, doc.useHoliday, perHolidays);
@@ -249,7 +249,7 @@ export const calcPerMonthFixed = async (
       loanBalance,
       loanPayment,
       calcedInterestEve: 0,
-      calcedInterestNonce: 0
+      calcedInterestNonce: 0,
     };
   }
 
@@ -258,12 +258,12 @@ export const calcPerMonthFixed = async (
   const calcedInterestEve = calcInterest({
     balance,
     interestRate: doc.interestRate,
-    dayOfMonth: diffEve
+    dayOfMonth: diffEve,
   });
   const calcedInterestNonce = calcInterest({
     balance,
     interestRate: doc.interestRate,
-    dayOfMonth: diffNonce
+    dayOfMonth: diffNonce,
   });
 
   const loanPayment = total - calcedInterestEve - calcedInterestNonce;
@@ -274,7 +274,7 @@ export const calcPerMonthFixed = async (
     loanBalance,
     loanPayment,
     calcedInterestEve,
-    calcedInterestNonce
+    calcedInterestNonce,
   };
 };
 
@@ -305,11 +305,11 @@ export const getRandomNumber = () => {
 
 export const getNumber = async (models: IModels, contractTypeId: string) => {
   const preNumbered = await models.Contracts.findOne({
-    contractTypeId: contractTypeId
+    contractTypeId: contractTypeId,
   }).sort({ createdAt: -1 });
 
   const type = await models.ContractTypes.getContractType({
-    _id: contractTypeId
+    _id: contractTypeId,
   });
 
   if (!preNumbered) {
@@ -331,7 +331,7 @@ export const getUnduePercent = async (
   models: IModels,
   subdomain: string,
   date: Date,
-  contract: IContractDocument
+  contract: IContractDocument,
 ): Promise<number> => {
   const holidayConfig: any =
     (await sendMessageBroker(
@@ -340,13 +340,13 @@ export const getUnduePercent = async (
         action: 'configs.findOne',
         data: {
           query: {
-            code: 'undueConfig'
-          }
+            code: 'undueConfig',
+          },
         },
         isRPC: true,
-        defaultValue: {}
+        defaultValue: {},
       },
-      'core'
+      'core',
     )) || {};
 
   const ruledUndueConfigs = Object.values<{
@@ -359,10 +359,10 @@ export const getUnduePercent = async (
       a.endDate < b.endDate
         ? 1
         : a.endDate === b.endDate
-        ? a.startDate < b.startDate
-          ? 1
-          : -1
-        : -1
+          ? a.startDate < b.startDate
+            ? 1
+            : -1
+          : -1,
     );
 
   if (ruledUndueConfigs && ruledUndueConfigs.length) {
@@ -372,10 +372,12 @@ export const getUnduePercent = async (
   if (contract.unduePercent > 0) return contract.unduePercent / 100;
 
   const contractType = await models.ContractTypes.findOne({
-    _id: contract.contractTypeId
+    _id: contract.contractTypeId,
   }).lean();
 
-  if (contractType?.unduePercent > 0) return contractType?.unduePercent / 100;
+  if (contractType?.unduePercent) {
+    if (contractType?.unduePercent > 0) return contractType?.unduePercent / 100;
+  }
 
   return 0;
 };

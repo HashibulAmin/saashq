@@ -8,11 +8,11 @@ export async function changeClassificationContract(
   contract: IContractDocument,
   currentDate: Date,
   newClassification: string,
-  models: IModels
+  models: IModels,
 ) {
   const lastSchedule = await models.Schedules.getLastSchedule(
     contract._id,
-    currentDate
+    currentDate,
   );
 
   if (!lastSchedule) return;
@@ -23,7 +23,7 @@ export async function changeClassificationContract(
     total: lastSchedule.balance,
     classification: contract.classification,
     newClassification: newClassification,
-    createdAt: new Date()
+    createdAt: new Date(),
   };
 
   models.Classification.create(classificationChange);
@@ -32,22 +32,23 @@ export async function changeClassificationContract(
 export async function massChangeClassification(
   contracts: IContractDocument[],
   currentDate: Date,
-  models: IModels
+  models: IModels,
 ) {
-  const contractTypes: IContractTypeDocument[] = await models.ContractTypes.find(
-    { _id: contracts.map(a => a.contractTypeId) }
-  ).lean();
+  const contractTypes: IContractTypeDocument[] =
+    await models.ContractTypes.find({
+      _id: contracts.map((a) => a.contractTypeId) as any,
+    }).lean();
 
   for await (const contract of contracts) {
     const currentContractType = contractTypes.find(
-      a => a._id === contract.contractTypeId
+      (a) => a._id === contract.contractTypeId,
     );
 
     let newClassification = contract.classification;
 
     const lastMainSchedule = await models.Schedules.getLastSchedule(
       contract._id,
-      currentDate
+      currentDate,
     );
 
     const diffDay = getDiffDay(lastMainSchedule.payDate, currentDate);
@@ -70,7 +71,7 @@ export async function massChangeClassification(
         contract,
         currentDate,
         newClassification,
-        models
+        models,
       );
   }
 }

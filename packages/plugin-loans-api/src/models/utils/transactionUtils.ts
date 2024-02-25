@@ -4,20 +4,20 @@ import {
   INVOICE_STATUS,
   LEASE_TYPES,
   SCHEDULE_STATUS,
-  UNDUE_CALC_TYPE
+  UNDUE_CALC_TYPE,
 } from '../definitions/constants';
 import { IContractDocument } from '../definitions/contracts';
 import { IScheduleDocument } from '../definitions/schedules';
 import {
   ICalcDivideParams,
   ICalcTrParams,
-  ITransactionDocument
+  ITransactionDocument,
 } from '../definitions/transactions';
 import {
   afterNextScheduled,
   betweenScheduled,
   onNextScheduled,
-  onPreScheduled
+  onPreScheduled,
 } from './scheduleUtils';
 import { addMonths } from './utils';
 import {
@@ -25,7 +25,7 @@ import {
   getUnduePercent,
   getDiffDay,
   getFullDate,
-  getDatesDiffMonth
+  getDatesDiffMonth,
 } from './utils';
 //#endregion
 
@@ -38,7 +38,7 @@ import {
 export const getAOESchedules = async (
   models: IModels,
   contract,
-  trDate
+  trDate,
 ): Promise<{
   preSchedule: IScheduleDocument & any;
   nextSchedule: IScheduleDocument & any;
@@ -51,8 +51,8 @@ export const getAOESchedules = async (
       $in:
         contract.leaseType === LEASE_TYPES.LINEAR
           ? [SCHEDULE_STATUS.PENDING]
-          : [SCHEDULE_STATUS.DONE, SCHEDULE_STATUS.LESS, SCHEDULE_STATUS.PRE]
-    }
+          : [SCHEDULE_STATUS.DONE, SCHEDULE_STATUS.LESS, SCHEDULE_STATUS.PRE],
+    },
   })
     .sort({ payDate: -1 })
     .lean<IScheduleDocument & any>();
@@ -60,7 +60,7 @@ export const getAOESchedules = async (
   const nextSchedule = await models.Schedules.findOne({
     contractId: contract._id,
     status: { $in: [SCHEDULE_STATUS.PENDING] },
-    payDate: { $gte: trDate }
+    payDate: { $gte: trDate },
   })
     .sort({ payDate: 1 })
     .lean<IScheduleDocument & any>();
@@ -79,7 +79,7 @@ export const calcUndue = async (
   preSchedule: IScheduleDocument,
   contract: IContractDocument,
   unduePercent,
-  diff: number
+  diff: number,
 ): Promise<number> => {
   let result = 0;
 
@@ -92,7 +92,7 @@ export const calcUndue = async (
       result = Math.round(
         ((preSchedule.balance * contract.interestRate) / 100 / 365) *
           unduePercent *
-          diff
+          diff,
       );
       break;
 
@@ -108,7 +108,7 @@ export const calcUndue = async (
       result = Math.round(
         ((preSchedule.balance * contract.interestRate) / 100 / 365) *
           unduePercent *
-          diff
+          diff,
       );
       break;
   }
@@ -118,11 +118,11 @@ export const calcUndue = async (
 async function fillCommitmentInterest(
   contract: IContractDocument,
   result: any,
-  models: IModels
+  models: IModels,
 ) {
   const schedules = await models.Schedules.find({
     contractId: contract._id,
-    status: SCHEDULE_STATUS.PENDING
+    status: SCHEDULE_STATUS.PENDING,
   }).sort({ payDate: 1 });
 
   let beginDate = contract.startDate;
@@ -131,7 +131,7 @@ async function fillCommitmentInterest(
   for await (let schedule of schedules) {
     const { diffEve, diffNonce } = getDatesDiffMonth(
       beginDate,
-      schedule.payDate
+      schedule.payDate,
     );
 
     beginDate = schedule.payDate;
@@ -140,13 +140,13 @@ async function fillCommitmentInterest(
     result.commitmentInterestEve += calcInterest({
       balance: unUsedBalance,
       interestRate: contract.commitmentInterest,
-      dayOfMonth: diffEve
+      dayOfMonth: diffEve,
     });
 
     result.commitmentInterestNonce += calcInterest({
       balance: unUsedBalance,
       interestRate: contract.commitmentInterest,
-      dayOfMonth: diffNonce
+      dayOfMonth: diffNonce,
     });
   }
 
@@ -168,7 +168,7 @@ async function fillCommitmentInterest(
 export const getCalcedAmounts = async (
   models: IModels,
   subdomain: string,
-  doc: ICalcDivideParams
+  doc: ICalcDivideParams,
 ) => {
   let result: {
     undue: number;
@@ -203,7 +203,7 @@ export const getCalcedAmounts = async (
     commitmentInterestEve: 0,
     commitmentInterestNonce: 0,
     calcInterest: 0,
-    closeAmount: 0
+    closeAmount: 0,
   };
 
   if (!doc.contractId) {
@@ -213,7 +213,7 @@ export const getCalcedAmounts = async (
   const trDate = getFullDate(doc.payDate);
 
   const contract = await models.Contracts.getContract({
-    _id: doc.contractId
+    _id: doc.contractId,
   });
   /**
    * @property preSchedule /schedule of done or less payed/
@@ -225,7 +225,7 @@ export const getCalcedAmounts = async (
   let { preSchedule, nextSchedule } = await getAOESchedules(
     models,
     contract,
-    trDate
+    trDate,
   );
 
   if (!preSchedule && !nextSchedule) {
@@ -237,7 +237,7 @@ export const getCalcedAmounts = async (
 
   const skipInterestCalcDate = addMonths(
     new Date(startDate),
-    contract.skipInterestCalcMonth || 0
+    contract.skipInterestCalcMonth || 0,
   );
 
   const isSkipInterestCalc = getDiffDay(trDate, skipInterestCalcDate) >= 0;
@@ -252,7 +252,7 @@ export const getCalcedAmounts = async (
       balance: contract.leaseAmount,
       payDate: startDate,
       insurance: nextSchedule.insurance,
-      debt: nextSchedule.debt
+      debt: nextSchedule.debt,
     };
   }
 
@@ -268,7 +268,7 @@ export const getCalcedAmounts = async (
       models,
       subdomain,
       preSchedule.payDate,
-      contract
+      contract,
     );
 
     result.undue =
@@ -278,7 +278,7 @@ export const getCalcedAmounts = async (
         preSchedule,
         contract,
         unduePercent,
-        getDiffDay(prePayDate, trDate)
+        getDiffDay(prePayDate, trDate),
       ));
 
     if (isSkipInterestCalc) {
@@ -292,7 +292,7 @@ export const getCalcedAmounts = async (
         calcInterest({
           balance: preSchedule.balance,
           interestRate: contract.interestRate,
-          dayOfMonth: diffEve
+          dayOfMonth: diffEve,
         });
       result.interestNonce =
         (preSchedule.interestNonce || 0) -
@@ -300,7 +300,7 @@ export const getCalcedAmounts = async (
         calcInterest({
           balance: preSchedule.balance,
           interestRate: contract.interestRate,
-          dayOfMonth: diffNonce
+          dayOfMonth: diffNonce,
         });
 
       //commitment interest calculation
@@ -405,13 +405,13 @@ export const getCalcedAmounts = async (
       result.interestEve += calcInterest({
         balance: preSchedule.balance,
         interestRate: contract.interestRate,
-        dayOfMonth: diffEve
+        dayOfMonth: diffEve,
       });
 
       result.interestNonce += calcInterest({
         balance: preSchedule.balance,
         interestRate: contract.interestRate,
-        dayOfMonth: diffNonce
+        dayOfMonth: diffNonce,
       });
 
       //commitment interest calculation
@@ -429,14 +429,14 @@ export const getCalcedAmounts = async (
         models,
         subdomain,
         preSchedule.payDate,
-        contract
+        contract,
       );
 
       result.undue += await calcUndue(
         preSchedule,
         contract,
         unduePercent,
-        getDiffDay(prePayDate, trDate)
+        getDiffDay(prePayDate, trDate),
       );
     }
     return result;
@@ -474,14 +474,14 @@ export const getCalcedAmounts = async (
         models,
         subdomain,
         preSchedule.payDate,
-        contract
+        contract,
       );
 
       result.undue += await calcUndue(
         preSchedule,
         contract,
         unduePercent,
-        getDiffDay(prePayDate, trDate)
+        getDiffDay(prePayDate, trDate),
       );
     }
 
@@ -495,14 +495,14 @@ export const getCalcedAmounts = async (
     models,
     subdomain,
     preSchedule.payDate,
-    contract
+    contract,
   );
 
   result.undue = await calcUndue(
     preSchedule,
     contract,
     unduePercent,
-    getDiffDay(prePayDate, trDate)
+    getDiffDay(prePayDate, trDate),
   );
 
   if (isSkipInterestCalc) {
@@ -514,12 +514,12 @@ export const getCalcedAmounts = async (
     result.interestEve = calcInterest({
       balance: preSchedule.balance,
       interestRate: contract.interestRate,
-      dayOfMonth: diffEve
+      dayOfMonth: diffEve,
     });
     result.interestNonce = calcInterest({
       balance: preSchedule.balance,
       interestRate: contract.interestRate,
-      dayOfMonth: diffNonce
+      dayOfMonth: diffNonce,
     });
 
     //commitment interest calculation
@@ -542,8 +542,8 @@ export const getCalcedAmounts = async (
     contractId: contract._id,
     $and: [
       { payDate: { $gte: nextSchedule.payDate } },
-      { payDate: { $lte: trDate } }
-    ]
+      { payDate: { $lte: trDate } },
+    ],
   });
   if (!doubleSkipped) return result;
 
@@ -579,7 +579,7 @@ export const transactionRule = async (
     calcInterest: number;
     calcedInfo: any;
     commitmentInterest: number;
-  }
+  },
 ) => {
   result = {
     payment: 0,
@@ -592,7 +592,7 @@ export const transactionRule = async (
     storedInterest: 0,
     calcInterest: 0,
     calcedInfo: undefined,
-    commitmentInterest: 0
+    commitmentInterest: 0,
   };
 
   if (!doc.contractId) {
@@ -601,7 +601,7 @@ export const transactionRule = async (
 
   result.calcedInfo = await getCalcedAmounts(models, subdomain, {
     contractId: doc.contractId,
-    payDate: doc.payDate
+    payDate: doc.payDate,
   });
 
   const {
@@ -612,7 +612,7 @@ export const transactionRule = async (
     insurance = 0,
     debt = 0,
     preSchedule,
-    commitmentInterest
+    commitmentInterest,
   } = result.calcedInfo;
   result.calcedInfo.total =
     payment +
@@ -693,7 +693,7 @@ export const transactionRule = async (
  */
 export const trAfterSchedule = async (
   models: IModels,
-  tr: ITransactionDocument
+  tr: ITransactionDocument,
 ) => {
   if (!tr.contractId) {
     return;
@@ -702,22 +702,22 @@ export const trAfterSchedule = async (
   const trDate = getFullDate(tr.payDate);
 
   const contract = await models.Contracts.getContract({
-    _id: tr.contractId
+    _id: tr.contractId,
   });
 
   // with skipped of done
   let preSchedule = await models.Schedules.findOne({
     contractId: contract._id,
     status: {
-      $in: [SCHEDULE_STATUS.DONE, SCHEDULE_STATUS.LESS, SCHEDULE_STATUS.PRE]
-    }
+      $in: [SCHEDULE_STATUS.DONE, SCHEDULE_STATUS.LESS, SCHEDULE_STATUS.PRE],
+    },
   })
     .sort({ payDate: -1 })
     .lean();
 
   const pendingSchedules = await models.Schedules.find({
     contractId: contract._id,
-    status: SCHEDULE_STATUS.PENDING
+    status: SCHEDULE_STATUS.PENDING,
   })
     .sort({ payDate: 1 })
     .lean();
@@ -729,7 +729,13 @@ export const trAfterSchedule = async (
 
   // closed contract
   if (!pendingSchedules || !pendingSchedules.length) {
-    await betweenScheduled(models, contract, tr, preSchedule, pendingSchedules);
+    await betweenScheduled(
+      models,
+      contract,
+      tr,
+      preSchedule as IScheduleDocument,
+      pendingSchedules as IScheduleDocument[],
+    );
     return;
   }
 
@@ -743,7 +749,7 @@ export const trAfterSchedule = async (
       payDate: contract.startDate,
       contractId: contract._id,
       debt: contract.debt,
-      balance: contract.leaseAmount
+      balance: contract.leaseAmount,
     };
   }
 
@@ -756,13 +762,25 @@ export const trAfterSchedule = async (
 
   // one day multi pay
   if (getDiffDay(trDate, prePayDate) === 0) {
-    await onPreScheduled(models, contract, tr, preSchedule, pendingSchedules);
+    await onPreScheduled(
+      models,
+      contract,
+      tr,
+      preSchedule as IScheduleDocument,
+      pendingSchedules as IScheduleDocument[],
+    );
     return;
   }
 
   // between
   if (trDate < nextPayDate) {
-    await betweenScheduled(models, contract, tr, preSchedule, pendingSchedules);
+    await betweenScheduled(
+      models,
+      contract,
+      tr,
+      preSchedule as IScheduleDocument,
+      pendingSchedules as IScheduleDocument[],
+    );
     return;
   }
 
@@ -772,9 +790,9 @@ export const trAfterSchedule = async (
       models,
       contract,
       tr,
-      preSchedule,
-      nextSchedule,
-      pendingSchedules
+      preSchedule as IScheduleDocument,
+      nextSchedule as IScheduleDocument,
+      pendingSchedules as IScheduleDocument[],
     );
     return;
   }
@@ -784,9 +802,9 @@ export const trAfterSchedule = async (
     models,
     contract,
     tr,
-    preSchedule,
-    nextSchedule,
-    pendingSchedules
+    preSchedule as IScheduleDocument,
+    nextSchedule as IScheduleDocument,
+    pendingSchedules as IScheduleDocument[],
   );
   return;
 };
@@ -801,7 +819,7 @@ export const trAfterSchedule = async (
 export const removeTrAfterSchedule = async (
   models: IModels,
   tr: ITransactionDocument,
-  noDeleteSchIds: any[] = []
+  noDeleteSchIds: any[] = [],
 ) => {
   if (!Object.keys(tr.reactions || {}).length) {
     return;
@@ -809,12 +827,12 @@ export const removeTrAfterSchedule = async (
 
   const nextTrsCount = await models.Transactions.count({
     contractId: tr.contractId,
-    payDate: { $gt: tr.payDate }
+    payDate: { $gt: tr.payDate },
   }).lean();
 
   if (nextTrsCount > 0) {
     throw new Error(
-      'this transaction is not last transaction. Please This contracts last transaction only to change or remove'
+      'this transaction is not last transaction. Please This contracts last transaction only to change or remove',
     );
   }
 
@@ -836,8 +854,8 @@ export const removeTrAfterSchedule = async (
       bulkOps.unshift({
         updateOne: {
           filter: { _id: reaction.scheduleId },
-          update: { $set: { ...reaction.preData } }
-        }
+          update: { $set: { ...reaction.preData } },
+        },
       });
     }
   }
@@ -854,7 +872,7 @@ export const removeTrAfterSchedule = async (
   if (delIds.length) {
     await models.Schedules.deleteMany({
       _id: { $in: delIds },
-      isDefault: { $ne: true }
+      isDefault: { $ne: true },
     });
   }
 };
