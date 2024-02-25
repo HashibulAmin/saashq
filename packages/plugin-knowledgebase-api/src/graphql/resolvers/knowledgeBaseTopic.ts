@@ -1,19 +1,21 @@
-import { ITopicDocument } from '../../models/definitions/knowledgebase';
+import {
+  ICategoryDocument,
+  ITopicDocument,
+} from '../../models/definitions/knowledgebase';
 import { IContext } from '../../connectionResolver';
 
 export default {
   __resolveReference({ _id }, { models }: IContext) {
     return models.KnowledgeBaseTopics.findOne({ _id });
   },
-  
+
   brand(topic: ITopicDocument) {
     return (
       topic.brandId && {
         __typename: 'Brand',
-        _id: topic.brandId
+        _id: topic.brandId,
       }
     );
-
   },
 
   categories(topic: ITopicDocument, _args, { models }: IContext) {
@@ -26,7 +28,7 @@ export default {
     return models.KnowledgeBaseCategories.find({
       topicId: topic._id,
       $or: [
-        { parentCategoryId: null },
+        { parentCategoryId: null } as never,
         { parentCategoryId: { $exists: false } },
         { parentCategoryId: '' },
       ],
