@@ -473,7 +473,7 @@ const conversationMutations = {
 
     await sendNotifications(subdomain, {
       user,
-      conversations: oldConversations,
+      conversations: oldConversations as IConversationDocument[],
       type: 'unassign',
     });
 

@@ -9,6 +9,7 @@ import {
 import {
   IAttachment,
   IIntegrationDocument,
+  IMessengerDataDocument,
   IMessengerDataMessagesItem,
 } from '../../models/definitions/integrations';
 
@@ -132,7 +133,7 @@ export const getMessengerData = async (
 
   if (messengerData) {
     if (messengerData.toJSON) {
-      messengerData = messengerData.toJSON();
+      messengerData = messengerData.toJSON() as IMessengerDataDocument;
     }
 
     const languageCode = integration.languageCode || 'en';

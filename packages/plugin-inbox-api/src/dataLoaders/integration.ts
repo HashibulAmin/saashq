@@ -5,9 +5,9 @@ import { IModels } from '../connectionResolver';
 export default function generateDataLoaderIntegration(models: IModels) {
   return new DataLoader<string, any>(async (ids: readonly string[]) => {
     const result: any[] = await models.Integrations.find({
-      _id: { $in: ids }
+      _id: { $in: ids as string[] },
     }).lean();
     const resultById = _.indexBy(result, '_id');
-    return ids.map(id => resultById[id]);
+    return ids.map((id) => resultById[id]);
   });
 }

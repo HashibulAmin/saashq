@@ -6,16 +6,16 @@ export default function generateDataLoaderMessage(models: IModels) {
   return new DataLoader<string, any[]>(
     async (conversationIds: readonly string[]) => {
       const result: any[] = await models.ConversationMessages.find({
-        conversationId: { $in: conversationIds }
+        conversationId: { $in: conversationIds as string[] },
       })
         .sort({
-          createdAt: 1
+          createdAt: 1,
         })
         .lean();
       const resultById = await _.groupBy(result, 'conversationId');
       return conversationIds.map(
-        conversationId => resultById[conversationId] || []
+        (conversationId) => resultById[conversationId] || [],
       );
-    }
+    },
   );
 }

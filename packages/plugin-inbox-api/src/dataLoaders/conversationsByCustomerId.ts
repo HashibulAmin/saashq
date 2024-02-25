@@ -6,10 +6,10 @@ export default function generateDataLoaderConversation(models: IModels) {
   return new DataLoader<string, any[]>(
     async (customerIds: readonly string[]) => {
       const result: any[] = await models.Conversations.find({
-        customerId: { $in: customerIds }
+        customerId: { $in: customerIds as string[] },
       }).lean();
       const resultByCustomerId = _.groupBy(result, 'customerId');
-      return customerIds.map(id => resultByCustomerId[id] || []);
-    }
+      return customerIds.map((id) => resultByCustomerId[id] || []);
+    },
   );
 }

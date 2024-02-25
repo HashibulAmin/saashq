@@ -371,12 +371,12 @@ export const loadClass = (models: IModels, subdomain: string) => {
     ) {
       // Updating every conversation and conversation messages of new customer
       await models.ConversationMessages.updateMany(
-        { customerId: { $in: customerIds } },
+        { customerId: { $in: customerIds as any } },
         { $set: { customerId: newCustomerId } },
       );
 
       await models.Conversations.updateMany(
-        { customerId: { $in: customerIds } },
+        { customerId: { $in: customerIds as any } },
         { $set: { customerId: newCustomerId } },
       );
 
@@ -424,7 +424,7 @@ export const loadClass = (models: IModels, subdomain: string) => {
         () => {
           return models.ConversationMessages.find(
             {
-              engageData: { $exists: true, $ne: null },
+              engageData: { $exists: true, $ne: null } as any,
               'engageData.messageId': engageMessageId,
             },
             { conversationId: 1, _id: 0 },

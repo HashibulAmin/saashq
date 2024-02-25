@@ -8,25 +8,21 @@ import { IBrowserInfo } from '@saashq/api-utils/src/definitions/common';
 import {
   sendCoreMessage,
   sendFormsMessage,
-  sendKnowledgeBaseMessage
+  sendKnowledgeBaseMessage,
 } from '../../messageBroker';
 import { IContext, IModels } from '../../connectionResolver';
 
 const isMessengerOnline = async (
   models: IModels,
   integration: IIntegrationDocument,
-  userTimezone?: string
+  userTimezone?: string,
 ) => {
   if (!integration.messengerData) {
     return false;
   }
 
-  const {
-    availabilityMethod,
-    isOnline,
-    onlineHours,
-    timezone
-  } = integration.messengerData;
+  const { availabilityMethod, isOnline, onlineHours, timezone } =
+    integration.messengerData;
 
   const modifiedIntegration = {
     ...(integration.toJSON ? integration.toJSON() : integration),
@@ -34,25 +30,28 @@ const isMessengerOnline = async (
       availabilityMethod,
       isOnline,
       onlineHours,
-      timezone
-    }
+      timezone,
+    },
   };
 
-  return models.Integrations.isOnline(modifiedIntegration, userTimezone);
+  return models.Integrations.isOnline(
+    modifiedIntegration as IIntegrationDocument,
+    userTimezone,
+  );
 };
 
 const fetchUsers = async (
   models: IModels,
   subdomain: string,
   integration: IIntegrationDocument,
-  query: any
+  query: any,
 ) => {
   const users = await sendCoreMessage({
     subdomain,
     action: 'users.find',
     data: { query },
     isRPC: true,
-    defaultValue: []
+    defaultValue: [],
   });
 
   for (const user of users) {
@@ -60,7 +59,7 @@ const fetchUsers = async (
       user.isOnline = await isMessengerOnline(
         models,
         integration,
-        user.details.location
+        user.details.location,
       );
     }
   }
@@ -72,9 +71,9 @@ const getWidgetMessages = (models: IModels, conversationId: string) => {
   return models.ConversationMessages.find({
     conversationId,
     internal: false,
-    fromBot: { $exists: false }
+    fromBot: { $exists: false },
   }).sort({
-    createdAt: 1
+    createdAt: 1,
   });
 };
 
@@ -82,18 +81,18 @@ export default {
   widgetsGetMessengerIntegration(
     _root,
     args: { brandCode: string },
-    { models }: IContext
+    { models }: IContext,
   ) {
     return models.Integrations.getWidgetIntegration(
       args.brandCode,
-      'messenger'
+      'messenger',
     );
   },
 
   widgetsConversations(
     _root,
     args: { integrationId: string; customerId?: string; visitorId?: string },
-    { models }: IContext
+    { models }: IContext,
   ) {
     const { integrationId, customerId, visitorId } = args;
 
@@ -107,23 +106,23 @@ export default {
   async widgetsConversationDetail(
     _root,
     args: { _id: string; integrationId: string },
-    { models, subdomain }: IContext
+    { models, subdomain }: IContext,
   ) {
     const { _id, integrationId } = args;
 
     const conversation = await models.Conversations.findOne({
       _id,
-      integrationId
+      integrationId,
     });
     const integration = await models.Integrations.findOne({
-      _id: integrationId
+      _id: integrationId,
     });
 
     // When no one writes a message
     if (!conversation && integration) {
       return {
         messages: [],
-        isOnline: await isMessengerOnline(models, integration)
+        isOnline: await isMessengerOnline(models, integration),
       };
     }
 
@@ -139,18 +138,18 @@ export default {
       isOnline: await isMessengerOnline(models, integration),
       operatorStatus: conversation.operatorStatus,
       participatedUsers: await fetchUsers(models, subdomain, integration, {
-        _id: { $in: conversation.participatedUserIds }
+        _id: { $in: conversation.participatedUserIds },
       }),
       supporters: await fetchUsers(models, subdomain, integration, {
-        _id: { $in: messengerData.supporterIds }
-      })
+        _id: { $in: messengerData.supporterIds },
+      }),
     };
   },
 
   widgetsMessages(
     _root,
     args: { conversationId: string },
-    { models }: IContext
+    { models }: IContext,
   ) {
     const { conversationId } = args;
 
@@ -160,19 +159,19 @@ export default {
   widgetsUnreadCount(
     _root,
     args: { conversationId: string },
-    { models }: IContext
+    { models }: IContext,
   ) {
     const { conversationId } = args;
 
     return models.ConversationMessages.widgetsGetUnreadMessagesCount(
-      conversationId
+      conversationId,
     );
   },
 
   async widgetsTotalUnreadCount(
     _root,
     args: { integrationId: string; customerId?: string },
-    { models }: IContext
+    { models }: IContext,
   ) {
     const { integrationId, customerId } = args;
 
@@ -182,22 +181,22 @@ export default {
     // find conversations
     const convs = await models.Conversations.find({
       integrationId,
-      customerId
+      customerId,
     });
 
     // find read messages count
     return models.ConversationMessages.countDocuments(
-      models.Conversations.widgetsUnreadMessagesQuery(convs)
+      models.Conversations.widgetsUnreadMessagesQuery(convs),
     );
   },
 
   async widgetsMessengerSupporters(
     _root,
     { integrationId }: { integrationId: string },
-    { models, subdomain }: IContext
+    { models, subdomain }: IContext,
   ) {
     const integration = await models.Integrations.findOne({
-      _id: integrationId
+      _id: integrationId,
     });
 
     let timezone = momentTz.tz.guess();
@@ -205,7 +204,7 @@ export default {
     if (!integration) {
       return {
         supporters: [],
-        isOnline: false
+        isOnline: false,
       };
     }
 
@@ -217,10 +216,10 @@ export default {
 
     return {
       supporters: await fetchUsers(models, subdomain, integration, {
-        _id: { $in: messengerData.supporterIds || [] }
+        _id: { $in: messengerData.supporterIds || [] },
       }),
       isOnline: await isMessengerOnline(models, integration),
-      timezone
+      timezone,
     };
   },
 
@@ -230,14 +229,14 @@ export default {
       integrationId,
       customerId,
       visitorId,
-      browserInfo
+      browserInfo,
     }: {
       integrationId: string;
       customerId?: string;
       visitorId?: string;
       browserInfo: IBrowserInfo;
     },
-    { models, subdomain }: IContext
+    { models, subdomain }: IContext,
   ) {
     return getOrCreateEngageMessage(
       models,
@@ -245,47 +244,47 @@ export default {
       integrationId,
       browserInfo,
       visitorId,
-      customerId
+      customerId,
     );
   },
 
   async widgetsProductCategory(_root, { _id }: { _id: string }) {
     return {
       __typename: 'ProductCategory',
-      _id
+      _id,
     };
   },
 
   async widgetsBookingProductWithFields(
     _root,
     { _id }: { _id: string },
-    { subdomain }: IContext
+    { subdomain }: IContext,
   ) {
     const fields = await sendFormsMessage({
       subdomain,
       action: 'fields.find',
       data: {
         query: {
-          contentType: 'product'
+          contentType: 'product',
         },
         sort: {
-          order: 1
-        }
+          order: 1,
+        },
       },
-      isRPC: true
+      isRPC: true,
     });
 
     return {
-      fields: fields.map(field => {
+      fields: fields.map((field) => {
         return {
           __typename: 'Field',
-          _id: field._id
+          _id: field._id,
         };
       }),
       product: {
         __typename: 'Product',
-        _id
-      }
+        _id,
+      },
     };
   },
 
@@ -297,7 +296,7 @@ export default {
   async widgetsKnowledgeBaseArticles(
     _root: any,
     args: { topicId: string; searchString: string },
-    { subdomain }: IContext
+    { subdomain }: IContext,
   ) {
     const { topicId, searchString = '' } = args;
 
@@ -308,10 +307,10 @@ export default {
         query: {
           topicId,
           content: { $regex: `.*${searchString.trim()}.*`, $options: 'i' },
-          status: 'publish'
-        }
+          status: 'publish',
+        },
       },
-      isRPC: true
+      isRPC: true,
     });
   },
 
@@ -321,7 +320,7 @@ export default {
   async widgetsKnowledgeBaseTopicDetail(
     _root,
     { _id }: { _id: string },
-    { subdomain }: IContext
+    { subdomain }: IContext,
   ) {
     const commonOptions = { subdomain, isRPC: true };
 
@@ -330,9 +329,9 @@ export default {
       action: 'topics.findOne',
       data: {
         query: {
-          _id
-        }
-      }
+          _id,
+        },
+      },
     });
 
     if (topic && topic.createdBy) {
@@ -340,9 +339,9 @@ export default {
         ...commonOptions,
         action: 'users.findOne',
         data: {
-          _id: topic.createdBy
+          _id: topic.createdBy,
         },
-        defaultValue: {}
+        defaultValue: {},
       });
 
       sendCoreMessage({
@@ -350,11 +349,11 @@ export default {
         action: 'registerOnboardHistory',
         data: {
           type: 'knowledgeBaseInstalled',
-          user
-        }
+          user,
+        },
       });
     }
 
     return topic;
-  }
+  },
 };
