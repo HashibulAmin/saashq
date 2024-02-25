@@ -98,7 +98,6 @@ const reportsMutations = {
 
     const duplicatedReport = await models.Reports.createReport({
       ...report.toObject(),
-      _id: undefined,
       name: `${report.name} copied`,
       createdBy: user._id,
       createdAt: new Date(),
