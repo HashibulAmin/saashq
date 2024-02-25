@@ -71,7 +71,7 @@ export const getBranchesUtil = async (
 
       const response = await sendPosclientHealthCheck({
         subdomain,
-        pos: allowPos,
+        pos: allowPos as IPosDocument,
       });
 
       if (response && response.healthy === 'ok') {
@@ -649,7 +649,7 @@ export const syncOrderFromClient = async ({
   models: IModels;
   order;
   items;
-  pos: IPosDocument;
+  pos: any;
   posToken: string;
   responses;
 }) => {
@@ -720,7 +720,7 @@ export const syncOrderFromClient = async ({
         data: {
           order: { ...newOrder, posToken, subToken: toPos.token },
         },
-        pos: toPos,
+        pos: toPos as IPosDocument,
       });
     }
 
@@ -740,9 +740,9 @@ export const syncOrderFromClient = async ({
           subdomain,
           action: 'saashq-posclient-to-pos-api-remove',
           data: {
-            order: { ...newOrder, posToken, subToken: toPos.token },
+            order: { ...newOrder, posToken, subToken: toPos?.token },
           },
-          pos: toCancelPos,
+          pos: toCancelPos as IPosDocument,
         });
       }
     }

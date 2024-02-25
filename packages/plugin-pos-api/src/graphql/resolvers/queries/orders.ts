@@ -422,7 +422,7 @@ const queries = {
 
   posOrderDetail: async (_root, { _id }, { models, subdomain }: IContext) => {
     const order = await models.PosOrders.findOne({ _id }).lean();
-    const productIds = order.items.map((i) => i.productId);
+    const productIds = order?.items ? order.items.map((i) => i.productId) : '';
 
     const products = await sendProductsMessage({
       subdomain,
@@ -441,8 +441,9 @@ const queries = {
       productById[product._id] = product;
     }
 
-    for (const item of order.items) {
-      item.productName = (productById[item.productId] || {}).name || 'unknown';
+    for (const item in order?.items) {
+      Object(item).productName =
+        (productById[Object(item).productId] || {}).name || 'unknown';
     }
 
     return order;

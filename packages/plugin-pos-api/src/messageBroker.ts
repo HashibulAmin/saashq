@@ -135,7 +135,7 @@ export const initBroker = async () => {
     const order = await models.PosOrders.findOne({ _id: orderId }).lean();
 
     // on kitchen
-    if (!order.deliveryInfo) {
+    if (!order?.deliveryInfo) {
       return {
         status: 'success',
         data: {

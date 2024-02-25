@@ -5,7 +5,7 @@ import {
   syncPosToClient,
   syncProductGroupsToClient,
   syncRemovePosToClient,
-  syncSlotsToClient
+  syncSlotsToClient,
 } from './utils';
 
 interface IPOSEdit extends IPos {
@@ -16,7 +16,7 @@ const mutations = {
   posAdd: async (
     _root,
     params: IPos,
-    { models, user, subdomain }: IContext
+    { models, user, subdomain }: IContext,
   ) => {
     const { ALL_AUTO_INIT } = process.env;
     if ([true, 'true', 'True', '1'].includes(ALL_AUTO_INIT || '')) {
@@ -34,7 +34,7 @@ const mutations = {
   posEdit: async (
     _root,
     { _id, ...doc }: IPOSEdit,
-    { models, subdomain }: IContext
+    { models, subdomain }: IContext,
   ) => {
     await models.Pos.getPos({ _id });
 
@@ -53,7 +53,7 @@ const mutations = {
   posRemove: async (
     _root,
     { _id }: { _id: string },
-    { models, subdomain }: IContext
+    { models, subdomain }: IContext,
   ) => {
     const pos = await models.Pos.getPos({ _id });
     await syncRemovePosToClient(subdomain, pos);
@@ -63,7 +63,7 @@ const mutations = {
   productGroupsBulkInsert: async (
     _root,
     { posId, groups }: { posId: string; groups: any[] },
-    { models, subdomain }: IContext
+    { models, subdomain }: IContext,
   ) => {
     const pos = await models.Pos.getPos({ _id: posId });
 
@@ -79,14 +79,16 @@ const mutations = {
         await models.ProductGroups.groupsEdit(group._id, group);
       }
     }
-    const groupsToRemove = dbGroups.filter(el => {
-      const index = groupsToUpdate.findIndex(g => g._id === el._id);
+    const groupsToRemove = dbGroups.filter((el) => {
+      const index = groupsToUpdate.findIndex((g) => g._id === el._id);
       if (index === -1) {
         return el._id;
       }
     });
     if (groupsToRemove.length > 0) {
-      await models.ProductGroups.deleteMany({ _id: { $in: groupsToRemove } });
+      await models.ProductGroups.deleteMany({
+        _id: { $in: groupsToRemove } as unknown as string,
+      });
     }
     await models.ProductGroups.insertMany(groupsToAdd);
 
@@ -100,19 +102,19 @@ const mutations = {
   posSlotBulkUpdate: async (
     _root,
     { posId, slots }: { posId: string; slots: IPosSlot[] },
-    { models, subdomain }: IContext
+    { models, subdomain }: IContext,
   ) => {
     const pos = await models.Pos.getPos({ _id: posId });
 
     const oldPosSlots = await models.PosSlots.find({ posId });
 
-    const slotIds = slots.map(s => s._id);
-    const toDeleteSlots = oldPosSlots.filter(s => !slotIds.includes(s._id));
+    const slotIds = slots.map((s) => s._id);
+    const toDeleteSlots = oldPosSlots.filter((s) => !slotIds.includes(s._id));
     await models.PosSlots.deleteMany({
-      _id: { $in: toDeleteSlots.map(s => s._id) }
+      _id: { $in: toDeleteSlots.map((s) => s._id) },
     });
 
-    const updateSlots = slots.filter(s => s._id);
+    const updateSlots = slots.filter((s) => s._id);
     const bulkOps: {
       updateOne: {
         filter: { _id: string };
@@ -126,8 +128,8 @@ const mutations = {
         updateOne: {
           filter: { _id: slot._id || '' },
           update: { $set: { ...slot } },
-          upsert: true
-        }
+          upsert: true,
+        },
       });
     }
 
@@ -135,14 +137,14 @@ const mutations = {
       await models.PosSlots.bulkWrite(bulkOps);
     }
 
-    await models.PosSlots.insertMany(slots.filter(s => !s._id));
+    await models.PosSlots.insertMany(slots.filter((s) => !s._id));
 
     const updatedSlots = await models.PosSlots.find({ posId });
 
     await syncSlotsToClient(subdomain, pos, updatedSlots);
 
     return updatedSlots;
-  }
+  },
 };
 
 checkPermission(mutations, 'posAdd', 'managePos');
