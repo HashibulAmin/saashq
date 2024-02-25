@@ -1097,10 +1097,10 @@ const clientPortalUserMutations = {
         _id: cpUser.clientPortalId,
       }).lean();
 
-      if (cp || cp.kind === 'vendor') {
+      if (cp || cp!.kind === 'vendor') {
         await models.Companies.createOrUpdateCompany({
           saashqCompanyId,
-          clientPortalId: cp._id,
+          clientPortalId: cp?._id as string,
         });
       }
     }

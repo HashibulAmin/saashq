@@ -440,7 +440,7 @@ export const loadClientPortalUserClass = (models: IModels) => {
       const user = await models.ClientPortalUsers.findOne({
         resetPasswordToken: token,
         resetPasswordExpires: {
-          $gt: Date.now(),
+          $gt: String(Date.now()),
         },
       });
 
@@ -489,7 +489,10 @@ export const loadClientPortalUserClass = (models: IModels) => {
       }
 
       // check current password ============
-      const valid = await this.comparePassword(currentPassword, user.password);
+      const valid = await this.comparePassword(
+        currentPassword,
+        user.password as string,
+      );
 
       if (!valid) {
         throw new Error('Incorrect current password');
@@ -532,7 +535,7 @@ export const loadClientPortalUserClass = (models: IModels) => {
         // save token & expiration date
         await models.ClientPortalUsers.findByIdAndUpdate(user._id, {
           resetPasswordToken: token,
-          resetPasswordExpires: Date.now() + 86400000,
+          resetPasswordExpires: (Date.now() + 86400000) as any,
         });
 
         return { token };
@@ -968,7 +971,7 @@ export const loadClientPortalUserClass = (models: IModels) => {
       const user = await models.ClientPortalUsers.findOne({
         registrationToken: token,
         registrationTokenExpires: {
-          $gt: Date.now(),
+          $gt: String(Date.now()),
         },
       });
 
@@ -1024,8 +1027,8 @@ export const loadClientPortalUserClass = (models: IModels) => {
           : { isEmailVerified: true };
 
       const users = await models.ClientPortalUsers.find({
-        _id: { $in: userIds },
-        ...qryOption,
+        _id: { $in: userIds as string[] },
+        ...(qryOption as any),
       });
 
       if (!users || !users.length) {

@@ -42,7 +42,7 @@ export interface IPasswordVerificationConfig {
 export interface IClientPortal {
   _id?: string;
   name?: string;
-  kind: 'client' | 'vendor';
+  kind: 'client' | 'vendor' | never;
   description?: string;
   logo?: string;
   icon?: string;
