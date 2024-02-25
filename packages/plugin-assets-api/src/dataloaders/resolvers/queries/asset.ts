@@ -53,7 +53,7 @@ export const generateCommonAssetFilter = async (
     filter.categoryId = { $in: asset_category_ids };
   } else {
     const notActiveCategories = await models.AssetCategories.find({
-      status: { $nin: [null, 'active'] },
+      status: { $nin: [null, 'active'] as string[] },
     });
 
     filter.categoryId = { $nin: notActiveCategories.map((e) => e._id) };
@@ -98,8 +98,8 @@ export const generateCommonAssetFilter = async (
 
   if (irregular) {
     const irregularAssets = await models.Assets.find({
-      categoryId: { $in: ['', null, undefined] },
-      parentId: { $in: ['', null, undefined] },
+      categoryId: { $in: ['', null, undefined] } as any,
+      parentId: { $in: ['', null, undefined] } as any,
     });
     filter._id = { $in: irregularAssets.map((asset) => asset._id) };
   }

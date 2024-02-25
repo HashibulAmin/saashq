@@ -38,7 +38,7 @@ export default {
     const asset_ids = await models.Assets.find({ order: filter }, { _id: 1 });
 
     return models.Assets.countDocuments({
-      parentId: { $in: asset_ids },
+      parentId: { $in: asset_ids as any },
       status: { $ne: ASSET_STATUSES.DELETED },
     });
   },

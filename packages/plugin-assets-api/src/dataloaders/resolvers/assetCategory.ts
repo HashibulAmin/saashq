@@ -14,16 +14,16 @@ export default {
   async assetCount(
     category: IAssetCategoriesDocument,
     {},
-    { models }: IContext
+    { models }: IContext,
   ) {
     const asset_category_ids = await models.AssetCategories.find(
       { order: { $regex: new RegExp(category.order) } },
-      { _id: 1 }
+      { _id: 1 },
     );
 
     return models.Assets.countDocuments({
-      categoryId: { $in: asset_category_ids },
-      status: { $ne: ASSET_STATUSES.DELETED }
+      categoryId: { $in: asset_category_ids as any },
+      status: { $ne: ASSET_STATUSES.DELETED },
     });
-  }
+  },
 };

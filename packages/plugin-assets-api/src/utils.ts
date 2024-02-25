@@ -19,13 +19,13 @@ export const generateFilter = async (params, type, subdomain: string) => {
   if (params.parentId) {
     if (params.parentId === '*') {
       const assets = await models?.Assets.find({
-        parentId: { $in: ['', undefined, null] }
+        parentId: { $in: ['', undefined, null] as string[] },
       });
-      const assetIds = (assets || []).map(asset => asset._id);
+      const assetIds = (assets || []).map((asset) => asset._id);
       filter.assetId = { $in: assetIds };
     } else {
       const assets = await models?.Assets.find({ parentId: params.parentId });
-      const assetIds = (assets || []).map(asset => asset._id);
+      const assetIds = (assets || []).map((asset) => asset._id);
       filter.assetId = { $in: assetIds };
     }
   }
@@ -40,7 +40,7 @@ export const generateFilter = async (params, type, subdomain: string) => {
       action: 'branches.findOne',
       data: { _id: params.branchId },
       isRPC: true,
-      defaultValue: {}
+      defaultValue: {},
     });
 
     if (branch) {
@@ -50,9 +50,9 @@ export const generateFilter = async (params, type, subdomain: string) => {
           action: 'branches.find',
           data: { query: { order: { $regex: branch.order } } },
           isRPC: true,
-          defaultValue: []
+          defaultValue: [],
         })
-      ).map(branch => branch._id);
+      ).map((branch) => branch._id);
       filter.branchId = { $in: branchIds };
     } else {
       filter.branchId = params.branchId;
@@ -65,7 +65,7 @@ export const generateFilter = async (params, type, subdomain: string) => {
       action: 'departments.find',
       data: { _id: params.departmentId },
       isRPC: true,
-      defaultValue: {}
+      defaultValue: {},
     });
 
     if (department) {
@@ -73,9 +73,9 @@ export const generateFilter = async (params, type, subdomain: string) => {
         await sendCoreMessage({
           subdomain,
           action: 'departments.find',
-          data: { order: { $regex: department.order } }
+          data: { order: { $regex: department.order } },
         })
-      ).map(department => department._id);
+      ).map((department) => department._id);
       filter.departmentId = { $in: departmentIds };
     } else {
       filter.departmentId = params.departmentId;
@@ -99,7 +99,7 @@ export const generateFilter = async (params, type, subdomain: string) => {
   if (params.createdAtTo) {
     filter.createdAt = {
       ...filter.createdAt,
-      $lt: new Date(params.createdAtTo)
+      $lt: new Date(params.createdAtTo),
     };
   }
 
@@ -116,7 +116,7 @@ export const generateFilter = async (params, type, subdomain: string) => {
   if (params.modifiedAtTo) {
     filter.modifiedAt = {
       ...filter.modifiedAt,
-      $lt: new Date(params.modifiedAtTo)
+      $lt: new Date(params.modifiedAtTo),
     };
   }
 
@@ -125,20 +125,20 @@ export const generateFilter = async (params, type, subdomain: string) => {
       filter.$or = [
         { _id: { $regex: new RegExp(`.*${params.searchValue}.*`, 'i') } },
         {
-          description: { $regex: new RegExp(`.*${params.searchValue}.*`, 'i') }
-        }
+          description: { $regex: new RegExp(`.*${params.searchValue}.*`, 'i') },
+        },
       ];
     }
     if (type === 'movementItems') {
       const assetIds = await models?.Assets.find({
         $or: [
           {
-            name: { $regex: new RegExp(`.*${params.searchValue}.*`, 'i') }
+            name: { $regex: new RegExp(`.*${params.searchValue}.*`, 'i') },
           },
           {
-            code: { $regex: new RegExp(`.*${params.searchValue}.*`, 'i') }
-          }
-        ]
+            code: { $regex: new RegExp(`.*${params.searchValue}.*`, 'i') },
+          },
+        ],
       }).distinct('_id');
 
       filter.assetId = { $in: assetIds };
@@ -167,19 +167,19 @@ export const generateFilter = async (params, type, subdomain: string) => {
         $group: {
           _id: '$assetId',
           movements: {
-            $push: '$$ROOT'
-          }
-        }
+            $push: '$$ROOT',
+          },
+        },
       },
       { $unwind: '$movements' },
       { $sort: { 'movements.createdAt': -1 } },
       { $group: { _id: '$_id', movements: { $push: '$movements' } } },
-      { $replaceRoot: { newRoot: { $arrayElemAt: ['$movements', 0] } } }
+      { $replaceRoot: { newRoot: { $arrayElemAt: ['$movements', 0] } } },
     ];
 
     const movements = await models?.MovementItems.aggregate(pipeline);
 
-    const movementIds = movements?.map(movement => movement._id);
+    const movementIds = movements?.map((movement) => movement._id);
     filter._id = { $in: movementIds };
   }
 
