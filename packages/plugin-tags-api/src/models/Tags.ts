@@ -19,7 +19,7 @@ const setRelatedIds = async (models: IModels, tag: ITagDocument) => {
 
       await models.Tags.updateOne(
         { _id: parentTag._id },
-        { $set: { relatedIds } }
+        { $set: { relatedIds } },
       );
 
       const updated = await models.Tags.findOne({ _id: tag.parentId });
@@ -33,7 +33,9 @@ const setRelatedIds = async (models: IModels, tag: ITagDocument) => {
 
 // remove related tags
 const removeRelatedIds = async (models: IModels, tag: ITagDocument) => {
-  const tags = await models.Tags.find({ relatedIds: { $in: tag._id } });
+  const tags = await models.Tags.find({
+    relatedIds: { $in: tag._id } as unknown as string,
+  });
 
   if (tags.length === 0) {
     return;
@@ -50,14 +52,14 @@ const removeRelatedIds = async (models: IModels, tag: ITagDocument) => {
     };
   }> = [];
 
-  tags.forEach(async t => {
-    const ids = (t.relatedIds || []).filter(id => !relatedIds.includes(id));
+  tags.forEach(async (t) => {
+    const ids = (t.relatedIds || []).filter((id) => !relatedIds.includes(id));
 
     doc.push({
       updateOne: {
         filter: { _id: t._id },
-        update: { $set: { relatedIds: ids } }
-      }
+        update: { $set: { relatedIds: ids } },
+      },
     });
   });
 
@@ -72,11 +74,11 @@ export interface ITagModel extends Model<ITagDocument> {
   validateUniqueness(
     selector: any,
     name: string,
-    type: string
+    type: string,
   ): Promise<boolean>;
 }
 
-export const loadTagClass = models => {
+export const loadTagClass = (models) => {
   class Tag {
     /*
      * Get a tag
@@ -96,7 +98,7 @@ export const loadTagClass = models => {
     public static async validateUniqueness(
       selector: any,
       name: string,
-      type: string
+      type: string,
     ): Promise<boolean> {
       // required name and type
       if (!name || !type) {
@@ -132,7 +134,7 @@ export const loadTagClass = models => {
      */
     static async getParentTag(doc: ITag) {
       return models.Tags.findOne({
-        _id: doc.parentId
+        _id: doc.parentId,
       }).lean();
     }
 
@@ -143,7 +145,7 @@ export const loadTagClass = models => {
       const isUnique = await models.Tags.validateUniqueness(
         null,
         doc.name,
-        doc.type
+        doc.type,
       );
 
       if (!isUnique) {
@@ -158,7 +160,7 @@ export const loadTagClass = models => {
       const tag = await models.Tags.create({
         ...doc,
         order,
-        createdAt: new Date()
+        createdAt: new Date(),
       });
 
       await setRelatedIds(models, tag);
@@ -173,7 +175,7 @@ export const loadTagClass = models => {
       const isUnique = await models.Tags.validateUniqueness(
         { _id },
         doc.name,
-        doc.type
+        doc.type,
       );
 
       if (!isUnique) {
@@ -194,8 +196,8 @@ export const loadTagClass = models => {
       const childTags = await models.Tags.find({
         $and: [
           { order: { $regex: new RegExp(escapeRegExp(tag.order), 'i') } },
-          { _id: { $ne: _id } }
-        ]
+          { _id: { $ne: _id } },
+        ],
       });
 
       if (childTags.length > 0) {
@@ -207,7 +209,7 @@ export const loadTagClass = models => {
         }> = [];
 
         // updating child categories order
-        childTags.forEach(async childTag => {
+        childTags.forEach(async (childTag) => {
           let childOrder = childTag.order;
 
           childOrder = childOrder.replace(tag.order, order);
@@ -215,8 +217,8 @@ export const loadTagClass = models => {
           bulkDoc.push({
             updateOne: {
               filter: { _id: childTag._id },
-              update: { $set: { order: childOrder } }
-            }
+              update: { $set: { order: childOrder } },
+            },
           });
         });
 
@@ -258,7 +260,7 @@ export const loadTagClass = models => {
      */
     public static async generateOrder(
       parentTag: ITagDocument,
-      { name }: { name: string }
+      { name }: { name: string },
     ) {
       const order = parentTag ? `${parentTag.order}${name}/` : `${name}/`;
 
