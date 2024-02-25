@@ -14,8 +14,8 @@ function accessNestedObject(obj, keys) {
 
 export const playWait = async (models: IModels, subdomain: string, data) => {
   const waitingExecutions = await models.Executions.find({
-    waitingActionId: { $ne: null },
-    startWaitingDate: { $ne: null },
+    waitingActionId: { $ne: null as any },
+    startWaitingDate: { $ne: null as any },
   });
 
   for (const exec of waitingExecutions) {
@@ -93,7 +93,7 @@ export const doWaitingResponseAction = async (
     triggerType: type,
     status: EXECUTION_STATUS.WAITING,
     $and: [
-      { objToCheck: { $exists: true } },
+      { objToCheck: { $exists: true } } as any,
       { objToCheck: { $ne: null } },
       { responseActionId: { $exists: true } },
       { responseActionId: { $ne: null } },

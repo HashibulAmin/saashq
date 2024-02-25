@@ -316,7 +316,7 @@ export const calculateExecution = async ({
     .lean();
 
   const latestExecution: IExecutionDocument =
-    executions.length && executions[0];
+    executions.length && (executions[0] as any);
 
   if (latestExecution) {
     if (!reEnrollment || !reEnrollmentRules.length) {
