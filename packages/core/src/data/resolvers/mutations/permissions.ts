@@ -10,7 +10,10 @@ import { putCreateLog, putDeleteLog, putUpdateLog } from '../../logUtils';
 import { fixPermissions, resetPermissionsCache } from '../../permissions/utils';
 import { MODULE_NAMES } from '../../constants';
 import { IContext, IModels } from '../../../connectionResolver';
-import { getService, getServices } from '@saashq/api-utils/src/serviceDiscovery';
+import {
+  getService,
+  getServices,
+} from '@saashq/api-utils/src/serviceDiscovery';
 import { checkPermission } from '@saashq/api-utils/src/permissions';
 
 interface IParams {
@@ -240,7 +243,7 @@ const usersGroupMutations = {
     await writeUserLog(models, subdomain, {
       currentUser: user,
       memberIds,
-      oldUsers,
+      oldUsers: oldUsers as IUserDocument[],
       group,
     });
 

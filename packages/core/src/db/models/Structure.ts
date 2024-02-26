@@ -304,7 +304,7 @@ export const loadUnitClass = (models: IModels) => {
      * Remove an unit
      */
     public static async removeUnits(ids: string) {
-      const units = await models.Units.find({ _id: { $in: ids } });
+      const units = await models.Units.find({ _id: { $in: ids } as any });
 
       const unitIds = units.map((unit) => unit._id);
 

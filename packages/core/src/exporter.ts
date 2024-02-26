@@ -111,7 +111,7 @@ export const fillValue = async (
 
     case 'branches':
       const branches = await models.Branches.find({
-        _id: item.branchIds,
+        _id: item.branchIds as any,
       }).lean();
 
       value = branches.map((branch) => branch.title).join(', ');
@@ -120,7 +120,7 @@ export const fillValue = async (
 
     case 'departments':
       const departments = await models.Departments.find({
-        _id: item.departmentIds,
+        _id: item.departmentIds as any,
       }).lean();
 
       value = departments.map((department) => department.title).join(', ');

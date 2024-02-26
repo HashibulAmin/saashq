@@ -9,24 +9,24 @@ export default {
   async users(department: IDepartmentDocument, _args, { models }: IContext) {
     return models.Users.findUsers({
       departmentIds: { $in: department._id },
-      isActive: true
+      isActive: true,
     });
   },
 
   async userIds(branch: IDepartmentDocument, _args, { models }: IContext) {
     const departmentUsers = await models.Users.findUsers({
       departmentIds: { $in: branch._id },
-      isActive: true
+      isActive: true,
     });
 
-    const userIds = departmentUsers.map(user => user._id);
+    const userIds = departmentUsers.map((user) => user._id);
     return userIds;
   },
 
   userCount(department: IDepartmentDocument, _args, { models }: IContext) {
     return models.Users.countDocuments({
-      departmentIds: { $in: department._id || [] },
-      isActive: true
+      departmentIds: { $in: department._id || [] } as any,
+      isActive: true,
     });
   },
 
@@ -45,7 +45,7 @@ export default {
   supervisor(department: IDepartmentDocument, _args, { models }: IContext) {
     return models.Users.findOne({
       _id: department.supervisorId,
-      isActive: true
+      isActive: true,
     });
-  }
+  },
 };

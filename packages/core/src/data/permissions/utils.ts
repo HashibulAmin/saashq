@@ -4,7 +4,10 @@ import { IPermissionDocument } from '../../db/models/definitions/permissions';
 import { getKey } from '@saashq/api-utils/src';
 import redis from '@saashq/api-utils/src/redis';
 import { moduleObjects } from './actions/permission';
-import { getService, getServices } from '@saashq/api-utils/src/serviceDiscovery';
+import {
+  getService,
+  getServices,
+} from '@saashq/api-utils/src/serviceDiscovery';
 
 export interface IModuleMap {
   name: string;
@@ -175,7 +178,7 @@ export const fixPermissions = async (
             module: mod,
             action: allAction.name,
             $or: [
-              { requiredActions: { $eq: null } },
+              { requiredActions: { $eq: null } as any },
               { requiredActions: { $not: { $size: mostActions.length } } },
             ],
           }).lean();

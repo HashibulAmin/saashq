@@ -386,7 +386,7 @@ export const loadUserClass = (models: IModels) => {
       const user = await models.Users.findOne({
         registrationToken: token,
         registrationTokenExpires: {
-          $gt: Date.now(),
+          $gt: Date.now().toString(),
         },
       });
 
@@ -537,7 +537,7 @@ export const loadUserClass = (models: IModels) => {
       const user = await models.Users.findOne({
         resetPasswordToken: token,
         resetPasswordExpires: {
-          $gt: Date.now(),
+          $gt: Date.now().toString(),
         },
       });
 
@@ -650,8 +650,8 @@ export const loadUserClass = (models: IModels) => {
       await models.Users.findByIdAndUpdate(
         { _id: user._id },
         {
-          resetPasswordToken: token,
-          resetPasswordExpires: Date.now() + 86400000,
+          resetPasswordToken: token as string,
+          resetPasswordExpires: (Date.now() + 86400000).toString(),
         },
       );
 
