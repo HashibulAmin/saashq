@@ -2,7 +2,7 @@ import { IModels } from '../connectionResolver';
 import {
   IGrantConfigs,
   IGrantConfigsDocument,
-  grantConfigsSchema
+  grantConfigsSchema,
 } from './definitions/grant';
 import { Model } from 'mongoose';
 
@@ -49,7 +49,7 @@ export const loadConfigsClass = (models: IModels, subdomain: string) => {
 
       return await models.Configs.updateOne(
         { _id },
-        { ...doc, modifiedAt: new Date() }
+        { ...doc, modifiedAt: new Date().toString() },
       );
     }
     public static async removeConfig(_id: string) {
