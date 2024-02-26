@@ -14,6 +14,7 @@ class dbStore {
   }
 
   connect() {
+    // @ts-ignore
     return mongoose.createConnection(this.url, { useNewUrlParser: true }).then(client => {
       return client.db;
     })
