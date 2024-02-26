@@ -59,7 +59,7 @@ export const loadJobCategoryClass = (models: IModels) => {
       }).lean();
 
       // Generatingg order
-      doc.order = await this.generateOrder(parentCategory, doc);
+      doc.order = await this.generateOrder(parentCategory as IJobCategory, doc);
 
       const job = await models.JobCategories.create({
         ...doc,
@@ -88,7 +88,7 @@ export const loadJobCategoryClass = (models: IModels) => {
       }
 
       // Generatingg  order
-      doc.order = await this.generateOrder(parentCategory, doc);
+      doc.order = await this.generateOrder(parentCategory as IJobCategory, doc);
 
       const jobCategory = await models.JobCategories.getJobCategory(_id);
 
