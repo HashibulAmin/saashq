@@ -24,7 +24,7 @@ export default {
       { _id: 1 },
     );
     return models.Products.countDocuments({
-      categoryId: { $in: product_category_ids },
+      categoryId: { $in: product_category_ids as any },
       status: { $ne: PRODUCT_STATUSES.DELETED },
     });
   },

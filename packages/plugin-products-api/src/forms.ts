@@ -77,7 +77,9 @@ export default {
     }).lean();
 
     const categories = await models.ProductCategories.find({
-      order: { $regex: new RegExp(`^${escapeRegExp(category.order)}`) },
+      order: {
+        $regex: new RegExp(`^${escapeRegExp(category?.order as string)}`),
+      },
     }).lean();
 
     // TODO: get recurcive parent

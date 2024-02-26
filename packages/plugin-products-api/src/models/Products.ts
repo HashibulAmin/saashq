@@ -391,7 +391,10 @@ export const loadProductCategoryClass = (models: IModels) => {
       }).lean();
 
       // Generatingg order
-      doc.order = await this.generateOrder(parentCategory, doc);
+      doc.order = await this.generateOrder(
+        parentCategory as IProductCategoryDocument,
+        doc,
+      );
 
       return models.ProductCategories.create({ ...doc, createdAt: new Date() });
     }
@@ -420,7 +423,10 @@ export const loadProductCategoryClass = (models: IModels) => {
       }
 
       // Generatingg  order
-      doc.order = await this.generateOrder(parentCategory, doc);
+      doc.order = await this.generateOrder(
+        parentCategory as IProductCategoryDocument,
+        doc,
+      );
 
       const childCategories = await models.ProductCategories.find({
         $and: [

@@ -199,7 +199,9 @@ export const initBroker = async () => {
           _id: categoryId,
         }).lean();
         const categories = await models.ProductCategories.find({
-          order: { $regex: new RegExp(`^${escapeRegExp(category.order)}`) },
+          order: {
+            $regex: new RegExp(`^${escapeRegExp(category?.order as string)}`),
+          },
         }).lean();
 
         query.categoryId = { $in: categories.map((c) => c._id) };
@@ -227,7 +229,9 @@ export const initBroker = async () => {
           _id: categoryId,
         }).lean();
         const categories = await models.ProductCategories.find({
-          order: { $regex: new RegExp(`^${escapeRegExp(category.order)}`) },
+          order: {
+            $regex: new RegExp(`^${escapeRegExp(category?.order as string)}`),
+          },
         }).lean();
 
         filter.categoryId = { $in: categories.map((c) => c._id) };
