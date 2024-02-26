@@ -9,6 +9,7 @@ export interface IShq {
 
 export interface IShqDocument extends IShq, Document {
   _id: string;
+  scoringConfig: any;
 }
 
 const featureSchema = new Schema({
@@ -18,7 +19,7 @@ const featureSchema = new Schema({
   description: { type: String },
   contentType: { type: String },
   contentId: { type: String },
-  subContentId: { type: String }
+  subContentId: { type: String },
 });
 
 const appearanceSchema = new Schema(
@@ -27,17 +28,17 @@ const appearanceSchema = new Schema(
     secondaryColor: { type: String },
     bodyColor: { type: String },
     headerColor: { type: String },
-    footerColor: { type: String }
+    footerColor: { type: String },
   },
-  { _id: false }
+  { _id: false },
 );
 
 const scoringConfigSchema = new Schema(
   {
     action: { type: String },
-    score: { type: String }
+    score: { type: String },
   },
-  { _id: false }
+  { _id: false },
 );
 
 // Mongoose schemas =======================
@@ -62,7 +63,7 @@ export const shqSchema = new Schema({
   appearance: { type: appearanceSchema },
   scoringConfig: { type: [scoringConfigSchema] },
   createdBy: { type: String, label: 'Created by' },
-  createdAt: { type: Date, label: 'Created at' }
+  createdAt: { type: Date, label: 'Created at' },
 });
 
 export interface IShqModel extends Model<IShqDocument> {
@@ -89,7 +90,7 @@ export const loadShqClass = (models: IModels, subdomain: string) => {
       const shq = await models.Shqs.create({
         createdBy: user._id,
         createdAt: new Date(),
-        ...doc
+        ...doc,
       });
 
       return shq;
@@ -116,8 +117,8 @@ export const loadShqClass = (models: IModels, subdomain: string) => {
     public static async useScoring(user, action) {
       const shqObj = await models.Shqs.findOne().lean();
 
-      const scoringConfig = (shqObj.scoringConfig || []).find(
-        config => config.action === action
+      const scoringConfig = (shqObj?.scoringConfig || []).find(
+        (config) => config.action === action,
       ) || { score: 0 };
 
       const score = scoringConfig.score || 0;
@@ -127,13 +128,13 @@ export const loadShqClass = (models: IModels, subdomain: string) => {
         action: 'users.updateOne',
         data: {
           selector: {
-            _id: user._id
+            _id: user._id,
           },
           modifier: {
-            $inc: { score }
-          }
+            $inc: { score },
+          },
         },
-        isRPC: true
+        isRPC: true,
       });
 
       return score;
