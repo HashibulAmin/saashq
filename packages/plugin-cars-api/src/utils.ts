@@ -163,11 +163,11 @@ export const generateFields = async ({ subdomain }) => {
   });
 
   const parentCategories = await models.CarCategories.find({
-    $or: [{ parentId: null }, { parentId: '' }],
+    $or: [{ parentId: null } as any, { parentId: '' }],
   });
 
   const categories = await models.CarCategories.find({
-    $or: [{ parentId: { $ne: null } }, { parentId: { $ne: '' } }],
+    $or: [{ parentId: { $ne: null } as any }, { parentId: { $ne: '' } }],
   });
 
   const additionalFields = [
