@@ -353,7 +353,7 @@ export const getSubdomain = (req): string => {
 };
 
 export const connectionOptions: mongoose.ConnectOptions = {
-  family: 4,
+  //family: 4,
 };
 
 export const createGenerateModels = <IModels>(models, loadClasses) => {

@@ -9,12 +9,12 @@ dotenv.config();
 
 const MONGO_URL = getEnv({ name: 'MONGO_URL' });
 
-export const connectionOptions: mongoose.ConnectionOptions = {
-  useNewUrlParser: true,
-  useCreateIndex: true,
+export const connectionOptions: mongoose.ConnectOptions = {
+  //useNewUrlParser: true,
+  //useCreateIndex: true,
   // autoReconnect: true,
-  family: 4,
-  useFindAndModify: false
+  //family: 4
+  //useFindAndModify: false
 };
 
 mongoose.connection
@@ -26,7 +26,7 @@ mongoose.connection
 
     process.exit(1);
   })
-  .on('error', error => {
+  .on('error', (error) => {
     debugError(`Database connection error: ${MONGO_URL} ${error}`);
 
     process.exit(1);
