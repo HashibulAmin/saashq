@@ -352,10 +352,7 @@ export const getSubdomain = (req): string => {
   return hostname.replace(/(^\w+:|^)\/\//, '').split('.')[0];
 };
 
-export const connectionOptions: mongoose.ConnectionOptions = {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
+export const connectionOptions: mongoose.ConnectOptions = {
   family: 4,
 };
 
