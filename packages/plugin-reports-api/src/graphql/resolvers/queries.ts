@@ -6,7 +6,10 @@ import {
   sendCoreMessage,
   sendTagsMessage,
 } from '../../messageBroker';
-import { getService, getServices } from '@saashq/api-utils/src/serviceDiscovery';
+import {
+  getService,
+  getServices,
+} from '@saashq/api-utils/src/serviceDiscovery';
 
 interface IListParams {
   searchValue: string;
@@ -76,7 +79,7 @@ const generateFilter = async (
 
 const reportsQueries = {
   async reportsList(_root, params, { models, subdomain, user }: IContext) {
-    const totalCount = models.Reports.count({});
+    const totalCount = models.Reports.countDocuments({});
 
     const filter = await generateFilter(params, user, subdomain);
 
