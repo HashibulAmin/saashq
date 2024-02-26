@@ -3,7 +3,7 @@ import { paginate, regexSearchText } from '@saashq/api-utils/src';
 import {
   sendCardsMessage,
   sendLoansMessage,
-  sendPosMessage
+  sendPosMessage,
 } from '../../../messageBroker';
 import { IContext } from '../../../connectionResolver';
 import { getCompany } from '../../../utils';
@@ -15,7 +15,7 @@ const generateFilter = async (subdomain, params, commonQuerySelector) => {
     filter.$or = [
       { billId: new RegExp(`.*${params.search}.*`, 'i') },
       { returnBillId: new RegExp(`.*${params.search}.*`, 'i') },
-      { number: new RegExp(`.*${params.search}.*`, 'i') }
+      { number: new RegExp(`.*${params.search}.*`, 'i') },
     ];
   }
 
@@ -48,10 +48,10 @@ const generateFilter = async (subdomain, params, commonQuerySelector) => {
 
         data: { number: { $regex: params.orderNumber, $options: 'mui' } },
         isRPC: true,
-        defaultValue: []
+        defaultValue: [],
       });
 
-      filter.contentId = { $in: (posOrders || []).map(p => p._id) };
+      filter.contentId = { $in: (posOrders || []).map((p) => p._id) };
     }
 
     if (params.contentType === 'deal') {
@@ -64,10 +64,10 @@ const generateFilter = async (subdomain, params, commonQuerySelector) => {
             subdomain,
             action: 'stages.find',
             data: { pipelineId: params.pipelineId },
-            isRPC: true
+            isRPC: true,
           });
 
-          dealsFilter.stageId = { $in: (stages || []).map(s => s._id) };
+          dealsFilter.stageId = { $in: (stages || []).map((s) => s._id) };
         }
       }
       if (params.dealName) {
@@ -79,10 +79,10 @@ const generateFilter = async (subdomain, params, commonQuerySelector) => {
           subdomain,
           action: 'deals.find',
           data: { ...dealsFilter },
-          isRPC: true
+          isRPC: true,
         });
 
-        filter.contentId = { $in: (deals || []).map(d => d._id) };
+        filter.contentId = { $in: (deals || []).map((d) => d._id) };
       }
     }
 
@@ -93,10 +93,10 @@ const generateFilter = async (subdomain, params, commonQuerySelector) => {
           action: 'transactions.findAtContracts',
           data: { number: { $regex: params.contractNumber, $options: 'mui' } },
           isRPC: true,
-          defaultValue: []
+          defaultValue: [],
         });
 
-        filter.contentId = { $in: (loansContracts || []).map(p => p._id) };
+        filter.contentId = { $in: (loansContracts || []).map((p) => p._id) };
       }
 
       if (params.transactionNumber) {
@@ -104,13 +104,13 @@ const generateFilter = async (subdomain, params, commonQuerySelector) => {
           subdomain,
           action: 'transactions.find',
           data: {
-            number: { $regex: params.transactionNumber, $options: 'mui' }
+            number: { $regex: params.transactionNumber, $options: 'mui' },
           },
           isRPC: true,
-          defaultValue: []
+          defaultValue: [],
         });
 
-        filter.contentId = { $in: (loansTransactions || []).map(p => p._id) };
+        filter.contentId = { $in: (loansTransactions || []).map((p) => p._id) };
       }
     }
   }
@@ -149,7 +149,7 @@ const generateFilter = async (subdomain, params, commonQuerySelector) => {
   return filter;
 };
 
-export const sortBuilder = params => {
+export const sortBuilder = (params) => {
   const sortField = params.sortField;
   const sortDirection = params.sortDirection || 0;
 
@@ -164,23 +164,23 @@ const queries = {
   putResponses: async (
     _root,
     params,
-    { commonQuerySelector, models, subdomain }: IContext
+    { commonQuerySelector, models, subdomain }: IContext,
   ) => {
     const filter = await generateFilter(subdomain, params, commonQuerySelector);
 
     return await paginate(
-      models.PutResponses.find(filter).sort(sortBuilder(params)),
+      models.PutResponses.find(filter).sort(String(sortBuilder(params))),
       {
         page: params.page || 1,
-        perPage: params.perPage
-      }
+        perPage: params.perPage,
+      },
     );
   },
 
   putResponsesCount: async (
     _root,
     params,
-    { commonQuerySelector, models, subdomain }
+    { commonQuerySelector, models, subdomain },
   ) => {
     const filter = await generateFilter(subdomain, params, commonQuerySelector);
 
@@ -190,13 +190,13 @@ const queries = {
   putResponsesAmount: async (
     _root,
     params,
-    { commonQuerySelector, models, subdomain }
+    { commonQuerySelector, models, subdomain },
   ) => {
     const filter = await generateFilter(subdomain, params, commonQuerySelector);
     const res = await models.PutResponses.aggregate([
       { $match: filter },
       { $project: { _id: 1, amount: 1 } },
-      { $group: { _id: '', amount: { $sum: { $toDecimal: '$amount' } } } }
+      { $group: { _id: '', amount: { $sum: { $toDecimal: '$amount' } } } },
     ]);
 
     if (!res || !res.length) {
@@ -209,7 +209,7 @@ const queries = {
   putResponsesByDate: async (
     _root,
     params,
-    { commonQuerySelector, models, subdomain }: IContext
+    { commonQuerySelector, models, subdomain }: IContext,
   ) => {
     const { createdStartDate, createdEndDate, paidDate } = params;
 
@@ -242,7 +242,7 @@ const queries = {
           counter: 0,
           cityTax: 0,
           vat: 0,
-          amount: 0
+          amount: 0,
         };
       }
 
@@ -253,7 +253,7 @@ const queries = {
     }
 
     const dates = Object.keys(result).reverse();
-    return dates.map(date => ({ date, values: result[date] }));
+    return dates.map((date) => ({ date, values: result[date] }));
   },
 
   getDealLink: async (_root, param, { subdomain }) => {
@@ -261,17 +261,17 @@ const queries = {
       subdomain,
       action: 'getLink',
       data: { _id: param._id, type: 'deal' },
-      isRPC: true
+      isRPC: true,
     });
   },
 
   ebarimtGetCompany: async (
     _root,
     { companyRD }: { companyRD: string },
-    { subdomain }
+    { subdomain },
   ) => {
     return getCompany(subdomain, companyRD);
-  }
+  },
 };
 
 export default queries;

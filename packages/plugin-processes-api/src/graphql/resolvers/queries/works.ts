@@ -175,7 +175,7 @@ const workQueries = {
       commonQuerySelector,
     );
 
-    return models.Works.find(selector).count();
+    return models.Works.find(selector).countDocuments();
   },
 };
 

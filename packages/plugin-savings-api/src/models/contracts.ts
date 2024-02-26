@@ -8,12 +8,10 @@ import { addMonths, getFullDate, getNumber } from './utils/utils';
 import { Model } from 'mongoose';
 import { IContractDocument } from './definitions/contracts';
 import { IModels } from '../connectionResolver';
-import { FilterQuery } from 'mongodb';
+//import { FilterQuery } from 'mongodb';
 
 export interface IContractModel extends Model<IContractDocument> {
-  getContract(
-    selector: FilterQuery<IContractDocument>,
-  ): Promise<IContractDocument>;
+  getContract(selector: any): Promise<IContractDocument>;
   createContract(doc: IContract): Promise<IContractDocument>;
   updateContract(_id, doc: IContract): Promise<IContractDocument>;
   closeContract(subdomain, doc: ICloseVariable);
@@ -48,9 +46,7 @@ export const loadContractClass = (models: IModels) => {
      * Get Contract
      */
 
-    public static async getContract(
-      selector: FilterQuery<IContractDocument>,
-    ): Promise<IContractDocument> {
+    public static async getContract(selector: any): Promise<IContractDocument> {
       const contract = await models.Contracts.findOne(selector);
 
       if (!contract) {
@@ -120,7 +116,7 @@ export const loadContractClass = (models: IModels) => {
      * Remove Contract category
      */
     public static async removeContracts(_ids) {
-      const transactions = await models.Transactions.count({
+      const transactions = await models.Transactions.countDocuments({
         contractId: _ids,
       });
       if (transactions > 0)

@@ -52,7 +52,7 @@ export const loadBrandClass = (models: IModels) => {
         emailConfig:
           Object.keys(doc.emailConfig || {}).length > 0
             ? doc.emailConfig
-            : { type: 'simple' }
+            : { type: 'simple' },
       });
     }
 
@@ -68,7 +68,7 @@ export const loadBrandClass = (models: IModels) => {
         throw new Error(`Brand not found with id ${_id}`);
       }
 
-      return brandObj.remove();
+      return brandObj.deleteOne();
     }
   }
 

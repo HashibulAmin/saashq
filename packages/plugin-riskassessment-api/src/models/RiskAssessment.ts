@@ -601,7 +601,7 @@ export const loadRiskAssessments = (models: IModels, subdomain: string) => {
             });
             indicatorAssessment.submissions = submissions;
           }
-          groupAssessment.indicatorsAssessments = indicatorsAssessments;
+          Object(groupAssessment).indicatorsAssessments = indicatorsAssessments;
           groupAssessments.push(groupAssessment);
         }
         assessment.groupAssessment = groupAssessments;
@@ -613,15 +613,17 @@ export const loadRiskAssessments = (models: IModels, subdomain: string) => {
             indicatorId,
           }).lean();
 
-        indicatorAssessment.submissions = await getIndicatorSubmissions({
-          models,
-          assessmentId: riskAssessment._id,
-          cardId,
-          cardType,
-          indicatorId: indicatorAssessment.indicatorId,
-          subdomain,
-          params,
-        });
+        Object(indicatorAssessment).submissions = await getIndicatorSubmissions(
+          {
+            models,
+            assessmentId: riskAssessment._id,
+            cardId,
+            cardType,
+            indicatorId: Object(indicatorAssessment).indicatorId,
+            subdomain,
+            params,
+          },
+        );
 
         assessment.indicatorAssessment = indicatorAssessment;
       }
@@ -663,7 +665,7 @@ export const loadRiskAssessments = (models: IModels, subdomain: string) => {
           },
           {
             $group: {
-              indicatorId: '$indicatorId',
+              indicatorId: '$indicatorId' as any,
               fields: { $push: '$$ROOT' },
               count: { $sum: 1 },
             },

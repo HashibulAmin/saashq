@@ -111,7 +111,7 @@ export const loadShqClass = (models: IModels, subdomain: string) => {
     public static async removeShq(_id: string) {
       const shqObj = await models.Shqs.getShq(_id);
 
-      return shqObj.remove();
+      return shqObj.deleteOne();
     }
 
     public static async useScoring(user, action) {

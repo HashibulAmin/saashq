@@ -52,7 +52,7 @@ export const initBroker = async (): Promise<void> => {
       const models = await generateModels(subdomain);
 
       if (type === 'uninstall' && message === 'done') {
-        await models.InstallationLogs.remove({ pluginName: name });
+        await models.InstallationLogs.deleteOne({ pluginName: name });
         return;
       }
 
@@ -62,7 +62,7 @@ export const initBroker = async (): Promise<void> => {
       });
 
       if (message === 'done') {
-        await models.InstallationLogs.remove({
+        await models.InstallationLogs.deleteOne({
           pluginName: name,
           message: { $ne: 'done' },
         });

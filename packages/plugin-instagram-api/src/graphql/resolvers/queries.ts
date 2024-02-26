@@ -1,3 +1,4 @@
+import { SortOrder } from 'aws-sdk/clients/acm';
 import { IContext, IModels } from '../../connectionResolver';
 import { INTEGRATION_KINDS } from '../../constants';
 import { sendInboxMessage } from '../../messageBroker';
@@ -35,7 +36,7 @@ const buildSelector = async (conversationId: string, models: IModels) => {
   const query = { conversationId: '' };
 
   const conversation = await models.Conversations.findOne({
-    saashqApiId: conversationId
+    saashqApiId: conversationId,
   });
 
   if (conversation) {
@@ -57,7 +58,7 @@ const instagramQueries = {
   instagramGetIntegrationDetail(
     _root,
     { saashqApiId }: IDetailParams,
-    { models }: IContext
+    { models }: IContext,
   ) {
     return models.Integrations.findOne({ saashqApiId });
   },
@@ -78,7 +79,7 @@ const instagramQueries = {
       if (!e.message.includes('Application request limit reached')) {
         await models.Integrations.updateOne(
           { accountId },
-          { $set: { healthStatus: 'account-token', error: `${e.message}` } }
+          { $set: { healthStatus: 'account-token', error: `${e.message}` } },
         );
       }
     }
@@ -89,7 +90,7 @@ const instagramQueries = {
   async instagramConversationMessages(
     _root,
     args: IMessagesParams,
-    { models }: IContext
+    { models }: IContext,
   ) {
     const { conversationId, limit, skip, getFirst } = args;
 
@@ -100,7 +101,7 @@ const instagramQueries = {
       const sort = getFirst ? { createdAt: 1 } : { createdAt: -1 };
 
       messages = await models.ConversationMessages.find(query)
-        .sort(sort)
+        .sort(String(sort))
         .skip(skip || 0)
         .limit(limit);
 
@@ -120,7 +121,7 @@ const instagramQueries = {
   async instagramConversationMessagesCount(
     _root,
     { conversationId }: { conversationId: string },
-    { models }: IContext
+    { models }: IContext,
   ) {
     const selector = await buildSelector(conversationId, models);
 
@@ -130,14 +131,14 @@ const instagramQueries = {
   async instagramHasTaggedMessages(
     _root,
     { conversationId }: IConversationId,
-    { models, subdomain }: IContext
+    { models, subdomain }: IContext,
   ) {
     const commonParams = { isRPC: true, subdomain };
 
     const inboxConversation = await sendInboxMessage({
       ...commonParams,
       action: 'conversations.findOne',
-      data: { query: { _id: conversationId } }
+      data: { query: { _id: conversationId } },
     });
 
     let integration;
@@ -146,7 +147,7 @@ const instagramQueries = {
       integration = await sendInboxMessage({
         ...commonParams,
         action: 'integrations.findOne',
-        data: { _id: inboxConversation.integrationId }
+        data: { _id: inboxConversation.integrationId },
       });
     }
 
@@ -159,7 +160,7 @@ const instagramQueries = {
     const messages = await models.ConversationMessages.find({
       ...query,
       customerId: { $exists: true },
-      createdAt: { $gt: new Date(Date.now() - 24 * 60 * 60 * 1000) }
+      createdAt: { $gt: new Date(Date.now() - 24 * 60 * 60 * 1000) },
     })
       .limit(2)
       .lean();
@@ -169,7 +170,7 @@ const instagramQueries = {
     }
 
     return true;
-  }
+  },
 };
 
 export default instagramQueries;

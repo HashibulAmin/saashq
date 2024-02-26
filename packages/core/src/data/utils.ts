@@ -20,7 +20,10 @@ import {
   sendLogsMessage,
 } from '../messageBroker';
 import { graphqlPubsub } from '../pubsub';
-import { getService, getServices } from '@saashq/api-utils/src/serviceDiscovery';
+import {
+  getService,
+  getServices,
+} from '@saashq/api-utils/src/serviceDiscovery';
 import redis from '@saashq/api-utils/src/redis';
 import sanitizeFilename from '@saashq/api-utils/src/sanitize-filename';
 import { randomAlphanumeric } from '@saashq/api-utils/src/random';
@@ -1373,10 +1376,10 @@ export const sendMobileNotification = async (
 
   if (receivers) {
     tokens.push(
-      ...(await models.Users.find({
+      ...((await models.Users.find({
         _id: { $in: receivers },
         role: { $ne: USER_ROLES.SYSTEM },
-      }).distinct('deviceTokens')),
+      }).distinct('deviceTokens')) as string[]),
     );
   }
 

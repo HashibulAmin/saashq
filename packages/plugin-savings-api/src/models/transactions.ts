@@ -7,12 +7,12 @@ import {
 import { Model } from 'mongoose';
 import { ITransactionDocument } from './definitions/transactions';
 import { IModels } from '../connectionResolver';
-import { FilterQuery } from 'mongodb';
+//import { FilterQuery } from 'mongodb';
 import { IContractDocument } from './definitions/contracts';
 import { TRANSACTION_TYPE } from './definitions/constants';
 
 export interface ITransactionModel extends Model<ITransactionDocument> {
-  getTransaction(selector: FilterQuery<ITransactionDocument>);
+  getTransaction(selector: any);
   createTransaction(doc: ITransaction): Promise<ITransactionDocument>;
   updateTransaction(_id: string, doc: ITransaction);
   changeTransaction(_id: string, doc: ITransaction);
@@ -25,9 +25,7 @@ export const loadTransactionClass = (models: IModels) => {
      * Get Transaction
      */
 
-    public static async getTransaction(
-      selector: FilterQuery<ITransactionDocument>,
-    ) {
+    public static async getTransaction(selector: any) {
       const transaction = await models.Transactions.findOne(selector);
 
       if (!transaction) {

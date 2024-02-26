@@ -5,7 +5,7 @@ import {
 } from './definitions/periodLocks';
 import { Model } from 'mongoose';
 import { IModels } from '../connectionResolver';
-import { FilterQuery } from 'mongodb';
+//import { FilterQuery } from 'mongodb';
 import { IStoredInterestDocument } from './definitions/storedInterest';
 import { getDaysInMonth, getDiffDay, getFullDate } from './utils/utils';
 import {
@@ -22,7 +22,7 @@ export const loadPeriodLockClass = (models: IModels) => {
      * Get PeriodLock
      */
 
-    public static async getPeriodLock(selector: FilterQuery<IPeriodLock>) {
+    public static async getPeriodLock(selector: any) {
       const periodLock = await models.PeriodLocks.findOne(selector as any);
 
       if (!periodLock) {
@@ -122,7 +122,7 @@ export const loadPeriodLockClass = (models: IModels) => {
 };
 
 export interface IPeriodLockModel extends Model<IPeriodLockDocument> {
-  getPeriodLock(selector: FilterQuery<IPeriodLockDocument>);
+  getPeriodLock(selector: any);
   createPeriodLock(doc: IPeriodLock, subdomain: string);
   updatePeriodLock(_id: string, doc: IPeriodLock, subdomain: string);
   removePeriodLocks(_ids: string[]);
