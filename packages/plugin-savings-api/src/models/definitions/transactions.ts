@@ -33,6 +33,7 @@ export interface ITransactionDocument extends ITransaction, Document {
   _id: string;
   createdAt?: Date;
   createdBy?: string;
+  ebarimt: string;
 }
 
 export const transactionSchema = schemaHooksWrapper(
@@ -41,61 +42,61 @@ export const transactionSchema = schemaHooksWrapper(
     number: field({
       type: String,
       label: 'Number',
-      index: true
+      index: true,
     }),
     contractId: field({
       type: String,
       optional: true,
       label: 'Contract',
-      index: true
+      index: true,
     }),
     customerId: field({
       type: String,
       optional: true,
       label: 'Customer',
-      index: true
+      index: true,
     }),
     companyId: field({
       type: String,
       optional: true,
       label: 'Company',
-      index: true
+      index: true,
     }),
     transactionType: field({
       type: String,
       optional: true,
-      label: 'Transaction type'
+      label: 'Transaction type',
     }),
     description: field({ type: String, optional: true, label: 'Description' }),
     payDate: field({
       type: Date,
       default: new Date(),
-      label: 'Created at'
+      label: 'Created at',
     }),
     payment: field({
       type: Number,
       min: 0,
       default: 0,
       optional: true,
-      label: 'payment'
+      label: 'payment',
     }),
     storedInterest: field({
       type: Number,
       min: 0,
       default: 0,
       optional: true,
-      label: 'stored interest'
+      label: 'stored interest',
     }),
     total: field({ type: Number, min: 0, default: 0, label: 'total' }),
     balance: field({ type: Number, min: 0, default: 0, label: 'balance' }),
     currency: field({
       type: String,
       default: 'MNT',
-      label: 'transaction currency of saving'
+      label: 'transaction currency of saving',
     }),
     contractReaction: field({ type: Object, label: 'Contract reaction' }),
     storeReaction: field({ type: Object, label: 'Contract reaction' }),
-    isManual: field({ type: Boolean, label: 'Is manual transaction' })
+    isManual: field({ type: Boolean, label: 'Is manual transaction' }),
   }),
-  'saashq_transactionSchema'
+  'saashq_transactionSchema',
 );
