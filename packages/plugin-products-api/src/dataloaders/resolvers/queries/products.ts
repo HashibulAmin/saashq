@@ -253,7 +253,7 @@ const productQueries = {
       return await getSimilaritiesProductsCount(models, filter, params);
     }
 
-    return models.Products.find(filter).count();
+    return models.Products.find(filter).countDocuments();
   },
 
   /**

@@ -173,12 +173,14 @@ const command = async () => {
 
             const doc = { ...msg, conversationId: oldConv._id };
 
+            // @ts-ignore
             delete doc._id;
 
             // merge inbox conv msgs with fb conv msgs since it's a duplicate
             if (exists) {
               const updateDoc = { ...exists, ...doc };
 
+              // @ts-ignore
               delete updateDoc._id;
 
               await FbConversationMessages.updateOne(

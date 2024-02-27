@@ -417,7 +417,7 @@ const queries = {
       commonQuerySelector,
       user._id,
     );
-    return models.PosOrders.find(query).count();
+    return models.PosOrders.find(query).countDocuments();
   },
 
   posOrderDetail: async (_root, { _id }, { models, subdomain }: IContext) => {

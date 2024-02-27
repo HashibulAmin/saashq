@@ -70,7 +70,7 @@ const command = async () => {
         return {
           updateOne: {
             filter: { _id: item._id, 'customFieldsData.field': field.field },
-            update: { $set: { 'customFieldsData.$.extraValue': asset.name } }
+            update: { $set: { 'customFieldsData.$.extraValue': asset?.name } }
           }
         };
       });

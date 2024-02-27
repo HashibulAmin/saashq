@@ -14,6 +14,8 @@ export interface ICallRecord {
   privacy: string;
   status: string;
   token: string;
+  kind: string;
+  createdAt: Date;
 
   recordings?: IRecording[];
 }
@@ -22,11 +24,11 @@ const recordingSchema = new Schema(
   {
     id: String,
     url: String,
-    expires: Number
+    expires: Number,
   },
   {
-    _id: false
-  }
+    _id: false,
+  },
 );
 
 export const recordSchema: Schema<ICallRecord> = new Schema<ICallRecord>({
@@ -37,7 +39,7 @@ export const recordSchema: Schema<ICallRecord> = new Schema<ICallRecord>({
   privacy: String,
   status: {
     type: String,
-    default: 'ongoing'
+    default: 'ongoing',
   },
   token: String,
   kind: String,
@@ -45,8 +47,8 @@ export const recordSchema: Schema<ICallRecord> = new Schema<ICallRecord>({
   recordings: [recordingSchema],
   createdAt: {
     type: Date,
-    default: new Date()
-  }
+    default: new Date(),
+  },
 });
 
 export const loadRecordClass = () => {

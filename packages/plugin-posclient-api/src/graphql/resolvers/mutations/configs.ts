@@ -149,7 +149,7 @@ const configMutations = {
 
     let sumCount = await models.Orders.find({
       ...(orderFilter as unknown as string[]),
-    }).count();
+    }).countDocuments();
     const orders = await models.Orders.find({
       ...(orderFilter as unknown as string[]),
     })

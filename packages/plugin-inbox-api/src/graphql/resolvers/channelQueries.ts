@@ -1,4 +1,7 @@
-import { checkPermission, requireLogin } from '@saashq/api-utils/src/permissions';
+import {
+  checkPermission,
+  requireLogin,
+} from '@saashq/api-utils/src/permissions';
 import { IContext } from '../../connectionResolver';
 
 interface IIn {
@@ -13,14 +16,22 @@ const channelQueries = {
   /**
    * Channels list
    */
-  channelsByMembers(_root, { memberIds }: { memberIds: string[] }, { models }: IContext) {
+  channelsByMembers(
+    _root,
+    { memberIds }: { memberIds: string[] },
+    { models }: IContext,
+  ) {
     return models.Channels.find({ memberIds: { $in: memberIds } });
   },
 
   /**
    * Channels list
    */
-  channels(_root, { memberIds }: { memberIds: string[] }, { models }: IContext) {
+  channels(
+    _root,
+    { memberIds }: { memberIds: string[] },
+    { models }: IContext,
+  ) {
     const query: IChannelQuery = {};
     const sort = { createdAt: -1 };
 
@@ -28,13 +39,13 @@ const channelQueries = {
       query.memberIds = { $in: memberIds };
     }
 
-    return models.Channels.find(query).sort(sort);
+    return models.Channels.find(query).sort(String(sort));
   },
 
   /**
    * Get one channel
    */
-  channelDetail(_root, { _id }: { _id: string }, { models }: IContext ) {
+  channelDetail(_root, { _id }: { _id: string }, { models }: IContext) {
     return models.Channels.findOne({ _id });
   },
 
@@ -50,7 +61,7 @@ const channelQueries = {
    */
   channelsGetLast(_root, _params, { models }: IContext) {
     return models.Channels.findOne({}).sort({ createdAt: -1 });
-  }
+  },
 };
 
 requireLogin(channelQueries, 'channelsGetLast');

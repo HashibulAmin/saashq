@@ -18,7 +18,7 @@ const buildSelector = async (conversationId: string, models: IModels) => {
   const query = { conversationId: '' };
 
   const conversation = await models.Conversations.findOne({
-    saashqApiId: conversationId
+    saashqApiId: conversationId,
   });
 
   if (conversation) {
@@ -44,7 +44,7 @@ const queries = {
   zaloConversationDetail(
     _root,
     { _id }: { _id: string },
-    { models }: IContext
+    { models }: IContext,
   ) {
     return models.Conversations.findOne({ _id });
   },
@@ -52,7 +52,7 @@ const queries = {
   async zaloConversationMessages(
     _root,
     args: IMessagesParams,
-    { models }: IContext
+    { models }: IContext,
   ) {
     const { conversationId, limit, skip, getFirst } = args;
 
@@ -63,7 +63,7 @@ const queries = {
       const sort = getFirst ? { createdAt: 1 } : { createdAt: -1 };
 
       messages = await models.ConversationMessages.find(query)
-        .sort(sort)
+        .sort(String(sort))
         .skip(skip || 0)
         .limit(limit);
 
@@ -86,12 +86,12 @@ const queries = {
   async zaloConversationMessagesCount(
     _root,
     { conversationId }: { conversationId: string },
-    { models }: IContext
+    { models }: IContext,
   ) {
     const selector = await buildSelector(conversationId, models);
 
     return models.ConversationMessages.countDocuments(selector);
-  }
+  },
 
   // async zaloConversationDetail(
   //   _root,

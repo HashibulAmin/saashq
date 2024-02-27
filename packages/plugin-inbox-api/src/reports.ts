@@ -1439,7 +1439,7 @@ const chartTemplates = [
 
       if (filterStatus === 'unassigned') {
         const totalUnassignedConvosCount =
-          (await models?.Conversations.count(matchfilter)) || 0;
+          (await models?.Conversations.countDocuments(matchfilter)) || 0;
 
         data.push(totalUnassignedConvosCount);
         labels.push('Total unassigned conversations');
@@ -1846,7 +1846,7 @@ const chartTemplates = [
 
       if (filterStatus === 'unassigned') {
         const totalUnassignedConvosCount =
-          (await models?.Conversations.count(matchfilter)) || 0;
+          (await models?.Conversations.countDocuments(matchfilter)) || 0;
 
         data.push(totalUnassignedConvosCount);
         labels.push('Total unassigned conversations');

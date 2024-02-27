@@ -31,7 +31,7 @@ const command = async () => {
   try {
     const defaultUomId = ((await Configs.find({ code: 'defaultUOM' }).toArray() || [{}])[0] || {}).value;
     const allUoms = await Uoms.find({}).toArray();
-    const defaultUom = (allUoms.find(u => u._id === defaultUomId) || {}).code;
+    const defaultUom = (allUoms.find(u => u._id === defaultUomId))?.code;
 
     const products = await Products.find().toArray();
     const allUomCodes = (allUoms || []).map(u => u.code);
@@ -40,9 +40,9 @@ const command = async () => {
       let uom = product.sku
 
       if (product.uomId) {
-        const uomWithId = allUoms.find(u => u._id === product.uomId) || {};
-        if (uomWithId.code) {
-          uom = uomWithId.code
+        const uomWithId = allUoms.find(u => u._id === product.uomId);
+        if (uomWithId?.code) {
+          uom = uomWithId?.code
         }
       }
 
@@ -62,10 +62,10 @@ const command = async () => {
       let subUoms = [];
       if (product.subUoms && product.subUoms.length) {
         for (const subUom of product.subUoms) {
-          const subUomWithId = allUoms.find(u => u._id === subUom.uomId) || {};
+          const subUomWithId = allUoms.find(u => u._id === subUom.uomId);
 
-          if (subUomWithId.code && subUom.ratio) {
-            subUoms.push({ uom: subUomWithId.code, ratio: subUom.ratio })
+          if (subUomWithId?.code && subUom.ratio) {
+            subUoms.push({ uom: subUomWithId?.code, ratio: subUom.ratio })
             continue;
           }
 

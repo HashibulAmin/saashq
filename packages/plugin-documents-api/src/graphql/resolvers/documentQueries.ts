@@ -2,8 +2,10 @@ import { checkPermission } from '@saashq/api-utils/src/permissions';
 import { paginate } from '@saashq/api-utils/src';
 import { IContext } from '../../connectionResolver';
 import { sendCommonMessage } from '../../messageBroker';
-import { getService, getServices } from '@saashq/api-utils/src/serviceDiscovery';
-
+import {
+  getService,
+  getServices,
+} from '@saashq/api-utils/src/serviceDiscovery';
 
 interface IListParams {
   limit: number;
@@ -27,7 +29,7 @@ const generateFilter = (args: IListParams) => {
     filter.$or = [
       { subType },
       { subType: { $exists: false } },
-      { subType: { $in: ['', null, undefined] } }
+      { subType: { $in: ['', null, undefined] } },
     ];
   }
 
@@ -46,11 +48,11 @@ const documentQueries = {
 
     if (args.limit) {
       return models.Documents.find(selector)
-        .sort(sort)
+        .sort(String(sort))
         .limit(args.limit);
     }
 
-    return paginate(models.Documents.find(selector).sort(sort), args);
+    return paginate(models.Documents.find(selector).sort(String(sort)), args);
   },
 
   documentsDetail(_root, { _id }, { models }: IContext) {
@@ -66,8 +68,8 @@ const documentQueries = {
     }> = [
       {
         label: 'Team members',
-        contentType: 'core:user'
-      }
+        contentType: 'core:user',
+      },
     ];
 
     for (const serviceName of services) {
@@ -80,7 +82,7 @@ const documentQueries = {
           fieldTypes.push({
             label: type.label,
             contentType: `${type.type}`,
-            subTypes: type.subTypes
+            subTypes: type.subTypes,
           });
         }
       }
@@ -92,7 +94,7 @@ const documentQueries = {
   async documentsGetEditorAttributes(
     _root,
     { contentType },
-    { subdomain }: IContext
+    { subdomain }: IContext,
   ) {
     if (contentType === 'core:user') {
       const fields = await sendCommonMessage({
@@ -101,11 +103,11 @@ const documentQueries = {
         action: 'fields.fieldsCombinedByContentType',
         isRPC: true,
         data: {
-          contentType
-        }
+          contentType,
+        },
       });
 
-      return fields.map(f => ({ value: f.name, name: f.label }));
+      return fields.map((f) => ({ value: f.name, name: f.label }));
     }
 
     let data: any = {};
@@ -120,7 +122,7 @@ const documentQueries = {
       serviceName: contentType,
       action: 'documents.editorAttributes',
       isRPC: true,
-      data
+      data,
     });
   },
 
@@ -128,7 +130,7 @@ const documentQueries = {
     const selector = generateFilter(args);
 
     return models.Documents.find(selector).countDocuments();
-  }
+  },
 };
 
 checkPermission(documentQueries, 'documents', 'showDocuments', []);

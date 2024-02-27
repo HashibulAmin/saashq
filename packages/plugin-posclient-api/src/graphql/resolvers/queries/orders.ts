@@ -1,5 +1,9 @@
 import { IContext } from '../../types';
-import { escapeRegExp, getPureDate, paginate } from '@saashq/api-utils/src/core';
+import {
+  escapeRegExp,
+  getPureDate,
+  paginate,
+} from '@saashq/api-utils/src/core';
 import fetch from 'node-fetch';
 import { sendPosMessage } from '../../../messageBroker';
 import { IConfig } from '../../../models/definitions/configs';
@@ -140,7 +144,7 @@ const orderQueries = {
     const filter = generateFilter(config, params);
     return await models.Orders.find({
       ...filter,
-    }).count();
+    }).countDocuments();
   },
 
   async fullOrderItems(

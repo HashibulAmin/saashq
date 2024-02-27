@@ -3,7 +3,7 @@ import { Model } from 'mongoose';
 import {
   removeEngageConversations,
   sendContactsMessage,
-  sendInboxMessage
+  sendInboxMessage,
 } from '../messageBroker';
 import { checkCustomerExists, findElk, findUser } from '../engageUtils';
 import { getEditorAttributeUtil, isUsingElk } from '../utils';
@@ -13,7 +13,7 @@ import { IEngageData, IMessageDocument } from '../types';
 import {
   engageMessageSchema,
   IEngageMessage,
-  IEngageMessageDocument
+  IEngageMessageDocument,
 } from './definitions/engages';
 import { IModels } from '../connectionResolver';
 import { checkRules } from '../widgetUtils';
@@ -24,7 +24,7 @@ export interface IEngageMessageModel extends Model<IEngageMessageDocument> {
 
   updateEngageMessage(
     _id: string,
-    doc: IEngageMessage
+    doc: IEngageMessage,
   ): Promise<IEngageMessageDocument>;
 
   engageMessageSetLive(_id: string): Promise<IEngageMessageDocument>;
@@ -33,14 +33,14 @@ export interface IEngageMessageModel extends Model<IEngageMessageDocument> {
   setCustomersCount(
     _id: string,
     type: string,
-    count: number
+    count: number,
   ): Promise<IEngageMessageDocument>;
   changeCustomer(
     newCustomerId: string,
-    customerIds: string[]
+    customerIds: string[],
   ): Promise<IEngageMessageDocument>;
   removeCustomersEngages(
-    customerIds: string[]
+    customerIds: string[],
   ): Promise<{ n: number; ok: number }>;
 
   createOrUpdateConversationAndMessages(args: {
@@ -103,7 +103,7 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
     public static async engageMessageSetLive(_id: string) {
       await models.EngageMessages.updateOne(
         { _id },
-        { $set: { isLive: true, isDraft: false } }
+        { $set: { isLive: true, isDraft: false } },
       );
 
       return models.EngageMessages.findOne({ _id });
@@ -115,7 +115,7 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
     public static async engageMessageSetPause(_id: string) {
       await models.EngageMessages.updateOne(
         { _id },
-        { $set: { isLive: false } }
+        { $set: { isLive: false } },
       );
 
       return models.EngageMessages.findOne({ _id });
@@ -133,7 +133,7 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
 
       await removeEngageConversations(_id);
 
-      return message.remove();
+      return message.deleteOne();
     }
 
     /**
@@ -142,11 +142,11 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
     public static async setCustomersCount(
       _id: string,
       type: string,
-      count: number
+      count: number,
     ) {
       await models.EngageMessages.updateOne(
         { _id },
-        { $set: { [type]: count } }
+        { $set: { [type]: count } },
       );
 
       return models.EngageMessages.findOne({ _id });
@@ -157,29 +157,29 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
      */
     public static async changeCustomer(
       newCustomerId: string,
-      customerIds: string[]
+      customerIds: string[],
     ) {
       for (const customerId of customerIds) {
         // Updating every engage messages of customer
         await models.EngageMessages.updateMany(
           { customerIds: { $in: [customerId] } },
-          { $push: { customerIds: newCustomerId } }
+          { $push: { customerIds: newCustomerId } },
         );
 
         await models.EngageMessages.updateMany(
           { customerIds: { $in: [customerId] } },
-          { $pull: { customerIds: customerId } }
+          { $pull: { customerIds: customerId } },
         );
 
         // updating every engage messages of customer participated in
         await models.EngageMessages.updateMany(
           { messengerReceivedCustomerIds: { $in: [customerId] } },
-          { $push: { messengerReceivedCustomerIds: newCustomerId } }
+          { $push: { messengerReceivedCustomerIds: newCustomerId } },
         );
 
         await models.EngageMessages.updateMany(
           { messengerReceivedCustomerIds: { $in: [customerId] } },
-          { $pull: { messengerReceivedCustomerIds: customerId } }
+          { $pull: { messengerReceivedCustomerIds: customerId } },
         );
       }
 
@@ -193,12 +193,12 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
       // Removing customer from engage messages
       await models.EngageMessages.updateMany(
         { messengerReceivedCustomerIds: { $in: customerIds } },
-        { $pull: { messengerReceivedCustomerIds: { $in: customerIds } } }
+        { $pull: { messengerReceivedCustomerIds: { $in: customerIds } } },
       );
 
       return models.EngageMessages.updateMany(
         { customerIds },
-        { $pull: { customerIds } }
+        { $pull: { customerIds } },
       );
     }
 
@@ -213,25 +213,19 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
       visitorId?: string;
       browserInfo: any;
     }) {
-      const {
-        brandId,
-        integrationId,
-        customer,
-        visitorId,
-        browserInfo
-      } = params;
+      const { brandId, integrationId, customer, visitorId, browserInfo } =
+        params;
 
       const customerObj = customer
         ? customer
         : { _id: '', state: CONTENT_TYPES.VISITOR };
 
-      const messages: IEngageMessageDocument[] = await models.EngageMessages.find(
-        {
+      const messages: IEngageMessageDocument[] =
+        await models.EngageMessages.find({
           'messenger.brandId': brandId,
           method: CAMPAIGN_METHODS.MESSENGER,
-          isLive: true
-        }
-      );
+          isLive: true,
+        });
 
       const conversationMessages: IMessageDocument[] = [];
 
@@ -245,7 +239,7 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
           segmentIds,
           customerTagIds,
           brandIds,
-          fromUserId
+          fromUserId,
         } = message;
 
         if (
@@ -261,7 +255,7 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
           customerIds,
           segmentIds,
           tagIds: customerTagIds,
-          brandIds
+          brandIds,
         });
 
         if (message.kind !== CAMPAIGN_KINDS.VISITOR_AUTO && !customerExists) {
@@ -289,14 +283,14 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
           data: {
             url: browserInfo.url,
             visitorId,
-            customerId: customer ? customer._id : undefined
-          }
+            customerId: customer ? customer._id : undefined,
+          },
         });
 
         const hasPassedAllRules = await checkRules({
           rules: messenger.rules,
           browserInfo,
-          numberOfVisits
+          numberOfVisits,
         });
 
         // if given visitor is matched with given condition then create
@@ -308,20 +302,20 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
           const replacedContent = await editorAttributeUtil.replaceAttributes({
             content: messenger.content,
             customer,
-            user
+            user,
           });
 
           if (messenger.rules) {
-            messenger.rules = messenger.rules.map(r => ({
+            messenger.rules = messenger.rules.map((r) => ({
               kind: r.kind,
               text: r.text,
               condition: r.condition,
-              value: r.value
+              value: r.value,
             }));
           }
 
-          const conversationMessage = await this.createOrUpdateConversationAndMessages(
-            {
+          const conversationMessage =
+            await this.createOrUpdateConversationAndMessages({
               customerId: customer && customer._id,
               visitorId,
               integrationId,
@@ -332,10 +326,9 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
                 content: replacedContent,
                 engageKind: message.kind,
                 messageId: message._id,
-                fromUserId: message.fromUserId
-              }
-            }
-          );
+                fromUserId: message.fromUserId,
+              },
+            });
 
           if (conversationMessage) {
             // collect created messages
@@ -349,7 +342,7 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
             ) {
               await models.EngageMessages.updateOne(
                 { _id: message._id },
-                { $push: { customerIds: customer._id } }
+                { $push: { customerIds: customer._id } },
               );
             }
           }
@@ -376,7 +369,7 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
         integrationId,
         user,
         engageData,
-        replacedContent
+        replacedContent,
       } = args;
 
       let prevMessage: IMessageDocument | null;
@@ -389,10 +382,10 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
             bool: {
               must: [
                 { match: { 'engageData.messageId': engageData.messageId } },
-                { match: customerId ? { customerId } : { visitorId } }
-              ]
-            }
-          }
+                { match: customerId ? { customerId } : { visitorId } },
+              ],
+            },
+          },
         );
 
         prevMessage = null;
@@ -409,7 +402,7 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
           subdomain,
           action: 'conversationMessages.findOne',
           data: query,
-          isRPC: true
+          isRPC: true,
         });
       }
 
@@ -429,14 +422,14 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
         if (isUsingElk()) {
           messages = await findElk(subdomain, 'conversation_messages', {
             match: {
-              conversationId
-            }
+              conversationId,
+            },
           });
         } else {
           messages = await sendInboxMessage({
             ...commonParams,
             data: { conversationId },
-            action: 'conversationMessages.find'
+            action: 'conversationMessages.find',
           });
         }
 
@@ -451,8 +444,8 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
           action: 'updateConversationMessage',
           data: {
             filter: { _id: prevMessage._id },
-            updateDoc: { engageData, isCustomerRead: false }
-          }
+            updateDoc: { engageData, isCustomerRead: false },
+          },
         });
 
         return null;
@@ -469,8 +462,8 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
           visitorId,
           integrationId,
           content: replacedContent,
-          engageData
-        }
+          engageData,
+        },
       });
     }
   }

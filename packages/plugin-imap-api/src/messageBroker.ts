@@ -1,6 +1,9 @@
 import * as dotenv from 'dotenv';
 import { sendMessage as sendCommonMessage } from '@saashq/api-utils/src/core';
-import { MessageArgs, MessageArgsOmitService } from '@saashq/api-utils/src/core';
+import {
+  MessageArgs,
+  MessageArgsOmitService,
+} from '@saashq/api-utils/src/core';
 
 import { generateModels } from './connectionResolver';
 import { listenIntegration } from './utils';
@@ -82,13 +85,13 @@ export const initBroker = async () => {
     async ({ subdomain, data: { integrationId } }) => {
       const models = await generateModels(subdomain);
 
-      await models.Messages.remove({
+      await models.Messages.deleteMany({
         inboxIntegrationId: integrationId,
       });
-      await models.Customers.remove({
+      await models.Customers.deleteMany({
         inboxIntegrationId: integrationId,
       });
-      await models.Integrations.remove({
+      await models.Integrations.deleteMany({
         inboxId: integrationId,
       });
 

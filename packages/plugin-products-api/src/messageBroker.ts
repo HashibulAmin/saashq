@@ -238,7 +238,7 @@ export const initBroker = async () => {
       }
 
       return {
-        data: await models.Products.find(filter).count(),
+        data: await models.Products.find(filter).countDocuments(),
         status: 'success',
       };
     },

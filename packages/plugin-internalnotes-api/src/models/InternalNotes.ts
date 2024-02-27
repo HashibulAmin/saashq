@@ -11,19 +11,19 @@ export interface IInternalNoteModel extends Model<IInternalNoteDocument> {
 
   createInternalNote(
     { contentType, contentTypeId, ...fields }: IInternalNote,
-    user
+    user,
   ): Promise<IInternalNoteDocument>;
 
   updateInternalNote(
     _id: string,
-    doc: IInternalNote
+    doc: IInternalNote,
   ): Promise<IInternalNoteDocument>;
 
   removeInternalNote(_id: string): void;
 
   removeInternalNotes(
     contentType: string,
-    contentTypeIds: string[]
+    contentTypeIds: string[],
   ): Promise<{ n: number; ok: number }>;
 }
 
@@ -44,7 +44,7 @@ export const loadInternalNoteClass = (models: IModels) => {
      */
     public static async createInternalNote(
       { contentType, contentTypeId, ...fields }: IInternalNote,
-      user
+      user,
     ) {
       const internalNote = await models.InternalNotes.create({
         contentType,
@@ -76,7 +76,7 @@ export const loadInternalNoteClass = (models: IModels) => {
         throw new Error(`InternalNote not found with id ${_id}`);
       }
 
-      return internalNoteObj.remove();
+      return internalNoteObj.deleteOne();
     }
 
     /**
@@ -84,7 +84,7 @@ export const loadInternalNoteClass = (models: IModels) => {
      */
     public static async removeInternalNotes(
       contentType: string,
-      contentTypeIds: string[]
+      contentTypeIds: string[],
     ) {
       // Removing every internal notes of contentType
       return models.InternalNotes.deleteMany({

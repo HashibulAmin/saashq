@@ -5,7 +5,10 @@ import {
 
 import { generateModels, IModels } from './connectionResolver';
 import { paginate, sendMessage } from '@saashq/api-utils/src/core';
-import { MessageArgs, MessageArgsOmitService } from '@saashq/api-utils/src/core';
+import {
+  MessageArgs,
+  MessageArgsOmitService,
+} from '@saashq/api-utils/src/core';
 import { receiveVisitorDetail } from './widgetUtils';
 import { getIntegrationsKinds } from './utils';
 import { sendNotifications } from './graphql/resolvers/conversationMutations';
@@ -135,7 +138,7 @@ export const initBroker = () => {
     async ({ subdomain, data: { selector } }) => {
       const models = await generateModels(subdomain);
 
-      const count = await models.Integrations.count(selector);
+      const count = await models.Integrations.countDocuments(selector);
 
       return { data: count, status: 'success' };
     },
