@@ -8,17 +8,17 @@ import { IConversationDocument } from './models/definitions/conversations';
 import { ICustomerModel, loadCustomerClass } from './models/Customers';
 import {
   IConversationModel,
-  loadConversationClass
+  loadConversationClass,
 } from './models/Conversations';
 
 import { ICustomerDocument } from './models/definitions/customers';
 import {
   IActiveSessionDocument,
-  IActiveSessions
+  IActiveSessions,
 } from './models/definitions/activeSessions';
 import {
   IActiveSessionModel,
-  loadActiveSessionClass
+  loadActiveSessionClass,
 } from './models/ActiveSessions';
 
 export interface IModels {
@@ -40,21 +40,21 @@ export const loadClasses = (db: mongoose.Connection): IModels => {
 
   models.Integrations = db.model<IIntegrationDocument, IIntegrationModel>(
     'calls_integrations',
-    loadIntegrationClass(models)
+    loadIntegrationClass(models),
   );
 
   models.Conversations = db.model<IConversationDocument, IConversationModel>(
     'calls_conversations',
-    loadConversationClass(models)
+    loadConversationClass(models),
   );
 
   models.Customers = db.model<ICustomerDocument, ICustomerModel>(
     'calls_customers',
-    loadCustomerClass(models)
-  );
+    loadCustomerClass(models) as any,
+  ) as any;
   models.ActiveSessions = db.model<IActiveSessionDocument, IActiveSessionModel>(
     'calls_active_sessions',
-    loadActiveSessionClass(models)
+    loadActiveSessionClass(models),
   );
 
   return models;
@@ -62,5 +62,5 @@ export const loadClasses = (db: mongoose.Connection): IModels => {
 
 export const generateModels = createGenerateModels<IModels>(
   models,
-  loadClasses
+  loadClasses,
 );

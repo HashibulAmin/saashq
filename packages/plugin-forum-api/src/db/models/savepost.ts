@@ -1,4 +1,5 @@
-import { Document, Schema, Model, Connection, Types } from 'mongoose';
+import { Document, Schema, Model, Connection } from 'mongoose';
+import { ObjectId } from 'mongodb';
 import { IModels } from './index';
 import * as _ from 'lodash';
 import { ICpUser } from '../../graphql';
@@ -24,7 +25,7 @@ export interface SavedPostModel extends Model<SavedPostDocument> {
 }
 
 export const savedPostSchema = new Schema<SavedPostDocument>({
-  postId: { type: Schema.Types.ObjectId, required: true },
+  postId: { type: ObjectId, required: true } as any,
   cpUserId: { type: String, required: true },
   createdAt: { type: Date, default: () => new Date(), required: true },
 });
@@ -67,7 +68,7 @@ export const generateSavedPostModel = (
       });
       if (!existing) throw new Error(`Saved post not found`);
 
-      await existing.remove();
+      await existing.deleteOne();
       return existing;
     }
     public static async deleteSavedPost(
@@ -78,7 +79,7 @@ export const generateSavedPostModel = (
       const savedPost = await models.SavedPost.findById(_id);
       if (!savedPost) throw new Error('Saved post not found');
       if (savedPost.cpUserId !== cpUser.userId) throw new Error('Unauthorized');
-      await savedPost.remove();
+      await savedPost.deleteOne();
       return savedPost;
     }
   }

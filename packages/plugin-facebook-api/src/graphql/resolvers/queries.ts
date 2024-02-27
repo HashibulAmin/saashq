@@ -244,7 +244,7 @@ const facebookQueries = {
         const sort = getFirst ? { createdAt: 1 } : { createdAt: -1 };
 
         messages = await models.ConversationMessages.find(query)
-          .sort(sort)
+          .sort(String(sort))
           .skip(skip || 0)
           .limit(limit);
 
@@ -263,14 +263,14 @@ const facebookQueries = {
       comment = await models.CommentConversation.find({
         saashqApiId: conversationId,
       })
-        .sort(sort)
+        .sort(String(sort))
         .skip(skip || 0);
 
       const comment_ids = comment?.map((item) => item.comment_id);
       const search = await models.CommentConversationReply.find({
         parentId: comment_ids as any,
       })
-        .sort(sort)
+        .sort(String(sort))
         .skip(skip || 0);
 
       if (search.length > 0) {
@@ -416,7 +416,7 @@ const facebookQueries = {
       const sort = getFirst ? { createdAt: 1 } : { createdAt: -1 };
 
       messages = await models.CommentConversation.find(query)
-        .sort(sort)
+        .sort(String(sort))
         .skip(skip || 0)
         .limit(limit);
 
@@ -434,7 +434,7 @@ const facebookQueries = {
     return await models.Bots.find({});
   },
   async facebootMessengerBotsTotalCount(_root, _args, { models }: IContext) {
-    return await models.Bots.find({}).count();
+    return await models.Bots.find({}).countDocuments();
   },
   async facebootMessengerBot(_root, { _id }, { models }: IContext) {
     return await models.Bots.findOne({ _id });

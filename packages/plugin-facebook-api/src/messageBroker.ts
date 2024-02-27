@@ -12,7 +12,10 @@ import { handleFacebookMessage } from './handleFacebookMessage';
 import { userIds } from './middlewares/userMiddleware';
 
 import { sendMessage as sendCommonMessage } from '@saashq/api-utils/src/core';
-import { MessageArgs, MessageArgsOmitService } from '@saashq/api-utils/src/core';
+import {
+  MessageArgs,
+  MessageArgsOmitService,
+} from '@saashq/api-utils/src/core';
 
 import { generateModels } from './connectionResolver';
 import {
@@ -139,7 +142,10 @@ export const initBroker = async () => {
       const models = await generateModels(subdomain);
 
       return {
-        data: await models.PostConversations.findOne({ saashqApiId }, true),
+        data: await models.PostConversations.findOne(
+          { saashqApiId },
+          true as any,
+        ),
         status: 'success',
       };
     },

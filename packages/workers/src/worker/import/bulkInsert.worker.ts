@@ -136,7 +136,7 @@ connect().then(async () => {
       },
     };
 
-    await models.ImportHistory.update({ _id: importHistoryId }, modifier);
+    await models.ImportHistory.updateOne({ _id: importHistoryId }, modifier);
 
     mongoose.connection.close();
 

@@ -3,23 +3,23 @@ import {
   Conversations,
   ConversationMessages,
   Integrations,
-  IConversationMessages
+  IConversationMessages,
 } from '../../models';
 
 const queries = {
   async viberConversationDetail(
     _root,
     { conversationId },
-    context: IContext
+    context: IContext,
   ): Promise<IConversationMessages[]> {
     let conversation: any = await Conversations.findOne(
       { saashqApiId: conversationId },
-      '_id'
+      '_id',
     );
 
     if (conversation) {
       const messages = ConversationMessages.find({
-        conversationId: conversation._id
+        conversationId: conversation._id,
       }).sort('createdAt');
       return messages;
     }
@@ -30,7 +30,7 @@ const queries = {
   async viberConversationMessages(
     _root,
     args: any,
-    context: IContext
+    context: IContext,
   ): Promise<any[]> {
     const query: { conversationId: string } = { conversationId: '' };
     const { conversationId, limit, skip, getFirst } = args;
@@ -39,7 +39,7 @@ const queries = {
 
     const conversation = await Conversations.findOne(
       { saashqApiId: conversationId },
-      '_id'
+      '_id',
     );
 
     if (conversation) {
@@ -52,7 +52,7 @@ const queries = {
         : { createdAt: -1 };
 
       messages = await ConversationMessages.find(query)
-        .sort(sort)
+        .sort(String(sort))
         .skip(skip || 0)
         .limit(limit);
 
@@ -69,16 +69,16 @@ const queries = {
   async viberConversationMessagesCount(
     _root,
     { conversationId }: { conversationId: string },
-    context: IContext
+    context: IContext,
   ) {
     const conversation = await Conversations.findOne(
       { saashqApiId: conversationId },
-      '_id'
+      '_id',
     );
 
     if (conversation) {
       return ConversationMessages.countDocuments({
-        conversationId: conversation._id
+        conversationId: conversation._id,
       });
     }
 
@@ -88,11 +88,11 @@ const queries = {
   async viberIntegrationDetail(
     _root,
     { integrationId }: { integrationId: string },
-    context: IContext
+    context: IContext,
   ): Promise<any> {
     const integration = await Integrations.findOne({ inboxId: integrationId });
     return integration;
-  }
+  },
 };
 
 export default queries;

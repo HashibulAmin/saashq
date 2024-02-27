@@ -8,7 +8,7 @@ export const connect = async () => {
   });
 
   return mongoose.connect(MONGO_URL, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
+    //useNewUrlParser: true,
+    //useCreateIndex: true,
   });
 };

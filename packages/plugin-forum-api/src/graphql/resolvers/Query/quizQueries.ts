@@ -3,72 +3,76 @@
 import { IContext } from '../..';
 import { IObjectTypeResolver } from '@graphql-tools/utils';
 import { moduleRequireLogin } from '@saashq/api-utils/src/permissions';
-import { Types } from 'mongoose';
+import { ObjectId } from 'mongodb';
 
 const quizQueries: IObjectTypeResolver<any, IContext> = {
   forumQuizzes(_, { sort = {}, offset = 0, limit = 0 }, { models: { Quiz } }) {
-    return Quiz.find()
-      .sort(sort)
-      .skip(offset)
-      .limit(limit);
+    return Quiz.find().sort(sort).skip(offset).limit(limit);
   },
   forumQuiz(_, { _id }, { models: { Quiz } }) {
     return Quiz.findByIdOrThrow(_id);
   },
   forumQuizQuestion(_, { _id }, { models: { QuizQuestion } }) {
     return QuizQuestion.findByIdOrThrow(_id);
-  }
+  },
 };
 
 const cpQuizQueries: IObjectTypeResolver<any, IContext> = {
   async forumCpPostRelatedQuizzes(
     _,
     { _id, offset = 0, limit = 0 },
-    { models: { Quiz, Post } }
+    { models: { Quiz, Post } },
   ) {
     const post = await Post.findByIdOrThrow(_id);
-    const $matchOr: any[] = [{ postId: Types.ObjectId(_id) }];
+    const $matchOr: any[] = [{ postId: ObjectId.createFromTime(_id) }];
     if (post.tagIds?.length) {
       $matchOr.push({ tagIds: { $in: post.tagIds } });
     }
     if (post.categoryId) {
-      $matchOr.push({ categoryId: Types.ObjectId(post.categoryId) });
+      $matchOr.push({
+        categoryId: ObjectId.createFromHexString(post.categoryId),
+      });
     }
 
     const branches: any[] = [
       {
         case: {
-          $eq: ['$postId', Types.ObjectId(_id)]
+          $eq: ['$postId', ObjectId.createFromTime(_id)],
         },
-        then: 3
-      }
+        then: 3,
+      },
     ];
 
     if (post.categoryId && post.tagIds?.length) {
       branches.push({
         case: {
           $and: [
-            { $eq: ['$categoryId', Types.ObjectId(post.categoryId)] },
+            {
+              $eq: [
+                '$categoryId',
+                ObjectId.createFromHexString(post.categoryId),
+              ],
+            },
             {
               $gt: [
                 {
                   $size: {
-                    $setIntersection: [post.tagIds, '$tagIds']
-                  }
+                    $setIntersection: [post.tagIds, '$tagIds'],
+                  },
                 },
-                0
-              ]
-            }
-          ]
+                0,
+              ],
+            },
+          ],
         },
-        then: 2
+        then: 2,
       });
     } else {
       const $or: any[] = [];
 
       if (post.categoryId) {
         $or.push({
-          $eq: ['$categoryId', Types.ObjectId(post.categoryId)]
+          $eq: ['$categoryId', ObjectId.createFromHexString(post.categoryId)],
         });
       }
 
@@ -77,20 +81,20 @@ const cpQuizQueries: IObjectTypeResolver<any, IContext> = {
           $gt: [
             {
               $size: {
-                $setIntersection: [[0], '$tagIds']
-              }
+                $setIntersection: [[0], '$tagIds'],
+              },
             },
-            0
-          ]
+            0,
+          ],
         });
       }
 
       if ($or.length) {
         branches.push({
           case: {
-            $or
+            $or,
           },
-          then: 1
+          then: 1,
         });
       }
     }
@@ -99,32 +103,32 @@ const cpQuizQueries: IObjectTypeResolver<any, IContext> = {
       {
         $match: {
           $or: $matchOr,
-          state: 'PUBLISHED'
-        }
+          state: 'PUBLISHED',
+        },
       },
       {
         $addFields: {
           postRelatedScore: {
             $switch: {
               branches: branches,
-              default: -1
-            }
-          }
-        }
+              default: -1,
+            },
+          },
+        },
       },
       {
         $sort: {
           postRelatedScore: -1,
-          _id: -1
-        }
+          _id: -1,
+        },
       },
       {
-        $skip: offset
-      }
+        $skip: offset,
+      },
     ];
     if (limit) {
       aggregation.push({
-        $limit: limit
+        $limit: limit,
       });
     }
 
@@ -135,10 +139,10 @@ const cpQuizQueries: IObjectTypeResolver<any, IContext> = {
   forumCpQuizzes(
     _,
     { offset = 0, limit = 0, sort = {}, ...params },
-    { models: { Quiz } }
+    { models: { Quiz } },
   ) {
     const query: any = {
-      state: 'PUBLISHED'
+      state: 'PUBLISHED',
     };
 
     for (const field of ['categoryId', 'companyId', 'postId']) {
@@ -153,10 +157,7 @@ const cpQuizQueries: IObjectTypeResolver<any, IContext> = {
 
     console.log(query);
 
-    return Quiz.find(query)
-      .sort(sort)
-      .skip(offset)
-      .limit(limit);
+    return Quiz.find(query).sort(sort).skip(offset).limit(limit);
   },
   async forumCpQuiz(_, { _id }, { models: { Quiz } }) {
     const quiz = await Quiz.findByIdOrThrow(_id);
@@ -167,7 +168,7 @@ const cpQuizQueries: IObjectTypeResolver<any, IContext> = {
       throw new Error(`This quiz is archived`);
     }
     return quiz;
-  }
+  },
 };
 
 moduleRequireLogin(quizQueries);

@@ -338,7 +338,7 @@ export const initBroker = async () => {
 
       return {
         status: 'success',
-        data: await models.Boards.find(selector).count(),
+        data: await models.Boards.find(selector).countDocuments(),
       };
     },
   );
@@ -350,7 +350,7 @@ export const initBroker = async () => {
 
       return {
         status: 'success',
-        data: await models.GrowthHacks.count(selector),
+        data: await models.GrowthHacks.countDocuments(selector),
       };
     },
   );
@@ -425,7 +425,7 @@ export const initBroker = async () => {
 
     return {
       status: 'success',
-      data: await models.Deals.find(data).count(),
+      data: await models.Deals.find(data).countDocuments(),
     };
   });
 
@@ -434,7 +434,7 @@ export const initBroker = async () => {
 
     return {
       status: 'success',
-      data: await models.Purchases.find(data).count(),
+      data: await models.Purchases.find(data).countDocuments(),
     };
   });
 

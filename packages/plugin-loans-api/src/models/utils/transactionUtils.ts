@@ -750,18 +750,18 @@ export const trAfterSchedule = async (
       contractId: contract._id,
       debt: contract.debt,
       balance: contract.leaseAmount,
-    };
+    } as any;
   }
 
-  const prePayDate = preSchedule.payDate;
+  const prePayDate = preSchedule?.payDate;
 
   // wrong date
-  if (trDate < prePayDate) {
+  if (prePayDate && trDate < prePayDate) {
     throw new Error('transaction is not valid date');
   }
 
   // one day multi pay
-  if (getDiffDay(trDate, prePayDate) === 0) {
+  if (getDiffDay(trDate, prePayDate as Date) === 0) {
     await onPreScheduled(
       models,
       contract,
@@ -825,7 +825,7 @@ export const removeTrAfterSchedule = async (
     return;
   }
 
-  const nextTrsCount = await models.Transactions.count({
+  const nextTrsCount = await models.Transactions.countDocuments({
     contractId: tr.contractId,
     payDate: { $gt: tr.payDate },
   }).lean();

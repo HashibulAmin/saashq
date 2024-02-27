@@ -1,10 +1,10 @@
 import {
   IPurposeTypeDocument,
-  purposeTypeSchema
+  purposeTypeSchema,
 } from './definitions/loanPurposeType';
 import { Model } from 'mongoose';
 import { IModels } from '../connectionResolver';
-import { FilterQuery } from 'mongodb';
+//import { FilterQuery } from 'mongodb';
 
 export interface IPurposeTypeModel extends Model<IPurposeTypeDocument> {}
 
@@ -15,7 +15,7 @@ export const loadPurposeTypeClass = (models: IModels) => {
      * @returns
      */
     public static async getPurposeType(
-      selector: FilterQuery<IPurposeTypeDocument>
+      selector: any,
     ): Promise<IPurposeTypeDocument> {
       const purposeType = await models.LoanPurposeType.findOne(selector);
 

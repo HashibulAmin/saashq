@@ -1129,7 +1129,7 @@ const clientPortalUserMutations = {
       }
     }
 
-    await models.ClientPortalUsers.update({ _id }, { $set: doc });
+    await models.ClientPortalUsers.updateOne({ _id }, { $set: doc });
 
     return models.ClientPortalUsers.findOne({ _id });
   },

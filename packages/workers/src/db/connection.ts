@@ -5,12 +5,12 @@ dotenv.config();
 
 const { NODE_ENV, MONGO_URL = 'mongodb://localhost/saashq' } = process.env;
 
-export const connectionOptions: mongoose.ConnectionOptions = {
-  useNewUrlParser: true,
-  useCreateIndex: true,
+export const connectionOptions: mongoose.ConnectOptions = {
+  //useNewUrlParser: true,
+  //useCreateIndex: true,
   family: 4,
-  useFindAndModify: false,
-  useUnifiedTopology: true
+  //useFindAndModify: false,
+  //useUnifiedTopology: true
 };
 
 mongoose.Promise = global.Promise;
@@ -24,14 +24,14 @@ mongoose.connection
   .on('disconnected', () => {
     console.log(`Disconnected from the database: ${MONGO_URL}`);
   })
-  .on('error', error => {
+  .on('error', (error) => {
     console.log(`Database connection error: ${MONGO_URL} ${error}`);
   });
 
 export const connect = async (URL?: string, options?) => {
   return mongoose.connect(URL || MONGO_URL, {
     ...connectionOptions,
-    ...(options || { poolSize: 100 })
+    ...(options || { poolSize: 100 }),
   });
 };
 

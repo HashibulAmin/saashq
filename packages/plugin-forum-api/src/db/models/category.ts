@@ -1,4 +1,5 @@
-import { Document, Schema, Model, Connection, Types } from 'mongoose';
+import { Document, Schema, Model, Connection } from 'mongoose';
+import { ObjectId } from 'mongodb';
 import { IModels } from './index';
 import * as _ from 'lodash';
 import {
@@ -94,7 +95,7 @@ export const categorySchema = new Schema<CategoryDocument>({
     sparse: true,
   },
   thumbnail: String,
-  parentId: { type: Types.ObjectId, index: true },
+  parentId: { type: ObjectId, index: true },
   description: String,
 
   userLevelReqPostRead: {
@@ -179,7 +180,7 @@ export const generateCategoryModel = (
 
       if (patch.code) {
         const exists = await models.Category.findOne({
-          _id: { $ne: Types.ObjectId(_id) },
+          _id: { $ne: ObjectId.createFromHexString(_id) },
           code: patch.code,
         });
 
@@ -220,7 +221,7 @@ export const generateCategoryModel = (
           categoryId: _id,
         });
         await models.Quiz.updateMany({ categoryId: _id }, { categoryId: null });
-        await cat.remove();
+        await cat.deleteOne();
 
         await session.commitTransaction();
       } catch (e) {
@@ -237,7 +238,9 @@ export const generateCategoryModel = (
       const matchedCategories = await models.Category.aggregate([
         {
           $match: {
-            _id: { $in: (_ids || []).map((v) => Types.ObjectId(v)) },
+            _id: {
+              $in: (_ids || []).map((v) => ObjectId.createFromHexString(v)),
+            },
           },
         },
         {
@@ -268,7 +271,7 @@ export const generateCategoryModel = (
       const results = await models.Category.aggregate([
         {
           $match: {
-            _id: Types.ObjectId(_id),
+            _id: ObjectId.createFromHexString(_id),
           },
         },
         {
@@ -461,7 +464,7 @@ export const generateCategoryModel = (
         .filter(([_, v]) => v <= ALL_CP_USER_LEVELS[userLevel])
         .map(([k]) => k);
 
-      const permittedCategoryIds: Types.ObjectId[] =
+      const permittedCategoryIds: ObjectId[] =
         await models.PermissionGroupCategoryPermit.userPermittedCategoryIds(
           userId,
         );

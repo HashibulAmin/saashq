@@ -2,12 +2,12 @@ import { IInvoice, invoiceSchema } from './definitions/invoices';
 import { IInvoiceDocument } from './definitions/invoices';
 import { Model } from 'mongoose';
 import { IModels } from '../connectionResolver';
-import { FilterQuery } from 'mongodb';
+//import { FilterQuery } from 'mongodb';
 import { CONTRACT_STATUS, LEASE_TYPES } from './definitions/constants';
 import { getFullDate } from './utils/utils';
 import { getCalcedAmounts } from './utils/transactionUtils';
 export interface IInvoiceModel extends Model<IInvoiceDocument> {
-  getInvoice(selector: FilterQuery<IInvoiceDocument>);
+  getInvoice(selector: any);
   createCreditMassInvoice(subdomain, date);
   createInvoice(doc: IInvoice);
   updateInvoice(_id: string, doc: IInvoice);
@@ -20,7 +20,7 @@ export const loadInvoiceClass = (models: IModels) => {
      * Get Invoice
      */
 
-    public static async getInvoice(selector: FilterQuery<IInvoiceDocument>) {
+    public static async getInvoice(selector: any) {
       const invoice = await models.Invoices.findOne(selector);
 
       if (!invoice) {
@@ -50,13 +50,13 @@ export const loadInvoiceClass = (models: IModels) => {
     public static async createCreditMassInvoice(subdomain, date = new Date()) {
       const contracts = await models.Contracts.find({
         leaseType: LEASE_TYPES.CREDIT,
-        status: CONTRACT_STATUS.NORMAL
+        status: CONTRACT_STATUS.NORMAL,
       });
       const nowDate = getFullDate(date);
 
       for await (let contract of contracts) {
         const lastSchedule = await models.Schedules.findOne({
-          contractId: contract._id
+          contractId: contract._id,
         })
           .sort({ payDate: -1 })
           .lean();
@@ -65,12 +65,12 @@ export const loadInvoiceClass = (models: IModels) => {
         const invoiceDate = new Date(
           nowDate.getFullYear(),
           nowDate.getMonth(),
-          contract.scheduleDays[0] || 1
+          contract.scheduleDays[0] || 1,
         );
 
         const isExistCurrentInvoice = await models.Invoices.findOne({
           contractId: contract._id,
-          payDate: invoiceDate
+          payDate: invoiceDate,
         });
 
         if (
@@ -81,7 +81,7 @@ export const loadInvoiceClass = (models: IModels) => {
           continue;
         const calcInfo: any = getCalcedAmounts(models, subdomain, {
           contractId: contract._id,
-          payDate: nowDate
+          payDate: nowDate,
         });
         calcInfo.payment = payAmount;
         calcInfo.payDate = invoiceDate;

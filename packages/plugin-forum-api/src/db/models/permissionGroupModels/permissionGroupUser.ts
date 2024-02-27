@@ -1,9 +1,8 @@
-import { Document, Schema, Model, Connection, Types } from 'mongoose';
+import { Document, Schema, Model, Connection } from 'mongoose';
+import { ObjectId } from 'mongodb';
 import { IModels } from '../index';
 import * as _ from 'lodash';
 import { PermissionGroupDocument } from './permissionGroup';
-
-const { ObjectId } = Types;
 
 export interface IPermissionGroupUser {
   permissionGroupId: string;
@@ -34,7 +33,7 @@ export interface IPermissionGroupUserModel
 
 export const permissionGroupUserSchema =
   new Schema<PermissionGroupUserDocument>({
-    permissionGroupId: { type: Types.ObjectId, required: true },
+    permissionGroupId: { type: ObjectId, required: true } as any,
     userId: { type: String, required: true },
   });
 
@@ -54,7 +53,7 @@ export const generatePermissionGroupUserModel = (
       permissionGroupId: string,
     ): Promise<string[]> {
       const rels = await models.PermissionGroupUser.find({
-        permissionGroupId: ObjectId(permissionGroupId),
+        permissionGroupId: ObjectId.createFromHexString(permissionGroupId),
       });
       return (rels || []).map((rel) => rel.userId);
     }
@@ -94,7 +93,7 @@ export const generatePermissionGroupUserModel = (
       await models.PermissionGroupUser.deleteMany({
         userId: { $in: userIds },
         permissionGroupId: {
-          $in: permissionGroupIds.map(ObjectId) as string[],
+          $in: permissionGroupIds.map(ObjectId as any),
         },
       });
     }

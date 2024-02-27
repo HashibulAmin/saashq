@@ -156,7 +156,7 @@ export const repairIntegrations = async (
 
     await subscribePage(pageId, pageTokens[pageId]);
 
-    await models.Integrations.remove({
+    await models.Integrations.deleteOne({
       saashqApiId: { $ne: integrationId },
       facebookPageIds: pageId,
       kind: integration.kind,

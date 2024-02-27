@@ -9,13 +9,14 @@ export interface ICustomer {
 
 export interface ICustomerDocument extends ICustomer, Document {}
 
-export const customerSchema: Schema<ICustomer> = new Schema<ICustomer>({
-  _id: field({ pkey: true }),
-  saashqApiId: { type: String, label: 'Customer id at contacts-api' },
-  primaryPhone: {
-    type: String,
-    unique: true,
-    label: 'Call primary phone'
-  },
-  inboxIntegrationId: { type: String, label: 'Inbox integration id' }
-});
+export const customerSchema: Schema<ICustomerDocument> =
+  new Schema<ICustomerDocument>({
+    _id: field({ pkey: true }),
+    saashqApiId: { type: String, label: 'Customer id at contacts-api' },
+    primaryPhone: {
+      type: String,
+      unique: true,
+      label: 'Call primary phone',
+    },
+    inboxIntegrationId: { type: String, label: 'Inbox integration id' },
+  });

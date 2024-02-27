@@ -1330,7 +1330,7 @@ export const afterNextScheduled = async (
 
   for (const skippedSchedule of skippedSchedules) {
     trReaction.push({
-      scheduleId: skippedSchedule._id || 0,
+      scheduleId: (skippedSchedule._id as any) || 0,
       preData: { status: SCHEDULE_STATUS.PENDING },
     });
   }

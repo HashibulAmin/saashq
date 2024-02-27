@@ -1,9 +1,8 @@
-import { Document, Schema, Model, Connection, Types } from 'mongoose';
+import { Document, Schema, Model, Connection } from 'mongoose';
+import { ObjectId } from 'mongodb';
 import { IModels } from '../index';
 import * as _ from 'lodash';
 import { Permissions } from '../../../consts';
-
-const { ObjectId } = Types;
 
 export interface IPermissionGroupCategoryPermit {
   _id?: any;
@@ -12,40 +11,39 @@ export interface IPermissionGroupCategoryPermit {
   permission: Permissions;
 }
 
-export type PermissionGroupCategoryPermitDocument = IPermissionGroupCategoryPermit &
-  Document;
+export type PermissionGroupCategoryPermitDocument =
+  IPermissionGroupCategoryPermit & Document;
 
 export interface IPermissionGroupCategoryPermitModel
   extends Model<PermissionGroupCategoryPermitDocument> {
-  userPermittedCategoryIds(userId: string): Promise<Types.ObjectId[]>;
+  userPermittedCategoryIds(userId: string): Promise<ObjectId[]>;
   givePermission(
     permissionGroupId: string,
     categoryIds: string[],
-    permission: Permissions
+    permission: Permissions,
   ): Promise<void>;
   removePermission(
     permissionGroupId: string,
     categoryIds: string[],
-    permission: Permissions
+    permission: Permissions,
   ): Promise<void>;
   isUserPermitted(
     categoryId: string,
     permission: Permissions,
-    cpUserId?: string
+    cpUserId?: string,
   ): Promise<boolean>;
 }
 
-export const PermissionGroupCategoryPermitSchema = new Schema<
-  PermissionGroupCategoryPermitDocument
->({
-  categoryId: { type: ObjectId, required: true },
-  permissionGroupId: { type: ObjectId, required: true },
-  permission: { type: String, required: true }
-});
+export const PermissionGroupCategoryPermitSchema =
+  new Schema<PermissionGroupCategoryPermitDocument>({
+    categoryId: { type: ObjectId, required: true } as any,
+    permissionGroupId: { type: ObjectId, required: true } as any,
+    permission: { type: String, required: true },
+  });
 
 PermissionGroupCategoryPermitSchema.index(
   { permissionGroupId: 1, permission: 1, categoryId: 1 },
-  { unique: true }
+  { unique: true },
 );
 PermissionGroupCategoryPermitSchema.index({ categoryId: 1 });
 PermissionGroupCategoryPermitSchema.index({ permission: 1 });
@@ -53,40 +51,40 @@ PermissionGroupCategoryPermitSchema.index({ permission: 1 });
 export const generatePermissionGroupCategoryPermitModel = (
   subdomain: string,
   con: Connection,
-  models: IModels
+  models: IModels,
 ): void => {
   class PermissionGroupCategoryPermitModel {
     public static async givePermission(
       permissionGroupId: string,
       categoryIds: string[],
-      permission: Permissions
+      permission: Permissions,
     ): Promise<void> {
       const toInsert: IPermissionGroupCategoryPermit[] = categoryIds.map(
-        categoryId => ({ permissionGroupId, categoryId, permission })
+        (categoryId) => ({ permissionGroupId, categoryId, permission }),
       );
       await models.PermissionGroupCategoryPermit.insertMany(toInsert);
     }
     public static async removePermission(
       permissionGroupId: string,
       categoryIds: string[],
-      permission: Permissions
+      permission: Permissions,
     ): Promise<void> {
       await models.PermissionGroupCategoryPermit.deleteMany({
         permissionGroupId,
         categoryId: { $in: categoryIds },
-        permission
+        permission,
       });
     }
 
     public static async isUserPermitted(
       categoryId: string,
       permission: Permissions,
-      cpUserId?: string
+      cpUserId?: string,
     ): Promise<boolean> {
       if (!cpUserId) return false;
 
       const usersPermissionGroups = await models.PermissionGroupUser.find({
-        userId: cpUserId
+        userId: cpUserId,
       }).lean();
 
       if (!usersPermissionGroups?.length) return false;
@@ -95,8 +93,8 @@ export const generatePermissionGroupCategoryPermitModel = (
         categoryId,
         permission,
         permissionGroupId: {
-          $in: usersPermissionGroups.map(p => p.permissionGroupId)
-        }
+          $in: usersPermissionGroups.map((p) => p.permissionGroupId),
+        },
       });
 
       return count > 0;
@@ -126,30 +124,30 @@ export const generatePermissionGroupCategoryPermitModel = (
     }
 
     public static async userPermittedCategoryIds(
-      userId: string
-    ): Promise<Types.ObjectId[]> {
+      userId: string,
+    ): Promise<ObjectId[]> {
       const rels = await models.PermissionGroupUser.find({ userId });
-      const permissionGroupIds = rels.map(rel => rel.permissionGroupId);
+      const permissionGroupIds = rels.map((rel) => rel.permissionGroupId);
 
       if (!permissionGroupIds?.length) return [];
 
       const permits = await models.PermissionGroupCategoryPermit.find({
         permissionGroupId: { $in: permissionGroupIds },
-        permission: 'WRITE_POST'
+        permission: 'WRITE_POST',
       });
 
-      return permits.map(p => p.categoryId);
+      return permits.map((p) => p.categoryId) as any;
     }
   }
 
   PermissionGroupCategoryPermitSchema.loadClass(
-    PermissionGroupCategoryPermitModel
+    PermissionGroupCategoryPermitModel,
   );
   models.PermissionGroupCategoryPermit = con.model<
     PermissionGroupCategoryPermitDocument,
     IPermissionGroupCategoryPermitModel
   >(
     'forum_permission_group_category_permit',
-    PermissionGroupCategoryPermitSchema
+    PermissionGroupCategoryPermitSchema,
   );
 };

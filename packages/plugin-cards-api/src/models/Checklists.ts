@@ -129,7 +129,7 @@ export const loadClass = (models: IModels, subdomain: string) => {
         action: 'delete',
       });
 
-      return checklistObj.remove();
+      return checklistObj.deleteOne();
     }
   }
 
@@ -159,7 +159,7 @@ export const loadItemClass = (models: IModels, subdomain: string) => {
     ) {
       const itemsCount = await models.ChecklistItems.find({
         checklistId,
-      }).count();
+      }).countDocuments();
 
       const checklistItem = await models.ChecklistItems.create({
         checklistId,
@@ -212,7 +212,7 @@ export const loadItemClass = (models: IModels, subdomain: string) => {
         action: 'delete',
       });
 
-      return checklistItem.remove();
+      return checklistItem.deleteOne();
     }
 
     public static async updateItemOrder(_id: string, destinationOrder: number) {

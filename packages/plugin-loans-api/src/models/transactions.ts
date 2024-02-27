@@ -15,7 +15,7 @@ import {
 import { Model } from 'mongoose';
 import { ITransactionDocument } from './definitions/transactions';
 import { IModels } from '../connectionResolver';
-import { FilterQuery } from 'mongodb';
+//import { FilterQuery } from 'mongodb';
 import { IContractDocument } from './definitions/contracts';
 import { getPureDate } from '@saashq/api-utils/src';
 import { createEbarimt } from './utils/ebarimtUtils';
@@ -23,7 +23,7 @@ import { getFullDate } from './utils/utils';
 import { IScheduleDocument } from './definitions/schedules';
 
 export interface ITransactionModel extends Model<ITransactionDocument> {
-  getTransaction(selector: FilterQuery<ITransactionDocument>);
+  getTransaction(selector: any);
   createTransaction(
     subdomain: string,
     doc: ITransaction,
@@ -52,9 +52,7 @@ export const loadTransactionClass = (models: IModels) => {
      * Get Transaction
      */
 
-    public static async getTransaction(
-      selector: FilterQuery<ITransactionDocument>,
-    ) {
+    public static async getTransaction(selector: any) {
       const transaction = await models.Transactions.findOne(selector);
 
       if (!transaction) {
@@ -316,7 +314,7 @@ export const loadTransactionClass = (models: IModels) => {
 
       const noDeleteSchIds = preSchedules
         .map((item) => item._id)
-        .concat([oldSchedule?._id]);
+        .concat([oldSchedule?._id] as string[]);
 
       let trReaction = oldTr.reactions.filter((item) =>
         noDeleteSchIds.includes(item.scheduleId),
@@ -338,8 +336,14 @@ export const loadTransactionClass = (models: IModels) => {
       );
       let newTr = await models.Transactions.getTransaction({ _id });
 
-      const newBalance =
-        oldSchedule?.balance + oldSchedule?.didPayment - doc.payment;
+      let newBalance = 0;
+      if (
+        oldSchedule?.balance !== undefined &&
+        oldSchedule?.didPayment !== undefined
+      ) {
+        newBalance =
+          oldSchedule?.balance + oldSchedule?.didPayment - doc.payment;
+      }
 
       await models.Schedules.updateOne(
         { _id: oldSchedule?._id },
