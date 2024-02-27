@@ -51,6 +51,7 @@ jobs:
           cd client-portal
           rm -rf node_modules
           yarn --update-checksums
+          yarn cache clean
           yarn install --frozen-lockfile
           yarn build
 
