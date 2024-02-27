@@ -129,6 +129,8 @@ const mutations = {
           token: tokenResponse.token,
           status: 'ongoing',
           messageId: message._id,
+          kind: '',
+          createdAt: new Date(),
         };
 
         await Records.createCallRecord(doc);
