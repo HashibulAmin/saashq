@@ -3,7 +3,7 @@ const webpack = require("webpack");
 
 module.exports = {
   images: {
-    loader: "akamai",
+    loader: "default",
   },
   webpack(config, { isServer }) {
     // Fixes npm packages that depend on `fs` module
