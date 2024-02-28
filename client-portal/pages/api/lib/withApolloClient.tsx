@@ -1,6 +1,7 @@
 import * as React from "react";
 import { getDataFromTree } from "@apollo/client/react/ssr";
 import initApollo from "./initApollo";
+import Head from "next/head";
 import { getEnv } from "../../../utils/configs";
 
 const { REACT_APP_DOMAIN='' } = getEnv();
@@ -63,7 +64,7 @@ export default (App) => {
 
         // getDataFromTree does not call componentWillUnmount
         // head side effect therefore need to be cleared manually
-        //Head.rewind();
+        Head.rewind();
       }
 
       // Extract query data from the Apollo's store
