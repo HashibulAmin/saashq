@@ -22,7 +22,7 @@
     "precommit": "lint-staged",
     "lint": "func () { if [ -z \"$1\" ]; then tslint '@(pages|modules)/**/*.ts?(x)'; else echo \"${1}/**/*.ts?(x)\" && tslint ${1}'/**/*.ts?(x)'; fi ;}; func"
   },
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@apollo/client": "^3.7.1",
     "@nateradebaugh/react-datetime": "^4.4.6",
