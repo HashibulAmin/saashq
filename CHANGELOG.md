@@ -1,3 +1,5 @@
+## 1.6.2 (2024-02-28)
+
 ## [1.6.2-rc.3](https://github.com/saashq-org/saashq/compare/1.6.2-rc.2...1.6.2-rc.3) (2024-02-26)
 
 
