@@ -2,7 +2,7 @@
   "name": "create-saashq-app",
   "version": "1.0.11",
   "description": "Generate a new SaasHQ application.",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "homepage": "https://saashq.org",
   "keywords": [
     "create-saashq-app",
