@@ -50,8 +50,7 @@ jobs:
         run: |
           cd client-portal
           rm -rf node_modules
-          yarn --update-checksums
-          yarn cache clean
+          yarn cache clean --all
           yarn install
           yarn build
 
