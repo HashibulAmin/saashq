@@ -50,8 +50,7 @@ jobs:
         run: |
           cd client-portal
           rm -rf node_modules
-          yarn cache clean --all
-          yarn install
+          yarn upgrade
           yarn build
 
       - name: Build docker image
