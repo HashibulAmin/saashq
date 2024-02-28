@@ -52,7 +52,7 @@ jobs:
           rm -rf node_modules
           yarn --update-checksums
           yarn cache clean
-          yarn install --frozen-lockfile
+          yarn install
           yarn build
 
       - name: Build docker image
