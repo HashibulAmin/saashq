@@ -134,6 +134,7 @@ const dashboardMutations = {
       ...doc,
       updatedAt: new Date(),
       updatedBy: user._id,
+      _id: '',
     });
   },
 
@@ -142,7 +143,7 @@ const dashboardMutations = {
    */
 
   async dashboardRemove(_root, { _id }: { _id: string }, { models }: IContext) {
-    await models.Charts.remove({ dashboardId: _id });
+    await models.Charts.deleteOne({ dashboardId: _id });
     const dashboard = await models.Dashboards.removeDashboard(_id);
     return dashboard;
   },
@@ -158,7 +159,7 @@ const dashboardMutations = {
 
     const duplicatedDashboard = await models.Dashboards.createDashboard({
       ...dashboard.toObject(),
-      _id: undefined,
+      _id: dashboard._id,
       name: `${dashboard.name} copied`,
       createdBy: user._id,
       createdAt: new Date(),

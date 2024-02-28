@@ -19,6 +19,7 @@ enum IChartType {
 }
 
 export interface IDashboard {
+  _id: string;
   name: string;
   sectionId: string;
 
