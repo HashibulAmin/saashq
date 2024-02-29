@@ -25,9 +25,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/saashq:dev 
+          docker image pull saashqdev/saashq:dev 
 
-          docker tag saashq/saashq:dev saashq/saashq:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/saashq:dev saashqdev/saashq:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/saashq:${GITHUB_REF#refs/tags/} 
 
@@ -37,9 +37,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/core:dev 
+          docker image pull saashqdev/core:dev 
 
-          docker tag saashq/core:dev saashq/core:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/core:dev saashqdev/core:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/core:${GITHUB_REF#refs/tags/} 
       - name: gateway
@@ -47,9 +47,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/gateway:dev 
+          docker image pull saashqdev/gateway:dev 
 
-          docker tag saashq/gateway:dev saashq/gateway:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/gateway:dev saashqdev/gateway:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/gateway:${GITHUB_REF#refs/tags/} 
       - name: crons
@@ -57,9 +57,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/crons:dev 
+          docker image pull saashqdev/crons:dev 
 
-          docker tag saashq/crons:dev saashq/crons:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/crons:dev saashqdev/crons:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/crons:${GITHUB_REF#refs/tags/} 
       - name: workers
@@ -67,9 +67,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/workers:dev 
+          docker image pull saashqdev/workers:dev 
 
-          docker tag saashq/workers:dev saashq/workers:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/workers:dev saashqdev/workers:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/workers:${GITHUB_REF#refs/tags/} 
       - name: essyncer
@@ -77,9 +77,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/essyncer:dev 
+          docker image pull saashqdev/essyncer:dev 
 
-          docker tag saashq/essyncer:dev saashq/essyncer:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/essyncer:dev saashqdev/essyncer:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/essyncer:${GITHUB_REF#refs/tags/} 
       - name: widgets
@@ -87,9 +87,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/widgets:dev 
+          docker image pull saashqdev/widgets:dev 
 
-          docker tag saashq/widgets:dev saashq/widgets:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/widgets:dev saashqdev/widgets:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/widgets:${GITHUB_REF#refs/tags/} 
       - name: client-portal
@@ -97,9 +97,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/client-portal:dev 
+          docker image pull saashqdev/client-portal:dev 
 
-          docker tag saashq/client-portal:dev saashq/client-portal:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/client-portal:dev saashqdev/client-portal:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/client-portal:${GITHUB_REF#refs/tags/} 
       - name: plugin-inbox-api
@@ -107,9 +107,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-inbox-api:dev 
+          docker image pull saashqdev/plugin-inbox-api:dev 
 
-          docker tag saashq/plugin-inbox-api:dev saashq/plugin-inbox-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-inbox-api:dev saashqdev/plugin-inbox-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-inbox-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-automations-api
@@ -117,9 +117,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-automations-api:dev 
+          docker image pull saashqdev/plugin-automations-api:dev 
 
-          docker tag saashq/plugin-automations-api:dev saashq/plugin-automations-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-automations-api:dev saashqdev/plugin-automations-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-automations-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-cards-api
@@ -127,9 +127,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-cards-api:dev 
+          docker image pull saashqdev/plugin-cards-api:dev 
 
-          docker tag saashq/plugin-cards-api:dev saashq/plugin-cards-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-cards-api:dev saashqdev/plugin-cards-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-cards-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-clientportal-api
@@ -137,9 +137,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-clientportal-api:dev 
+          docker image pull saashqdev/plugin-clientportal-api:dev 
 
-          docker tag saashq/plugin-clientportal-api:dev saashq/plugin-clientportal-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-clientportal-api:dev saashqdev/plugin-clientportal-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-clientportal-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-contacts-api
@@ -147,9 +147,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-contacts-api:dev 
+          docker image pull saashqdev/plugin-contacts-api:dev 
 
-          docker tag saashq/plugin-contacts-api:dev saashq/plugin-contacts-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-contacts-api:dev saashqdev/plugin-contacts-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-contacts-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-emailtemplates-api
@@ -157,9 +157,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-emailtemplates-api:dev 
+          docker image pull saashqdev/plugin-emailtemplates-api:dev 
 
-          docker tag saashq/plugin-emailtemplates-api:dev saashq/plugin-emailtemplates-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-emailtemplates-api:dev saashqdev/plugin-emailtemplates-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-emailtemplates-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-engages-api
@@ -167,9 +167,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-engages-api:dev 
+          docker image pull saashqdev/plugin-engages-api:dev 
 
-          docker tag saashq/plugin-engages-api:dev saashq/plugin-engages-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-engages-api:dev saashqdev/plugin-engages-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-engages-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-forms-api
@@ -177,9 +177,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-forms-api:dev 
+          docker image pull saashqdev/plugin-forms-api:dev 
 
-          docker tag saashq/plugin-forms-api:dev saashq/plugin-forms-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-forms-api:dev saashqdev/plugin-forms-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-forms-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-integrations-api
@@ -187,9 +187,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-integrations-api:dev 
+          docker image pull saashqdev/plugin-integrations-api:dev 
 
-          docker tag saashq/plugin-integrations-api:dev saashq/plugin-integrations-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-integrations-api:dev saashqdev/plugin-integrations-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-integrations-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-internalnotes-api
@@ -197,9 +197,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-internalnotes-api:dev 
+          docker image pull saashqdev/plugin-internalnotes-api:dev 
 
-          docker tag saashq/plugin-internalnotes-api:dev saashq/plugin-internalnotes-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-internalnotes-api:dev saashqdev/plugin-internalnotes-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-internalnotes-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-knowledgebase-api
@@ -207,9 +207,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-knowledgebase-api:dev 
+          docker image pull saashqdev/plugin-knowledgebase-api:dev 
 
-          docker tag saashq/plugin-knowledgebase-api:dev saashq/plugin-knowledgebase-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-knowledgebase-api:dev saashqdev/plugin-knowledgebase-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-knowledgebase-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-logs-api
@@ -217,9 +217,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-logs-api:dev 
+          docker image pull saashqdev/plugin-logs-api:dev 
 
-          docker tag saashq/plugin-logs-api:dev saashq/plugin-logs-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-logs-api:dev saashqdev/plugin-logs-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-logs-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-loyalties-api
@@ -227,9 +227,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-loyalties-api:dev 
+          docker image pull saashqdev/plugin-loyalties-api:dev 
 
-          docker tag saashq/plugin-loyalties-api:dev saashq/plugin-loyalties-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-loyalties-api:dev saashqdev/plugin-loyalties-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-loyalties-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-notifications-api
@@ -237,9 +237,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-notifications-api:dev 
+          docker image pull saashqdev/plugin-notifications-api:dev 
 
-          docker tag saashq/plugin-notifications-api:dev saashq/plugin-notifications-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-notifications-api:dev saashqdev/plugin-notifications-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-notifications-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-webhooks-api
@@ -247,9 +247,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-webhooks-api:dev 
+          docker image pull saashqdev/plugin-webhooks-api:dev 
 
-          docker tag saashq/plugin-webhooks-api:dev saashq/plugin-webhooks-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-webhooks-api:dev saashqdev/plugin-webhooks-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-webhooks-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-products-api
@@ -257,9 +257,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-products-api:dev 
+          docker image pull saashqdev/plugin-products-api:dev 
 
-          docker tag saashq/plugin-products-api:dev saashq/plugin-products-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-products-api:dev saashqdev/plugin-products-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-products-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-segments-api
@@ -267,9 +267,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-segments-api:dev 
+          docker image pull saashqdev/plugin-segments-api:dev 
 
-          docker tag saashq/plugin-segments-api:dev saashq/plugin-segments-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-segments-api:dev saashqdev/plugin-segments-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-segments-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-tags-api
@@ -277,9 +277,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-tags-api:dev 
+          docker image pull saashqdev/plugin-tags-api:dev 
 
-          docker tag saashq/plugin-tags-api:dev saashq/plugin-tags-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-tags-api:dev saashqdev/plugin-tags-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-tags-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-webbuilder-api
@@ -287,9 +287,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-webbuilder-api:dev 
+          docker image pull saashqdev/plugin-webbuilder-api:dev 
 
-          docker tag saashq/plugin-webbuilder-api:dev saashq/plugin-webbuilder-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-webbuilder-api:dev saashqdev/plugin-webbuilder-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-webbuilder-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-documents-api
@@ -297,9 +297,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-documents-api:dev 
+          docker image pull saashqdev/plugin-documents-api:dev 
 
-          docker tag saashq/plugin-documents-api:dev saashq/plugin-documents-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-documents-api:dev saashqdev/plugin-documents-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-documents-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-chats-api
@@ -307,9 +307,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-chats-api:dev 
+          docker image pull saashqdev/plugin-chats-api:dev 
 
-          docker tag saashq/plugin-chats-api:dev saashq/plugin-chats-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-chats-api:dev saashqdev/plugin-chats-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-chats-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-ebarimt-api
@@ -317,9 +317,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-ebarimt-api:dev 
+          docker image pull saashqdev/plugin-ebarimt-api:dev 
 
-          docker tag saashq/plugin-ebarimt-api:dev saashq/plugin-ebarimt-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-ebarimt-api:dev saashqdev/plugin-ebarimt-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-ebarimt-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-shq-api
@@ -327,9 +327,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-shq-api:dev 
+          docker image pull saashqdev/plugin-shq-api:dev 
 
-          docker tag saashq/plugin-shq-api:dev saashq/plugin-shq-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-shq-api:dev saashqdev/plugin-shq-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-shq-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-shqfeed-api
@@ -337,9 +337,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-shqfeed-api:dev 
+          docker image pull saashqdev/plugin-shqfeed-api:dev 
 
-          docker tag saashq/plugin-shqfeed-api:dev saashq/plugin-shqfeed-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-shqfeed-api:dev saashqdev/plugin-shqfeed-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-shqfeed-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-pos-api
@@ -347,9 +347,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-pos-api:dev 
+          docker image pull saashqdev/plugin-pos-api:dev 
 
-          docker tag saashq/plugin-pos-api:dev saashq/plugin-pos-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-pos-api:dev saashqdev/plugin-pos-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-pos-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-reactions-api
@@ -357,9 +357,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-reactions-api:dev 
+          docker image pull saashqdev/plugin-reactions-api:dev 
 
-          docker tag saashq/plugin-reactions-api:dev saashq/plugin-reactions-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-reactions-api:dev saashqdev/plugin-reactions-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-reactions-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-syncerkhet-api
@@ -367,9 +367,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-syncerkhet-api:dev 
+          docker image pull saashqdev/plugin-syncerkhet-api:dev 
 
-          docker tag saashq/plugin-syncerkhet-api:dev saashq/plugin-syncerkhet-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-syncerkhet-api:dev saashqdev/plugin-syncerkhet-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-syncerkhet-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-salesplans-api
@@ -377,9 +377,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-salesplans-api:dev 
+          docker image pull saashqdev/plugin-salesplans-api:dev 
 
-          docker tag saashq/plugin-salesplans-api:dev saashq/plugin-salesplans-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-salesplans-api:dev saashqdev/plugin-salesplans-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-salesplans-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-processes-api
@@ -387,9 +387,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-processes-api:dev 
+          docker image pull saashqdev/plugin-processes-api:dev 
 
-          docker tag saashq/plugin-processes-api:dev saashq/plugin-processes-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-processes-api:dev saashqdev/plugin-processes-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-processes-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-inventories-api
@@ -397,9 +397,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-inventories-api:dev 
+          docker image pull saashqdev/plugin-inventories-api:dev 
 
-          docker tag saashq/plugin-inventories-api:dev saashq/plugin-inventories-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-inventories-api:dev saashqdev/plugin-inventories-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-inventories-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-posclient-api
@@ -407,9 +407,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-posclient-api:dev 
+          docker image pull saashqdev/plugin-posclient-api:dev 
 
-          docker tag saashq/plugin-posclient-api:dev saashq/plugin-posclient-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-posclient-api:dev saashqdev/plugin-posclient-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-posclient-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-imap-api
@@ -417,9 +417,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-imap-api:dev 
+          docker image pull saashqdev/plugin-imap-api:dev 
 
-          docker tag saashq/plugin-imap-api:dev saashq/plugin-imap-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-imap-api:dev saashqdev/plugin-imap-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-imap-api:${GITHUB_REF#refs/tags/} 
       - name: inbox ui
