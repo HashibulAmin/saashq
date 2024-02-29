@@ -8,7 +8,8 @@
     "apollo"
   ],
   "private": true,
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
+  "type": "module",
   "scripts": {
     "start": "node dist",
     "dev": "SAASHQ_TELEMETRY_DISABLED=1 NODE_ENV=development nodemon src/index.ts",
