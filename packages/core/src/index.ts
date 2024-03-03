@@ -23,7 +23,7 @@ import {
   registerOnboardHistory,
   routeErrorHandling,
   uploadsFolderPath,
-} from './data/utils';
+} from './data/utils.js';
 
 import { debugBase, debugError, debugInit } from './debuggers.js';
 import { initBroker, sendCommonMessage } from './messageBroker.js';
