@@ -5,8 +5,7 @@ dotenv.config();
 
 import * as cookieParser from 'cookie-parser';
 import * as cors from 'cors';
-import pkg from 'saashq-telemetry';
-const { telemetry } = pkg;
+import * as telemetry from 'saashq-telemetry';
 import * as express from 'express';
 import * as helmet from 'helmet';
 import { createServer } from 'http';
@@ -57,6 +56,7 @@ import { applyInspectorEndpoints } from '@saashq/api-utils/src/inspect';
 import { handleCoreLogin, handleMagiclink, ssocallback } from './saas';
 import app from '@saashq/api-utils/src/app';
 import sanitizeFilename from '@saashq/api-utils/src/sanitize-filename';
+import { IndexKind } from 'typescript';
 
 const {
   JWT_TOKEN_SECRET,
