@@ -34,7 +34,7 @@ import {
   isEnabled,
   join,
   leave,
-} from '@saashq/api-utils/src/serviceDiscovery';
+} from '@saashq/api-utils/src/serviceDiscovery.js';
 import logs from './logUtils.js';
 
 import init from './startup.js';
@@ -44,18 +44,18 @@ import {
   authCookieOptions,
   getSubdomain,
   connectionOptions,
-} from '@saashq/api-utils/src/core';
+} from '@saashq/api-utils/src/core.js';
 import segments from './segments.js';
 import automations from './automations.js';
 import imports from './imports.js';
 import exporter from './exporter.js';
 import { moduleObjects } from './data/permissions/actions/permission.js';
 import dashboards from './dashboards.js';
-import { getEnabledServices } from '@saashq/api-utils/src/serviceDiscovery';
-import { applyInspectorEndpoints } from '@saashq/api-utils/src/inspect';
+import { getEnabledServices } from '@saashq/api-utils/src/serviceDiscovery.js';
+import { applyInspectorEndpoints } from '@saashq/api-utils/src/inspect.js';
 import { handleCoreLogin, handleMagiclink, ssocallback } from './saas.js';
-import app from '@saashq/api-utils/src/app';
-import sanitizeFilename from '@saashq/api-utils/src/sanitize-filename';
+import app from '@saashq/api-utils/src/app.js';
+import sanitizeFilename from '@saashq/api-utils/src/sanitize-filename.js';
 
 const {
   JWT_TOKEN_SECRET,
