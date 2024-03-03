@@ -11,8 +11,8 @@ import * as helmet from 'helmet';
 import { createServer } from 'http';
 import * as mongoose from 'mongoose';
 import * as path from 'path';
-import { initApolloServer } from './apolloClient.js';
-import { templateExport } from './data/modules/fileExporter/templateExport.js';
+import { initApolloServer } from './apolloClient';
+import { templateExport } from './data/modules/fileExporter/templateExport';
 import * as fs from 'fs';
 
 import {
@@ -23,39 +23,39 @@ import {
   registerOnboardHistory,
   routeErrorHandling,
   uploadsFolderPath,
-} from './data/utils.js';
+} from './data/utils';
 
-import { debugBase, debugError, debugInit } from './debuggers.js';
-import { initBroker, sendCommonMessage } from './messageBroker.js';
-import { uploader } from './middlewares/fileMiddleware.js';
+import { debugBase, debugError, debugInit } from './debuggers';
+import { initBroker, sendCommonMessage } from './messageBroker';
+import { uploader } from './middlewares/fileMiddleware';
 import {
   getService,
   getServices,
   isEnabled,
   join,
   leave,
-} from '@saashq/api-utils/src/serviceDiscovery.js';
-import logs from './logUtils.js';
+} from '@saashq/api-utils/src/serviceDiscovery';
+import logs from './logUtils';
 
-import init from './startup.js';
-import forms from './forms.js';
-import { generateModels } from './connectionResolver.js';
+import init from './startup';
+import forms from './forms';
+import { generateModels } from './connectionResolver';
 import {
   authCookieOptions,
   getSubdomain,
   connectionOptions,
-} from '@saashq/api-utils/src/core.js';
-import segments from './segments.js';
-import automations from './automations.js';
-import imports from './imports.js';
-import exporter from './exporter.js';
-import { moduleObjects } from './data/permissions/actions/permission.js';
-import dashboards from './dashboards.js';
-import { getEnabledServices } from '@saashq/api-utils/src/serviceDiscovery.js';
-import { applyInspectorEndpoints } from '@saashq/api-utils/src/inspect.js';
-import { handleCoreLogin, handleMagiclink, ssocallback } from './saas.js';
-import app from '@saashq/api-utils/src/app.js';
-import sanitizeFilename from '@saashq/api-utils/src/sanitize-filename.js';
+} from '@saashq/api-utils/src/core';
+import segments from './segments';
+import automations from './automations';
+import imports from './imports';
+import exporter from './exporter';
+import { moduleObjects } from './data/permissions/actions/permission';
+import dashboards from './dashboards';
+import { getEnabledServices } from '@saashq/api-utils/src/serviceDiscovery';
+import { applyInspectorEndpoints } from '@saashq/api-utils/src/inspect';
+import { handleCoreLogin, handleMagiclink, ssocallback } from './saas';
+import app from '@saashq/api-utils/src/app';
+import sanitizeFilename from '@saashq/api-utils/src/sanitize-filename';
 
 const {
   JWT_TOKEN_SECRET,
