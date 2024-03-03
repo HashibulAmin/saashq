@@ -20473,10 +20473,10 @@ saashq-icon@^1.2.1:
   resolved "https://registry.yarnpkg.com/saashq-icon/-/saashq-icon-1.2.1.tgz#ede1b143e14b6742986fc0b61273359daf885190"
   integrity sha512-PsiLzLFfPAcsHLv1pzUS+tF/po0Glau2WiOeiAwlCdixsCRAivm4NeOoPgE8isgzVw8pw5Cnne8vBFoeFPbPLQ==
 
-saashq-telemetry@^1.0.4, saashq-telemetry@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/saashq-telemetry/-/saashq-telemetry-1.0.7.tgz#8181d625deb26f53fcc29ec5ddfbfa3256ba969e"
-  integrity sha512-us8K4VQ9z0OSTy6SBwEEd4WDPr4BSRNw8fXhr1MhicJ8oJuqqA5tnkvYnqSgDzcUcEcHxYbm8W22Tmk4VyuM9A==
+saashq-telemetry@^1.0.4, saashq-telemetry@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/saashq-telemetry/-/saashq-telemetry-1.0.8.tgz#08d10730c54692b92ada69c3dacffaeea9415f2d"
+  integrity sha512-0KZZWA0zAk+yJ+7oB+wMvFTjvebFgOfvP1MjdwjdFFlwphzTR4WOTDqMa0wA0EBHyE7tC1LX9uZbShYBxp/Sxg==
   dependencies:
     "@babel/code-frame" "^7.10.3"
     "@babel/runtime" "^7.10.3"
