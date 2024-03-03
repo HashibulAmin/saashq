@@ -5,7 +5,6 @@ dotenv.config();
 
 import * as cookieParser from 'cookie-parser';
 import * as cors from 'cors';
-import * as telemetry from 'saashq-telemetry';
 import pkg from 'saashq-telemetry';
 const { telemetry } = pkg;
 import * as express from 'express';
