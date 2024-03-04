@@ -667,7 +667,7 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
     if (buildPlugins.includes(configs.image_tag)) {
       pluginsMapLocation = `https://saashq-${configs.image_tag}-plugins.s3.us-east-1.amazonaws.com/pluginsMap.js`;
     } else {
-      pluginsMapLocation = `https://saashq-release-plugins.s3.us-east-1.amazonaws.com/${image_tag}/pluginsMap.js`;
+      pluginsMapLocation = `https://saashq-main-plugins.s3.us-east-1.amazonaws.com/pluginsMap.js`;
     }
   }
 
