@@ -122,7 +122,7 @@ const generatePluginBlock = (configs, plugin) => {
   }
 
   const conf = {
-    image: `${registry}saashq/plugin-${plugin.name}-api:${image_tag}`,
+    image: `${registry}saashqdev/plugin-${plugin.name}-api:${image_tag}`,
     environment: {
       OTEL_SERVICE_NAME: plugin.name,
       SERVICE_NAME: plugin.name,
@@ -174,7 +174,7 @@ const syncUI = async ({ name, image_tag, ui_location }) => {
       if (buildPlugins.includes(tag)) {
         s3_location = `https://saashq-${tag}-plugins.s3.us-east-1.amazonaws.com/uis/${plName}`;
       } else {
-        s3_location = `https://saashq-release-plugins.s3.us-east-1.amazonaws.com/uis/${plName}/${tag}`;
+        s3_location = `https://saashq-release-plugins.s3.us-east-1.amazonaws.com/uis/${plName}`;
       }
     }
 
@@ -202,7 +202,7 @@ const updateLocales = async () => {
   if (tag === 'dev') {
     s3_location = `https://saashq-dev-plugins.s3.us-east-1.amazonaws.com`;
   } else {
-    s3_location = `https://saashq-release-plugins.s3.us-east-1.amazonaws.com/${tag}`;
+    s3_location = `https://saashq-release-plugins.s3.us-east-1.amazonaws.com`;
   }
 
   log(`Downloading locales from ${s3_location}`);
@@ -307,7 +307,7 @@ const deployDbs = async () => {
 
   if (configs.mongobi) {
     dockerComposeConfig.services['mongo-bi-connector'] = {
-      image: 'saashq/mongobi-connector:dev',
+      image: 'saashqdev/mongobi-connector:main',
       container_name: 'mongosqld',
       ports: ['3307:3307'],
       environment: {
@@ -467,7 +467,7 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
     },
     services: {
       coreui: {
-        image: `saashq/saashq:${(configs.coreui || {}).image_tag || image_tag}`,
+        image: `saashqdev/saashq:${(configs.coreui || {}).image_tag || image_tag}`,
         environment: {
           REACT_APP_PUBLIC_PATH: '',
           REACT_APP_CDN_HOST: widgets_domain,
@@ -490,7 +490,7 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
         networks: ['saashq']
       },
       'plugin-core-api': {
-        image: `saashq/core:${(configs.core || {}).image_tag || image_tag}`,
+        image: `saashqdev/core:${(configs.core || {}).image_tag || image_tag}`,
         environment: {
           OTEL_SERVICE_NAME: 'plugin-core-api',
           SERVICE_NAME: 'core-api',
@@ -514,7 +514,7 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
         networks: ['saashq']
       },
       gateway: {
-        image: `saashq/gateway:${(configs.gateway || {}).image_tag ||
+        image: `saashqdev/gateway:${(configs.gateway || {}).image_tag ||
           image_tag}`,
         environment: {
           OTEL_SERVICE_NAME: 'gateway',
@@ -534,7 +534,7 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
         networks: ['saashq']
       },
       crons: {
-        image: `saashq/crons:${image_tag}`,
+        image: `saashqdev/crons:${image_tag}`,
         environment: {
           OTEL_SERVICE_NAME: 'crons',
           NODE_INSPECTOR: configs.nodeInspector ? 'enabled' : undefined,
@@ -544,7 +544,7 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
         networks: ['saashq']
       },
       'plugin-workers-api': {
-        image: `saashq/workers:${image_tag}`,
+        image: `saashqdev/workers:${image_tag}`,
         environment: {
           OTEL_SERVICE_NAME: 'workers',
           SERVICE_NAME: 'workers',
@@ -586,7 +586,7 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
   if (configs.essyncer) {
     const essyncer_tag = configs.essyncer.image_tag || image_tag;
     dockerComposeConfig.services.essyncer = {
-      image: `saashq/essyncer:${essyncer_tag}`,
+      image: `saashqdev/essyncer:${essyncer_tag}`,
       environment: {
         ELASTICSEARCH_URL: `http://${configs.db_server_address ||
           (isSwarm ? 'saashq-dbs_elasticsearch' : 'elasticsearch')}:9200`,
@@ -601,7 +601,7 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
 
   if (configs.widgets) {
     dockerComposeConfig.services.widgets = {
-      image: `saashq/widgets:${image_tag}`,
+      image: `saashqdev/widgets:${image_tag}`,
       environment: {
         ...be_env,
         PORT: '3200',
@@ -616,7 +616,7 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
 
   if (dashboard) {
     dockerComposeConfig.services.dashboard = {
-      image: `saashq/dashboard:${dashboard.image_tag || image_tag}`,
+      image: `saashqdev/dashboard:${dashboard.image_tag || image_tag}`,
       ports: [`4300:${SERVICE_INTERNAL_PORT}`],
       environment: {
         ...be_env,
@@ -904,42 +904,42 @@ const update = async ({ serviceNames, noimage, uis }) => {
 
       if (['crons', 'gateway', 'client-portal'].includes(name)) {
         await execCommand(
-          `docker service update saashq_${name} --image saashq/${name}:${image_tag}`
+          `docker service update saashq_${name} --image saashqdev/${name}:${image_tag}`
         );
         continue;
       }
 
       if (['dashboard-api'].includes(name)) {
         await execCommand(
-          `docker service update saashq_dashboard --image saashq/dashboard:${image_tag}`
+          `docker service update saashq_dashboard --image saashqdev/dashboard:${image_tag}`
         );
         continue;
       }
 
       if (name === 'coreui') {
         await execCommand(
-          `docker service update saashq_coreui --image saashq/saashq:${image_tag}`
+          `docker service update saashq_coreui --image saashqdev/saashq:${image_tag}`
         );
         continue;
       }
 
       if (name === 'widgets') {
         await execCommand(
-          `docker service update saashq_widgets --image saashq/widgets:${image_tag}`
+          `docker service update saashq_widgets --image saashqdev/widgets:${image_tag}`
         );
         continue;
       }
 
       if (name === 'core') {
         await execCommand(
-          `docker service update saashq_plugin-core-api --image saashq/core:${image_tag}`
+          `docker service update saashq_plugin-core-api --image saashqdev/core:${image_tag}`
         );
         continue;
       }
 
       if (name === 'workers') {
         await execCommand(
-          `docker service update saashq_plugin-workers-api --image saashq/workers:${image_tag}`
+          `docker service update saashq_plugin-workers-api --image saashqdev/workers:${image_tag}`
         );
         continue;
       }
@@ -951,7 +951,7 @@ const update = async ({ serviceNames, noimage, uis }) => {
           : '';
 
         await execCommand(
-          `docker service update saashq_plugin-${name}-api --image ${registry}saashq/plugin-${name}-api:${tag} --with-registry-auth`
+          `docker service update saashq_plugin-${name}-api --image ${registry}saashqdev/plugin-${name}-api:${tag} --with-registry-auth`
         );
       } else {
         console.error('No plugin found');
@@ -1143,7 +1143,7 @@ const deployMongoBi = async program => {
   };
 
   dockerComposeConfig.services['mongo-bi-connector'] = {
-    image: 'saashq/mongobi-connector:dev',
+    image: 'saashqdev/mongobi-connector:main',
     hostname: 'mongosqld',
     ports: ['3307:3307'],
     environment: {
