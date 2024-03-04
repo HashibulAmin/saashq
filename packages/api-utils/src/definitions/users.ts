@@ -58,7 +58,7 @@ export interface IUser {
   departmentIds?: string[];
   branchIds?: string[];
   employeeId?: string;
-  chatStatus?: IUserChatStatus;
+  chatStatus?: string;
 }
 
 export interface IUserChatStatus {
