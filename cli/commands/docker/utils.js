@@ -174,7 +174,7 @@ const syncUI = async ({ name, image_tag, ui_location }) => {
       if (buildPlugins.includes(tag)) {
         s3_location = `https://saashq-${tag}-plugins.s3.us-east-1.amazonaws.com/uis/${plName}`;
       } else {
-        s3_location = `https://saashq-release-plugins.s3.us-east-1.amazonaws.com/uis/${plName}`;
+        s3_location = `https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/${plName}`;
       }
     }
 
@@ -202,7 +202,7 @@ const updateLocales = async () => {
   if (tag === 'dev') {
     s3_location = `https://saashq-dev-plugins.s3.us-east-1.amazonaws.com`;
   } else {
-    s3_location = `https://saashq-release-plugins.s3.us-east-1.amazonaws.com`;
+    s3_location = `https://saashq-main-plugins.s3.us-east-1.amazonaws.com`;
   }
 
   log(`Downloading locales from ${s3_location}`);
