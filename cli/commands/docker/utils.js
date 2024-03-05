@@ -118,9 +118,9 @@ const generatePluginBlock = (configs, plugin) => {
     );
   }
 
-  if (configs.secondary_db_server_address) {
-    extra_hosts.push(`mongo-secondary:${configs.secondary_db_server_address}`);
-  }
+//  if (configs.secondary_db_server_address) {
+//    extra_hosts.push(`mongo-secondary:${configs.secondary_db_server_address}`);
+//  }
 
   const conf = {
     image: `${registry}saashqdev/plugin-${plugin.name}-api:${image_tag}`,
@@ -344,8 +344,8 @@ const deployDbs = async () => {
       '/etc/mongodb/keys/mongo-key'
     );
     dockerComposeConfig.services.mongo.extra_hosts = [
-      `mongo:${configs.db_server_address}`,
-      `mongo-secondary:${configs.secondary_server_address}`,
+      `mongo:${configs.db_server_address}`
+//      `mongo-secondary:${configs.secondary_server_address}`,
     ];
   }
 
@@ -440,7 +440,7 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
   const widgets_domain = widgets.domain || `${domain}/widgets`;
   const dashboard_domain = `${domain}/dashboard/api`;
   const db_server_address = configs.db_server_address;
-  const secondary_db_server_address = configs.secondary_db_server_address;
+//  const secondary_db_server_address = configs.secondary_db_server_address;
 
   const NGINX_HOST = domain.replace('https://', '');
 
@@ -450,9 +450,9 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
     extra_hosts.push(`mongo:${db_server_address || '127.0.0.1'}`);
   }
 
-  if (secondary_db_server_address) {
-    extra_hosts.push(`mongo-secondary:${secondary_db_server_address}`);
-  }
+//  if (secondary_db_server_address) {
+//    extra_hosts.push(`mongo-secondary:${secondary_db_server_address}`);
+//  }
 
   const { RABBITMQ_HOST } = commonEnvs(configs);
 
@@ -1143,8 +1143,8 @@ const deployMongoBi = async program => {
       '/etc/mongodb/keys/mongo-key',
     ],
     extra_hosts: [
-      `mongo:${configs.primary_server_ip}`,
-      `mongo-secondary: ${configs.server_ip}`,
+      `mongo:${configs.primary_server_ip}`
+//      `mongo-secondary: ${configs.server_ip}`,
     ],
   };
 
