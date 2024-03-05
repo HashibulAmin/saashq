@@ -517,3 +517,12 @@ export const shortStrToDate = (
 
   return intgr;
 };
+
+export interface ISendMessageArgs {
+  subdomain: string;
+  action: string;
+  data;
+  isRPC?: boolean;
+  timeout?: number;
+  defaultValue?;
+}
