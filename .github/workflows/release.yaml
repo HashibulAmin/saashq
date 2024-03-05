@@ -16,11 +16,10 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-west-2
+          aws-region: us-east-1
       - name: saashq
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/saashq:main --tag  saashqdev/saashq:${GITHUB_REF#refs/tags/} 
@@ -31,533 +30,466 @@ jobs:
           aws s3 cp s3://saashq-main-plugins/pluginsMap.js s3://saashq-release-plugins/${GITHUB_REF#refs/tags/}/pluginsMap.js
       - name: core
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/core:main --tag  saashqdev/core:${GITHUB_REF#refs/tags/}
 
       - name: gateway
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/gateway:main --tag  saashqdev/gateway:${GITHUB_REF#refs/tags/}
 
       - name: crons
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/crons:main --tag  saashqdev/crons:${GITHUB_REF#refs/tags/}
 
       - name: workers
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/workers:main --tag  saashqdev/workers:${GITHUB_REF#refs/tags/}
 
       - name: essyncer
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/essyncer:main --tag  saashqdev/essyncer:${GITHUB_REF#refs/tags/}
 
       - name: widgets
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/widgets:main --tag  saashqdev/widgets:${GITHUB_REF#refs/tags/}
 
       - name: client-portal
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/client-portal:main --tag  saashqdev/client-portal:${GITHUB_REF#refs/tags/}
 
       - name: exm-web
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/exm:main --tag  saashqdev/exm:${GITHUB_REF#refs/tags/}
 
       - name: pos-ui
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/pos-ui:main --tag  saashqdev/pos-ui:${GITHUB_REF#refs/tags/}
 
       - name: plugin-inbox-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-inbox-api:main --tag  saashqdev/plugin-inbox-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-automations-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-automations-api:main --tag  saashqdev/plugin-automations-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-cards-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-cards-api:main --tag  saashqdev/plugin-cards-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-clientportal-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-clientportal-api:main --tag  saashqdev/plugin-clientportal-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-contacts-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-contacts-api:main --tag  saashqdev/plugin-contacts-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-dashboard-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-dashboard-api:main --tag  saashqdev/plugin-dashboard-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-emailtemplates-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-emailtemplates-api:main --tag  saashqdev/plugin-emailtemplates-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-engages-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-engages-api:main --tag  saashqdev/plugin-engages-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-forms-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-forms-api:main --tag  saashqdev/plugin-forms-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-integrations-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-integrations-api:main --tag  saashqdev/plugin-integrations-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-internalnotes-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-internalnotes-api:main --tag  saashqdev/plugin-internalnotes-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-knowledgebase-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-knowledgebase-api:main --tag  saashqdev/plugin-knowledgebase-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-logs-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-logs-api:main --tag  saashqdev/plugin-logs-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-loyalties-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-loyalties-api:main --tag  saashqdev/plugin-loyalties-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-notifications-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-notifications-api:main --tag  saashqdev/plugin-notifications-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-webhooks-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-webhooks-api:main --tag  saashqdev/plugin-webhooks-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-products-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-products-api:main --tag  saashqdev/plugin-products-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-segments-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-segments-api:main --tag  saashqdev/plugin-segments-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-tags-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-tags-api:main --tag  saashqdev/plugin-tags-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-webbuilder-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-webbuilder-api:main --tag  saashqdev/plugin-webbuilder-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-documents-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-documents-api:main --tag  saashqdev/plugin-documents-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-chats-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-chats-api:main --tag  saashqdev/plugin-chats-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-ebarimt-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-ebarimt-api:main --tag  saashqdev/plugin-ebarimt-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-exm-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-exm-api:main --tag  saashqdev/plugin-exm-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-exmfeed-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-exmfeed-api:main --tag  saashqdev/plugin-exmfeed-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-pos-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-pos-api:main --tag  saashqdev/plugin-pos-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-reactions-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-reactions-api:main --tag  saashqdev/plugin-reactions-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-syncerkhet-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-syncerkhet-api:main --tag  saashqdev/plugin-syncerkhet-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-salesplans-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-salesplans-api:main --tag  saashqdev/plugin-salesplans-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-processes-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-processes-api:main --tag  saashqdev/plugin-processes-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-inventories-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-inventories-api:main --tag  saashqdev/plugin-inventories-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-posclient-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-posclient-api:main --tag  saashqdev/plugin-posclient-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-imap-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-imap-api:main --tag  saashqdev/plugin-imap-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-goals-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-goals-api:main --tag  saashqdev/plugin-goals-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-msdynamic-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-msdynamic-api:main --tag  saashqdev/plugin-msdynamic-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-facebook-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-facebook-api:main --tag  saashqdev/plugin-facebook-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-ecommerce-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-ecommerce-api:main --tag  saashqdev/plugin-ecommerce-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-cars-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-cars-api:main --tag  saashqdev/plugin-cars-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-pricing-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-pricing-api:main --tag  saashqdev/plugin-pricing-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-assets-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-assets-api:main --tag  saashqdev/plugin-assets-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-payment-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-payment-api:main --tag  saashqdev/plugin-payment-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-timeclock-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-timeclock-api:main --tag  saashqdev/plugin-timeclock-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-loans-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-loans-api:main --tag  saashqdev/plugin-loans-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-productplaces-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-productplaces-api:main --tag  saashqdev/plugin-productplaces-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-savings-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-savings-api:main --tag  saashqdev/plugin-savings-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-meetings-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-meetings-api:main --tag  saashqdev/plugin-meetings-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-viber-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-viber-api:main --tag  saashqdev/plugin-viber-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-xyp-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-xyp-api:main --tag  saashqdev/plugin-xyp-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-zalo-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-zalo-api:main --tag  saashqdev/plugin-zalo-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-riskassessment-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-riskassessment-api:main --tag  saashqdev/plugin-riskassessment-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-forum-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-forum-api:main --tag  saashqdev/plugin-forum-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-dailyco-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-dailyco-api:main --tag  saashqdev/plugin-dailyco-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-reports-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-reports-api:main --tag  saashqdev/plugin-reports-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-instagram-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
           docker buildx imagetools create saashqdev/plugin-instagram-api:main --tag  saashqdev/plugin-instagram-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-calls-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker buildx imagetools create saashqdev/plugin-calls-api:main --tag  saashqdev/plugin-calls-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-syncpolaris-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker buildx imagetools create saashqdev/plugin-syncpolaris-api:main --tag  saashqdev/plugin-syncpolaris-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-multierkhet-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker buildx imagetools create saashqdev/plugin-multierkhet-api:main --tag  saashqdev/plugin-multierkhet-api:${GITHUB_REF#refs/tags/}
 
       - name: plugin-insight-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker buildx imagetools create saashqdev/plugin-insight-api:main --tag  saashqdev/plugin-insight-api:${GITHUB_REF#refs/tags/}
 
