@@ -311,7 +311,6 @@ const deployDbs = async () => {
   if (configs.mongobi) {
     dockerComposeConfig.services['mongo-bi-connector'] = {
       image: 'saashqdev/mongobi-connector:main',
-      container_name: 'mongosqld',
       ports: ['3307:3307'],
       environment: {
         MONGODB_HOST: 'mongo',
