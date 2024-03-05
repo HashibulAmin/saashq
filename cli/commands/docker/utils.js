@@ -12,12 +12,12 @@ const {
   UI_PORT = 3000,
   MONGO_PORT = 27017,
   REDIS_PORT = 6379,
-  RABBITMQ_PORT = 5672
+  RABBITMQ_PORT = 5672,
 } = process.env;
 
 const isSwarm = DEPLOYMENT_METHOD !== 'docker-compose';
 
-const buildPlugins = ['dev', 'staging', 'build-test'];
+const buildPlugins = ['main', 'staging', 'build-test'];
 
 const commonEnvs = configs => {
   const enabledServices = (configs.plugins || []).map(plugin => plugin.name);
@@ -30,13 +30,11 @@ const commonEnvs = configs => {
   const redis = configs.redis || {};
   const rabbitmq = configs.rabbitmq || {};
 
-  const rabbitmq_host = `amqp://${rabbitmq.user}:${
-    rabbitmq.pass
-  }@${rabbitmq.server_address ||
+  const rabbitmq_host = `amqp://${rabbitmq.user}:${rabbitmq.pass}@${
+    rabbitmq.server_address ||
     db_server_address ||
-    (isSwarm ? 'saashq-dbs_rabbitmq' : 'rabbitmq')}:${
-    db_server_address ? RABBITMQ_PORT : 5672
-  }/${rabbitmq.vhost}`;
+    (isSwarm ? 'saashq-dbs_rabbitmq' : 'rabbitmq')
+  }:${db_server_address ? RABBITMQ_PORT : 5672}/${rabbitmq.vhost}`;
 
   return {
     ...be_env,
@@ -49,11 +47,14 @@ const commonEnvs = configs => {
     REDIS_PORT: db_server_address ? REDIS_PORT : 6379,
     REDIS_PASSWORD: redis.password || '',
     RABBITMQ_HOST: rabbitmq_host,
-    ELASTICSEARCH_URL: `http://${db_server_address ||
-      (isSwarm ? 'saashq-dbs_elasticsearch' : 'elasticsearch')}:9200`,
+    ELASTICSEARCH_URL: `http://${
+      db_server_address ||
+      (isSwarm ? 'saashq-dbs_elasticsearch' : 'elasticsearch')
+    }:9200`,
     ENABLED_SERVICES_JSON: enabledServicesJson,
-    VERSION: configs.image_tag || '',
-    MESSAGE_BROKER_PREFIX: rabbitmq.prefix || ''
+    RELEASE: configs.image_tag || '',
+    VERSION: configs.version || 'os',
+    MESSAGE_BROKER_PREFIX: rabbitmq.prefix || '',
   };
 };
 
@@ -76,9 +77,9 @@ const mongoEnv = (configs, plugin) => {
     db_name = plugin.db_name;
   }
 
-  const mongo_url = `mongodb://${mongo.username}:${
-    mongo.password
-  }@${db_server_address || (isSwarm ? 'saashq-dbs_mongo' : 'mongo')}:${
+  const mongo_url = `mongodb://${mongo.username}:${mongo.password}@${
+    db_server_address || (isSwarm ? 'saashq-dbs_mongo' : 'mongo')
+  }:${
     db_server_address ? MONGO_PORT : 27017
   }/${db_name}?authSource=admin&replicaSet=rs0`;
 
@@ -90,10 +91,10 @@ const healthcheck = {
     'CMD',
     'curl',
     '-i',
-    `http://localhost:${SERVICE_INTERNAL_PORT}/health`
+    `http://localhost:${SERVICE_INTERNAL_PORT}/health`,
   ],
   interval: '30s',
-  start_period: '30s'
+  start_period: '30s',
 };
 
 const generateLBaddress = address =>
@@ -111,9 +112,9 @@ const generatePluginBlock = (configs, plugin) => {
 
   if (plugin.db_server_address || configs.db_server_address) {
     extra_hosts.push(
-      `mongo:${plugin.db_server_address ||
-        configs.db_server_address ||
-        '127.0.0.1'}`
+      `mongo:${
+        plugin.db_server_address || configs.db_server_address || '127.0.0.1'
+      }`
     );
   }
 
@@ -134,15 +135,15 @@ const generatePluginBlock = (configs, plugin) => {
         `http://plugin-${plugin.name}-api`
       ),
       ...commonEnvs(configs),
-      ...(plugin.extra_env || {})
+      ...(plugin.extra_env || {}),
     },
     networks: ['saashq'],
-    extra_hosts
+    extra_hosts,
   };
 
   if (isSwarm && plugin.replicas) {
     conf.deploy = {
-      replicas: plugin.replicas
+      replicas: plugin.replicas,
     };
   }
 
@@ -169,7 +170,7 @@ const syncUI = async ({ name, image_tag, ui_location }) => {
     let s3_location = '';
 
     if (!tag) {
-      s3_location = `https://saashq-plugins.s3.us-east-1.amazonaws.com/uis/${plName}`;
+      s3_location = `https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/${plName}`;
     } else {
       if (buildPlugins.includes(tag)) {
         s3_location = `https://saashq-${tag}-plugins.s3.us-east-1.amazonaws.com/uis/${plName}`;
@@ -177,6 +178,8 @@ const syncUI = async ({ name, image_tag, ui_location }) => {
         s3_location = `https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/${plName}`;
       }
     }
+
+    console.log("S3 Location", s3_location);
 
     await execCurl(
       `${s3_location}/build.tar`,
@@ -200,7 +203,7 @@ const updateLocales = async () => {
   let s3_location = '';
 
   if (tag === 'dev') {
-    s3_location = `https://saashq-dev-plugins.s3.us-east-1.amazonaws.com`;
+    s3_location = `https://saashq-main-plugins.s3.us-east-1.amazonaws.com`;
   } else {
     s3_location = `https://saashq-main-plugins.s3.us-east-1.amazonaws.com`;
   }
@@ -249,18 +252,18 @@ const updateLocales = async () => {
 const generateNetworks = configs => {
   if (configs.db_server_address) {
     return {
-      driver: 'overlay'
+      driver: 'overlay',
     };
   }
 
   if (!isSwarm) {
     return {
-      driver: 'bridge'
+      driver: 'bridge',
     };
   }
 
   return {
-    external: true
+    external: true,
   };
 };
 
@@ -272,16 +275,16 @@ const deployDbs = async () => {
   const dockerComposeConfig = {
     version: '3.3',
     networks: {
-      saashq: generateNetworks(configs)
+      saashq: generateNetworks(configs),
     },
-    services: {}
+    services: {},
   };
 
   if (configs.kibana) {
     dockerComposeConfig.services.kibana = {
       image: 'docker.elastic.co/kibana/kibana:7.6.0',
       ports: ['5601:5601'],
-      networks: ['saashq']
+      networks: ['saashq'],
     };
   }
 
@@ -296,12 +299,12 @@ const deployDbs = async () => {
       ports: [`0.0.0.0:${MONGO_PORT}:27017`],
       environment: {
         MONGO_INITDB_ROOT_USERNAME: configs.mongo.username,
-        MONGO_INITDB_ROOT_PASSWORD: configs.mongo.password
+        MONGO_INITDB_ROOT_PASSWORD: configs.mongo.password,
       },
       networks: ['saashq'],
       volumes: ['./mongodata:/data/db'],
       command: ['--replSet', 'rs0', '--bind_ip_all'],
-      extra_hosts: ['mongo:127.0.0.1']
+      extra_hosts: ['mongo:127.0.0.1'],
     };
   }
 
@@ -313,10 +316,10 @@ const deployDbs = async () => {
       environment: {
         MONGODB_HOST: 'mongo',
         MONGO_USERNAME: configs.mongo.username,
-        MONGO_PASSWORD: configs.mongo.password
+        MONGO_PASSWORD: configs.mongo.password,
       },
       networks: ['saashq'],
-      volumes: ['./mongo.pem:/mongosqld/mongo.pem']
+      volumes: ['./mongo.pem:/mongosqld/mongo.pem'],
     };
   }
 
@@ -343,7 +346,7 @@ const deployDbs = async () => {
     );
     dockerComposeConfig.services.mongo.extra_hosts = [
       `mongo:${configs.db_server_address}`,
-      `mongo-secondary:${configs.secondary_server_address}`
+      `mongo-secondary:${configs.secondary_server_address}`,
     ];
   }
 
@@ -355,7 +358,7 @@ const deployDbs = async () => {
     dockerComposeConfig.services.elasticsearch = {
       image: 'docker.elastic.co/elasticsearch/elasticsearch:7.8.0',
       environment: {
-        'discovery.type': 'single-node'
+        'discovery.type': 'single-node',
       },
       ports: ['9200:9200'],
       networks: ['saashq'],
@@ -363,9 +366,9 @@ const deployDbs = async () => {
       ulimits: {
         memlock: {
           soft: -1,
-          hard: -1
-        }
-      }
+          hard: -1,
+        },
+      },
     };
   }
 
@@ -379,7 +382,7 @@ const deployDbs = async () => {
       command: `redis-server --appendonly yes --requirepass ${configs.redis.password}`,
       ports: [`${REDIS_PORT}:6379`],
       networks: ['saashq'],
-      volumes: ['./redisdata:/data']
+      volumes: ['./redisdata:/data'],
     };
   }
 
@@ -396,11 +399,11 @@ const deployDbs = async () => {
         RABBITMQ_ERLANG_COOKIE: configs.rabbitmq.cookie,
         RABBITMQ_DEFAULT_USER: configs.rabbitmq.user,
         RABBITMQ_DEFAULT_PASS: configs.rabbitmq.pass,
-        RABBITMQ_DEFAULT_VHOST: configs.rabbitmq.vhost
+        RABBITMQ_DEFAULT_VHOST: configs.rabbitmq.vhost,
       },
       ports: [`${RABBITMQ_PORT}:5672`, '15672:15672'],
       networks: ['saashq'],
-      volumes: ['./rabbitmq-data:/var/lib/rabbitmq']
+      volumes: ['./rabbitmq-data:/var/lib/rabbitmq'],
     };
   }
 
@@ -463,7 +466,7 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
   const dockerComposeConfig = {
     version: '3.7',
     networks: {
-      saashq: generateNetworks(configs)
+      saashq: generateNetworks(configs),
     },
     services: {
       coreui: {
@@ -479,15 +482,15 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
           NGINX_HOST,
           NODE_ENV: 'production',
           REACT_APP_FILE_UPLOAD_MAX_SIZE: 524288000,
-          ...((configs.coreui || {}).extra_env || {})
+          ...((configs.coreui || {}).extra_env || {}),
         },
         ports: [`${UI_PORT}:${SERVICE_INTERNAL_PORT}`],
         volumes: [
           './plugins.js:/usr/share/nginx/html/js/plugins.js',
           './plugin-uis:/usr/share/nginx/html/js/plugins',
-          './locales:/usr/share/nginx/html/locales'
+          './locales:/usr/share/nginx/html/locales',
         ],
-        networks: ['saashq']
+        networks: ['saashq'],
       },
       'plugin-core-api': {
         image: `saashqdev/core:${(configs.core || {}).image_tag || image_tag}`,
@@ -502,20 +505,21 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
           NODE_INSPECTOR: configs.nodeInspector ? 'enabled' : undefined,
           EMAIL_VERIFIER_ENDPOINT:
             configs.email_verifier_endpoint ||
-            'https://email-verifier.saashq.org',
+            'https://email-verifier.saashq.io',
           ...commonEnvs(configs),
-          ...((configs.core || {}).extra_env || {})
+          ...((configs.core || {}).extra_env || {}),
         },
         extra_hosts,
         volumes: [
           './permissions.json:/saashq/packages/core/permissions.json',
-          './core-api-uploads:/saashq/packages/core/src/private/uploads'
+          './core-api-uploads:/saashq/packages/core/src/private/uploads',
         ],
-        networks: ['saashq']
+        networks: ['saashq'],
       },
       gateway: {
-        image: `saashqdev/gateway:${(configs.gateway || {}).image_tag ||
-          image_tag}`,
+        image: `saashqdev/gateway:${
+          (configs.gateway || {}).image_tag || image_tag
+        }`,
         environment: {
           OTEL_SERVICE_NAME: 'gateway',
           SERVICE_NAME: 'gateway',
@@ -526,12 +530,12 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
           MONGO_URL: mongoEnv(configs),
           NODE_INSPECTOR: configs.nodeInspector ? 'enabled' : undefined,
           ...commonEnvs(configs),
-          ...((configs.gateway || {}).extra_env || {})
+          ...((configs.gateway || {}).extra_env || {}),
         },
         healthcheck,
         extra_hosts,
         ports: [`${GATEWAY_PORT}:${SERVICE_INTERNAL_PORT}`],
-        networks: ['saashq']
+        networks: ['saashq'],
       },
       crons: {
         image: `saashqdev/crons:${image_tag}`,
@@ -539,9 +543,9 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
           OTEL_SERVICE_NAME: 'crons',
           NODE_INSPECTOR: configs.nodeInspector ? 'enabled' : undefined,
           MONGO_URL: mongoEnv(configs),
-          ...commonEnvs(configs)
+          ...commonEnvs(configs),
         },
-        networks: ['saashq']
+        networks: ['saashq'],
       },
       'plugin-workers-api': {
         image: `saashqdev/workers:${image_tag}`,
@@ -554,12 +558,12 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
           MONGO_URL: mongoEnv(configs),
           NODE_INSPECTOR: configs.nodeInspector ? 'enabled' : undefined,
           ...commonEnvs(configs),
-          ...((configs.workers || {}).extra_env || {})
+          ...((configs.workers || {}).extra_env || {}),
         },
         extra_hosts,
-        networks: ['saashq']
-      }
-    }
+        networks: ['saashq'],
+      },
+    },
   };
 
   if (isSwarm) {
@@ -569,8 +573,8 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
       update_config: {
         order: 'start-first',
         failure_action: 'rollback',
-        delay: '1s'
-      }
+        delay: '1s',
+      },
     };
 
     dockerComposeConfig.services['plugin-core-api'].deploy = deploy;
@@ -588,14 +592,17 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
     dockerComposeConfig.services.essyncer = {
       image: `saashqdev/essyncer:${essyncer_tag}`,
       environment: {
-        ELASTICSEARCH_URL: `http://${configs.db_server_address ||
-          (isSwarm ? 'saashq-dbs_elasticsearch' : 'elasticsearch')}:9200`,
-        MONGO_URL: `${mongoEnv(configs)}${(configs.essyncer || {})
-          .mongoOptions || ''}`
+        ELASTICSEARCH_URL: `http://${
+          configs.db_server_address ||
+          (isSwarm ? 'saashq-dbs_elasticsearch' : 'elasticsearch')
+        }:9200`,
+        MONGO_URL: `${mongoEnv(configs)}${
+          (configs.essyncer || {}).mongoOptions || ''
+        }`,
       },
       volumes: ['./essyncerData:/data/essyncerData'],
       extra_hosts,
-      networks: ['saashq']
+      networks: ['saashq'],
     };
   }
 
@@ -607,10 +614,10 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
         PORT: '3200',
         ROOT_URL: widgets_domain,
         API_URL: gateway_url,
-        API_SUBSCRIPTIONS_URL: subscription_url
+        API_SUBSCRIPTIONS_URL: subscription_url,
       },
       ports: ['3200:3200'],
-      networks: ['saashq']
+      networks: ['saashq'],
     };
   }
 
@@ -630,14 +637,15 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
         CUBEJS_URL: dashboard_domain,
         CUBEJS_TOKEN: dashboard.api_token,
         CUBEJS_API_SECRET: dashboard.api_secret,
-        CUBEJS_REDIS_URL: `redis://${db_server_address ||
-          'redis'}:${REDIS_PORT}`,
+        CUBEJS_REDIS_URL: `redis://${
+          db_server_address || 'redis'
+        }:${REDIS_PORT}`,
         CUBEJS_REDIS_PASSWORD: configs.redis.password || '',
         ENABLED_SERVICES_JSON: commonEnvs(configs).ENABLED_SERVICES_JSON,
-        ...(dashboard.extra_env || {})
+        ...(dashboard.extra_env || {}),
       },
       extra_hosts,
-      networks: ['saashq']
+      networks: ['saashq'],
     };
   }
 
@@ -661,7 +669,7 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
   }
 
   let pluginsMapLocation =
-    'https://saashq-plugins.s3.us-east-1.amazonaws.com/pluginsMap.js';
+    'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/pluginsMap.js';
 
   if (configs.image_tag) {
     if (buildPlugins.includes(configs.image_tag)) {
@@ -703,11 +711,11 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
           {
             name: 'users',
             schema: '{"customFieldsData": <nested>}',
-            script: ''
+            script: '',
           },
           {
             name: 'conformities',
-            schema: ` 
+            schema: `
             {
               "mainType": {
                 "type": "keyword"
@@ -723,19 +731,18 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
               }
             }
           `,
-            script: ''
-          }
-        ]
-      }
-    ]
+            script: '',
+          },
+        ],
+      },
+    ],
   };
 
   const permissionsJSON = [];
 
   for (const plugin of configs.plugins || []) {
-    dockerComposeConfig.services[
-      `plugin-${plugin.name}-api`
-    ] = generatePluginBlock(configs, plugin);
+    dockerComposeConfig.services[`plugin-${plugin.name}-api`] =
+      generatePluginBlock(configs, plugin);
 
     if (pluginsMap[plugin.name]) {
       const uiConfig = pluginsMap[plugin.name].ui;
@@ -744,7 +751,7 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
         uiPlugins.push(
           JSON.stringify({
             name: plugin.name,
-            ...pluginsMap[plugin.name].ui
+            ...pluginsMap[plugin.name].ui,
           })
         );
       }
@@ -762,7 +769,7 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
 
           essyncerJSON.plugins.push({
             db_name: db_name || configs.mongo.db_name || 'saashq',
-            collections: apiConfig.essyncer
+            collections: apiConfig.essyncer,
           });
         }
 
@@ -793,7 +800,7 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
     window.plugins = [
       ${uiPlugins.join(',')}
     ]
-  `.replace(/plugin-uis.s3.us-east-1.amazonaws.com/g, NGINX_HOST)
+  `.replace(/saashq-plugin-uis.s3.us-east-1.amazonaws.com/g, NGINX_HOST)
   );
 
   const extraServices = configs.extra_services || {};
@@ -803,7 +810,7 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
 
     dockerComposeConfig.services[serviceName] = {
       ...service,
-      networks: ['saashq']
+      networks: ['saashq'],
     };
   }
 
@@ -1025,7 +1032,7 @@ module.exports.up = program => {
   return up({
     uis: program.uis,
     fromInstaller: program.fromInstaller,
-    downloadLocales: program.locales
+    downloadLocales: program.locales,
   });
 };
 
@@ -1110,10 +1117,10 @@ const deployMongoBi = async program => {
     version: '2.1',
     networks: {
       saashq: {
-        driver: 'bridge'
-      }
+        driver: 'bridge',
+      },
     },
-    services: {}
+    services: {},
   };
 
   dockerComposeConfig.services.mongo = {
@@ -1122,24 +1129,24 @@ const deployMongoBi = async program => {
     ports: [`0.0.0.0:${MONGO_PORT}:27017`],
     environment: {
       MONGO_INITDB_ROOT_USERNAME: configs.mongo_username,
-      MONGO_INITDB_ROOT_PASSWORD: configs.mongo_password
+      MONGO_INITDB_ROOT_PASSWORD: configs.mongo_password,
     },
     networks: ['saashq'],
     volumes: [
       './mongodata:/data/db',
-      './mongo-key:/etc/mongodb/keys/mongo-key'
+      './mongo-key:/etc/mongodb/keys/mongo-key',
     ],
     command: [
       '--replSet',
       'rs0',
       '--bind_ip_all',
       '--keyFile',
-      '/etc/mongodb/keys/mongo-key'
+      '/etc/mongodb/keys/mongo-key',
     ],
     extra_hosts: [
       `mongo:${configs.primary_server_ip}`,
-      `mongo-secondary: ${configs.server_ip}`
-    ]
+      `mongo-secondary: ${configs.server_ip}`,
+    ],
   };
 
   dockerComposeConfig.services['mongo-bi-connector'] = {
@@ -1149,10 +1156,10 @@ const deployMongoBi = async program => {
     environment: {
       MONGODB_HOST: 'mongo-secondary',
       MONGO_USERNAME: configs.mongo_username,
-      MONGO_PASSWORD: configs.mongo_password
+      MONGO_PASSWORD: configs.mongo_password,
     },
     networks: ['saashq'],
-    volumes: ['./mongo.pem:/mongosqld/mongo.pem']
+    volumes: ['./mongo.pem:/mongosqld/mongo.pem'],
   };
 
   const yamlString = yaml.stringify(dockerComposeConfig);
