@@ -8,9 +8,7 @@ const discussionQueries = {
     const selector: any = {};
 
     if (limit) {
-      return models.Discussions.find(selector)
-        .sort(sort)
-        .limit(limit);
+      return models.Discussions.find(selector).sort(String(sort)).limit(limit);
     }
 
     return paginate(models.Discussions.find(selector), {}).sort(sort);
@@ -18,7 +16,7 @@ const discussionQueries = {
 
   discussionsDetail(_root, { _id }, { models }: IContext) {
     return models.Discussions.findOne({ _id });
-  }
+  },
 };
 
 export default discussionQueries;
