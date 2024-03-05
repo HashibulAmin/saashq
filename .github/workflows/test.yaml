@@ -21,5 +21,5 @@ jobs:
         run: >
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
           docker buildx imagetools create saashqdev/saashq:main -t saashqdev/saashq:${GITHUB_REF#refs/tags/} 
-          aws s3 cp s3://saashq-main-plugins/locales.tar s3://saashq-release-plugins/${GITHUB_REF#refs/tags/}/locales.tar
+          aws s3 cp s3://saashetoq-main-plugins/locales.tar s3://saashq-release-plugins/${GITHUB_REF#refs/tags/}/locales.tar
           aws s3 cp s3://saashq-main-plugins/pluginsMap.js s3://saashq-release-plugins/${GITHUB_REF#refs/tags/}/pluginsMap.js
