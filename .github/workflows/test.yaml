@@ -1,26 +1,25 @@
 name: Publish Release
-
 on:
   push:
     branches:
       - main
-
 jobs:
   release:
     runs-on: ubuntu-22.04
-    
     steps:
       - uses: actions/checkout@v4
-
+      - name: Get release version
+        id: get_release_version
+        run: echo ::set-output name=version::${GITHUB_REF#refs/tags/}
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-
       - name: saashq
-        run: >
+        run: |
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          docker buildx imagetools create saashqdev/saashq:main --tag saashqdev/saashq:${GITHUB_REF#refs/tags/} 
           aws s3 cp s3://saashg-main-plugins/locales.tar s3://saashq-release-plugins/${GITHUB_REF#refs/tags/}/locales.tar
           aws s3 cp s3://saashq-main-plugins/pluginsMap.js s3://saashq-release-plugins/${GITHUB_REF#refs/tags/}/pluginsMap.js
