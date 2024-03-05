@@ -39,7 +39,7 @@ jobs:
 
           docker image pull saashqdev/core:main 
 
-          docker tag saashqdev/core:main saashq/core:${GITHUB_REF#refs/tags/} :main
+          docker tag saashqdev/core:main saashq/core:${GITHUB_REF#refs/tags/}
 
           docker push saashqdev/core:${GITHUB_REF#refs/tags/} 
       - name: gateway
