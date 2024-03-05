@@ -2,9 +2,9 @@
   "name": "@saashq/plugin-dashboard-api",
   "version": "1.0.0",
   "scripts": {
-    "install-deps": "cd .saashq && yarn install",
-    "dev": "cd .saashq && yarn dev",
-    "build": "cd .saashq && yarn build",
-    "start": "cd .saashq/dist/plugin-knowledgebase-api/.saashq && node src"
+    "install-deps": "yarn install",
+    "dev": "yarn dev",
+    "build": "yarn build",
+    "start": "dist/plugin-knowledgebase-api && node src"
   }
 }
