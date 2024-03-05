@@ -25,9 +25,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashqdevdev/saashq:main 
+          docker image pull saashqdev/saashq:main 
 
-          docker tag saashqdevdev/saashq:main saashqdev/saashq:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/saashq:main saashqdev/saashq:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/saashq:${GITHUB_REF#refs/tags/} 
 
