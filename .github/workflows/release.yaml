@@ -39,7 +39,7 @@ jobs:
 
           docker image pull saashqdev/core:main 
 
-          docker tag saashqdev/core:main saashq/core:${GITHUB_REF#refs/tags/}
+          docker tag saashqdev/core:main saashqdev/core:${GITHUB_REF#refs/tags/}
 
           docker push saashqdev/core:${GITHUB_REF#refs/tags/} 
       - name: gateway
@@ -49,7 +49,7 @@ jobs:
 
           docker image pull saashqdev/gateway:main 
 
-          docker tag saashqdev/gateway:main saashq/gateway:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/gateway:main saashqdev/gateway:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/gateway:${GITHUB_REF#refs/tags/} 
       - name: crons
@@ -59,7 +59,7 @@ jobs:
 
           docker image pull saashqdev/crons:main 
 
-          docker tag saashqdev/crons:main saashq/crons:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/crons:main saashqdev/crons:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/crons:${GITHUB_REF#refs/tags/} 
       - name: workers
@@ -69,7 +69,7 @@ jobs:
 
           docker image pull saashqdev/workers:main 
 
-          docker tag saashqdev/workers:main saashq/workers:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/workers:main saashqdev/workers:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/workers:${GITHUB_REF#refs/tags/} 
       - name: essyncer
@@ -79,7 +79,7 @@ jobs:
 
           docker image pull saashqdev/essyncer:main 
 
-          docker tag saashqdev/essyncer:main saashq/essyncer:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/essyncer:main saashqdev/essyncer:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/essyncer:${GITHUB_REF#refs/tags/} 
       - name: widgets
@@ -89,7 +89,7 @@ jobs:
 
           docker image pull saashqdev/widgets:main 
 
-          docker tag saashqdev/widgets:main saashq/widgets:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/widgets:main saashqdev/widgets:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/widgets:${GITHUB_REF#refs/tags/} 
       - name: client-portal
@@ -99,7 +99,7 @@ jobs:
 
           docker image pull saashqdev/client-portal:main 
 
-          docker tag saashqdev/client-portal:main saashq/client-portal:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/client-portal:main saashqdev/client-portal:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/client-portal:${GITHUB_REF#refs/tags/} 
       - name: plugin-inbox-api
@@ -109,7 +109,7 @@ jobs:
 
           docker image pull saashqdev/plugin-inbox-api:main 
 
-          docker tag saashqdev/plugin-inbox-api:main saashq/plugin-inbox-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-inbox-api:main saashqdev/plugin-inbox-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-inbox-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-automations-api
@@ -119,7 +119,7 @@ jobs:
 
           docker image pull saashqdev/plugin-automations-api:main 
 
-          docker tag saashqdev/plugin-automations-api:main saashq/plugin-automations-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-automations-api:main saashqdev/plugin-automations-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-automations-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-cards-api
@@ -129,7 +129,7 @@ jobs:
 
           docker image pull saashqdev/plugin-cards-api:main 
 
-          docker tag saashqdev/plugin-cards-api:main saashq/plugin-cards-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-cards-api:main saashqdev/plugin-cards-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-cards-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-clientportal-api
@@ -139,7 +139,7 @@ jobs:
 
           docker image pull saashqdev/plugin-clientportal-api:main 
 
-          docker tag saashqdev/plugin-clientportal-api:main saashq/plugin-clientportal-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-clientportal-api:main saashqdev/plugin-clientportal-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-clientportal-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-contacts-api
@@ -149,7 +149,7 @@ jobs:
 
           docker image pull saashqdev/plugin-contacts-api:main 
 
-          docker tag saashqdev/plugin-contacts-api:main saashq/plugin-contacts-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-contacts-api:main saashqdev/plugin-contacts-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-contacts-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-emailtemplates-api
@@ -159,7 +159,7 @@ jobs:
 
           docker image pull saashqdev/plugin-emailtemplates-api:main 
 
-          docker tag saashqdev/plugin-emailtemplates-api:main saashq/plugin-emailtemplates-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-emailtemplates-api:main saashqdev/plugin-emailtemplates-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-emailtemplates-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-engages-api
@@ -169,7 +169,7 @@ jobs:
 
           docker image pull saashqdev/plugin-engages-api:main 
 
-          docker tag saashqdev/plugin-engages-api:main saashq/plugin-engages-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-engages-api:main saashqdev/plugin-engages-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-engages-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-forms-api
@@ -179,7 +179,7 @@ jobs:
 
           docker image pull saashqdev/plugin-forms-api:main 
 
-          docker tag saashqdev/plugin-forms-api:main saashq/plugin-forms-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-forms-api:main saashqdev/plugin-forms-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-forms-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-integrations-api
@@ -189,7 +189,7 @@ jobs:
 
           docker image pull saashqdev/plugin-integrations-api:main 
 
-          docker tag saashqdev/plugin-integrations-api:main saashq/plugin-integrations-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-integrations-api:main saashqdev/plugin-integrations-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-integrations-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-internalnotes-api
@@ -199,7 +199,7 @@ jobs:
 
           docker image pull saashqdev/plugin-internalnotes-api:main 
 
-          docker tag saashqdev/plugin-internalnotes-api:main saashq/plugin-internalnotes-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-internalnotes-api:main saashqdev/plugin-internalnotes-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-internalnotes-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-knowledgebase-api
@@ -209,7 +209,7 @@ jobs:
 
           docker image pull saashqdev/plugin-knowledgebase-api:main 
 
-          docker tag saashqdev/plugin-knowledgebase-api:main saashq/plugin-knowledgebase-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-knowledgebase-api:main saashqdev/plugin-knowledgebase-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-knowledgebase-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-logs-api
@@ -219,7 +219,7 @@ jobs:
 
           docker image pull saashqdev/plugin-logs-api:main 
 
-          docker tag saashqdev/plugin-logs-api:main saashq/plugin-logs-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-logs-api:main saashqdev/plugin-logs-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-logs-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-loyalties-api
@@ -229,7 +229,7 @@ jobs:
 
           docker image pull saashqdev/plugin-loyalties-api:main 
 
-          docker tag saashqdev/plugin-loyalties-api:main saashq/plugin-loyalties-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-loyalties-api:main saashqdev/plugin-loyalties-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-loyalties-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-notifications-api
@@ -239,7 +239,7 @@ jobs:
 
           docker image pull saashqdev/plugin-notifications-api:main 
 
-          docker tag saashqdev/plugin-notifications-api:main saashq/plugin-notifications-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-notifications-api:main saashqdev/plugin-notifications-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-notifications-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-webhooks-api
@@ -249,7 +249,7 @@ jobs:
 
           docker image pull saashqdev/plugin-webhooks-api:main 
 
-          docker tag saashqdev/plugin-webhooks-api:main saashq/plugin-webhooks-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-webhooks-api:main saashqdev/plugin-webhooks-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-webhooks-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-products-api
@@ -259,7 +259,7 @@ jobs:
 
           docker image pull saashqdev/plugin-products-api:main 
 
-          docker tag saashqdev/plugin-products-api:main saashq/plugin-products-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-products-api:main saashqdev/plugin-products-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-products-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-segments-api
@@ -269,7 +269,7 @@ jobs:
 
           docker image pull saashqdev/plugin-segments-api:main 
 
-          docker tag saashqdev/plugin-segments-api:main saashq/plugin-segments-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-segments-api:main saashqdev/plugin-segments-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-segments-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-tags-api
@@ -279,7 +279,7 @@ jobs:
 
           docker image pull saashqdev/plugin-tags-api:main 
 
-          docker tag saashqdev/plugin-tags-api:main saashq/plugin-tags-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-tags-api:main saashqdev/plugin-tags-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-tags-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-webbuilder-api
@@ -289,7 +289,7 @@ jobs:
 
           docker image pull saashqdev/plugin-webbuilder-api:main 
 
-          docker tag saashqdev/plugin-webbuilder-api:main saashq/plugin-webbuilder-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-webbuilder-api:main saashqdev/plugin-webbuilder-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-webbuilder-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-documents-api
@@ -299,7 +299,7 @@ jobs:
 
           docker image pull saashqdev/plugin-documents-api:main 
 
-          docker tag saashqdev/plugin-documents-api:main saashq/plugin-documents-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-documents-api:main saashqdev/plugin-documents-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-documents-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-chats-api
@@ -309,7 +309,7 @@ jobs:
 
           docker image pull saashqdev/plugin-chats-api:main 
 
-          docker tag saashqdev/plugin-chats-api:main saashq/plugin-chats-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-chats-api:main saashqdev/plugin-chats-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-chats-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-ebarimt-api
@@ -319,7 +319,7 @@ jobs:
 
           docker image pull saashqdev/plugin-ebarimt-api:main 
 
-          docker tag saashqdev/plugin-ebarimt-api:main saashq/plugin-ebarimt-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-ebarimt-api:main saashqdev/plugin-ebarimt-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-ebarimt-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-shq-api
@@ -329,7 +329,7 @@ jobs:
 
           docker image pull saashqdev/plugin-shq-api:main 
 
-          docker tag saashqdev/plugin-shq-api:main saashq/plugin-shq-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-shq-api:main saashqdev/plugin-shq-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-shq-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-shqfeed-api
@@ -339,7 +339,7 @@ jobs:
 
           docker image pull saashqdev/plugin-shqfeed-api:main 
 
-          docker tag saashqdev/plugin-shqfeed-api:main saashq/plugin-shqfeed-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-shqfeed-api:main saashqdev/plugin-shqfeed-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-shqfeed-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-pos-api
@@ -349,7 +349,7 @@ jobs:
 
           docker image pull saashqdev/plugin-pos-api:main 
 
-          docker tag saashqdev/plugin-pos-api:main saashq/plugin-pos-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-pos-api:main saashqdev/plugin-pos-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-pos-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-reactions-api
@@ -359,7 +359,7 @@ jobs:
 
           docker image pull saashqdev/plugin-reactions-api:main 
 
-          docker tag saashqdev/plugin-reactions-api:main saashq/plugin-reactions-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-reactions-api:main saashqdev/plugin-reactions-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-reactions-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-syncerkhet-api
@@ -369,7 +369,7 @@ jobs:
 
           docker image pull saashqdev/plugin-syncerkhet-api:main 
 
-          docker tag saashqdev/plugin-syncerkhet-api:main saashq/plugin-syncerkhet-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-syncerkhet-api:main saashqdev/plugin-syncerkhet-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-syncerkhet-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-salesplans-api
@@ -379,7 +379,7 @@ jobs:
 
           docker image pull saashqdev/plugin-salesplans-api:main 
 
-          docker tag saashqdev/plugin-salesplans-api:main saashq/plugin-salesplans-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-salesplans-api:main saashqdev/plugin-salesplans-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-salesplans-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-processes-api
@@ -389,7 +389,7 @@ jobs:
 
           docker image pull saashqdev/plugin-processes-api:main 
 
-          docker tag saashqdev/plugin-processes-api:main saashq/plugin-processes-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-processes-api:main saashqdev/plugin-processes-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-processes-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-inventories-api
@@ -399,7 +399,7 @@ jobs:
 
           docker image pull saashqdev/plugin-inventories-api:main 
 
-          docker tag saashqdev/plugin-inventories-api:main saashq/plugin-inventories-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-inventories-api:main saashqdev/plugin-inventories-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-inventories-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-posclient-api
@@ -409,7 +409,7 @@ jobs:
 
           docker image pull saashqdev/plugin-posclient-api:main 
 
-          docker tag saashqdev/plugin-posclient-api:main saashq/plugin-posclient-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-posclient-api:main saashqdev/plugin-posclient-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-posclient-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-imap-api
@@ -419,7 +419,7 @@ jobs:
 
           docker image pull saashqdev/plugin-imap-api:main 
 
-          docker tag saashqdev/plugin-imap-api:main saashq/plugin-imap-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-imap-api:main saashqdev/plugin-imap-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-imap-api:${GITHUB_REF#refs/tags/} 
       - name: inbox ui
