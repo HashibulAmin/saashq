@@ -8,9 +8,6 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - name: Get release version
-        id: get_release_version
-        run: echo ::set-output name=version::${GITHUB_REF#refs/tags/}
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
