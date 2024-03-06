@@ -1,6 +1,7 @@
 {
   "name": "@saashq/plugin-dashboard-api",
   "version": "1.0.0",
+  "license": "MIT",
   "scripts": {
     "install-deps": "yarn install",
     "dev": "yarn dev",
