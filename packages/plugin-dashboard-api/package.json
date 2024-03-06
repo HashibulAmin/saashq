@@ -5,6 +5,5 @@
     "install-deps": "yarn install",
     "dev": "yarn dev",
     "build": "yarn build",
-    "start": "dist/plugin-knowledgebase-api && node src"
   }
 }
