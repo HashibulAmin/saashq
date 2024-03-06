@@ -4,6 +4,6 @@
   "scripts": {
     "install-deps": "yarn install",
     "dev": "yarn dev",
-    "build": "yarn build",
+    "build": "yarn build"
   }
 }
