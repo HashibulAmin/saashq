@@ -5,5 +5,9 @@
   "scripts": {
     "dev": "yarn dev",
     "build": "tsc"
+  },
+  "dependencies": {
+    "apollo-server-express": "3.13.0",
+    "meteor-random": "0.0.3" 
   }
 }

@@ -196,7 +196,10 @@ export const loadDashboardClass = (models: IModels) => {
       const parentDashboard = await this.getParentDashboard(doc);
 
       // Generating order
-      const order = await this.generateOrder(parentDashboard, doc);
+      const order = await this.generateOrder(
+        parentDashboard as IDashboardDocument,
+        doc,
+      );
 
       const dashboard = await models.Dashboards.create({
         ...doc,
@@ -229,7 +232,10 @@ export const loadDashboardClass = (models: IModels) => {
       }
 
       // Generating  order
-      const order = await this.generateOrder(parentDashboard, doc);
+      const order = await this.generateOrder(
+        parentDashboard as IDashboardDocument,
+        doc,
+      );
 
       const dashboard = await models.Dashboards.findOne({
         _id,
