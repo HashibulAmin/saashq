@@ -46,7 +46,7 @@ jobs:
       - name: Build docker image
         if: github.event_name == 'push' && ( github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'  )
         run: |
-          cd dist/dashboard
+          cd dist
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
           docker build -t saashqdev/dashboard:${GITHUB_REF#refs/heads/} -f Dockerfile .
           docker push saashqdev/dashboard:${GITHUB_REF#refs/heads/}
