@@ -11,7 +11,6 @@ import {
   IFieldError,
   ILocationOption,
   IObjectListConfig,
-  IProduct,
 } from "../types";
 
 import Datetime from "@nateradebaugh/react-datetime";
@@ -19,26 +18,22 @@ import MSFmultiSelect from "../multipleSelectScript";
 import Map from "./Map";
 import Marker from "./Marker";
 import ObjectList from "./ObjectList";
-import Product from "./Product";
 import { __ } from "../../utils";
 import { connection } from "../connection";
 import uploadHandler from "../../uploadHandler";
 
 type Props = {
   field: IField;
-  fields?: IField[];
   error?: IFieldError;
   value?: FieldValue;
   currentLocation?: ILocationOption;
   color?: string;
   mapScriptLoaded?: boolean;
-  isSubField?: boolean;
   onChange: (params: {
     fieldId: string;
     value: FieldValue;
     groupId?: string;
   }) => void;
-  onQtyChange?: (qty: number) => void;
 };
 
 type State = {
@@ -51,9 +46,6 @@ type State = {
   value?: any;
   objectListConfigs: IObjectListConfig[];
   editing: boolean;
-  qty?: number;
-  subFields: IField[][];
-  subValues: any[];
 };
 
 export default class Field extends React.Component<Props, State> {
@@ -168,8 +160,6 @@ export default class Field extends React.Component<Props, State> {
         lng: 0.0,
       },
       objectListConfigs: [],
-      subFields: [props.field.subFields || []],
-      subValues: [],
     };
   }
 
@@ -233,8 +223,6 @@ export default class Field extends React.Component<Props, State> {
 
   onChange = (value: FieldValue) => {
     const { onChange, field } = this.props;
-
-    this.setState({ value });
 
     onChange({
       fieldId: field._id,
@@ -454,122 +442,19 @@ export default class Field extends React.Component<Props, State> {
 
   renderProduct(field: IField) {
     const { products = [] } = field;
-
-    const onChangeProduct = (quantity: number, product?: IProduct) => {
-      if (!product) {
-        return;
-      }
-
-      this.onChange({ product, quantity });
-    };
-
     return (
-      <Product products={products as any} onChange={onChangeProduct as any} />
-    );
-  }
-
-  renderSubFields(field: IField) {
-    const subFields = this.state.subFields;
-
-    const values = this.state.subValues;
-
-    const onChangeSubField = (subField: IField, index: number, e: any) => {
-      const value = {
-        _id: subField._id,
-        type: subField.type,
-        text: subField.text,
-        value: e.value,
-      };
-
-      if (index >= 0 && index < values.length) {
-        const currentIndex = values[index].findIndex(
-          (subValue: any) => subValue._id === subField._id
-        );
-
-        if (currentIndex === -1) {
-          values[index].push(value);
-        }
-
-        values[index][currentIndex] = value;
-      } else {
-        values[index] = [];
-        values[index].push(value);
-      }
-
-      this.onChange(values);
-    };
-
-    const onAddClick = () => {
-      const newData = field.subFields || [];
-
-      subFields.push(newData);
-      values.push(
-        newData.map((e) => ({
-          _id: e._id,
-          type: e.type,
-          text: e.text,
-          value: "",
-        })) || []
-      );
-      this.setState({ subFields, subValues: values });
-      this.onChange(values);
-    };
-
-    const onRemoveClick = (index: number) => {
-      subFields.splice(index, 1);
-      values.splice(index, 1);
-
-      this.setState({ subFields });
-      this.onChange(values);
-    };
-
-    return (
-      <div className="field-groups">
-        {this.state.subFields.map((fields, index) => {
-          {
-            return (
-              <div className="field-group">
-                {subFields.length > 1 && (
-                  <button
-                    className="removeBtn"
-                    onClick={() => onRemoveClick(index)}
-                  >
-                    X
-                  </button>
-                )}
-                <div className="field-group-row">
-                  {fields.map((subField: IField) => {
-                    const value = values[index]
-                      ? values[index].find((v: any) => v._id === subField._id)
-                      : "";
-
-                    return (
-                      <div
-                        key={`${subField._id}-${index}`}
-                        className="subField-item"
-                      >
-                        <Field
-                          key={subField._id}
-                          field={subField}
-                          value={value ? value.value : ""}
-                          isSubField={true}
-                          onChange={(e) => {
-                            onChangeSubField(subField, index, e);
-                          }}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          }
-        })}
-
-        <button onClick={onAddClick} type="button">
-          {__("add more")}
-        </button>
-      </div>
+      <select
+        onChange={this.onSelectChange}
+        className="form-control"
+        id={field._id}
+      >
+        <option>-</option>
+        {products.map(({ _id, name, unitPrice }) => (
+          <option key={_id} value={_id}>
+            {`${name} - ${unitPrice || ""} `}
+          </option>
+        ))}
+      </select>
     );
   }
 
@@ -602,8 +487,7 @@ export default class Field extends React.Component<Props, State> {
   }
 
   renderControl() {
-    const { value } = this.props;
-    const field = this.props.field;
+    const { field, value } = this.props;
     const { options = [], validation = "text" } = field;
     const name = field._id;
 
@@ -779,9 +663,6 @@ export default class Field extends React.Component<Props, State> {
 
         return this.renderProduct(field);
 
-      case "parentField":
-        return this.renderSubFields(field);
-
       case "objectList":
         return this.renderObjectList(field.objectListConfigs, attrs);
 
@@ -827,19 +708,14 @@ export default class Field extends React.Component<Props, State> {
   }
 
   render() {
-    const { field, error, isSubField } = this.props;
+    const { field, error } = this.props;
     const { isAttachingFile } = this.state;
 
     const fieldStyle = () => {
-      if (field.column && !isSubField) {
+      if (field.column) {
         return {
           width: `${100 / field.column}%`,
           display: "inline-block",
-        };
-      }
-      if (!field.subFields || field.subFields.length !== 0) {
-        return {
-          paddingRight: "0",
         };
       }
     };
@@ -854,10 +730,7 @@ export default class Field extends React.Component<Props, State> {
         <span className="error">{error && error.text}</span>
 
         {field.description ? (
-          <div
-            className="description"
-            dangerouslySetInnerHTML={{ __html: field.description }}
-          />
+          <span className="description">{field.description}</span>
         ) : null}
 
         {this.renderAddButton()}
