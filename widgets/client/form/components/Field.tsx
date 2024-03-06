@@ -543,7 +543,7 @@ export default class Field extends React.Component<Props, State> {
         });
 
       case "location":
-        return Field.renderSelect(COUNTRIES, {
+        return Field.renderSelect([COUNTRIES as any], {
           onChange: this.onSelectChange,
           id: field._id,
           value: String(value),
