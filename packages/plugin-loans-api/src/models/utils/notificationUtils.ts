@@ -60,7 +60,7 @@ export async function sendNotification(
       action: 'sendEmail',
       data: {
         toEmails: [customer.email],
-        fromEmail: 'info@saashq.io',
+        fromEmail: 'info@saashq.org',
         title: `Мэдэгдэл`,
         customHtmlData: generateTemplate(invoice, contract),
       },
