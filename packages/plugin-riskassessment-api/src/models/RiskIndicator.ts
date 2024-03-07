@@ -186,7 +186,7 @@ export const loadRiskIndicators = (models: IModels, subdomain: string) => {
 
     public static async riskIndicatorAdd(params: IRiskIndicatorsField) {
       try {
-        await validRiskIndicators(params);
+        await validRiskIndicators(models, params);
       } catch (e) {
         throw new Error(e.message);
       }
@@ -215,7 +215,7 @@ export const loadRiskIndicators = (models: IModels, subdomain: string) => {
 
       try {
         return await models.RiskIndicators.findByIdAndUpdate(_id, {
-          ...(doc as string[]),
+          ...doc,
           modifiedAt: new Date(),
         });
       } catch (e) {
@@ -234,7 +234,7 @@ export const loadRiskIndicators = (models: IModels, subdomain: string) => {
       const { _id, name, forms, ...indicatorDoc } = indicator;
 
       const newForms = await Promise.all(
-        Object(forms).map(async (form: { formId: string }) => {
+        forms!.map(async (form) => {
           const newForm = await sendFormsMessage({
             subdomain,
             action: 'duplicate',
