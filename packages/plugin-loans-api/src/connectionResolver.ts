@@ -44,8 +44,11 @@ import {
   loanStoredInterestClass,
 } from './models/storedInterest';
 import { IStoredInterestDocument } from './models/definitions/storedInterest';
-import { IPurposeDocument } from './models/definitions/loanPurpose';
-import { IPurposeTypeDocument } from './models/definitions/loanPurposeType';
+import { IPurpose, IPurposeDocument } from './models/definitions/loanPurpose';
+import {
+  IPurposeType,
+  IPurposeTypeDocument,
+} from './models/definitions/loanPurposeType';
 //#endregion
 
 export interface IModels {
@@ -70,10 +73,8 @@ export interface IContext extends IMainContext {
   models: IModels;
 }
 
-export let models: IModels | null = null;
-
 export const loadClasses = (db: mongoose.Connection): IModels => {
-  models = {} as IModels;
+  const models = {} as IModels;
 
   models.PeriodLocks = db.model<IPeriodLockDocument, IPeriodLockModel>(
     'loan_period_locks',
@@ -141,20 +142,17 @@ export const loadClasses = (db: mongoose.Connection): IModels => {
     loanStoredInterestClass(models),
   ) as IStoredInterestModel;
 
-  models.LoanPurpose = db.model<IPurposeDocument, IPurposeModel>(
+  models.LoanPurpose = db.model<IPurpose, IPurposeModel>(
     'loan_purpose',
-    loadPurposeClass(models) as any,
-  ) as any;
+    loadPurposeClass(models),
+  ) as IPurposeModel;
 
-  models.LoanPurposeType = db.model<IPurposeTypeDocument, IPurposeTypeModel>(
+  models.LoanPurposeType = db.model<IPurposeType, IPurposeTypeModel>(
     'loan_purpose_type',
-    loadPurposeTypeClass(models) as any,
-  ) as any;
+    loadPurposeTypeClass(models),
+  ) as IPurposeTypeModel;
 
   return models;
 };
 
-export const generateModels = createGenerateModels<IModels>(
-  models,
-  loadClasses,
-);
+export const generateModels = createGenerateModels<IModels>(loadClasses);

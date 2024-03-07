@@ -2,13 +2,13 @@ import { ISchedule, scheduleSchema } from './definitions/schedules';
 import { IScheduleDocument } from './definitions/schedules';
 import { Model } from 'mongoose';
 import { IModels } from '../connectionResolver';
-//import { FilterQuery } from 'mongodb';
+import { FilterQuery } from 'mongodb';
 export interface IScheduleModel extends Model<IScheduleDocument> {
   getLastSchedule(
     contractId: string,
     payDate: Date,
   ): Promise<IScheduleDocument>;
-  getSchedule(selector: any);
+  getSchedule(selector: FilterQuery<IScheduleDocument>);
   createSchedule(doc: ISchedule);
   updateSchedule(_id: string, doc: IScheduleDocument);
   removeSchedule(_ids: string[]);
@@ -20,7 +20,7 @@ export const loadScheduleClass = (models: IModels) => {
      * Get Schedule Cagegory
      */
 
-    public static async getSchedule(selector: any) {
+    public static async getSchedule(selector: FilterQuery<IScheduleDocument>) {
       const schedule = await models.Schedules.findOne(selector);
 
       if (!schedule) {
@@ -50,7 +50,7 @@ export const loadScheduleClass = (models: IModels) => {
      * Remove Schedule
      */
     public static async removeSchedule(_ids: string[]) {
-      return models.Schedules.deleteMany({ _id: _ids as any });
+      return models.Schedules.deleteMany({ _id: _ids });
     }
 
     /**

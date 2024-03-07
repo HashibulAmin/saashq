@@ -23,7 +23,6 @@ import {
 import { createGenerateModels } from '@saashq/api-utils/src/core';
 
 export interface IModels {
-  models: mongoose.Model<IFormDocument, {}, {}>;
   Fields: IFieldModel;
   FieldsGroups: IFieldGroupModel;
   Forms: IFormModel;
@@ -35,13 +34,11 @@ export interface IContext extends IMainContext {
   models: IModels;
 }
 
-export let models: IModels | null = null;
-
 export const loadClasses = (
   db: mongoose.Connection,
   subdomain: string,
 ): IModels => {
-  models = {} as IModels;
+  const models = {} as IModels;
 
   models.Fields = db.model<IFieldDocument, IFieldModel>(
     'form_fields',
@@ -51,7 +48,7 @@ export const loadClasses = (
     'fields_groups',
     loadGroupClass(models),
   );
-  models.Forms = db.model<IFormDocument, any, any>(
+  models.Forms = db.model<IFormDocument, IFormModel>(
     'forms',
     loadFormClass(models),
   );
@@ -63,7 +60,4 @@ export const loadClasses = (
   return models;
 };
 
-export const generateModels = createGenerateModels<IModels>(
-  models,
-  loadClasses,
-);
+export const generateModels = createGenerateModels<IModels>(loadClasses);

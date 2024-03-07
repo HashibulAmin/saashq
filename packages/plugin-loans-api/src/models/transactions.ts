@@ -15,15 +15,14 @@ import {
 import { Model } from 'mongoose';
 import { ITransactionDocument } from './definitions/transactions';
 import { IModels } from '../connectionResolver';
-//import { FilterQuery } from 'mongodb';
+import { FilterQuery } from 'mongodb';
 import { IContractDocument } from './definitions/contracts';
 import { getPureDate } from '@saashq/api-utils/src';
 import { createEbarimt } from './utils/ebarimtUtils';
 import { getFullDate } from './utils/utils';
-import { IScheduleDocument } from './definitions/schedules';
 
 export interface ITransactionModel extends Model<ITransactionDocument> {
-  getTransaction(selector: any);
+  getTransaction(selector: FilterQuery<ITransactionDocument>);
   createTransaction(
     subdomain: string,
     doc: ITransaction,
@@ -52,7 +51,9 @@ export const loadTransactionClass = (models: IModels) => {
      * Get Transaction
      */
 
-    public static async getTransaction(selector: any) {
+    public static async getTransaction(
+      selector: FilterQuery<ITransactionDocument>,
+    ) {
       const transaction = await models.Transactions.findOne(selector);
 
       if (!transaction) {
@@ -82,10 +83,7 @@ export const loadTransactionClass = (models: IModels) => {
         .sort({ date: -1 })
         .lean();
 
-      if (
-        periodLock &&
-        !periodLock?.excludeContracts.includes(doc.contractId as string)
-      )
+      if (periodLock && !periodLock?.excludeContracts.includes(doc.contractId))
         throw new Error(
           'At this moment transaction can not been created because this date closed',
         );
@@ -227,10 +225,7 @@ export const loadTransactionClass = (models: IModels) => {
         .sort({ date: -1 })
         .lean();
 
-      if (
-        periodLock &&
-        !periodLock?.excludeContracts.includes(doc.contractId as string)
-      )
+      if (periodLock && !periodLock?.excludeContracts.includes(doc.contractId))
         throw new Error(
           'At this moment transaction can not been created because this date closed',
         );
@@ -309,12 +304,12 @@ export const loadTransactionClass = (models: IModels) => {
 
       const preSchedules = await models.Schedules.find({
         contractId: contract._id,
-        payDate: { $lt: oldSchedule?.payDate },
+        payDate: { $lt: oldSchedule.payDate },
       }).lean();
 
       const noDeleteSchIds = preSchedules
         .map((item) => item._id)
-        .concat([oldSchedule?._id] as string[]);
+        .concat([oldSchedule._id]);
 
       let trReaction = oldTr.reactions.filter((item) =>
         noDeleteSchIds.includes(item.scheduleId),
@@ -336,17 +331,11 @@ export const loadTransactionClass = (models: IModels) => {
       );
       let newTr = await models.Transactions.getTransaction({ _id });
 
-      let newBalance = 0;
-      if (
-        oldSchedule?.balance !== undefined &&
-        oldSchedule?.didPayment !== undefined
-      ) {
-        newBalance =
-          oldSchedule?.balance + oldSchedule?.didPayment - doc.payment;
-      }
+      const newBalance =
+        oldSchedule.balance + oldSchedule.didPayment - doc.payment;
 
       await models.Schedules.updateOne(
-        { _id: oldSchedule?._id },
+        { _id: oldSchedule._id },
         {
           $set: {
             payment: doc.payment,
@@ -372,7 +361,7 @@ export const loadTransactionClass = (models: IModels) => {
       );
 
       let updatedSchedule = await models.Schedules.findOne({
-        _id: oldSchedule?._id,
+        _id: oldSchedule._id,
       }).lean();
 
       const pendingSchedules = await models.Schedules.find({
@@ -383,12 +372,12 @@ export const loadTransactionClass = (models: IModels) => {
         .lean();
 
       // changed balance then after schedules are change
-      if (oldSchedule?.balance !== newBalance) {
+      if (oldSchedule.balance !== newBalance) {
         await generatePendingSchedules(
           models,
-          contract as IContractDocument,
-          { ...updatedSchedule } as IScheduleDocument,
-          pendingSchedules as IScheduleDocument[],
+          contract,
+          { ...updatedSchedule },
+          pendingSchedules,
           newTr,
           trReaction,
         );
@@ -468,7 +457,7 @@ export const loadTransactionClass = (models: IModels) => {
 
           if (
             periodLock &&
-            !periodLock?.excludeContracts.includes(oldTr.contractId as string)
+            !periodLock?.excludeContracts.includes(oldTr.contractId)
           )
             throw new Error(
               'At this moment transaction can not been created because this date closed',

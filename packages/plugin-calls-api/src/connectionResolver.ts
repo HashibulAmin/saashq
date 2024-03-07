@@ -20,12 +20,18 @@ import {
   IActiveSessionModel,
   loadActiveSessionClass,
 } from './models/ActiveSessions';
+import { ICallHistoryDocument } from './models/definitions/callHistories';
+import {
+  ICallHistoryModel,
+  loadCallHistoryClass,
+} from './models/CallHistories';
 
 export interface IModels {
   Integrations: IIntegrationModel;
   Conversations: IConversationModel;
   Customers: ICustomerModel;
   ActiveSessions: IActiveSessionModel;
+  CallHistory: ICallHistoryModel;
 }
 
 export interface IContext extends IMainContext {
@@ -33,10 +39,8 @@ export interface IContext extends IMainContext {
   models: IModels;
 }
 
-export let models: IModels | null = null;
-
 export const loadClasses = (db: mongoose.Connection): IModels => {
-  models = {} as IModels;
+  const models = {} as IModels;
 
   models.Integrations = db.model<IIntegrationDocument, IIntegrationModel>(
     'calls_integrations',
@@ -50,17 +54,18 @@ export const loadClasses = (db: mongoose.Connection): IModels => {
 
   models.Customers = db.model<ICustomerDocument, ICustomerModel>(
     'calls_customers',
-    loadCustomerClass(models) as any,
-  ) as any;
+    loadCustomerClass(models),
+  );
   models.ActiveSessions = db.model<IActiveSessionDocument, IActiveSessionModel>(
     'calls_active_sessions',
     loadActiveSessionClass(models),
+  );
+  models.CallHistory = db.model<ICallHistoryDocument, ICallHistoryModel>(
+    'calls_history',
+    loadCallHistoryClass(models),
   );
 
   return models;
 };
 
-export const generateModels = createGenerateModels<IModels>(
-  models,
-  loadClasses,
-);
+export const generateModels = createGenerateModels<IModels>(loadClasses);

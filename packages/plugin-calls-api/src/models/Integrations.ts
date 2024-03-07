@@ -8,6 +8,7 @@ import { IModels } from '../connectionResolver';
 
 export interface IIntegrationModel extends Model<IIntegrationDocument> {
   getIntegrations(userId: string): Promise<IIntegrationDocument>;
+  getIntegration(userId: string): Promise<IIntegrationDocument>;
 }
 
 export const loadIntegrationClass = (models: IModels) => {
@@ -20,14 +21,23 @@ export const loadIntegrationClass = (models: IModels) => {
       if (!integrations) {
         return [];
       }
-      const filteredIntegrations = integrations.map((integration: any) => {
-        const filteredOperators = integration.operators.filter(
-          (operator) => operator.userId === userId,
-        );
-        return { ...integration, operators: filteredOperators };
-      });
+      const filteredIntegrations = integrations.map(
+        (integration: IIntegration) => {
+          const filteredOperators = integration.operators.filter(
+            (operator) => operator.userId === userId,
+          );
+          return { ...integration, operators: filteredOperators };
+        },
+      );
 
       return filteredIntegrations;
+    }
+    public static async getIntegration(userId: string) {
+      const integration = await models.Integrations.findOne({
+        'operators.userId': userId,
+      });
+
+      return integration;
     }
   }
 

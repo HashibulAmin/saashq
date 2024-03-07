@@ -14,7 +14,6 @@ export interface IClassificationDocument extends IClassification, Document {
   _id: string;
   createdAt?: Date;
   createdBy?: string;
-  dtl: any;
 }
 
 export const classificationSchema = schemaHooksWrapper(

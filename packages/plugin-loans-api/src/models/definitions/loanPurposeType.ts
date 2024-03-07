@@ -2,7 +2,6 @@ import { Document, Schema } from 'mongoose';
 import { schemaHooksWrapper, field } from './utils';
 
 export interface IPurposeType {
-  _id: string;
   name: string;
 }
 

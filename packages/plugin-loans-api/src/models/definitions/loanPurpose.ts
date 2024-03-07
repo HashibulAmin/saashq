@@ -2,7 +2,6 @@ import { Document, Schema } from 'mongoose';
 import { field } from './utils';
 
 export interface IPurpose {
-  _id: string;
   name: string;
   typeId: string;
 }

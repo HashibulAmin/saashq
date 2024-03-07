@@ -36,7 +36,7 @@ export async function massChangeClassification(
 ) {
   const contractTypes: IContractTypeDocument[] =
     await models.ContractTypes.find({
-      _id: contracts.map((a) => a.contractTypeId) as any,
+      _id: contracts.map((a) => a.contractTypeId),
     }).lean();
 
   for await (const contract of contracts) {

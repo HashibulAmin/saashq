@@ -10,7 +10,6 @@ export interface IDefaultScheduleParam {
 }
 
 export interface ISchedule {
-  [x: string]: any;
   contractId: string;
   version: string;
   createdAt: Date;

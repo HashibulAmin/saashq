@@ -729,13 +729,7 @@ export const trAfterSchedule = async (
 
   // closed contract
   if (!pendingSchedules || !pendingSchedules.length) {
-    await betweenScheduled(
-      models,
-      contract,
-      tr,
-      preSchedule as IScheduleDocument,
-      pendingSchedules as IScheduleDocument[],
-    );
+    await betweenScheduled(models, contract, tr, preSchedule, pendingSchedules);
     return;
   }
 
@@ -750,37 +744,25 @@ export const trAfterSchedule = async (
       contractId: contract._id,
       debt: contract.debt,
       balance: contract.leaseAmount,
-    } as any;
+    };
   }
 
-  const prePayDate = preSchedule?.payDate;
+  const prePayDate = preSchedule.payDate;
 
   // wrong date
-  if (prePayDate && trDate < prePayDate) {
+  if (trDate < prePayDate) {
     throw new Error('transaction is not valid date');
   }
 
   // one day multi pay
-  if (getDiffDay(trDate, prePayDate as Date) === 0) {
-    await onPreScheduled(
-      models,
-      contract,
-      tr,
-      preSchedule as IScheduleDocument,
-      pendingSchedules as IScheduleDocument[],
-    );
+  if (getDiffDay(trDate, prePayDate) === 0) {
+    await onPreScheduled(models, contract, tr, preSchedule, pendingSchedules);
     return;
   }
 
   // between
   if (trDate < nextPayDate) {
-    await betweenScheduled(
-      models,
-      contract,
-      tr,
-      preSchedule as IScheduleDocument,
-      pendingSchedules as IScheduleDocument[],
-    );
+    await betweenScheduled(models, contract, tr, preSchedule, pendingSchedules);
     return;
   }
 
@@ -790,9 +772,9 @@ export const trAfterSchedule = async (
       models,
       contract,
       tr,
-      preSchedule as IScheduleDocument,
-      nextSchedule as IScheduleDocument,
-      pendingSchedules as IScheduleDocument[],
+      preSchedule,
+      nextSchedule,
+      pendingSchedules,
     );
     return;
   }
@@ -802,9 +784,9 @@ export const trAfterSchedule = async (
     models,
     contract,
     tr,
-    preSchedule as IScheduleDocument,
-    nextSchedule as IScheduleDocument,
-    pendingSchedules as IScheduleDocument[],
+    preSchedule,
+    nextSchedule,
+    pendingSchedules,
   );
   return;
 };
@@ -825,7 +807,7 @@ export const removeTrAfterSchedule = async (
     return;
   }
 
-  const nextTrsCount = await models.Transactions.countDocuments({
+  const nextTrsCount = await models.Transactions.count({
     contractId: tr.contractId,
     payDate: { $gt: tr.payDate },
   }).lean();
