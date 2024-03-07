@@ -9,9 +9,6 @@ import { pageReplacer } from './utils';
 const permissions = require('./permissions');
 import app from '@saashq/api-utils/src/app';
 
-export let mainDb;
-export let debug;
-
 export default {
   name: 'webbuilder',
   permissions,
@@ -32,12 +29,8 @@ export default {
 
     return context;
   },
-  onServerInit: async (options) => {
-    mainDb = options.db;
-
+  onServerInit: async () => {
     initBroker();
-
-    debug = options.debug;
 
     app.get('/:sitename', async (req, res) => {
       const { sitename } = req.params;
@@ -192,7 +185,7 @@ export default {
     });
 
     app.get('/demo/:templateId', async (req, res) => {
-      const HELPERS_DOMAIN = `https://helper.saashq.org`;
+      const HELPERS_DOMAIN = `https://helper.erxes.io`;
 
       const { templateId } = req.params;
 

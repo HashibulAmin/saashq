@@ -3,12 +3,12 @@ import resolvers from './graphql/resolvers';
 
 import { generateModels } from './connectionResolver';
 import { getSubdomain } from '@saashq/api-utils/src/core';
-import { getServices, getService } from '@saashq/api-utils/src/serviceDiscovery';
+import {
+  getServices,
+  getService,
+} from '@saashq/api-utils/src/serviceDiscovery';
 import { initBroker, sendCommonMessage } from './messageBroker';
 import * as permissions from './permissions';
-
-export let mainDb;
-export let debug;
 
 export default {
   name: 'documents',
@@ -260,11 +260,7 @@ export default {
     },
   ],
 
-  onServerInit: async (options) => {
-    mainDb = options.db;
-
+  onServerInit: async () => {
     initBroker();
-
-    debug = options.debug;
   },
 };

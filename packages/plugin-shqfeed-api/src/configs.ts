@@ -14,11 +14,8 @@ import segments from './segments';
 import forms from './forms';
 import app from '@saashq/api-utils/src/app';
 
-export let debug;
-export let mainDb;
-
 export default {
-  name: 'shqfeed',
+  name: 'exmfeed',
   permissions,
   graphql: async () => {
     return {
@@ -36,9 +33,7 @@ export default {
     return context;
   },
 
-  onServerInit: async (options) => {
-    mainDb = options.db;
-
+  onServerInit: async () => {
     app.get('/trigger-cron', async (req, res) => {
       const subdomain = getSubdomain(req);
 
@@ -49,8 +44,6 @@ export default {
     });
 
     initBroker();
-
-    debug = options.debug;
   },
 
   meta: { cronjobs, automations, segments, forms },

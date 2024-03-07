@@ -12,9 +12,6 @@ import { getSubdomain } from '@saashq/api-utils/src/core';
 import webhooks from './webhooks';
 import app from '@saashq/api-utils/src/app';
 
-export let mainDb;
-export let debug;
-
 export default {
   name: 'engages',
   permissions,
@@ -38,14 +35,10 @@ export default {
 
     return context;
   },
-  onServerInit: async (options) => {
-    mainDb = options.db;
-
+  onServerInit: async () => {
     // Insert routes below
     app.use('/telnyx', telnyx);
 
     initBroker();
-
-    debug = options.debug;
   },
 };

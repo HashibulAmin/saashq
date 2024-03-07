@@ -1,10 +1,9 @@
-import { debug } from './configs';
 import { getCollection } from './models/utils';
 import { CARD_PROPERTIES_INFO, MODULE_NAMES } from './constants';
 import { generateModels, IModels } from './connectionResolver';
 import { sendCoreMessage } from './messageBroker';
 import { IUserDocument } from '@saashq/api-utils/src/types';
-import { IPipeline } from './models/definitions/boards';
+import { debugError } from '@saashq/api-utils/src/debuggers';
 
 export const configReplacer = (config) => {
   const now = new Date();
@@ -40,7 +39,7 @@ export const generateConditionStageIds = async (
     const pipelines = await models.Pipelines.find(
       {
         _id: {
-          $in: pipelineId ? [pipelineId] : board.pipelines || ([] as any[]),
+          $in: pipelineId ? [pipelineId] : board.pipelines || [],
         },
       },
       { _id: 1 },
@@ -50,7 +49,7 @@ export const generateConditionStageIds = async (
   }
 
   const stages = await models.Stages.find(
-    { pipelineId: pipelineIds as unknown as string },
+    { pipelineId: pipelineIds },
     { _id: 1 },
   );
 
@@ -227,7 +226,7 @@ export const getContentTypeDetail = async (subdomain, data) => {
         break;
     }
   } catch (e) {
-    debug.error(e.message);
+    debugError(e.message);
 
     return e.message;
   }
@@ -383,7 +382,7 @@ export const generateSystemFields = ({ data: { groupId, type } }) => {
       groupId,
       options: e.options,
       contentType: `cards:${type}`,
-      isDefinedBySaasHQ: true,
+      isDefinedByErxes: true,
     });
   });
 

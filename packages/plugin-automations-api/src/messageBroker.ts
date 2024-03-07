@@ -3,21 +3,19 @@ import type {
   MessageArgsOmitService,
   MessageArgs,
 } from '@saashq/api-utils/src/core';
-import { debugBase } from '@saashq/api-utils/src/debuggers';
-import { setTimeout } from 'timers';
 import { playWait } from './actions';
 import {
   checkWaitingResponseAction,
   doWaitingResponseAction,
-  setActionWait,
 } from './actions/wait';
 import { generateModels } from './connectionResolver';
 import { receiveTrigger } from './utils';
 import { consumeQueue } from '@saashq/api-utils/src/messageBroker';
+import { debugInfo } from '@saashq/api-utils/src/debuggers';
 
 export const initBroker = async () => {
   consumeQueue('automations:trigger', async ({ subdomain, data }) => {
-    debugBase(`Receiving queue data: ${JSON.stringify(data)}`);
+    debugInfo(`Receiving queue data: ${JSON.stringify(data)}`);
 
     const models = await generateModels(subdomain);
     const { type, actionType, targets } = data;

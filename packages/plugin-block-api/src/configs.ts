@@ -3,14 +3,11 @@ import resolvers from './graphql/resolvers';
 
 import { initBroker } from './messageBroker';
 import { getSubdomain } from '@saashq/api-utils/src/core';
-import { generateModels, models } from './connectionResolver';
+import { generateModels } from './connectionResolver';
 import { routeErrorHandling } from '@saashq/api-utils/src/requests';
 import { debugInfo } from '@saashq/api-utils/src/debuggers';
 import app from '@saashq/api-utils/src/app';
 // import { getBalance, sendSms, updateBalance } from './utils';
-
-export let mainDb;
-export let debug;
 
 export default {
   name: 'block',
@@ -31,9 +28,7 @@ export default {
     return context;
   },
 
-  onServerInit: async (options) => {
-    mainDb = options.db;
-
+  onServerInit: async () => {
     app.post(
       '/tdb/receive',
       routeErrorHandling(async (req, res) => {
@@ -121,7 +116,5 @@ export default {
     );
 
     initBroker();
-
-    debug = options.debug;
   },
 };
