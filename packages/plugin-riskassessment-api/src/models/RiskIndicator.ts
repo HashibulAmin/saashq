@@ -233,28 +233,31 @@ export const loadRiskIndicators = (models: IModels, subdomain: string) => {
 
       const { _id, name, forms, ...indicatorDoc } = indicator;
 
-      const newForms = await Promise.all(
-        forms!.map(async (form) => {
-          const newForm = await sendFormsMessage({
-            subdomain,
-            action: 'duplicate',
-            data: { formId: form.formId },
-            isRPC: true,
-            defaultValue: null,
-          });
+      if (forms) {
+        const newForms = await Promise.all(
+          forms.map(async (form) => {
+            const newForm = await sendFormsMessage({
+              subdomain,
+              action: 'duplicate',
+              data: { formId: form.formId },
+              isRPC: true,
+              defaultValue: null,
+            });
 
-          return { ...form, formId: newForm._id };
-        }),
-      );
+            return { ...form, formId: newForm._id };
+          }),
+        );
 
-      return await models.RiskIndicators.create({
-        ...indicatorDoc,
-        name: `${name}-copied`,
-        createdAt: new Date(),
-        modifiedAt: new Date(),
-        forms: newForms,
-      });
+        return await models.RiskIndicators.create({
+          ...indicatorDoc,
+          name: `${name}-copied`,
+          createdAt: new Date(),
+          modifiedAt: new Date(),
+          forms: newForms,
+        });
+      }
     }
+
     public static async riskIndicatorDetail(params: {
       _id: string;
       fieldsSkip: any;
