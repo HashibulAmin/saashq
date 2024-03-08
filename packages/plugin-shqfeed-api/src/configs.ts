@@ -45,5 +45,5 @@ export default {
   },
   setupMessageConsumers,
 
-  meta: { cronjobs, automations, segments, forms },
+  meta: { cronjobs, automations, segments, forms, permissions },
 };
