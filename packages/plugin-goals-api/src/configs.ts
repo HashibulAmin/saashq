@@ -2,7 +2,7 @@ import typeDefs from './graphql/typeDefs';
 import resolvers from './graphql/resolvers';
 import { generateModels } from './connectionResolver';
 
-import { initBroker } from './messageBroker';
+import { setupMessageConsumers } from './messageBroker';
 import { getSubdomain } from '@saashq/api-utils/src/core';
 
 export default {
@@ -28,9 +28,8 @@ export default {
     return context;
   },
 
-  onServerInit: async () => {
-    initBroker();
-  },
+  onServerInit: async () => {},
+  setupMessageConsumers,
 
   meta: {},
 };

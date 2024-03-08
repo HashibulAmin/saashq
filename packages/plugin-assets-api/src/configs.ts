@@ -1,7 +1,7 @@
 import typeDefs from './graphql/typeDefs';
 import resolvers from './dataloaders/resolvers';
 
-import { initBroker } from './messageBroker';
+import { setupMessageConsumers } from './messageBroker';
 import { getSubdomain } from '@saashq/api-utils/src/core';
 import { generateModels } from './connectionResolver';
 import { generateAllDataLoaders } from './dataloaders';
@@ -41,7 +41,6 @@ export default {
     forms,
   },
 
-  onServerInit: async () => {
-    initBroker();
-  },
+  onServerInit: async () => {},
+  setupMessageConsumers,
 };

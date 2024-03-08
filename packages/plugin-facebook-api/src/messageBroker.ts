@@ -28,7 +28,7 @@ import {
 
 dotenv.config();
 
-export const initBroker = async () => {
+export const setupMessageConsumers = async () => {
   consumeRPCQueue(
     'facebook:getAccounts',
     async ({ subdomain, data: { kind } }) => {

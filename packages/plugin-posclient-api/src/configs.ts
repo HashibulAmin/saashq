@@ -2,7 +2,7 @@ import typeDefs from './graphql/typeDefs';
 import * as cors from 'cors';
 import resolvers from './graphql/resolvers';
 import { generateModels } from './connectionResolver';
-import { initBroker } from './messageBroker';
+import { setupMessageConsumers } from './messageBroker';
 import { getSubdomain } from '@saashq/api-utils/src/core';
 import { posInitialSetup } from './routes';
 import * as cookieParser from 'cookie-parser';
@@ -91,9 +91,6 @@ export default {
     }),
   ],
 
-  onServerInit: async () => {
-    initBroker();
-  },
-
-  reconnectRMQ: initBroker,
+  onServerInit: async () => {},
+  setupMessageConsumers,
 };

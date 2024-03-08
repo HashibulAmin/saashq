@@ -1,6 +1,6 @@
 import typeDefs from './graphql/typeDefs';
 import resolvers from './graphql/resolvers';
-import { initBroker } from './messageBroker';
+import { setupMessageConsumers } from './messageBroker';
 
 import { generateModels } from './connectionResolver';
 import logs from './logUtils';
@@ -29,7 +29,6 @@ export default {
     return context;
   },
 
-  onServerInit: async () => {
-    initBroker();
-  },
+  onServerInit: async () => {},
+  setupMessageConsumers,
 };

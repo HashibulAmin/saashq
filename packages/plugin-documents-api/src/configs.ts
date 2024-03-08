@@ -7,7 +7,7 @@ import {
   getServices,
   getService,
 } from '@saashq/api-utils/src/serviceDiscovery';
-import { initBroker, sendCommonMessage } from './messageBroker';
+import { setupMessageConsumers, sendCommonMessage } from './messageBroker';
 import * as permissions from './permissions';
 
 export default {
@@ -260,7 +260,6 @@ export default {
     },
   ],
 
-  onServerInit: async () => {
-    initBroker();
-  },
+  onServerInit: async () => {},
+  setupMessageConsumers,
 };

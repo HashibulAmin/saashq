@@ -3,7 +3,7 @@ import { getSubdomain } from '@saashq/api-utils/src/core';
 import typeDefs from './graphql/typeDefs';
 import resolvers from './graphql/resolvers';
 
-import { initBroker } from './messageBroker';
+import { setupMessageConsumers } from './messageBroker';
 import { generateModels } from './connectionResolver';
 import exporter from './exporter';
 import segments from './segment';
@@ -30,9 +30,8 @@ export default {
     return context;
   },
 
-  onServerInit: async () => {
-    initBroker();
-  },
+  onServerInit: async () => {},
+  setupMessageConsumers,
   meta: {
     exporter,
     forms,

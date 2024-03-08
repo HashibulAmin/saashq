@@ -6,7 +6,7 @@ import type {
 import { consumeQueue } from '@saashq/api-utils/src/messageBroker';
 import { isEnabled } from '@saashq/api-utils/src/serviceDiscovery';
 import { sendRPCMessage as sendRPCMessageCore } from '@saashq/api-utils/src/messageBroker';
-export const initBroker = async () => {};
+export const setupMessageConsumers = async () => {};
 
 export const sendRPCMessage = async (message): Promise<any> => {
   return sendRPCMessageCore('rpc_queue:api_to_integrations', message);

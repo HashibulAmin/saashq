@@ -9,8 +9,8 @@ import {
   validateConfig,
 } from '../../utils/syncUtils';
 import { IContext } from '../../../connectionResolver';
-import { init as initBrokerMain } from '@saashq/api-utils/src/messageBroker';
-import { initBroker, sendPosMessage } from '../../../messageBroker';
+import { connectToMessageBroker } from '@saashq/api-utils/src/messageBroker';
+import { setupMessageConsumers, sendPosMessage } from '../../../messageBroker';
 import { IOrderItemDocument } from '../../../models/definitions/orderItems';
 import fetch from 'node-fetch';
 import { IPutResponseDocument } from '../../../models/definitions/putResponses';
@@ -58,17 +58,12 @@ const configMutations = {
       throw new Error(e.message);
     }
 
-    await initBrokerMain(initBroker);
-
-    await initBroker()
-      .then(() => {
-        console.log('Message broker has started.');
-      })
-      .catch((e) => {
-        console.log(
-          `Error occurred when starting message broker: ${e.message}`,
-        );
-      });
+    try {
+      await connectToMessageBroker(setupMessageConsumers);
+      console.log('Message broker has started.');
+    } catch (e) {
+      console.log(`Error occurred when starting message broker: ${e.message}`);
+    }
 
     return config;
   },
@@ -148,11 +143,9 @@ const configMutations = {
     };
 
     let sumCount = await models.Orders.find({
-      ...(orderFilter as unknown as string[]),
+      ...orderFilter,
     }).countDocuments();
-    const orders = await models.Orders.find({
-      ...(orderFilter as unknown as string[]),
-    })
+    const orders = await models.Orders.find({ ...orderFilter })
       .sort({ paidDate: 1 })
       .limit(100)
       .lean();

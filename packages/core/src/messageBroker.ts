@@ -1,6 +1,6 @@
 import {
   InterMessage,
-  init as initBrokerCore,
+  connectToMessageBroker,
 } from '@saashq/api-utils/src/messageBroker';
 import { sendMessage } from '@saashq/api-utils/src/core';
 import type {
@@ -39,8 +39,10 @@ import {
 } from '@saashq/api-utils/src/messageBroker';
 
 export const initBroker = async (): Promise<void> => {
-  await initBrokerCore();
+  await connectToMessageBroker(setupMessageConsumers);
+};
 
+export const setupMessageConsumers = async (): Promise<void> => {
   consumeQueue(
     'core:manage-installation-notification',
     async ({
@@ -52,7 +54,7 @@ export const initBroker = async (): Promise<void> => {
       const models = await generateModels(subdomain);
 
       if (type === 'uninstall' && message === 'done') {
-        await models.InstallationLogs.deleteOne({ pluginName: name });
+        await models.InstallationLogs.deleteMany({ pluginName: name });
         return;
       }
 
@@ -62,7 +64,7 @@ export const initBroker = async (): Promise<void> => {
       });
 
       if (message === 'done') {
-        await models.InstallationLogs.deleteOne({
+        await models.InstallationLogs.deleteMany({
           pluginName: name,
           message: { $ne: 'done' },
         });

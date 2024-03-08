@@ -3,7 +3,7 @@ import resolvers from './graphql/resolvers';
 
 import { generateModels } from './connectionResolver';
 import { getSubdomain } from '@saashq/api-utils/src/core';
-import { initBroker, sendCoreMessage } from './messageBroker';
+import { setupMessageConsumers, sendCoreMessage } from './messageBroker';
 import * as permissions from './permissions';
 import { checkFilePermission } from './utils';
 
@@ -62,7 +62,6 @@ export default {
     context.models = await generateModels(subdomain);
   },
 
-  onServerInit: async () => {
-    initBroker();
-  },
+  onServerInit: async () => {},
+  setupMessageConsumers,
 };

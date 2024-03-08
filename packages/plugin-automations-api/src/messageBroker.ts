@@ -13,7 +13,7 @@ import { receiveTrigger } from './utils';
 import { consumeQueue } from '@saashq/api-utils/src/messageBroker';
 import { debugInfo } from '@saashq/api-utils/src/debuggers';
 
-export const initBroker = async () => {
+export const setupMessageConsumers = async () => {
   consumeQueue('automations:trigger', async ({ subdomain, data }) => {
     debugInfo(`Receiving queue data: ${JSON.stringify(data)}`);
 

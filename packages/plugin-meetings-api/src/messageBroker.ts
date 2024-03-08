@@ -1,5 +1,8 @@
 import { sendMessage } from '@saashq/api-utils/src/core';
-import { MessageArgs, MessageArgsOmitService } from '@saashq/api-utils/src/core';
+import {
+  MessageArgs,
+  MessageArgsOmitService,
+} from '@saashq/api-utils/src/core';
 
 import { IContext as IMainContext } from '@saashq/api-utils/src';
 import { IModels } from './connectionResolver';
@@ -9,7 +12,7 @@ export interface IContext extends IMainContext {
   models: IModels;
 }
 
-export const initBroker = async () => {};
+export const setupMessageConsumers = async () => {};
 
 export const sendCommonMessage = async (
   args: MessageArgs & { serviceName: string },

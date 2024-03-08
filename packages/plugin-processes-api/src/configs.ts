@@ -7,7 +7,7 @@ import { getSubdomain } from '@saashq/api-utils/src/core';
 import beforeResolvers from './beforeResolvers';
 import documents from './documents';
 import logs from './logUtils';
-import { initBroker } from './messageBroker';
+import { setupMessageConsumers } from './messageBroker';
 
 export default {
   name: 'processes',
@@ -26,14 +26,8 @@ export default {
 
     return context;
   },
-  onServerInit: async () => {
-    await generateModels('os');
-
-    initBroker();
-
-    // es = options.elasticsearch;
-  },
-
+  onServerInit: async () => {},
+  setupMessageConsumers,
   meta: {
     logs: { consumers: logs },
     beforeResolvers,

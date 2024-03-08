@@ -3,7 +3,7 @@ import * as serverTiming from 'server-timing';
 import typeDefs from './graphql/typeDefs';
 import resolvers from './graphql/resolvers';
 import * as cookieParser from 'cookie-parser';
-import { initBroker, sendSegmentsMessage } from './messageBroker';
+import { setupMessageConsumers, sendSegmentsMessage } from './messageBroker';
 import * as permissions from './permissions';
 import { routeErrorHandling } from '@saashq/api-utils/src/requests';
 import { getSubdomain } from '@saashq/api-utils/src/core';
@@ -51,7 +51,6 @@ export default {
     return context;
   },
   middlewares: [(serverTiming as any)(), cookieParser(), cpUserMiddleware],
-  onServerInit: async () => {
-    initBroker();
-  },
+  onServerInit: async () => {},
+  setupMessageConsumers,
 };

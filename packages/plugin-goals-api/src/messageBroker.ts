@@ -6,7 +6,7 @@ import type {
   MessageArgsOmitService,
 } from '@saashq/api-utils/src/core';
 
-export const initBroker = async () => {
+export const setupMessageConsumers = async () => {
   consumeRPCQueue('goals:find', async ({ subdomain, data }) => {
     const models = await generateModels(subdomain);
 

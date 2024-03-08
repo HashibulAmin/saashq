@@ -1,5 +1,8 @@
 import { sendMessage } from '@saashq/api-utils/src/core';
-import { MessageArgs, MessageArgsOmitService } from '@saashq/api-utils/src/core';
+import {
+  MessageArgs,
+  MessageArgsOmitService,
+} from '@saashq/api-utils/src/core';
 import { generateModels } from './connectionResolver';
 import { afterMutationHandlers } from './afterMutations';
 import {
@@ -7,7 +10,7 @@ import {
   consumeRPCQueue,
 } from '@saashq/api-utils/src/messageBroker';
 
-export const initBroker = async () => {
+export const setupMessageConsumers = async () => {
   consumeRPCQueue('grants:requests.find', async ({ subdomain, data }) => {
     const models = await generateModels(subdomain);
 

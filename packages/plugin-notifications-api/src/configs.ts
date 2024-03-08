@@ -1,7 +1,7 @@
 import typeDefs from './graphql/typeDefs';
 import resolvers from './graphql/resolvers';
 
-import { initBroker } from './messageBroker';
+import { setupMessageConsumers } from './messageBroker';
 import { generateModels } from './connectionResolver';
 import { getSubdomain } from '@saashq/api-utils/src/core';
 import automations from './automations';
@@ -29,9 +29,8 @@ export default {
     context.models = await generateModels(subdomain);
   },
 
-  onServerInit: async () => {
-    initBroker();
-  },
+  onServerInit: async () => {},
+  setupMessageConsumers,
 
   meta: { automations },
 };
