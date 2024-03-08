@@ -11,7 +11,7 @@ import {
   consumeRPCQueue,
 } from '@saashq/api-utils/src/messageBroker';
 
-export const initBroker = async () => {
+export const setupMessageConsumers = async () => {
   consumeRPCQueue(
     'loyalties:voucherCampaigns.find',
     async ({ subdomain, data }) => {

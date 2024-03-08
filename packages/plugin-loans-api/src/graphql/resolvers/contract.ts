@@ -6,7 +6,6 @@ import {
 } from '../../models/definitions/constants';
 import { IContractDocument } from '../../models/definitions/contracts';
 import { IContract } from '../../models/definitions/contracts';
-import { scheduleSchema } from '../../models/definitions/schedules';
 import { getCalcedAmounts } from '../../models/utils/transactionUtils';
 import {
   getDiffDay,
@@ -262,7 +261,7 @@ const Contracts = {
       payDate: { $lte: today },
     }).lean();
 
-    return schedules.reduce((a, b) => a + b.scheduleSchema.didPayment, 0) || 0;
+    return schedules.reduce((a, b) => a + Number(b.didPayment), 0) || 0;
   },
 
   async nextPayment(

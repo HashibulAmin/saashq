@@ -147,9 +147,9 @@ const generate = async () => {
       },
       dependencies: {
         "amqplib": "^0.8.0",
-        "create-saashq-app": "0.0.28",
+        "create-saashq-app": "1.0.12",
         "dup": "^1.0.0",
-        "saashq": "^0.3.78",
+        "saashq": "^1.6.2",
         "ip": "^1.1.5",
         "up": "^1.0.2"
       },

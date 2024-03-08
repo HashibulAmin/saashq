@@ -1,7 +1,7 @@
 import { IContext, IModels } from '../../models';
 import { IConversationMessageDocument } from '../../models/ConversationMessages';
 // import { Accounts, Messages } from '../../models';
-import { debug } from '../../configs';
+import { debugError, debugInfo } from '@saashq/api-utils/src/debuggers';
 
 interface IKind {
   kind: string;
@@ -18,7 +18,7 @@ const buildSelector = async (conversationId: string, models: IModels) => {
   const query = { conversationId: '' };
 
   const conversation = await models.Conversations.findOne({
-    saashqApiId: conversationId,
+    erxesApiId: conversationId,
   });
 
   if (conversation) {
@@ -74,8 +74,8 @@ const queries = {
       .sort({ createdAt: -1 })
       .limit(50);
 
-    // debug.error(`ConversationMessages query: ${JSON.stringify(query)}`)
-    // debug.error(`ConversationMessages: ${JSON.stringify(messages)}`)
+    // debugError(`ConversationMessages query: ${JSON.stringify(query)}`)
+    // debugError(`ConversationMessages: ${JSON.stringify(messages)}`)
 
     return messages.reverse();
   },

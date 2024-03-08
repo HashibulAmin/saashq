@@ -1,7 +1,7 @@
 import { IModels } from '../../connectionResolver';
 import { SCHEDULE_STATUS } from '../definitions/constants';
 import { IContractDocument } from '../definitions/contracts';
-import { ISchedule } from '../definitions/schedules';
+import { ISchedule, IScheduleDocument } from '../definitions/schedules';
 import { getCalcedAmounts } from './transactionUtils';
 import { getFullDate } from './utils';
 
@@ -28,7 +28,7 @@ export const getCloseInfo = async (
     } as any;
   }
 
-  if (lastPaySchedule?.payDate && lastPaySchedule?.payDate > closeDate) {
+  if (lastPaySchedule && lastPaySchedule?.payDate > closeDate) {
     throw new Error(`Wrong date: min date is ${lastPaySchedule?.payDate}`);
   }
 

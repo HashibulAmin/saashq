@@ -17,11 +17,11 @@ module.exports = {
         subscribe: withFilter(
           () => graphqlPubsub.asyncIterator('ordersOrdered'),
           (payload, variables) => {
-            const { status, customerId, posToken } = payload.ordersOrdered._doc ? payload.ordersOrdered._doc : payload.ordersOrdered;
+            const { status, customerId, posToken, subToken } = payload.ordersOrdered._doc ? payload.ordersOrdered._doc : payload.ordersOrdered;
 
             if (variables.customerId) {
               return (
-                variables.posToken === posToken &&
+                (variables.posToken === posToken || variables.posToken === subToken) &&
                 variables.statuses.includes(status) &&
                 variables.customerId === customerId
               );

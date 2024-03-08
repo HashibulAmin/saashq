@@ -5,7 +5,7 @@ import type {
   MessageArgs,
 } from '@saashq/api-utils/src/core';
 
-export const initBroker = async () => {};
+export const setupMessageConsumers = async () => {};
 
 export const sendInboxMessage = async (
   args: MessageArgsOmitService,

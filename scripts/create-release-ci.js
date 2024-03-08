@@ -15,16 +15,16 @@ var releaseYaml = {
 
 	on: {
 		push: {
-			"tags": ['*']
-			// branches: ['dev', 'main']
+			"tags": ['*'],
+			"branches": ['dev', 'main']
 		}
 	},
 	jobs: {
 		release: {
-			"runs-on": "ubuntu-18.04",
+			"runs-on": "ubuntu-22.04",
 			steps: [
 				{
-					"uses": "actions/checkout@v2"
+					"uses": "actions/checkout@v4"
 				},
 				{
 					"name": "Get release version",

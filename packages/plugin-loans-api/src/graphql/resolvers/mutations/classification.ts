@@ -85,13 +85,13 @@ const classificationMutations = {
     var contractList: string[] = [];
 
     classifications.forEach((mur) => {
-      mur.dtl.forEach((a: { contractId: string }) => {
-        contractList.push(a.contractId);
+      mur.dtl?.forEach((a) => {
+        contractList.push(a.contractId as string);
       });
     });
 
     const transactions = await models.Transactions.find({
-      contractId: contractList as any,
+      contractId: contractList,
       $or: classifications.map((mur) => ({ payDate: { $gt: mur.invDate } })),
     });
 

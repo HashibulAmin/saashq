@@ -5,7 +5,7 @@ import { consumeQueue, consumeRPCQueue } from "@saashq/api-utils/src/messageBrok
 import { {Name}s } from "./models";
 
 
-export const initBroker = async () => {
+export const setupMessageConsumers = async () => {
   consumeQueue('{name}:send', async ({ data }) => {
     {Name}s.send(data);
 

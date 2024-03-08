@@ -5,7 +5,7 @@ import {
 } from './definitions/contractTypes';
 import { Model } from 'mongoose';
 import { IModels } from '../connectionResolver';
-//import { FilterQuery } from 'mongodb';
+import { FilterQuery } from 'mongoose';
 
 export const loadContractTypeClass = (models: IModels) => {
   class ContractType {
@@ -14,7 +14,9 @@ export const loadContractTypeClass = (models: IModels) => {
      * Get ContractType
      */
 
-    public static async getContractType(selector: any) {
+    public static async getContractType(
+      selector: FilterQuery<IContractTypeDocument>,
+    ) {
       const insuranceType = await models.ContractTypes.findOne(selector);
 
       if (!insuranceType) {
@@ -59,7 +61,7 @@ export const loadContractTypeClass = (models: IModels) => {
   return contractTypeSchema;
 };
 export interface IContractTypeModel extends Model<IContractTypeDocument> {
-  getContractType(selector: any);
+  getContractType(selector: FilterQuery<IContractTypeDocument>);
   createContractType(doc);
   updateContractType(_id, doc);
   removeContractTypes(_ids);

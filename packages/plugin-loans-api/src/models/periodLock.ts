@@ -5,7 +5,7 @@ import {
 } from './definitions/periodLocks';
 import { Model } from 'mongoose';
 import { IModels } from '../connectionResolver';
-//import { FilterQuery } from 'mongodb';
+import { FilterQuery } from 'mongoose';
 import { sendMessageBroker } from '../messageBroker';
 import { IStoredInterestDocument } from './definitions/storedInterest';
 import { isEnabled } from '@saashq/api-utils/src/serviceDiscovery';
@@ -17,8 +17,8 @@ export const loadPeriodLockClass = (models: IModels) => {
      * Get PeriodLock
      */
 
-    public static async getPeriodLock(selector: any) {
-      const periodLock = await models.PeriodLocks.findOne(selector as any);
+    public static async getPeriodLock(selector: FilterQuery<IPeriodLock>) {
+      const periodLock = await models.PeriodLocks.findOne(selector);
 
       if (!periodLock) {
         throw new Error('PeriodLock not found');
@@ -149,7 +149,7 @@ export const loadPeriodLockClass = (models: IModels) => {
       }
 
       await models.StoredInterest.deleteMany({
-        _id: storedInterestList.map((a) => a._id) as any,
+        _id: storedInterestList.map((a) => a._id),
       });
       return models.PeriodLocks.deleteMany({ _id: { $in: _ids } });
     }
@@ -159,7 +159,7 @@ export const loadPeriodLockClass = (models: IModels) => {
 };
 
 export interface IPeriodLockModel extends Model<IPeriodLockDocument> {
-  getPeriodLock(selector: any);
+  getPeriodLock(selector: FilterQuery<IPeriodLockDocument>);
   createPeriodLock(doc: IPeriodLock, subdomain: string);
   updatePeriodLock(_id: string, doc: IPeriodLock, subdomain: string);
   removePeriodLocks(_ids: string[]);

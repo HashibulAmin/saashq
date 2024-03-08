@@ -1,4 +1,7 @@
-import { sendMessage, MessageArgsOmitService } from '@saashq/api-utils/src/core';
+import {
+  sendMessage,
+  MessageArgsOmitService,
+} from '@saashq/api-utils/src/core';
 import { afterMutationHandlers } from './afterMutations';
 import { afterQueryHandlers } from './afterQueries';
 
@@ -11,7 +14,7 @@ import {
   consumeRPCQueue,
 } from '@saashq/api-utils/src/messageBroker';
 
-export const initBroker = async () => {
+export const setupMessageConsumers = async () => {
   consumeQueue('multierkhet:afterMutation', async ({ subdomain, data }) => {
     await afterMutationHandlers(subdomain, data);
     return;

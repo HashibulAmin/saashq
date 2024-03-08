@@ -3,7 +3,7 @@ import type { MessageArgsOmitService } from '@saashq/api-utils/src/core';
 import { generateModels } from './connectionResolver';
 import { consumeRPCQueue } from '@saashq/api-utils/src/messageBroker';
 
-export const initBroker = async () => {
+export const setupMessageConsumers = async () => {
   consumeRPCQueue('assets:assets.find', async ({ subdomain, data }) => {
     const models = await generateModels(subdomain);
 

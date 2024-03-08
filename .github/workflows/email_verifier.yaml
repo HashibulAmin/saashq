@@ -52,10 +52,6 @@ jobs:
           yarn --update-checksums
           yarn install
 
-      - name: Lint
-        run: |
-          yarn lint-staged email-verifier
-
       - name: Build
         run: |
           cd email-verifier

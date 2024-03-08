@@ -108,3 +108,5 @@ export const getPluginAddress = async (name) => {
 export const getEnabledServices = async () => {
   return enabledServices;
 };
+
+export { redis };

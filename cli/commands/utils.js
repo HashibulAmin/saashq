@@ -94,7 +94,7 @@ module.exports.downloadLatesVersion = async (configs) => {
 
   // download the latest build
   await execCurl(
-    'https://api.github.com/repos/saashq/saashq/releases/latest',
+    'https://api.github.com/repos/saashq-org/saashq/releases/latest',
     'gitInfo.json'
   );
 

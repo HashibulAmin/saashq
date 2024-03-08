@@ -397,7 +397,10 @@ export const sendReply = async (
   }
 };
 
-export const generateAttachmentMessages = (attachments: IAttachment[]) => {
+export const generateAttachmentMessages = (
+  subdomain: string,
+  attachments: IAttachment[],
+) => {
   const messages: IAttachmentMessage[] = [];
 
   for (const attachment of attachments || []) {
@@ -407,7 +410,7 @@ export const generateAttachmentMessages = (attachments: IAttachment[]) => {
       type = 'image';
     }
 
-    const url = generateAttachmentUrl(attachment.url);
+    const url = generateAttachmentUrl(subdomain, attachment.url);
 
     messages.push({
       attachment: {

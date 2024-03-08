@@ -734,7 +734,7 @@ export const trAfterSchedule = async (
       contract,
       tr,
       preSchedule as IScheduleDocument,
-      pendingSchedules as IScheduleDocument[],
+      pendingSchedules,
     );
     return;
   }
@@ -767,7 +767,7 @@ export const trAfterSchedule = async (
       contract,
       tr,
       preSchedule as IScheduleDocument,
-      pendingSchedules as IScheduleDocument[],
+      pendingSchedules,
     );
     return;
   }
@@ -779,7 +779,7 @@ export const trAfterSchedule = async (
       contract,
       tr,
       preSchedule as IScheduleDocument,
-      pendingSchedules as IScheduleDocument[],
+      pendingSchedules,
     );
     return;
   }
@@ -791,8 +791,8 @@ export const trAfterSchedule = async (
       contract,
       tr,
       preSchedule as IScheduleDocument,
-      nextSchedule as IScheduleDocument,
-      pendingSchedules as IScheduleDocument[],
+      nextSchedule,
+      pendingSchedules,
     );
     return;
   }
@@ -803,8 +803,8 @@ export const trAfterSchedule = async (
     contract,
     tr,
     preSchedule as IScheduleDocument,
-    nextSchedule as IScheduleDocument,
-    pendingSchedules as IScheduleDocument[],
+    nextSchedule,
+    pendingSchedules,
   );
   return;
 };

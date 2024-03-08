@@ -20,7 +20,7 @@ import {
 import { Model } from 'mongoose';
 import { IContractDocument } from './definitions/contracts';
 import { IModels } from '../connectionResolver';
-//import { FilterQuery } from 'mongodb';
+import { FilterQuery } from 'mongoose';
 import { ITransaction } from './definitions/transactions';
 import { IInsurancesData } from './definitions/contracts';
 import { ICollateralData } from './definitions/contracts';
@@ -41,7 +41,9 @@ const getInsurancAmount = (
   return result;
 };
 export interface IContractModel extends Model<IContractDocument> {
-  getContract(selector: any): Promise<IContractDocument>;
+  getContract(
+    selector: FilterQuery<IContractDocument>,
+  ): Promise<IContractDocument>;
   createContract(doc: IContract): Promise<IContractDocument>;
   updateContract(_id, doc: IContract): Promise<IContractDocument>;
   closeContract(subdomain, doc: ICloseVariable);
@@ -54,7 +56,9 @@ export const loadContractClass = (models: IModels) => {
      * Get Contract
      */
 
-    public static async getContract(selector: any): Promise<IContractDocument> {
+    public static async getContract(
+      selector: FilterQuery<IContractDocument>,
+    ): Promise<IContractDocument> {
       const contract = await models.Contracts.findOne(selector);
 
       if (!contract) {

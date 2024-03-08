@@ -2,12 +2,12 @@ import { IInvoice, invoiceSchema } from './definitions/invoices';
 import { IInvoiceDocument } from './definitions/invoices';
 import { Model } from 'mongoose';
 import { IModels } from '../connectionResolver';
-//import { FilterQuery } from 'mongodb';
+import { FilterQuery } from 'mongoose';
 import { CONTRACT_STATUS, LEASE_TYPES } from './definitions/constants';
 import { getFullDate } from './utils/utils';
 import { getCalcedAmounts } from './utils/transactionUtils';
 export interface IInvoiceModel extends Model<IInvoiceDocument> {
-  getInvoice(selector: any);
+  getInvoice(selector: FilterQuery<IInvoiceDocument>);
   createCreditMassInvoice(subdomain, date);
   createInvoice(doc: IInvoice);
   updateInvoice(_id: string, doc: IInvoice);
@@ -20,7 +20,7 @@ export const loadInvoiceClass = (models: IModels) => {
      * Get Invoice
      */
 
-    public static async getInvoice(selector: any) {
+    public static async getInvoice(selector: FilterQuery<IInvoiceDocument>) {
       const invoice = await models.Invoices.findOne(selector);
 
       if (!invoice) {

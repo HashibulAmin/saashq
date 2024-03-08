@@ -1,4 +1,4 @@
-import { IContext, models } from '../../connectionResolver';
+import { IContext } from '../../connectionResolver';
 import { sendCommonMessage, sendCoreMessage } from '../../messageBroker';
 import { IGrantRequest } from '../../models/definitions/grant';
 
@@ -18,7 +18,7 @@ export default {
 
     const responses = await models.Responses.find({
       requestId: request._id,
-      userId: request.userIds as any,
+      userId: request.userIds,
     });
 
     const users = await sendCoreMessage({

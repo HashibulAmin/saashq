@@ -3,7 +3,7 @@ import { MessageArgs, sendMessage } from '@saashq/api-utils/src/core';
 import { send } from './utils';
 import { consumeQueue } from '@saashq/api-utils/src/messageBroker';
 
-export const initBroker = async () => {
+export const setupMessageConsumers = async () => {
   consumeQueue('webhooks:send', async ({ subdomain, data }) => {
     const models = await generateModels(subdomain);
 

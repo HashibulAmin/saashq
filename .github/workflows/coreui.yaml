@@ -1,4 +1,4 @@
-name: UI CI
+name: CoreUI CI
 
 on:
   push:
@@ -53,7 +53,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-west-2
+          aws-region: us-east-1
 
       - name: Deploy locales
         if: github.event_name == 'push' && ( github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/staging')
@@ -62,11 +62,11 @@ jobs:
           aws s3 cp locales.tar s3://saashq-${GITHUB_REF#refs/heads/}-plugins/locales.tar
 
       - name: Deploy Core UI
-        if: github.event_name == 'push' && (github.ref == 'refs/heads/dev')
+        if: github.event_name == 'push' && ( github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/staging')
         run: |
           tar -czf build.tar --directory=packages/core-ui/dist .
           cp build.tar packages/core-ui/dist
-          aws s3 sync packages/core-ui/dist s3://saashq-dev-plugins/uis/core-ui --delete
+          aws s3 sync packages/core-ui/dist s3://saashq-${GITHUB_REF#refs/heads/}-plugins/uis/core-ui --delete
 
       - name: Build docker image
         if: github.event_name == 'push' && ( github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/staging')

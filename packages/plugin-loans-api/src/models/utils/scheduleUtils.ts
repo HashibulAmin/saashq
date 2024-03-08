@@ -328,7 +328,7 @@ export const reGenerateSchedules = async (
     (coll) => coll.insuranceTypeId,
   );
   const insuranceTypes = await models.InsuranceTypes.find({
-    _id: { $in: insuranceTypeIds as string[] },
+    _id: { $in: insuranceTypeIds },
   });
   const insuranceTypeRulesById = {};
   for (const insType of insuranceTypes) {
@@ -681,7 +681,7 @@ export const generatePendingSchedules = async (
     .lean();
 
   if (undoneSchedules.length > 0) {
-    undoneSchedules.map((schedule: any) => {
+    undoneSchedules.map((schedule: IScheduleDocument) => {
       let changeDoc = {
         scheduleDidPayment: schedule.scheduleDidPayment || 0,
         scheduleDidInterest: schedule.scheduleDidInterest || 0,
@@ -1279,7 +1279,7 @@ export const onNextScheduled = async (
   await generatePendingSchedules(
     models,
     contract,
-    { ...(updatedSchedule as any) },
+    { ...updatedSchedule } as IScheduleDocument,
     pendingSchedules.filter((s) => s._id !== nextSchedule._id),
     tr,
     trReaction,
@@ -1330,7 +1330,7 @@ export const afterNextScheduled = async (
 
   for (const skippedSchedule of skippedSchedules) {
     trReaction.push({
-      scheduleId: (skippedSchedule._id as any) || 0,
+      scheduleId: skippedSchedule._id || '0',
       preData: { status: SCHEDULE_STATUS.PENDING },
     });
   }

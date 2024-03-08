@@ -76,16 +76,12 @@ const scheduleMutations = {
 
     const firstSchedules = await models.FirstSchedules.find({
       contractId,
-      payDate: periodLock?.date
-        ? { $gt: periodLock?.date }
-        : ({ $ne: null } as any),
+      payDate: periodLock?.date ? { $gt: periodLock?.date } : { $ne: null },
     }).lean();
 
     await models.Schedules.deleteMany({
       contractId,
-      payDate: periodLock?.date
-        ? { $gt: periodLock?.date }
-        : ({ $ne: null } as any),
+      payDate: periodLock?.date ? { $gt: periodLock?.date } : { $ne: null },
     });
 
     await models.Schedules.insertMany(
@@ -105,9 +101,7 @@ const scheduleMutations = {
 
     const countTransaction = await models.Transactions.countDocuments({
       contractId,
-      payDate: periodLock?.date
-        ? { $gt: periodLock?.date }
-        : ({ $ne: null } as any),
+      payDate: periodLock?.date ? { $gt: periodLock?.date } : { $ne: null },
     });
 
     if (!countSchedules && !countTransaction) return 'ok';

@@ -2,7 +2,6 @@ import { Document, Schema } from 'mongoose';
 import { schemaHooksWrapper, field } from './utils';
 
 export interface IPurposeType {
-  _id: string;
   name: string;
 }
 
@@ -10,7 +9,7 @@ export interface IPurposeTypeDocument extends IPurposeType, Document {
   _id: string;
 }
 
-export const purposeTypeSchema = new Schema<IPurposeType>({
+export const purposeTypeSchema = new Schema<IPurposeTypeDocument>({
   _id: field({ pkey: true }),
   name: field({ type: String }),
 });

@@ -15,7 +15,7 @@ import {
 import { Model } from 'mongoose';
 import { ITransactionDocument } from './definitions/transactions';
 import { IModels } from '../connectionResolver';
-//import { FilterQuery } from 'mongodb';
+import { FilterQuery } from 'mongoose';
 import { IContractDocument } from './definitions/contracts';
 import { getPureDate } from '@saashq/api-utils/src';
 import { createEbarimt } from './utils/ebarimtUtils';
@@ -23,7 +23,7 @@ import { getFullDate } from './utils/utils';
 import { IScheduleDocument } from './definitions/schedules';
 
 export interface ITransactionModel extends Model<ITransactionDocument> {
-  getTransaction(selector: any);
+  getTransaction(selector: FilterQuery<ITransactionDocument>);
   createTransaction(
     subdomain: string,
     doc: ITransaction,
@@ -52,7 +52,9 @@ export const loadTransactionClass = (models: IModels) => {
      * Get Transaction
      */
 
-    public static async getTransaction(selector: any) {
+    public static async getTransaction(
+      selector: FilterQuery<ITransactionDocument>,
+    ) {
       const transaction = await models.Transactions.findOne(selector);
 
       if (!transaction) {
@@ -314,12 +316,11 @@ export const loadTransactionClass = (models: IModels) => {
 
       const noDeleteSchIds = preSchedules
         .map((item) => item._id)
-        .concat([oldSchedule?._id] as string[]);
+        .concat([oldSchedule?._id as string]);
 
       let trReaction = oldTr.reactions.filter((item) =>
         noDeleteSchIds.includes(item.scheduleId),
       );
-
       await removeTrAfterSchedule(models, oldTr, noDeleteSchIds);
 
       const newTotal =
@@ -336,14 +337,10 @@ export const loadTransactionClass = (models: IModels) => {
       );
       let newTr = await models.Transactions.getTransaction({ _id });
 
-      let newBalance = 0;
-      if (
-        oldSchedule?.balance !== undefined &&
-        oldSchedule?.didPayment !== undefined
-      ) {
-        newBalance =
-          oldSchedule?.balance + oldSchedule?.didPayment - doc.payment;
-      }
+      const newBalance =
+        Number(oldSchedule?.balance) +
+        Number(oldSchedule?.didPayment) -
+        doc.payment;
 
       await models.Schedules.updateOne(
         { _id: oldSchedule?._id },
@@ -372,7 +369,7 @@ export const loadTransactionClass = (models: IModels) => {
       );
 
       let updatedSchedule = await models.Schedules.findOne({
-        _id: oldSchedule?._id,
+        _id: oldSchedule?._id as string,
       }).lean();
 
       const pendingSchedules = await models.Schedules.find({
@@ -383,12 +380,12 @@ export const loadTransactionClass = (models: IModels) => {
         .lean();
 
       // changed balance then after schedules are change
-      if (oldSchedule?.balance !== newBalance) {
+      if (oldSchedule && oldSchedule.balance !== newBalance) {
         await generatePendingSchedules(
           models,
-          contract as IContractDocument,
+          contract,
           { ...updatedSchedule } as IScheduleDocument,
-          pendingSchedules as IScheduleDocument[],
+          pendingSchedules,
           newTr,
           trReaction,
         );

@@ -927,6 +927,83 @@ select.form-control:focus,
 .saashq-icon-folder {
   background-image: url("https://s3.amazonaws.com/saashq/icons/folder.svg");
 }
+
+.saashq-icon-folder-1 {
+  background-image: url("https://s3.amazonaws.com/saashq/icons/folder.svg");
+}
+
+.saashq-icon-sunset {
+  background-image: url("https://s3.amazonaws.com/saashq/icons/sunset.svg");
+}
+
+.saashq-icon-heart-alt {
+  background-image: url("https://s3.amazonaws.com/saashq/icons/heart.svg");
+}
+
+.saashq-icon-music-1 {
+  background-image: url("https://saashq.s3.amazonaws.com/icons/music.svg");
+}
+
+.saashq-icon-pencil {
+  background-image: url("https://s3.amazonaws.com/saashq/icons/pencil.svg");
+}
+
+.saashq-icon-database {
+  background-image: url("https://s3.amazonaws.com/saashq/icons/database.svg");
+}
+
+.saashq-icon-clipboard-1 {
+  background-image: url("https://s3.amazonaws.com/saashq/icons/note.svg");
+}
+
+.saashq-icon-camera {
+  background-image: url("https://s3.amazonaws.com/saashq/icons/camera.svg");
+}
+
+.saashq-icon-shuffle-1 {
+  background-image: url("https://s3.amazonaws.com/saashq/icons/shuffle.svg");
+}
+
+.saashq-icon-hourglass {
+  background-image: url("https://s3.amazonaws.com/saashq/icons/hourglass.svg");
+}
+
+.saashq-icon-envelope-alt {
+  background-image: url("https://s3.amazonaws.com/saashq/icons/envelope-alt.svg");
+}
+
+.saashq-icon-graph-bar {
+  background-image: url("https://s3.amazonaws.com/saashq/icons/graph-bar.svg");
+}
+
+.saashq-icon-comment-alt-message {
+  background-image: url("https://s3.amazonaws.com/saashq/icons/comment.svg");
+}
+
+.saashq-icon-chat {
+  background-image: url("https://s3.amazonaws.com/saashq/icons/chat.svg");
+}
+
+.saashq-icon-smile {
+  background-image: url("https://s3.amazonaws.com/saashq/icons/smile.svg");
+}
+
+.saashq-icon-wallclock {
+  background-image: url("https://s3.amazonaws.com/saashq/icons/wallclock.svg");
+}
+
+.saashq-icon-trees {
+  background-image: url("https://s3.amazonaws.com/saashq/icons/trees.svg");
+}
+
+.saashq-icon-gift {
+  background-image: url("https://s3.amazonaws.com/saashq/icons/gift.svg");
+}
+
+.saashq-icon-moon-1 {
+  background-image: url("https://s3.amazonaws.com/saashq/icons/moon-1.svg");
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -1044,6 +1121,16 @@ button.removeBtn {
 }
 .form-group .field-groups .field-group:first-child {
   border-top: none;
+}
+.form-group .field-groups .field-group .field-group-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.form-group .field-groups .field-group .field-group-row .subField-item {
+  margin-right: 20px;
+}
+.form-group .field-groups .field-group .field-group-row .subField-item:last-child {
+  margin: 0;
 }
 
 .modal-form {

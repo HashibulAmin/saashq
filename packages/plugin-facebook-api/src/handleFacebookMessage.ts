@@ -179,7 +179,10 @@ export const handleFacebookMessage = async (
         }
       }
 
-      const generatedAttachments = generateAttachmentMessages(attachments);
+      const generatedAttachments = generateAttachmentMessages(
+        subdomain,
+        attachments,
+      );
 
       for (const message of generatedAttachments) {
         try {

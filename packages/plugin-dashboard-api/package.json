@@ -1,0 +1,13 @@
+{
+  "name": "@saashq/plugin-dashboard-api",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "yarn dev",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "apollo-server-express": "3.13.0",
+    "meteor-random": "0.0.3" 
+  }
+}

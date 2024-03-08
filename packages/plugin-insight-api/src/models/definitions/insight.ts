@@ -1,21 +1,19 @@
 import { Document, Schema } from 'mongoose';
 import { field, schemaHooksWrapper } from './utils';
 
-enum IVisibilityType {
-  PUBLIC = 'public',
-  PRIVATE = 'private',
+export interface IVisibilityType {
+  type: String;
+  enum: ['public', 'private'];
 }
 
-enum IChartFilterType {
-  DATE = 'date',
-  STRING = 'string',
-  NUMBER = 'number',
+export interface IChartFilterType {
+  type: String;
+  enum: ['date', 'string', 'number'];
 }
 
-enum IChartType {
-  PIE = 'pie',
-  BAR = 'bar',
-  LINE = 'line',
+export interface IChartType {
+  type: String;
+  enum: ['pie', 'bar', 'line'];
 }
 
 export interface IDashboard {
@@ -99,7 +97,7 @@ export const dashboardSchema = schemaHooksWrapper(
     name: field({ type: String, label: 'Name' }),
     sectionId: field({ type: String, label: 'Section id' }),
     visibility: field({
-      type: IVisibilityType,
+      type: String,
       label: 'Report visibility',
     }),
     assignedUserIds: field({ type: [String], label: 'Assigned member ids' }),
@@ -179,7 +177,7 @@ export const chartSchema = schemaHooksWrapper(
       index: true,
     }),
     order: field({ type: Number, label: 'Order number' }),
-    chartType: field({ type: IChartType, label: 'Chart type' }),
+    chartType: field({ type: String, label: 'Chart type' }),
     filter: field({ type: JSON, label: 'Filters' }),
     dimension: field({ type: JSON, label: 'Dimension' }),
     defaultFilterId: field({ type: String, label: 'Default filter id' }),

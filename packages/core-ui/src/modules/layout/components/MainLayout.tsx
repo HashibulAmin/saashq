@@ -116,15 +116,15 @@ class MainLayout extends React.Component<IProps, State> {
           },
         };
 
-        // (() => {
-        //   const script = document.createElement('script');
-        //   script.src =
-        //     'https://w.office.saashq.org/build/messengerWidget.bundle.js';
-        //   script.async = true;
+        (() => {
+          const script = document.createElement('script');
+          script.src =
+            'https://w.office.saashq.org/build/messengerWidget.bundle.js';
+          script.async = true;
 
-        //   const entry = document.getElementsByTagName('script')[0] as any;
-        //   entry.parentNode.insertBefore(script, entry);
-        // })();
+          const entry = document.getElementsByTagName('script')[0] as any;
+          entry.parentNode.insertBefore(script, entry);
+        })();
       } else {
         const { REACT_APP_HIDE_MESSENGER } = getEnv();
 
@@ -229,4 +229,4 @@ class MainLayout extends React.Component<IProps, State> {
   }
 }
 
-export default withRouter<IProps>(MainLayout);
+export default withRouter<IProps, any>(MainLayout);
