@@ -729,7 +729,13 @@ export const trAfterSchedule = async (
 
   // closed contract
   if (!pendingSchedules || !pendingSchedules.length) {
-    await betweenScheduled(models, contract, tr, preSchedule, pendingSchedules);
+    await betweenScheduled(
+      models,
+      contract,
+      tr,
+      preSchedule as IScheduleDocument,
+      pendingSchedules,
+    );
     return;
   }
 
@@ -744,25 +750,37 @@ export const trAfterSchedule = async (
       contractId: contract._id,
       debt: contract.debt,
       balance: contract.leaseAmount,
-    };
+    } as any;
   }
 
-  const prePayDate = preSchedule.payDate;
+  const prePayDate = preSchedule?.payDate;
 
   // wrong date
-  if (trDate < prePayDate) {
+  if (prePayDate && trDate < prePayDate) {
     throw new Error('transaction is not valid date');
   }
 
   // one day multi pay
-  if (getDiffDay(trDate, prePayDate) === 0) {
-    await onPreScheduled(models, contract, tr, preSchedule, pendingSchedules);
+  if (getDiffDay(trDate, prePayDate as Date) === 0) {
+    await onPreScheduled(
+      models,
+      contract,
+      tr,
+      preSchedule as IScheduleDocument,
+      pendingSchedules,
+    );
     return;
   }
 
   // between
   if (trDate < nextPayDate) {
-    await betweenScheduled(models, contract, tr, preSchedule, pendingSchedules);
+    await betweenScheduled(
+      models,
+      contract,
+      tr,
+      preSchedule as IScheduleDocument,
+      pendingSchedules,
+    );
     return;
   }
 
@@ -772,7 +790,7 @@ export const trAfterSchedule = async (
       models,
       contract,
       tr,
-      preSchedule,
+      preSchedule as IScheduleDocument,
       nextSchedule,
       pendingSchedules,
     );
@@ -784,7 +802,7 @@ export const trAfterSchedule = async (
     models,
     contract,
     tr,
-    preSchedule,
+    preSchedule as IScheduleDocument,
     nextSchedule,
     pendingSchedules,
   );
@@ -807,7 +825,7 @@ export const removeTrAfterSchedule = async (
     return;
   }
 
-  const nextTrsCount = await models.Transactions.count({
+  const nextTrsCount = await models.Transactions.countDocuments({
     contractId: tr.contractId,
     payDate: { $gt: tr.payDate },
   }).lean();

@@ -1,7 +1,7 @@
 import { IModels } from '../../connectionResolver';
 import { SCHEDULE_STATUS } from '../definitions/constants';
 import { IContractDocument } from '../definitions/contracts';
-import { ISchedule } from '../definitions/schedules';
+import { ISchedule, IScheduleDocument } from '../definitions/schedules';
 import { getCalcedAmounts } from './transactionUtils';
 import { getFullDate } from './utils';
 
@@ -25,11 +25,11 @@ export const getCloseInfo = async (
     lastPaySchedule = {
       payDate: contract.startDate,
       balance: contract.leaseAmount,
-    };
+    } as any;
   }
 
-  if (lastPaySchedule.payDate > closeDate) {
-    throw new Error(`Wrong date: min date is ${lastPaySchedule.payDate}`);
+  if (lastPaySchedule && lastPaySchedule?.payDate > closeDate) {
+    throw new Error(`Wrong date: min date is ${lastPaySchedule?.payDate}`);
   }
 
   const { undue, interestEve, interestNonce, insurance } =
@@ -40,7 +40,7 @@ export const getCloseInfo = async (
 
   const pendingSchedules = await models.Schedules.find({
     contractId,
-    payDate: { $gt: lastPaySchedule.payDate },
+    payDate: { $gt: lastPaySchedule?.payDate },
     debt: { $exists: true },
   });
 
@@ -51,17 +51,17 @@ export const getCloseInfo = async (
     : 0;
 
   const result = {
-    balance: lastPaySchedule.balance,
+    balance: lastPaySchedule?.balance,
     undue,
     interest: (interestEve || 0) + (interestNonce || 0),
     interestEve,
     interestNonce,
     insurance,
-    payment: lastPaySchedule.balance,
+    payment: lastPaySchedule?.balance,
     debt,
     storedInterest: contract.storedInterest,
     total:
-      lastPaySchedule.balance +
+      lastPaySchedule?.balance +
       (undue || 0) +
       (interestEve || 0) +
       (interestNonce || 0) +

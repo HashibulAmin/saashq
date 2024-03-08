@@ -8,7 +8,7 @@ import fetch from 'node-fetch';
 import { consumeRPCQueue } from '@saashq/api-utils/src/messageBroker';
 import { getCloseInfo } from './models/utils/closeUtils';
 
-export const initBroker = async () => {
+export const setupMessageConsumers = async () => {
   consumeRPCQueue('loans:contracts.find', async ({ subdomain, data }) => {
     const models = await generateModels(subdomain);
 

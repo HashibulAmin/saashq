@@ -1279,7 +1279,7 @@ export const onNextScheduled = async (
   await generatePendingSchedules(
     models,
     contract,
-    { ...updatedSchedule },
+    { ...updatedSchedule } as IScheduleDocument,
     pendingSchedules.filter((s) => s._id !== nextSchedule._id),
     tr,
     trReaction,
@@ -1330,7 +1330,7 @@ export const afterNextScheduled = async (
 
   for (const skippedSchedule of skippedSchedules) {
     trReaction.push({
-      scheduleId: skippedSchedule._id || 0,
+      scheduleId: skippedSchedule._id || '0',
       preData: { status: SCHEDULE_STATUS.PENDING },
     });
   }

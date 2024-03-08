@@ -1,8 +1,4 @@
-import {
-  IGeneral,
-  IGeneralDocument,
-  generalSchema
-} from './definitions/general';
+import { IGeneralDocument, generalSchema } from './definitions/general';
 import { Model } from 'mongoose';
 import { IModels } from '../connectionResolver';
 import { ITransactionDocument } from './definitions/transactions';
@@ -16,7 +12,7 @@ export const loadGeneralClass = (models: IModels) => {
     public static async createGeneral(
       transactions: ITransactionDocument[],
       periodLockId: string,
-      subdomain: string
+      subdomain: string,
     ) {
       const generals: any[] = [];
 
@@ -25,7 +21,7 @@ export const loadGeneralClass = (models: IModels) => {
           mur,
           models,
           periodLockId,
-          subdomain
+          subdomain,
         );
         generals.push(general);
       }
@@ -43,6 +39,6 @@ export interface IGeneralModel extends Model<IGeneralDocument> {
   createGeneral(
     transactions: ITransactionDocument[],
     periodLockId: string,
-    subdomain: string
+    subdomain: string,
   );
 }

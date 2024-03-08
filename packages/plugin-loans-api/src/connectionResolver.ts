@@ -44,7 +44,7 @@ import {
   loanStoredInterestClass,
 } from './models/storedInterest';
 import { IStoredInterestDocument } from './models/definitions/storedInterest';
-import { IPurpose, IPurposeDocument } from './models/definitions/loanPurpose';
+import { IPurposeDocument } from './models/definitions/loanPurpose';
 import {
   IPurposeType,
   IPurposeTypeDocument,
@@ -142,12 +142,12 @@ export const loadClasses = (db: mongoose.Connection): IModels => {
     loanStoredInterestClass(models),
   ) as IStoredInterestModel;
 
-  models.LoanPurpose = db.model<IPurpose, IPurposeModel>(
+  models.LoanPurpose = db.model<IPurposeDocument, IPurposeModel>(
     'loan_purpose',
     loadPurposeClass(models),
   ) as IPurposeModel;
 
-  models.LoanPurposeType = db.model<IPurposeType, IPurposeTypeModel>(
+  models.LoanPurposeType = db.model<IPurposeTypeDocument, IPurposeTypeModel>(
     'loan_purpose_type',
     loadPurposeTypeClass(models),
   ) as IPurposeTypeModel;

@@ -9,7 +9,7 @@ export interface IPurposeTypeDocument extends IPurposeType, Document {
   _id: string;
 }
 
-export const purposeTypeSchema = new Schema<IPurposeType>({
+export const purposeTypeSchema = new Schema<IPurposeTypeDocument>({
   _id: field({ pkey: true }),
   name: field({ type: String }),
 });

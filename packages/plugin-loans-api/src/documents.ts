@@ -2,7 +2,7 @@ import { generateModels } from './connectionResolver';
 import { sendMessageBroker } from './messageBroker';
 import { ISchedule } from './models/definitions/schedules';
 
-const toMoney = value => {
+const toMoney = (value) => {
   if (!value) {
     return '-';
   }
@@ -32,15 +32,15 @@ const fields = [
   { value: 'customerName', name: 'Customer name' },
   { value: 'customerLastName', name: 'Customer last name' },
   { value: 'closeDate', name: 'closeDate' },
-  { value: 'loanScheduleInfo', name: 'Loan Schedule Info' }
+  { value: 'loanScheduleInfo', name: 'Loan Schedule Info' },
 ];
 
 export default {
   types: [
     {
       type: 'loans',
-      label: 'Loans'
-    }
+      label: 'Loans',
+    },
   ],
 
   editorAttributes: async () => {
@@ -59,9 +59,9 @@ export default {
           subdomain,
           action: 'customers.findOne',
           data: { _id: contract.customerId },
-          isRPC: true
+          isRPC: true,
         },
-        'contacts'
+        'contacts',
       );
       contract.customerName = customer.firstName;
       contract.customerLastName = customer.lastName;
@@ -73,16 +73,16 @@ export default {
           subdomain,
           action: 'companies.findOne',
           data: { _id: contract.customerId },
-          isRPC: true
+          isRPC: true,
         },
-        'contacts'
+        'contacts',
       );
 
       contract.customerName = company.primaryName;
     }
 
     const firstSchedules = await models.FirstSchedules.find({
-      contractId: contract._id
+      contractId: contract._id,
     })
       .sort({ payDate: 1 })
       .lean<ISchedule>();
@@ -107,18 +107,19 @@ export default {
               (row, index) => `
               <tr>
                 <td>${index + 1}</td>
-                <td>${row.payDate.getFullYear()}-${row.payDate.getMonth() +
-                1}-${row.payDate.getDate()}</td>
+                <td>${row.payDate.getFullYear()}-${
+                  row.payDate.getMonth() + 1
+                }-${row.payDate.getDate()}</td>
                 <td>${toMoney(row.balance)}</td>
                 <td>${toMoney(row.payment)}</td>
                 <td>${toMoney(
-                  (row.interestEve || 0) + (row.interestNonce || 0)
+                  (row.interestEve || 0) + (row.interestNonce || 0),
                 )}</td>
                 <td>${toMoney(row.insurance)}</td>
                 <td>${toMoney(row.debt)}</td>
                 <td>${toMoney(row.total)}</td>
               </tr>
-            `
+            `,
             )
             .join('')}
           </tbody>
@@ -132,10 +133,10 @@ export default {
         RegExp(`{{ ${row.value} }}`, 'g'),
         row.isAmount
           ? toMoney(contract[row.value] || '')
-          : contract[row.value] || ''
+          : contract[row.value] || '',
       );
     }
 
     return printContent;
-  }
+  },
 };

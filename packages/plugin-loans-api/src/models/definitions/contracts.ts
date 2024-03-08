@@ -83,6 +83,8 @@ export interface IContract {
 
   customerId?: string;
   customerType?: string;
+  customerName?: string;
+  customerLastName?: string;
 
   relCustomer?: [{ customerId: string; customerType: string }];
 
@@ -123,6 +125,7 @@ export interface IContract {
   isStoppedInterest: boolean;
   stoppedInterestDate: Date;
   loanPurpose: string;
+  loanScheduleInfo: string;
   leaseType: string;
   commitmentInterest: number;
   savingContractId: string;

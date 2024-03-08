@@ -85,8 +85,8 @@ const classificationMutations = {
     var contractList: string[] = [];
 
     classifications.forEach((mur) => {
-      mur.dtl.forEach((a) => {
-        contractList.push(a.contractId);
+      mur.dtl?.forEach((a) => {
+        contractList.push(a.contractId as string);
       });
     });
 

@@ -1,4 +1,5 @@
 import { Document, Schema } from 'mongoose';
+import { IGeneral } from './general';
 import { schemaHooksWrapper, field } from './utils';
 
 export interface IClassification {
@@ -14,6 +15,7 @@ export interface IClassificationDocument extends IClassification, Document {
   _id: string;
   createdAt?: Date;
   createdBy?: string;
+  dtl?: IGeneral[];
 }
 
 export const classificationSchema = schemaHooksWrapper(
