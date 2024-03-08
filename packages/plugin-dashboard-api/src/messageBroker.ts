@@ -1,4 +1,4 @@
-import { ISendMessageArgs, sendMessage } from '@saashq/api-utils/src/core';
+import { MessageArgs, sendMessage } from '@saashq/api-utils/src/core';
 import { serviceDiscovery } from './configs';
 import { generateModels } from './connectionResolver';
 
@@ -21,34 +21,26 @@ export const initBroker = async (cl) => {
   });
 };
 
-export const sendCoreMessage = (args: ISendMessageArgs): Promise<any> => {
+export const sendCoreMessage = (args: MessageArgs): Promise<any> => {
   return sendMessage({
-    serviceName: 'core',
     ...args,
   });
 };
 
-export const sendInboxMessage = async (
-  args: ISendMessageArgs,
-): Promise<any> => {
+export const sendInboxMessage = async (args: MessageArgs): Promise<any> => {
   return sendMessage({
-    serviceName: 'inbox',
     ...args,
   });
 };
 
-export const sendCardsMessage = async (
-  args: ISendMessageArgs,
-): Promise<any> => {
+export const sendCardsMessage = async (args: MessageArgs): Promise<any> => {
   return sendMessage({
-    serviceName: 'cards',
     ...args,
   });
 };
 
-export const sendTagsMessage = async (args: ISendMessageArgs): Promise<any> => {
+export const sendTagsMessage = async (args: MessageArgs): Promise<any> => {
   return sendMessage({
-    serviceName: 'tags',
     ...args,
   });
 };
