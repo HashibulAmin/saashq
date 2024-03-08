@@ -1,7 +1,11 @@
-import { Types } from 'mongoose';
-import { models } from './connectionResolver';
+import { IModels } from './connectionResolver';
 import { sendCoreMessage } from './messageBroker';
-export const generateFilter = async (params, type, subdomain: string) => {
+export const generateFilter = async (
+  models: IModels,
+  params,
+  type,
+  subdomain: string,
+) => {
   let filter: any = {};
 
   if (params.movementId) {
@@ -19,7 +23,7 @@ export const generateFilter = async (params, type, subdomain: string) => {
   if (params.parentId) {
     if (params.parentId === '*') {
       const assets = await models?.Assets.find({
-        parentId: { $in: ['', undefined, null] as string[] },
+        parentId: { $in: ['', undefined, null] },
       });
       const assetIds = (assets || []).map((asset) => asset._id);
       filter.assetId = { $in: assetIds };
