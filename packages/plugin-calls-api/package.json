@@ -6,6 +6,6 @@
     "build" : "tsc"
   },
   "dependencies": {
-    "@saashq/api-utils" : "*"
+    "@saashq/api-utils": "*"
   }
 }
