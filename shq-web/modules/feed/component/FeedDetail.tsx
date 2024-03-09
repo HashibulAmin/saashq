@@ -35,6 +35,7 @@ export default function FeedDetail({
   handleLoadMore,
   open,
   userDetail,
+  myEvent,
 }: {
   setDetailOpen: (state: boolean) => void
   handleLoadMore: () => void
@@ -53,7 +54,7 @@ export default function FeedDetail({
   comments: any[]
   open: boolean
   userDetail: any
-  myEvent?: boolean  
+  myEvent?: boolean
 }) {
   const dialogHandler = () => {
     setDetailOpen(!detailOpen)
@@ -117,7 +118,7 @@ export default function FeedDetail({
   const content = () => {
     if (feed.contentType === "event") {
       const { eventData, title } = feed
-      
+
       return (
         <div className="px-4 py-3 flex flex-col gap-2">
           <h3 className="font-semibold text-[30px]">{title}</h3>
@@ -152,8 +153,8 @@ export default function FeedDetail({
             indexProp={0}
             className="w-[calc(100%-430px)]"
           />
-          <div className="w-[430px] px-4 relative bg-white">
-            <div className="w-[430px] px-4 relative bg-white float-right ml-auto">
+          <div className="w-[430px] px-4 relative bg-white float-right ml-auto">
+            <div className=" h-[calc(100%-70px)] overflow-auto">
               <PostHeader
                 feed={feed}
                 userDetail={userDetail}
