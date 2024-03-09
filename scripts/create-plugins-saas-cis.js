@@ -97,7 +97,7 @@ var main = async () => {
 
       delete uiConfigs.port;
 
-      const url = `https://plugin-uis.saashq.org/js/plugins/plugin-${plugin.name}-ui/remoteEntry.js`;
+      const url = `https://saashq-plugin-uis.saashq.org/js/plugins/plugin-${plugin.name}-ui/remoteEntry.js`;
 
       uiConfigs.url = url;
 
@@ -108,6 +108,10 @@ var main = async () => {
       if (uiConfigs.layout) {
         uiConfigs.layout.url = url;
       }
+
+      if (uiConfigs.innerWidget) {
+        uiConfigs.innerWidget.url = url;
+      }      
 
       pluginsMap[plugin.name] = {
         ui: uiConfigs,
