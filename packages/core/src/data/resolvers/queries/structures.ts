@@ -26,7 +26,7 @@ const generateFilters = async ({
   }
 
   if (!params.withoutUserFilter) {
-    const userDetail = await models.Users.findOne({ _id: user as any });
+    const userDetail = await models.Users.findOne({ _id: user });
     if (type === 'branch') {
       const branches = await models.Branches.find({
         _id: { $in: userDetail?.branchIds },
@@ -59,13 +59,12 @@ const generateFilters = async ({
   if (type === 'branch') {
     fieldName = 'BRANCHES';
   }
-
-  const mainsStructure = await models.Configs.findOne({
+  const mastersStructure = await models.Configs.findOne({
     code: `${fieldName}_MASTER_TEAM_MEMBERS_IDS`,
     value: { $in: [user._id] },
   });
 
-  if (filter.order && (user.isOwner || mainsStructure)) {
+  if (filter.order && (user.isOwner || mastersStructure)) {
     delete filter.order;
   }
   if (params.searchValue) {
@@ -98,6 +97,10 @@ const generateFilters = async ({
         .map((department) => department.code)
         .join('|');
       filter.order = { $regex: new RegExp(branchOrders, 'i') };
+    }
+
+    if (type === 'position' && params.searchValue) {
+      return { $and: [filter, structureFilter] };
     }
   }
 
@@ -302,6 +305,62 @@ const structureQueries = {
 
   structureDetail(_root, _args, { models }: IContext) {
     return models.Structures.findOne();
+  },
+
+  async positions(
+    _root,
+    params: any & { searchValue?: string },
+    { models, user }: IContext,
+  ) {
+    const filter = await generateFilters({
+      models,
+      user,
+      type: 'position',
+      params,
+    });
+    const pipeline: any[] = [{ $match: filter }, { $sort: { order: 1 } }];
+
+    if (!!params?.ids?.length) {
+      pipeline.push({
+        $addFields: {
+          __order: { $indexOfArray: [params.ids, '$_id'] },
+        },
+      });
+      pipeline.push({ $sort: { __order: 1 } });
+    }
+
+    return models.Positions.aggregate(pipeline);
+  },
+
+  async positionsMain(
+    _root,
+    params: { searchValue?: string; perPage: number; page: number },
+    { models, user }: IContext,
+  ) {
+    const filter = await generateFilters({
+      models,
+      user,
+      type: 'position',
+      params: { ...params, withoutUserFilter: true },
+    });
+
+    const list = paginate(
+      models.Positions.find(filter).sort({ order: 1 }),
+      params,
+    );
+
+    const totalCount = models.Positions.find(filter).countDocuments();
+    const totalUsersCount = await models.Users.countDocuments({
+      ...filter,
+      'positionIds.0': { $exists: true },
+      isActive: true,
+    });
+
+    return { list, totalCount, totalUsersCount };
+  },
+
+  positionDetail(_root, { _id }, { models }: IContext) {
+    return models.Positions.getPosition({ _id });
   },
 };
 

@@ -57,6 +57,7 @@ export interface IUser {
   customFieldsData?: ICustomField[];
   departmentIds?: string[];
   branchIds?: string[];
+  positionIds?: string[];
   employeeId?: string;
   chatStatus?: string;
 }
@@ -131,6 +132,7 @@ export const userSchema = schemaWrapper(
     isOwner: field({ type: Boolean, label: 'Is owner' }),
     departmentIds: field({ type: [String], label: 'Department Ids' }),
     branchIds: field({ type: [String], label: 'Branch Ids' }),
+    positionIds: field({ type: [String], label: 'Position Ids' }),
     email: field({
       type: String,
       unique: true,
