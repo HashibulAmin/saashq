@@ -1,21 +1,21 @@
-import EmailForm from "../../containers/EmailForm";
-import React from "react";
-import { METHODS } from "@saashq/ui-engage/src/constants";
+import EmailForm from '../../containers/EmailForm';
+import React from 'react';
+import { METHODS } from '@saashq/ui-engage/src/constants';
 import {
   IEmailTemplate,
   IEngageEmail,
   IEngageMessenger,
   IEngageScheduleDate,
-} from "@saashq/ui-engage/src/types";
-import MessengerForm from "../MessengerForm";
-import { IBrand } from "@saashq/ui/src/brands/types";
-import { IUser } from "@saashq/ui/src/auth/types";
+} from '@saashq/ui-engage/src/types';
+import MessengerForm from '../MessengerForm';
+import { IBrand } from '@saashq/ui/src/brands/types';
+import { IUser } from '@saashq/ui/src/auth/types';
 
 type Props = {
   brands: IBrand[];
   onChange: (
-    name: "messenger" | "email" | "content" | "scheduleDate" | "fromUserId",
-    value?: IEngageEmail | IEngageMessenger | IEngageScheduleDate | string
+    name: 'messenger' | 'email' | 'content' | 'scheduleDate' | 'fromUserId',
+    value?: IEngageEmail | IEngageMessenger | IEngageScheduleDate | string,
   ) => void;
   users: IUser[];
   method: string;
