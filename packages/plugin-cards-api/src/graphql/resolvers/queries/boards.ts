@@ -357,14 +357,24 @@ const boardQueries = {
     _root,
     {
       pipelineId,
+      pipelineIds,
       isNotLost,
       isAll,
-    }: { pipelineId: string; isNotLost: boolean; isAll: boolean },
+    }: {
+      pipelineId: string;
+      pipelineIds: string[];
+      isNotLost: boolean;
+      isAll: boolean;
+    },
     { user, models: { Stages }, subdomain }: IContext,
   ) {
     const filter: any = {};
 
     filter.pipelineId = pipelineId;
+
+    if (pipelineIds) {
+      filter.pipelineId = { $in: pipelineIds };
+    }
 
     if (isNotLost) {
       filter.probability = { $ne: 'Lost' };

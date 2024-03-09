@@ -17,7 +17,7 @@ const commonParams = `
 
 export const queries = `
   pipelineLabels(pipelineId: String!): [PipelineLabel]
-  pipelineLabelDetail(_id: String!): PipelineLabel
+  pipelineLabels(pipelineId: String, pipelineIds: [String]): [PipelineLabel]
 `;
 
 export const mutations = `

@@ -19,7 +19,7 @@ const genericFields = `
   isVisible
   isVisibleInDetail
   contentType
-  isDefinedBySaasHQ
+  isDefinedByErxes
 `;
 
 const commonFields = `
@@ -462,8 +462,8 @@ const boards = `
   }
 `;
 const stages = `
-  query stages($pipelineId: String!, $isAll: Boolean) {
-    stages(pipelineId: $pipelineId, isAll: $isAll) {
+  query stages($pipelineId: String, $isAll: Boolean, $pipelineIds: [String]) {
+    stages(pipelineId: $pipelineId, isAll: $isAll, pipelineIds: $pipelineIds) {
       _id
       name
       probability
@@ -496,16 +496,16 @@ const pipelines = `
 `;
 
 const pipelineLabels = `
-  query pipelineLabels($pipelineId: String!) {
-    pipelineLabels(pipelineId: $pipelineId) {
+  query pipelineLabels($pipelineId: String, $pipelineIds: [String]) {
+    pipelineLabels(pipelineId: $pipelineId, pipelineIds: $pipelineIds) {
       ${pipelineLabelFields}
     }
   }
 `;
 
 const fieldsGroups = `
-  query fieldsGroups($contentType: String!, $isDefinedBySaasHQ: Boolean, $config: JSON) {
-    fieldsGroups(contentType: $contentType, isDefinedBySaasHQ: $isDefinedBySaasHQ, config: $config) {
+  query fieldsGroups($contentType: String!, $isDefinedByErxes: Boolean, $config: JSON) {
+    fieldsGroups(contentType: $contentType, isDefinedByErxes: $isDefinedByErxes, config: $config) {
       name
       ${genericFields}
       isMultiple
@@ -674,6 +674,12 @@ const dashboardDetail = `
   }
 `;
 
+const dashboardGetLast = `
+  query dashboardGetLast {
+    dashboardGetLast
+  }
+`;
+
 const sectionList = `
   query sections($type: String) {
     sections(type: $type) {
@@ -686,10 +692,22 @@ const sectionList = `
   }
 `;
 
+const assets = `
+  query assets($searchValue: String) {
+    assets(searchValue: $searchValue) {
+      _id,
+      name,
+      code,
+      order
+    }
+  }
+`;
+
 export default {
   //dashboard
   dashboardList,
   dashboardDetail,
+  dashboardGetLast,
 
   //section
   sectionList,
@@ -714,7 +732,7 @@ export default {
   integrations,
 
   tags,
-
+  assets,
   boards,
   stages,
   pipelines,
