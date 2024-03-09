@@ -15,6 +15,7 @@ const { SENDGRID_API_KEY } = process.env;
 const REDIS_QUEUE_KEY = 'emailVerificationQueue';
 
 export const single = async (email: string, hostname: string) => {
+  email = email.toString();
   const emailOnDb = await Emails.findOne({ email });
 
   if (emailOnDb) {
@@ -113,6 +114,7 @@ export const single = async (email: string, hostname: string) => {
 
 export const bulk = async (emails: string[], hostname: string) => {
   const emailsOnDb = await Emails.find({ email: { $in: emails } });
+  emails = emails.map((email) => email.toString());
 
   const emailsMap: Array<{ email: string; status: string }> = emailsOnDb.map(
     ({ email, status }) => ({
