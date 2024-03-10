@@ -7,17 +7,14 @@ import { getSubdomain } from '@saashq/api-utils/src/core';
 import * as permissions from './permissions';
 import tags from './tags';
 
-export let serviceDiscovery;
 export let debug;
 
 export default {
   name: 'dashboard',
   permissions,
-  graphql: async (sd) => {
-    serviceDiscovery = sd;
-
+  graphql: async () => {
     return {
-      typeDefs: await typeDefs(sd),
+      typeDefs: await typeDefs(),
       resolvers,
     };
   },
