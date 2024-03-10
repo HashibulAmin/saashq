@@ -322,8 +322,8 @@ export const loadDashboardItemClass = (models: IModels) => {
       return models.DashboardItems.create(doc);
     }
 
-    public static async editDashboardItem(_id: string, feilds: IDashboard) {
-      await models.DashboardItems.updateOne({ _id }, { $set: feilds });
+    public static async editDashboardItem(_id: string, fields: IDashboard) {
+      await models.DashboardItems.updateOne({ _id }, { $set: fields });
 
       return models.DashboardItems.findOne({ _id });
     }

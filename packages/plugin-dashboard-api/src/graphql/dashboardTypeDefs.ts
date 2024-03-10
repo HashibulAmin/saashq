@@ -14,6 +14,9 @@ export const types = (tagsAvailable) => `
     _id: String! @external
   }
 
+  extend type Dashboard @key(fields: "_id") {
+    _id: String! @external
+  }
 
   type Dashboard {
     _id: String!
