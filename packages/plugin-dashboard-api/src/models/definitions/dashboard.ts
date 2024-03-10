@@ -1,9 +1,14 @@
 import { Document, Schema } from 'mongoose';
 import { field, schemaWrapper } from './utils';
 
+enum IVisibilityType {
+  PUBLIC = 'public',
+  PRIVATE = 'private',
+}
+
 export interface IDashboard {
   name: string;
-  visibility: string;
+  visibility: IVisibilityType;
   selectedMemberIds?: string[];
   description?: string;
   parentId?: string;
