@@ -28,8 +28,8 @@ export const types = (tagsAvailable) => `
     relatedIds: [String]
     createdAt: Date
     updatedAt: Date
-    createdBy: String
-    updatedBy: String
+    createdBy: User
+    updatedBy: User
     tagIds: [String]
     departmentIds: [String]
 
@@ -52,7 +52,7 @@ export const types = (tagsAvailable) => `
 
   type DashboardListResponse {
     list: [Dashboard],
-    totalCount: Float,
+    totalCount: Int,
   }
 `;
 

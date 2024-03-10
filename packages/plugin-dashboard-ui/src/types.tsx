@@ -27,8 +27,8 @@ export interface IDashboard {
   order?: string;
   updatedAt?: Date;
   createdAt?: Date;
-  updatedBy?: string;
-  createdBy?: string;
+  updatedBy?: IUser;
+  createdBy?: IUser;
   updatedUser?: IUser;
   createdUser?: IUser;
   itemsCount?: number;
