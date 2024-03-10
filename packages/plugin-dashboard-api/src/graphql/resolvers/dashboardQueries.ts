@@ -1,8 +1,11 @@
 import { paginate } from '@saashq/api-utils/src';
 import { IUserDocument } from '@saashq/api-utils/src/types';
-import { serviceDiscovery } from '../../configs';
 import { IContext } from '../../connectionResolver';
 import { sendCoreMessage, sendTagsMessage } from '../../messageBroker';
+import {
+  getService,
+  getServices,
+} from '@saashq/api-utils/src/serviceDiscovery';
 
 interface IListArgs {
   status: string;
@@ -114,11 +117,11 @@ const dashBoardQueries = {
   },
 
   async dashboardGetTypes() {
-    const services = await serviceDiscovery.getServices();
+    const services = await getServices();
     let dashboardTypes: string[] = [];
 
     for (const serviceName of services) {
-      const service = await serviceDiscovery.getService(serviceName, true);
+      const service = await getService(serviceName);
       const meta = service.config?.meta || {};
 
       if (meta && meta.dashboards) {

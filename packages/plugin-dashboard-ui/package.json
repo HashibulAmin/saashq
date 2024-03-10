@@ -1,0 +1,18 @@
+{
+  "name": "@saashq/plugin-dashboard-ui",
+  "version": "1.0.0",
+  "scripts": {
+    "install-deps": "cd .saashq && yarn install",
+    "start": "cd .saashq && yarn start",
+    "build": "cd .saashq && yarn build",
+    "tsc": "cd .saashq && yarn tsc"
+  },
+  "dependencies": {
+    "@cubejs-client/core": "^0.30.29",
+    "@cubejs-client/react": "^0.30.40",
+    "axios": "^0.27.2",
+    "numeral": "^2.0.6",
+    "react-grid-layout": "^1.3.4",
+    "recharts": "^2.1.13"
+  }
+}
