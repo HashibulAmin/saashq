@@ -1,5 +1,4 @@
 import { MessageArgs, sendMessage } from '@saashq/api-utils/src/core';
-import { serviceDiscovery } from './configs';
 import { generateModels } from './connectionResolver';
 import {
   consumeQueue,
