@@ -6,6 +6,7 @@ export type ListQueryVariables = {
   page?: number;
   perPage?: number;
   ids?: string[];
+
   searchValue?: string;
   sortField?: string;
   sortDirection?: number;

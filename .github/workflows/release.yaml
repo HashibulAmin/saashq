@@ -21,8 +21,7 @@ jobs:
           aws-region: us-east-1
       - name: saashq
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/saashq:main 
 
@@ -33,8 +32,7 @@ jobs:
           aws s3 cp s3://saashq-main-plugins/locales.tar s3://saashq-release-plugins/${GITHUB_REF#refs/tags/}/locales.tar 
       - name: core
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/core:main 
 
@@ -43,8 +41,7 @@ jobs:
           docker push saashqdev/core:${GITHUB_REF#refs/tags/} 
       - name: gateway
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/gateway:main 
 
@@ -53,8 +50,7 @@ jobs:
           docker push saashqdev/gateway:${GITHUB_REF#refs/tags/} 
       - name: crons
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/crons:main 
 
@@ -63,8 +59,7 @@ jobs:
           docker push saashqdev/crons:${GITHUB_REF#refs/tags/} 
       - name: workers
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/workers:main 
 
@@ -73,8 +68,7 @@ jobs:
           docker push saashqdev/workers:${GITHUB_REF#refs/tags/} 
       - name: essyncer
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/essyncer:main 
 
@@ -83,8 +77,7 @@ jobs:
           docker push saashqdev/essyncer:${GITHUB_REF#refs/tags/} 
       - name: widgets
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/widgets:main 
 
@@ -93,8 +86,7 @@ jobs:
           docker push saashqdev/widgets:${GITHUB_REF#refs/tags/} 
       - name: client-portal
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/client-portal:main 
 
@@ -103,8 +95,7 @@ jobs:
           docker push saashqdev/client-portal:${GITHUB_REF#refs/tags/} 
       - name: plugin-inbox-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-inbox-api:main 
 
@@ -113,8 +104,7 @@ jobs:
           docker push saashqdev/plugin-inbox-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-automations-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-automations-api:main 
 
@@ -123,8 +113,7 @@ jobs:
           docker push saashqdev/plugin-automations-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-cards-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-cards-api:main 
 
@@ -133,8 +122,7 @@ jobs:
           docker push saashqdev/plugin-cards-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-clientportal-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-clientportal-api:main 
 
@@ -143,8 +131,7 @@ jobs:
           docker push saashqdev/plugin-clientportal-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-contacts-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-contacts-api:main 
 
@@ -153,8 +140,7 @@ jobs:
           docker push saashqdev/plugin-contacts-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-emailtemplates-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-emailtemplates-api:main 
 
@@ -163,8 +149,7 @@ jobs:
           docker push saashqdev/plugin-emailtemplates-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-engages-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-engages-api:main 
 
@@ -173,8 +158,7 @@ jobs:
           docker push saashqdev/plugin-engages-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-forms-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-forms-api:main 
 
@@ -183,8 +167,7 @@ jobs:
           docker push saashqdev/plugin-forms-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-integrations-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-integrations-api:main 
 
@@ -193,8 +176,7 @@ jobs:
           docker push saashqdev/plugin-integrations-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-internalnotes-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-internalnotes-api:main 
 
@@ -203,8 +185,7 @@ jobs:
           docker push saashqdev/plugin-internalnotes-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-knowledgebase-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-knowledgebase-api:main 
 
@@ -213,8 +194,7 @@ jobs:
           docker push saashqdev/plugin-knowledgebase-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-logs-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-logs-api:main 
 
@@ -223,8 +203,7 @@ jobs:
           docker push saashqdev/plugin-logs-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-loyalties-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-loyalties-api:main 
 
@@ -233,8 +212,7 @@ jobs:
           docker push saashqdev/plugin-loyalties-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-notifications-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-notifications-api:main 
 
@@ -243,8 +221,7 @@ jobs:
           docker push saashqdev/plugin-notifications-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-webhooks-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-webhooks-api:main 
 
@@ -253,8 +230,7 @@ jobs:
           docker push saashqdev/plugin-webhooks-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-products-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-products-api:main 
 
@@ -263,8 +239,7 @@ jobs:
           docker push saashqdev/plugin-products-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-segments-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-segments-api:main 
 
@@ -273,8 +248,7 @@ jobs:
           docker push saashqdev/plugin-segments-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-tags-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-tags-api:main 
 
@@ -283,8 +257,7 @@ jobs:
           docker push saashqdev/plugin-tags-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-webbuilder-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-webbuilder-api:main 
 
@@ -293,8 +266,7 @@ jobs:
           docker push saashqdev/plugin-webbuilder-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-documents-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-documents-api:main 
 
@@ -303,8 +275,7 @@ jobs:
           docker push saashqdev/plugin-documents-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-chats-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-chats-api:main 
 
@@ -313,8 +284,7 @@ jobs:
           docker push saashqdev/plugin-chats-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-ebarimt-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-ebarimt-api:main 
 
@@ -323,8 +293,7 @@ jobs:
           docker push saashqdev/plugin-ebarimt-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-shq-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-shq-api:main 
 
@@ -333,8 +302,7 @@ jobs:
           docker push saashqdev/plugin-shq-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-shqfeed-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-shqfeed-api:main 
 
@@ -343,8 +311,7 @@ jobs:
           docker push saashqdev/plugin-shqfeed-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-pos-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-pos-api:main 
 
@@ -353,8 +320,7 @@ jobs:
           docker push saashqdev/plugin-pos-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-reactions-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-reactions-api:main 
 
@@ -363,8 +329,7 @@ jobs:
           docker push saashqdev/plugin-reactions-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-syncerkhet-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-syncerkhet-api:main 
 
@@ -373,8 +338,7 @@ jobs:
           docker push saashqdev/plugin-syncerkhet-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-salesplans-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-salesplans-api:main 
 
@@ -383,8 +347,7 @@ jobs:
           docker push saashqdev/plugin-salesplans-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-processes-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-processes-api:main 
 
@@ -393,8 +356,7 @@ jobs:
           docker push saashqdev/plugin-processes-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-inventories-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-inventories-api:main 
 
@@ -403,8 +365,7 @@ jobs:
           docker push saashqdev/plugin-inventories-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-posclient-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-posclient-api:main 
 
@@ -413,8 +374,7 @@ jobs:
           docker push saashqdev/plugin-posclient-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-imap-api
         run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
-          secrets.DOCKERHUB_USERNAME }} --password-stdin 
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
           docker image pull saashqdev/plugin-imap-api:main 
 
