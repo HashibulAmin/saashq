@@ -40,9 +40,9 @@ export const types = (tagsAvailable) => `
     itemsCount: Int
   } 
 
-  enum VisibilityType {
-    public
-    private
+  type VisibilityType {
+    public: String
+    private: String
   }  
 
   type DashboardItem {

@@ -1,9 +1,9 @@
 import { Document, Schema } from 'mongoose';
 import { field, schemaWrapper } from './utils';
 
-enum IVisibilityType {
-  PUBLIC = 'public',
-  PRIVATE = 'private',
+export interface IVisibilityType {
+  type: string;
+  enum: ['public', 'private'];
 }
 
 export interface IDashboard {
