@@ -1,7 +1,7 @@
 const commonParamsDef = `
   $name: String,
   $description: String,
-  $visibility: String,
+  $visibility: VisibilityType,
   $selectedMemberIds: [String],
   $departmentIds: [String]
 `;

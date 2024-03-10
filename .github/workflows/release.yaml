@@ -4,7 +4,6 @@ on:
     tags:
       - "*"
     branches:
-      - dev
       - main
 jobs:
   release:
@@ -25,21 +24,21 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/saashq:dev 
+          docker image pull saashqdev/saashq:main 
 
-          docker tag saashq/saashq:dev saashq/saashq:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/saashq:main saashqdev/saashq:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/saashq:${GITHUB_REF#refs/tags/} 
 
-          aws s3 cp s3://saashq-dev-plugins/locales.tar s3://saashq-release-plugins/${GITHUB_REF#refs/tags/}/locales.tar 
+          aws s3 cp s3://saashq-main-plugins/locales.tar s3://saashq-release-plugins/${GITHUB_REF#refs/tags/}/locales.tar 
       - name: core
         run: >
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/core:dev 
+          docker image pull saashqdev/core:main 
 
-          docker tag saashq/core:dev saashq/core:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/core:main saashqdev/core:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/core:${GITHUB_REF#refs/tags/} 
       - name: gateway
@@ -47,9 +46,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/gateway:dev 
+          docker image pull saashqdev/gateway:main 
 
-          docker tag saashq/gateway:dev saashq/gateway:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/gateway:main saashqdev/gateway:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/gateway:${GITHUB_REF#refs/tags/} 
       - name: crons
@@ -57,9 +56,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/crons:dev 
+          docker image pull saashqdev/crons:main 
 
-          docker tag saashq/crons:dev saashq/crons:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/crons:main saashqdev/crons:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/crons:${GITHUB_REF#refs/tags/} 
       - name: workers
@@ -67,9 +66,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/workers:dev 
+          docker image pull saashqdev/workers:main 
 
-          docker tag saashq/workers:dev saashq/workers:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/workers:main saashqdev/workers:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/workers:${GITHUB_REF#refs/tags/} 
       - name: essyncer
@@ -77,9 +76,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/essyncer:dev 
+          docker image pull saashqdev/essyncer:main 
 
-          docker tag saashq/essyncer:dev saashq/essyncer:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/essyncer:main saashqdev/essyncer:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/essyncer:${GITHUB_REF#refs/tags/} 
       - name: widgets
@@ -87,9 +86,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/widgets:dev 
+          docker image pull saashqdev/widgets:main 
 
-          docker tag saashq/widgets:dev saashq/widgets:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/widgets:main saashqdev/widgets:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/widgets:${GITHUB_REF#refs/tags/} 
       - name: client-portal
@@ -97,9 +96,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/client-portal:dev 
+          docker image pull saashqdev/client-portal:main 
 
-          docker tag saashq/client-portal:dev saashq/client-portal:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/client-portal:main saashqdev/client-portal:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/client-portal:${GITHUB_REF#refs/tags/} 
       - name: plugin-inbox-api
@@ -107,9 +106,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-inbox-api:dev 
+          docker image pull saashqdev/plugin-inbox-api:main 
 
-          docker tag saashq/plugin-inbox-api:dev saashq/plugin-inbox-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-inbox-api:main saashqdev/plugin-inbox-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-inbox-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-automations-api
@@ -117,9 +116,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-automations-api:dev 
+          docker image pull saashqdev/plugin-automations-api:main 
 
-          docker tag saashq/plugin-automations-api:dev saashq/plugin-automations-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-automations-api:main saashqdev/plugin-automations-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-automations-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-cards-api
@@ -127,9 +126,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-cards-api:dev 
+          docker image pull saashqdev/plugin-cards-api:main 
 
-          docker tag saashq/plugin-cards-api:dev saashq/plugin-cards-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-cards-api:main saashqdev/plugin-cards-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-cards-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-clientportal-api
@@ -137,9 +136,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-clientportal-api:dev 
+          docker image pull saashqdev/plugin-clientportal-api:main 
 
-          docker tag saashq/plugin-clientportal-api:dev saashq/plugin-clientportal-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-clientportal-api:main saashqdev/plugin-clientportal-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-clientportal-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-contacts-api
@@ -147,9 +146,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-contacts-api:dev 
+          docker image pull saashqdev/plugin-contacts-api:main 
 
-          docker tag saashq/plugin-contacts-api:dev saashq/plugin-contacts-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-contacts-api:main saashqdev/plugin-contacts-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-contacts-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-emailtemplates-api
@@ -157,9 +156,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-emailtemplates-api:dev 
+          docker image pull saashqdev/plugin-emailtemplates-api:main 
 
-          docker tag saashq/plugin-emailtemplates-api:dev saashq/plugin-emailtemplates-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-emailtemplates-api:main saashqdev/plugin-emailtemplates-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-emailtemplates-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-engages-api
@@ -167,9 +166,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-engages-api:dev 
+          docker image pull saashqdev/plugin-engages-api:main 
 
-          docker tag saashq/plugin-engages-api:dev saashq/plugin-engages-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-engages-api:main saashqdev/plugin-engages-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-engages-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-forms-api
@@ -177,9 +176,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-forms-api:dev 
+          docker image pull saashqdev/plugin-forms-api:main 
 
-          docker tag saashq/plugin-forms-api:dev saashq/plugin-forms-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-forms-api:main saashqdev/plugin-forms-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-forms-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-integrations-api
@@ -187,9 +186,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-integrations-api:dev 
+          docker image pull saashqdev/plugin-integrations-api:main 
 
-          docker tag saashq/plugin-integrations-api:dev saashq/plugin-integrations-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-integrations-api:main saashqdev/plugin-integrations-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-integrations-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-internalnotes-api
@@ -197,9 +196,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-internalnotes-api:dev 
+          docker image pull saashqdev/plugin-internalnotes-api:main 
 
-          docker tag saashq/plugin-internalnotes-api:dev saashq/plugin-internalnotes-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-internalnotes-api:main saashqdev/plugin-internalnotes-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-internalnotes-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-knowledgebase-api
@@ -207,9 +206,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-knowledgebase-api:dev 
+          docker image pull saashqdev/plugin-knowledgebase-api:main 
 
-          docker tag saashq/plugin-knowledgebase-api:dev saashq/plugin-knowledgebase-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-knowledgebase-api:main saashqdev/plugin-knowledgebase-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-knowledgebase-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-logs-api
@@ -217,9 +216,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-logs-api:dev 
+          docker image pull saashqdev/plugin-logs-api:main 
 
-          docker tag saashq/plugin-logs-api:dev saashq/plugin-logs-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-logs-api:main saashqdev/plugin-logs-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-logs-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-loyalties-api
@@ -227,9 +226,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-loyalties-api:dev 
+          docker image pull saashqdev/plugin-loyalties-api:main 
 
-          docker tag saashq/plugin-loyalties-api:dev saashq/plugin-loyalties-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-loyalties-api:main saashqdev/plugin-loyalties-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-loyalties-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-notifications-api
@@ -237,9 +236,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-notifications-api:dev 
+          docker image pull saashqdev/plugin-notifications-api:main 
 
-          docker tag saashq/plugin-notifications-api:dev saashq/plugin-notifications-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-notifications-api:main saashqdev/plugin-notifications-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-notifications-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-webhooks-api
@@ -247,9 +246,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-webhooks-api:dev 
+          docker image pull saashqdev/plugin-webhooks-api:main 
 
-          docker tag saashq/plugin-webhooks-api:dev saashq/plugin-webhooks-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-webhooks-api:main saashqdev/plugin-webhooks-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-webhooks-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-products-api
@@ -257,9 +256,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-products-api:dev 
+          docker image pull saashqdev/plugin-products-api:main 
 
-          docker tag saashq/plugin-products-api:dev saashq/plugin-products-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-products-api:main saashqdev/plugin-products-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-products-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-segments-api
@@ -267,9 +266,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-segments-api:dev 
+          docker image pull saashqdev/plugin-segments-api:main 
 
-          docker tag saashq/plugin-segments-api:dev saashq/plugin-segments-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-segments-api:main saashqdev/plugin-segments-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-segments-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-tags-api
@@ -277,9 +276,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-tags-api:dev 
+          docker image pull saashqdev/plugin-tags-api:main 
 
-          docker tag saashq/plugin-tags-api:dev saashq/plugin-tags-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-tags-api:main saashqdev/plugin-tags-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-tags-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-webbuilder-api
@@ -287,9 +286,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-webbuilder-api:dev 
+          docker image pull saashqdev/plugin-webbuilder-api:main 
 
-          docker tag saashq/plugin-webbuilder-api:dev saashq/plugin-webbuilder-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-webbuilder-api:main saashqdev/plugin-webbuilder-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-webbuilder-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-documents-api
@@ -297,9 +296,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-documents-api:dev 
+          docker image pull saashqdev/plugin-documents-api:main 
 
-          docker tag saashq/plugin-documents-api:dev saashq/plugin-documents-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-documents-api:main saashqdev/plugin-documents-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-documents-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-chats-api
@@ -307,9 +306,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-chats-api:dev 
+          docker image pull saashqdev/plugin-chats-api:main 
 
-          docker tag saashq/plugin-chats-api:dev saashq/plugin-chats-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-chats-api:main saashqdev/plugin-chats-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-chats-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-ebarimt-api
@@ -317,9 +316,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-ebarimt-api:dev 
+          docker image pull saashqdev/plugin-ebarimt-api:main 
 
-          docker tag saashq/plugin-ebarimt-api:dev saashq/plugin-ebarimt-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-ebarimt-api:main saashqdev/plugin-ebarimt-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-ebarimt-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-shq-api
@@ -327,9 +326,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-shq-api:dev 
+          docker image pull saashqdev/plugin-shq-api:main 
 
-          docker tag saashq/plugin-shq-api:dev saashq/plugin-shq-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-shq-api:main saashqdev/plugin-shq-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-shq-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-shqfeed-api
@@ -337,9 +336,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-shqfeed-api:dev 
+          docker image pull saashqdev/plugin-shqfeed-api:main 
 
-          docker tag saashq/plugin-shqfeed-api:dev saashq/plugin-shqfeed-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-shqfeed-api:main saashqdev/plugin-shqfeed-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-shqfeed-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-pos-api
@@ -347,9 +346,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-pos-api:dev 
+          docker image pull saashqdev/plugin-pos-api:main 
 
-          docker tag saashq/plugin-pos-api:dev saashq/plugin-pos-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-pos-api:main saashqdev/plugin-pos-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-pos-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-reactions-api
@@ -357,9 +356,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-reactions-api:dev 
+          docker image pull saashqdev/plugin-reactions-api:main 
 
-          docker tag saashq/plugin-reactions-api:dev saashq/plugin-reactions-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-reactions-api:main saashqdev/plugin-reactions-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-reactions-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-syncerkhet-api
@@ -367,9 +366,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-syncerkhet-api:dev 
+          docker image pull saashqdev/plugin-syncerkhet-api:main 
 
-          docker tag saashq/plugin-syncerkhet-api:dev saashq/plugin-syncerkhet-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-syncerkhet-api:main saashqdev/plugin-syncerkhet-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-syncerkhet-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-salesplans-api
@@ -377,9 +376,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-salesplans-api:dev 
+          docker image pull saashqdev/plugin-salesplans-api:main 
 
-          docker tag saashq/plugin-salesplans-api:dev saashq/plugin-salesplans-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-salesplans-api:main saashqdev/plugin-salesplans-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-salesplans-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-processes-api
@@ -387,9 +386,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-processes-api:dev 
+          docker image pull saashqdev/plugin-processes-api:main 
 
-          docker tag saashq/plugin-processes-api:dev saashq/plugin-processes-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-processes-api:main saashqdev/plugin-processes-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-processes-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-inventories-api
@@ -397,9 +396,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-inventories-api:dev 
+          docker image pull saashqdev/plugin-inventories-api:main 
 
-          docker tag saashq/plugin-inventories-api:dev saashq/plugin-inventories-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-inventories-api:main saashqdev/plugin-inventories-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-inventories-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-posclient-api
@@ -407,9 +406,9 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-posclient-api:dev 
+          docker image pull saashqdev/plugin-posclient-api:main 
 
-          docker tag saashq/plugin-posclient-api:dev saashq/plugin-posclient-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-posclient-api:main saashqdev/plugin-posclient-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-posclient-api:${GITHUB_REF#refs/tags/} 
       - name: plugin-imap-api
@@ -417,95 +416,95 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
-          docker image pull saashq/plugin-imap-api:dev 
+          docker image pull saashqdev/plugin-imap-api:main 
 
-          docker tag saashq/plugin-imap-api:dev saashq/plugin-imap-api:${GITHUB_REF#refs/tags/} 
+          docker tag saashqdev/plugin-imap-api:main saashqdev/plugin-imap-api:${GITHUB_REF#refs/tags/} 
 
           docker push saashqdev/plugin-imap-api:${GITHUB_REF#refs/tags/} 
       - name: inbox ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-inbox-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-inbox-ui
           s3://saashq-release-plugins/uis/plugin-inbox-ui/${GITHUB_REF#refs/tags/}/
       - name: automations ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-automations-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-automations-ui
           s3://saashq-release-plugins/uis/plugin-automations-ui/${GITHUB_REF#refs/tags/}/
       - name: calendar ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-calendar-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-calendar-ui
           s3://saashq-release-plugins/uis/plugin-calendar-ui/${GITHUB_REF#refs/tags/}/
       - name: cards ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-cards-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-cards-ui
           s3://saashq-release-plugins/uis/plugin-cards-ui/${GITHUB_REF#refs/tags/}/
       - name: clientportal ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-clientportal-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-clientportal-ui
           s3://saashq-release-plugins/uis/plugin-clientportal-ui/${GITHUB_REF#refs/tags/}/
       - name: contacts ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-contacts-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-contacts-ui
           s3://saashq-release-plugins/uis/plugin-contacts-ui/${GITHUB_REF#refs/tags/}/
       - name: emailtemplates ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-emailtemplates-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-emailtemplates-ui
           s3://saashq-release-plugins/uis/plugin-emailtemplates-ui/${GITHUB_REF#refs/tags/}/
       - name: engages ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-engages-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-engages-ui
           s3://saashq-release-plugins/uis/plugin-engages-ui/${GITHUB_REF#refs/tags/}/
       - name: forms ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-forms-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-forms-ui
           s3://saashq-release-plugins/uis/plugin-forms-ui/${GITHUB_REF#refs/tags/}/
       - name: knowledgebase ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-knowledgebase-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-knowledgebase-ui
           s3://saashq-release-plugins/uis/plugin-knowledgebase-ui/${GITHUB_REF#refs/tags/}/
       - name: logs ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-logs-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-logs-ui
           s3://saashq-release-plugins/uis/plugin-logs-ui/${GITHUB_REF#refs/tags/}/
       - name: loyalties ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-loyalties-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-loyalties-ui
           s3://saashq-release-plugins/uis/plugin-loyalties-ui/${GITHUB_REF#refs/tags/}/
       - name: notifications ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-notifications-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-notifications-ui
           s3://saashq-release-plugins/uis/plugin-notifications-ui/${GITHUB_REF#refs/tags/}/
       - name: webhooks ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-webhooks-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-webhooks-ui
           s3://saashq-release-plugins/uis/plugin-webhooks-ui/${GITHUB_REF#refs/tags/}/
       - name: products ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-products-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-products-ui
           s3://saashq-release-plugins/uis/plugin-products-ui/${GITHUB_REF#refs/tags/}/
       - name: segments ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-segments-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-segments-ui
           s3://saashq-release-plugins/uis/plugin-segments-ui/${GITHUB_REF#refs/tags/}/
       - name: tags ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-tags-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-tags-ui
           s3://saashq-release-plugins/uis/plugin-tags-ui/${GITHUB_REF#refs/tags/}/
       - name: webbuilder ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-webbuilder-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-webbuilder-ui
           s3://saashq-release-plugins/uis/plugin-webbuilder-ui/${GITHUB_REF#refs/tags/}/
       - name: documents ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-documents-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-documents-ui
           s3://saashq-release-plugins/uis/plugin-documents-ui/${GITHUB_REF#refs/tags/}/
       - name: chats ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-chats-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-chats-ui
           s3://saashq-release-plugins/uis/plugin-chats-ui/${GITHUB_REF#refs/tags/}/
       - name: ebarimt ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-ebarimt-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-ebarimt-ui
           s3://saashq-release-plugins/uis/plugin-ebarimt-ui/${GITHUB_REF#refs/tags/}/
       - name: shq ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-shq-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-shq-ui
           s3://saashq-release-plugins/uis/plugin-shq-ui/${GITHUB_REF#refs/tags/}/
       - name: shqfeed ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-shqfeed-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-shqfeed-ui
           s3://saashq-release-plugins/uis/plugin-shqfeed-ui/${GITHUB_REF#refs/tags/}/
       - name: pos ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-pos-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-pos-ui
           s3://saashq-release-plugins/uis/plugin-pos-ui/${GITHUB_REF#refs/tags/}/
       - name: syncerkhet ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-syncerkhet-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-syncerkhet-ui
           s3://saashq-release-plugins/uis/plugin-syncerkhet-ui/${GITHUB_REF#refs/tags/}/
       - name: salesplans ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-salesplans-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-salesplans-ui
           s3://saashq-release-plugins/uis/plugin-salesplans-ui/${GITHUB_REF#refs/tags/}/
       - name: processes ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-processes-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-processes-ui
           s3://saashq-release-plugins/uis/plugin-processes-ui/${GITHUB_REF#refs/tags/}/
       - name: inventories ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-inventories-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-inventories-ui
           s3://saashq-release-plugins/uis/plugin-inventories-ui/${GITHUB_REF#refs/tags/}/
       - name: imap ui
-        run: aws s3 sync s3://saashq-dev-plugins/uis/plugin-imap-ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-imap-ui
           s3://saashq-release-plugins/uis/plugin-imap-ui/${GITHUB_REF#refs/tags/}/

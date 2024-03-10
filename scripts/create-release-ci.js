@@ -16,7 +16,7 @@ var releaseYaml = {
 	on: {
 		push: {
 			"tags": ['*'],
-			"branches": ['dev', 'main']
+			"branches": ['main']
 		}
 	},
 	jobs: {
@@ -93,12 +93,12 @@ var main = async () => {
 
 	for (const service of services) {
 		let run = "echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin \n"
-			+ `docker image pull saashq/${service}:dev \n`
-			+ `docker tag saashq/${service}:dev saashq/${service}:\${GITHUB_REF#refs/tags/} \n`
+			+ `docker image pull saashqdev/${service}:main \n`
+			+ `docker tag saashqdev/${service}:main saashqdev/${service}:\${GITHUB_REF#refs/tags/} \n`
 			+ `docker push saashqdev/${service}:\${GITHUB_REF#refs/tags/} \n`;
 
 		if (service === 'saashq') {
-			run += `aws s3 cp s3://saashq-dev-plugins/locales.tar s3://saashq-release-plugins/\${GITHUB_REF#refs/tags/}/locales.tar \n`;
+			run += `aws s3 cp s3://saashq-main-plugins/locales.tar s3://saashq-release-plugins/\${GITHUB_REF#refs/tags/}/locales.tar \n`;
 		}
 
 		releaseYaml.jobs.release.steps.push({
@@ -111,7 +111,7 @@ var main = async () => {
 		if (plugin.ui) {
 			releaseYaml.jobs.release.steps.push({
 				name: `${plugin.name} ui`,
-				run: `aws s3 sync s3://saashq-dev-plugins/uis/plugin-${plugin.name}-ui s3://saashq-release-plugins/uis/plugin-${plugin.name}-ui/\${GITHUB_REF#refs/tags/}/`
+				run: `aws s3 sync s3://saashq-main-plugins/uis/plugin-${plugin.name}-ui s3://saashq-release-plugins/uis/plugin-${plugin.name}-ui/\${GITHUB_REF#refs/tags/}/`
 			})
 		}
 	}
