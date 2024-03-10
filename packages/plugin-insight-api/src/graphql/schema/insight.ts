@@ -4,9 +4,9 @@ export const types = `
     _id: String! @external
   }
 
-  type VisibilityType {
-    public: String
-    private: String
+  enum VisibilityType {
+    PUBLIC
+    PRIVATE
   }
 
   type Dashboard {
