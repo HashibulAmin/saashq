@@ -20,16 +20,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
       - name: saashq
-        run: >
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
-
-          docker image pull saashqdev/saashq:main 
-
-          docker tag saashqdev/saashq:main saashqdev/saashq:${GITHUB_REF#refs/tags/} 
-
-          docker push saashqdev/saashq:${GITHUB_REF#refs/tags/} 
-
-          aws s3 cp s3://saashq-main-plugins/locales.tar s3://saashq-release-plugins/${GITHUB_REF#refs/tags/}/locales.tar 
+        run: |
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+          docker image pull saashqdev/saashq:main
+          docker tag saashqdev/saashq:main saashqdev/saashq:${GITHUB_REF#refs/tags/}
+          docker push saashqdev/saashq:${GITHUB_REF#refs/tags/}
+          aws s3 cp s3://saashq-main-plugins/locales.tar s3://saashq-release-plugins/${GITHUB_REF#refs/tags/}/locales.tar
       - name: core
         run: >
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
