@@ -17,7 +17,7 @@ export const types = (tagsAvailable) => `
   type Dashboard2 {
     _id: String!
     name: String
-    visibility: VisibilityType
+    visibility: VisibilityType2
     selectedMemberIds: [String]
     description: String
     parentId: String
