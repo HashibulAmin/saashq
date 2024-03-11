@@ -68,7 +68,7 @@ const queryParams = `
 `;
 
 export const queries = `
-  dashboards(${queryParams}): [Dashboard]
+  dashboards(${queryParams}): [Dashboard2]
   dashboardsMain(${queryParams}): DashboardListResponse2
   dashboardDetails(_id: String!): Dashboard2
   dashboardsTotalCount: Int
