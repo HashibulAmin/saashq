@@ -14,7 +14,7 @@ import {
 } from './definitions/dashboard';
 import { escapeRegExp } from './definitions/utils';
 
-export interface IDashboardModel extends Model<IDashboardDocument2> {
+export interface IDashboardModel2 extends Model<IDashboardDocument2> {
   getDashboard(_id: string): Promise<IDashboardDocument2>;
   addDashboard(doc: IDashboard2): Promise<IDashboardDocument2>;
   editDashboard(
