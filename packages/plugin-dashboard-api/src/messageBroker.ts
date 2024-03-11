@@ -6,7 +6,7 @@ import {
 } from '@saashq/api-utils/src/messageBroker';
 
 export const setupMessageConsumers = async () => {
-  consumeRPCQueue('dashboards:find.count', async ({ subdomain, data }) => {
+  consumeRPCQueue('dashboards2:find.count', async ({ subdomain, data }) => {
     const models = await generateModels(subdomain);
 
     const { query = {} } = data || {};

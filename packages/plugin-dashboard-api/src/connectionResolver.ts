@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose';
 import {
   IDashboardDocument2,
   IDashboardItemDocument,
-} from './models/definitions/dashboard';
+} from './models/definitions/dashboard2';
 import {
   IDashboardModel2,
   IDashboardItemModel,

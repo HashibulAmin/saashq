@@ -11,7 +11,7 @@ import {
   IDashboardItemDocument,
   IDashboardItemEdit,
   IDashboardItemInput,
-} from './definitions/dashboard';
+} from './definitions/dashboard2';
 import { escapeRegExp } from './definitions/utils';
 
 export interface IDashboardModel2 extends Model<IDashboardDocument2> {
@@ -73,11 +73,11 @@ const removeRelatedIds = async (
   dashboard: IDashboardDocument2,
   models: IModels,
 ) => {
-  const dashboards = await models.Dashboards.find({
+  const dashboards2 = await models.Dashboards.find({
     relatedIds: { $in: dashboard._id },
   });
 
-  if (dashboards.length === 0) {
+  if (dashboards2.length === 0) {
     return;
   }
 
@@ -92,7 +92,7 @@ const removeRelatedIds = async (
     };
   }> = [];
 
-  dashboards.forEach(async (t) => {
+  dashboards2.forEach(async (t) => {
     const ids = (t.relatedIds || []).filter((id) => !relatedIds.includes(id));
 
     doc.push({

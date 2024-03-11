@@ -2,7 +2,7 @@ import { IContext } from '../../connectionResolver';
 import {
   IDashboard2,
   IDashboardItemInput,
-} from '../../models/definitions/dashboard';
+} from '../../models/definitions/dashboard2';
 
 interface IDashboardEdit2 extends IDashboard2 {
   _id: string;
@@ -17,14 +17,14 @@ const dashboardsMutations = {
     doc: IDashboard2,
     { docModifier, models, user }: IContext,
   ) {
-    const dashboard = await models.Dashboards.create({
+    const dashboard2 = await models.Dashboards.create({
       ...docModifier(doc),
       createdAt: new Date(),
       createdBy: user._id,
       updatedBy: user._id,
     });
 
-    return dashboard;
+    return dashboard2;
   },
 
   async dashboardsEdit(

@@ -1,11 +1,11 @@
 import dashboardMutations from './dashboardMutations';
 import dashboardQueries from './dashboardQueries';
 import customScalars from '@saashq/api-utils/src/customScalars';
-import Dashboard from './dashboard';
+import Dashboard2 from './dashboard2';
 
 const resolvers: any = {
   ...customScalars,
-  Dashboard,
+  Dashboard2,
 
   Mutation: {
     ...dashboardMutations,
