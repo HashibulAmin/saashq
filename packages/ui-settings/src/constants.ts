@@ -117,7 +117,7 @@ export const EMPTY_NEW_SEGMENT_CONTENT = {
 };
 
 export const EMPTY_CONTENT_SCRIPT = {
-  title: __('Getting Started with saashq Scripts'),
+  title: __('Getting Started with SaasHQ Scripts'),
   description: __(
     `Avoid duplication of saashq widget scripts on your website, which might disable some of your saashq widgets (messenger, popups, etc)`,
   ),
