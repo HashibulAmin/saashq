@@ -14,11 +14,7 @@ export const types = (tagsAvailable) => `
     _id: String! @external
   }
 
-  extend type Dashboard @key(fields: "_id") {
-    _id: String! @external
-  }
-
-  type Dashboard {
+  type Dashboard2 {
     _id: String!
     name: String
     visibility: VisibilityType
@@ -43,7 +39,7 @@ export const types = (tagsAvailable) => `
     itemsCount: Int
   } 
 
-  enum VisibilityType {
+  enum VisibilityType2 {
     PUBLIC
     PRIVATE
   }
@@ -58,7 +54,7 @@ export const types = (tagsAvailable) => `
     isDateRange: Boolean
   }
 
-  type DashboardListResponse {
+  type DashboardListResponse2 {
     list: [Dashboard],
     totalCount: Int,
   }
@@ -77,9 +73,9 @@ const queryParams = `
 `;
 
 export const queries = `
-  dashboards(${queryParams}): [Dashboard]
-  dashboardsMain(${queryParams}): DashboardListResponse
-  dashboardDetails(_id: String!): Dashboard
+  dashboards(${queryParams}): [Dashboard2]
+  dashboardsMain(${queryParams}): DashboardListResponse2
+  dashboardDetails(_id: String!): Dashboard2
   dashboardsTotalCount: Int
   dashboardCountByTags : JSON
   dashboardItems(dashboardId: String!): [DashboardItem]

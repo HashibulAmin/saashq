@@ -6,22 +6,22 @@ import { IModels } from '../connectionResolver';
 import {
   dashboardItemSchema,
   dashboardSchema,
-  IDashboard,
-  IDashboardDocument,
+  IDashboard2,
+  IDashboardDocument2,
   IDashboardItemDocument,
   IDashboardItemEdit,
   IDashboardItemInput,
 } from './definitions/dashboard';
 import { escapeRegExp } from './definitions/utils';
 
-export interface IDashboardModel extends Model<IDashboardDocument> {
-  getDashboard(_id: string): Promise<IDashboardDocument>;
-  addDashboard(doc: IDashboard): Promise<IDashboardDocument>;
+export interface IDashboardModel extends Model<IDashboardDocument2> {
+  getDashboard(_id: string): Promise<IDashboardDocument2>;
+  addDashboard(doc: IDashboard2): Promise<IDashboardDocument2>;
   editDashboard(
     _id: string,
-    fields: IDashboard,
+    fields: IDashboard2,
     user: IUserDocument,
-  ): Promise<IDashboardDocument>;
+  ): Promise<IDashboardDocument2>;
   removeDashboard(_id: string): void;
   validateUniqueness(selector: any, name: string): Promise<boolean>;
 }
@@ -36,7 +36,7 @@ export interface IDashboardItemModel extends Model<IDashboardItemDocument> {
 }
 
 const setRelatedIds = async (
-  dashboard: IDashboardDocument,
+  dashboard: IDashboardDocument2,
   models: IModels,
 ) => {
   if (dashboard.parentId) {
@@ -70,7 +70,7 @@ const setRelatedIds = async (
 
 // remove related dashboards
 const removeRelatedIds = async (
-  dashboard: IDashboardDocument,
+  dashboard: IDashboardDocument2,
   models: IModels,
 ) => {
   const dashboards = await models.Dashboards.find({
@@ -151,14 +151,14 @@ export const loadDashboardClass = (models: IModels) => {
       return true;
     }
 
-    static async getParentDashboard(doc: IDashboard) {
+    static async getParentDashboard(doc: IDashboard2) {
       return models.Dashboards.findOne({
         _id: doc.parentId,
       }).lean();
     }
 
     public static async generateOrder(
-      parentDashboard: IDashboardDocument,
+      parentDashboard: IDashboardDocument2,
       { name }: { name: string },
     ) {
       const order = `${name}`;
@@ -183,7 +183,7 @@ export const loadDashboardClass = (models: IModels) => {
       return `${parentOrder}/${order}`;
     }
 
-    public static async addDashboard(doc: IDashboard) {
+    public static async addDashboard(doc: IDashboard2) {
       const isUnique = await models.Dashboards.validateUniqueness(
         null,
         doc.name,
@@ -197,7 +197,7 @@ export const loadDashboardClass = (models: IModels) => {
 
       // Generating order
       const order = await this.generateOrder(
-        parentDashboard as IDashboardDocument,
+        parentDashboard as IDashboardDocument2,
         doc,
       );
 
@@ -213,7 +213,7 @@ export const loadDashboardClass = (models: IModels) => {
 
     public static async editDashboard(
       _id: string,
-      doc: IDashboard,
+      doc: IDashboard2,
       user: IUserDocument,
     ) {
       const isUnique = await models.Dashboards.validateUniqueness(
@@ -233,7 +233,7 @@ export const loadDashboardClass = (models: IModels) => {
 
       // Generating  order
       const order = await this.generateOrder(
-        parentDashboard as IDashboardDocument,
+        parentDashboard as IDashboardDocument2,
         doc,
       );
 
@@ -322,7 +322,7 @@ export const loadDashboardItemClass = (models: IModels) => {
       return models.DashboardItems.create(doc);
     }
 
-    public static async editDashboardItem(_id: string, fields: IDashboard) {
+    public static async editDashboardItem(_id: string, fields: IDashboard2) {
       await models.DashboardItems.updateOne({ _id }, { $set: fields });
 
       return models.DashboardItems.findOne({ _id });

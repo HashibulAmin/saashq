@@ -1,9 +1,9 @@
 import { IContext } from '../../connectionResolver';
 import { sendTagsMessage } from '../../messageBroker';
-import { IDashboardDocument } from '../../models/definitions/dashboard';
+import { IDashboardDocument2 } from '../../models/definitions/dashboard';
 
 export default {
-  createdUser(dashboard: IDashboardDocument) {
+  createdUser(dashboard: IDashboardDocument2) {
     return (
       dashboard.createdBy && {
         __typename: 'User',
@@ -12,7 +12,7 @@ export default {
     );
   },
 
-  updatedUser(dashboard: IDashboardDocument) {
+  updatedUser(dashboard: IDashboardDocument2) {
     return (
       dashboard.updatedBy && {
         __typename: 'User',
@@ -21,7 +21,7 @@ export default {
     );
   },
 
-  async getTags(dashboard: IDashboardDocument, _, { subdomain }: IContext) {
+  async getTags(dashboard: IDashboardDocument2, _, { subdomain }: IContext) {
     return sendTagsMessage({
       subdomain,
       action: 'find',
@@ -33,14 +33,14 @@ export default {
     });
   },
 
-  members(dashboard: IDashboardDocument) {
+  members(dashboard: IDashboardDocument2) {
     return (dashboard.selectedMemberIds || []).map((_id) => ({
       __typename: 'User',
       _id,
     }));
   },
 
-  itemsCount(dashboard: IDashboardDocument, _args, { models }: IContext) {
+  itemsCount(dashboard: IDashboardDocument2, _args, { models }: IContext) {
     return models.DashboardItems.find({
       dashboardId: dashboard._id,
     }).countDocuments();

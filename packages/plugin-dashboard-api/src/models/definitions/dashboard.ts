@@ -1,19 +1,19 @@
 import { Document, Schema } from 'mongoose';
 import { field, schemaWrapper } from './utils';
 
-enum IVisibilityType {
+enum IVisibilityType2 {
   PUBLIC = 'public',
   PRIVATE = 'private',
 }
 
-export interface IDashboard {
+export interface IDashboard2 {
   name: string;
-  visibility: IVisibilityType;
+  visibility: IVisibilityType2;
   selectedMemberIds?: string[];
   description?: string;
   parentId?: string;
   tagIds?: string[];
-  childsDashboard?: [IDashboard];
+  childsDashboard?: [IDashboard2];
   createdBy?: string;
   updatedBy?: string;
   departmentIds?: string[];
@@ -43,7 +43,7 @@ export interface IDashboardItemEdit {
   isDateRange?: boolean;
 }
 
-export interface IDashboardDocument extends IDashboard, Document {
+export interface IDashboardDocument2 extends IDashboard2, Document {
   _id: string;
   createdAt: Date;
   updatedAt: Date;
