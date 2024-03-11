@@ -21,7 +21,7 @@ export const types = (tagsAvailable) => `
     selectedMemberIds: [String]
     description: String
     parentId: String
-    childsDashboard: [Dashboard]
+    childsDashboard: [Dashboard2]
     order: String
     dashboardCount: Int
     relatedIds: [String]
