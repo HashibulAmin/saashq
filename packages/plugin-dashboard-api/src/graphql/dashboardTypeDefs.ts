@@ -21,7 +21,7 @@ export const types = (tagsAvailable) => `
     selectedMemberIds: [String]
     description: String
     parentId: String
-    childsDashboard: [Dashboard2]
+    childsDashboard: [Dashboard]
     order: String
     dashboardCount: Int
     relatedIds: [String]
@@ -68,7 +68,7 @@ const queryParams = `
 `;
 
 export const queries = `
-  dashboards(${queryParams}): [Dashboard2]
+  dashboards(${queryParams}): [Dashboard]
   dashboardsMain(${queryParams}): DashboardListResponse2
   dashboardDetails(_id: String!): Dashboard2
   dashboardsTotalCount: Int
