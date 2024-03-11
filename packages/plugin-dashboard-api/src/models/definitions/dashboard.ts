@@ -63,7 +63,7 @@ export const dashboardSchema = schemaWrapper(
     _id: field({ pkey: true }),
     name: field({ type: String }),
     description: field({ type: String, optional: true }),
-    visibility: field({ type: String, optional: true }),
+    visibility: field({ type: IVisibilityType2, optional: true }),
     selectedMemberIds: field({ type: [String] }),
     parentId: field({ type: String, optional: true }),
     childsDashboard: field({ type: [String] }),

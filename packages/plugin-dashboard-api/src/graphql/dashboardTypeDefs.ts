@@ -21,7 +21,7 @@ export const types = (tagsAvailable) => `
     selectedMemberIds: [String]
     description: String
     parentId: String
-    childsDashboard: [Dashboard]
+    childsDashboard: [Dashboard2]
     order: String
     dashboardCount: Int
     relatedIds: [String]
@@ -55,7 +55,7 @@ export const types = (tagsAvailable) => `
   }
 
   type DashboardListResponse2 {
-    list: [Dashboard],
+    list: [Dashboard2],
     totalCount: Int,
   }
 `;
@@ -84,8 +84,8 @@ export const queries = `
 `;
 
 export const mutations = `
-  dashboardsAdd(name: String, description: String, visibility: String, selectedMemberIds: [String], departmentIds: [String], parentId: String): Dashboard
-  dashboardsEdit(_id: String!, name: String, description: String, visibility: String, selectedMemberIds: [String], departmentIds: [String], parentId: String): Dashboard
+  dashboardsAdd(name: String, description: String, visibility: String, selectedMemberIds: [String], departmentIds: [String], parentId: String): Dashboard2
+  dashboardsEdit(_id: String!, name: String, description: String, visibility: String, selectedMemberIds: [String], departmentIds: [String], parentId: String): Dashboard2
   dashboardsRemove(dashboardIds: [String]): JSON
   dashboardItemsAdd(dashboardId: String, layout: String, vizState: String, name: String, type: String, isDateRange: Boolean): DashboardItem
   dashboardItemsEdit(_id: String!, dashboardId:String, layout: String, vizState: String, name: String, type: String): DashboardItem
