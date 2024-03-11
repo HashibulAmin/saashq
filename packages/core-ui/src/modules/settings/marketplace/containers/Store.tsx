@@ -13,23 +13,23 @@ class StoreContainer extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      plugins: []
+      plugins: [],
     };
   }
 
   async componentDidMount() {
     const url =
       process.env.NODE_ENV === 'production'
-        ? 'https://saashq.org/plugins'
+        ? 'https://shq.saashq.org/plugins'
         : 'http://127.0.0.1:3500/plugins';
 
     fetch(url)
-      .then(async response => {
+      .then(async (response) => {
         const plugins = await response.json();
 
         this.setState({ plugins });
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e, 'error');
       });
   }

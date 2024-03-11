@@ -7,7 +7,7 @@ import {
   PluginContainer,
   SidebarBox,
   SidebarWrapper,
-  SmallText
+  SmallText,
 } from '../../styles';
 
 import Button from '@saashq/ui/src/components/Button';
@@ -39,14 +39,13 @@ export default class RightSidebar extends React.Component<Props> {
             <div dangerouslySetInnerHTML={{ __html: description }} />
             <SmallText withMargin={true}>
               <b>{__('Address')}:</b>{' '}
-              {address ||
-                '6525 Woodman Avenue, Los Angeles California, USA, 91401'}
+              {address || '1931 Norris Avenue, Fort Erie Ontario, CA, L2A5M4'}
             </SmallText>
             <SmallText withMargin={true}>
-              <b>{__('Tel')}</b>: {phone || '+1 617 506 9010'}
+              <b>{__('Tel')}</b>: {phone || '+1 289 303 7651'}
             </SmallText>
             <SmallText>
-              <b>{__('Email')}</b>: {email || 'info@saashq.org'}
+              <b>{__('Email')}</b>: {email || 'saashqdev@gmail.com'}
             </SmallText>
           </CardInformation>
         </DetailCard>
@@ -95,15 +94,15 @@ export default class RightSidebar extends React.Component<Props> {
       return null;
     }
 
-    const dependentPlugins = this.props.plugins.filter(item =>
-      dependencies.includes(item._id)
+    const dependentPlugins = this.props.plugins.filter((item) =>
+      dependencies.includes(item._id),
     );
 
     return (
       <SidebarBox>
         <ColorHeader>Dependent plugins</ColorHeader>
         <AddOns>
-          {(dependentPlugins || []).map(dependency => (
+          {(dependentPlugins || []).map((dependency) => (
             <Link
               to={`installer/details/${dependency._id}`}
               key={dependency._id}
@@ -133,15 +132,15 @@ export default class RightSidebar extends React.Component<Props> {
       return null;
     }
 
-    const relations = this.props.plugins.filter(item =>
-      relatedPlugins.includes(item._id)
+    const relations = this.props.plugins.filter((item) =>
+      relatedPlugins.includes(item._id),
     );
 
     return (
       <SidebarBox>
         <ColorHeader>Related plugins</ColorHeader>
         <AddOns>
-          {(relations || []).map(related => (
+          {(relations || []).map((related) => (
             <Link to={`installer/details/${related._id}`} key={related._id}>
               <Addon>
                 <img

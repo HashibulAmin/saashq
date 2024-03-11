@@ -29,38 +29,38 @@ class PluginDetailsContainer extends React.Component<FinalProps, State> {
 
     this.state = {
       plugin: {},
-      plugins: []
+      plugins: [],
     };
   }
 
   async componentDidMount() {
     const url =
       process.env.NODE_ENV === 'production'
-        ? `https://saashq.org/pluginDetail/${this.props.id}`
+        ? `https://shq.saashq.org/pluginDetail/${this.props.id}`
         : `http://127.0.0.1:3500/pluginDetail/${this.props.id}`;
 
     fetch(url)
-      .then(async response => {
+      .then(async (response) => {
         const plugin = await response.json();
 
         this.setState({ plugin });
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
 
     const pluginsUrl =
       process.env.NODE_ENV === 'production'
-        ? 'https://saashq.org/plugins'
+        ? 'https://shq.saashq.org/plugins'
         : 'http://127.0.0.1:3500/plugins';
 
     fetch(pluginsUrl)
-      .then(async response => {
+      .then(async (response) => {
         const plugins = await response.json();
 
         this.setState({ plugins });
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e, 'error');
       });
   }
@@ -81,10 +81,10 @@ class PluginDetailsContainer extends React.Component<FinalProps, State> {
 export default withProps<{}>(
   compose(
     graphql<{}, {}, {}>(gql(queries.enabledServices), {
-      name: 'enabledServicesQuery'
+      name: 'enabledServicesQuery',
     }),
     graphql<{}>(gql(mutations.managePluginInstall), {
-      name: 'manageInstall'
-    })
-  )(PluginDetailsContainer)
+      name: 'manageInstall',
+    }),
+  )(PluginDetailsContainer),
 );
