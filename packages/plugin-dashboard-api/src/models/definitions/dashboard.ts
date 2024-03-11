@@ -1,14 +1,9 @@
 import { Document, Schema } from 'mongoose';
 import { field, schemaWrapper } from './utils';
 
-enum IVisibilityType2 {
-  PUBLIC = 'public',
-  PRIVATE = 'private',
-}
-
 export interface IDashboard2 {
   name: string;
-  visibility: IVisibilityType2;
+  visibility: string;
   selectedMemberIds?: string[];
   description?: string;
   parentId?: string;
@@ -63,7 +58,7 @@ export const dashboardSchema = schemaWrapper(
     _id: field({ pkey: true }),
     name: field({ type: String }),
     description: field({ type: String, optional: true }),
-    visibility: field({ type: IVisibilityType2, optional: true }),
+    visibility: field({ type: String, optional: true }),
     selectedMemberIds: field({ type: [String] }),
     parentId: field({ type: String, optional: true }),
     childsDashboard: field({ type: [String] }),

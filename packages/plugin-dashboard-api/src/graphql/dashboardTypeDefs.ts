@@ -17,7 +17,7 @@ export const types = (tagsAvailable) => `
   type Dashboard2 {
     _id: String!
     name: String
-    visibility: VisibilityType2
+    visibility: String
     selectedMemberIds: [String]
     description: String
     parentId: String
@@ -38,11 +38,6 @@ export const types = (tagsAvailable) => `
     members: [User]
     itemsCount: Int
   } 
-
-  enum VisibilityType2 {
-    PUBLIC
-    PRIVATE
-  }
 
   type DashboardItem {
     _id: String!
