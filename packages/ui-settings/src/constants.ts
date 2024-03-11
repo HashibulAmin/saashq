@@ -215,7 +215,7 @@ export const EMPTY_CONTENT_ENGAGE = {
 };
 
 export const EMPTY_CONTENT_KNOWLEDGEBASE = {
-  title: __('Getting Started with saashq Knowledgebase'),
+  title: __('Getting Started with SaasHQ Knowledgebase'),
   description: __(
     'Educate your customers and staff by creating help articles to reach higher levels of satisfaction',
   ),

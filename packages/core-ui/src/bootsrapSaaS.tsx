@@ -12,7 +12,8 @@ import { render } from 'react-dom';
 import { ApolloProvider } from '@apollo/client';
 
 const wenv = (window as any).env || {};
-const getItem = (name) => wenv[name] || process.env[name] || 'https://saashq.org';
+const getItem = (name) =>
+  wenv[name] || process.env[name] || 'https://shq.saashq.org';
 
 const REACT_APP_CORE_URL = getItem('REACT_APP_CORE_URL');
 
