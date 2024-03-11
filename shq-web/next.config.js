@@ -12,7 +12,7 @@ const nextConfig = {
       },
     ],
 
-    domains: ["s3.ap-southeast-1.amazonaws.com"],
+    domains: ["s3.us-east-1.amazonaws.com"],
   },
 }
 
