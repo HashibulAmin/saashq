@@ -43,7 +43,7 @@ jobs:
 
       - name: Build
         run: |
-          yarn install --frozen-lockfile
+          yarn install
           cd packages/core-ui
           yarn build
 
