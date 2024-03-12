@@ -5,6 +5,7 @@ dist
 .next
 out
 .env
+build
 *.un~
 *.swp
 *.swo
