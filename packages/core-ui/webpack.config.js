@@ -55,7 +55,7 @@ module.exports = (env, args) => {
       rules: [
         {
           test: /\.m?js/,
-          type: 'text/javascript',
+          type: 'javascript/auto',
           resolve: {
             fullySpecified: false
           }

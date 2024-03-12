@@ -7,7 +7,7 @@ import {
   PerPrice,
   PluginBoxFooter,
   PluginBoxHeader,
-  PluginContent
+  PluginContent,
 } from './styles';
 
 import Icon from 'modules/common/components/Icon';
@@ -38,11 +38,11 @@ class PluginBox extends React.Component<Props, {}> {
   renderAddon() {
     const { dependencies } = this.props.plugin || {};
 
-    const dependentPlugins = this.props.plugins.filter(item =>
-      dependencies.includes(item._id)
+    const dependentPlugins = this.props.plugins.filter((item) =>
+      dependencies.includes(item._id),
     );
 
-    return (dependentPlugins || []).map(dependency => (
+    return (dependentPlugins || []).map((dependency) => (
       <Addon key={dependency._id}>
         <img
           src={dependency.avatar || dependency.icon || '/images/no-plugin.png'}
@@ -69,7 +69,7 @@ class PluginBox extends React.Component<Props, {}> {
       <>
         <FooterItem>
           <Icon icon="user" size={14} />
-          <span>{plugin.creator ? plugin.creator.name : __('saashq Inc')}</span>
+          <span>{plugin.creator ? plugin.creator.name : __('SaasHQ Inc')}</span>
         </FooterItem>
         <FooterItem>
           <Icon icon="chart-bar" size={14} />
@@ -99,7 +99,7 @@ class PluginBox extends React.Component<Props, {}> {
             <div
               className="short-desc"
               dangerouslySetInnerHTML={{
-                __html: plugin.shortDescription
+                __html: plugin.shortDescription,
               }}
             />
           </PluginContent>
