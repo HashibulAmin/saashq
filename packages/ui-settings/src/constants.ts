@@ -137,7 +137,7 @@ export const EMPTY_CONTENT_SCRIPT = {
 };
 
 export const EMPTY_CONTENT_POPUPS = {
-  title: __('Getting Started with saashq forms'),
+  title: __('Getting Started with SaasHQ Forms'),
   description: __(
     'Never miss a potential lead by capturing them with a customizable Forms',
   ),
@@ -160,7 +160,7 @@ export const EMPTY_CONTENT_POPUPS = {
 };
 
 export const EMPTY_CONTENT_FORUMS = {
-  title: __('Getting Started with saashq forums'),
+  title: __('Getting Started with SaasHQ Forums'),
   description: __(
     'Never miss a potential lead by capturing them with a forums',
   ),
@@ -239,7 +239,7 @@ export const EMPTY_CONTENT_KNOWLEDGEBASE = {
 };
 
 export const EMPTY_CONTENT_MESSENGER = {
-  title: __('Getting Started with saashq Messenger'),
+  title: __('Getting Started with SaasHQ Messenger'),
   description: `${__(
     'Learn how the saashq Messenger works and it is set up',
   )}.${' It is used in the Team Inbox and Knowledgebase and Engage features uses Messenger'}`,
@@ -273,7 +273,7 @@ export const EMPTY_CONTENT_MESSENGER = {
       ),
     },
     {
-      title: __('Avoid duplication of saashq widget scripts'),
+      title: __('Avoid duplication of SaasHQ widget scripts'),
       description: __(
         'If you wish to display saashq messenger and any other saashq widgets on the same webpage, use the Script Manager to combine scripts and avoid any duplication errors.',
       ),
@@ -299,7 +299,7 @@ export const EMPTY_CONTENT_CONTACTS = {
     {
       title: __('Collect visitor information'),
       description: __(
-        'Create your saashq Messenger to start capturing Visitors',
+        'Create your SaasHQ Messenger to start capturing Visitors',
       ),
       url: '/settings/integrations/createMessenger',
       urlText: 'Create Messenger',
@@ -526,7 +526,7 @@ export const WEBHOOK_ACTIONS = [
 ];
 
 export const EMPTY_CONTENT_BOOKINGS = {
-  title: __('Getting Started with saashq Booking'),
+  title: __('Getting Started with SaasHQ Booking'),
   description: __(
     'saashq Booking widget helps you create listings of your Products and Services and receive bookings with your saashq Form.',
   ),
