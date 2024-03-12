@@ -119,7 +119,8 @@ class MainLayout extends React.Component<IProps, State> {
 
         (() => {
           const script = document.createElement('script');
-          script.src = 'https://shq.saashq.org/build/messengerWidget.bundle.js';
+          script.src =
+            'https://shq.saashq.org/js/plugin-widgets/messengerWidget.bundle.js';
           script.async = true;
 
           const entry = document.getElementsByTagName('script')[0] as any;
@@ -143,7 +144,8 @@ class MainLayout extends React.Component<IProps, State> {
           };
 
           const script = document.createElement('script');
-          script.src = 'https://shq.saashq.org/build/messengerWidget.bundle.js';
+          script.src =
+            'https://shq.saashq.org/js/plugin-widgets/messengerWidget.bundle.js';
           const entry = document.getElementsByTagName('script')[0];
           (entry as any).parentNode.insertBefore(script, entry);
         }
