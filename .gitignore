@@ -9,7 +9,6 @@ out
 *.swp
 *.swo
 *.log
-build
 /dock
 .env.local
 .env.development.local
