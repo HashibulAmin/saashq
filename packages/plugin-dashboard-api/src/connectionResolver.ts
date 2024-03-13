@@ -1,10 +1,10 @@
 import * as mongoose from 'mongoose';
 import {
-  IDashboardDocument2,
+  IDashboardDocumentz,
   IDashboardItemDocument,
-} from './models/definitions/dashboard2';
+} from './models/definitions/dashboardz';
 import {
-  IDashboardModel2,
+  IDashboardModelz,
   IDashboardItemModel,
   loadDashboardClass,
   loadDashboardItemClass,
@@ -13,7 +13,7 @@ import { IContext as IMainContext } from '@saashq/api-utils/src';
 import { createGenerateModels } from '@saashq/api-utils/src/core';
 
 export interface IModels {
-  Dashboards: IDashboardModel2;
+  Dashboards: IDashboardModelz;
   DashboardItems: IDashboardItemModel;
 }
 export interface IContext extends IMainContext {
@@ -26,7 +26,7 @@ export let models: IModels | null = null;
 export const loadClasses = (db: mongoose.Connection): IModels => {
   models = {} as IModels;
 
-  models.Dashboards = db.model<IDashboardDocument2, IDashboardModel2>(
+  models.Dashboards = db.model<IDashboardDocumentz, IDashboardModelz>(
     'dashboards',
     loadDashboardClass(models),
   );

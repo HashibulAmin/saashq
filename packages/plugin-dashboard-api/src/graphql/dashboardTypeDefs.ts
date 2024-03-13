@@ -14,14 +14,14 @@ export const types = (tagsAvailable) => `
     _id: String! @external
   }
 
-  type Dashboard2 {
+  type Dashboardz {
     _id: String!
     name: String
     visibility: String
     selectedMemberIds: [String]
     description: String
     parentId: String
-    childsDashboard: [Dashboard2]
+    childsDashboard: [Dashboardz]
     order: String
     dashboardCount: Int
     relatedIds: [String]
@@ -49,8 +49,8 @@ export const types = (tagsAvailable) => `
     isDateRange: Boolean
   }
 
-  type DashboardListResponse2 {
-    list: [Dashboard2],
+  type DashboardListResponsez {
+    list: [Dashboardz],
     totalCount: Int,
   }
 `;
@@ -68,9 +68,9 @@ const queryParams = `
 `;
 
 export const queries = `
-  dashboards2(${queryParams}): [Dashboard2]
-  dashboardsMain(${queryParams}): DashboardListResponse2
-  dashboardDetails(_id: String!): Dashboard2
+  dashboardz(${queryParams}): [Dashboardz]
+  dashboardsMain(${queryParams}): DashboardListResponsez
+  dashboardDetails(_id: String!): Dashboardz
   dashboardsTotalCount: Int
   dashboardCountByTags : JSON
   dashboardItems(dashboardId: String!): [DashboardItem]
@@ -79,8 +79,8 @@ export const queries = `
 `;
 
 export const mutations = `
-  dashboardsAdd(name: String, description: String, visibility: String, selectedMemberIds: [String], departmentIds: [String], parentId: String): Dashboard2
-  dashboardsEdit(_id: String!, name: String, description: String, visibility: String, selectedMemberIds: [String], departmentIds: [String], parentId: String): Dashboard2
+  dashboardsAdd(name: String, description: String, visibility: String, selectedMemberIds: [String], departmentIds: [String], parentId: String): Dashboardz
+  dashboardsEdit(_id: String!, name: String, description: String, visibility: String, selectedMemberIds: [String], departmentIds: [String], parentId: String): Dashboardz
   dashboardsRemove(dashboardIds: [String]): JSON
   dashboardItemsAdd(dashboardId: String, layout: String, vizState: String, name: String, type: String, isDateRange: Boolean): DashboardItem
   dashboardItemsEdit(_id: String!, dashboardId:String, layout: String, vizState: String, name: String, type: String): DashboardItem

@@ -76,7 +76,7 @@ const generateFilter = async (
 };
 
 const dashBoardQueries = {
-  async dashboards(
+  async dashboardz(
     _root,
     params: IListArgs,
     { models, user, subdomain }: IContext,
@@ -95,7 +95,7 @@ const dashBoardQueries = {
 
     const filter = await generateFilter(params, user, subdomain);
 
-    const dashboards = paginate(
+    const dashboardz = paginate(
       models.Dashboards.find(filter).sort({ createdAt: -1 }),
       { perPage, page },
     );
@@ -103,7 +103,7 @@ const dashBoardQueries = {
     const totalCount = await models.Dashboards.find(filter).countDocuments();
 
     return {
-      list: dashboards,
+      list: dashboardz,
       totalCount,
     };
   },

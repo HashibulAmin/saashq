@@ -6,22 +6,22 @@ import { IModels } from '../connectionResolver';
 import {
   dashboardItemSchema,
   dashboardSchema,
-  IDashboard2,
-  IDashboardDocument2,
+  IDashboardz,
+  IDashboardDocumentz,
   IDashboardItemDocument,
   IDashboardItemEdit,
   IDashboardItemInput,
-} from './definitions/dashboard2';
+} from './definitions/dashboardz';
 import { escapeRegExp } from './definitions/utils';
 
-export interface IDashboardModel2 extends Model<IDashboardDocument2> {
-  getDashboard(_id: string): Promise<IDashboardDocument2>;
-  addDashboard(doc: IDashboard2): Promise<IDashboardDocument2>;
+export interface IDashboardModelz extends Model<IDashboardDocumentz> {
+  getDashboard(_id: string): Promise<IDashboardDocumentz>;
+  addDashboard(doc: IDashboardz): Promise<IDashboardDocumentz>;
   editDashboard(
     _id: string,
-    fields: IDashboard2,
+    fields: IDashboardz,
     user: IUserDocument,
-  ): Promise<IDashboardDocument2>;
+  ): Promise<IDashboardDocumentz>;
   removeDashboard(_id: string): void;
   validateUniqueness(selector: any, name: string): Promise<boolean>;
 }
@@ -36,7 +36,7 @@ export interface IDashboardItemModel extends Model<IDashboardItemDocument> {
 }
 
 const setRelatedIds = async (
-  dashboard: IDashboardDocument2,
+  dashboard: IDashboardDocumentz,
   models: IModels,
 ) => {
   if (dashboard.parentId) {
@@ -70,14 +70,14 @@ const setRelatedIds = async (
 
 // remove related dashboards
 const removeRelatedIds = async (
-  dashboard: IDashboardDocument2,
+  dashboard: IDashboardDocumentz,
   models: IModels,
 ) => {
-  const dashboards2 = await models.Dashboards.find({
+  const dashboardz = await models.Dashboards.find({
     relatedIds: { $in: dashboard._id },
   });
 
-  if (dashboards2.length === 0) {
+  if (dashboardz.length === 0) {
     return;
   }
 
@@ -92,7 +92,7 @@ const removeRelatedIds = async (
     };
   }> = [];
 
-  dashboards2.forEach(async (t) => {
+  dashboardz.forEach(async (t) => {
     const ids = (t.relatedIds || []).filter((id) => !relatedIds.includes(id));
 
     doc.push({
@@ -151,14 +151,14 @@ export const loadDashboardClass = (models: IModels) => {
       return true;
     }
 
-    static async getParentDashboard(doc: IDashboard2) {
+    static async getParentDashboard(doc: IDashboardz) {
       return models.Dashboards.findOne({
         _id: doc.parentId,
       }).lean();
     }
 
     public static async generateOrder(
-      parentDashboard: IDashboardDocument2,
+      parentDashboard: IDashboardDocumentz,
       { name }: { name: string },
     ) {
       const order = `${name}`;
@@ -183,7 +183,7 @@ export const loadDashboardClass = (models: IModels) => {
       return `${parentOrder}/${order}`;
     }
 
-    public static async addDashboard(doc: IDashboard2) {
+    public static async addDashboard(doc: IDashboardz) {
       const isUnique = await models.Dashboards.validateUniqueness(
         null,
         doc.name,
@@ -197,7 +197,7 @@ export const loadDashboardClass = (models: IModels) => {
 
       // Generating order
       const order = await this.generateOrder(
-        parentDashboard as IDashboardDocument2,
+        parentDashboard as IDashboardDocumentz,
         doc,
       );
 
@@ -213,7 +213,7 @@ export const loadDashboardClass = (models: IModels) => {
 
     public static async editDashboard(
       _id: string,
-      doc: IDashboard2,
+      doc: IDashboardz,
       user: IUserDocument,
     ) {
       const isUnique = await models.Dashboards.validateUniqueness(
@@ -233,7 +233,7 @@ export const loadDashboardClass = (models: IModels) => {
 
       // Generating  order
       const order = await this.generateOrder(
-        parentDashboard as IDashboardDocument2,
+        parentDashboard as IDashboardDocumentz,
         doc,
       );
 
@@ -322,7 +322,7 @@ export const loadDashboardItemClass = (models: IModels) => {
       return models.DashboardItems.create(doc);
     }
 
-    public static async editDashboardItem(_id: string, fields: IDashboard2) {
+    public static async editDashboardItem(_id: string, fields: IDashboardz) {
       await models.DashboardItems.updateOne({ _id }, { $set: fields });
 
       return models.DashboardItems.findOne({ _id });

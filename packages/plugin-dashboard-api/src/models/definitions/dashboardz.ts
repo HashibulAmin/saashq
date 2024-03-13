@@ -1,14 +1,14 @@
 import { Document, Schema } from 'mongoose';
 import { field, schemaWrapper } from './utils';
 
-export interface IDashboard2 {
+export interface IDashboardz {
   name: string;
   visibility: string;
   selectedMemberIds?: string[];
   description?: string;
   parentId?: string;
   tagIds?: string[];
-  childsDashboard?: [IDashboard2];
+  childsDashboard?: [IDashboardz];
   createdBy?: string;
   updatedBy?: string;
   departmentIds?: string[];
@@ -38,7 +38,7 @@ export interface IDashboardItemEdit {
   isDateRange?: boolean;
 }
 
-export interface IDashboardDocument2 extends IDashboard2, Document {
+export interface IDashboardDocumentz extends IDashboardz, Document {
   _id: string;
   createdAt: Date;
   updatedAt: Date;
