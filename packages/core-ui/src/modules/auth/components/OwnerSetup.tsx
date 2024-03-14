@@ -15,11 +15,11 @@ type Props = {
 export const OwnerDescription = () => {
   return (
     <>
-      <h1>{__('Welcome to saashq')}</h1>
-      <h2>{__('saashq is the partner your website needs for success')}</h2>
+      <h1>{__('Welcome to SaasHQ')}</h1>
+      <h2>{__('SaasHQ is the partner your website needs for success')}</h2>
       <p>
         {__(
-          'You will configure several settings on this page. You will be able to change these settings in the saashq settings tab. You will be creating the top level administrator account profile. Please complete all the data in Initial Configuration Steps.'
+          'You will configure several settings on this page. You will be able to change these settings in the saashq settings tab. You will be creating the top level administrator account profile. Please complete all the data in Initial Configuration Steps.',
         )}
       </p>
     </>
@@ -37,18 +37,18 @@ const OwnerSetup = (props: Props) => {
   const [subscribeEmail, setSubscribeEmail] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!firstName) {
       return Alert.error(
-        'We would love your real first name, but you are free to choose any name you want to be called.'
+        'We would love your real first name, but you are free to choose any name you want to be called.',
       );
     }
 
     if (!email) {
       return Alert.error(
-        'Your best email address is required. You will want to receive these notifications.'
+        'Your best email address is required. You will want to receive these notifications.',
       );
     }
 
@@ -62,41 +62,41 @@ const OwnerSetup = (props: Props) => {
       firstName,
       lastName,
       purpose,
-      subscribeEmail
+      subscribeEmail,
     });
   };
 
-  const handleFirstName = e => {
+  const handleFirstName = (e) => {
     e.preventDefault();
 
     setFirstName(e.target.value);
   };
 
-  const handleLastName = e => {
+  const handleLastName = (e) => {
     e.preventDefault();
 
     setLastName(e.target.value);
   };
 
-  const handlePurpose = e => {
+  const handlePurpose = (e) => {
     e.preventDefault();
 
     setPurpose(e.target.value);
   };
 
-  const handleEmail = e => {
+  const handleEmail = (e) => {
     e.preventDefault();
 
     setEmail(e.target.value);
   };
 
-  const handlePassword = e => {
+  const handlePassword = (e) => {
     e.preventDefault();
 
     setPassword(e.target.value);
   };
 
-  const toggleSubscribeEmail = e => {
+  const toggleSubscribeEmail = (e) => {
     setSubscribeEmail(e.target.checked);
   };
 
@@ -131,7 +131,7 @@ const OwnerSetup = (props: Props) => {
         <br />
         <p>
           {__(
-            'Please input the best email address to use as your login and to receive emails from your installation such as notifications, alerts and other messages'
+            'Please input the best email address to use as your login and to receive emails from your installation such as notifications, alerts and other messages',
           )}
           .
         </p>
@@ -163,7 +163,7 @@ const OwnerSetup = (props: Props) => {
         </FormGroup>
 
         <FormGroup>
-          <p>{__('I am planning to use saashq to')}</p>
+          <p>{__('I am planning to use SaasHQ to')}</p>
 
           <FormControl
             componentClass="select"
@@ -171,16 +171,16 @@ const OwnerSetup = (props: Props) => {
             options={[
               {
                 value: 'manage a personal project',
-                label: 'Manage a personal project'
+                label: 'Manage a personal project',
               },
               {
                 value: 'manage an internal company use case',
-                label: 'Manage an internal company use case'
+                label: 'Manage an internal company use case',
               },
               {
                 value: 'attract new businesses',
-                label: 'Attract new businesses'
-              }
+                label: 'Attract new businesses',
+              },
             ]}
             onChange={handlePurpose}
           />
@@ -189,7 +189,7 @@ const OwnerSetup = (props: Props) => {
         <br />
         <p>
           {__(
-            'You must check below to receive information about upgrades and upgrading instructions, new tutorials, occasional requests for feedback and the monthly newsletter'
+            'You must check below to receive information about upgrades and upgrading instructions, new tutorials, occasional requests for feedback and the monthly newsletter',
           )}
           .
         </p>
