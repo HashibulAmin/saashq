@@ -182,4 +182,6 @@ const WithQueryParams = (props: IRouterProps) => {
   return <WithLastBrand {...extendedProps} />;
 };
 
-export default withRouter<IRouterProps, any>(WithQueryParams);
+export default withRouter<IRouterProps, {}, React.Component<IRouterProps>>(
+  WithQueryParams,
+);

@@ -62,4 +62,4 @@ function Brands({ history, counts, brands, loading, emptyText }: IProps) {
   );
 }
 
-export default withRouter<IProps, any>(Brands);
+export default withRouter<IProps, {}, React.Component<IProps>>(Brands);
