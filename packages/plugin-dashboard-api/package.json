@@ -1,1 +1,11 @@
-{"name":"saashq","private":true,"workspaces":["packages/*"]}
+{
+  "name": "@saashq/plugin-dashboard-api",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "build" : "tsc"
+  },
+  "dependencies": {
+    "@saashq/api-utils" : "*"
+  }
+}
