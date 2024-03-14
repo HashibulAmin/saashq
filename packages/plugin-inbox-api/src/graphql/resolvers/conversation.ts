@@ -87,7 +87,7 @@ export default {
           subdomain,
           action: 'getCallproAudio',
           data: {
-            erxesApiId: conv._id,
+            saashqApiId: conv._id,
             integrationId: integration._id,
           },
           isRPC: true,
@@ -126,7 +126,7 @@ export default {
         subdomain,
         action: 'getDailyActiveRoom',
         data: {
-          erxesApiConversationId: conversation._id,
+          saashqApiConversationId: conversation._id,
         },
         isRPC: true,
       });

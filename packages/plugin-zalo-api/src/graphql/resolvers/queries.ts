@@ -18,7 +18,7 @@ const buildSelector = async (conversationId: string, models: IModels) => {
   const query = { conversationId: '' };
 
   const conversation = await models.Conversations.findOne({
-    erxesApiId: conversationId,
+    saashqApiId: conversationId,
   });
 
   if (conversation) {

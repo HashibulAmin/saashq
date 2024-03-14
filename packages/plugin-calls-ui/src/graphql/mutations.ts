@@ -11,7 +11,7 @@ const customersAdd = `
     callAddCustomer(inboxIntegrationId: $inboxIntegrationId, primaryPhone: $primaryPhone, direction: $direction, callID: $callID) {
       conversation {
           _id
-          erxesApiId
+          saashqApiId
           integrationId
           senderPhoneNumber
           recipientPhoneNumber

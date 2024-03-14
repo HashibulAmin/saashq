@@ -55,7 +55,7 @@ export default {
       action: 'api_to_integrations',
       data: {
         action: 'getMessage',
-        erxesApiMessageId: message._id,
+        saashqApiMessageId: message._id,
         integrationId: integration._id,
         path,
       },

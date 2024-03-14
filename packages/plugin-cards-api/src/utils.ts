@@ -382,7 +382,7 @@ export const generateSystemFields = ({ data: { groupId, type } }) => {
       groupId,
       options: e.options,
       contentType: `cards:${type}`,
-      isDefinedByErxes: true,
+      isDefinedBySaasHQ: true,
     });
   });
 

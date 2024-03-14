@@ -406,7 +406,7 @@ export const createGenerateModels = <IModels>(
       }
 
       const DB_NAME = getEnv({ name: 'DB_NAME' });
-      const GE_MONGO_URL = (DB_NAME || 'erxes_<organizationId>').replace(
+      const GE_MONGO_URL = (DB_NAME || 'saashq_<organizationId>').replace(
         '<organizationId>',
         organization._id,
       );

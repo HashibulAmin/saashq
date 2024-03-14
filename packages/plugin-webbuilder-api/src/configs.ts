@@ -183,7 +183,7 @@ export default {
     });
 
     app.get('/demo/:templateId', async (req, res) => {
-      const HELPERS_DOMAIN = `https://helper.erxes.io`;
+      const HELPERS_DOMAIN = `https://helper.saashq.io`;
 
       const { templateId } = req.params;
 

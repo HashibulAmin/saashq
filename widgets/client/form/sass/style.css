@@ -1003,7 +1003,6 @@ select.form-control:focus,
 .saashq-icon-moon-1 {
   background-image: url("https://s3.amazonaws.com/saashq/icons/moon-1.svg");
 }
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -1119,9 +1118,6 @@ button.removeBtn {
 .form-group .field-groups .field-group {
   border-top: 1px solid #d8d8d8;
 }
-.form-group .field-groups .field-group:first-child {
-  border-top: none;
-}
 .form-group .field-groups .field-group .field-group-row {
   display: flex;
   flex-wrap: wrap;
@@ -1131,6 +1127,9 @@ button.removeBtn {
 }
 .form-group .field-groups .field-group .field-group-row .subField-item:last-child {
   margin: 0;
+}
+.form-group .field-groups .field-group:first-child {
+  border-top: none;
 }
 
 .modal-form {
