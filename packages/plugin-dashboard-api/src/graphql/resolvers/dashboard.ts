@@ -29,6 +29,7 @@ export default {
         _id: { $in: dashboard.tagIds },
       },
       isRPC: true,
+      serviceName: 'tags',
     });
   },
 

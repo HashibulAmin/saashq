@@ -34,6 +34,7 @@ const generateFilter = async (
       },
       isRPC: true,
       defaultValue: [],
+      serviceName: 'core',
     });
 
     const departmentIds = departments.map((d) => d._id);
@@ -148,6 +149,7 @@ const dashBoardQueries = {
       },
       isRPC: true,
       defaultValue: [],
+      serviceName: 'tags',
     });
 
     for (const tag of tags) {
