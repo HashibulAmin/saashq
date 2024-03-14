@@ -40,6 +40,8 @@ export default {
   },
 
   itemsCount(dashboard: IDashboardDocument, _args, { models }: IContext) {
-    return models.DashboardItems.find({ dashboardId: dashboard._id }).count();
+    return models.DashboardItems.find({
+      dashboardId: dashboard._id,
+    }).countDocuments();
   },
 };

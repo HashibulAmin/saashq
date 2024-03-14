@@ -1,14 +1,8 @@
-import { ISendMessageArgs, sendMessage } from '@saashq/api-utils/src/core';
-import { serviceDiscovery } from './configs';
+import { MessageArgs, sendMessage } from '@saashq/api-utils/src/core';
 import { generateModels } from './connectionResolver';
+import { consumeRPCQueue } from '@saashq/api-utils/src/messageBroker';
 
-let client;
-
-export const initBroker = async (cl) => {
-  client = cl;
-
-  const { consumeRPCQueue } = client;
-
+export const initBroker = async () => {
   consumeRPCQueue('dashboards:find.count', async ({ subdomain, data }) => {
     const models = await generateModels(subdomain);
 
@@ -21,46 +15,26 @@ export const initBroker = async (cl) => {
   });
 };
 
-export const sendCoreMessage = (args: ISendMessageArgs): Promise<any> => {
+export const sendCoreMessage = (args: MessageArgs): Promise<any> => {
   return sendMessage({
-    client,
-    serviceDiscovery,
-    serviceName: 'core',
     ...args,
   });
 };
 
-export const sendInboxMessage = async (
-  args: ISendMessageArgs,
-): Promise<any> => {
+export const sendInboxMessage = async (args: MessageArgs): Promise<any> => {
   return sendMessage({
-    client,
-    serviceDiscovery,
-    serviceName: 'inbox',
     ...args,
   });
 };
 
-export const sendCardsMessage = async (
-  args: ISendMessageArgs,
-): Promise<any> => {
+export const sendCardsMessage = async (args: MessageArgs): Promise<any> => {
   return sendMessage({
-    client,
-    serviceDiscovery,
-    serviceName: 'cards',
     ...args,
   });
 };
 
-export const sendTagsMessage = async (args: ISendMessageArgs): Promise<any> => {
+export const sendTagsMessage = async (args: MessageArgs): Promise<any> => {
   return sendMessage({
-    client,
-    serviceDiscovery,
-    serviceName: 'tags',
     ...args,
   });
 };
-
-export default function () {
-  return client;
-}
