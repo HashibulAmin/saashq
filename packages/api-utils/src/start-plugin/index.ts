@@ -621,6 +621,7 @@ export async function startPlugin(configs: any): Promise<express.Express> {
     hasSubscriptions: configs.hasSubscriptions,
     importExportTypes: configs.importExportTypes,
     meta: configs.meta,
+    dbConnectionString: configs.dbConnectionString,
   });
 
   configs.onServerInit();
