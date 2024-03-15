@@ -73,7 +73,7 @@ class AuthLayout extends React.Component<Props, {}> {
           {getThemeItem('login_page_description') || (
             <>
               {__('All in one ')}
-              <b>{__('Saas / Agenecy Management System')}</b>
+              <b>{__('Saas / Agency Management System')}</b>
               {__(' to align your entire business')}
             </>
           )}
