@@ -1,4 +1,7 @@
-import { getService, getServices } from '@saashq/api-utils/src/serviceDiscovery';
+import {
+  getService,
+  getServices,
+} from '@saashq/api-utils/src/serviceDiscovery';
 import retry from '../util/retry';
 import fetch from 'node-fetch';
 import * as dotenv from 'dotenv';
@@ -47,19 +50,30 @@ async function ensureGraphqlEndpointIsUp({
 
   const endponit = `${address}/graphql`;
 
+  /*
+    query: 'query SubgraphIntrospectQuery {\n' +
+      '    # eslint-disable-next-line\n' +
+      '    _service {\n' +
+      '        sdl\n' +
+      '    }\n' +
+      '}',
+  */
+
   const res = await fetch(endponit, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
+      variables: null,
       query: `
-          query _SaasHQGatewaySubgraphCheck_ {
+          query SubgraphIntrospectQuery {
             _service {
               sdl
             }
           }
           `,
+      operationName: 'SubgraphIntrospectQuery',
     }),
   });
   if (res.status === 200) {
