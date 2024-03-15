@@ -20,7 +20,7 @@ class StoreContainer extends React.Component<Props, State> {
   async componentDidMount() {
     const url =
       process.env.NODE_ENV === 'production'
-        ? 'https://shq.saashq.org/plugins'
+        ? 'https://shq.saashq.org/js/plugins.json'
         : 'http://127.0.0.1:3500/plugins';
 
     fetch(url)

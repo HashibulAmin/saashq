@@ -9,7 +9,7 @@ import {
   SearchInput,
   Services,
   StoreBlock,
-  Tag
+  Tag,
 } from './styles';
 
 import { CATEGORIES } from '../constants';
@@ -41,7 +41,7 @@ class Store extends React.Component<Props, State> {
       plugins: props.plugins || [],
       status: 'All',
       searchValue: '',
-      selectedCategories: []
+      selectedCategories: [],
     };
   }
 
@@ -51,8 +51,8 @@ class Store extends React.Component<Props, State> {
     if (prevState.searchValue !== searchValue) {
       this.setState({
         plugins: this.props.plugins.filter(
-          plugin => plugin.title.toLowerCase().indexOf(searchValue) !== -1
-        )
+          (plugin) => plugin.title.toLowerCase().indexOf(searchValue) !== -1,
+        ),
       });
     }
 
@@ -61,7 +61,7 @@ class Store extends React.Component<Props, State> {
     }
   }
 
-  onSearch = e => {
+  onSearch = (e) => {
     this.setState({ searchValue: e.target.value.toLowerCase() });
   };
 
@@ -75,7 +75,7 @@ class Store extends React.Component<Props, State> {
     let datas = [] as any;
 
     if (selectedCategories.includes(cat)) {
-      datas = selectedCategories.filter(val => val !== cat);
+      datas = selectedCategories.filter((val) => val !== cat);
     } else {
       datas.push(...selectedCategories, cat);
     }
@@ -87,9 +87,9 @@ class Store extends React.Component<Props, State> {
     const { selectedCategories } = this.state;
     let plugins = [];
 
-    plugins = (this.props.plugins || []).filter(plugin => {
-      const categories = (plugin.categories || []).filter(cat =>
-        selectedCategories.includes(cat)
+    plugins = (this.props.plugins || []).filter((plugin) => {
+      const categories = (plugin.categories || []).filter((cat) =>
+        selectedCategories.includes(cat),
       );
 
       if (categories.length === 0 && selectedCategories.length !== 0) {
@@ -100,7 +100,7 @@ class Store extends React.Component<Props, State> {
     });
 
     this.setState({
-      plugins
+      plugins,
     });
   }
 
@@ -146,7 +146,7 @@ class Store extends React.Component<Props, State> {
         <EmptyContent>
           <EmptyState
             text={__(
-              `Sorry, We don't have any suitable services at the moment`
+              `Sorry, We don't have any suitable services at the moment`,
             )}
             image={`/images/actions/25.svg`}
           />
@@ -190,7 +190,7 @@ class Store extends React.Component<Props, State> {
                 <Icon icon="search" />
               </SearchIcon>
               <SearchInput
-                placeholder={__('Type to search for an results') + '...'}
+                placeholder={__('Type to search for results') + '...'}
                 type="text"
                 onChange={this.onSearch}
               />
@@ -200,7 +200,7 @@ class Store extends React.Component<Props, State> {
           <FilterContainer noPadding={true}>
             <Labels>
               {CATEGORIES.map((cat, index) =>
-                this.renderCategories(cat, index)
+                this.renderCategories(cat, index),
               )}
             </Labels>
           </FilterContainer>
@@ -210,7 +210,7 @@ class Store extends React.Component<Props, State> {
           <h4>{__('Services')}</h4>
           <p>
             {__(
-              'Upgrade your plan with these premium services for expert help and guidance'
+              'Upgrade your plan with these premium services for expert help and guidance',
             )}
           </p>
           <Services>{this.renderServices()}</Services>
