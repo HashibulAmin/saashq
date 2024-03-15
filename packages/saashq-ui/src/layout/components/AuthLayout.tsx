@@ -10,7 +10,7 @@ import {
   AuthCustomDescription,
   AuthDescription,
   CenterContent,
-  MobileRecommend
+  MobileRecommend,
 } from '../styles';
 import { getThemeItem } from '../../utils/core';
 
@@ -26,7 +26,7 @@ class AuthLayout extends React.Component<Props, {}> {
       <MobileRecommend>
         <CenterContent>
           <div>
-            <b>{__('saashq Inc')}</b>
+            <b>{__('SaasHQ Inc')}</b>
             <div>{__(desciption)}</div>
           </div>
           <Button btnStyle="link" size="small" href={link}>
@@ -44,7 +44,7 @@ class AuthLayout extends React.Component<Props, {}> {
       if (userAgent.match(/Android/i)) {
         return this.renderContent(
           'Download android app for free on the Google play',
-          'https://play.google.com/store/apps/details?id=io.saashq.saashq_android&fbclid=IwAR1bVPBSE0pC_KUNNjOJQA4upb1AuTUfqFcDaHTHTptyke7rNvuvb2mgwb0'
+          'https://play.google.com/store/apps/details?id=io.saashq.saashq_android&fbclid=IwAR1bVPBSE0pC_KUNNjOJQA4upb1AuTUfqFcDaHTHTptyke7rNvuvb2mgwb0',
         );
       }
     }
@@ -72,8 +72,8 @@ class AuthLayout extends React.Component<Props, {}> {
         <h2>
           {getThemeItem('login_page_description') || (
             <>
-              {__('Single ')}
-              <b>{__('experience operating system (XOS)')}</b>
+              {__('All in one ')}
+              <b>{__('Saas / Agenecy Management System')}</b>
               {__(' to align your entire business')}
             </>
           )}

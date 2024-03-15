@@ -97,7 +97,7 @@ function Welcome({ currentUser, branchesLength, departmentLength }: Props) {
         </h1>
         <div>
           {__(
-            'Enjoy a single yet complete experience operating system (XOS) to build your own experience.',
+            'Enjoy a single yet complete Saas / Agency Management System to build your own experience.',
           )}
           <br />
           {__(
