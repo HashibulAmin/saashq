@@ -51,7 +51,7 @@ class PluginDetailsContainer extends React.Component<FinalProps, State> {
 
     const pluginsUrl =
       process.env.NODE_ENV === 'production'
-        ? 'https://shq.saashq.org/plugins'
+        ? 'https://shq.saashq.org/js/plugins.json'
         : 'http://127.0.0.1:3500/plugins';
 
     fetch(pluginsUrl)
