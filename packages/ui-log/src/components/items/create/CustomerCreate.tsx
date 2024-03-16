@@ -1,7 +1,7 @@
 import {
   ActivityDate,
   FlexBody,
-  FlexCenterContent
+  FlexCenterContent,
 } from '@saashq/ui-log/src/activityLogs/styles';
 
 import { IActivityLogItemProps } from '@saashq/ui-log/src/activityLogs/types';
@@ -30,7 +30,7 @@ class CustomerCreate extends React.Component<IActivityLogItemProps> {
 
       return (
         <span>
-          This customer registered to saashq by
+          This customer registered to SaasHQ by
           {content ? ` ${content.name}'s integrations` : ''}
         </span>
       );
@@ -38,7 +38,7 @@ class CustomerCreate extends React.Component<IActivityLogItemProps> {
 
     return (
       <span>
-        This customer <b>registered</b> to saashq
+        This customer <b>registered</b> to SaasHQ
       </span>
     );
   };

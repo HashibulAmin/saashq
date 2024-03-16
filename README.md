@@ -4,7 +4,7 @@
  <img src="https://github.com/saashq-org/saashq/assets/1748857/53a70732-7385-475d-9cb5-efd0ec801db5" alt="saashq logo" width="20%" />
 </p>
 
-<p align="center">Welcome to saashq, the source available experience management infrastructure. Pioneering the future of experiences through XOS (Experience Operating System), a term coined by us. saashq serves as an alternative to the combined functionalities of Hubspot (CRM & Marketing automation) and Qualitics (Experience management)</p>
+<p align="center">Welcome to SaasHQ, the source available experience management infrastructure. Pioneering the future of experiences through XOS (Experience Operating System), a term coined by us. saashq serves as an alternative to the combined functionalities of Hubspot (CRM & Marketing automation) and Qualitics (Experience management)</p>
 
 <p align="center">
   <a href="https://saashq.org/resource-center">Docs</a>
@@ -127,7 +127,7 @@ We recommend always using the latest version of saashq to start your new project
 ## Become a partner
 
 
-Offer your expertise to the world and introduce your community to saashq. 
+Offer your expertise to the world and introduce your community to SaasHQ. 
 Let’s start growing **<a href="https://saashq.org/partners">together</a>**.
 
 ## Contributing 

@@ -226,7 +226,7 @@ class InstallCode extends React.PureComponent<Props, State> {
         break;
       case 'googletag':
         description = __(
-          'To connect Google Tag Manager to saashq, you must have an active Google Tag Manager account with a published container',
+          'To connect Google Tag Manager to SaasHQ, you must have an active Google Tag Manager account with a published container',
         );
         extraContent = true;
         script = basicCode;

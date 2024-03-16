@@ -726,7 +726,7 @@ const userMutations = {
           subdomain,
           {
             toEmails: [email],
-            title: 'Login to saashq',
+            title: 'Login to SaasHQ',
             template: {
               name: 'magicLogin',
               data: { loginUrl: session.link, email },

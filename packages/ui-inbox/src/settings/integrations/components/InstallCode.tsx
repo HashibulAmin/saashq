@@ -31,7 +31,7 @@ type State = {
   currentTab: string;
 };
 
-const installCodeIncludeScript = type => {
+const installCodeIncludeScript = (type) => {
   const { REACT_APP_CDN_HOST } = getEnv();
 
   return `
@@ -45,7 +45,7 @@ const installCodeIncludeScript = type => {
   `;
 };
 
-const getInstallCode = brandCode => {
+const getInstallCode = (brandCode) => {
   return `
     <script>
       window.saashqSettings = {
@@ -58,7 +58,7 @@ const getInstallCode = brandCode => {
   `;
 };
 
-const singlePageInstall = brandCode => {
+const singlePageInstall = (brandCode) => {
   const { REACT_APP_CDN_HOST } = getEnv();
 
   return `
@@ -79,12 +79,12 @@ const singlePageInstall = brandCode => {
   `;
 };
 
-const swiftSdkInstall = brandCode => {
+const swiftSdkInstall = (brandCode) => {
   const { REACT_APP_API_URL } = getEnv();
   return `SaasHQ.setup(saashqApiUrl: "${REACT_APP_API_URL}", brandId: "${brandCode}")`;
 };
 
-const objcSdkInstall = brandCode => {
+const objcSdkInstall = (brandCode) => {
   const { REACT_APP_API_URL } = getEnv();
   return `[SaasHQ setupWithSaasHQApiUrl:@"${REACT_APP_API_URL}" brandId:@"${brandCode}"];`;
 };
@@ -126,7 +126,7 @@ const dependency = `dependencies {
     implementation 'com.github.saashq:saashq-android-sdk:{latest_release}'
   }`;
 
-const androidSdkInstall = brandCode => {
+const androidSdkInstall = (brandCode) => {
   const { REACT_APP_API_URL, REACT_APP_API_SUBSCRIPTION_URL } = getEnv();
 
   return `public class CustomActivity extends AppCompatActivity {
@@ -184,7 +184,7 @@ class InstallCode extends React.PureComponent<Props, State> {
       currentTab: 'basic',
       copied: false,
       singleCopied: false,
-      contentCopied: false
+      contentCopied: false,
     };
   }
 
@@ -207,11 +207,11 @@ class InstallCode extends React.PureComponent<Props, State> {
     window.open(
       `${REACT_APP_CDN_HOST}/test?type=messenger&brand_id=${brand.code}`,
       'messengerWindow',
-      'width=800,height=800'
+      'width=800,height=800',
     );
   };
 
-  onTabClick = currentTab => {
+  onTabClick = (currentTab) => {
     this.setState({ currentTab });
   };
 
@@ -230,7 +230,7 @@ class InstallCode extends React.PureComponent<Props, State> {
       return (
         <div>
           <b>{__('gtm_b')}</b>
-          <ol>{items.map(item => renderList(item + 1))}</ol>
+          <ol>{items.map((item) => renderList(item + 1))}</ol>
         </div>
       );
     }
@@ -252,7 +252,7 @@ class InstallCode extends React.PureComponent<Props, State> {
             </li>
             <li>
               {__(
-                `Add a 'Privacy - Photo Library Usage Description' entry to your`
+                `Add a 'Privacy - Photo Library Usage Description' entry to your`,
               ) + ' Info.plist.'}
               <a href="https://developer.apple.com/library/content/qa/qa1937/_index.html">
                 {' '}
@@ -262,7 +262,7 @@ class InstallCode extends React.PureComponent<Props, State> {
             </li>
             <li>
               {__(
-                'Import SaasHQSDK into AppDelegate.swift then paste the following code into'
+                'Import SaasHQSDK into AppDelegate.swift then paste the following code into',
               )}{' '}
               {<b>didFinishLaunchingWithOptions {__('method:')}</b>}
               <br />
@@ -273,7 +273,7 @@ class InstallCode extends React.PureComponent<Props, State> {
             </li>
             <li>
               {__(
-                'Import SaasHQSDK into your UIViewController class and you can start SaasHQ with following options:'
+                'Import SaasHQSDK into your UIViewController class and you can start SaasHQ with following options:',
               )}{' '}
               <br />
               <ol type="a">
@@ -305,7 +305,7 @@ class InstallCode extends React.PureComponent<Props, State> {
             </li>
             <li>
               {__(
-                `Add a 'Privacy - Photo Library Usage Description' entry to your`
+                `Add a 'Privacy - Photo Library Usage Description' entry to your`,
               ) + ' Info.plist.'}
               <a href="https://developer.apple.com/library/content/qa/qa1937/_index.html">
                 {' '}
@@ -326,7 +326,9 @@ class InstallCode extends React.PureComponent<Props, State> {
             <li>
               {`#import <SaasHQSDK/SaasHQSDK-Swift.h>`} {__('into your')}
               UIViewController.m{' '}
-              {__('class and you can start SaasHQ with following options:')}{' '}
+              {__(
+                'class and you can start SaasHQ with following options:',
+              )}{' '}
               <br />
               <ol type="a">
                 <li>
@@ -387,7 +389,7 @@ class InstallCode extends React.PureComponent<Props, State> {
           <li>
             <b>{__('Start chat')}</b> <br />
             {__(
-              'If your application has already registered with user , give user’s information with this way'
+              'If your application has already registered with user , give user’s information with this way',
             )}{' '}
             <br />
             <MarkdownWrapper>
@@ -430,7 +432,7 @@ class InstallCode extends React.PureComponent<Props, State> {
     code: string,
     extraContent: boolean,
     currentTab: string,
-    action: boolean
+    action: boolean,
   ) {
     return (
       <Script>
@@ -450,7 +452,7 @@ class InstallCode extends React.PureComponent<Props, State> {
       singlePageCode,
       copied,
       singleCopied,
-      contentCopied
+      contentCopied,
     } = this.state;
 
     let description;
@@ -460,21 +462,21 @@ class InstallCode extends React.PureComponent<Props, State> {
     switch (currentTab) {
       case 'basic':
         description = __(
-          'Paste the following code before the body tag on every page you want saashq widget to appear'
+          'Paste the following code before the body tag on every page you want saashq widget to appear',
         );
         script = basicCode;
         action = copied;
         break;
       case 'single':
         description = __(
-          'For web apps built with asynchronous JavaScript. Paste the code below in main layout you want saashq chat to appear'
+          'For web apps built with asynchronous JavaScript. Paste the code below in main layout you want saashq chat to appear',
         );
         script = singlePageCode;
         action = singleCopied;
         break;
       case 'googletag':
         description = __(
-          'To connect Google Tag Manager to saashq, you must have an active Google Tag Manager account with a published container'
+          'To connect Google Tag Manager to SaasHQ, you must have an active Google Tag Manager account with a published container',
         );
         extraContent = true;
         script = basicCode;
@@ -492,7 +494,7 @@ class InstallCode extends React.PureComponent<Props, State> {
       script,
       extraContent,
       currentTab,
-      action
+      action,
     );
   }
 

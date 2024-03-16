@@ -30,7 +30,7 @@ saashq helps you attract and engage more customers while giving you high lead co
 
 - <a href="https://docs.saashq.org/installation/docker">Install saashq</a> <br>
 - <a href="https://docs.saashq.org">saashq documentation</a> <br>
-- <a href="https://docs.saashq.org/developer/contributing">Contributing to saashq</a> <br>
+- <a href="https://docs.saashq.org/developer/contributing">Contributing to SaasHQ</a> <br>
 
 ## Deployment
 
