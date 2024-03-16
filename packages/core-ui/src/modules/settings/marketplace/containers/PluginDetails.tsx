@@ -36,7 +36,7 @@ class PluginDetailsContainer extends React.Component<FinalProps, State> {
   async componentDidMount() {
     const url =
       process.env.NODE_ENV === 'production'
-        ? `https://shq.saashq.org/js/pluginDetail/${this.props.id}`
+        ? `https://shq.saashq.org/js/pluginDetail/62bbf3504d8f5eeb0b3faf61.json`
         : `http://127.0.0.1:3500/pluginDetail/${this.props.id}`;
 
     fetch(url)
