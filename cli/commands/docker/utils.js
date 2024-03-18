@@ -488,6 +488,8 @@ const up = async ({ uis, downloadLocales, fromInstaller }) => {
           './plugins.js:/usr/share/nginx/html/js/plugins.js',
           './plugin-uis:/usr/share/nginx/html/js/plugins',
           './locales:/usr/share/nginx/html/locales',
+          './plugin.js:/usr/share/nginx/html/js/plugin.js',
+          './plugin-detail:/usr/share/nginx/html/js/plugin',          
         ],
         networks: ['saashq'],
       },
