@@ -6,7 +6,7 @@ module.exports = {
       {
         name: "ebarimtAll",
         description: "All",
-        use: ["managePutResponses", "syncEbarimtConfig"],
+        use: ["managePutResponses", "syncEbarimtConfig", "specialReturnBill"],
       },
       {
         name: "managePutResponses",
@@ -16,6 +16,10 @@ module.exports = {
         name: "syncEbarimtConfig",
         description: "Manage ebarimt config",
       },
+      {
+        name: "specialReturnBill",
+        description: "Return bill only",
+      },      
     ],
   },
 };

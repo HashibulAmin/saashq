@@ -7,7 +7,7 @@ import {
   ControlLabel,
   FormControl,
   FormGroup,
-  Icon
+  Icon,
 } from '@saashq/ui/src/components';
 import BoardSelectContainer from '@saashq/ui-cards/src/boards/containers/BoardSelect';
 import { __ } from '@saashq/ui/src/utils';
@@ -17,7 +17,7 @@ import {
   FilterButton,
   MenuFooter,
   RightMenuContainer,
-  TabContent
+  TabContent,
 } from '../styles';
 import { IQueryParams } from '@saashq/ui/src/types';
 import { isEnabled } from '@saashq/ui/src/utils/core';
@@ -51,7 +51,7 @@ export default class RightMenu extends React.Component<Props, State> {
       currentTab: 'Filter',
       showMenu: this.props.showMenu || false,
 
-      filterParams: this.props.queryParams
+      filterParams: this.props.queryParams,
     };
 
     this.setWrapperRef = this.setWrapperRef.bind(this);
@@ -82,10 +82,9 @@ export default class RightMenu extends React.Component<Props, State> {
     this.setState({ filterParams: { ...filterParams, [key]: String(values) } });
   };
 
-  onChangeInput = e => {
-    const target = e.target;
-    const name = target.name;
-    const value = target.value;
+  onChangeInput = (e) => {
+    const { target } = e;
+    const { name, value } = target;
 
     const { filterParams } = this.state;
     this.setState({ filterParams: { ...filterParams, [name]: value } });
@@ -96,7 +95,7 @@ export default class RightMenu extends React.Component<Props, State> {
 
     const selected = queryParams[key] === value;
 
-    const onClick = _e => {
+    const onClick = (_e) => {
       onSelect(value, key);
     };
 
@@ -186,19 +185,19 @@ export default class RightMenu extends React.Component<Props, State> {
     if (contentType === 'deal') {
       const onChangeBoard = (boardId: string) => {
         this.setState({
-          filterParams: { ...this.state.filterParams, boardId }
+          filterParams: { ...this.state.filterParams, boardId },
         });
       };
 
       const onChangePipeline = (pipelineId: string) => {
         this.setState({
-          filterParams: { ...this.state.filterParams, pipelineId }
+          filterParams: { ...this.state.filterParams, pipelineId },
         });
       };
 
       const onChangeStage = (stageId: string) => {
         this.setState({
-          filterParams: { ...this.state.filterParams, stageId }
+          filterParams: { ...this.state.filterParams, stageId },
         });
       };
 
