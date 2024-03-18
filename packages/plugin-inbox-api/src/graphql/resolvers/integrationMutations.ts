@@ -434,11 +434,10 @@ const integrationMutations = {
     const doc: any = { name, brandId, details };
 
     let { kind } = integration;
-
     if (kind === 'facebook-messenger' || kind === 'facebook-post') {
       kind = 'facebook';
     }
-    if (kind === 'instagram-messenger') {
+    if (kind === 'instagram') {
       kind = 'instagram';
     }
     await models.Integrations.updateOne({ _id }, { $set: doc });
@@ -739,7 +738,7 @@ const integrationMutations = {
       text: e.text,
       lastUpdatedUserId: user._id,
       isRequired: e.isRequired,
-      isDefinedBySaasHQ: false,
+      isDefinedByErxes: false,
       associatedFieldId: e.associatedFieldId,
       pageNumber: e.pageNumber,
     }));

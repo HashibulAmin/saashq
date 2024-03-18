@@ -12,11 +12,12 @@ import fetch from 'node-fetch';
 import { RPSuccess } from '@saashq/api-utils/src/messageBroker';
 
 export const removeIntegration = async (
+  subdomain,
   models: IModels,
-  integrationSaasHQApiId: string,
+  integrationErxesApiId: string,
 ): Promise<string> => {
   const integration = await models.Integrations.findOne({
-    saashqApiId: integrationSaasHQApiId,
+    saashqApiId: integrationErxesApiId,
   });
 
   if (!integration) {
@@ -65,7 +66,7 @@ export const removeIntegration = async (
       await models.Conversations.find(selector).distinct('_id');
 
     await models.Customers.deleteMany({
-      integrationId: integrationSaasHQApiId,
+      integrationId: integrationErxesApiId,
     });
 
     await models.Conversations.deleteMany(selector);
@@ -78,7 +79,7 @@ export const removeIntegration = async (
 
   // Remove from core =========
   const ENDPOINT_URL = getEnv({ name: 'ENDPOINT_URL' });
-  const DOMAIN = getEnv({ name: 'DOMAIN' });
+  const DOMAIN = getEnv({ name: 'DOMAIN', subdomain });
 
   if (ENDPOINT_URL) {
     // send domain to core endpoints
@@ -102,6 +103,7 @@ export const removeIntegration = async (
 };
 
 export const removeAccount = async (
+  subdomain,
   models: IModels,
   _id: string,
 ): Promise<{ saashqApiIds: string | string[] } | Error> => {
@@ -121,6 +123,7 @@ export const removeAccount = async (
     for (const integration of integrations) {
       try {
         const response = await removeIntegration(
+          subdomain,
           models,
           integration.saashqApiId,
         );
@@ -137,6 +140,7 @@ export const removeAccount = async (
 };
 
 export const repairIntegrations = async (
+  subdomain: string,
   models: IModels,
   integrationId: string,
 ): Promise<true | Error> => {
@@ -168,7 +172,7 @@ export const repairIntegrations = async (
   const ENDPOINT_URL = getEnv({
     name: 'ENDPOINT_URL',
   });
-  const DOMAIN = getEnv({ name: 'DOMAIN' });
+  const DOMAIN = getEnv({ name: 'DOMAIN', subdomain });
 
   if (ENDPOINT_URL) {
     // send domain to core endpoints
@@ -222,11 +226,11 @@ export const updateConfigs = async (
 };
 
 export const instagramCreateIntegration = async (
+  subdomain: string,
   models: IModels,
   { accountId, integrationId, data, kind },
 ): Promise<RPSuccess> => {
   const instagramPageId = JSON.parse(data).pageId;
-
   const account = await models.Accounts.getAccount({ _id: accountId });
   const facebookPageId = await getFacebookPageIdsForInsta(
     account.token,
@@ -247,7 +251,7 @@ export const instagramCreateIntegration = async (
   }
 
   const ENDPOINT_URL = getEnv({ name: 'ENDPOINT_URL' });
-  const DOMAIN = getEnv({ name: 'DOMAIN' });
+  const DOMAIN = getEnv({ name: 'DOMAIN', subdomain });
 
   let domain = `${DOMAIN}/gateway/pl:instagram`;
 
