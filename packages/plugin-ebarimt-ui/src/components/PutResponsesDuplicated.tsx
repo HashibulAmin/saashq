@@ -79,13 +79,7 @@ class PutResponsesDuplicated extends React.Component<IProps, State> {
       clearFilter,
     } = this.props;
 
-    const mainContent = errorMsg ? (
-      <EmptyState
-        text={errorMsg.replace('GraphQL error: ', '')}
-        size="full"
-        image={'/images/actions/11.svg'}
-      />
-    ) : (
+    const mainContent = (
       <TableWrapper>
         <Table whiteSpace="nowrap" bordered={true} hover={true}>
           <thead>
@@ -144,7 +138,10 @@ class PutResponsesDuplicated extends React.Component<IProps, State> {
             data={mainContent}
             loading={loading}
             count={totalCount}
-            emptyText="Add in your first putResponse!"
+            emptyText={
+              errorMsg.replace('GraphQL error: ', '') ||
+              'not found duplicated putResponse!'
+            }
             emptyImage="/images/actions/1.svg"
           />
         }

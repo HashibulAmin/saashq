@@ -3,8 +3,8 @@ import { gql } from '@apollo/client';
 import PutResponseDuplicated from '../components/PutResponsesDuplicated';
 import queryString from 'query-string';
 import React from 'react';
-import { Spinner, WithPermission } from '@saashq/ui/src/components';
-import { Alert, router, withProps } from '@saashq/ui/src/utils';
+import { Spinner } from '@saashq/ui/src/components';
+import { router, withProps } from '@saashq/ui/src/utils';
 import { graphql } from '@apollo/client/react/hoc';
 import { IRouterProps, IQueryParams } from '@saashq/ui/src/types';
 import {
@@ -104,7 +104,6 @@ class PutResponsesDuplicatedContainer extends React.Component<
     let errorMsg: string = '';
     if (PutResponsesDuplicatedQuery.error) {
       errorMsg = PutResponsesDuplicatedQuery.error.message;
-      Alert.error(errorMsg);
     }
 
     const putResponsesDuplicated =
