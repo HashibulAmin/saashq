@@ -67,34 +67,17 @@ class DetailDuplicated extends React.Component<IProps, State> {
       <Table whiteSpace="nowrap" bordered={true} hover={true} responsive={true}>
         <thead>
           <tr>
-            <th>
-              <SortHandler sortField={'billId'} label={__('BillID')} />
-            </th>
-            <th>
-              <SortHandler sortField={'number'} label={__('Number')} />
-            </th>
-            <th>
-              <SortHandler sortField={'date'} label={__('Date')} />
-            </th>
-            <th>
-              <SortHandler sortField={'success'} label={__('Success')} />
-            </th>
-            <th>
-              <SortHandler sortField={'billType'} label={__('Bill Type')} />
-            </th>
-            <th>
-              <SortHandler sortField={'taxType'} label={__('Tax Type')} />
-            </th>
-            <th>
-              <SortHandler sortField={'amount'} label={__('Amount')} />
-            </th>
-            <th>
-              <SortHandler
-                sortField={'returnBillId'}
-                label={__('Return BillID')}
-              />
-            </th>
-            <th>Үйлдлүүд</th>
+            <th>{__('BillID')} </th>
+            <th>{__('Number')} </th>
+            <th>{__('Date')} </th>
+            <th>{__('Created')} </th>
+            <th>{__('Modified')} </th>
+            <th>{__('Resp')} </th>
+            <th>{__('BillT')} </th>
+            <th>{__('TaxT')} </th>
+            <th>{__('Amount')} </th>
+            <th>{__('Return BillID')}</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody id="putResponses">
@@ -103,8 +86,17 @@ class DetailDuplicated extends React.Component<IProps, State> {
               <td key={'BillID'}>{putResponse.billId} </td>
               <td key={'number'}>{putResponse.number} </td>
               <td key={'Date'}>
-                {putResponse.date ||
-                  dayjs(putResponse.createdAt).format('YYYY-MM-DD HH:mm:ss')}
+                {dayjs(
+                  putResponse.date ||
+                    putResponse.modifiedAt ||
+                    putResponse.createdAt,
+                ).format('YYYY-MM-DD')}
+              </td>
+              <td key={'CreatedAt'}>
+                {dayjs(putResponse.createdAt).format('HH:mm:ss SSS')}
+              </td>
+              <td key={'ModifiedAt'}>
+                {dayjs(putResponse.modifiedAt).format('HH:mm:ss SSS')}
               </td>
               <td key={'success'}>{displayValue(putResponse, 'success')}</td>
               <td key={'billType'}>{displayValue(putResponse, 'billType')}</td>
@@ -130,6 +122,4 @@ class DetailDuplicated extends React.Component<IProps, State> {
   }
 }
 
-export default withRouter<IRouterProps, {}, React.Component<IProps>>(
-  DetailDuplicated,
-);
+export default withRouter<IRouterProps, any>(DetailDuplicated);
