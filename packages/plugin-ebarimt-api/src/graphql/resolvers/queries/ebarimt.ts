@@ -198,14 +198,14 @@ const genDuplicatedFilter = async (params) => {
 
 const queries = {
   putResponses: async (
-    _root,
-    params,
+    _root: any,
+    params: { page: any; perPage: any },
     { commonQuerySelector, models, subdomain }: IContext,
   ) => {
     const filter = await generateFilter(subdomain, params, commonQuerySelector);
 
     return await paginate(
-      models.PutResponses.find(filter).sort(sortBuilder(params)),
+      models.PutResponses.find(filter).sort(sortBuilder(params) as string),
       {
         page: params.page || 1,
         perPage: params.perPage,
