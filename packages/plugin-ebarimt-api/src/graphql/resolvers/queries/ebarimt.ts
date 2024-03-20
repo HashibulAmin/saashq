@@ -191,7 +191,7 @@ const queries = {
     const filter = await generateFilter(subdomain, params, commonQuerySelector);
 
     return await paginate(
-      models.PutResponses.find(filter).sort(String(sortBuilder(params))),
+      models.PutResponses.find(filter).sort(sortBuilder(params)),
       {
         page: params.page || 1,
         perPage: params.perPage,
@@ -304,6 +304,7 @@ const queries = {
       {
         $match: {
           ...filter,
+          success: 'true',
           $or: [{ returnBillId: { $exists: false } }, { returnBillId: '' }],
           status: { $ne: 'inactive' },
         },
@@ -329,6 +330,7 @@ const queries = {
       {
         $match: {
           ...filter,
+          success: 'true',
           $or: [{ returnBillId: { $exists: false } }, { returnBillId: '' }],
           status: { $ne: 'inactive' },
         },
