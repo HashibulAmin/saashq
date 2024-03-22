@@ -1,7 +1,10 @@
 import { escapeRegExp, paginate } from '@saashq/api-utils/src/core';
 import { IContext } from '../../types';
 import { IModels } from '../../../connectionResolver';
-import { IProductCategoryDocument } from '../../../models/definitions/products';
+import {
+  IProductCategoryDocument,
+  IProductDocument,
+} from '../../../models/definitions/products';
 import { PRODUCT_STATUSES } from '../../../models/definitions/constants';
 import { sendPricingMessage } from '../../../messageBroker';
 import { Builder } from '../../../utils';
@@ -478,7 +481,7 @@ const productQueries = {
 
       let products = await models.Products.find(filters)
         .sort({ code: 1 })
-        .lean();
+        .lean<IProductDocument[]>();
       if (!products.length) {
         products = [product];
       }
