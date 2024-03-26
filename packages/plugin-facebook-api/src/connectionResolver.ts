@@ -97,7 +97,10 @@ export const loadClasses = (db: mongoose.Connection): IModels => {
     'facebook_integrations',
     loadIntegrationClass(models),
   );
-  models.Logs = db.model<ILogDocument, ILogModel>('logs', loadLogClass(models));
+  models.Logs = db.model<ILogDocument, ILogModel>(
+    'facebook_logs',
+    loadLogClass(models),
+  );
 
   models.Conversations = db.model<IConversationDocument, IConversationModel>(
     'conversations_facebooks',

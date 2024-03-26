@@ -1,7 +1,7 @@
 {
   "name": "saashq",
   "private": true,
-  "version": "1.6.4",
+  "version": "1.7.1",
   "workspaces": [
     "packages/*",
     "scripts"
@@ -16,7 +16,7 @@
     "apollo",
     "react"
   ],
-  "license": "GNU General Public License v3.0 with Commons Clause",
+  "license": "MIT",
   "lint-staged": {
     "linters": {
       "@(widgets)/src/**/*.{ts,tsx,json,css}": [
