@@ -65,6 +65,28 @@ export const Contacts = styled.div`
   }
 `;
 
+export const PhoneNumber = styledTS<{ shrink?: boolean }>(styled.div)`
+  ${(props) =>
+    props.shrink
+      ? `font-weight: 600;
+    font-size: 15px;`
+      : `font-weight: 500;
+    font-size: 18px;`}
+
+    > h5 {
+      margin: 0;
+    }
+
+    > span {
+      display: block;
+      color: ${colors.bgGray};
+      font-size: 13px;
+      margin-top: -5px;
+      margin-bottom: ${dimensions.unitSpacing}px;
+      font-style: italic;
+    }
+`;
+
 export const CallDetail = styledTS<{
   isMissedCall: boolean;
   isIncoming: boolean;
@@ -90,10 +112,9 @@ export const CallDetail = styledTS<{
       color: #666;
     }
 
-    ${NameCardText} {
-      > div {
-        color: ${(props) => (props.isMissedCall ? colors.colorCoreRed : colors.colorCoreDarkGray)};
-      }
+    ${PhoneNumber} {
+        color: ${(props) =>
+          props.isMissedCall ? colors.colorCoreRed : colors.colorCoreDarkGray};
     }
   }
 
@@ -365,19 +386,6 @@ export const CallInfo = styledTS<{ shrink?: boolean }>(styled.div)`
   width: 100%;
 `;
 
-export const PhoneNumber = styledTS<{ shrink?: boolean }>(styled.div)`
-  ${(props) =>
-    props.shrink
-      ? `font-weight: 600;
-    font-size: 15px;`
-      : `font-weight: 500;
-    font-size: 18px;`}
-
-    > h5 {
-      margin: 0;
-    }
-`;
-
 export const Actions = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -412,7 +420,14 @@ export const CallAction = styledTS<{
   flex-direction: column;
   cursor: pointer;
   color: ${(props) => (props.active ? colors.textPrimary : colors.colorWhite)};
-  background: ${(props) => (props.disabled ? colors.colorShadowGray : props.isDecline ? colors.colorCoreRed : props.active ? colors.colorWhite : 'rgba(255, 255, 255, 0.4)')};
+  background: ${(props) =>
+    props.disabled
+      ? colors.colorShadowGray
+      : props.isDecline
+        ? colors.colorCoreRed
+        : props.active
+          ? colors.colorWhite
+          : 'rgba(255, 255, 255, 0.4)'};
   margin-bottom: 5px;
   transition: all ease .3s;
 
@@ -509,7 +524,8 @@ export const WidgetWrapper = styledTS<{ isConnected?: boolean }>(styled.div)`
   width: 56px;
   height: 56px;
   border-radius: 56px;
-  background: ${(props) => (props.isConnected ? colors.colorCoreRed : colors.colorCoreGreen)};
+  background: ${(props) =>
+    props.isConnected ? colors.colorCoreRed : colors.colorCoreGreen};
   position: relative;
   color: ${colors.colorWhite};
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
@@ -523,7 +539,8 @@ export const WidgetWrapper = styledTS<{ isConnected?: boolean }>(styled.div)`
   justify-content: center;
 
   &:before {
-    animation: ${(props) => !props.isConnected && `${animationPulse} 2s infinite`};
+    animation: ${(props) =>
+      !props.isConnected && `${animationPulse} 2s infinite`};
     border-radius: 50%;
     color: inherit;
     content: '';

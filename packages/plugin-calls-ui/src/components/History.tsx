@@ -43,12 +43,6 @@ class History extends React.Component<Props, State> {
     this.activeItemRef = React.createRef();
   }
 
-  // componentDidUpdate() {
-  //   if (this.activeItemRef && this.activeItemRef.current) {
-  //     this.activeItemRef.current.focus();
-  //   }
-  // }
-
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown);
   }
@@ -107,16 +101,13 @@ class History extends React.Component<Props, State> {
       const isMissedCall =
         callStatus === 'missed' || callStatus === 'cancelled';
 
-      const secondLine =
-        item.customer !== null ? item.customer.primaryPhone : 'unknown user';
-
-      const content = (
+      const content = item.customer && (
         <CallDetail
           isMissedCall={isMissedCall}
           key={i}
           className={this.state.cursor === i ? 'active' : ''}
           isIncoming={callType !== 'outgoing'}
-          onClick={() => this.onCall(item.customer?.primaryPhone)}
+          onClick={() => this.onCall(item.customer.primaryPhone)}
         >
           <div>
             {callType === 'outgoing' && (

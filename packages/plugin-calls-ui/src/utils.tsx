@@ -101,6 +101,7 @@ export const callActions = (
             key={isHold ? 'UnHold' : 'Hold'}
             active={isHold ? true : false}
             onClick={handleHold}
+            disabled={true}
           >
             <Icon size={20} icon={'pause-1'} />
           </CallAction>
