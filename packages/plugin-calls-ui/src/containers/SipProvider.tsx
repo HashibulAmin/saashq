@@ -1,39 +1,30 @@
-import React, { useState } from 'react';
-import SipProvider from '../components/SipProvider';
-
-import IncomingCallContainer from './IncomingCall';
-import WidgetContainer from './Widget';
-import { CALL_DIRECTION_INCOMING } from '../lib/enums';
-import { queries, mutations, subscriptions } from '../graphql';
-import { useQuery, gql, useMutation, useSubscription } from '@apollo/client';
-
-import { ModalTrigger } from '@saashq/ui/src/components';
-import { Alert } from '@saashq/ui/src/utils';
-import CallIntegrationForm from '../components/Form';
-import withCurrentUser from '@saashq/ui/src/auth/containers/withCurrentUser';
-import TerminateSessionForm from '../components/TerminateCallForm';
-import { setLocalStorage } from '../utils';
-
 import * as moment from 'moment';
+
+import React, { useState } from 'react';
+import { gql, useMutation, useQuery, useSubscription } from '@apollo/client';
+import { mutations, queries, subscriptions } from '../graphql';
+
+import { Alert } from '@saashq/ui/src/utils';
+import { CALL_DIRECTION_INCOMING } from '../lib/enums';
+import CallIntegrationForm from '../components/Form';
+import IncomingCallContainer from './IncomingCall';
+import { ModalTrigger } from '@saashq/ui/src/components';
+import SipProvider from '../components/SipProvider';
+import WidgetContainer from './Widget';
+import { getSubdomain } from '@saashq/ui/src/utils/core';
+import { setLocalStorage } from '../utils';
+import withCurrentUser from '@saashq/ui/src/auth/containers/withCurrentUser';
 
 const SipProviderContainer = (props) => {
   const [config, setConfig] = useState(
-    JSON.parse(localStorage.getItem('config:call_integrations')),
+    JSON.parse(localStorage.getItem('config:call_integrations') || '{}'),
   );
-  const callInfo = JSON.parse(localStorage.getItem('callInfo'));
-  const sessionCode = sessionStorage.getItem('sessioncode');
-
+  const callInfo = JSON.parse(localStorage.getItem('callInfo') || '{}');
   const isConnectCallRequested = JSON.parse(
-    localStorage.getItem('isConnectCallRequested'),
+    localStorage.getItem('isConnectCallRequested') || '{}',
   );
 
   const { data, loading, error } = useQuery(gql(queries.callUserIntegrations));
-  const {
-    data: activeSession,
-    loading: activeSessionLoading,
-    error: activeSessionError,
-    refetch,
-  } = useQuery(gql(queries.activeSession), {});
 
   const [createActiveSession] = useMutation(gql(mutations.addActiveSession));
   const [removeActiveSession] = useMutation(
@@ -76,9 +67,7 @@ const SipProviderContainer = (props) => {
 
   const createSession = () => {
     createActiveSession()
-      .then(() => {
-        refetch();
-      })
+      .then(() => {})
       .catch((e) => {
         Alert.error(e.message);
       });
@@ -87,8 +76,6 @@ const SipProviderContainer = (props) => {
   const removeSession = () => {
     removeActiveSession()
       .then(() => {
-        refetch();
-
         if (config) {
           setConfig({
             inboxId: config.inboxId,
@@ -135,14 +122,11 @@ const SipProviderContainer = (props) => {
       });
   };
 
-  if (loading || activeSessionLoading) {
+  if (loading) {
     return null;
   }
   if (error) {
     return Alert.error(error.message);
-  }
-  if (activeSessionError) {
-    return Alert.error(activeSessionError.message);
   }
 
   const { callUserIntegrations } = data;
@@ -164,34 +148,12 @@ const SipProviderContainer = (props) => {
     />
   );
 
-  const terminateContent = (args) => (
-    <TerminateSessionForm
-      {...args}
-      setConfig={handleSetConfig}
-      removeActiveSession={removeSession}
-    />
-  );
   if (!config || !config.inboxId) {
     return (
       <ModalTrigger title="Call Config Modal" content={content} isOpen={true} />
     );
   }
-  if (activeSession && activeSession.callsActiveSession) {
-    if (
-      (activeSession.callsActiveSession?.lastLoginDeviceId !== sessionCode ||
-        isConnectCallRequested ||
-        isConnectCallRequested === 'true') &&
-      !callInfo?.isUnRegistered
-    ) {
-      return (
-        <ModalTrigger
-          title="Call Config Modal"
-          content={terminateContent}
-          isOpen={true}
-        />
-      );
-    }
-  }
+
   if (!config.isAvailable) {
     return (
       <WidgetContainer
@@ -225,9 +187,9 @@ const SipProviderContainer = (props) => {
         urls: 'stun:stun.l.google.com:19302',
       },
       {
-        urls: 'turn:relay1.expressturn.com:3478',
-        username: 'ef9XU6ND3AYQBGG0VB',
-        credential: '7niiKgbs4Kk92V0d',
+        urls: 'turn:relay8.expressturn.com:3478',
+        username: 'efVCM7AV4B0436ZEJQ',
+        credential: 'PtBTQUgzOtZ1T874',
       },
     ],
   };
@@ -236,24 +198,24 @@ const SipProviderContainer = (props) => {
     <SipProvider
       {...sipConfig}
       createSession={createSession}
-      callsActiveSession={activeSession?.callsActiveSession}
       updateHistory={updateHistory}
       callUserIntegration={filteredIntegration}
     >
-      {(state) =>
-        state?.callDirection === CALL_DIRECTION_INCOMING ? (
-          <IncomingCallContainer
-            {...props}
-            callUserIntegrations={callUserIntegrations}
-          />
-        ) : (
+      {(state) => (
+        <>
+          {state?.callDirection === CALL_DIRECTION_INCOMING && (
+            <IncomingCallContainer
+              {...props}
+              callUserIntegrations={callUserIntegrations}
+            />
+          )}
           <WidgetContainer
             {...props}
             callUserIntegrations={callUserIntegrations}
             setConfig={handleSetConfig}
           />
-        )
-      }
+        </>
+      )}
     </SipProvider>
   );
 };

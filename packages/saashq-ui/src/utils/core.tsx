@@ -139,15 +139,16 @@ export const getPluginConfig = ({ pluginName, configName }) => {
   return result;
 };
 
-export const renderFullName = (data) => {
+export const renderFullName = (data, noPhone?: boolean) => {
   if (data.firstName || data.lastName || data.middleName || data.primaryPhone) {
     return (
       (data.firstName || '') +
-      ' ' +
-      (data.middleName || '') +
-      ' ' +
-      (data.lastName || '') +
-      ' ' +
+        ' ' +
+        (data.middleName || '') +
+        ' ' +
+        (data.lastName || '') +
+        ' ' +
+        !noPhone &&
       (data.primaryPhone || '')
     );
   }
@@ -628,7 +629,7 @@ export const bustIframe = () => {
 };
 
 export const getSubdomain = () => {
-  const env = (window as any).saashqEnv || {};
+  const env = (window as any).erxesEnv || {};
   return env.subdomain || 'localhost';
 };
 
@@ -670,7 +671,7 @@ export const getEnv = () => {
     const envs = {} as any;
 
     for (const envMap of (window as any).envMaps) {
-      envs[envMap.name] = localStorage.getItem(`saashq_env_${envMap.name}`);
+      envs[envMap.name] = localStorage.getItem(`erxes_env_${envMap.name}`);
     }
 
     return envs;
@@ -783,7 +784,7 @@ export const publicUrl = (path) => {
 
 export const getThemeItem = (code) => {
   const configs = JSON.parse(
-    localStorage.getItem('saashq_theme_configs') || '[]',
+    localStorage.getItem('erxes_theme_configs') || '[]',
   );
   const config = configs.find((c) => c.code === `THEME_${code.toUpperCase()}`);
 

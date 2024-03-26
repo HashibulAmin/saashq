@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-
-import { mutations, queries } from '../graphql';
 import { gql, useMutation } from '@apollo/client';
-import client from '@saashq/ui/src/apolloClient';
-import { Alert } from '@saashq/ui/src/utils';
+import { mutations, queries } from '../graphql';
 
-import KeyPad from '../components/Keypad';
+import { Alert } from '@saashq/ui/src/utils';
 import { ICallConversation } from '../types';
+import KeyPad from '../components/Keypad';
+import client from '@saashq/ui/src/apolloClient';
 
 type IProps = {
   callUserIntegrations: any;
   setConfig: any;
   phoneNumber: any;
 };
+
 const KeyPadContainer = (props: IProps) => {
   const { callUserIntegrations, setConfig, phoneNumber } = props;
 
@@ -67,21 +67,23 @@ const KeyPadContainer = (props: IProps) => {
     primaryPhone: string,
     callID: string,
   ) => {
-    createCustomerMutation({
-      variables: {
-        inboxIntegrationId,
-        primaryPhone,
-        direction: 'outgoing',
-        callID,
-      },
-    })
-      .then(({ data }: any) => {
-        setCustomer(data.callAddCustomer?.customer);
-        setConversation(data.callAddCustomer?.conversation);
+    if (callID) {
+      createCustomerMutation({
+        variables: {
+          inboxIntegrationId,
+          primaryPhone,
+          direction: 'outgoing',
+          callID,
+        },
       })
-      .catch((e) => {
-        Alert.error(e.message);
-      });
+        .then(({ data }: any) => {
+          setCustomer(data.callAddCustomer?.customer);
+          setConversation(data.callAddCustomer?.conversation);
+        })
+        .catch((e) => {
+          Alert.error(e.message);
+        });
+    }
   };
 
   const toggleSection = (phoneNumber): void => {
