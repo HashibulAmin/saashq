@@ -15,7 +15,7 @@
 
 <p align="center">
    <a href="https://github.com/saashq-org/saashq/blob/main/LICENSE.md">
-      <img alt="License Badge" src="https://img.shields.io/badge/license-AGPLv3-brightgreen">
+      <img alt="License Badge" src="https://img.shields.io/badge/license-MIT-brightgreen">
   </a>
   <a href="https://discord.gg/kBhAUKBMgf">
       <img alt="Discord" src="https://img.shields.io/badge/Discord-%20Community-blueviolet">
