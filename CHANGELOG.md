@@ -1,3 +1,10 @@
+### [1.7.2](https://github.com/saashq-org/saashq/compare/1.7.0...1.7.2) (2024-03-27)
+
+
+### Performance Improvements
+
+* **calls:** increase session timers, fix call timer and add integration config ([43c409f](https://github.com/saashq-org/saashq/commit/43c409fb41e29b12b313bb71223d9702a2771950))
+
 ## [1.7.0](https://github.com/saashq-org/saashq/compare/1.6.2...1.7.0) (2024-03-27)
 
 
