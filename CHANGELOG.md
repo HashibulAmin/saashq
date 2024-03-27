@@ -1,3 +1,307 @@
+## [1.7.0](https://github.com/saashq-org/saashq/compare/1.6.2...1.7.0) (2024-03-27)
+
+
+### Features
+
+* **calls:** as widgets and solved connection ([08fbf42](https://github.com/saashq-org/saashq/commit/08fbf425e07573383a702ae441bbd58c99173e37))
+* **calls:** check customer, add customer info on conversation and improved keypad ([dba6552](https://github.com/saashq-org/saashq/commit/dba65527190b8a89afbb34462542519e1396ff37))
+* **calls:** improving calls ui ([53eb723](https://github.com/saashq-org/saashq/commit/53eb72383704a4c23494f36df0f4cadd1717a292))
+* **ebarimt:** return bill for duplicated ([48239ab](https://github.com/saashq-org/saashq/commit/48239ab50217061b7680f36bfcee072c4563dc9a))
+* **verifier:** Replace truemail with SendGrid Mail Verifier API ([048f224](https://github.com/saashq-org/saashq/commit/048f2245fcf2add37e610ba099f477d040e681ca))
+
+
+### Bug Fixes
+
+* (pos) posclient orders subscription update with subtoken ([af5c1cc](https://github.com/saashq-org/saashq/commit/af5c1cca1c79396c0ae5e783f45db7a96eaefaaa))
+* clean apolloClient timeout ([8848da0](https://github.com/saashq-org/saashq/commit/8848da007c9f0afa7125f2c9948bc8f1db9d1494))
+* **coreui:** Update tiptap editor schema & make editor section resizable ([faf39b5](https://github.com/saashq-org/saashq/commit/faf39b5e641f4427e2aa113c5de019033786dca1))
+* fix facebook get env function ([3b8e48b](https://github.com/saashq-org/saashq/commit/3b8e48bd7c7902f39564a870e7a103bd2f41bbec))
+* fix getEnv function for get domain ([0b9022c](https://github.com/saashq-org/saashq/commit/0b9022c1ff5e3be3116f93b44a4620ce96927fb1))
+* fix saas transaction emails ([f16ac1e](https://github.com/saashq-org/saashq/commit/f16ac1e8aaed27d2f70afa5ab23c9caf8851f485))
+* fix shqfeed, shq, chats plugins permssions not showing ([8427c79](https://github.com/saashq-org/saashq/commit/8427c791cf3f41efd4a08bccb1f2a29f5047aa12))
+* **forms:** fix custom properties on contacts list ([7dda5d3](https://github.com/saashq-org/saashq/commit/7dda5d32c39073916d2e4edf52331aaa29ae836b))
+* instagram-plugin login redirect url fix ([0cd1ade](https://github.com/saashq-org/saashq/commit/0cd1ade3d6c0cdaae637801e0df45b59360ed52b))
+* offline pos message uncheck queuename ([086ad66](https://github.com/saashq-org/saashq/commit/086ad66481a5ffa122c86da30aaeb1f847ceb522))
+* products filter by code condition regex ([4586762](https://github.com/saashq-org/saashq/commit/45867622972e49cffaed082edbf352c7313b819c))
+* **timeclocks:** fix time clock list ui ([f903200](https://github.com/saashq-org/saashq/commit/f903200f9ccfee6d15079222767cb0039855b7b0))
+
+
+### Performance Improvements
+
+* (pos) show items sum amount on market theme ([c24bed8](https://github.com/saashq-org/saashq/commit/c24bed8811cd3c85d039d610f8d33beb74514a44))
+* **calls:** improving incoming call ui and code refactor ([c094cc3](https://github.com/saashq-org/saashq/commit/c094cc38fe19b0ca8f84559dfae97dfc41474b5c))
+* **cards:** add assigneduserIds field in cards schema ([0f77370](https://github.com/saashq-org/saashq/commit/0f77370f39fae3a27176873baa6ed11c2f7aeede))
+* **engage:** updated manual engage, added engage notification count ([4592b5d](https://github.com/saashq-org/saashq/commit/4592b5d143f931f6d9e17d93b57a7141ce5c300a))
+* product filtchore: add debug on email verifier ([5c68e28](https://github.com/saashq-org/saashq/commit/5c68e288759ef2dccfffc66ab7c380b8d7147a71))
+* product filter on the selected car deal depends on the category ([613ed36](https://github.com/saashq-org/saashq/commit/613ed36a97c06cbae6e45e29742640026779893d))
+* **respond box:** rich text editor performance ([2fca5f4](https://github.com/saashq-org/saashq/commit/2fca5f40e6230de64bc4761dda844602748eb045))
+
+## [2.1.0](https://github.com/saashq-org/saashq/compare/1.6.2...2.1.0) (2024-03-27)
+
+
+### Features
+
+* **calls:** as widgets and solved connection ([08fbf42](https://github.com/saashq-org/saashq/commit/08fbf425e07573383a702ae441bbd58c99173e37))
+* **calls:** check customer, add customer info on conversation and improved keypad ([dba6552](https://github.com/saashq-org/saashq/commit/dba65527190b8a89afbb34462542519e1396ff37))
+* **calls:** improving calls ui ([53eb723](https://github.com/saashq-org/saashq/commit/53eb72383704a4c23494f36df0f4cadd1717a292))
+* **ebarimt:** return bill for duplicated ([48239ab](https://github.com/saashq-org/saashq/commit/48239ab50217061b7680f36bfcee072c4563dc9a))
+* **verifier:** Replace truemail with SendGrid Mail Verifier API ([048f224](https://github.com/saashq-org/saashq/commit/048f2245fcf2add37e610ba099f477d040e681ca))
+
+
+### Bug Fixes
+
+* (pos) posclient orders subscription update with subtoken ([af5c1cc](https://github.com/saashq-org/saashq/commit/af5c1cca1c79396c0ae5e783f45db7a96eaefaaa))
+* clean apolloClient timeout ([8848da0](https://github.com/saashq-org/saashq/commit/8848da007c9f0afa7125f2c9948bc8f1db9d1494))
+* **coreui:** Update tiptap editor schema & make editor section resizable ([faf39b5](https://github.com/saashq-org/saashq/commit/faf39b5e641f4427e2aa113c5de019033786dca1))
+* fix facebook get env function ([3b8e48b](https://github.com/saashq-org/saashq/commit/3b8e48bd7c7902f39564a870e7a103bd2f41bbec))
+* fix getEnv function for get domain ([0b9022c](https://github.com/saashq-org/saashq/commit/0b9022c1ff5e3be3116f93b44a4620ce96927fb1))
+* fix saas transaction emails ([f16ac1e](https://github.com/saashq-org/saashq/commit/f16ac1e8aaed27d2f70afa5ab23c9caf8851f485))
+* fix shqfeed, shq, chats plugins permssions not showing ([8427c79](https://github.com/saashq-org/saashq/commit/8427c791cf3f41efd4a08bccb1f2a29f5047aa12))
+* **forms:** fix custom properties on contacts list ([7dda5d3](https://github.com/saashq-org/saashq/commit/7dda5d32c39073916d2e4edf52331aaa29ae836b))
+* instagram-plugin login redirect url fix ([0cd1ade](https://github.com/saashq-org/saashq/commit/0cd1ade3d6c0cdaae637801e0df45b59360ed52b))
+* offline pos message uncheck queuename ([086ad66](https://github.com/saashq-org/saashq/commit/086ad66481a5ffa122c86da30aaeb1f847ceb522))
+* products filter by code condition regex ([4586762](https://github.com/saashq-org/saashq/commit/45867622972e49cffaed082edbf352c7313b819c))
+* **timeclocks:** fix time clock list ui ([f903200](https://github.com/saashq-org/saashq/commit/f903200f9ccfee6d15079222767cb0039855b7b0))
+
+
+### Performance Improvements
+
+* (pos) show items sum amount on market theme ([c24bed8](https://github.com/saashq-org/saashq/commit/c24bed8811cd3c85d039d610f8d33beb74514a44))
+* **calls:** improving incoming call ui and code refactor ([c094cc3](https://github.com/saashq-org/saashq/commit/c094cc38fe19b0ca8f84559dfae97dfc41474b5c))
+* **cards:** add assigneduserIds field in cards schema ([0f77370](https://github.com/saashq-org/saashq/commit/0f77370f39fae3a27176873baa6ed11c2f7aeede))
+* **engage:** updated manual engage, added engage notification count ([4592b5d](https://github.com/saashq-org/saashq/commit/4592b5d143f931f6d9e17d93b57a7141ce5c300a))
+* product filtchore: add debug on email verifier ([5c68e28](https://github.com/saashq-org/saashq/commit/5c68e288759ef2dccfffc66ab7c380b8d7147a71))
+* product filter on the selected car deal depends on the category ([613ed36](https://github.com/saashq-org/saashq/commit/613ed36a97c06cbae6e45e29742640026779893d))
+* **respond box:** rich text editor performance ([2fca5f4](https://github.com/saashq-org/saashq/commit/2fca5f40e6230de64bc4761dda844602748eb045))
+
+## [2.0.0](https://github.com/saashq-org/saashq/compare/1.6.2...2.0.0) (2024-03-27)
+
+
+### Features
+
+* **calls:** as widgets and solved connection ([08fbf42](https://github.com/saashq-org/saashq/commit/08fbf425e07573383a702ae441bbd58c99173e37))
+* **calls:** check customer, add customer info on conversation and improved keypad ([dba6552](https://github.com/saashq-org/saashq/commit/dba65527190b8a89afbb34462542519e1396ff37))
+* **calls:** improving calls ui ([53eb723](https://github.com/saashq-org/saashq/commit/53eb72383704a4c23494f36df0f4cadd1717a292))
+* **ebarimt:** return bill for duplicated ([48239ab](https://github.com/saashq-org/saashq/commit/48239ab50217061b7680f36bfcee072c4563dc9a))
+* **verifier:** Replace truemail with SendGrid Mail Verifier API ([048f224](https://github.com/saashq-org/saashq/commit/048f2245fcf2add37e610ba099f477d040e681ca))
+
+
+### Bug Fixes
+
+* (pos) posclient orders subscription update with subtoken ([af5c1cc](https://github.com/saashq-org/saashq/commit/af5c1cca1c79396c0ae5e783f45db7a96eaefaaa))
+* clean apolloClient timeout ([8848da0](https://github.com/saashq-org/saashq/commit/8848da007c9f0afa7125f2c9948bc8f1db9d1494))
+* **coreui:** Update tiptap editor schema & make editor section resizable ([faf39b5](https://github.com/saashq-org/saashq/commit/faf39b5e641f4427e2aa113c5de019033786dca1))
+* fix facebook get env function ([3b8e48b](https://github.com/saashq-org/saashq/commit/3b8e48bd7c7902f39564a870e7a103bd2f41bbec))
+* fix getEnv function for get domain ([0b9022c](https://github.com/saashq-org/saashq/commit/0b9022c1ff5e3be3116f93b44a4620ce96927fb1))
+* fix saas transaction emails ([f16ac1e](https://github.com/saashq-org/saashq/commit/f16ac1e8aaed27d2f70afa5ab23c9caf8851f485))
+* fix shqfeed, shq, chats plugins permssions not showing ([8427c79](https://github.com/saashq-org/saashq/commit/8427c791cf3f41efd4a08bccb1f2a29f5047aa12))
+* **forms:** fix custom properties on contacts list ([7dda5d3](https://github.com/saashq-org/saashq/commit/7dda5d32c39073916d2e4edf52331aaa29ae836b))
+* instagram-plugin login redirect url fix ([0cd1ade](https://github.com/saashq-org/saashq/commit/0cd1ade3d6c0cdaae637801e0df45b59360ed52b))
+* offline pos message uncheck queuename ([086ad66](https://github.com/saashq-org/saashq/commit/086ad66481a5ffa122c86da30aaeb1f847ceb522))
+* products filter by code condition regex ([4586762](https://github.com/saashq-org/saashq/commit/45867622972e49cffaed082edbf352c7313b819c))
+* **timeclocks:** fix time clock list ui ([f903200](https://github.com/saashq-org/saashq/commit/f903200f9ccfee6d15079222767cb0039855b7b0))
+
+
+### Performance Improvements
+
+* (pos) show items sum amount on market theme ([c24bed8](https://github.com/saashq-org/saashq/commit/c24bed8811cd3c85d039d610f8d33beb74514a44))
+* **calls:** improving incoming call ui and code refactor ([c094cc3](https://github.com/saashq-org/saashq/commit/c094cc38fe19b0ca8f84559dfae97dfc41474b5c))
+* **cards:** add assigneduserIds field in cards schema ([0f77370](https://github.com/saashq-org/saashq/commit/0f77370f39fae3a27176873baa6ed11c2f7aeede))
+* **engage:** updated manual engage, added engage notification count ([4592b5d](https://github.com/saashq-org/saashq/commit/4592b5d143f931f6d9e17d93b57a7141ce5c300a))
+* product filtchore: add debug on email verifier ([5c68e28](https://github.com/saashq-org/saashq/commit/5c68e288759ef2dccfffc66ab7c380b8d7147a71))
+* product filter on the selected car deal depends on the category ([613ed36](https://github.com/saashq-org/saashq/commit/613ed36a97c06cbae6e45e29742640026779893d))
+* **respond box:** rich text editor performance ([2fca5f4](https://github.com/saashq-org/saashq/commit/2fca5f40e6230de64bc4761dda844602748eb045))
+
+## [1.8.0](https://github.com/saashq-org/saashq/compare/1.6.2...1.8.0) (2024-03-27)
+
+
+### Features
+
+* **calls:** as widgets and solved connection ([08fbf42](https://github.com/saashq-org/saashq/commit/08fbf425e07573383a702ae441bbd58c99173e37))
+* **calls:** check customer, add customer info on conversation and improved keypad ([dba6552](https://github.com/saashq-org/saashq/commit/dba65527190b8a89afbb34462542519e1396ff37))
+* **calls:** improving calls ui ([53eb723](https://github.com/saashq-org/saashq/commit/53eb72383704a4c23494f36df0f4cadd1717a292))
+* **ebarimt:** return bill for duplicated ([48239ab](https://github.com/saashq-org/saashq/commit/48239ab50217061b7680f36bfcee072c4563dc9a))
+* **verifier:** Replace truemail with SendGrid Mail Verifier API ([048f224](https://github.com/saashq-org/saashq/commit/048f2245fcf2add37e610ba099f477d040e681ca))
+
+
+### Bug Fixes
+
+* (pos) posclient orders subscription update with subtoken ([af5c1cc](https://github.com/saashq-org/saashq/commit/af5c1cca1c79396c0ae5e783f45db7a96eaefaaa))
+* clean apolloClient timeout ([8848da0](https://github.com/saashq-org/saashq/commit/8848da007c9f0afa7125f2c9948bc8f1db9d1494))
+* **coreui:** Update tiptap editor schema & make editor section resizable ([faf39b5](https://github.com/saashq-org/saashq/commit/faf39b5e641f4427e2aa113c5de019033786dca1))
+* fix facebook get env function ([3b8e48b](https://github.com/saashq-org/saashq/commit/3b8e48bd7c7902f39564a870e7a103bd2f41bbec))
+* fix getEnv function for get domain ([0b9022c](https://github.com/saashq-org/saashq/commit/0b9022c1ff5e3be3116f93b44a4620ce96927fb1))
+* fix saas transaction emails ([f16ac1e](https://github.com/saashq-org/saashq/commit/f16ac1e8aaed27d2f70afa5ab23c9caf8851f485))
+* fix shqfeed, shq, chats plugins permssions not showing ([8427c79](https://github.com/saashq-org/saashq/commit/8427c791cf3f41efd4a08bccb1f2a29f5047aa12))
+* **forms:** fix custom properties on contacts list ([7dda5d3](https://github.com/saashq-org/saashq/commit/7dda5d32c39073916d2e4edf52331aaa29ae836b))
+* instagram-plugin login redirect url fix ([0cd1ade](https://github.com/saashq-org/saashq/commit/0cd1ade3d6c0cdaae637801e0df45b59360ed52b))
+* offline pos message uncheck queuename ([086ad66](https://github.com/saashq-org/saashq/commit/086ad66481a5ffa122c86da30aaeb1f847ceb522))
+* products filter by code condition regex ([4586762](https://github.com/saashq-org/saashq/commit/45867622972e49cffaed082edbf352c7313b819c))
+* **timeclocks:** fix time clock list ui ([f903200](https://github.com/saashq-org/saashq/commit/f903200f9ccfee6d15079222767cb0039855b7b0))
+
+
+### Performance Improvements
+
+* (pos) show items sum amount on market theme ([c24bed8](https://github.com/saashq-org/saashq/commit/c24bed8811cd3c85d039d610f8d33beb74514a44))
+* **calls:** improving incoming call ui and code refactor ([c094cc3](https://github.com/saashq-org/saashq/commit/c094cc38fe19b0ca8f84559dfae97dfc41474b5c))
+* **cards:** add assigneduserIds field in cards schema ([0f77370](https://github.com/saashq-org/saashq/commit/0f77370f39fae3a27176873baa6ed11c2f7aeede))
+* **engage:** updated manual engage, added engage notification count ([4592b5d](https://github.com/saashq-org/saashq/commit/4592b5d143f931f6d9e17d93b57a7141ce5c300a))
+* product filtchore: add debug on email verifier ([5c68e28](https://github.com/saashq-org/saashq/commit/5c68e288759ef2dccfffc66ab7c380b8d7147a71))
+* product filter on the selected car deal depends on the category ([613ed36](https://github.com/saashq-org/saashq/commit/613ed36a97c06cbae6e45e29742640026779893d))
+* **respond box:** rich text editor performance ([2fca5f4](https://github.com/saashq-org/saashq/commit/2fca5f40e6230de64bc4761dda844602748eb045))
+
+## [1.8.0](https://github.com/saashq-org/saashq/compare/1.6.2...1.8.0) (2024-03-27)
+
+
+### Features
+
+* **calls:** as widgets and solved connection ([08fbf42](https://github.com/saashq-org/saashq/commit/08fbf425e07573383a702ae441bbd58c99173e37))
+* **calls:** check customer, add customer info on conversation and improved keypad ([dba6552](https://github.com/saashq-org/saashq/commit/dba65527190b8a89afbb34462542519e1396ff37))
+* **calls:** improving calls ui ([53eb723](https://github.com/saashq-org/saashq/commit/53eb72383704a4c23494f36df0f4cadd1717a292))
+* **ebarimt:** return bill for duplicated ([48239ab](https://github.com/saashq-org/saashq/commit/48239ab50217061b7680f36bfcee072c4563dc9a))
+* **verifier:** Replace truemail with SendGrid Mail Verifier API ([048f224](https://github.com/saashq-org/saashq/commit/048f2245fcf2add37e610ba099f477d040e681ca))
+
+
+### Bug Fixes
+
+* (pos) posclient orders subscription update with subtoken ([af5c1cc](https://github.com/saashq-org/saashq/commit/af5c1cca1c79396c0ae5e783f45db7a96eaefaaa))
+* clean apolloClient timeout ([8848da0](https://github.com/saashq-org/saashq/commit/8848da007c9f0afa7125f2c9948bc8f1db9d1494))
+* **coreui:** Update tiptap editor schema & make editor section resizable ([faf39b5](https://github.com/saashq-org/saashq/commit/faf39b5e641f4427e2aa113c5de019033786dca1))
+* fix facebook get env function ([3b8e48b](https://github.com/saashq-org/saashq/commit/3b8e48bd7c7902f39564a870e7a103bd2f41bbec))
+* fix getEnv function for get domain ([0b9022c](https://github.com/saashq-org/saashq/commit/0b9022c1ff5e3be3116f93b44a4620ce96927fb1))
+* fix saas transaction emails ([f16ac1e](https://github.com/saashq-org/saashq/commit/f16ac1e8aaed27d2f70afa5ab23c9caf8851f485))
+* fix shqfeed, shq, chats plugins permssions not showing ([8427c79](https://github.com/saashq-org/saashq/commit/8427c791cf3f41efd4a08bccb1f2a29f5047aa12))
+* **forms:** fix custom properties on contacts list ([7dda5d3](https://github.com/saashq-org/saashq/commit/7dda5d32c39073916d2e4edf52331aaa29ae836b))
+* instagram-plugin login redirect url fix ([0cd1ade](https://github.com/saashq-org/saashq/commit/0cd1ade3d6c0cdaae637801e0df45b59360ed52b))
+* offline pos message uncheck queuename ([086ad66](https://github.com/saashq-org/saashq/commit/086ad66481a5ffa122c86da30aaeb1f847ceb522))
+* products filter by code condition regex ([4586762](https://github.com/saashq-org/saashq/commit/45867622972e49cffaed082edbf352c7313b819c))
+* **timeclocks:** fix time clock list ui ([f903200](https://github.com/saashq-org/saashq/commit/f903200f9ccfee6d15079222767cb0039855b7b0))
+
+
+### Performance Improvements
+
+* (pos) show items sum amount on market theme ([c24bed8](https://github.com/saashq-org/saashq/commit/c24bed8811cd3c85d039d610f8d33beb74514a44))
+* **calls:** improving incoming call ui and code refactor ([c094cc3](https://github.com/saashq-org/saashq/commit/c094cc38fe19b0ca8f84559dfae97dfc41474b5c))
+* **cards:** add assigneduserIds field in cards schema ([0f77370](https://github.com/saashq-org/saashq/commit/0f77370f39fae3a27176873baa6ed11c2f7aeede))
+* **engage:** updated manual engage, added engage notification count ([4592b5d](https://github.com/saashq-org/saashq/commit/4592b5d143f931f6d9e17d93b57a7141ce5c300a))
+* product filtchore: add debug on email verifier ([5c68e28](https://github.com/saashq-org/saashq/commit/5c68e288759ef2dccfffc66ab7c380b8d7147a71))
+* product filter on the selected car deal depends on the category ([613ed36](https://github.com/saashq-org/saashq/commit/613ed36a97c06cbae6e45e29742640026779893d))
+* **respond box:** rich text editor performance ([2fca5f4](https://github.com/saashq-org/saashq/commit/2fca5f40e6230de64bc4761dda844602748eb045))
+
+## [1.8.0](https://github.com/saashq-org/saashq/compare/1.6.2...1.8.0) (2024-03-27)
+
+
+### Features
+
+* **calls:** as widgets and solved connection ([08fbf42](https://github.com/saashq-org/saashq/commit/08fbf425e07573383a702ae441bbd58c99173e37))
+* **calls:** check customer, add customer info on conversation and improved keypad ([dba6552](https://github.com/saashq-org/saashq/commit/dba65527190b8a89afbb34462542519e1396ff37))
+* **calls:** improving calls ui ([53eb723](https://github.com/saashq-org/saashq/commit/53eb72383704a4c23494f36df0f4cadd1717a292))
+* **ebarimt:** return bill for duplicated ([48239ab](https://github.com/saashq-org/saashq/commit/48239ab50217061b7680f36bfcee072c4563dc9a))
+* **verifier:** Replace truemail with SendGrid Mail Verifier API ([048f224](https://github.com/saashq-org/saashq/commit/048f2245fcf2add37e610ba099f477d040e681ca))
+
+
+### Bug Fixes
+
+* (pos) posclient orders subscription update with subtoken ([af5c1cc](https://github.com/saashq-org/saashq/commit/af5c1cca1c79396c0ae5e783f45db7a96eaefaaa))
+* clean apolloClient timeout ([8848da0](https://github.com/saashq-org/saashq/commit/8848da007c9f0afa7125f2c9948bc8f1db9d1494))
+* **coreui:** Update tiptap editor schema & make editor section resizable ([faf39b5](https://github.com/saashq-org/saashq/commit/faf39b5e641f4427e2aa113c5de019033786dca1))
+* fix facebook get env function ([3b8e48b](https://github.com/saashq-org/saashq/commit/3b8e48bd7c7902f39564a870e7a103bd2f41bbec))
+* fix getEnv function for get domain ([0b9022c](https://github.com/saashq-org/saashq/commit/0b9022c1ff5e3be3116f93b44a4620ce96927fb1))
+* fix saas transaction emails ([f16ac1e](https://github.com/saashq-org/saashq/commit/f16ac1e8aaed27d2f70afa5ab23c9caf8851f485))
+* fix shqfeed, shq, chats plugins permssions not showing ([8427c79](https://github.com/saashq-org/saashq/commit/8427c791cf3f41efd4a08bccb1f2a29f5047aa12))
+* **forms:** fix custom properties on contacts list ([7dda5d3](https://github.com/saashq-org/saashq/commit/7dda5d32c39073916d2e4edf52331aaa29ae836b))
+* instagram-plugin login redirect url fix ([0cd1ade](https://github.com/saashq-org/saashq/commit/0cd1ade3d6c0cdaae637801e0df45b59360ed52b))
+* offline pos message uncheck queuename ([086ad66](https://github.com/saashq-org/saashq/commit/086ad66481a5ffa122c86da30aaeb1f847ceb522))
+* products filter by code condition regex ([4586762](https://github.com/saashq-org/saashq/commit/45867622972e49cffaed082edbf352c7313b819c))
+* **timeclocks:** fix time clock list ui ([f903200](https://github.com/saashq-org/saashq/commit/f903200f9ccfee6d15079222767cb0039855b7b0))
+
+
+### Performance Improvements
+
+* (pos) show items sum amount on market theme ([c24bed8](https://github.com/saashq-org/saashq/commit/c24bed8811cd3c85d039d610f8d33beb74514a44))
+* **calls:** improving incoming call ui and code refactor ([c094cc3](https://github.com/saashq-org/saashq/commit/c094cc38fe19b0ca8f84559dfae97dfc41474b5c))
+* **cards:** add assigneduserIds field in cards schema ([0f77370](https://github.com/saashq-org/saashq/commit/0f77370f39fae3a27176873baa6ed11c2f7aeede))
+* **engage:** updated manual engage, added engage notification count ([4592b5d](https://github.com/saashq-org/saashq/commit/4592b5d143f931f6d9e17d93b57a7141ce5c300a))
+* product filtchore: add debug on email verifier ([5c68e28](https://github.com/saashq-org/saashq/commit/5c68e288759ef2dccfffc66ab7c380b8d7147a71))
+* product filter on the selected car deal depends on the category ([613ed36](https://github.com/saashq-org/saashq/commit/613ed36a97c06cbae6e45e29742640026779893d))
+* **respond box:** rich text editor performance ([2fca5f4](https://github.com/saashq-org/saashq/commit/2fca5f40e6230de64bc4761dda844602748eb045))
+
+## [1.8.0](https://github.com/saashq-org/saashq/compare/1.6.2...1.8.0) (2024-03-27)
+
+
+### Features
+
+* **calls:** as widgets and solved connection ([08fbf42](https://github.com/saashq-org/saashq/commit/08fbf425e07573383a702ae441bbd58c99173e37))
+* **calls:** check customer, add customer info on conversation and improved keypad ([dba6552](https://github.com/saashq-org/saashq/commit/dba65527190b8a89afbb34462542519e1396ff37))
+* **calls:** improving calls ui ([53eb723](https://github.com/saashq-org/saashq/commit/53eb72383704a4c23494f36df0f4cadd1717a292))
+* **ebarimt:** return bill for duplicated ([48239ab](https://github.com/saashq-org/saashq/commit/48239ab50217061b7680f36bfcee072c4563dc9a))
+* **verifier:** Replace truemail with SendGrid Mail Verifier API ([048f224](https://github.com/saashq-org/saashq/commit/048f2245fcf2add37e610ba099f477d040e681ca))
+
+
+### Bug Fixes
+
+* (pos) posclient orders subscription update with subtoken ([af5c1cc](https://github.com/saashq-org/saashq/commit/af5c1cca1c79396c0ae5e783f45db7a96eaefaaa))
+* clean apolloClient timeout ([8848da0](https://github.com/saashq-org/saashq/commit/8848da007c9f0afa7125f2c9948bc8f1db9d1494))
+* **coreui:** Update tiptap editor schema & make editor section resizable ([faf39b5](https://github.com/saashq-org/saashq/commit/faf39b5e641f4427e2aa113c5de019033786dca1))
+* fix facebook get env function ([3b8e48b](https://github.com/saashq-org/saashq/commit/3b8e48bd7c7902f39564a870e7a103bd2f41bbec))
+* fix getEnv function for get domain ([0b9022c](https://github.com/saashq-org/saashq/commit/0b9022c1ff5e3be3116f93b44a4620ce96927fb1))
+* fix saas transaction emails ([f16ac1e](https://github.com/saashq-org/saashq/commit/f16ac1e8aaed27d2f70afa5ab23c9caf8851f485))
+* fix shqfeed, shq, chats plugins permssions not showing ([8427c79](https://github.com/saashq-org/saashq/commit/8427c791cf3f41efd4a08bccb1f2a29f5047aa12))
+* **forms:** fix custom properties on contacts list ([7dda5d3](https://github.com/saashq-org/saashq/commit/7dda5d32c39073916d2e4edf52331aaa29ae836b))
+* instagram-plugin login redirect url fix ([0cd1ade](https://github.com/saashq-org/saashq/commit/0cd1ade3d6c0cdaae637801e0df45b59360ed52b))
+* offline pos message uncheck queuename ([086ad66](https://github.com/saashq-org/saashq/commit/086ad66481a5ffa122c86da30aaeb1f847ceb522))
+* products filter by code condition regex ([4586762](https://github.com/saashq-org/saashq/commit/45867622972e49cffaed082edbf352c7313b819c))
+* **timeclocks:** fix time clock list ui ([f903200](https://github.com/saashq-org/saashq/commit/f903200f9ccfee6d15079222767cb0039855b7b0))
+
+
+### Performance Improvements
+
+* (pos) show items sum amount on market theme ([c24bed8](https://github.com/saashq-org/saashq/commit/c24bed8811cd3c85d039d610f8d33beb74514a44))
+* **calls:** improving incoming call ui and code refactor ([c094cc3](https://github.com/saashq-org/saashq/commit/c094cc38fe19b0ca8f84559dfae97dfc41474b5c))
+* **cards:** add assigneduserIds field in cards schema ([0f77370](https://github.com/saashq-org/saashq/commit/0f77370f39fae3a27176873baa6ed11c2f7aeede))
+* **engage:** updated manual engage, added engage notification count ([4592b5d](https://github.com/saashq-org/saashq/commit/4592b5d143f931f6d9e17d93b57a7141ce5c300a))
+* product filtchore: add debug on email verifier ([5c68e28](https://github.com/saashq-org/saashq/commit/5c68e288759ef2dccfffc66ab7c380b8d7147a71))
+* product filter on the selected car deal depends on the category ([613ed36](https://github.com/saashq-org/saashq/commit/613ed36a97c06cbae6e45e29742640026779893d))
+* **respond box:** rich text editor performance ([2fca5f4](https://github.com/saashq-org/saashq/commit/2fca5f40e6230de64bc4761dda844602748eb045))
+
+## [1.8.0](https://github.com/saashq-org/saashq/compare/1.6.2...1.8.0) (2024-03-27)
+
+
+### Features
+
+* **calls:** as widgets and solved connection ([08fbf42](https://github.com/saashq-org/saashq/commit/08fbf425e07573383a702ae441bbd58c99173e37))
+* **calls:** check customer, add customer info on conversation and improved keypad ([dba6552](https://github.com/saashq-org/saashq/commit/dba65527190b8a89afbb34462542519e1396ff37))
+* **calls:** improving calls ui ([53eb723](https://github.com/saashq-org/saashq/commit/53eb72383704a4c23494f36df0f4cadd1717a292))
+* **ebarimt:** return bill for duplicated ([48239ab](https://github.com/saashq-org/saashq/commit/48239ab50217061b7680f36bfcee072c4563dc9a))
+* **verifier:** Replace truemail with SendGrid Mail Verifier API ([048f224](https://github.com/saashq-org/saashq/commit/048f2245fcf2add37e610ba099f477d040e681ca))
+
+
+### Bug Fixes
+
+* (pos) posclient orders subscription update with subtoken ([af5c1cc](https://github.com/saashq-org/saashq/commit/af5c1cca1c79396c0ae5e783f45db7a96eaefaaa))
+* clean apolloClient timeout ([8848da0](https://github.com/saashq-org/saashq/commit/8848da007c9f0afa7125f2c9948bc8f1db9d1494))
+* **coreui:** Update tiptap editor schema & make editor section resizable ([faf39b5](https://github.com/saashq-org/saashq/commit/faf39b5e641f4427e2aa113c5de019033786dca1))
+* fix facebook get env function ([3b8e48b](https://github.com/saashq-org/saashq/commit/3b8e48bd7c7902f39564a870e7a103bd2f41bbec))
+* fix getEnv function for get domain ([0b9022c](https://github.com/saashq-org/saashq/commit/0b9022c1ff5e3be3116f93b44a4620ce96927fb1))
+* fix saas transaction emails ([f16ac1e](https://github.com/saashq-org/saashq/commit/f16ac1e8aaed27d2f70afa5ab23c9caf8851f485))
+* fix shqfeed, shq, chats plugins permssions not showing ([8427c79](https://github.com/saashq-org/saashq/commit/8427c791cf3f41efd4a08bccb1f2a29f5047aa12))
+* **forms:** fix custom properties on contacts list ([7dda5d3](https://github.com/saashq-org/saashq/commit/7dda5d32c39073916d2e4edf52331aaa29ae836b))
+* instagram-plugin login redirect url fix ([0cd1ade](https://github.com/saashq-org/saashq/commit/0cd1ade3d6c0cdaae637801e0df45b59360ed52b))
+* offline pos message uncheck queuename ([086ad66](https://github.com/saashq-org/saashq/commit/086ad66481a5ffa122c86da30aaeb1f847ceb522))
+* products filter by code condition regex ([4586762](https://github.com/saashq-org/saashq/commit/45867622972e49cffaed082edbf352c7313b819c))
+* **timeclocks:** fix time clock list ui ([f903200](https://github.com/saashq-org/saashq/commit/f903200f9ccfee6d15079222767cb0039855b7b0))
+
+
+### Performance Improvements
+
+* (pos) show items sum amount on market theme ([c24bed8](https://github.com/saashq-org/saashq/commit/c24bed8811cd3c85d039d610f8d33beb74514a44))
+* **calls:** improving incoming call ui and code refactor ([c094cc3](https://github.com/saashq-org/saashq/commit/c094cc38fe19b0ca8f84559dfae97dfc41474b5c))
+* **cards:** add assigneduserIds field in cards schema ([0f77370](https://github.com/saashq-org/saashq/commit/0f77370f39fae3a27176873baa6ed11c2f7aeede))
+* **engage:** updated manual engage, added engage notification count ([4592b5d](https://github.com/saashq-org/saashq/commit/4592b5d143f931f6d9e17d93b57a7141ce5c300a))
+* product filtchore: add debug on email verifier ([5c68e28](https://github.com/saashq-org/saashq/commit/5c68e288759ef2dccfffc66ab7c380b8d7147a71))
+* product filter on the selected car deal depends on the category ([613ed36](https://github.com/saashq-org/saashq/commit/613ed36a97c06cbae6e45e29742640026779893d))
+* **respond box:** rich text editor performance ([2fca5f4](https://github.com/saashq-org/saashq/commit/2fca5f40e6230de64bc4761dda844602748eb045))
+
 ## [1.7.0](https://github.com/saashq-org/saashq/compare/1.6.2...1.7.0) (2024-03-10)
 
 

@@ -1,13 +1,13 @@
 {
   "name": "saashq",
   "private": true,
-  "version": "1.7.1",
+  "version": "1.7.0",
   "workspaces": [
     "packages/*",
     "scripts"
   ],
   "description": "Open source all-in-one Saas marketing & management software",
-  "homepage": "https://saashq.org",
+  "homepage": "https://docs.saashq.org",
   "repository": "https://github.com/saashq-org/saashq",
   "bugs": "https://github.com/saashq-org/saashq/issues",
   "keywords": [
