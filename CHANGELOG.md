@@ -1,3 +1,10 @@
+### [1.7.3](https://github.com/saashq-org/saashq/compare/1.7.2...1.7.3) (2024-03-27)
+
+
+### Reverts
+
+* revert saashq request headers saashq-user to user ([6a54967](https://github.com/saashq-org/saashq/commit/6a549674d4016e61aea51243ea5f10ffd365c45e))
+
 ### [1.7.2](https://github.com/saashq-org/saashq/compare/1.7.0...1.7.2) (2024-03-27)
 
 
