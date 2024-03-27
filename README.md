@@ -1,7 +1,7 @@
 <br>
 
 <p align="center">
- <img src="https://github.com/saashq-org/saashq/shq-web/public/images/logo.png" alt="SaasHQ logo" width="20%" />
+ <img src="https://saashq-org.github.io/saashq/shq-web/public/images/logo.png" alt="SaasHQ logo" width="20%" />
 </p>
 
 <p align="center">Welcome to SaasHQ, the open source business management Platform. SaasHQ serves as an alternative to the combined functionalities of Hubspot (CRM & Marketing automation) and Qualitics (Experience management)</p>
