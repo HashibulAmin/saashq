@@ -6,6 +6,7 @@ import graphqlPubsub from '@saashq/api-utils/src/graphqlPubsub';
 import { IUserDocument } from '@saashq/api-utils/src/types';
 import { ICallHistory } from '../../models/definitions/callHistories';
 import { sendInboxMessage } from '../../messageBroker';
+import { updateConfigs } from '../../helpers';
 
 export interface ISession {
   sessionCode: string;
@@ -87,25 +88,31 @@ const callsMutations = {
     });
   },
 
-  async callTerminateSession(_root, {}, { models, user }: IContext) {
+  async callTerminateSession(_root, {}, { models, user, subdomain }: IContext) {
     await models.ActiveSessions.deleteOne({
       userId: user._id,
     });
 
-    graphqlPubsub.publish('sessionTerminateRequested', {
-      userId: user._id,
-    });
+    graphqlPubsub.publish(
+      `sessionTerminateRequested:${subdomain}:${user._id}`,
+      {
+        userId: user._id,
+      },
+    );
     return user._id;
   },
 
-  async callDisconnect(_root, {}, { models, user }: IContext) {
+  async callDisconnect(_root, {}, { models, user, subdomain }: IContext) {
     await models.ActiveSessions.deleteOne({
       userId: user._id,
     });
 
-    graphqlPubsub.publish('sessionTerminateRequested', {
-      userId: user._id,
-    });
+    graphqlPubsub.publish(
+      `sessionTerminateRequested:${subdomain}:${user._id}`,
+      {
+        userId: user._id,
+      },
+    );
 
     return 'disconnected';
   },
@@ -153,6 +160,12 @@ const callsMutations = {
     }
 
     return history.deleteOne();
+  },
+
+  async callsUpdateConfigs(_root, { configsMap }, { models }: IContext) {
+    await updateConfigs(models, configsMap);
+
+    return { status: 'ok' };
   },
 };
 

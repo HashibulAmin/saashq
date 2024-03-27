@@ -95,8 +95,8 @@ var main = async () => {
 	for (const service of services) {
 		let run = "echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin \n"
 			+ `docker image pull saashqdev/${service}:main \n`
-			+ `docker tag saashqdev/${service}:main saashqdev/${service}:\${GITHUB_REF#refs/tags/} \n`
-			+ `docker push saashqdev/${service}:\${GITHUB_REF#refs/tags/} \n`;
+			+ `docker tag saashqdev/${service}:main saashqdev/${service}:\${{github.ref_name}} \n`
+			+ `docker push saashqdev/${service}:\${{github.ref_name}} \n`;
 
 		if (service === 'saashq') {
 			run += `aws s3 cp s3://saashq-main-plugins/locales.tar s3://saashq-release-plugins/\${GITHUB_REF#refs/tags/}/locales.tar \n`;

@@ -25,6 +25,9 @@ const SipProviderContainer = (props) => {
   );
 
   const { data, loading, error } = useQuery(gql(queries.callUserIntegrations));
+  const { data: callConfigData, loading: callConfigLoading } = useQuery(
+    gql(queries.callsGetConfigs),
+  );
 
   const [createActiveSession] = useMutation(gql(mutations.addActiveSession));
   const [removeActiveSession] = useMutation(
@@ -122,7 +125,7 @@ const SipProviderContainer = (props) => {
       });
   };
 
-  if (loading) {
+  if (loading || callConfigLoading) {
     return null;
   }
   if (error) {
@@ -130,6 +133,8 @@ const SipProviderContainer = (props) => {
   }
 
   const { callUserIntegrations } = data;
+  const callsGetConfigs = callConfigData.callsGetConfigs;
+
   if (!callUserIntegrations || callUserIntegrations.length === 0) {
     return null;
   }
@@ -175,6 +180,19 @@ const SipProviderContainer = (props) => {
   const operator = operators?.[0];
   const { gsUsername, gsPassword } = operator || {};
 
+  const configsMap = {};
+
+  for (const config of callsGetConfigs) {
+    configsMap[config.code] = config.value;
+  }
+
+  const {
+    STUN_SERVER_URL,
+    TURN_SERVER_URL,
+    TURN_SERVER_USERNAME,
+    TURN_SERVER_CREDENTIAL,
+  } = configsMap as any;
+
   const sipConfig = {
     host,
     pathname: '/ws',
@@ -184,12 +202,12 @@ const SipProviderContainer = (props) => {
     port: parseInt(port?.toString() || '8089', 10),
     iceServers: [
       {
-        urls: 'stun:stun.l.google.com:19302',
+        urls: `stun:${STUN_SERVER_URL}` || '',
       },
       {
-        urls: 'turn:relay8.expressturn.com:3478',
-        username: 'efVCM7AV4B0436ZEJQ',
-        credential: 'PtBTQUgzOtZ1T874',
+        urls: `turn:${TURN_SERVER_URL}` || '',
+        username: TURN_SERVER_USERNAME || '',
+        credential: TURN_SERVER_CREDENTIAL || '',
       },
     ],
   };

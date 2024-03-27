@@ -8,7 +8,8 @@ module.exports = {
     './call': './src/containers/SipProvider.tsx',
     './inboxIntegrationForm': './src/components/IntegrationForm.tsx',
     './integrationDetailsForm': './src/components/IntegrationEditForm.tsx',
-    './integrationCustomActions': './src/components/TokenButton.tsx'
+    './integrationCustomActions': './src/components/TokenButton.tsx',
+    './inboxIntegrationSettings': './src/containers/UpdateConfigsContainer.tsx',  
   },
 
   routes: {
@@ -22,11 +23,11 @@ module.exports = {
     module: './call',
     style: 'bottom: 90px;right: 32px'
   },
-
   inboxIntegrationForm: './inboxIntegrationForm',
   invoiceDetailRightSection: './invoiceDetailRightSection',
   integrationDetailsForm: './integrationDetailsForm',
   integrationCustomActions: './integrationCustomActions',
+  inboxIntegrationSettings: './inboxIntegrationSettings',  
   inboxIntegrations: [
     {
       name: 'Grand stream',

@@ -45,6 +45,7 @@ var plugins = [
   { name: 'facebook', ui: true, api: true },
   { name: 'ecommerce', api: true },
   { name: 'loans', api: true, ui: true },
+  { name: 'insight', api: true, ui: true },  
 ];
 
 const pluginsMap = {};
