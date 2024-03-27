@@ -87,13 +87,13 @@ jobs:
 
           docker buildx imagetools create saashqdev/client-portal:main --tag  saashqdev/client-portal:${{github.ref_name}}
 
-      - name: exm-web
+      - name: shq-web
         run: >
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
-          docker buildx imagetools create saashqdev/exm:main --tag  saashqdev/exm:${{github.ref_name}}
+          docker buildx imagetools create saashqdev/shq:main --tag  saashqdev/shq:${{github.ref_name}}
 
       - name: pos-ui
         run: >
@@ -287,21 +287,21 @@ jobs:
 
           docker buildx imagetools create saashqdev/plugin-ebarimt-api:main --tag  saashqdev/plugin-ebarimt-api:${{github.ref_name}}
 
-      - name: plugin-exm-api
+      - name: plugin-shq-api
         run: >
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
-          docker buildx imagetools create saashqdev/plugin-exm-api:main --tag  saashqdev/plugin-exm-api:${{github.ref_name}}
+          docker buildx imagetools create saashqdev/plugin-shq-api:main --tag  saashqdev/plugin-shq-api:${{github.ref_name}}
 
-      - name: plugin-exmfeed-api
+      - name: plugin-shqfeed-api
         run: >
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
-          docker buildx imagetools create saashqdev/plugin-exmfeed-api:main --tag  saashqdev/plugin-exmfeed-api:${{github.ref_name}}
+          docker buildx imagetools create saashqdev/plugin-shqfeed-api:main --tag  saashqdev/plugin-shqfeed-api:${{github.ref_name}}
 
       - name: plugin-pos-api
         run: >
@@ -626,9 +626,9 @@ jobs:
       - name: ebarimt ui
         run: aws s3 sync s3://saashq-main-plugins/uis/plugin-ebarimt-ui
           s3://saashq-release-plugins/uis/plugin-ebarimt-ui/${GITHUB_REF#refs/tags/}/
-      - name: exm ui
-        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-exm-ui
-          s3://saashq-release-plugins/uis/plugin-exm-ui/${GITHUB_REF#refs/tags/}/
+      - name: shq ui
+        run: aws s3 sync s3://saashq-main-plugins/uis/plugin-shq-ui
+          s3://saashq-release-plugins/uis/plugin-shq-ui/${GITHUB_REF#refs/tags/}/
       - name: pos ui
         run: aws s3 sync s3://saashq-main-plugins/uis/plugin-pos-ui
           s3://saashq-release-plugins/uis/plugin-pos-ui/${GITHUB_REF#refs/tags/}/
