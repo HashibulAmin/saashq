@@ -25,7 +25,7 @@ jobs:
           secrets.DOCKERHUB_USERNAME }} --password-stdin 
 
 
-
+          docker buildx imagetools create saashqdev/saashq:main --tag saashqdev/saashq:${GITHUB_REF#refs/tags/}
 
 
           aws s3 cp s3://saashq-main-plugins/locales.tar s3://saashq-release-plugins/${GITHUB_REF#refs/tags/}/locales.tar
