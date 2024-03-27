@@ -197,7 +197,7 @@ export const sendReply = async (
   let integration;
   try {
     integration = await models.Integrations.getIntegration({
-      erxesApiId: integrationId,
+      saashqApiId: integrationId,
     });
 
     // Continue with the code assuming the integration was successfully retrieved

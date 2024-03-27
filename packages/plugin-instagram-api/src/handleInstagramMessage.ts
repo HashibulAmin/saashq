@@ -4,7 +4,7 @@ import { IModels } from './connectionResolver';
 import { generateAttachmentMessages, sendReply } from './utils';
 
 /**
- * Handle requests from erxes api
+ * Handle requests from saashq api
  */
 
 export const handleInstagramMessage = async (
@@ -16,7 +16,7 @@ export const handleInstagramMessage = async (
   const doc = JSON.parse(payload || '{}');
   if (doc.internal) {
     const conversation = await models.Conversations.getConversation({
-      erxesApiId: doc.conversationId,
+      saashqApiId: doc.conversationId,
     });
 
     return models.ConversationMessages.addMessage(
@@ -51,7 +51,7 @@ export const handleInstagramMessage = async (
 
     strippedContent = strippedContent.replace(/&amp;/g, '&');
     const conversation = await models.Conversations.getConversation({
-      erxesApiId: conversationId,
+      saashqApiId: conversationId,
     });
 
     const { senderId } = conversation;

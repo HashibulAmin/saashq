@@ -738,7 +738,7 @@ const integrationMutations = {
       text: e.text,
       lastUpdatedUserId: user._id,
       isRequired: e.isRequired,
-      isDefinedByErxes: false,
+      isDefinedBySaasHQ: false,
       associatedFieldId: e.associatedFieldId,
       pageNumber: e.pageNumber,
     }));

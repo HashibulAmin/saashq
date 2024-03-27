@@ -639,7 +639,7 @@ a:hover {
 }
 
 .Select .Select-arrow:before {
-  font-family: 'erxes';
+  font-family: 'saashq';
   content: '\\e9a6';
   font-size: 14px;
   color: ${colors.colorCoreGray};

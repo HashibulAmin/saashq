@@ -14,10 +14,10 @@ import { RPSuccess } from '@saashq/api-utils/src/messageBroker';
 export const removeIntegration = async (
   subdomain,
   models: IModels,
-  integrationErxesApiId: string,
+  integrationSaasHQApiId: string,
 ): Promise<string> => {
   const integration = await models.Integrations.findOne({
-    saashqApiId: integrationErxesApiId,
+    saashqApiId: integrationSaasHQApiId,
   });
 
   if (!integration) {
@@ -66,7 +66,7 @@ export const removeIntegration = async (
       await models.Conversations.find(selector).distinct('_id');
 
     await models.Customers.deleteMany({
-      integrationId: integrationErxesApiId,
+      integrationId: integrationSaasHQApiId,
     });
 
     await models.Conversations.deleteMany(selector);

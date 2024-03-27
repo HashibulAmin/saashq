@@ -177,7 +177,7 @@ export function getDbNameFromConnectionString(connectionString) {
   const VERSION = getEnv({ name: 'VERSION' });
 
   if (VERSION && VERSION === 'saas') {
-    return 'erxes';
+    return 'saashq';
   }
 
   if (parsedUrl.pathname) {

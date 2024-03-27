@@ -16,7 +16,7 @@ export const getOrCreateCustomer = async (
     try {
       customer = await models.Customers.create({
         inboxIntegrationId,
-        erxesApiId: null,
+        saashqApiId: null,
         primaryPhone: primaryPhone,
       });
     } catch (e) {

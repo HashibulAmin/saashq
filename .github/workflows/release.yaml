@@ -3,8 +3,6 @@ on:
   push:
     tags:
       - '*'
-    branches:
-      - main    
 jobs:
   release:
     runs-on: ubuntu-22.04
