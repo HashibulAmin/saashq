@@ -528,7 +528,7 @@ export const WEBHOOK_ACTIONS = [
 export const EMPTY_CONTENT_BOOKINGS = {
   title: __('Getting Started with SaasHQ Booking'),
   description: __(
-    'SaasHQ Booking widget helps you create listings of your Products and Services and receive bookings with your saashq Form.',
+    'SaasHQ Booking widget helps you create listings of your Products and Services and receive bookings with your SaasHQ Form.',
   ),
   steps: [
     {
