@@ -85,7 +85,7 @@ export const reportSchema = new Schema({
   _id: field({ pkey: true }),
   name: field({ type: String, label: 'Report name', index: true }),
   visibility: field({
-    type: IVisibilityType,
+    type: String,
     label: 'Report visibility',
   }),
   assignedUserIds: field({ type: [String], label: 'Assigned member ids' }),
