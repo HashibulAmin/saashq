@@ -6,7 +6,7 @@ import {
   SortHandler,
   __,
   Table,
-  Wrapper
+  Wrapper,
 } from '@saashq/ui/src';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -37,7 +37,7 @@ class List extends React.Component<Props, {}> {
   renderRow() {
     const { posList, remove, bulk, toggleBulk } = this.props;
 
-    return posList.map(pos => (
+    return posList.map((pos) => (
       <Row
         key={pos._id}
         isChecked={bulk.includes(pos)}
@@ -99,7 +99,7 @@ class List extends React.Component<Props, {}> {
             title={__('POS')}
             breadcrumb={[
               { title: 'Settings', link: '/settings' },
-              { title: __('POS list') }
+              { title: __('POS list') },
             ]}
             queryParams={queryParams}
           />
@@ -114,18 +114,18 @@ class List extends React.Component<Props, {}> {
             emptyContent={
               <EmptyContent
                 content={{
-                  title: __('Getting Started with saashq POS'),
+                  title: __('Getting Started with SaasHQ POS'),
                   description: __('replace description text'),
                   steps: [
                     {
                       title: __('Create POS'),
                       description: __(
-                        'Fill out the details and create your POS'
+                        'Fill out the details and create your POS',
                       ),
                       url: `/pos/create`,
-                      urlText: 'Create POS'
-                    }
-                  ]
+                      urlText: 'Create POS',
+                    },
+                  ],
                 }}
                 maxItemWidth="360px"
               />
