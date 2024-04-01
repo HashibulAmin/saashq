@@ -1,3 +1,10 @@
+### [1.7.4](https://github.com/saashq-org/saashq/compare/1.7.3...1.7.4) (2024-04-01)
+
+
+### Bug Fixes
+
+* segment count rabbitmq message ([08a4e09](https://github.com/saashq-org/saashq/commit/08a4e095b0b48207ac65dbf3dc493c32305b9b0b))
+
 ### [1.7.3](https://github.com/saashq-org/saashq/compare/1.7.2...1.7.3) (2024-03-27)
 
 
