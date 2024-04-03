@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="cs">
+    <html lang="en">
       <head>
         <Script
           strategy="beforeInteractive"
