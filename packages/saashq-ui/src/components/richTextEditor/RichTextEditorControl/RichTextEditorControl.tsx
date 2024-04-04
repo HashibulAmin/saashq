@@ -1,116 +1,170 @@
-import React, { useRef } from 'react';
+import { ColorPickerWrapper, MenuItem, PickerAction } from './styles';
+import {
+  IRichTextEditorControlBaseProps,
+  RichTextEditorControlBase,
+} from './RichTextEditorControl';
+import React, { useEffect, useState } from 'react';
 
+import ChromePicker from 'react-color/lib/Chrome';
+import CompactPicker from 'react-color/lib/Compact';
+import { Flex } from '../../../styles/main';
+import Icon from '../../Icon';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
+import Tip from '../../Tip';
+import { colors } from '../../../styles';
+import { getAttributesForEachSelected } from '../utils/getAttributesForEachSelected';
 import { useRichTextEditorContext } from '../RichTextEditor.context';
-import { IRichTextEditorLabels } from '../labels';
-import { EditorControl } from './styles';
 
-export type RichTextEditorControlStylesNames = 'control';
+const LinkIcon: IRichTextEditorControlBaseProps['icon'] = () => (
+  <span className="editor_icon textcolor_icon" />
+);
 
-export interface IRichTextEditorControlProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  /** Determines whether the control should have active state, false by default */
-  active?: boolean;
+export const RichTextEditorColorControl = () => {
+  let overLayRef;
+  const [isPickerVisible, setIsPickerVisible] = useState(false);
+  const [pickerColor, setPickerColor] = useState(colors.colorPrimary);
+  const [color, setColor] = useState('');
 
-  /** Determines whether the control can be interacted with, set `false` to make the control to act as a label */
-  interactive?: boolean;
+  const { editor, labels } = useRichTextEditorContext();
 
-  /** Determines whether the control is source mode toggler */
-  isSourceControl?: boolean;
-}
+  useEffect(() => {
+    if (!color) {
+      editor?.chain().focus().unsetColor().run();
+    } else {
+      editor?.chain().focus().setColor(color).run();
+    }
+  }, [color]);
 
-export const RichTextEditorControl = (props: IRichTextEditorControlProps) => {
-  const { isSourceEnabled } = useRichTextEditorContext();
-  const ref = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    const allSelectionTextStyleAttrs = editor
+      ? getAttributesForEachSelected(editor?.state, 'textStyle')
+      : [];
 
-  const {
-    interactive,
-    active,
-    onMouseDown,
-    isSourceControl,
-    disabled,
-    ...others
-  } = props;
+    const currentSelectionTextColors: string[] = allSelectionTextStyleAttrs
+      .map((attrs) => {
+        if (attrs?.color) return attrs.color;
+      })
+      .filter((color) => typeof color === 'string');
 
-  return (
-    <EditorControl
-      {...others}
-      type="button"
-      disabled={isSourceControl ? false : disabled || isSourceEnabled}
-      data-rich-text-editor-control={true}
-      tabIndex={interactive ? 0 : -1}
-      data-interactive={interactive || undefined}
-      data-active={
-        isSourceEnabled && isSourceControl ? true : active || undefined
-      }
-      aria-pressed={(active && interactive) || undefined}
-      aria-hidden={!interactive || undefined}
-      innerRef={ref}
-      onMouseDown={(event) => {
-        event.preventDefault();
-        onMouseDown?.(event);
-      }}
-    />
-  );
-};
+    const numUniqueSelectionTextColors = new Set(currentSelectionTextColors)
+      .size;
 
-export interface IRichTextEditorControlBaseProps
-  extends IRichTextEditorControlProps {
-  icon?: React.FC<{ style: React.CSSProperties }>;
-}
+    if (numUniqueSelectionTextColors === 1) {
+      setColor(currentSelectionTextColors[0]);
+      setPickerColor(currentSelectionTextColors[0]);
+    }
+  }, [editor?.state]);
 
-export const RichTextEditorControlBase = <
-  HTMLButtonElement,
-  RichTextEditorControlBaseProps,
->({
-  className,
-  icon: Icon,
-  ...others
-}: any) => {
-  return (
-    <RichTextEditorControl {...others}>
-      {Icon && <Icon style={{ width: '1rem', height: '1rem' }} />}
-    </RichTextEditorControl>
-  );
-};
-
-export interface ICreateControlProps {
-  label: keyof IRichTextEditorLabels;
-  icon: React.FC<{ style: React.CSSProperties }>;
-  isActive?: { name: string | null; attributes?: Record<string, any> | string };
-  operation: { name: string; attributes?: Record<string, any> | string };
-}
-
-export function createControl({
-  label,
-  isActive,
-  operation,
-  icon,
-}: ICreateControlProps) {
-  return <HTMLButtonElement, RichTextEditorControlBaseProps>(
-    props: RichTextEditorControlBaseProps,
-  ) => {
-    const { editor, labels } = useRichTextEditorContext();
-    const _label = labels[label] as string;
-    return (
-      <RichTextEditorControlBase
-        aria-label={_label}
-        title={_label}
-        active={
-          isActive?.name
-            ? editor?.isActive(isActive.name, isActive.attributes)
-            : isActive?.attributes
-              ? editor?.isActive(isActive.attributes)
-              : false
-        }
-        onClick={() =>
-          (editor as any)
-            ?.chain()
-            .focus()
-            [operation.name](operation.attributes)
-            .run()
-        }
-        icon={icon}
-      />
-    );
+  const handleColorChange = (selectedColor: {
+    hex: React.SetStateAction<string>;
+  }) => {
+    setColor(selectedColor?.hex);
+    overLayRef.hide();
   };
-}
+
+  const handleClear = () => {
+    editor?.chain().focus().unsetColor().run();
+    overLayRef.hide();
+  };
+
+  const handlePicker = (selectedColor: {
+    hex: React.SetStateAction<string>;
+  }) => {
+    setPickerColor(selectedColor?.hex);
+  };
+
+  const handleColorSelection = () => {
+    setColor(pickerColor);
+    overLayRef.hide();
+    setIsPickerVisible(false);
+  };
+
+  const handleOverlayClose = () => {
+    overLayRef.hide();
+    setIsPickerVisible(false);
+  };
+
+  const allCurrentTextStyleAttrs = editor
+    ? getAttributesForEachSelected(editor?.state, 'textStyle')
+    : [];
+
+  const currentTextColors: string[] = allCurrentTextStyleAttrs
+    .map((attrs) => {
+      if (attrs?.color) return attrs.color;
+    })
+    .filter((color) => typeof color === 'string');
+
+  const numUniqueCurrentTextColors = new Set(currentTextColors).size;
+
+  let isActive: boolean;
+  if (numUniqueCurrentTextColors > 0) {
+    isActive = true;
+  } else {
+    isActive = false;
+  }
+
+  const renderColorPickerOverlay = () => (
+    <Popover id="color-picker">
+      <ColorPickerWrapper>
+        {isPickerVisible ? (
+          <>
+            <ChromePicker
+              disableAlpha={true}
+              color={pickerColor}
+              onChange={handlePicker}
+            />
+            <Flex>
+              <Tip placement="top" text="Save">
+                <PickerAction onClick={handleColorSelection}>
+                  <Icon icon="check" size={15} color="green" />
+                </PickerAction>
+              </Tip>
+              <Tip placement="top" text="Cancel">
+                <PickerAction onClick={handleOverlayClose}>
+                  <Icon icon="cancel" size={15} color="red" />
+                </PickerAction>
+              </Tip>
+            </Flex>
+          </>
+        ) : (
+          <>
+            <MenuItem onClick={handleClear}>
+              <Icon icon="eraser-1" />
+              Remove color
+            </MenuItem>
+            <CompactPicker
+              style={{ border: 'none', boxShadow: 'none' }}
+              triangle="hide"
+              color={color}
+              onChange={handleColorChange}
+            />
+            <MenuItem onClick={() => setIsPickerVisible(true)}>
+              <Icon icon="paintpalette" />
+              Color picker
+            </MenuItem>
+          </>
+        )}
+      </ColorPickerWrapper>
+    </Popover>
+  );
+
+  return (
+    <OverlayTrigger
+      ref={(overlayTrigger) => {
+        overLayRef = overlayTrigger;
+      }}
+      trigger="click"
+      rootClose={true}
+      placement="bottom"
+      overlay={renderColorPickerOverlay()}
+    >
+      <RichTextEditorControlBase
+        icon={LinkIcon}
+        aria-label={labels.colorPickerControlLabel}
+        title={labels.colorPickerControlLabel}
+        active={isActive}
+      />
+    </OverlayTrigger>
+  );
+};

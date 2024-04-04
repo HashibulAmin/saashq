@@ -1,5 +1,4 @@
 import * as controls from './RichTextEditorControl/controls';
-
 import { DEFAULT_LABELS, IRichTextEditorLabels } from './labels';
 import { DropdownControlType, getToolbar } from './utils/getToolbarControl';
 import {
@@ -26,7 +25,6 @@ import React, {
   useRef,
   useState,
 } from 'react';
-
 import { MentionSuggestionParams } from './utils/getMentionSuggestions';
 import { ReactCodeMirrorRef } from '@uiw/react-codemirror';
 import { RichTextEditorControl } from './RichTextEditorControl/RichTextEditorControl';
@@ -36,18 +34,15 @@ import { RichTextEditorToolbar } from './RichTextEditorToolbar/RichTextEditorToo
 import { RichTextEditorWrapper } from './styles';
 import { Editor, useEditor } from '@tiptap/react';
 import useExtensions from './hooks/useExtensions';
-
 const POSITION_TOP = 'top';
 const POSITION_BOTTOM = 'bottom';
 type toolbarLocationOption = 'bottom' | 'top';
 type ToolbarItem = string | DropdownControlType;
-
 export type EditorMethods = {
   getIsFocused: () => boolean | undefined;
   getEditor: () => Editor | null;
   focus: (position?: 'start' | 'end' | 'all' | number | boolean | null) => void;
 };
-
 export interface IRichTextEditorProps extends IRichTextEditorContentProps {
   placeholder?: string;
   /** Controlled value */
@@ -96,30 +91,26 @@ const RichTextEditor = forwardRef(function RichTextEditor(
     toolbar,
     autoFocus,
   } = props;
-
   const editorContentProps = {
     height,
     autoGrow,
     autoGrowMaxHeight,
     autoGrowMinHeight,
   };
-
   const editorRef: React.MutableRefObject<Editor | null> = useRef(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const codeMirrorRef = useRef<ReactCodeMirrorRef>(null);
   const [isSourceEnabled, setIsSourceEnabled] = useState(false);
-
   const extensions = useExtensions({
     placeholder: placeholder ?? '',
     showMentions,
     mentionSuggestion: showMentions ? mentionSuggestion : undefined,
     limit,
   });
-
   const editor = useEditor(
     {
       extensions,
-      parseOptions: { preserveWhitespace: 'full' },
+      parseOptions: { preserveWhitespace: true },
       autofocus: autoFocus,
     },
     [showMentions],
@@ -129,14 +120,11 @@ const RichTextEditor = forwardRef(function RichTextEditor(
     const handleEditorChange = ({ editor }) => {
       const editorContent = editor.getHTML();
       onChange && onChange(editorContent);
-
       if (name) {
         localStorage.setItem(name, editorContent);
       }
     };
-
     editor && editor.on('update', handleEditorChange);
-
     return () => {
       editor && editor.off('update', handleEditorChange);
     };
@@ -144,39 +132,44 @@ const RichTextEditor = forwardRef(function RichTextEditor(
 
   useEffect(() => {
     if (editor) {
+      const editorHTML = editor.getHTML();
       const { from, to } = editor.state.selection;
-      editor
-        .chain()
-        .setContent(content, false, {
-          preserveWhitespace: true,
-        })
-        .setTextSelection({ from, to })
-        .run();
+
+      if (editorHTML !== content) {
+        setTimeout(() => {
+          editor
+            .chain()
+            .setContent(content, false, {
+              preserveWhitespace: true,
+            })
+            .setTextSelection({ from, to })
+            .run();
+        });
+      }
 
       onChange && onChange(content);
     }
   }, [editor, content]);
-
   useEffect(() => {
     if (editor && name) {
       const storedContent = localStorage.getItem(name);
       if (!storedContent) {
         return;
       }
-      editor.commands.setContent(storedContent, false, {
-        preserveWhitespace: true,
+      setTimeout(() => {
+        editor.commands.setContent(storedContent, false, {
+          preserveWhitespace: true,
+        });
       });
 
       onChange && onChange(storedContent);
     }
   }, [editor, name]);
-
   useEffect(() => {
     if (name && isSubmitted) {
       localStorage.removeItem(name);
     }
   }, [name, isSubmitted]);
-
   useImperativeHandle(
     ref,
     () => ({
@@ -208,7 +201,6 @@ const RichTextEditor = forwardRef(function RichTextEditor(
             <RichTextEditorComponent.FontSize
               toolbarPlacement={toolbarLocation}
             />
-
             {integrationKind !== 'telnyx' && (
               <RichTextEditorComponent.ControlsGroup
                 isDropdown={true}
@@ -220,12 +212,10 @@ const RichTextEditor = forwardRef(function RichTextEditor(
                 <RichTextEditorComponent.H3 />
               </RichTextEditorComponent.ControlsGroup>
             )}
-
             <RichTextEditorComponent.ControlsGroup>
               <RichTextEditorComponent.ColorControl />
               <RichTextEditorComponent.HighlightControl />
             </RichTextEditorComponent.ControlsGroup>
-
             {integrationKind !== 'telnyx' && (
               <RichTextEditorComponent.ControlsGroup>
                 <RichTextEditorComponent.Bold />
@@ -234,7 +224,6 @@ const RichTextEditor = forwardRef(function RichTextEditor(
                 <RichTextEditorComponent.Strikethrough />
               </RichTextEditorComponent.ControlsGroup>
             )}
-
             <RichTextEditorComponent.ControlsGroup
               isDropdown={true}
               controlNames={[
@@ -250,7 +239,6 @@ const RichTextEditor = forwardRef(function RichTextEditor(
               <RichTextEditorComponent.AlignCenter />
               <RichTextEditorComponent.AlignJustify />
             </RichTextEditorComponent.ControlsGroup>
-
             {integrationKind !== 'telnyx' && (
               <RichTextEditorComponent.ControlsGroup
                 isDropdown={true}
@@ -261,7 +249,6 @@ const RichTextEditor = forwardRef(function RichTextEditor(
                 <RichTextEditorComponent.OrderedList />
               </RichTextEditorComponent.ControlsGroup>
             )}
-
             <RichTextEditorComponent.ControlsGroup>
               <RichTextEditorComponent.SourceControl />
               <RichTextEditorComponent.MoreControl
@@ -282,10 +269,9 @@ const RichTextEditor = forwardRef(function RichTextEditor(
           </>
         )}
       </RichTextEditorComponent.Toolbar>,
-
       <RichTextEditorContent
         {...editorContentProps}
-        key="saashq-rte-content-key"
+        key="erxes-rte-content-key"
       />,
     ],
     [],
@@ -309,6 +295,13 @@ const RichTextEditor = forwardRef(function RichTextEditor(
   }, []);
 
   const toggleSourceView = () => {
+    const editorContent = editor?.getHTML() || '';
+    onChange && onChange(editorContent);
+
+    if (name) {
+      localStorage.setItem(name, editorContent);
+    }
+
     setIsSourceEnabled(!isSourceEnabled);
   };
 
