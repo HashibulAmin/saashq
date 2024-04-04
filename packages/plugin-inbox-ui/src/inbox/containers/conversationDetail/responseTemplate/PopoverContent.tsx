@@ -35,12 +35,33 @@ const PopoverContentContainer = (props: FinalProps) => {
     responseTemplatesQuery,
     responseTemplatesTotalCountQuery,
   } = props;
+
   if (
     responseTemplatesQuery.loading ||
     responseTemplatesTotalCountQuery.loading
   ) {
     return null;
   }
+
+  const fetchMore = (variables: { page: number; perPage: number }) => {
+    responseTemplatesQuery.fetchMore({
+      variables,
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult) {
+          return prev;
+        }
+
+        const prevTemplates = prev.responseTemplates || [];
+
+        const fetchedTemplates = fetchMoreResult.responseTemplates || [];
+
+        return {
+          ...prev,
+          responseTemplates: [...prevTemplates, ...fetchedTemplates],
+        };
+      },
+    });
+  };
 
   const onSearchChange = (name: string, value: string) => {
     search(name, value);
@@ -49,21 +70,14 @@ const PopoverContentContainer = (props: FinalProps) => {
   const responseTemplates = responseTemplatesQuery.responseTemplates;
   const count = responseTemplatesTotalCountQuery.responseTemplatesTotalCount;
   const hasMore = count > responseTemplates.length;
-  const refetchResponseTemplates = (content, brandId, page, perPage) => {
-    responseTemplatesQuery.refetch({
-      searchValue: content,
-      brandId: brandId,
-      page: page,
-      perPage: perPage,
-    });
-  };
+
   const updatedProps = {
     ...props,
     onSearchChange,
     brands,
+    fetchMore,
     hasMore,
     responseTemplates: responseTemplatesQuery.responseTemplates,
-    refetchResponseTemplates,
   };
 
   return <PopoverContent {...updatedProps} />;

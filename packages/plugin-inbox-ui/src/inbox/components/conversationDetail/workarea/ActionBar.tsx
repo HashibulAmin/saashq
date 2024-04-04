@@ -48,7 +48,6 @@ export default class ActionBar extends React.Component<Props> {
   render() {
     const { currentConversation } = this.props;
 
-    const { kind } = currentConversation.integration;
     const tags = currentConversation.tags || [];
     const assignedUser = currentConversation.assignedUser;
     const participatedUsers = currentConversation.participatedUsers || [];
@@ -98,12 +97,12 @@ export default class ActionBar extends React.Component<Props> {
         {participatedUsers && (
           <Participators participatedUsers={participatedUsers} limit={3} />
         )}
+
         {loadDynamicComponent('inboxConversationDetailActionBar', {
           conversation: currentConversation,
         })}
-        {kind === 'facebook-post' && (
-          <Post conversation={currentConversation} />
-        )}
+
+        <Post conversation={currentConversation} />
       </ActionBarLeft>
     );
 

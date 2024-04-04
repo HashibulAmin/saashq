@@ -53,6 +53,7 @@ const ConversationListContainer = (props: FinalProps) => {
       return conversationsQuery.subscribeToMore({
         document: gql(subscriptions.conversationClientMessageInserted),
         variables: {
+          subdomain: getSubdomain(),
           userId: currentUser ? currentUser._id : null,
         },
         updateQuery: () => {

@@ -1,4 +1,3 @@
-import React, { useEffect, useRef, useState } from 'react';
 import {
   AddMessageMutationVariables,
   IConversation,
@@ -30,20 +29,17 @@ import { IIntegration } from '@saashq/ui-inbox/src/settings/integrations/types';
 import { IResponseTemplate } from '../../../../settings/responseTemplates/types';
 import { IUser } from '@saashq/ui/src/auth/types';
 import Icon from '@saashq/ui/src/components/Icon';
-import { MentionSuggestionParams } from '@saashq/ui/src/components/richTextEditor/utils/getMentionSuggestions';
+
 import NameCard from '@saashq/ui/src/components/nameCard/NameCard';
+import React from 'react';
 import ResponseTemplate from '../../../containers/conversationDetail/responseTemplate/ResponseTemplate';
-import Editor from './Editor';
 import { SmallLoader } from '@saashq/ui/src/components/ButtonMutate';
 import Tip from '@saashq/ui/src/components/Tip';
+import asyncComponent from '@saashq/ui/src/components/AsyncComponent';
 import { deleteHandler } from '@saashq/ui/src/utils/uploadHandler';
-import { getParsedMentions } from '@saashq/ui/src/components/richTextEditor/utils/getParsedMentions';
 import { useGenerateJSON } from '@saashq/ui/src/components/richTextEditor/hooks/useExtensions';
-import { EditorMethods } from '@saashq/ui/src/components/richTextEditor/TEditor';
-import {
-  useDebounce,
-  useDebouncedCallback,
-} from '@saashq/ui/src/components/richTextEditor/hooks';
+import { getParsedMentions } from '@saashq/ui/src/components/richTextEditor/utils/getParsedMentions';
+import { MentionSuggestionParams } from '@saashq/ui/src/components/richTextEditor/utils/getMentionSuggestions';
 
 type Props = {
   conversation: IConversation;
@@ -69,82 +65,124 @@ type State = {
   sending: boolean;
   attachments: any[];
   responseTemplate: string;
+  content: string;
   mentionedUserIds: string[];
+  editorKey: string;
   loading: object;
   extraInfo?: any;
+  timer: NodeJS.Timer;
 };
 
-const RespondBox = (props: Props) => {
-  const {
-    conversation,
-    currentUser,
-    sendMessage,
-    setAttachmentPreview,
-    responseTemplates,
-  } = props;
+const Editor = asyncComponent(
+  () => import(/* webpackChunkName: "Editor-in-Inbox" */ './Editor'),
+  {
+    height: '137px',
+    width: '100%',
+    color: '#fff',
+  },
+);
 
-  const forwardedRef = useRef<EditorMethods>(null);
-  const [content, setContent] = useState('');
-  const [state, setState] = useState<State>({
-    isInactive: !checkIsActive(props.conversation),
-    isInternal: props.showInternal || false,
-    sending: false,
-    attachments: [],
-    responseTemplate: '',
-    mentionedUserIds: [],
-    loading: {},
-  });
-  const [debouncedContent] = useDebounce(content, 200);
+class RespondBox extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
 
-  useEffect(() => {
-    setState((prevState) => ({
-      ...prevState,
-      isInactive: !checkIsActive(props.conversation),
-    }));
+    this.state = {
+      isInactive: !this.checkIsActive(props.conversation),
+      editorKey: 'editor',
+      isInternal: props.showInternal || false,
+      sending: false,
+      attachments: [],
+      responseTemplate: '',
+      content: '',
+      mentionedUserIds: [],
+      loading: {},
+      timer: undefined,
+    };
+  }
+  isContentWritten() {
+    const { content } = this.state;
 
-    setState((prevState) => ({
-      ...prevState,
-      isInternal: props.showInternal,
-    }));
-  }, [props.conversation, props.showInternal]);
+    // draftjs empty content
+    if (content === '<p><br></p>' || content === '') {
+      return false;
+    }
 
-  useEffect(() => {
-    const textContent = debouncedContent.toLowerCase().replace(/<[^>]+>/g, '');
-    props.refetchResponseTemplates(textContent);
-  }, [debouncedContent]);
+    return true;
+  }
 
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyEvents);
-    return () => window.removeEventListener('keydown', handleKeyEvents);
-  }, [handleKeyEvents]);
+  componentDidUpdate(prevProps, prevState) {
+    const { sending, content, responseTemplate } = this.state;
 
-  function handleKeyEvents(event: KeyboardEvent) {
-    const isFocused = forwardedRef?.current?.getIsFocused();
+    if (responseTemplate && responseTemplate === prevState.responseTemplate) {
+      this.setState({ responseTemplate: '' });
+    }
 
-    if (!isFocused) return;
-
-    if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) {
-      addMessage();
+    if (sending && content !== prevState.content) {
+      this.setState({ sending: false });
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.conversation.customer !== nextProps.conversation.customer) {
+      this.setState({
+        isInactive: !this.checkIsActive(nextProps.conversation),
+      });
+    }
+
+    if (this.props.showInternal !== nextProps.showInternal) {
+      this.setState({
+        isInternal: nextProps.showInternal,
+      });
+    }
+  }
+
+  getUnsendMessage = (id: string) => {
+    return localStorage.getItem(id) || '';
+  };
+
   // save editor current content to state
-  const onEditorContentChange = useDebouncedCallback(
-    (editorContent: string) => {
-      setContent(editorContent);
+  onEditorContentChange = (content: string) => {
+    this.setState({ content });
+    const textContent = content.toLowerCase().replace(/<[^>]+>/g, '');
 
-      if (props.conversation.integration.kind === 'telnyx') {
-        const characterCount = calcCharacterCount(160);
+    if (this.isContentWritten()) {
+      localStorage.setItem(this.props.conversation._id, content);
+    }
 
-        if (characterCount < 1) {
-          Alert.warning(__('You have reached maximum number of characters'));
-        }
+    if (textContent) {
+      const { timer } = this.state;
+
+      if (timer) {
+        clearTimeout(timer);
+        this.setState({ timer: undefined });
       }
-    },
-    200,
-  );
 
-  function checkIsActive(conversation: IConversation) {
+      this.setState({
+        timer: setTimeout(() => {
+          this.props.refetchResponseTemplates(textContent);
+        }, 1000),
+      });
+    }
+
+    if (this.props.conversation.integration.kind === 'telnyx') {
+      const characterCount = this.calcCharacterCount(160);
+
+      if (characterCount < 1) {
+        Alert.warning(__('You have reached maximum number of characters'));
+      }
+    }
+  };
+
+  // save mentioned user to state
+  onAddMention = (mentionedUserIds: string[]) => {
+    this.setState({ mentionedUserIds });
+  };
+
+  onSearchChange = (value: string) => {
+    this.props.onSearchChange(value);
+  };
+
+  checkIsActive(conversation: IConversation) {
     if (conversation.integration.kind === 'messenger') {
       return conversation.customer && conversation.customer.isOnline;
     }
@@ -152,8 +190,8 @@ const RespondBox = (props: Props) => {
     return true;
   }
 
-  const hideMask = () => {
-    setState((prevState) => ({ ...prevState, isInactive: false }));
+  hideMask = () => {
+    this.setState({ isInactive: false });
 
     const element = document.querySelector('.DraftEditor-root') as HTMLElement;
 
@@ -164,66 +202,66 @@ const RespondBox = (props: Props) => {
     element.click();
   };
 
-  const onSend = (e: React.FormEvent) => {
+  onSend = (e: React.FormEvent) => {
     e.preventDefault();
-    addMessage();
+
+    this.addMessage();
+
+    // redrawing editor after send button, so editor content will be reseted
+    this.setState({ editorKey: `${this.state.editorKey}Key` });
   };
 
-  const onSelectTemplate = (responseTemplate?: IResponseTemplate) => {
+  onSelectTemplate = (responseTemplate?: IResponseTemplate) => {
     if (!responseTemplate) {
       return null;
     }
 
-    onEditorContentChange(responseTemplate.content);
-
-    setState((prevState) => ({
-      ...prevState,
+    return this.setState({
       responseTemplate: responseTemplate.content,
+
       // set attachment from response template files
       attachments: responseTemplate.files || [],
-    }));
+    });
   };
 
-  const handleDeleteFile = (url: string) => {
+  handleDeleteFile = (url: string) => {
     const urlArray = url.split('/');
 
     // checking whether url is full path or just file name
     const fileName =
       urlArray.length === 1 ? url : urlArray[urlArray.length - 1];
 
-    let loading = state.loading;
+    let loading = this.state.loading;
     loading[url] = true;
 
-    setState((prevState) => ({ ...prevState, loading }));
+    this.setState({ loading });
 
     deleteHandler({
       fileName,
       afterUpload: ({ status }) => {
         if (status === 'ok') {
-          const remainedAttachments = state.attachments.filter(
+          const remainedAttachments = this.state.attachments.filter(
             (a) => a.url !== url,
           );
 
-          setState((prevState) => ({
-            ...prevState,
-            attachments: remainedAttachments,
-          }));
+          this.setState({ attachments: remainedAttachments });
 
           Alert.success('You successfully deleted a file');
         } else {
           Alert.error(status);
         }
 
-        loading = state.loading;
+        loading = this.state.loading;
         delete loading[url];
 
-        setState((prevState) => ({ ...prevState, loading }));
+        this.setState({ loading });
       },
     });
   };
 
-  const handleFileInput = (e: React.FormEvent<HTMLInputElement>) => {
+  handleFileInput = (e: React.FormEvent<HTMLInputElement>) => {
     const files = e.currentTarget.files;
+    const { setAttachmentPreview } = this.props;
 
     uploadHandler({
       files,
@@ -233,14 +271,12 @@ const RespondBox = (props: Props) => {
 
       afterUpload: ({ response, fileInfo }) => {
         // set attachments
-        setState((prevState) => ({
-          ...prevState,
+        this.setState({
           attachments: [
-            ...state.attachments,
+            ...this.state.attachments,
             Object.assign({ url: response }, fileInfo),
           ],
-        }));
-
+        });
         // remove preview
         if (setAttachmentPreview) {
           setAttachmentPreview(null);
@@ -255,11 +291,12 @@ const RespondBox = (props: Props) => {
     });
   };
 
-  function cleanText(text: string) {
+  cleanText(text: string) {
     return text.replace(/&nbsp;/g, ' ');
   }
 
-  const calcCharacterCount = (maxlength: number) => {
+  calcCharacterCount = (maxlength: number) => {
+    const { content } = this.state;
     const cleanContent = content.replace(/<\/?[^>]+(>|$)/g, '');
 
     if (!cleanContent) {
@@ -271,48 +308,58 @@ const RespondBox = (props: Props) => {
     return ret > 0 ? ret : 0;
   };
 
-  const addMessage = () => {
-    const { isInternal, attachments, extraInfo } = state;
+  addMessage = () => {
+    const { conversation, sendMessage } = this.props;
+    const {
+      isInternal,
+      attachments,
+      content,
+      // mentionedUserIds,
+      extraInfo,
+    } = this.state;
     const message = {
       conversationId: conversation._id,
-      content: cleanText(content) || ' ',
+      content: this.cleanText(content) || ' ',
       extraInfo,
       contentType: 'text',
       internal: isInternal,
       attachments,
-      mentionedUserIds: getParsedMentions(useGenerateJSON(content)),
+      mentionedUserIds: getParsedMentions(useGenerateJSON(this.state.content)),
     };
-    if (content) {
-      setState((prevState) => ({ ...prevState, sending: true }));
-
+    if (this.state.content && !this.state.sending) {
+      this.setState({ sending: true });
       sendMessage(message, (error) => {
         if (error) {
           return Alert.error(error.message);
         }
-        localStorage.removeItem(props.conversation._id);
+        localStorage.removeItem(this.props.conversation._id);
         // clear attachments, content, mentioned user ids
-        setState((prevState) => ({
-          ...prevState,
+        return this.setState({
           attachments: [],
+          content: '',
           sending: false,
           mentionedUserIds: [],
-        }));
-        setContent('');
+        });
       });
     }
   };
 
-  const toggleForm = () => {
-    setState((prevState) => ({ ...prevState, isInternal: !state.isInternal }));
-
-    localStorage.setItem(
-      `showInternalState-${props.conversation._id}`,
-      String(state.isInternal),
+  toggleForm = () => {
+    this.setState(
+      {
+        isInternal: !this.state.isInternal,
+      },
+      () => {
+        localStorage.setItem(
+          `showInternalState-${this.props.conversation._id}`,
+          String(this.state.isInternal),
+        );
+      },
     );
   };
 
-  function renderIndicator() {
-    const { attachments, loading } = state;
+  renderIndicator() {
+    const { attachments, loading } = this.state;
 
     if (attachments.length > 0) {
       return (
@@ -338,7 +385,7 @@ const RespondBox = (props: Props) => {
               ) : (
                 <Icon
                   icon="times"
-                  onClick={handleDeleteFile.bind(this, attachment.url)}
+                  onClick={this.handleDeleteFile.bind(this, attachment.url)}
                 />
               )}
             </Attachment>
@@ -350,10 +397,10 @@ const RespondBox = (props: Props) => {
     return null;
   }
 
-  function renderMask() {
-    if (state.isInactive) {
+  renderMask() {
+    if (this.state.isInactive) {
       return (
-        <Mask id="mask" onClick={hideMask}>
+        <Mask id="mask" onClick={this.hideMask}>
           {__(
             'Customer is offline Click to hide and send messages and they will receive them the next time they are online',
           )}
@@ -364,8 +411,9 @@ const RespondBox = (props: Props) => {
     return null;
   }
 
-  function renderEditor() {
-    const { isInternal } = state;
+  renderEditor() {
+    const { isInternal, responseTemplate } = this.state;
+    const { responseTemplates, conversation } = this.props;
 
     let type = 'message';
 
@@ -379,24 +427,27 @@ const RespondBox = (props: Props) => {
 
     return (
       <Editor
-        ref={forwardedRef}
         currentConversation={conversation._id}
+        defaultContent={this.getUnsendMessage(conversation._id)}
         integrationKind={conversation.integration.kind}
-        onChange={onEditorContentChange}
+        key={this.state.editorKey}
+        onChange={this.onEditorContentChange}
+        onAddMention={this.onAddMention}
+        onAddMessage={this.addMessage}
+        onSearchChange={this.onSearchChange}
         placeholder={placeholder}
-        content={content}
         showMentions={isInternal}
-        mentionSuggestion={props.mentionSuggestion}
+        mentionSuggestion={this.props.mentionSuggestion}
+        responseTemplate={responseTemplate}
         responseTemplates={responseTemplates}
-        limit={
-          props.conversation.integration.kind === 'telnyx' ? 160 : undefined
-        }
+        handleFileInput={this.handleFileInput}
+        content={this.state.content}
       />
     );
   }
 
-  function renderCheckbox(kind: string) {
-    const { isInternal } = state;
+  renderCheckbox(kind: string) {
+    const { isInternal } = this.state;
 
     if (kind.includes('nylas') || kind === 'gmail') {
       return null;
@@ -410,8 +461,8 @@ const RespondBox = (props: Props) => {
             className="toggle-message"
             componentClass="checkbox"
             checked={isInternal}
-            onChange={toggleForm}
-            // disabled={ props.disableInternalState}
+            onChange={this.toggleForm}
+            // disabled={this.props.disableInternalState}
           >
             {__('Internal note')}
           </FormControl>
@@ -421,10 +472,10 @@ const RespondBox = (props: Props) => {
   }
 
   // renderVideoRoom() {
-  //   const { conversation, refetchMessages, refetchDetail } =  props;
+  //   const { conversation, refetchMessages, refetchDetail } = this.props;
   //   const integration = conversation.integration || ({} as IIntegration);
 
-  //   if ( state.isInternal || integration.kind !== 'messenger') {
+  //   if (this.state.isInternal || integration.kind !== 'messenger') {
   //     return null;
   //   }
 
@@ -438,54 +489,64 @@ const RespondBox = (props: Props) => {
   //   );
   // }
 
-  function renderButtons() {
+  renderButtons() {
+    const { conversation } = this.props;
     const integration = conversation.integration || ({} as IIntegration);
     const disabled =
       integration.kind.includes('nylas') || integration.kind === 'gmail';
 
     return (
       <EditorActions>
-        {renderCheckbox(integration.kind)}
-        {/* { renderVideoRoom()} */}
+        {this.renderCheckbox(integration.kind)}
+        {/* {this.renderVideoRoom()} */}
 
-        {loadDynamicComponent('inboxEditorAction', props, true)}
+        {loadDynamicComponent('inboxEditorAction', this.props, true)}
 
         <Tip text={__('Attach file')}>
           <label>
             <Icon icon="paperclip" />
-            <input type="file" onChange={handleFileInput} multiple={true} />
+            <input
+              type="file"
+              onChange={this.handleFileInput}
+              multiple={true}
+            />
           </label>
         </Tip>
 
         <ResponseTemplate
           brandId={integration.brandId}
-          attachments={state.attachments}
-          content={content}
-          onSelect={onSelectTemplate}
+          attachments={this.state.attachments}
+          content={this.state.content}
+          onSelect={this.onSelectTemplate}
         />
 
-        <Button onClick={onSend} btnStyle="success" size="small" icon="message">
+        <Button
+          onClick={this.onSend}
+          btnStyle="success"
+          size="small"
+          icon="message"
+        >
           {!disabled && 'Send'}
         </Button>
       </EditorActions>
     );
   }
-
-  function renderBody() {
+  renderBody() {
     return (
       <>
-        {renderEditor()}
-        {renderIndicator()}
-        {renderButtons()}
+        {this.renderEditor()}
+        {this.renderIndicator()}
+        {this.renderButtons()}
       </>
     );
   }
 
-  function renderContent() {
-    const { isInternal, isInactive, extraInfo } = state;
+  renderContent() {
+    const { conversation } = this.props;
+    const { isInternal, isInactive, extraInfo } = this.state;
 
     const setExtraInfo = (value) => {
-      setState((prevState) => ({ ...prevState, extraInfo: value }));
+      this.setState({ extraInfo: value });
     };
 
     const { integration } = conversation;
@@ -507,7 +568,7 @@ const RespondBox = (props: Props) => {
 
         if (name) {
           dynamicComponent = loadDynamicComponent(name, {
-            hideMask: hideMask,
+            hideMask: this.hideMask,
             extraInfo,
             setExtraInfo,
             conversationId: conversation._id,
@@ -518,34 +579,40 @@ const RespondBox = (props: Props) => {
 
     return (
       <MaskWrapper>
-        {renderMask()}
+        {this.renderMask()}
         {dynamicComponent}
         <RespondBoxStyled isInternal={isInternal} isInactive={isInactive}>
-          {renderBody()}
+          {this.renderBody()}
         </RespondBoxStyled>
       </MaskWrapper>
     );
   }
 
-  function renderMailRespondBox() {
+  renderMailRespondBox() {
+    const { currentUser } = this.props;
+
     return (
       <MailRespondBox isInternal={true}>
         <NameCard.Avatar user={currentUser} size={34} />
-        <SmallEditor>{renderBody()}</SmallEditor>
+        <SmallEditor>{this.renderBody()}</SmallEditor>
       </MailRespondBox>
     );
   }
 
-  const integration = conversation.integration || ({} as IIntegration);
-  const { kind } = integration;
+  render() {
+    const { conversation } = this.props;
 
-  const isMail = kind.includes('nylas') || kind === 'gmail';
+    const integration = conversation.integration || ({} as IIntegration);
+    const { kind } = integration;
 
-  if (isMail) {
-    return renderMailRespondBox();
+    const isMail = kind.includes('nylas') || kind === 'gmail';
+
+    if (isMail) {
+      return this.renderMailRespondBox();
+    }
+
+    return this.renderContent();
   }
-
-  return renderContent();
-};
+}
 
 export default RespondBox;

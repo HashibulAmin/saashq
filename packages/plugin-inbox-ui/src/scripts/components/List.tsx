@@ -178,7 +178,7 @@ class ScriptList extends React.Component<FinalProps> {
             icon="/images/actions/23.svg"
             title="Scripts"
             description={`${__(
-              'Script manager allows SaasHQ users to quickly and easily generate and update related scripts for any of their business websites',
+              'Script manager allows saashq users to quickly and easily generate and update related scripts for any of their business websites',
             )}.${__(
               `Set up once and your team will be able to easily display multiple saashq widgets on any of their businesses websites`,
             )}`}

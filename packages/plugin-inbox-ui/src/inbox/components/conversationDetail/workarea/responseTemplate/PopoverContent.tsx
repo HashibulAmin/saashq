@@ -29,22 +29,17 @@ type Props = {
   onSelect: (responseTemplate?: IResponseTemplate) => void;
   onSearchChange: (name: string, value: string) => void;
   onSelectTemplate: () => void;
+  fetchMore: (variables: { perPage: number; page: number }) => void;
+
   attachments?: IAttachment[];
   brands: IBrand[];
   content?: string;
-  refetchResponseTemplates: (
-    content: string,
-    brandId: string,
-    page: number,
-    perPage: number,
-  ) => void;
 };
 
 type State = {
   brandId?: string;
   searchValue: string;
   options: IResponseTemplate[];
-  timer: NodeJS.Timer | undefined;
 };
 
 class PopoverContent extends React.Component<Props, State> {
@@ -55,7 +50,6 @@ class PopoverContent extends React.Component<Props, State> {
       searchValue: props.searchValue,
       brandId: props.brandId,
       options: props.responseTemplates,
-      timer: undefined,
     };
   }
 
@@ -90,12 +84,22 @@ class PopoverContent extends React.Component<Props, State> {
 
   renderItems() {
     const { responseTemplates } = this.props;
+    const { searchValue, brandId } = this.state;
 
-    if (responseTemplates.length === 0) {
+    const filteredByBrandIdTargets =
+      brandId === ''
+        ? responseTemplates
+        : this.filterByBrandId(responseTemplates, brandId);
+    const filteredTargets =
+      searchValue === ''
+        ? filteredByBrandIdTargets
+        : this.filterByValue(filteredByBrandIdTargets, searchValue);
+
+    if (filteredTargets.length === 0) {
       return <EmptyState icon="clipboard-1" text="No templates" />;
     }
 
-    return responseTemplates.map((item, i) => {
+    return filteredTargets.map((item, i) => {
       const onClick = () => this.onSelect(item._id);
 
       return (
@@ -129,42 +133,19 @@ class PopoverContent extends React.Component<Props, State> {
     const perPage = 10;
     const page = Math.round((responseTemplates || []).length / perPage + 1);
 
-    const searchValue = this.state.searchValue || '';
-    undefined;
-    const brandId = this.state.brandId || '';
-
-    this.props.refetchResponseTemplates(searchValue, brandId, page, perPage);
+    this.props.fetchMore({
+      perPage,
+      page,
+    });
   };
 
   render() {
     const { brands } = this.props;
 
-    const onChangeSearchValue = (e) => {
-      const searchValue = e.target.value;
+    const onChangeSearchValue = (e) => this.onChangeFilter(e, 'searchValue');
 
-      const textContent = searchValue.toLowerCase().replace(/<[^>]+>/g, '');
-      if (textContent) {
-        const { timer } = this.state;
+    const onChangeBrand = (e) => this.onChangeFilter(e, 'brandId');
 
-        if (timer) {
-          clearTimeout(timer);
-          this.setState({ timer: undefined });
-        }
-
-        this.setState({
-          timer: setTimeout(() => {
-            this.props.refetchResponseTemplates(textContent, '', 1, 20);
-          }, 1000),
-        });
-      }
-      this.setState({ searchValue });
-    };
-
-    const onChangeBrand = (e) => {
-      const brandId = e.target.value;
-      this.setState({ brandId });
-      this.props.refetchResponseTemplates('', brandId, 1, 20);
-    };
     return (
       <>
         <PopoverHeader>

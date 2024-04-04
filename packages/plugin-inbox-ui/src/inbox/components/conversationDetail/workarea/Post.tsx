@@ -20,6 +20,10 @@ export default function Post(props: Props) {
 
   return (
     <Container>
+      <Button size="small" btnStyle="simple">
+        {__('Post Name : ' + PostInfo.content)} <Icon icon="angle" />
+      </Button>
+
       <a href={PostInfo.permalink_url} target="_blank" rel="noreferrer">
         {__('go to post')}
       </a>

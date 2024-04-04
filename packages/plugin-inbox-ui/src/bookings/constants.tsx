@@ -21,15 +21,15 @@ export const BOOKING_DISPLAY_BLOCK = {
 };
 
 export const EMPTY_CONTENT_BOOKINGS = {
-  title: __('Getting Started with SaasHQ Booking'),
+  title: __('Getting Started with saashq Booking'),
   description: __(
-    'SaasHQ Booking widget helps you create listings of your Products and Services and receive bookings with your SaasHQ Form.',
+    'saashq Booking widget helps you create listings of your Products and Services and receive bookings with your saashq Form.',
   ),
   steps: [
     {
       title: __('Prepare Product Properties'),
       description: __(
-        'This widget is based on your SaasHQ Products and Services. Depending on your products, you may need to create custom Properties first. For example, you can display additional information such as Amenities, Services, etc. in the product detail page or as user filters.',
+        'This widget is based on your saashq Products and Services. Depending on your products, you may need to create custom Properties first. For example, you can display additional information such as Amenities, Services, etc. in the product detail page or as user filters.',
       ),
       url: '/settings/properties?type=products:product',
       urlText: 'Create Custom Properties',

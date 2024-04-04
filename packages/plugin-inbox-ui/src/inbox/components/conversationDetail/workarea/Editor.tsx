@@ -1,148 +1,180 @@
-import { IResponseTemplate } from '../../../../settings/responseTemplates/types';
+import React from 'react';
+import { RichTextEditor } from '@saashq/ui/src/components/richTextEditor/TEditor';
 import { MentionSuggestionParams } from '@saashq/ui/src/components/richTextEditor/utils/getMentionSuggestions';
-import React, { forwardRef, useEffect, useState } from 'react';
-import {
-  EditorMethods,
-  RichTextEditor,
-} from '@saashq/ui/src/components/richTextEditor/TEditor';
+import { IResponseTemplate } from '../../../../settings/responseTemplates/types';
 import TemplateList from './TemplateList';
 
 type EditorProps = {
   currentConversation: string;
+  defaultContent?: string;
   integrationKind: string;
-  content: string;
   onChange: (content: string) => void;
+  onAddMention: (mentions: any) => void;
+  onAddMessage: () => void;
+  onSearchChange: (value: string) => void;
   showMentions: boolean;
+  responseTemplate: string;
   responseTemplates: IResponseTemplate[];
+  handleFileInput: (e: React.FormEvent<HTMLInputElement>) => void;
   placeholder?: string;
-  limit?: number;
+  content?: string;
   mentionSuggestion?: MentionSuggestionParams;
 };
 
 type State = {
+  content: string;
   collectedMentions: any;
   templatesState: any;
   hideTemplates: boolean;
 };
 
-const Editor = forwardRef(
-  (props: EditorProps, ref: React.ForwardedRef<EditorMethods>) => {
-    const {
-      showMentions,
-      content,
-      responseTemplates,
-      currentConversation,
-      placeholder,
-      integrationKind,
-      mentionSuggestion,
-      onChange,
-      limit,
-    } = props;
+export default class Editor extends React.Component<EditorProps, State> {
+  constructor(props) {
+    super(props);
 
-    const [state, setState] = useState<State>({
+    this.state = {
+      content: this.props.defaultContent || '',
       collectedMentions: [],
       templatesState: null,
-      hideTemplates: props.showMentions,
-    });
+      hideTemplates: this.props.showMentions,
+    };
+  }
 
-    useEffect(() => {
-      setState((prevState) => ({
-        ...prevState,
-        hideTemplates: showMentions,
-      }));
-    }, [showMentions]);
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.responseTemplate !== this.props.responseTemplate) {
+      const templateIncludedContent = nextProps.responseTemplate;
+      this.props.onChange(templateIncludedContent);
+      this.setState({ content: templateIncludedContent });
+    }
 
-    useEffect(() => {
-      window.requestAnimationFrame(() => {
-        onTemplatesStateChange(getTemplatesState());
+    // check switch conversation and fill default content
+    if (nextProps.currentConversation !== this.props.currentConversation) {
+      const defaultContent = nextProps.defaultContent;
+      this.props.onChange(defaultContent);
+      this.setState({ content: defaultContent });
+    }
+  }
+
+  componentDidUpdate(
+    prevProps: Readonly<EditorProps>,
+    prevState: Readonly<State>,
+  ): void {
+    if (
+      this.props.defaultContent !== prevProps.defaultContent &&
+      !this.props?.defaultContent &&
+      prevState.content.length
+    ) {
+      this.props.onChange(this.props.defaultContent || '');
+      this.setState({
+        content: this.props.defaultContent || '',
       });
-    }, [content, responseTemplates]);
+    }
+    if (prevProps.showMentions !== this.props.showMentions) {
+      this.setState({ hideTemplates: this.props.showMentions });
+    }
+  }
 
-    const onTemplatesStateChange = (templatesState: any) => {
-      setState((prevState) => ({ ...prevState, templatesState }));
-    };
+  onChange = (content: string) => {
+    this.setState({ content });
 
-    const getTemplatesState = () => {
-      // get html content as text
-      const textContent = content.toLowerCase().replace(/<[^>]+>/g, '');
+    this.props.onChange(content);
 
-      if (!textContent) {
-        return null;
-      }
+    window.requestAnimationFrame(() => {
+      this.onTemplatesStateChange(this.getTemplatesState());
+    });
+  };
 
-      // search from response templates
-      const foundTemplates = responseTemplates.filter(
-        (template) =>
-          template.name.toLowerCase().includes(textContent) ||
-          template.content.toLowerCase().includes(textContent),
-      );
+  onTemplatesStateChange = (templatesState) => {
+    this.setState({ templatesState });
+  };
 
-      if (foundTemplates.length > 0) {
-        return {
-          templates: foundTemplates.slice(0, 5),
-          searchText: textContent,
-          selectedIndex: 0,
-        };
-      }
+  getTemplatesState = (invalidate: boolean = true) => {
+    if (!invalidate) {
+      return this.state.templatesState;
+    }
 
+    const { content } = this.state;
+    const { responseTemplates } = this.props;
+    // get html content as text
+    const textContent = content.toLowerCase().replace(/<[^>]+>/g, '');
+
+    if (!textContent) {
       return null;
-    };
+    }
 
-    const changeEditorContent = (content: string) => {
-      onChange(content);
-      setState((prevState) => ({ ...prevState, templatesState: null }));
-    };
+    // search from response templates
+    const foundTemplates = responseTemplates.filter(
+      (template) =>
+        template.name.toLowerCase().includes(textContent) ||
+        template.content.toLowerCase().includes(textContent),
+    );
 
-    const onSelectTemplate = (index?: number) => {
-      const { templatesState } = state;
-      const { templates, selectedIndex } = templatesState;
-      const selectedTemplate = templates[index || selectedIndex];
+    if (foundTemplates.length > 0) {
+      return {
+        templates: foundTemplates.slice(0, 5),
+        searchText: textContent,
+        selectedIndex: 0,
+      };
+    }
 
-      if (!selectedTemplate) {
-        return null;
-      }
+    return null;
+  };
 
-      changeEditorContent(`${selectedTemplate.content}\n`);
-    };
+  changeEditorContent = (content: string) => {
+    // calling onChange, because draftjs's onChange is not trigerring after
+    // this setState
+    this.props.onChange(content);
 
-    // Render response templates suggestions
-    const renderTemplates = () => {
-      const { templatesState, hideTemplates } = state;
+    return this.setState({ content, templatesState: null });
+  };
 
-      if (!templatesState || hideTemplates) {
-        return null;
-      }
+  onSelectTemplate = (index?: number) => {
+    const { templatesState } = this.state;
+    const { templates, selectedIndex } = templatesState;
+    const selectedTemplate = templates[index || selectedIndex];
 
-      // Set suggestionState to SuggestionList.
-      return (
-        <TemplateList
-          onSelect={onSelectTemplate}
-          suggestionsState={templatesState}
-        />
-      );
-    };
+    if (!selectedTemplate) {
+      return null;
+    }
 
+    return this.changeEditorContent(selectedTemplate.content);
+  };
+
+  // Render response templates suggestions
+  renderTemplates() {
+    const { templatesState, hideTemplates } = this.state;
+
+    if (!templatesState || hideTemplates) {
+      return null;
+    }
+
+    // Set suggestionState to SuggestionList.
+    return (
+      <TemplateList
+        onSelect={this.onSelectTemplate}
+        suggestionsState={templatesState}
+      />
+    );
+  }
+
+  render() {
     return (
       <div>
-        {renderTemplates()}
+        {this.renderTemplates()}
         <RichTextEditor
-          ref={ref}
-          name={currentConversation}
-          placeholder={placeholder}
-          integrationKind={integrationKind}
-          showMentions={showMentions}
-          {...(showMentions && {
-            mentionSuggestion: mentionSuggestion,
+          placeholder={this.props.placeholder}
+          integrationKind={this.props.integrationKind}
+          showMentions={this.props.showMentions}
+          {...(this.props.showMentions && {
+            mentionSuggestion: this.props.mentionSuggestion,
           })}
-          content={content}
-          onChange={onChange}
+          content={this.state.content}
+          onChange={this.onChange}
           autoGrow={true}
           autoGrowMinHeight={100}
           autoGrowMaxHeight="55vh"
-          limit={limit}
         />
       </div>
     );
-  },
-);
-export default Editor;
+  }
+}
