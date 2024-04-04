@@ -3,7 +3,7 @@ import RespondBox from './RespondBox';
 import ResponseTemplate from './responseTemplate/ResponseTemplate';
 import Sidebar from './Sidebar';
 import SidebarActivity from './SidebarActivity';
-import WorkArea from './WorkArea';
+import WorkArea from './DmWorkArea';
 
 export {
   ConversationDetail,
@@ -11,5 +11,5 @@ export {
   Sidebar,
   RespondBox,
   ResponseTemplate,
-  SidebarActivity
+  SidebarActivity,
 };
