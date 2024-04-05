@@ -99,7 +99,6 @@ export const RichTextEditorImageControl = (
                 multiple={false}
                 showOnlyIcon={true}
                 noPreview={true}
-                hideUploadButtonOnLoad={true}
               />
             </FileInputAction>
           </ImageInputWrapper>
@@ -156,7 +155,6 @@ export const RichTextEditorImageControl = (
 
   return (
     <ModalTrigger
-      enforceFocus={false}
       title="Insert/ Edit Image"
       trigger={
         <RichTextEditorControlBase

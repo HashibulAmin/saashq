@@ -1,7 +1,7 @@
-import TiptapMention from '@tiptap/extension-mention';
+import Mention from '@tiptap/extension-mention';
 import { mergeAttributes } from '@tiptap/core';
 
-export const Mention = TiptapMention.extend({
+export const MentionExtended = Mention.extend({
   parseHTML() {
     return [
       {
@@ -9,18 +9,18 @@ export const Mention = TiptapMention.extend({
       },
     ];
   },
+
   renderHTML({ node, HTMLAttributes }) {
     return [
       'span',
       mergeAttributes(
         { 'data-type': this.name },
-        HTMLAttributes,
         this.options.HTMLAttributes,
-        node.attrs,
+        HTMLAttributes,
       ),
       [
         'strong',
-        this.options.renderText({
+        this.options.renderLabel({
           options: this.options,
           node,
         }),

@@ -20,8 +20,6 @@ type Props = {
   selectedBrandIds: string[];
   renderButton: (props: IButtonMutateProps) => JSX.Element;
   showBrands: boolean;
-  history?: any;
-  queryParams?: any;
 } & ICommonFormProps;
 
 type State = {
@@ -159,7 +157,6 @@ class UserForm extends React.Component<Props, State> {
       _id: finalValues._id,
       username: finalValues.username,
       email: finalValues.email,
-      positionIds: this.props.queryParams?.positionIds,
       details: {
         avatar: this.state.avatar,
         shortName: finalValues.shortName,
@@ -190,7 +187,6 @@ class UserForm extends React.Component<Props, State> {
         <UserCommonInfos
           user={user}
           onAvatarUpload={this.onAvatarUpload}
-          history={this.props.history}
           formProps={formProps}
         />
 

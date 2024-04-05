@@ -1,4 +1,5 @@
 import * as controls from './RichTextEditorControl/controls';
+
 import { DEFAULT_LABELS, IRichTextEditorLabels } from './labels';
 import { DropdownControlType, getToolbar } from './utils/getToolbarControl';
 import {
@@ -16,15 +17,8 @@ import {
   RichTextEditorSourceControl,
   TableControl,
 } from './RichTextEditorControl';
-import React, {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+
 import { MentionSuggestionParams } from './utils/getMentionSuggestions';
 import { ReactCodeMirrorRef } from '@uiw/react-codemirror';
 import { RichTextEditorControl } from './RichTextEditorControl/RichTextEditorControl';
@@ -32,21 +26,18 @@ import { RichTextEditorControlsGroup } from './RichTextEditorControlsGroup/RichT
 import { RichTextEditorProvider } from './RichTextEditor.context';
 import { RichTextEditorToolbar } from './RichTextEditorToolbar/RichTextEditorToolbar';
 import { RichTextEditorWrapper } from './styles';
-import { Editor, useEditor } from '@tiptap/react';
+import { useEditor } from '@tiptap/react';
 import useExtensions from './hooks/useExtensions';
+
 const POSITION_TOP = 'top';
 const POSITION_BOTTOM = 'bottom';
 type toolbarLocationOption = 'bottom' | 'top';
 type ToolbarItem = string | DropdownControlType;
-export type EditorMethods = {
-  getIsFocused: () => boolean | undefined;
-  getEditor: () => Editor | null;
-  focus: (position?: 'start' | 'end' | 'all' | number | boolean | null) => void;
-};
+
 export interface IRichTextEditorProps extends IRichTextEditorContentProps {
   placeholder?: string;
   /** Controlled value */
-  content?: string;
+  content: string;
   /** Exposing editor onChange to outer component via props */
   onChange?: (editorHtml: string) => void;
   labels?: IRichTextEditorLabels;
@@ -66,14 +57,15 @@ export interface IRichTextEditorProps extends IRichTextEditorContentProps {
   contentType?: string;
   integrationKind?: string;
 }
+let editorContent: string;
 
-const RichTextEditor = forwardRef(function RichTextEditor(
-  props: IRichTextEditorProps,
-  ref: React.ForwardedRef<EditorMethods>,
-) {
+export const RichTextEditor = (props: IRichTextEditorProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const codeMirrorRef = useRef<ReactCodeMirrorRef>(null);
+  const [isSourceEnabled, setIsSourceEnabled] = useState(false);
   const {
     placeholder,
-    content = '',
+    content,
     onChange,
     labels,
     toolbarLocation = POSITION_TOP,
@@ -91,105 +83,94 @@ const RichTextEditor = forwardRef(function RichTextEditor(
     toolbar,
     autoFocus,
   } = props;
+
   const editorContentProps = {
     height,
     autoGrow,
     autoGrowMaxHeight,
     autoGrowMinHeight,
   };
-  const editorRef: React.MutableRefObject<Editor | null> = useRef(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const codeMirrorRef = useRef<ReactCodeMirrorRef>(null);
-  const [isSourceEnabled, setIsSourceEnabled] = useState(false);
-  const extensions = useExtensions({
-    placeholder: placeholder ?? '',
-    showMentions,
-    mentionSuggestion: showMentions ? mentionSuggestion : undefined,
-    limit,
-  });
-  const editor = useEditor(
-    {
-      extensions,
-      parseOptions: { preserveWhitespace: true },
-      autofocus: autoFocus,
-    },
-    [showMentions],
-  );
-
-  useEffect(() => {
-    const handleEditorChange = ({ editor }) => {
-      const editorContent = editor.getHTML();
-      onChange && onChange(editorContent);
-      if (name) {
-        localStorage.setItem(name, editorContent);
-      }
-    };
-    editor && editor.on('update', handleEditorChange);
-    return () => {
-      editor && editor.off('update', handleEditorChange);
-    };
-  }, [editor, onChange]);
-
-  useEffect(() => {
-    if (editor) {
-      const editorHTML = editor.getHTML();
-      const { from, to } = editor.state.selection;
-
-      if (editorHTML !== content) {
-        setTimeout(() => {
-          editor
-            .chain()
-            .setContent(content, false, {
-              preserveWhitespace: true,
-            })
-            .setTextSelection({ from, to })
-            .run();
-        });
-      }
-
-      onChange && onChange(content);
-    }
-  }, [editor, content]);
-  useEffect(() => {
-    if (editor && name) {
-      const storedContent = localStorage.getItem(name);
-      if (!storedContent) {
-        return;
-      }
-      setTimeout(() => {
-        editor.commands.setContent(storedContent, false, {
-          preserveWhitespace: true,
-        });
-      });
-
-      onChange && onChange(storedContent);
-    }
-  }, [editor, name]);
-  useEffect(() => {
-    if (name && isSubmitted) {
-      localStorage.removeItem(name);
-    }
-  }, [name, isSubmitted]);
-  useImperativeHandle(
-    ref,
-    () => ({
-      getEditor: () => editorRef.current,
-      getIsFocused: () => editorRef.current?.isFocused,
-      focus: (position) => editorRef.current?.commands.focus(position),
-    }),
-    [],
-  );
 
   const mergedLabels = useMemo(
     () => ({ ...DEFAULT_LABELS, ...labels }),
     [labels],
   );
 
+  const handleEditorChange = ({ editor: editorInstance }) => {
+    if (onChange) {
+      onChange(editorInstance.getHTML());
+    }
+  };
+
+  const toggleSource = () => {
+    setIsSourceEnabled(!isSourceEnabled);
+  };
+
+  const extensions = useExtensions({
+    placeholder: placeholder ?? '',
+    showMentions,
+    mentionSuggestion: showMentions ? mentionSuggestion : undefined,
+  });
+
+  const editor = useEditor(
+    {
+      extensions,
+      content,
+      parseOptions: { preserveWhitespace: 'full' },
+      onUpdate: handleEditorChange,
+      autofocus: autoFocus,
+    },
+    [showMentions],
+  );
+
+  useEffect(() => {
+    if (!editor) {
+      return;
+    }
+
+    const { from, to } = editor.state.selection;
+    editor.commands.setContent(content, false, {
+      preserveWhitespace: true,
+    });
+
+    editor.commands.setTextSelection({ from, to });
+
+    if (name) {
+      localStorage.setItem(name, content);
+    }
+  }, [editor, content]);
+
+  useEffect(() => {
+    if (!editor) {
+      return;
+    }
+
+    if (name) {
+      const storedContent = localStorage.getItem(name);
+      editorContent = content || '';
+
+      if (storedContent && storedContent !== content) {
+        editor.commands.setContent(storedContent, false, {
+          preserveWhitespace: true,
+        });
+
+        if (onChange) {
+          onChange(editor.getHTML());
+        }
+      }
+    }
+    return () => {
+      if (name && (isSubmitted || content === editorContent)) {
+        localStorage.removeItem(name);
+      }
+    };
+  }, []);
+
   const editorParts = useMemo(
     () => [
-      <RichTextEditorComponent.Toolbar key="rich-text-editor-toolbar-key">
+      <RichTextEditor.Toolbar key="rich-text-editor-toolbar-key">
         {placeholderProp && (
-          <RichTextEditorComponent.Placeholder
+          <RichTextEditor.Placeholder
             placeholderProp={placeholderProp}
             toolbarPlacement={toolbarLocation}
           />
@@ -198,33 +179,35 @@ const RichTextEditor = forwardRef(function RichTextEditor(
           getToolbar({ toolbar, toolbarLocation })
         ) : (
           <>
-            <RichTextEditorComponent.FontSize
-              toolbarPlacement={toolbarLocation}
-            />
+            <RichTextEditor.FontSize toolbarPlacement={toolbarLocation} />
+
             {integrationKind !== 'telnyx' && (
-              <RichTextEditorComponent.ControlsGroup
+              <RichTextEditor.ControlsGroup
                 isDropdown={true}
                 controlNames={['heading']}
                 toolbarPlacement={toolbarLocation}
               >
-                <RichTextEditorComponent.H1 />
-                <RichTextEditorComponent.H2 />
-                <RichTextEditorComponent.H3 />
-              </RichTextEditorComponent.ControlsGroup>
+                <RichTextEditor.H1 />
+                <RichTextEditor.H2 />
+                <RichTextEditor.H3 />
+              </RichTextEditor.ControlsGroup>
             )}
-            <RichTextEditorComponent.ControlsGroup>
-              <RichTextEditorComponent.ColorControl />
-              <RichTextEditorComponent.HighlightControl />
-            </RichTextEditorComponent.ControlsGroup>
+
+            <RichTextEditor.ControlsGroup>
+              <RichTextEditor.ColorControl />
+              <RichTextEditor.HighlightControl />
+            </RichTextEditor.ControlsGroup>
+
             {integrationKind !== 'telnyx' && (
-              <RichTextEditorComponent.ControlsGroup>
-                <RichTextEditorComponent.Bold />
-                <RichTextEditorComponent.Italic />
-                <RichTextEditorComponent.Underline />
-                <RichTextEditorComponent.Strikethrough />
-              </RichTextEditorComponent.ControlsGroup>
+              <RichTextEditor.ControlsGroup>
+                <RichTextEditor.Bold />
+                <RichTextEditor.Italic />
+                <RichTextEditor.Underline />
+                <RichTextEditor.Strikethrough />
+              </RichTextEditor.ControlsGroup>
             )}
-            <RichTextEditorComponent.ControlsGroup
+
+            <RichTextEditor.ControlsGroup
               isDropdown={true}
               controlNames={[
                 { textAlign: 'left' },
@@ -234,41 +217,42 @@ const RichTextEditor = forwardRef(function RichTextEditor(
               ]}
               toolbarPlacement={toolbarLocation}
             >
-              <RichTextEditorComponent.AlignLeft />
-              <RichTextEditorComponent.AlignRight />
-              <RichTextEditorComponent.AlignCenter />
-              <RichTextEditorComponent.AlignJustify />
-            </RichTextEditorComponent.ControlsGroup>
+              <RichTextEditor.AlignLeft />
+              <RichTextEditor.AlignRight />
+              <RichTextEditor.AlignCenter />
+              <RichTextEditor.AlignJustify />
+            </RichTextEditor.ControlsGroup>
+
             {integrationKind !== 'telnyx' && (
-              <RichTextEditorComponent.ControlsGroup
+              <RichTextEditor.ControlsGroup
                 isDropdown={true}
                 controlNames={['orderedList', 'bulletList']}
                 toolbarPlacement={toolbarLocation}
               >
-                <RichTextEditorComponent.BulletList />
-                <RichTextEditorComponent.OrderedList />
-              </RichTextEditorComponent.ControlsGroup>
+                <RichTextEditor.BulletList />
+                <RichTextEditor.OrderedList />
+              </RichTextEditor.ControlsGroup>
             )}
-            <RichTextEditorComponent.ControlsGroup>
-              <RichTextEditorComponent.SourceControl />
-              <RichTextEditorComponent.MoreControl
-                toolbarPlacement={toolbarLocation}
-              >
+
+            <RichTextEditor.ControlsGroup>
+              <RichTextEditor.SourceControl />
+              <RichTextEditor.MoreControl toolbarPlacement={toolbarLocation}>
                 {integrationKind !== 'telnyx' && (
                   <>
-                    <RichTextEditorComponent.Blockquote />
-                    <RichTextEditorComponent.HorizontalRule />
-                    <RichTextEditorComponent.Link />
-                    <RichTextEditorComponent.Unlink />
+                    <RichTextEditor.Blockquote />
+                    <RichTextEditor.HorizontalRule />
+                    <RichTextEditor.Link />
+                    <RichTextEditor.Unlink />
                   </>
                 )}
-                <RichTextEditorComponent.ImageControl />
-                <RichTextEditorComponent.TableControl />
-              </RichTextEditorComponent.MoreControl>
-            </RichTextEditorComponent.ControlsGroup>
+                <RichTextEditor.ImageControl />
+                <RichTextEditor.TableControl />
+              </RichTextEditor.MoreControl>
+            </RichTextEditor.ControlsGroup>
           </>
         )}
-      </RichTextEditorComponent.Toolbar>,
+      </RichTextEditor.Toolbar>,
+
       <RichTextEditorContent
         {...editorContentProps}
         key="saashq-rte-content-key"
@@ -277,7 +261,7 @@ const RichTextEditor = forwardRef(function RichTextEditor(
     [],
   );
 
-  const renderEditor = useCallback(() => {
+  const renderEditor = () => {
     if (toolbarLocation === POSITION_TOP) {
       return (
         <>
@@ -292,111 +276,59 @@ const RichTextEditor = forwardRef(function RichTextEditor(
         {editorParts[0]}
       </>
     );
-  }, []);
-
-  const toggleSourceView = () => {
-    const editorContent = editor?.getHTML() || '';
-    onChange && onChange(editorContent);
-
-    if (name) {
-      localStorage.setItem(name, editorContent);
-    }
-
-    setIsSourceEnabled(!isSourceEnabled);
   };
 
-  if (!editor) return null;
-  editorRef.current = editor;
   return (
     <RichTextEditorProvider
       value={{
         editor,
         labels: mergedLabels,
         isSourceEnabled,
-        toggleSourceView,
+        toggleSource,
         codeMirrorRef,
       }}
     >
-      <RichTextEditorWrapper innerRef={wrapperRef} $position={toolbarLocation}>
+      <RichTextEditorWrapper innerRef={ref} $position={toolbarLocation}>
         {renderEditor()}
       </RichTextEditorWrapper>
     </RichTextEditorProvider>
   );
-});
-
-interface RichTextEditorType
-  extends React.ForwardRefExoticComponent<
-    IRichTextEditorProps & React.RefAttributes<EditorMethods>
-  > {
-  Content: typeof RichTextEditorContent;
-  Control: typeof RichTextEditorControl;
-  Toolbar: typeof RichTextEditorToolbar;
-  ControlsGroup: typeof RichTextEditorControlsGroup;
-  Bold: typeof controls.BoldControl;
-  Italic: typeof controls.ItalicControl;
-  Underline: typeof controls.UnderlineControl;
-  Strikethrough: typeof controls.StrikeThroughControl;
-  H1: typeof controls.H1Control;
-  H2: typeof controls.H2Control;
-  H3: typeof controls.H3Control;
-  BulletList: typeof controls.BulletListControl;
-  OrderedList: typeof controls.OrderedListControl;
-  Blockquote: typeof controls.BlockquoteControl;
-  Link: typeof RichTextEditorLinkControl;
-  Unlink: typeof controls.UnlinkControl;
-  HorizontalRule: typeof controls.HorizontalRuleControl;
-  AlignLeft: typeof controls.AlignLeftControl;
-  AlignRight: typeof controls.AlignRightControl;
-  AlignCenter: typeof controls.AlignCenterControl;
-  AlignJustify: typeof controls.AlignJustifyControl;
-  FontSize: typeof RichTextEditorFontControl;
-  ImageControl: typeof RichTextEditorImageControl;
-  ColorControl: typeof RichTextEditorColorControl;
-  HighlightControl: typeof RichTextEditorHighlightControl;
-  SourceControl: typeof RichTextEditorSourceControl;
-  Placeholder: typeof RichTextEditorPlaceholderControl;
-  TableControl: typeof TableControl;
-  MoreControl: typeof MoreButtonControl;
-}
-
-const RichTextEditorComponent = RichTextEditor as RichTextEditorType;
+};
 
 // Generic components
-RichTextEditorComponent.Content = RichTextEditorContent;
-RichTextEditorComponent.Control = RichTextEditorControl;
-RichTextEditorComponent.Toolbar = RichTextEditorToolbar;
-RichTextEditorComponent.ControlsGroup = RichTextEditorControlsGroup;
+RichTextEditor.Content = RichTextEditorContent;
+RichTextEditor.Control = RichTextEditorControl;
+RichTextEditor.Toolbar = RichTextEditorToolbar;
+RichTextEditor.ControlsGroup = RichTextEditorControlsGroup;
 
 // Controls components
-RichTextEditorComponent.Bold = controls.BoldControl;
-RichTextEditorComponent.Italic = controls.ItalicControl;
-RichTextEditorComponent.Underline = controls.UnderlineControl;
-RichTextEditorComponent.Strikethrough = controls.StrikeThroughControl;
-RichTextEditorComponent.H1 = controls.H1Control;
-RichTextEditorComponent.H2 = controls.H2Control;
-RichTextEditorComponent.H3 = controls.H3Control;
-RichTextEditorComponent.BulletList = controls.BulletListControl;
-RichTextEditorComponent.OrderedList = controls.OrderedListControl;
-RichTextEditorComponent.Blockquote = controls.BlockquoteControl;
-RichTextEditorComponent.Link = RichTextEditorLinkControl;
-RichTextEditorComponent.Unlink = controls.UnlinkControl;
-RichTextEditorComponent.HorizontalRule = controls.HorizontalRuleControl;
-RichTextEditorComponent.AlignLeft = controls.AlignLeftControl;
-RichTextEditorComponent.AlignRight = controls.AlignRightControl;
-RichTextEditorComponent.AlignCenter = controls.AlignCenterControl;
-RichTextEditorComponent.AlignJustify = controls.AlignJustifyControl;
+RichTextEditor.Bold = controls.BoldControl;
+RichTextEditor.Italic = controls.ItalicControl;
+RichTextEditor.Underline = controls.UnderlineControl;
+RichTextEditor.Strikethrough = controls.StrikeThroughControl;
+RichTextEditor.H1 = controls.H1Control;
+RichTextEditor.H2 = controls.H2Control;
+RichTextEditor.H3 = controls.H3Control;
+RichTextEditor.BulletList = controls.BulletListControl;
+RichTextEditor.OrderedList = controls.OrderedListControl;
+RichTextEditor.Blockquote = controls.BlockquoteControl;
+RichTextEditor.Link = RichTextEditorLinkControl;
+RichTextEditor.Unlink = controls.UnlinkControl;
+RichTextEditor.HorizontalRule = controls.HorizontalRuleControl;
+RichTextEditor.AlignLeft = controls.AlignLeftControl;
+RichTextEditor.AlignRight = controls.AlignRightControl;
+RichTextEditor.AlignCenter = controls.AlignCenterControl;
+RichTextEditor.AlignJustify = controls.AlignJustifyControl;
 
-RichTextEditorComponent.FontSize = RichTextEditorFontControl;
+RichTextEditor.FontSize = RichTextEditorFontControl;
 
-RichTextEditorComponent.ImageControl = RichTextEditorImageControl;
+RichTextEditor.ImageControl = RichTextEditorImageControl;
 
-RichTextEditorComponent.ColorControl = RichTextEditorColorControl;
-RichTextEditorComponent.HighlightControl = RichTextEditorHighlightControl;
+RichTextEditor.ColorControl = RichTextEditorColorControl;
+RichTextEditor.HighlightControl = RichTextEditorHighlightControl;
 
-RichTextEditorComponent.SourceControl = RichTextEditorSourceControl;
-RichTextEditorComponent.Placeholder = RichTextEditorPlaceholderControl;
-RichTextEditorComponent.TableControl = TableControl;
+RichTextEditor.SourceControl = RichTextEditorSourceControl;
+RichTextEditor.Placeholder = RichTextEditorPlaceholderControl;
+RichTextEditor.TableControl = TableControl;
 
-RichTextEditorComponent.MoreControl = MoreButtonControl;
-
-export { RichTextEditorComponent as RichTextEditor, RichTextEditorType };
+RichTextEditor.MoreControl = MoreButtonControl;

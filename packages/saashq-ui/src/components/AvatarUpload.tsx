@@ -1,32 +1,21 @@
 import { colors } from '../styles';
-import styled, { css } from 'styled-components';
-import styledTS from 'styled-components-ts';
 import React from 'react';
+import styled from 'styled-components';
 import { readFile } from '../utils/core';
 import Alert from '../utils/Alert';
 import uploadHandler from '../utils/uploadHandler';
 import Icon from './Icon';
 import Spinner from './Spinner';
 
-const Avatar = styledTS<{ square?: boolean; width: number; height: number }>(
-  styled.div,
-)`
-  width: ${(props) => props.width}px;
-  height: ${(props) => props.height}px;
+const Avatar = styled.div`
+  width: 100px;
+  height: 100px;
   position: relative;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
   overflow: hidden;
   border-radius: 50%;
-
-  ${(props) =>
-    props.square &&
-    css`
-      border-radius: 5px;
-      background: ${colors.colorPrimary};
-      padding: 20px;
-    `};
 
   label {
     color: ${colors.colorWhite};
@@ -71,13 +60,7 @@ const Avatar = styledTS<{ square?: boolean; width: number; height: number }>(
 type Props = {
   avatar?: string;
   defaultAvatar?: string;
-  title?: string;
-  extraFormData?: Array<{ key: string; value: string }>;
   onAvatarUpload: (response: any) => void;
-  backgroundColor?: string;
-  square?: boolean;
-  width?: number;
-  height?: number;
 };
 
 type State = {
@@ -108,7 +91,6 @@ class AvatarUpload extends React.Component<Props, State> {
 
     uploadHandler({
       files: imageFile,
-      extraFormData: this.props.extraFormData || [],
 
       beforeUpload: () => {
         this.setState({ avatarPreviewStyle: { opacity: '0.2' } });
@@ -155,15 +137,9 @@ class AvatarUpload extends React.Component<Props, State> {
 
   render() {
     const { avatarPreviewStyle, avatarPreviewUrl } = this.state;
-    const { square, width = 100, height = 100, backgroundColor } = this.props;
 
     return (
-      <Avatar
-        square={square}
-        width={width}
-        height={height}
-        style={{ background: backgroundColor }}
-      >
+      <Avatar>
         <img
           alt="avatar"
           style={avatarPreviewStyle}

@@ -11,7 +11,7 @@ const LinkIcon: IRichTextEditorControlBaseProps['icon'] = () => (
 );
 
 export const RichTextEditorSourceControl = () => {
-  const { editor, labels, toggleSourceView, codeMirrorRef, isSourceEnabled } =
+  const { editor, labels, toggleSource, codeMirrorRef, isSourceEnabled } =
     useRichTextEditorContext();
 
   const handleSourceEditMode = () => {
@@ -31,7 +31,7 @@ export const RichTextEditorSourceControl = () => {
         },
       });
     }
-    toggleSourceView();
+    toggleSource();
   };
 
   function formatHtmlCode(htmlCode: string): string {

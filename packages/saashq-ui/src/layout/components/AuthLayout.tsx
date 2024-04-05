@@ -26,7 +26,7 @@ class AuthLayout extends React.Component<Props, {}> {
       <MobileRecommend>
         <CenterContent>
           <div>
-            <b>{__('SaasHQ Inc')}</b>
+            <b>{__('saashq Inc')}</b>
             <div>{__(desciption)}</div>
           </div>
           <Button btnStyle="link" size="small" href={link}>
@@ -72,8 +72,8 @@ class AuthLayout extends React.Component<Props, {}> {
         <h2>
           {getThemeItem('login_page_description') || (
             <>
-              {__('All in one ')}
-              <b>{__('Saas / Agency Management System')}</b>
+              {__('Single ')}
+              <b>{__('experience operating system (XOS)')}</b>
               {__(' to align your entire business')}
             </>
           )}

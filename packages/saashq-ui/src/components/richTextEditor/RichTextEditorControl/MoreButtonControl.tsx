@@ -23,8 +23,6 @@ const MoreIcon: IRichTextEditorControlBaseProps['icon'] = () => (
 );
 
 export const MoreButtonControl = (props: IRichTextEditorMoreControlProps) => {
-  let overLayRef;
-
   const { labels } = useRichTextEditorContext();
   const { toolbarPlacement, children } = props;
 
@@ -38,10 +36,7 @@ export const MoreButtonControl = (props: IRichTextEditorMoreControlProps) => {
 
   return (
     <OverlayTrigger
-      rootClose={false}
-      ref={(overlayTrigger) => {
-        overLayRef = overlayTrigger;
-      }}
+      rootClose={true}
       trigger="click"
       placement={toolbarPlacement === 'top' ? 'bottom-end' : 'top'}
       overlay={renderMenu}

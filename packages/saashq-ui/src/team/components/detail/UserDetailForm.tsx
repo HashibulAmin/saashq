@@ -19,7 +19,6 @@ import {
 import { ButtonRelated, ModalFooter } from '@saashq/ui/src/styles/main';
 import SelectBranches from '@saashq/ui/src/team/containers/SelectBranches';
 import SelectDepartments from '@saashq/ui/src/team/containers/SelectDepartments';
-import SelectPositions from '@saashq/ui/src/team/containers/SelectPositions';
 import Sidebar from '@saashq/ui/src/layout/components/Sidebar';
 import { IButtonMutateProps } from '../../../types';
 import UserMovementForm from '../../containers/UserMovementForm';
@@ -66,12 +65,6 @@ function UserDetails({
     ids: user.branchIds || [],
     isChanged: false,
   });
-
-  const [position, setPositionIds] = useState({
-    ids: user.positionIds || [],
-    isChanged: false,
-  });
-
   const title = details.fullName || 'Unknown';
   const breadcrumb = [{ title: 'Users', link: '/settings/team' }, { title }];
 
@@ -105,9 +98,6 @@ function UserDetails({
       Selection = SelectBranches;
     }
 
-    if (key === 'position') {
-      Selection = SelectPositions;
-    }
     const content = (formProps) => {
       const callback = () => {
         handleState((prev) => ({ ids: prev.ids, isChanged: false }));
@@ -181,27 +171,26 @@ function UserDetails({
 
   const leftSidebar = (
     <Sidebar>
-      <Box title="Branches">
-        {list(branch.ids, branch.isChanged, 'Branches', 'branch', setBranchIds)}
-      </Box>
-      <Box title="Departments">
-        {list(
-          department.ids,
-          department.isChanged,
-          'Departments',
-          'department',
-          setDepartmentIds,
-        )}
-      </Box>
-      <Box title="Positions">
-        {list(
-          position.ids,
-          position.isChanged,
-          'Positions',
-          'position',
-          setPositionIds,
-        )}
-      </Box>
+      <Sidebar>
+        <Box title="Branches">
+          {list(
+            branch.ids,
+            branch.isChanged,
+            'Branches',
+            'branch',
+            setBranchIds,
+          )}
+        </Box>
+        <Box title="Departments">
+          {list(
+            department.ids,
+            department.isChanged,
+            'Departments',
+            'department',
+            setDepartmentIds,
+          )}
+        </Box>
+      </Sidebar>
       {loadDynamicComponent('contactDetailRightSidebar', { user })}
     </Sidebar>
   );

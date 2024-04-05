@@ -5,7 +5,7 @@ import ControlLabel from '../form/Label';
 import { FlexPad, InlineForm } from '../step/styles';
 import {
   RULE_CONDITIONS,
-  VISITOR_AUDIENCE_RULES
+  VISITOR_AUDIENCE_RULES,
 } from '../../constants/engage';
 import React from 'react';
 import styled from 'styled-components';
@@ -32,11 +32,11 @@ class ConditionsRule extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      rules: props.rules || []
+      rules: props.rules || [],
     };
   }
 
-  addRule = e => {
+  addRule = (e) => {
     const rules = this.state.rules;
     const selectedOption = e.target.options[e.target.selectedIndex];
 
@@ -46,7 +46,7 @@ class ConditionsRule extends React.Component<Props, State> {
         kind: selectedOption.value,
         text: selectedOption.text,
         condition: '',
-        value: ''
+        value: '',
       });
 
       this.setState({ rules });
@@ -63,7 +63,7 @@ class ConditionsRule extends React.Component<Props, State> {
         break;
       case 'currentPageUrl':
         description =
-          'Write your desired page URL, excluding domain name. For example: If you want to place your engagement message on https://office.saashq.org/pricing - then write /pricing';
+          'Write your desired page URL, excluding domain name. For example: If you want to place your engagement message on https://office.saashq.io/pricing - then write /pricing';
         break;
       case 'country':
         description =
@@ -85,7 +85,7 @@ class ConditionsRule extends React.Component<Props, State> {
     const remove = () => {
       let rules = this.state.rules;
 
-      rules = rules.filter(r => r._id !== rule._id);
+      rules = rules.filter((r) => r._id !== rule._id);
 
       this.setState({ rules });
       this.props.onChange('rules', rules);
@@ -95,7 +95,7 @@ class ConditionsRule extends React.Component<Props, State> {
       const rules = this.state.rules;
 
       // find current editing one
-      const currentRule = rules.find(r => r._id === rule._id);
+      const currentRule = rules.find((r) => r._id === rule._id);
 
       // set new value
       if (currentRule) {
@@ -106,11 +106,11 @@ class ConditionsRule extends React.Component<Props, State> {
       this.props.onChange('rules', rules);
     };
 
-    const onChangeValue = e => {
+    const onChangeValue = (e) => {
       changeProp('value', e.target.value);
     };
 
-    const onChangeCondition = e => {
+    const onChangeCondition = (e) => {
       changeProp('condition', e.target.value);
     };
 
@@ -156,7 +156,7 @@ class ConditionsRule extends React.Component<Props, State> {
       </Button>
     );
 
-    const content = props => <RuleForm {...props} onChange={this.addRule} />;
+    const content = (props) => <RuleForm {...props} onChange={this.addRule} />;
 
     return (
       <ModalTrigger title="Add rule" trigger={trigger} content={content} />
@@ -184,7 +184,7 @@ class ConditionsRule extends React.Component<Props, State> {
         </FormGroup>
 
         <FormGroup>
-          {this.state.rules.map(rule => this.renderRule(rule))}
+          {this.state.rules.map((rule) => this.renderRule(rule))}
         </FormGroup>
 
         <FormGroup>{this.renderAddRule()}</FormGroup>

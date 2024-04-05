@@ -248,8 +248,7 @@ const SidebarToggle = styledTS<{ inverse?: boolean }>(styled.a)`
   bottom: 0;
   text-align: center;
   padding: 0;
-  background: ${(props) =>
-    props.inverse ? colors.colorWhite : colors.bgLight};
+  background: ${(props) => (props.inverse ? colors.colorWhite : colors.bgLight)};
   border-top: 1px solid ${colors.borderPrimary};
   z-index: 2;
   &:hover {
@@ -351,8 +350,7 @@ const SidebarList = styledTS<{
       background: ${(props) => !props.noBackground && colors.bgActive};
       text-decoration: none;
       outline: 0;
-      color: ${(props) =>
-        !props.noTextColor && lighten(colors.textPrimary, 40)};
+      color: ${(props) => !props.noTextColor && lighten(colors.textPrimary, 40)};
     }
     &.active {
       background: ${rgba(colors.colorPrimary, 0.2)};
@@ -398,8 +396,7 @@ const CenterContent = styled.div`
 const SectionContainer = styledTS<{ hasShadow?: boolean }>(styled.div)`
   position: relative;
   margin-bottom: ${dimensions.unitSpacing}px;
-  box-shadow: ${(props) =>
-    props.hasShadow && 'rgb(0 0 0 / 8%) 0px 0px 6px 0px'};
+  box-shadow: ${(props) => props.hasShadow && 'rgb(0 0 0 / 8%) 0px 0px 6px 0px'};
 
   > div {
     margin-bottom: 0;
@@ -633,16 +630,14 @@ const AuthCustomDescription = styled.div`
   }
 `;
 
-const AuthDescription = styledTS<{
-  backgroundColor?: string;
-  textColor?: string;
-}>(styled.div)`
+const AuthDescription = styled.div`
   width: 100%;
   height: 100%;
-  background: ${(props) =>
-    props.backgroundColor ||
-    colors.colorPrimaryDark} url('/images/stars.png') repeat top
-    center;
+  background: ${
+    thBackground
+      ? thBackground
+      : `${colors.colorPrimaryDark} url('/images/stars.png') repeat top center;`
+  }
   position: relative;
   overflow: hidden;
   display: flex;
@@ -654,9 +649,11 @@ const AuthDescription = styledTS<{
     position: absolute;
     width: 100%;
     height: 100%;
-    background: ${(props) =>
-      !props.backgroundColor &&
-      `transparent url('/images/twinkling.png') repeat top center`};
+    background: ${
+      thBackground
+        ? thBackground
+        : `transparent url('/images/twinkling.png') repeat top center`
+    }
     animation: ${twinkling} 200s linear infinite;
   }
 
@@ -676,7 +673,7 @@ const AuthDescription = styledTS<{
     position: relative;
     font-weight: bold;
     font-size: 48px;
-    color: ${(props) => props.textColor || colors.colorWhite};
+    color: ${thColor || colors.colorWhite};
     margin: 0px;
 
     @media (max-width: 768px) {

@@ -98,6 +98,7 @@ const LinkWrapper = styled.div`
 const ImageInputWrapper = styled.div`
   display: flex;
   gap: 0.5rem;
+  background-color: #fff;
   color: ${colors.textPrimary};
 `;
 const InputWrapper = styled.div`
@@ -186,13 +187,6 @@ const FileInputAction = styled.div`
     padding-right: 0.5rem;
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
-    height: 100%;
-    width: 36px;
-    > div {
-      position: absolute;
-      left: 26px;
-      top: 17px;
-    }
   }
   label {
     &:hover {
@@ -202,10 +196,6 @@ const FileInputAction = styled.div`
   input[type='file'] {
     display: none;
   }
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 const FontSelectWrapper = styled.div<{ $toolbarPlacement: 'top' | 'bottom' }>`
   .Select {
@@ -393,7 +383,6 @@ const RichTextEditorMenuPopoverWrapper = styled.div`
   }
   .popover {
     box-shadow: 0 2px 6px 2px rgba(60, 64, 67, 0.15);
-    z-index: 999;
   }
 `;
 

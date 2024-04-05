@@ -1,4 +1,4 @@
-import { colors } from '.';
+import { colors } from '../styles';
 import styled, { css } from 'styled-components';
 import styledTS from 'styled-components-ts';
 
@@ -15,12 +15,12 @@ const SortItem = styledTS<{
   display: flex;
   justify-content: space-between;
   border-left: 2px solid transparent; 
-  border-top: ${props =>
+  border-top: ${(props) =>
     !props.isDragging ? `1px solid ${colors.borderPrimary}` : 'none'};
   border-radius: 4px;
-  box-shadow: ${props =>
+  box-shadow: ${(props) =>
     props.isDragging ? `0 2px 8px ${colors.shadowPrimary}` : 'none'};
-  left: ${props =>
+  left: ${(props) =>
     props.isDragging && props.isModal ? '40px!important' : 'auto'};
   &:last-child {
     margin-bottom: 0;
@@ -31,7 +31,7 @@ const SortItem = styledTS<{
     border-color: ${colors.colorSecondary};
     border-top: none;
   }
-  ${props =>
+  ${(props) =>
     props.column &&
     css`
       width: ${100 / props.column}%;

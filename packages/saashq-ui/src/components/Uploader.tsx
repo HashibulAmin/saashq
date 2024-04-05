@@ -106,7 +106,6 @@ type Props = {
   warningText?: string;
   showOnlyIcon?: boolean;
   noPreview?: boolean;
-  hideUploadButtonOnLoad?: boolean;
 };
 
 type State = {
@@ -190,10 +189,6 @@ class Uploader extends React.Component<Props, State> {
       this.props;
 
     if (single && this.state.attachments.length > 0) {
-      return null;
-    }
-
-    if (this.state.loading && this.props.hideUploadButtonOnLoad) {
       return null;
     }
 

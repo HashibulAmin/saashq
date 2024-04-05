@@ -7,7 +7,7 @@ import confirm from '../utils/confirmation/confirm';
 import { rotate } from '../utils/animations';
 import React from 'react';
 import styled from 'styled-components';
-import Button from './Button';
+import Button from '../components/Button';
 
 export const SmallLoader = styled.i`
   width: 13px;
@@ -42,7 +42,6 @@ type Props = {
   confirmationUpdate?: boolean;
   beforeSubmit?: () => void;
   resetSubmit?: () => void;
-  style?: any;
 };
 
 class ButtonMutate extends React.Component<Props, { isLoading: boolean }> {
@@ -154,7 +153,6 @@ class ButtonMutate extends React.Component<Props, { isLoading: boolean }> {
       disabled,
       block,
       uppercase,
-      style,
     } = this.props;
 
     const { isLoading } = this.state;
@@ -169,7 +167,6 @@ class ButtonMutate extends React.Component<Props, { isLoading: boolean }> {
         onClick={type ? undefined : this.mutate}
         icon={isLoading ? undefined : icon}
         block={block}
-        style={style}
       >
         {isLoading && <SmallLoader />}
         {children}
