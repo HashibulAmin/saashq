@@ -1,10 +1,10 @@
-import { IUser } from '@erxes/ui/src/auth/types';
-import Button from '@erxes/ui/src/components/Button';
-import FormControl from '@erxes/ui/src/components/form/Control';
-import FormGroup from '@erxes/ui/src/components/form/Group';
-import ControlLabel from '@erxes/ui/src/components/form/Label';
-import { ModalFooter } from '@erxes/ui/src/styles/main';
-import { __ } from '@erxes/ui/src/utils';
+import { IUser } from '@saashq/ui/src/auth/types';
+import Button from '@saashq/ui/src/components/Button';
+import FormControl from '@saashq/ui/src/components/form/Control';
+import FormGroup from '@saashq/ui/src/components/form/Group';
+import ControlLabel from '@saashq/ui/src/components/form/Label';
+import { ModalFooter } from '@saashq/ui/src/styles/main';
+import { __ } from '@saashq/ui/src/utils';
 import React from 'react';
 
 type Props = {

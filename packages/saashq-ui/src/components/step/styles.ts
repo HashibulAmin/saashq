@@ -1,6 +1,6 @@
 import { colors, dimensions } from '../../styles';
 
-import { rgba } from '@erxes/ui/src/styles/ecolor';
+import { rgba } from '@saashq/ui/src/styles/ecolor';
 import styled from 'styled-components';
 import styledTS from 'styled-components-ts';
 
@@ -463,7 +463,7 @@ const LogoContainer = styled.div`
   height: 56px;
   cursor: pointer;
   box-shadow: 0 0 ${dimensions.unitSpacing}px 0 ${rgba(colors.colorBlack, 0.2)};
-  background-image: url('/images/erxes.png');
+  background-image: url('/images/saashq.png');
   background-color: ${colors.colorPrimary};
   background-position: center;
   background-size: 20px;

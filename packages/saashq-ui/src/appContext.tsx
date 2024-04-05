@@ -49,8 +49,8 @@ export class AppProvider extends React.Component<
   }
 
   checkisShownIndicatorData = () => {
-    const lastImport = localStorage.getItem('erxes_import_data');
-    const type = localStorage.getItem('erxes_import_data_type');
+    const lastImport = localStorage.getItem('saashq_import_data');
+    const type = localStorage.getItem('saashq_import_data_type');
     const isRemovingImport = type === 'remove' ? true : false;
 
     if (lastImport) {
@@ -63,8 +63,8 @@ export class AppProvider extends React.Component<
   closeLoadingBar = () => {
     this.setState({ isShownIndicator: false });
 
-    localStorage.setItem('erxes_import_data', '');
-    localStorage.setItem('erxes_import_data_type', '');
+    localStorage.setItem('saashq_import_data', '');
+    localStorage.setItem('saashq_import_data_type', '');
   };
 
   showLoadingBar = (isRemovingImport: boolean) => {

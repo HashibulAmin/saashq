@@ -1,6 +1,6 @@
 import * as compose from 'lodash.flowright';
 
-import { Alert, confirm, withProps } from '@erxes/ui/src/utils';
+import { Alert, confirm, withProps } from '@saashq/ui/src/utils';
 import {
   UserConverationsQueryResponse,
   UserDetailQueryResponse,
@@ -9,16 +9,16 @@ import { useLazyQuery } from '@apollo/client';
 import { graphql } from '@apollo/client/react/hoc';
 import { mutations, queries } from '../graphql';
 
-import ButtonMutate from '@erxes/ui/src/components/ButtonMutate';
-import { IButtonMutateProps } from '@erxes/ui/src/types';
-import { IUser } from '@erxes/ui/src/auth/types';
+import ButtonMutate from '@saashq/ui/src/components/ButtonMutate';
+import { IButtonMutateProps } from '@saashq/ui/src/types';
+import { IUser } from '@saashq/ui/src/auth/types';
 import React from 'react';
-import Spinner from '@erxes/ui/src/components/Spinner';
+import Spinner from '@saashq/ui/src/components/Spinner';
 import UserDetailForm from '../components/detail/UserDetailForm';
 import UserForm from './UserForm';
 import UserSkillForm from '../components/detail/UserSkillForm';
 import { gql } from '@apollo/client';
-import { isEnabled } from '@erxes/ui/src/utils/core';
+import { isEnabled } from '@saashq/ui/src/utils/core';
 
 type Props = {
   _id: string;

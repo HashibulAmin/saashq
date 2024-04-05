@@ -1,8 +1,8 @@
-import { IUser } from '@erxes/ui/src/auth/types';
-import Tip from '@erxes/ui/src/components/Tip';
-import { getUserAvatar } from '@erxes/ui/src/utils';
+import { IUser } from '@saashq/ui/src/auth/types';
+import Tip from '@saashq/ui/src/components/Tip';
+import { getUserAvatar } from '@saashq/ui/src/utils';
 import React from 'react';
-import { colors, dimensions } from '@erxes/ui/src/styles';
+import { colors, dimensions } from '@saashq/ui/src/styles';
 import styled from 'styled-components';
 
 const imageSize = 30;

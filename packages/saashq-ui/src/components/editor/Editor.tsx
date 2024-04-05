@@ -23,7 +23,7 @@ import React from 'react';
 import HeadlinesButton from './HeadlinesButton';
 import { RichEditorControlsRoot, RichEditorRoot, Char } from './styles';
 
-type ErxesEditorProps = {
+type SaasHQEditorProps = {
   editorState: EditorState;
   onChange: (richUtils: RichUtils) => void;
   bordered?: boolean;
@@ -41,7 +41,7 @@ type ErxesEditorProps = {
   integrationKind: string;
 };
 
-export class ErxesEditor extends React.Component<ErxesEditorProps> {
+export class SaasHQEditor extends React.Component<SaasHQEditorProps> {
   editor: Editor = this.refs.editor;
   private linkPlugin;
   private toolbarPlugin;
@@ -282,7 +282,7 @@ export const clearContent = (editorState) =>
   );
 
 export default {
-  ErxesEditor,
+  SaasHQEditor,
   toHTML,
   createStateFromHTML,
   clearContent,

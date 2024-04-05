@@ -1,13 +1,13 @@
-import client from '@erxes/ui/src/apolloClient';
+import client from '@saashq/ui/src/apolloClient';
 import { gql } from '@apollo/client';
 import * as compose from 'lodash.flowright';
-import { Alert, withProps } from '@erxes/ui/src/utils';
+import { Alert, withProps } from '@saashq/ui/src/utils';
 import React from 'react';
 import { graphql } from '@apollo/client/react/hoc';
 import { withRouter } from 'react-router-dom';
-import { IRouterProps } from '@erxes/ui/src/types';
+import { IRouterProps } from '@saashq/ui/src/types';
 import ActionSection from '../components/detail/ActionSection';
-import { IUser } from '@erxes/ui/src/auth/types';
+import { IUser } from '@saashq/ui/src/auth/types';
 import { mutations, queries } from '../graphql';
 
 type Props = {

@@ -4,7 +4,7 @@ import {
   ActivityRow,
   FlexCenterContent,
   Timeline,
-} from '@erxes/ui-log/src/activityLogs/styles';
+} from '@saashq/ui-log/src/activityLogs/styles';
 import React from 'react';
 import { DataWithLoader, NameCard, Tip } from '../../../components';
 import Icon from '../../../components/Icon';
@@ -13,7 +13,7 @@ import dayjs from 'dayjs';
 import { __ } from '../../../utils';
 import { ContentBox } from '../../../layout';
 import styled from 'styled-components';
-import { colors, dimensions } from '@erxes/ui/src/styles';
+import { colors, dimensions } from '@saashq/ui/src/styles';
 import styledTS from 'styled-components-ts';
 import { ActivityContent } from '../../../styles/main';
 

@@ -87,7 +87,7 @@ const PopoverList = styledTS<{ selectable?: boolean; isIndented?: boolean }>(
     }
 
     &:before {
-      font-family: 'erxes';
+      font-family: 'saashq';
       font-size: 12px;
       width: 15px;
       height: 15px;

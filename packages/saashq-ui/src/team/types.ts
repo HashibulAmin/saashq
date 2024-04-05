@@ -1,10 +1,10 @@
-import { IAttachment, QueryResponse } from '@erxes/ui/src/types';
+import { IAttachment, QueryResponse } from '@saashq/ui/src/types';
 import {
   IUser,
   IUserDetails,
   IUserDoc,
   IUserLinks,
-} from '@erxes/ui/src/auth/types';
+} from '@saashq/ui/src/auth/types';
 
 export type IInvitationEntry = {
   email: string;

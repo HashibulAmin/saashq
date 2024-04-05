@@ -1,4 +1,4 @@
-import Button from '@erxes/ui/src/components/Button';
+import Button from '@saashq/ui/src/components/Button';
 import { __, bustIframe } from '../../utils';
 import React from 'react';
 import Container from 'react-bootstrap/Container';
@@ -26,7 +26,7 @@ class AuthLayout extends React.Component<Props, {}> {
       <MobileRecommend>
         <CenterContent>
           <div>
-            <b>{__('erxes Inc')}</b>
+            <b>{__('saashq Inc')}</b>
             <div>{__(desciption)}</div>
           </div>
           <Button btnStyle="link" size="small" href={link}>
@@ -44,7 +44,7 @@ class AuthLayout extends React.Component<Props, {}> {
       if (userAgent.match(/Android/i)) {
         return this.renderContent(
           'Download android app for free on the Google play',
-          'https://play.google.com/store/apps/details?id=io.erxes.erxes_android&fbclid=IwAR1bVPBSE0pC_KUNNjOJQA4upb1AuTUfqFcDaHTHTptyke7rNvuvb2mgwb0',
+          'https://play.google.com/store/apps/details?id=io.saashq.saashq_android&fbclid=IwAR1bVPBSE0pC_KUNNjOJQA4upb1AuTUfqFcDaHTHTptyke7rNvuvb2mgwb0',
         );
       }
     }
@@ -58,7 +58,7 @@ class AuthLayout extends React.Component<Props, {}> {
     if (description) {
       return (
         <AuthCustomDescription>
-          <img src="/images/logo.png" alt="erxes" />
+          <img src="/images/logo.png" alt="saashq" />
           {description}
         </AuthCustomDescription>
       );

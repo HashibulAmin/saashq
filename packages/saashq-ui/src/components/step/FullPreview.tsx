@@ -12,7 +12,7 @@ import { isEnabled, loadDynamicComponent } from '../../utils/core';
 
 import CalloutPreview from './preview/CalloutPreview';
 import FormPreview from './preview/FormPreview';
-import { IConfig } from '@erxes/ui-settings/src/general/types';
+import { IConfig } from '@saashq/ui-settings/src/general/types';
 import { IField } from '../../types';
 import Icon from '../Icon';
 import React from 'react';

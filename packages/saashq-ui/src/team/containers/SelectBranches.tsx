@@ -1,7 +1,7 @@
 import SelectWithSearch from '../../components/SelectWithSearch';
 import { IOption, IQueryParams } from '../../types';
 import React from 'react';
-import { IBranch } from '@erxes/ui/src/team/types';
+import { IBranch } from '@saashq/ui/src/team/types';
 import { generateTree } from '../../utils';
 import {
   commonStructureParamsDef,

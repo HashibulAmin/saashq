@@ -2,7 +2,7 @@ import {
   ActionButtons,
   FlexBetween,
   ItemCount,
-} from '@erxes/ui-settings/src/styles';
+} from '@saashq/ui-settings/src/styles';
 import {
   CollapsibleListWrapper,
   FlexRow,

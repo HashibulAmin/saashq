@@ -1,10 +1,10 @@
 import * as compose from 'lodash.flowright';
-import ButtonMutate from '@erxes/ui/src/components/ButtonMutate';
-import { IButtonMutateProps } from '@erxes/ui/src/types';
-import { confirm, withProps } from '@erxes/ui/src/utils';
-import { Alert } from '@erxes/ui/src/utils';
+import ButtonMutate from '@saashq/ui/src/components/ButtonMutate';
+import { IButtonMutateProps } from '@saashq/ui/src/types';
+import { confirm, withProps } from '@saashq/ui/src/utils';
+import { Alert } from '@saashq/ui/src/utils';
 import React from 'react';
-import { MutationVariables } from '@erxes/ui/src/types';
+import { MutationVariables } from '@saashq/ui/src/types';
 
 interface ICopyMutationVariables extends MutationVariables {
   [key: string]: any;

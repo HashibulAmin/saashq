@@ -1,8 +1,8 @@
 import { colors, dimensions } from '../../styles';
 
-import { ActionButtons } from '@erxes/ui-settings/src/styles';
-import { lighten } from '@erxes/ui/src/styles/ecolor';
-import { rgba } from '@erxes/ui/src/styles/ecolor';
+import { ActionButtons } from '@saashq/ui-settings/src/styles';
+import { lighten } from '@saashq/ui/src/styles/ecolor';
+import { rgba } from '@saashq/ui/src/styles/ecolor';
 import styled from 'styled-components';
 import styledTS from 'styled-components-ts';
 

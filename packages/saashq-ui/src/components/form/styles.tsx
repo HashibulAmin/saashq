@@ -115,7 +115,7 @@ const SelectWrapper = styledTS<{ hasError?: boolean }>(styled.div)`
     content: '\\e9a6';
     font-size: 14px;
     display: inline-block;
-    font-family: 'erxes';
+    font-family: 'saashq';
     speak: none;
     color: ${colors.colorCoreGray};
     font-style: normal;

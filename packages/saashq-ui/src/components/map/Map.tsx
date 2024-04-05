@@ -1,7 +1,7 @@
-import { MapContainer } from '@erxes/ui/src/styles/main';
+import { MapContainer } from '@saashq/ui/src/styles/main';
 import React, { useEffect, useState } from 'react';
 import { ILocationOption } from '../../types';
-import { __ } from '@erxes/ui/src/utils/core';
+import { __ } from '@saashq/ui/src/utils/core';
 import colors from '../../styles/colors';
 import {} from './mapTypes';
 import { ITrackingData } from '../../../../plugin-tumentech-ui/src/types';

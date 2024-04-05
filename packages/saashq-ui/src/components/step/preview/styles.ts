@@ -10,7 +10,7 @@ import {
 } from '../../../utils/animations';
 import styled from 'styled-components';
 import styledTS from 'styled-components-ts';
-import { LogoContainer } from '@erxes/ui-settings/src/styles';
+import { LogoContainer } from '@saashq/ui-settings/src/styles';
 
 const coreSpace = `${dimensions.coreSpacing}px`;
 const unitSpace = `${dimensions.unitSpacing}px`;

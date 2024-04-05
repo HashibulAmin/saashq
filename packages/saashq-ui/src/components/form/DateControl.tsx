@@ -1,6 +1,6 @@
 import Datetime from '@nateradebaugh/react-datetime';
 import React from 'react';
-import { Column } from '@erxes/ui/src/styles/main';
+import { Column } from '@saashq/ui/src/styles/main';
 
 type Props = {
   onChange?: (e: React.FormEvent<HTMLElement>) => void;

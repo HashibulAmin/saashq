@@ -15,7 +15,7 @@ import {
 import { LauncherContainer, WebPreview, WidgetPreview } from '../styles';
 
 import Button from '../../Button';
-import { FlexRow } from '@erxes/ui-settings/src/styles';
+import { FlexRow } from '@saashq/ui-settings/src/styles';
 import React from 'react';
 import { readFile } from '../../../utils';
 import styled from 'styled-components';

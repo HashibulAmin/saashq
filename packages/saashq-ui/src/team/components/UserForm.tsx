@@ -1,16 +1,16 @@
-import { IButtonMutateProps, IFormProps } from '@erxes/ui/src/types';
-import { IUser, IUserDetails, IUserLinks } from '@erxes/ui/src/auth/types';
-import { __, getConstantFromStore } from '@erxes/ui/src/utils';
+import { IButtonMutateProps, IFormProps } from '@saashq/ui/src/types';
+import { IUser, IUserDetails, IUserLinks } from '@saashq/ui/src/auth/types';
+import { __, getConstantFromStore } from '@saashq/ui/src/utils';
 
-import CollapseContent from '@erxes/ui/src/components/CollapseContent';
-import CommonForm from '@erxes/ui-settings/src/common/components/Form';
-import ControlLabel from '@erxes/ui/src/components/form/Label';
-import FormGroup from '@erxes/ui/src/components/form/Group';
-import { ICommonFormProps } from '@erxes/ui-settings/src/common/types';
+import CollapseContent from '@saashq/ui/src/components/CollapseContent';
+import CommonForm from '@saashq/ui-settings/src/common/components/Form';
+import ControlLabel from '@saashq/ui/src/components/form/Label';
+import FormGroup from '@saashq/ui/src/components/form/Group';
+import { ICommonFormProps } from '@saashq/ui-settings/src/common/types';
 import React from 'react';
 import Select from 'react-select-plus';
-import SelectBrands from '@erxes/ui/src/brands/containers/SelectBrands';
-import UserCommonInfos from '@erxes/ui-settings/src/common/components/UserCommonInfos';
+import SelectBrands from '@saashq/ui/src/brands/containers/SelectBrands';
+import UserCommonInfos from '@saashq/ui-settings/src/common/components/UserCommonInfos';
 
 type Props = {
   channels: any[]; // check - IChannel

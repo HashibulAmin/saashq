@@ -1,4 +1,4 @@
-import channelQueries from '@erxes/ui-settings/src/channels/graphql/queries';
+import channelQueries from '@saashq/ui-settings/src/channels/graphql/queries';
 
 const nameFields = `
   firstName
@@ -466,7 +466,7 @@ const genericFields = `
   isVisible
   isVisibleInDetail
   contentType
-  isDefinedByErxes
+  isDefinedBySaasHQ
 `;
 
 const commonFields = `
@@ -508,8 +508,8 @@ const commonFields = `
 `;
 
 const fieldsGroups = `
-  query fieldsGroups($contentType: String!, $isDefinedByErxes: Boolean, $config: JSON) {
-    fieldsGroups(contentType: $contentType, isDefinedByErxes: $isDefinedByErxes, config: $config) {
+  query fieldsGroups($contentType: String!, $isDefinedBySaasHQ: Boolean, $config: JSON) {
+    fieldsGroups(contentType: $contentType, isDefinedBySaasHQ: $isDefinedBySaasHQ, config: $config) {
       name
       ${genericFields}
       isMultiple

@@ -2,19 +2,19 @@ import {
   FieldStyle,
   SidebarCounter,
   SidebarList,
-} from '@erxes/ui/src/layout/styles';
+} from '@saashq/ui/src/layout/styles';
 import { List, SkillList } from './styles';
-import { isEnabled, loadDynamicComponent } from '@erxes/ui/src/utils/core';
+import { isEnabled, loadDynamicComponent } from '@saashq/ui/src/utils/core';
 
-import Button from '@erxes/ui/src/components/Button';
-import { EmptyState } from '@erxes/ui/src/components';
-import { IUser } from '@erxes/ui/src/auth/types';
-import Icon from '@erxes/ui/src/components/Icon';
+import Button from '@saashq/ui/src/components/Button';
+import { EmptyState } from '@saashq/ui/src/components';
+import { IUser } from '@saashq/ui/src/auth/types';
+import Icon from '@saashq/ui/src/components/Icon';
 import { Link } from 'react-router-dom';
-import ModalTrigger from '@erxes/ui/src/components/ModalTrigger';
+import ModalTrigger from '@saashq/ui/src/components/ModalTrigger';
 import React from 'react';
-import Sidebar from '@erxes/ui/src/layout/components/Sidebar';
-import { __ } from '@erxes/ui/src/utils';
+import Sidebar from '@saashq/ui/src/layout/components/Sidebar';
+import { __ } from '@saashq/ui/src/utils';
 import dayjs from 'dayjs';
 
 type Props = {

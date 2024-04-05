@@ -1,6 +1,6 @@
 import { colors, dimensions } from '../styles';
 
-import { ITag } from '@erxes/ui-tags/src/types';
+import { ITag } from '@saashq/ui-tags/src/types';
 import Label from './Label';
 import React from 'react';
 import styled from 'styled-components';

@@ -1,4 +1,4 @@
-import Icon from '@erxes/ui/src/components/Icon';
+import Icon from '@saashq/ui/src/components/Icon';
 import React from 'react';
 import {
   BoxContent,

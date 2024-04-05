@@ -1,14 +1,14 @@
-import { IUser, IUserDetails } from '@erxes/ui/src/auth/types';
-import { __, loadDynamicComponent } from '@erxes/ui/src/utils';
+import { IUser, IUserDetails } from '@saashq/ui/src/auth/types';
+import { __, loadDynamicComponent } from '@saashq/ui/src/utils';
 
-import { Actions } from '@erxes/ui/src/styles/main';
-import Button from '@erxes/ui/src/components/Button';
+import { Actions } from '@saashq/ui/src/styles/main';
+import Button from '@saashq/ui/src/components/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownToggle from '@erxes/ui/src/components/DropdownToggle';
-import Icon from '@erxes/ui/src/components/Icon';
-import ModalTrigger from '@erxes/ui/src/components/ModalTrigger';
+import DropdownToggle from '@saashq/ui/src/components/DropdownToggle';
+import Icon from '@saashq/ui/src/components/Icon';
+import ModalTrigger from '@saashq/ui/src/components/ModalTrigger';
 import React from 'react';
-import Tip from '@erxes/ui/src/components/Tip';
+import Tip from '@saashq/ui/src/components/Tip';
 import UserResetPasswordForm from '../../containers/UserResetPasswordForm';
 
 type Props = {

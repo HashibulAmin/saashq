@@ -1,12 +1,12 @@
-import { Alert, __ } from '@erxes/ui/src/utils';
+import { Alert, __ } from '@saashq/ui/src/utils';
 import React, { useState } from 'react';
 
-import Button from '@erxes/ui/src/components/Button';
-import ButtonMutate from '@erxes/ui/src/components/ButtonMutate';
-import ControlLabel from '@erxes/ui/src/components/form/Label';
-import FormGroup from '@erxes/ui/src/components/form/Group';
-import { IUser } from '@erxes/ui/src/auth/types';
-import { ModalFooter } from '@erxes/ui/src/styles/main';
+import Button from '@saashq/ui/src/components/Button';
+import ButtonMutate from '@saashq/ui/src/components/ButtonMutate';
+import ControlLabel from '@saashq/ui/src/components/form/Label';
+import FormGroup from '@saashq/ui/src/components/form/Group';
+import { IUser } from '@saashq/ui/src/auth/types';
+import { ModalFooter } from '@saashq/ui/src/styles/main';
 import Select from 'react-select-plus';
 import mutations from '../../graphql/mutations';
 

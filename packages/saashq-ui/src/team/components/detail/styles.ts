@@ -1,6 +1,6 @@
-import { colors, dimensions } from '@erxes/ui/src/styles';
+import { colors, dimensions } from '@saashq/ui/src/styles';
 
-import { SidebarList } from '@erxes/ui/src/layout/styles';
+import { SidebarList } from '@saashq/ui/src/layout/styles';
 import styled from 'styled-components';
 import styledTS from 'styled-components-ts';
 

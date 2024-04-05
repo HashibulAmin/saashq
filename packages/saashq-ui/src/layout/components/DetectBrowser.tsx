@@ -1,9 +1,9 @@
-import { dimensions } from '@erxes/ui/src/styles';
-import { AlertItem } from '@erxes/ui/src/utils/Alert/Alert';
+import { dimensions } from '@saashq/ui/src/styles';
+import { AlertItem } from '@saashq/ui/src/utils/Alert/Alert';
 import React from 'react';
 import RTG from 'react-transition-group';
 import styled from 'styled-components';
-import Icon from '@erxes/ui/src/components/Icon';
+import Icon from '@saashq/ui/src/components/Icon';
 import { __ } from '../../utils/core';
 
 const OldBrowserWarning = styled(AlertItem)`
@@ -56,12 +56,12 @@ class DetectBrowser extends React.PureComponent<{}, State> {
         >
           <OldBrowserWarning type="error">
             <b>
-              {__('Please upgrade your browser to use erxes!')}
+              {__('Please upgrade your browser to use saashq!')}
               <Icon icon="cancel" size={10} onClick={this.closeAlert} />
             </b>
             <div>
               {__(
-                'Unfortunately, You are running on a browser that may not be fully compatible with erxes',
+                'Unfortunately, You are running on a browser that may not be fully compatible with saashq',
               )}{' '}
               {__(`Please use recommended version`)} - {name.replace('/', '')}{' '}
               {minVersion}+.

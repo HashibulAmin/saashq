@@ -285,7 +285,7 @@ const RichTextEditor = forwardRef(function RichTextEditor(
 
       <RichTextEditorContent
         {...editorContentProps}
-        key="erxes-rte-content-key"
+        key="saashq-rte-content-key"
       />,
     ],
     [],

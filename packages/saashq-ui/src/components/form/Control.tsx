@@ -8,7 +8,7 @@ import {
   SelectWrapper,
 } from './styles';
 
-import { Column } from '@erxes/ui/src/styles/main';
+import { Column } from '@saashq/ui/src/styles/main';
 import ProgressBar from '../ProgressBar';
 import React from 'react';
 import Textarea from './Textarea';

@@ -2,7 +2,7 @@ import { colors, dimensions, typography } from '../styles';
 import { lighten, rgba } from '../styles/ecolor';
 import styled, { css } from 'styled-components';
 
-import { TabContainer } from '@erxes/ui/src/components/tabs/styles';
+import { TabContainer } from '@saashq/ui/src/components/tabs/styles';
 import { getThemeItem } from '../utils/core';
 import styledTS from 'styled-components-ts';
 import { twinkling } from '../utils/animations';

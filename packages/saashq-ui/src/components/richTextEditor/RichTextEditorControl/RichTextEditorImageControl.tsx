@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import ModalTrigger from '@erxes/ui/src/components/ModalTrigger';
+import ModalTrigger from '@saashq/ui/src/components/ModalTrigger';
 import { useRichTextEditorContext } from '../RichTextEditor.context';
 import {
   IRichTextEditorControlBaseProps,

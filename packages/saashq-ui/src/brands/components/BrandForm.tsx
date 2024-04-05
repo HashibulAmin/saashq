@@ -5,7 +5,7 @@ import FormGroup from '../../components/form/Group';
 import ControlLabel from '../../components/form/Label';
 import { ModalFooter } from '../../styles/main';
 import { IButtonMutateProps, IFormProps } from '../../types';
-import EmailConfigForm from '@erxes/ui-settings/src/general/components/EmailConfigForm';
+import EmailConfigForm from '@saashq/ui-settings/src/general/components/EmailConfigForm';
 import React, { useState } from 'react';
 import { IBrand } from '../types';
 
