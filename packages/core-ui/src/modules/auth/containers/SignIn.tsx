@@ -18,7 +18,7 @@ const SignInContainer = (props: IRouterProps) => {
       history.push(
         (!location.pathname.includes('sign-in') &&
           `${location.pathname}${location.search}`) ||
-          '/?signedIn=true'
+          '/?signedIn=true',
       );
 
       window.location.reload();
@@ -42,10 +42,10 @@ const SignInContainer = (props: IRouterProps) => {
 
   const updatedProps = {
     ...props,
-    renderButton
+    renderButton,
   };
 
   return <SignIn {...updatedProps} />;
 };
 
-export default withRouter<IRouterProps>(SignInContainer);
+export default withRouter<IRouterProps, any>(SignInContainer);
