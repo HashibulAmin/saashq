@@ -1,7 +1,7 @@
 import { paginate } from '@saashq/api-utils/src';
 import {
   checkPermission,
-  requireLogin
+  requireLogin,
 } from '@saashq/api-utils/src/permissions';
 
 import { IContext } from '../../../connectionResolver';
@@ -34,6 +34,10 @@ const generateFilterQuery = (params: IParam) => {
 
   if (contentType) {
     query.contentType = contentType;
+
+    if (contentType.includes('cards')) {
+      query.contentType = { $in: [contentType, contentType.slice(0, -1)] };
+    }
   }
 
   if (contentTypeId) {
@@ -41,6 +45,8 @@ const generateFilterQuery = (params: IParam) => {
   }
 
   query.selectedPaymentId = { $exists: true };
+
+  console.log('query', query);
 
   return query;
 };
@@ -52,12 +58,14 @@ const queries = {
       page: number;
       perPage: number;
     },
-    { models }: IContext
+    { models }: IContext,
   ) {
     const selector = generateFilterQuery(params);
 
+    console.log('selector', selector);
+
     return paginate(models.Invoices.find(selector).sort({ createdAt: -1 }), {
-      ...params
+      ...params,
     });
   },
 
@@ -65,14 +73,14 @@ const queries = {
     const counts = {
       total: 0,
       byKind: {},
-      byStatus: { paid: 0, pending: 0, refunded: 0, failed: 0 }
+      byStatus: { paid: 0, pending: 0, refunded: 0, failed: 0 },
     };
 
     const qry = {
-      ...(await generateFilterQuery(params))
+      ...(await generateFilterQuery(params)),
     };
 
-    const count = async query => {
+    const count = async (query) => {
       return models.Invoices.find(query).countDocuments();
     };
 
@@ -81,8 +89,8 @@ const queries = {
       counts.byKind[kind] = !params.kind
         ? countQueryResult
         : params.kind === kind
-        ? countQueryResult
-        : 0;
+          ? countQueryResult
+          : 0;
     }
 
     for (const status of PAYMENT_STATUS.ALL) {
@@ -90,8 +98,8 @@ const queries = {
       counts.byStatus[status] = !params.status
         ? countQueryResult
         : params.status === status
-        ? countQueryResult
-        : 0;
+          ? countQueryResult
+          : 0;
     }
 
     counts.total = await count(qry);
@@ -106,10 +114,10 @@ const queries = {
   async invoiceDetailByContent(
     _root,
     { contentType, contentTypeId },
-    { models }: IContext
+    { models }: IContext,
   ) {
     return models.Invoices.find({ contentType, contentTypeId }).lean();
-  }
+  },
 };
 
 requireLogin(queries, 'invoices');
