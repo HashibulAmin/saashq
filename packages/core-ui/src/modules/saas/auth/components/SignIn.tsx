@@ -17,7 +17,7 @@ class SignIn extends React.Component<Props> {
   renderContent = (formProps) => {
     const { values, isSubmitted } = formProps;
     const url = window.location.href;
-    const demoUrl = url.includes('shq.saashq.org');
+    const demoUrl = url.includes('xosdemo.saashq.org');
 
     return (
       <>

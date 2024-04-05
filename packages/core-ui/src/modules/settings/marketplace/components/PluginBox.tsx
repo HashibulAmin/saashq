@@ -69,7 +69,7 @@ class PluginBox extends React.Component<Props, {}> {
       <>
         <FooterItem>
           <Icon icon="user" size={14} />
-          <span>{plugin.creator ? plugin.creator.name : __('SaasHQ Inc')}</span>
+          <span>{plugin.creator ? plugin.creator.name : __('saashq Inc')}</span>
         </FooterItem>
         <FooterItem>
           <Icon icon="chart-bar" size={14} />

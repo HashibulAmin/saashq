@@ -15,7 +15,7 @@ type Props = {
 export const OwnerDescription = () => {
   return (
     <>
-      <h1>{__('Welcome to SaasHQ')}</h1>
+      <h1>{__('Welcome to saashq')}</h1>
       <h2>{__('saashq is the partner your website needs for success')}</h2>
       <p>
         {__(

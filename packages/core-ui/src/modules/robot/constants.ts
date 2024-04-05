@@ -4,7 +4,7 @@ export const PLACEHOLDER = 'Choose one';
 
 export const ROLE_VALUE = [
   { _id: 'answerOne', name: 'I’ve never used a CRM or business tools before' },
-  { _id: 'answerTwo', name: 'I’m new to SaasHQ, but I have used a CRM before' },
+  { _id: 'answerTwo', name: 'I’m new to saashq, but I have used a CRM before' },
   { _id: 'answerThree', name: 'I know my way around saashq well' },
 ];
 
@@ -46,7 +46,7 @@ export const ROLE_SETUP = [
         ],
       },
       {
-        name: 'Integrate other apps into SaasHQ',
+        name: 'Integrate other apps into saashq',
         title: 'integrationOtherApps',
         steps: 2,
         types: [
@@ -142,7 +142,7 @@ export const ROLE_SETUP = [
         types: ['customerSupport', 'managementAndOperations', 'above'],
       },
       {
-        name: 'Import your existing customer data to SaasHQ',
+        name: 'Import your existing customer data to saashq',
         title: 'importExistingContacts',
         steps: 4,
         types: ['above'],

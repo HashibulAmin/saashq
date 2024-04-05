@@ -72,7 +72,7 @@ export const SETUP = [
 export const COMMUNITY = [
   {
     name: 'Github',
-    link: 'https://github.com/saashq-org/saashq',
+    link: 'https://github.com/saashq/saashq',
     icon: 'github-circled',
   },
   {
@@ -94,7 +94,7 @@ export const COMMUNITY = [
   },
   {
     name: 'Blog',
-    link: 'https://saashq.org/blog',
+    link: 'https://shq.saashq.org/blog',
     image: '/images/glyph_dark.png',
   },
 ];
@@ -115,13 +115,13 @@ export const DOCS = [
   {
     title: 'Invest',
     desc: 'Take part and invest in saashq',
-    url: 'https://saashq.org/invest',
+    url: 'https://shq.saashq.org/invest',
     icon: 'dollar-alt',
   },
   {
     title: 'Resource center',
     desc: 'Access all resources you looking for',
-    url: 'https://saashq.org/resource-center',
+    url: 'https://shq.saashq.org/resource-center',
     icon: 'folder-2',
   },
 ];
@@ -177,7 +177,7 @@ export const VIDEO = [
   },
   {
     title: 'Integrations',
-    desc: 'How to integrate external platforms to SaasHQ',
+    desc: 'How to integrate external platforms to saashq',
     icon: 'puzzle-piece',
     url: 'https://www.youtube.com/embed/ZHdwkZSnkxU?si=wPUlu33bEBCep9xS',
   },

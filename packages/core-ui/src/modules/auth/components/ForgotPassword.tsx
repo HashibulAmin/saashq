@@ -41,7 +41,9 @@ class ForgotPassword extends React.Component<Props, { email: string }> {
   renderLogo() {
     const logo = '/images/logo-dark.png';
     const thLogo = getThemeItem('logo');
-    return thLogo && typeof thLogo === 'string' ? readFile(thLogo) : logo;
+    return thLogo && typeof thLogo === 'string'
+      ? readFile(thLogo)
+      : `/images/${logo}`;
   }
 
   render() {

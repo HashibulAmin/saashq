@@ -36,8 +36,8 @@ class PluginDetailsContainer extends React.Component<FinalProps, State> {
   async componentDidMount() {
     const url =
       process.env.NODE_ENV === 'production'
-        ? `https://shq.saashq.org/js/plugin/${this.props.id}`
-        : `http://127.0.0.1:3500/plugin/${this.props.id}`;
+        ? `https://shq.saashq.org/pluginDetail/${this.props.id}`
+        : `http://127.0.0.1:3500/pluginDetail/${this.props.id}`;
 
     fetch(url)
       .then(async (response) => {
@@ -51,7 +51,7 @@ class PluginDetailsContainer extends React.Component<FinalProps, State> {
 
     const pluginsUrl =
       process.env.NODE_ENV === 'production'
-        ? 'https://shq.saashq.org/js/plugin.js'
+        ? 'https://shq.saashq.org/plugins'
         : 'http://127.0.0.1:3500/plugins';
 
     fetch(pluginsUrl)

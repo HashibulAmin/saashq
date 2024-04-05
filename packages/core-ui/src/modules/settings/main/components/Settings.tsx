@@ -109,7 +109,7 @@ class Settings extends React.PureComponent {
                   <a
                     rel="noopener noreferrer"
                     target="_blank"
-                    href="https://saashq.org/organizations"
+                    href="https://shq.saashq.org/organizations"
                   >
                     <img
                       src="/images/icons/saashq-24.svg"

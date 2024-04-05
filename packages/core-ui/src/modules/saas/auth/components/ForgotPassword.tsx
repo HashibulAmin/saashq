@@ -61,7 +61,7 @@ class ForgotPassword extends React.Component<Props, { email: string }> {
             block={true}
             style={{ background: `${backgroundColor}` }}
           >
-            Email me the instructions
+            Email me the instruction
           </Button>
         </form>
         <Link to="/sign-in">{__('Sign in')}</Link>
