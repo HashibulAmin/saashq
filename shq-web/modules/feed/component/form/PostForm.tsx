@@ -250,7 +250,7 @@ const PostForm = ({
     return (
       <>
         <div className="flex justify-center gap-6 mb-6 h-[calc(100%-50px)]">
-          <div className="max-w-[566px] border border-exm rounded-md w-full h-full">
+          <div className="max-w-[566px] border border-shq rounded-md w-full h-full">
             <AttachmentBgSection
               uploading={uploading}
               images={images}
@@ -263,8 +263,8 @@ const PostForm = ({
             />
           </div>
 
-          <div className="border border-exm rounded-md max-w-[566px] !w-full">
-            <div className="px-4 py-3 border-b-2 border-exm text-sm">Post</div>
+          <div className="border border-shq rounded-md max-w-[566px] !w-full">
+            <div className="px-4 py-3 border-b-2 border-shq text-sm">Post</div>
             <FormField
               control={form.control}
               name="description"

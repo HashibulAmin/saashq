@@ -177,7 +177,7 @@ export function getDbNameFromConnectionString(connectionString) {
   const VERSION = getEnv({ name: 'VERSION' });
 
   if (VERSION && VERSION === 'saas') {
-    return 'saashq';
+    return 'erxes';
   }
 
   if (parsedUrl.pathname) {
@@ -192,12 +192,12 @@ export const getIndexPrefix = (connectionString?: string) => {
   if (connectionString) {
     const dbName = getDbNameFromConnectionString(connectionString);
 
-    if (dbName !== 'saashq') {
+    if (dbName !== 'erxes') {
       return `${dbName}__`;
     }
   }
 
-  return 'saashq__';
+  return 'erxes__';
 };
 
 // Fetch from es with scroll option than can find results more than the default 10000

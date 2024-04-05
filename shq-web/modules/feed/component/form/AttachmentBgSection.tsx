@@ -110,7 +110,7 @@ export default function AttachmentBgSection({
           />
         </div>
 
-        <div className="flex h-[40%] border-t border-exm p-4">
+        <div className="flex h-[40%] border-t border-shq p-4">
           <DragNDrop
             setAttachments={setAttachments}
             setImage={setImage}
@@ -127,7 +127,7 @@ export default function AttachmentBgSection({
         <p className="mb-3 text-[#98A2B3]">All backgrounds</p>
         <div className="w-full grid grid-cols-3 gap-3">
           <div
-            className={`rounded-sm border border-exm flex justify-center items-center text-[#667085] text-[20px] font-bold cursor-pointer ${
+            className={`rounded-sm border border-shq flex justify-center items-center text-[#667085] text-[20px] font-bold cursor-pointer ${
               bg.url === "" || (bg.url || "").includes("#") ? activeStyle : ""
             } `}
             onClick={() => onClickHandler("bg", "")}
@@ -165,7 +165,7 @@ export default function AttachmentBgSection({
             />
           ))}
         </div>
-        <div className="h-[30px] flex text-sm border border-exm">
+        <div className="h-[30px] flex text-sm border border-shq">
           <p className="text-[#98a1a4] bg-[#f0f0f0] h-full w-[30px] rounded-sm rounded-tr-none rounded-br-none flex justify-center items-center">
             #
           </p>

@@ -15,7 +15,7 @@ import forms from './forms';
 import app from '@saashq/api-utils/src/app';
 
 export default {
-  name: 'exmfeed',
+  name: 'shqfeed',
   permissions,
   graphql: async () => {
     return {

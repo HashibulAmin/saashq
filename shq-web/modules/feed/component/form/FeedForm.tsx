@@ -96,7 +96,7 @@ const FeedForm = ({
     return (
       <div className="max-w-[880px] w-full mx-auto">
         <Card className="w-full mx-auto mt-4 border-0">
-          <CardHeader className="flex border border-exm rounded-[8px] py-2 px-3">
+          <CardHeader className="flex border border-shq rounded-[8px] py-2 px-3">
             <div className="flex items-center">
               <Image
                 src={
@@ -113,7 +113,7 @@ const FeedForm = ({
                 <DialogTrigger asChild={true}>
                   <div>
                     <Input
-                      className="bg-[#FCFCFC] rounded-[8px] border-exm"
+                      className="bg-[#FCFCFC] rounded-[8px] border-shq"
                       placeholder={`${placeHolder || "place"}`}
                     />
                   </div>

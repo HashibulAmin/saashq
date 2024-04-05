@@ -396,8 +396,8 @@ const emojiReactedUsers = gql`
 `
 
 const userEvents = gql`
-  query ExmFeedEventsByUser($userId: String) {
-    exmFeedEventsByUser(userId: $userId) {
+  query ShqFeedEventsByUser($userId: String) {
+    shqFeedEventsByUser(userId: $userId) {
       goingEvents {
         _id
         attachments

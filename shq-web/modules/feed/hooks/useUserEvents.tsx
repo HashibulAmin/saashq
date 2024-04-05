@@ -15,8 +15,8 @@ export const useUserEvents = ({userId}:{userId: string}): IUsePosts => {
     },
   })
 
-  const events = (data || {}).exmFeedEventsByUser || []
-  const totalCount = (data || {}).exmFeed ? (data || {}).exmFeed.totalCount : 0
+  const events = (data || {}).shqFeedEventsByUser || []
+  const totalCount = (data || {}).shqFeed ? (data || {}).shqFeed.totalCount : 0
 
   return {
     loading,

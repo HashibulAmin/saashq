@@ -58,7 +58,7 @@ const List = ({ contentType }: { contentType: string }) => {
       const myEvents = events.goingEvents.concat(events.interestedEvents)
 
       return (
-        <div className="border border-exm p-4 max-w-[880px] w-full rounded-lg">
+        <div className="border border-shq p-4 max-w-[880px] w-full rounded-lg">
           <div className="flex justify-between font-semibold w-full text-base mb-4">
             <div>Your event</div>
             <div
@@ -68,7 +68,7 @@ const List = ({ contentType }: { contentType: string }) => {
               See All
             </div>
           </div>
-          <div className="rounded-sm border border-exm">
+          <div className="rounded-sm border border-shq">
             {myEvents.slice(2).map((event: any, index: number) => (
               <EventItem postId={event._id} key={index} myEvent={true} />
             ))}
