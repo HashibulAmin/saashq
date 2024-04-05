@@ -1,20 +1,20 @@
 import {
   FieldStyle,
   SidebarCounter,
-  SidebarList
-} from '@saashq/ui/src/layout/styles';
+  SidebarList,
+} from '@erxes/ui/src/layout/styles';
 import { List, SkillList } from './styles';
-import { isEnabled, loadDynamicComponent } from '@saashq/ui/src/utils/core';
+import { isEnabled, loadDynamicComponent } from '@erxes/ui/src/utils/core';
 
-import Button from '@saashq/ui/src/components/Button';
-import { EmptyState } from '@saashq/ui/src/components';
-import { IUser } from '@saashq/ui/src/auth/types';
-import Icon from '@saashq/ui/src/components/Icon';
+import Button from '@erxes/ui/src/components/Button';
+import { EmptyState } from '@erxes/ui/src/components';
+import { IUser } from '@erxes/ui/src/auth/types';
+import Icon from '@erxes/ui/src/components/Icon';
 import { Link } from 'react-router-dom';
-import ModalTrigger from '@saashq/ui/src/components/ModalTrigger';
+import ModalTrigger from '@erxes/ui/src/components/ModalTrigger';
 import React from 'react';
-import Sidebar from '@saashq/ui/src/layout/components/Sidebar';
-import { __ } from '@saashq/ui/src/utils';
+import Sidebar from '@erxes/ui/src/layout/components/Sidebar';
+import { __ } from '@erxes/ui/src/utils';
 import dayjs from 'dayjs';
 
 type Props = {
@@ -24,7 +24,7 @@ type Props = {
   excludeUserSkill: (skillId: string, userId: string) => void;
   renderSkillForm: ({
     closeModal,
-    user
+    user,
   }: {
     closeModal: () => void;
     user: IUser;
@@ -39,7 +39,7 @@ function LeftSidebar({
   skills = [],
   channels,
   excludeUserSkill,
-  renderSkillForm
+  renderSkillForm,
 }: Props) {
   const { details = {} } = user;
 
@@ -65,7 +65,7 @@ function LeftSidebar({
             'Birthdate',
             details.birthDate
               ? dayjs(details.birthDate).format('YYYY-MM-DD')
-              : '-'
+              : '-',
           )}
           {renderRow('Position', details.position)}
           {renderRow('Score', user.score)}
@@ -73,7 +73,7 @@ function LeftSidebar({
             'Joined date',
             details.workStartedDate
               ? dayjs(details.workStartedDate).format('YYYY-MM-DD')
-              : '-'
+              : '-',
           )}
           {renderRow('Description', details.description, true)}
         </SidebarList>
@@ -86,7 +86,7 @@ function LeftSidebar({
       <Section>
         <Title>{__('Channels')}</Title>
         <List>
-          {channels.map(channel => {
+          {channels.map((channel) => {
             return (
               <li key={channel._id}>
                 <Link to={`/settings/channels?id=${channel._id}`}>
@@ -102,7 +102,7 @@ function LeftSidebar({
   }
 
   function renderSkills() {
-    const getContent = props => {
+    const getContent = (props) => {
       return renderSkillForm(props);
     };
 
@@ -118,7 +118,7 @@ function LeftSidebar({
         </Section.QuickButtons>
         <SkillList>
           {skills.length > 0 ? (
-            skills.map(skill => {
+            skills.map((skill) => {
               const handleRemove = () => excludeUserSkill(skill._id, user._id);
 
               return (
@@ -145,7 +145,7 @@ function LeftSidebar({
     const content = () =>
       loadDynamicComponent('contactDetailLeftSidebar', {
         user: user,
-        isDetail: true
+        isDetail: true,
       });
 
     const extraButton = (
@@ -161,7 +161,7 @@ function LeftSidebar({
 
     return loadDynamicComponent('contactDetailLeftSidebar', {
       user: user,
-      isDetail: true
+      isDetail: true,
     });
   }
 

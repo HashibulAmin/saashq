@@ -127,6 +127,28 @@ const robotAnimation = keyframes`
   }
 }`;
 
+const pop = keyframes`
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+    transform-origin: 50% 50%;
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+  }
+}`;
+
+const animationPulse = keyframes`
+  0% {
+    box-shadow: 0 0 0 0px rgba(60, 205, 56, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgba(60, 205, 56, 0);
+  }
+}`;
+
 export {
   rotate,
   fadeIn,
@@ -139,4 +161,6 @@ export {
   wave,
   robotAnimation,
   highlight,
+  pop,
+  animationPulse,
 };

@@ -16,7 +16,7 @@ const Item = styled.li`
 
   & + li::before {
     content: '\\e9c2';
-    font-family: 'saashq';
+    font-family: 'erxes';
     padding: 0 ${dimensions.unitSpacing}px;
     color: ${rgba(colors.colorCoreDarkGray, 0.7)};
     font-size: 10px;

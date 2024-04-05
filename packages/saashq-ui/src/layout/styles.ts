@@ -2,7 +2,7 @@ import { colors, dimensions, typography } from '../styles';
 import { lighten, rgba } from '../styles/ecolor';
 import styled, { css } from 'styled-components';
 
-import { TabContainer } from '@saashq/ui/src/components/tabs/styles';
+import { TabContainer } from '@erxes/ui/src/components/tabs/styles';
 import { getThemeItem } from '../utils/core';
 import styledTS from 'styled-components-ts';
 import { twinkling } from '../utils/animations';
@@ -41,7 +41,6 @@ const PageHeader = styled.div`
 const Contents = styledTS<{ hasBorder?: boolean }>(styled.div)`
   display: flex;
   flex: 1;
-  margin: ${dimensions.unitSpacing}px 0 0 ${dimensions.unitSpacing}px;
   max-height: 100%;
   position: absolute;
   left: 0;
@@ -84,8 +83,7 @@ const MainContent = styledTS<{
   display: flex;
   flex-direction: column;
   min-width: 480px;
-  box-shadow: ${(props) =>
-    !props.transparent && `0 0 6px 1px ${colors.shadowPrimary}`};
+  border-right: 1px solid ${colors.borderPrimary};
   height: ${(props) => props.center && '100%'};
 `;
 
@@ -150,12 +148,9 @@ const SideContent = styledTS<{
   width: ${(props) => (props.wide ? '340px' : '290px')};
   flex: ${(props) => (props.half ? '1' : 'none')};
   background: ${(props) => (props.full ? colors.colorWhite : 'none')};
-  margin: 0 ${dimensions.unitSpacing}px;
   margin: ${(props) => props.hasBorder && 0};
   border-right: ${(props) =>
     props.hasBorder && `1px solid ${colors.borderPrimary}`};
-  box-shadow: ${(props) =>
-    props.full ? `0 0 6px 1px ${colors.shadowPrimary}` : 'none'};
 
   ${TabContainer} {
     position: sticky;
@@ -248,7 +243,8 @@ const SidebarToggle = styledTS<{ inverse?: boolean }>(styled.a)`
   bottom: 0;
   text-align: center;
   padding: 0;
-  background: ${(props) => (props.inverse ? colors.colorWhite : colors.bgLight)};
+  background: ${(props) =>
+    props.inverse ? colors.colorWhite : colors.bgLight};
   border-top: 1px solid ${colors.borderPrimary};
   z-index: 2;
   &:hover {
@@ -350,7 +346,8 @@ const SidebarList = styledTS<{
       background: ${(props) => !props.noBackground && colors.bgActive};
       text-decoration: none;
       outline: 0;
-      color: ${(props) => !props.noTextColor && lighten(colors.textPrimary, 40)};
+      color: ${(props) =>
+        !props.noTextColor && lighten(colors.textPrimary, 40)};
     }
     &.active {
       background: ${rgba(colors.colorPrimary, 0.2)};
@@ -396,7 +393,8 @@ const CenterContent = styled.div`
 const SectionContainer = styledTS<{ hasShadow?: boolean }>(styled.div)`
   position: relative;
   margin-bottom: ${dimensions.unitSpacing}px;
-  box-shadow: ${(props) => props.hasShadow && 'rgb(0 0 0 / 8%) 0px 0px 6px 0px'};
+  box-shadow: ${(props) =>
+    props.hasShadow && 'rgb(0 0 0 / 8%) 0px 0px 6px 0px'};
 
   > div {
     margin-bottom: 0;
@@ -630,14 +628,16 @@ const AuthCustomDescription = styled.div`
   }
 `;
 
-const AuthDescription = styled.div`
+const AuthDescription = styledTS<{
+  backgroundColor?: string;
+  textColor?: string;
+}>(styled.div)`
   width: 100%;
   height: 100%;
-  background: ${
-    thBackground
-      ? thBackground
-      : `${colors.colorPrimaryDark} url('/images/stars.png') repeat top center;`
-  }
+  background: ${(props) =>
+    props.backgroundColor ||
+    colors.colorPrimaryDark} url('/images/stars.png') repeat top
+    center;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -649,11 +649,9 @@ const AuthDescription = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
-    background: ${
-      thBackground
-        ? thBackground
-        : `transparent url('/images/twinkling.png') repeat top center`
-    }
+    background: ${(props) =>
+      !props.backgroundColor &&
+      `transparent url('/images/twinkling.png') repeat top center`};
     animation: ${twinkling} 200s linear infinite;
   }
 
@@ -673,7 +671,7 @@ const AuthDescription = styled.div`
     position: relative;
     font-weight: bold;
     font-size: 48px;
-    color: ${thColor || colors.colorWhite};
+    color: ${(props) => props.textColor || colors.colorWhite};
     margin: 0px;
 
     @media (max-width: 768px) {

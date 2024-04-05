@@ -2,16 +2,16 @@ import SelectWithSearch from '../../components/SelectWithSearch';
 import { IOption, IQueryParams } from '../../types';
 import React from 'react';
 import { queries } from '../graphql';
-import { IUnit } from '@saashq/ui/src/team/types';
+import { IUnit } from '@erxes/ui/src/team/types';
 
 // get user options for react-select-plus
 export function generateUserOptions(array: IUnit[] = []): IOption[] {
-  return array.map(item => {
+  return array.map((item) => {
     const unit = item || ({} as IUnit);
 
     return {
       value: unit._id,
-      label: `${unit.title} (${unit.code})`
+      label: `${unit.title} (${unit.code})`,
     };
   });
 }
@@ -34,7 +34,7 @@ export default (props: {
     multi = true,
     label,
     filterParams,
-    name
+    name,
   } = props;
   const defaultValue = queryParams ? queryParams[name] : initialValue;
 

@@ -6,7 +6,7 @@ interface IRichTextEditorContext {
   editor: Editor | null;
   labels: IRichTextEditorLabels;
   isSourceEnabled: boolean;
-  toggleSource: () => void;
+  toggleSourceView: () => void;
   codeMirrorRef?: React.RefObject<ReactCodeMirrorRef>;
 }
 

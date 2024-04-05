@@ -1,20 +1,16 @@
 import { Formgroup, Label } from '../../form/styles';
 import { colors, dimensions } from '../../../styles';
 import { rgba } from '../../../styles/ecolor';
-import {
-  DragHandler,
-  SortableWrapper,
-  SortItem
-} from '../../../styles/sort';
+import { DragHandler, SortableWrapper, SortItem } from '../../../styles/sort';
 import {
   fadeIn,
   slideDown,
   slideLeft,
-  slideRight
+  slideRight,
 } from '../../../utils/animations';
 import styled from 'styled-components';
 import styledTS from 'styled-components-ts';
-import { LogoContainer } from '@saashq/ui-settings/src/styles';
+import { LogoContainer } from '@erxes/ui-settings/src/styles';
 
 const coreSpace = `${dimensions.coreSpacing}px`;
 const unitSpace = `${dimensions.unitSpacing}px`;
@@ -184,10 +180,10 @@ const CallOutBody = styledTS<{ imgSize?: string }>(styled.div)`
   margin-bottom: ${dimensions.unitSpacing}px;
 
   img {
-    width: ${props => props.imgSize || '100%'};
+    width: ${(props) => props.imgSize || '100%'};
     float: left;
     margin-right: ${dimensions.unitSpacing}px;
-    padding-bottom: ${props => props.imgSize === '100%' && '10px'};
+    padding-bottom: ${(props) => props.imgSize === '100%' && '10px'};
   }
 `;
 
@@ -299,7 +295,7 @@ const WebPreview = styledTS<{ isEngage?: boolean }>(styled.div)`
     rgba(0, 0, 0, 0.08) 95%,
     rgba(0, 0, 0, 0.1) 100%
   );
-  width: ${props => props.isEngage && '100%'};
+  width: ${(props) => props.isEngage && '100%'};
   .engage-message {
     > div:first-of-type {
       flex-shrink: 0;
@@ -325,5 +321,5 @@ export {
   PrintButton,
   LauncherContainer,
   WebPreview,
-  WidgetPreview
+  WidgetPreview,
 };

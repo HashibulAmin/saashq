@@ -1,10 +1,10 @@
-import { AuthBox } from '@saashq/ui/src/auth/styles';
-import { IUser } from '@saashq/ui/src/auth/types';
-import Button from '@saashq/ui/src/components/Button';
-import FormControl from '@saashq/ui/src/components/form/Control';
-import FormGroup from '@saashq/ui/src/components/form/Group';
-import ControlLabel from '@saashq/ui/src/components/form/Label';
-import AuthLayout from '@saashq/ui/src/layout/components/AuthLayout';
+import { AuthBox } from '@erxes/ui/src/auth/styles';
+import { IUser } from '@erxes/ui/src/auth/types';
+import Button from '@erxes/ui/src/components/Button';
+import FormControl from '@erxes/ui/src/components/form/Control';
+import FormGroup from '@erxes/ui/src/components/form/Group';
+import ControlLabel from '@erxes/ui/src/components/form/Label';
+import AuthLayout from '@erxes/ui/src/layout/components/AuthLayout';
 import React from 'react';
 import { __ } from '../../utils/core';
 
@@ -13,7 +13,7 @@ class Confirmation extends React.Component<{
     password,
     passwordConfirmation,
     fullName,
-    username
+    username,
   }: {
     password: string;
     passwordConfirmation: string;
@@ -22,15 +22,15 @@ class Confirmation extends React.Component<{
   }) => void;
   currentUser?: IUser;
 }> {
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
 
     const password = (document.getElementById('password') as HTMLInputElement)
       .value;
 
-    const passwordConfirmation = (document.getElementById(
-      'passwordConfirmation'
-    ) as HTMLInputElement).value;
+    const passwordConfirmation = (
+      document.getElementById('passwordConfirmation') as HTMLInputElement
+    ).value;
 
     const fullName = (document.getElementById('fullName') as HTMLInputElement)
       .value;
@@ -42,7 +42,7 @@ class Confirmation extends React.Component<{
       fullName,
       username,
       password,
-      passwordConfirmation
+      passwordConfirmation,
     });
   };
 

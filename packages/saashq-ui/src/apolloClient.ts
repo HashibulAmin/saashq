@@ -43,7 +43,6 @@ const authLink = setContext((_, { headers }) => {
 });
 
 // Combining httpLink and warelinks altogether
-// const httpLinkWithMiddleware = errorLink.concat(authLink).concat(httpLink);
 const httpLinkWithMiddleware = from([errorLink, authLink, httpLink]);
 
 // Subscription config

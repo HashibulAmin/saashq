@@ -10,12 +10,12 @@ import {
   PreviewContainer,
   PreviewTitle,
   SlideLeftContent,
-  SlideRightContent
+  SlideRightContent,
 } from './styles';
 import { LauncherContainer, WebPreview, WidgetPreview } from '../styles';
 
 import Button from '../../Button';
-import { FlexRow } from '@saashq/ui-settings/src/styles';
+import { FlexRow } from '@erxes/ui-settings/src/styles';
 import React from 'react';
 import { readFile } from '../../../utils';
 import styled from 'styled-components';
@@ -66,12 +66,12 @@ class CommonPreview extends React.Component<Props, {}> {
       color,
       btnText = 'Send',
       numberOfPages = 1,
-      currentPage = 1
+      currentPage = 1,
     } = this.props;
 
     const button = (
       title: string,
-      action?: React.MouseEventHandler<HTMLButtonElement>
+      action?: React.MouseEventHandler<HTMLButtonElement>,
     ) => {
       return (
         <Button
@@ -138,7 +138,7 @@ class CommonPreview extends React.Component<Props, {}> {
           background: theme ? theme : color,
           opacity: 0.7,
           height: '13px',
-          width: `${percentage}%`
+          width: `${percentage}%`,
         }}
       >
         <div

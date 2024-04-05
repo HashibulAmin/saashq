@@ -1,4 +1,4 @@
-import { __ } from '@saashq/ui/src/utils';
+import { __ } from '@erxes/ui/src/utils';
 
 export const days = [
   { value: 'everyday', label: __('Everyday') },
@@ -161,4 +161,4 @@ export const INTEGRATIONS = [
   },
 ];
 
-export const WEBHOOK_DOC_URL = 'https://docs.saashq.io/';
+export const WEBHOOK_DOC_URL = 'https://docs.erxes.io/';

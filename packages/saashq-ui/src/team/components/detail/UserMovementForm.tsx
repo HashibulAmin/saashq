@@ -3,8 +3,8 @@ import {
   ActivityIcon,
   ActivityRow,
   FlexCenterContent,
-  Timeline
-} from '@saashq/ui-log/src/activityLogs/styles';
+  Timeline,
+} from '@erxes/ui-log/src/activityLogs/styles';
 import React from 'react';
 import { DataWithLoader, NameCard, Tip } from '../../../components';
 import Icon from '../../../components/Icon';
@@ -13,7 +13,7 @@ import dayjs from 'dayjs';
 import { __ } from '../../../utils';
 import { ContentBox } from '../../../layout';
 import styled from 'styled-components';
-import { colors, dimensions } from '@saashq/ui/src/styles';
+import { colors, dimensions } from '@erxes/ui/src/styles';
 import styledTS from 'styled-components-ts';
 import { ActivityContent } from '../../../styles/main';
 
@@ -48,14 +48,14 @@ class UserMovementForm extends React.Component<Props> {
       contentTypeDetail,
       createdAt,
       contentType,
-      status
+      status,
     } = movement;
 
     const { color, label, label2, icon } = {
       color: status === 'removed' ? colors.colorCoreRed : colors.colorCoreGreen,
       label: status === 'removed' ? 'Removed:' : 'Moved:',
       label2: status === 'removed' ? 'From' : 'To',
-      icon: status === 'removed' ? 'user-minus' : 'user-plus'
+      icon: status === 'removed' ? 'user-minus' : 'user-plus',
     };
 
     return (
@@ -101,7 +101,7 @@ class UserMovementForm extends React.Component<Props> {
           count={list?.length || 0}
           data={
             <Timeline>
-              {(list || []).map(movement => this.renderRow(movement))}
+              {(list || []).map((movement) => this.renderRow(movement))}
             </Timeline>
           }
           emptyText="No movements of user"

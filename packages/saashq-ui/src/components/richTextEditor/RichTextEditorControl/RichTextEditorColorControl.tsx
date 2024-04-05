@@ -24,12 +24,16 @@ export const RichTextEditorColorControl = () => {
   let overLayRef;
   const [isPickerVisible, setIsPickerVisible] = useState(false);
   const [pickerColor, setPickerColor] = useState(colors.colorPrimary);
-  const [color, setColor] = useState(colors.colorPrimary);
+  const [color, setColor] = useState('');
 
   const { editor, labels } = useRichTextEditorContext();
 
   useEffect(() => {
-    editor?.chain().focus().setColor(color).run();
+    if (!color) {
+      editor?.chain().focus().unsetColor().run();
+    } else {
+      editor?.chain().focus().setColor(color).run();
+    }
   }, [color]);
 
   useEffect(() => {

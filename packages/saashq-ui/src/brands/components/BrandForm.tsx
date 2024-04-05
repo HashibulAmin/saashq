@@ -5,7 +5,7 @@ import FormGroup from '../../components/form/Group';
 import ControlLabel from '../../components/form/Label';
 import { ModalFooter } from '../../styles/main';
 import { IButtonMutateProps, IFormProps } from '../../types';
-import EmailConfigForm from '@saashq/ui-settings/src/general/components/EmailConfigForm';
+import EmailConfigForm from '@erxes/ui-settings/src/general/components/EmailConfigForm';
 import React, { useState } from 'react';
 import { IBrand } from '../types';
 
@@ -33,7 +33,7 @@ const BrandForm = (props: Props) => {
 
     const updatedValues = {
       ...values,
-      emailConfig
+      emailConfig,
     };
 
     return (
@@ -52,7 +52,7 @@ const BrandForm = (props: Props) => {
           values: updatedValues,
           isSubmitted,
           callback: closeModal || afterSave,
-          object: brand
+          object: brand,
         })}
       </ModalFooter>
     );

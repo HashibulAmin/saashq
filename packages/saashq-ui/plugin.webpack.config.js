@@ -206,7 +206,7 @@ module.exports = (configs) => (env, args) => {
         exposes: configs.exposes,
         shared: {
           ...shared,
-          "@saashq/ui": {
+          "@erxes/ui": {
             requiredVersion: "1.0.0",
             singleton: true,
           },

@@ -240,7 +240,7 @@ const DropIcon = styledTS<{ isOpen: boolean }>(styled.span)`
   &:after {
     cursor: pointer;
     content: '\\e9a6';
-    font-family: 'saashq';
+    font-family: 'erxes';
     float: right;
     transition: all ease 0.3s;
     margin-left: ${dimensions.unitSpacing - 2}px;

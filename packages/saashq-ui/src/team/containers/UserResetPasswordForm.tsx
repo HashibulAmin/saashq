@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 import * as compose from 'lodash.flowright';
-import { IUser } from '@saashq/ui/src/auth/types';
-import { Alert, withProps } from '@saashq/ui/src/utils';
+import { IUser } from '@erxes/ui/src/auth/types';
+import { Alert, withProps } from '@erxes/ui/src/utils';
 import React from 'react';
 import { graphql } from '@apollo/client/react/hoc';
 import UserResetPasswordForm from '../components/UserResetPasswordForm';
@@ -14,7 +14,7 @@ type Props = {
 };
 
 const UserResetPasswordContainer = (
-  props: Props & ResetMemberPasswordResponse
+  props: Props & ResetMemberPasswordResponse,
 ) => {
   const { usersResetMemberPassword } = props;
 
@@ -36,14 +36,14 @@ const UserResetPasswordContainer = (
         Alert.success('Your password has been changed and updated');
         props.closeModal();
       })
-      .catch(error => {
+      .catch((error) => {
         Alert.error(error.message);
       });
   };
 
   const updatedProps = {
     ...props,
-    save
+    save,
   };
 
   return <UserResetPasswordForm {...updatedProps} />;
@@ -54,8 +54,8 @@ export default withProps<Props>(
     graphql(gql(mutations.usersResetMemberPassword), {
       name: 'usersResetMemberPassword',
       options: {
-        refetchQueries: ['users']
-      }
-    })
-  )(UserResetPasswordContainer)
+        refetchQueries: ['users'],
+      },
+    }),
+  )(UserResetPasswordContainer),
 );

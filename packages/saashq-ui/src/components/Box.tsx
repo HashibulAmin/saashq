@@ -1,4 +1,4 @@
-import { SectionContainer, SidebarCollapse } from '@saashq/ui/src/layout/styles';
+import { SectionContainer, SidebarCollapse } from '@erxes/ui/src/layout/styles';
 import { getConfig, setConfig } from '../utils/core';
 
 import Icon from './Icon';
@@ -20,7 +20,7 @@ type BoxState = {
   isOpen?: boolean;
 };
 
-const STORAGE_KEY = `saashq_sidebar_section_config`;
+const STORAGE_KEY = `erxes_sidebar_section_config`;
 
 export default class Box extends React.Component<BoxProps, BoxState> {
   constructor(props: BoxProps) {
@@ -31,7 +31,7 @@ export default class Box extends React.Component<BoxProps, BoxState> {
     this.state = {
       // first check if isOpen is passed as a prop
       isOpen:
-        isOpen !== undefined ? isOpen : name ? config[name] || false : false
+        isOpen !== undefined ? isOpen : name ? config[name] || false : false,
     };
   }
 

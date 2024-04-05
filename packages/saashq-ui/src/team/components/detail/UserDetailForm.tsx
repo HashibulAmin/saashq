@@ -1,12 +1,12 @@
 import ActionSection from '../../containers/ActionSection';
-import EmptyState from '@saashq/ui/src/components/EmptyState';
-import { IUser } from '@saashq/ui/src/auth/types';
+import EmptyState from '@erxes/ui/src/components/EmptyState';
+import { IUser } from '@erxes/ui/src/auth/types';
 import InfoSection from './InfoSection';
 import LeftSidebar from './LeftSidebar';
 import React, { useState } from 'react';
 import { UserHeader, BoxWrapper } from './styles';
-import Wrapper from '@saashq/ui/src/layout/components/Wrapper';
-import { loadDynamicComponent } from '@saashq/ui/src/utils/core';
+import Wrapper from '@erxes/ui/src/layout/components/Wrapper';
+import { loadDynamicComponent } from '@erxes/ui/src/utils/core';
 import {
   Box,
   ControlLabel,
@@ -15,11 +15,12 @@ import {
   Button,
   Form as CommonForm,
   ModalTrigger,
-} from '@saashq/ui/src';
-import { ButtonRelated, ModalFooter } from '@saashq/ui/src/styles/main';
-import SelectBranches from '@saashq/ui/src/team/containers/SelectBranches';
-import SelectDepartments from '@saashq/ui/src/team/containers/SelectDepartments';
-import Sidebar from '@saashq/ui/src/layout/components/Sidebar';
+} from '@erxes/ui/src';
+import { ButtonRelated, ModalFooter } from '@erxes/ui/src/styles/main';
+import SelectBranches from '@erxes/ui/src/team/containers/SelectBranches';
+import SelectDepartments from '@erxes/ui/src/team/containers/SelectDepartments';
+import SelectPositions from '@erxes/ui/src/team/containers/SelectPositions';
+import Sidebar from '@erxes/ui/src/layout/components/Sidebar';
 import { IButtonMutateProps } from '../../../types';
 import UserMovementForm from '../../containers/UserMovementForm';
 
@@ -65,6 +66,12 @@ function UserDetails({
     ids: user.branchIds || [],
     isChanged: false,
   });
+
+  const [position, setPositionIds] = useState({
+    ids: user.positionIds || [],
+    isChanged: false,
+  });
+
   const title = details.fullName || 'Unknown';
   const breadcrumb = [{ title: 'Users', link: '/settings/team' }, { title }];
 
@@ -98,6 +105,9 @@ function UserDetails({
       Selection = SelectBranches;
     }
 
+    if (key === 'position') {
+      Selection = SelectPositions;
+    }
     const content = (formProps) => {
       const callback = () => {
         handleState((prev) => ({ ids: prev.ids, isChanged: false }));
@@ -171,26 +181,27 @@ function UserDetails({
 
   const leftSidebar = (
     <Sidebar>
-      <Sidebar>
-        <Box title="Branches">
-          {list(
-            branch.ids,
-            branch.isChanged,
-            'Branches',
-            'branch',
-            setBranchIds,
-          )}
-        </Box>
-        <Box title="Departments">
-          {list(
-            department.ids,
-            department.isChanged,
-            'Departments',
-            'department',
-            setDepartmentIds,
-          )}
-        </Box>
-      </Sidebar>
+      <Box title="Branches">
+        {list(branch.ids, branch.isChanged, 'Branches', 'branch', setBranchIds)}
+      </Box>
+      <Box title="Departments">
+        {list(
+          department.ids,
+          department.isChanged,
+          'Departments',
+          'department',
+          setDepartmentIds,
+        )}
+      </Box>
+      <Box title="Positions">
+        {list(
+          position.ids,
+          position.isChanged,
+          'Positions',
+          'position',
+          setPositionIds,
+        )}
+      </Box>
       {loadDynamicComponent('contactDetailRightSidebar', { user })}
     </Sidebar>
   );

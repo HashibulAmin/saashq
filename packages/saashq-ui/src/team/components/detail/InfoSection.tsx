@@ -1,19 +1,19 @@
-import { InfoWrapper, Links } from '@saashq/ui/src/styles/main';
+import { InfoWrapper, Links } from '@erxes/ui/src/styles/main';
 import { Name, NameContainer } from './styles';
 
-import { AvatarWrapper } from '@saashq/ui/src/auth/styles';
-import { IUser } from '@saashq/ui/src/auth/types';
-import Icon from '@saashq/ui/src/components/Icon';
-import ModalTrigger from '@saashq/ui/src/components/ModalTrigger';
-import NameCard from '@saashq/ui/src/components/nameCard/NameCard';
+import { AvatarWrapper } from '@erxes/ui/src/auth/styles';
+import { IUser } from '@erxes/ui/src/auth/types';
+import Icon from '@erxes/ui/src/components/Icon';
+import ModalTrigger from '@erxes/ui/src/components/ModalTrigger';
+import NameCard from '@erxes/ui/src/components/nameCard/NameCard';
 import React from 'react';
-import { renderUserFullName } from '@saashq/ui/src/utils';
+import { renderUserFullName } from '@erxes/ui/src/utils';
 
 type Props = {
   user: IUser;
   renderEditForm: ({
     closeModal,
-    user
+    user,
   }: {
     closeModal: () => void;
     user: IUser;
@@ -67,7 +67,7 @@ class InfoSection extends React.Component<Props> {
       return null;
     }
 
-    const customerForm = props => {
+    const customerForm = (props) => {
       return renderEditForm({ ...props, user });
     };
 

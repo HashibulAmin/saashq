@@ -1,6 +1,6 @@
-import { colors, dimensions } from '@saashq/ui/src/styles';
+import { colors, dimensions } from '@erxes/ui/src/styles';
 
-import { SidebarList } from '@saashq/ui/src/layout/styles';
+import { SidebarList } from '@erxes/ui/src/layout/styles';
 import styled from 'styled-components';
 import styledTS from 'styled-components-ts';
 
@@ -51,7 +51,7 @@ const NameContainer = styled.div`
 `;
 
 const Name = styledTS<{ fontSize?: number }>(styled.div)`
-  font-size: ${props => props.fontSize && `${props.fontSize}px`};
+  font-size: ${(props) => props.fontSize && `${props.fontSize}px`};
   font-weight: 500;
 
   i {
@@ -82,5 +82,5 @@ export {
   NameContainer,
   Name,
   UserHeader,
-  BoxWrapper
+  BoxWrapper,
 };

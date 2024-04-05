@@ -1,24 +1,26 @@
 import * as compose from 'lodash.flowright';
 
-import { IButtonMutateProps } from '@saashq/ui/src/types';
-import { ICommonFormProps } from '@saashq/ui-settings/src/common/types';
-import { IUser } from '@saashq/ui/src/auth/types';
+import { IButtonMutateProps } from '@erxes/ui/src/types';
+import { ICommonFormProps } from '@erxes/ui-settings/src/common/types';
+import { IUser } from '@erxes/ui/src/auth/types';
 import React from 'react';
-import Spinner from '@saashq/ui/src/components/Spinner';
+import Spinner from '@erxes/ui/src/components/Spinner';
 import UserForm from '../components/UserForm';
-import { queries as generalQueries } from '@saashq/ui-settings/src/general/graphql';
+import { queries as generalQueries } from '@erxes/ui-settings/src/general/graphql';
 import { gql } from '@apollo/client';
 import { graphql } from '@apollo/client/react/hoc';
 import { isEnabled } from '../../utils/core';
 import { queries } from '../graphql';
-import { queries as usersGroupsQueries } from '@saashq/ui-settings/src/permissions/graphql';
-import { withProps } from '@saashq/ui/src/utils';
+import { queries as usersGroupsQueries } from '@erxes/ui-settings/src/permissions/graphql';
+import { withProps } from '@erxes/ui/src/utils';
 
 type Props = {
   channelsQuery: any; // check - ChannelsQueryResponse
   groupsQuery: any; // check - UsersGroupsQueryResponse
   getEnvQuery: any;
   renderButton: (props: IButtonMutateProps) => JSX.Element;
+  history?: any;
+  queryParams?: any;
 };
 
 const UserFormContainer = (props: Props & ICommonFormProps) => {

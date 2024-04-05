@@ -1,18 +1,18 @@
 import SelectWithSearch from '../../components/SelectWithSearch';
 import { IOption, IQueryParams } from '../../types';
 import React from 'react';
-import { IDepartment } from '@saashq/ui/src/team/types';
+import { IDepartment } from '@erxes/ui/src/team/types';
 import { generateTree } from '../../utils';
 import {
   commonStructureParamsDef,
-  commonStructureParamsValue
+  commonStructureParamsValue,
 } from '../graphql/queries';
 
 // get user options for react-select-plus
 export function generateUserOptions(array: IDepartment[] = []): IOption[] {
   const generateList = () => {
-    const list = array.map(item => {
-      if (!array.find(dep => dep._id === item.parentId)) {
+    const list = array.map((item) => {
+      if (!array.find((dep) => dep._id === item.parentId)) {
         return { ...item, parentId: null };
       }
       return item;
@@ -22,7 +22,7 @@ export function generateUserOptions(array: IDepartment[] = []): IOption[] {
 
   return generateTree(generateList(), null, (node, level) => ({
     value: node._id,
-    label: `${'\u00A0 \u00A0 '.repeat(level)} ${node.code} - ${node.title}`
+    label: `${'\u00A0 \u00A0 '.repeat(level)} ${node.code} - ${node.title}`,
   }));
 }
 
@@ -60,7 +60,7 @@ export default (props: {
     multi = true,
     label,
     filterParams,
-    name
+    name,
   } = props;
   const defaultValue = queryParams ? queryParams[name] : initialValue;
 

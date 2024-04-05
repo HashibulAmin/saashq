@@ -1,4 +1,4 @@
-import { IActivityLogForMonth } from '@saashq/ui-log/src/activityLogs/types';
+import { IActivityLogForMonth } from '@erxes/ui-log/src/activityLogs/types';
 import { IUser } from './auth/types';
 
 export interface IRouterProps {
@@ -101,7 +101,7 @@ export interface IField {
   isVisible?: boolean;
   isVisibleInDetail?: boolean;
   isVisibleToCreate?: boolean;
-  isDefinedBySaasHQ?: boolean;
+  isDefinedByErxes?: boolean;
   groupId?: string;
   lastUpdatedUser?: IUser;
   lastUpdatedUserId?: string;

@@ -42,15 +42,15 @@ export class AppProvider extends React.Component<
       isShownIndicator: false,
       isRemovingImport: false,
 
-      isDoneIndicatorAction: false
+      isDoneIndicatorAction: false,
     };
 
     this.setLocale(currentLanguage);
   }
 
   checkisShownIndicatorData = () => {
-    const lastImport = localStorage.getItem('saashq_import_data');
-    const type = localStorage.getItem('saashq_import_data_type');
+    const lastImport = localStorage.getItem('erxes_import_data');
+    const type = localStorage.getItem('erxes_import_data_type');
     const isRemovingImport = type === 'remove' ? true : false;
 
     if (lastImport) {
@@ -63,15 +63,15 @@ export class AppProvider extends React.Component<
   closeLoadingBar = () => {
     this.setState({ isShownIndicator: false });
 
-    localStorage.setItem('saashq_import_data', '');
-    localStorage.setItem('saashq_import_data_type', '');
+    localStorage.setItem('erxes_import_data', '');
+    localStorage.setItem('erxes_import_data_type', '');
   };
 
   showLoadingBar = (isRemovingImport: boolean) => {
     this.setState({
       isDoneIndicatorAction: false,
       isShownIndicator: true,
-      isRemovingImport
+      isRemovingImport,
     });
   };
 
@@ -87,17 +87,17 @@ export class AppProvider extends React.Component<
     if (currentLanguage !== 'mn') {
       import(`dayjs/locale/${currentLanguage}.js`)
         .then(() => dayjs.locale(currentLanguage))
-        .catch(_ => dayjs.locale('en'));
+        .catch((_) => dayjs.locale('en'));
     }
 
     fetch(`/locales/${currentLanguage}.json`)
-      .then(res => res.json())
+      .then((res) => res.json())
       .catch(() => console.log(`${currentLanguage} translation not found`))
-      .then(json => {
+      .then((json) => {
         T.setTexts(json);
         this.setState({ isLoadedLocale: true });
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
         this.setState({ isLoadedLocale: true });
       });
@@ -116,7 +116,7 @@ export class AppProvider extends React.Component<
       currentLanguage,
       isShownIndicator,
       isRemovingImport,
-      isDoneIndicatorAction
+      isDoneIndicatorAction,
     } = this.state;
 
     return (
@@ -131,7 +131,7 @@ export class AppProvider extends React.Component<
           doneIndicatorAction: this.doneIndicatorAction,
           isShownIndicator,
           isRemovingImport,
-          isDoneIndicatorAction
+          isDoneIndicatorAction,
         }}
       >
         {this.props.children}

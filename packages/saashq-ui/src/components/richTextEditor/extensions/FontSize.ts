@@ -21,7 +21,7 @@ export const FontSize = TextStyle.extend({
       ...this.parent?.(),
       fontSize: {
         default: null,
-        parseHTML: (element) => element.style.fontSize.replace('px', ''),
+        parseHTML: (element) => element.style.fontSize?.replace('px', ''),
         renderHTML: (attributes) => {
           if (!attributes.fontSize) {
             return {};

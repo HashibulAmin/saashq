@@ -1,7 +1,7 @@
 import { __ } from '../../utils';
 import { NotFoundWrapper } from '../styles';
-import Button from '@saashq/ui/src/components/Button';
-import Icon from '@saashq/ui/src/components/Icon';
+import Button from '@erxes/ui/src/components/Button';
+import Icon from '@erxes/ui/src/components/Icon';
 import React from 'react';
 
 function NotFound() {
@@ -11,7 +11,7 @@ function NotFound() {
         <div className="container">
           <div className="col-md-7">
             <div className="auth-description not-found">
-              <img src="/images/not-found.png" alt="saashq" />
+              <img src="/images/not-found.png" alt="erxes" />
               <h1>{__('Page not found')}</h1>
               <p>
                 {__('Sorry but the page you are looking for cannot be found')}

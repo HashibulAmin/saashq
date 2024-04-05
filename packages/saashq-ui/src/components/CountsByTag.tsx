@@ -3,7 +3,7 @@ import { __, router } from '../utils/core';
 import Box from './Box';
 import FilterByParams from './FilterByParams';
 import { IRouterProps } from '../types';
-import { ITag } from '@saashq/ui-tags/src/types';
+import { ITag } from '@erxes/ui-tags/src/types';
 import Icon from './Icon';
 import { Link } from 'react-router-dom';
 import React from 'react';

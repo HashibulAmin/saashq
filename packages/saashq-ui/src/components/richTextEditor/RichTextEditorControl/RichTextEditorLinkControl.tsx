@@ -22,6 +22,8 @@ export type RichTextEditorLinkControlProps = {
 export const RichTextEditorLinkControl = (
   props: RichTextEditorLinkControlProps,
 ) => {
+  let overLayRef;
+
   const { icon, initialExternal } = props;
 
   const ctx = useRichTextEditorContext();
@@ -62,6 +64,11 @@ export const RichTextEditorLinkControl = (
           .run();
   };
 
+  const handleSave = () => {
+    setLink();
+    overLayRef.hide();
+  };
+
   const handleInputKeydown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       event.preventDefault();
@@ -71,6 +78,9 @@ export const RichTextEditorLinkControl = (
 
   return (
     <OverlayTrigger
+      ref={(overlayTrigger) => {
+        overLayRef = overlayTrigger;
+      }}
       trigger="click"
       rootClose={true}
       placement="top"
@@ -105,7 +115,7 @@ export const RichTextEditorLinkControl = (
               </Tip>
             </InputAction>
           </InputWrapper>
-          <button onClick={setLink}>{ctx.labels.linkEditorSave}</button>
+          <button onClick={handleSave}>{ctx.labels.linkEditorSave}</button>
         </LinkWrapper>
       }
     >

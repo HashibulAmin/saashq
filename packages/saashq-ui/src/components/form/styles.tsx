@@ -115,7 +115,7 @@ const SelectWrapper = styledTS<{ hasError?: boolean }>(styled.div)`
     content: '\\e9a6';
     font-size: 14px;
     display: inline-block;
-    font-family: 'saashq';
+    font-family: 'erxes';
     speak: none;
     color: ${colors.colorCoreGray};
     font-style: normal;
@@ -239,7 +239,7 @@ const inputStyle = styledTS<{ disabled?: boolean; color?: string }>(
   }
 `;
 
-const Radio = styled(inputStyle)`
+const Radio = styledTS<{ color?: string }>(styled(inputStyle))`
   + span {
     &::before,
     &::after {
@@ -262,7 +262,8 @@ const Radio = styled(inputStyle)`
     + span {
       &:before {
         animation: none;
-        background-color: ${colors.colorSecondary};
+        background-color: ${(props) =>
+          props.color ? props.color : colors.colorSecondary};
         border-color: transparent;
       }
 

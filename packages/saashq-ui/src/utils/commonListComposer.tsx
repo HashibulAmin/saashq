@@ -1,10 +1,10 @@
 import * as compose from 'lodash.flowright';
-import ButtonMutate from '@saashq/ui/src/components/ButtonMutate';
-import { IButtonMutateProps } from '@saashq/ui/src/types';
-import { confirm, withProps } from '@saashq/ui/src/utils';
-import { Alert } from '@saashq/ui/src/utils';
+import ButtonMutate from '@erxes/ui/src/components/ButtonMutate';
+import { IButtonMutateProps } from '@erxes/ui/src/types';
+import { confirm, withProps } from '@erxes/ui/src/utils';
+import { Alert } from '@erxes/ui/src/utils';
 import React from 'react';
-import { MutationVariables } from '@saashq/ui/src/types';
+import { MutationVariables } from '@erxes/ui/src/types';
 
 interface ICopyMutationVariables extends MutationVariables {
   [key: string]: any;
@@ -25,7 +25,7 @@ function commonListComposer<ComponentProps>(options) {
     ListComponent,
     gqlConfigsQuery,
     confirmProps,
-    gqlGetActionsQuery
+    gqlGetActionsQuery,
   } = options;
 
   type Props = {
@@ -35,12 +35,12 @@ function commonListComposer<ComponentProps>(options) {
     addMutation: ({ variables }: { variables: any }) => Promise<any>;
     editMutation: ({ variables }: { variables: any }) => Promise<any>;
     removeMutation: ({
-      variables: { _id }
+      variables: { _id },
     }: {
       variables: MutationVariables;
     }) => Promise<any>;
     copyMutation: ({
-      variables: { _id, memberIds }
+      variables: { _id, memberIds },
     }: {
       variables: ICopyMutationVariables;
     }) => Promise<any>;
@@ -53,7 +53,7 @@ function commonListComposer<ComponentProps>(options) {
       listQuery,
       totalCountQuery,
       removeMutation,
-      history
+      history,
     } = props;
 
     const totalCount = totalCountQuery[`${label}TotalCount`] || 0;
@@ -61,7 +61,7 @@ function commonListComposer<ComponentProps>(options) {
     const objects = listQuery[label] || [];
 
     // remove action
-    const remove = id => {
+    const remove = (id) => {
       let message;
       let confirmOptions = {};
 
@@ -72,7 +72,7 @@ function commonListComposer<ComponentProps>(options) {
 
       confirm(message, confirmOptions).then(() => {
         removeMutation({
-          variables: { _id: id }
+          variables: { _id: id },
         })
           .then(() => {
             // update queries
@@ -81,7 +81,7 @@ function commonListComposer<ComponentProps>(options) {
 
             Alert.success(`You successfully deleted a ${text}.`);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
       });
@@ -96,7 +96,7 @@ function commonListComposer<ComponentProps>(options) {
 
             Alert.success(`You successfully copied a ${text}`);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
       }
@@ -108,7 +108,7 @@ function commonListComposer<ComponentProps>(options) {
       isSubmitted,
       callback,
       confirmationUpdate,
-      object
+      object,
     }: IButtonMutateProps) => {
       const afterMutate = () => {
         listQuery.refetch();
@@ -154,7 +154,7 @@ function commonListComposer<ComponentProps>(options) {
       history,
       renderButton,
       loading: listQuery.loading,
-      copyItem
+      copyItem,
     };
 
     return <ListComponent {...updatedProps} />;
@@ -179,7 +179,7 @@ function commonListComposer<ComponentProps>(options) {
   }
 
   return withProps<ComponentProps>(
-    compose(...composeAttr, gqlListQuery, gqlTotalCountQuery)(ListContainer)
+    compose(...composeAttr, gqlListQuery, gqlTotalCountQuery)(ListContainer),
   );
 }
 

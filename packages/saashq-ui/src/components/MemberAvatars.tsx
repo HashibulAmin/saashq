@@ -1,8 +1,8 @@
-import { IUser } from '@saashq/ui/src/auth/types';
-import Tip from '@saashq/ui/src/components/Tip';
-import { getUserAvatar } from '@saashq/ui/src/utils';
+import { IUser } from '@erxes/ui/src/auth/types';
+import Tip from '@erxes/ui/src/components/Tip';
+import { getUserAvatar } from '@erxes/ui/src/utils';
 import React from 'react';
-import { colors, dimensions } from '@saashq/ui/src/styles';
+import { colors, dimensions } from '@erxes/ui/src/styles';
 import styled from 'styled-components';
 
 const imageSize = 30;
@@ -41,7 +41,7 @@ type Props = {
 };
 
 export default function MemberAvatars(props: Props) {
-  const renderMember = member => {
+  const renderMember = (member) => {
     return (
       <Tip key={member._id} text={member.details.fullName} placement="top">
         <MemberImg key={member._id} src={getUserAvatar(member)} />
@@ -54,7 +54,7 @@ export default function MemberAvatars(props: Props) {
 
     let selectedMembers: IUser[] = [];
     selectedMembers = allMembers.filter(
-      user => user.isActive && selectedMemberIds.includes(user._id)
+      (user) => user.isActive && selectedMemberIds.includes(user._id),
     );
 
     const length = selectedMembers.length;
@@ -62,7 +62,9 @@ export default function MemberAvatars(props: Props) {
 
     // render members ================
     const limitedMembers = selectedMembers.slice(0, limit);
-    const renderedMembers = limitedMembers.map(member => renderMember(member));
+    const renderedMembers = limitedMembers.map((member) =>
+      renderMember(member),
+    );
 
     // render readmore ===============
     let readMore: React.ReactNode;

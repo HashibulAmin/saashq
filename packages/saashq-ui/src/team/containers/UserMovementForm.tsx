@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from '@apollo/client/react/hoc';
 import { gql } from '@apollo/client';
 import * as compose from 'lodash.flowright';
-import { withProps } from '@saashq/ui/src/utils';
+import { withProps } from '@erxes/ui/src/utils';
 import { queries } from '../graphql';
 import UserMovementFormComponent from '../components/detail/UserMovementForm';
 import { UserMovementsQueryResponse } from '../types';
@@ -27,7 +27,7 @@ class UserMovementForm extends React.Component<FinalProps> {
 
     const updateProps = {
       list: userMovements || [],
-      loading
+      loading,
     };
 
     return <UserMovementFormComponent {...updateProps} />;
@@ -41,10 +41,10 @@ export default withProps<Props>(
       options: ({ userId, contentType }) => ({
         variables: {
           userId,
-          contentType
+          contentType,
         },
-        fetchPolicy: 'no-cache'
-      })
-    })
-  )(UserMovementForm)
+        fetchPolicy: 'no-cache',
+      }),
+    }),
+  )(UserMovementForm),
 );

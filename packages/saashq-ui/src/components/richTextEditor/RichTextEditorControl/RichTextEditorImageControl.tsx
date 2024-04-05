@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import ModalTrigger from '@saashq/ui/src/components/ModalTrigger';
+import ModalTrigger from '@erxes/ui/src/components/ModalTrigger';
 import { useRichTextEditorContext } from '../RichTextEditor.context';
 import {
   IRichTextEditorControlBaseProps,
@@ -99,6 +99,7 @@ export const RichTextEditorImageControl = (
                 multiple={false}
                 showOnlyIcon={true}
                 noPreview={true}
+                hideUploadButtonOnLoad={true}
               />
             </FileInputAction>
           </ImageInputWrapper>
@@ -155,6 +156,7 @@ export const RichTextEditorImageControl = (
 
   return (
     <ModalTrigger
+      enforceFocus={false}
       title="Insert/ Edit Image"
       trigger={
         <RichTextEditorControlBase

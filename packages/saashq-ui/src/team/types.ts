@@ -1,10 +1,10 @@
-import { IAttachment, QueryResponse } from '@saashq/ui/src/types';
+import { IAttachment, QueryResponse } from '@erxes/ui/src/types';
 import {
   IUser,
   IUserDetails,
   IUserDoc,
   IUserLinks,
-} from '@saashq/ui/src/auth/types';
+} from '@erxes/ui/src/auth/types';
 
 export type IInvitationEntry = {
   email: string;
@@ -121,6 +121,14 @@ export interface IBranch extends IStructureCommon, IContactInfo {
   users: IUser[];
   radius: number;
 }
+export interface IPosition extends IStructureCommon, IContactInfo {
+  parentId: string | null;
+  parent: IPosition;
+  order: string;
+  userIds: string[] | string;
+  userCount: number;
+  users: IUser[];
+}
 
 export interface IStructure extends IStructureCommon, IContactInfo {
   description?: string;
@@ -153,9 +161,18 @@ export type BranchesMainQueryResponse = {
     totalUsersCount: number;
   };
 } & QueryResponse;
+
 export type UnitsMainQueryResponse = {
   unitsMain: {
     list: IUnit[];
+    totalCount: number;
+    totalUsersCount: number;
+  };
+} & QueryResponse;
+
+export type PositionsMainQueryResponse = {
+  positionsMain: {
+    list: IPosition[];
     totalCount: number;
     totalUsersCount: number;
   };

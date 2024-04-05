@@ -63,7 +63,7 @@ class ConditionsRule extends React.Component<Props, State> {
         break;
       case 'currentPageUrl':
         description =
-          'Write your desired page URL, excluding domain name. For example: If you want to place your engagement message on https://office.saashq.io/pricing - then write /pricing';
+          'Write your desired page URL, excluding domain name. For example: If you want to place your engagement message on https://office.erxes.io/pricing - then write /pricing';
         break;
       case 'country':
         description =

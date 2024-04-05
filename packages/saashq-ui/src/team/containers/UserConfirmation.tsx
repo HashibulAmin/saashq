@@ -1,11 +1,11 @@
 import { gql } from '@apollo/client';
 import * as compose from 'lodash.flowright';
-import { IUser } from '@saashq/ui/src/auth/types';
-import { Alert, withProps } from '@saashq/ui/src/utils';
+import { IUser } from '@erxes/ui/src/auth/types';
+import { Alert, withProps } from '@erxes/ui/src/utils';
 import React from 'react';
 import { graphql } from '@apollo/client/react/hoc';
 import { withRouter } from 'react-router-dom';
-import { IRouterProps } from '@saashq/ui/src/types';
+import { IRouterProps } from '@erxes/ui/src/types';
 import UserConfirmation from '../components/UserConfirmation';
 import { mutations } from '../graphql';
 import { ConfirmMutationResponse, ConfirmMutationVariables } from '../types';
@@ -19,18 +19,14 @@ type FinalProps = Props & IRouterProps & ConfirmMutationResponse;
 
 class UserConfirmationContainer extends React.Component<FinalProps> {
   render() {
-    const {
-      usersConfirmInvitation,
-      queryParams,
-      history,
-      currentUser
-    } = this.props;
+    const { usersConfirmInvitation, queryParams, history, currentUser } =
+      this.props;
 
     const confirmUser = ({
       password,
       passwordConfirmation,
       username,
-      fullName
+      fullName,
     }: {
       password: string;
       passwordConfirmation: string;
@@ -43,21 +39,21 @@ class UserConfirmationContainer extends React.Component<FinalProps> {
           password,
           passwordConfirmation,
           username,
-          fullName
-        }
+          fullName,
+        },
       })
         .then(() => {
           Alert.success('You successfully verified');
           history.push('/');
         })
-        .catch(e => {
+        .catch((e) => {
           Alert.error(e.message);
         });
     };
 
     const updatedProps = {
       confirmUser,
-      currentUser
+      currentUser,
     };
 
     return <UserConfirmation {...updatedProps} />;
@@ -71,9 +67,9 @@ export default withProps<Props>(
       {
         name: 'usersConfirmInvitation',
         options: {
-          refetchQueries: ['users']
-        }
-      }
-    )
-  )(withRouter<FinalProps>(UserConfirmationContainer))
+          refetchQueries: ['users'],
+        },
+      },
+    ),
+  )(withRouter<FinalProps>(UserConfirmationContainer)),
 );

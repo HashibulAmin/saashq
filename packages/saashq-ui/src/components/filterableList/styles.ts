@@ -50,7 +50,7 @@ const IconWrapper = styled.div`
 `;
 
 const PopoverList = styledTS<{ selectable?: boolean; isIndented?: boolean }>(
-  styled.ul
+  styled.ul,
 )`
   max-height: 275px;
   margin: 0;
@@ -59,21 +59,21 @@ const PopoverList = styledTS<{ selectable?: boolean; isIndented?: boolean }>(
   overflow: auto;
   padding-bottom: 10px;
   padding-top: 10px;
-  text-indent:${props =>
+  text-indent:${(props) =>
     props.isIndented && `-${dimensions.unitSpacing + 5}px`};
-  margin-left: ${props => props.isIndented && `${dimensions.unitSpacing}px`};
+  margin-left: ${(props) => props.isIndented && `${dimensions.unitSpacing}px`};
 
   li {
     position: relative;
     display: block;
     overflow: hidden;
-    padding: ${dimensions.unitSpacing / 2}px ${props =>
-  props.isIndented
-    ? `${dimensions.unitSpacing * 3 + 7}px`
-    : `${dimensions.unitSpacing * 2}px`}; 
+    padding: ${dimensions.unitSpacing / 2}px ${(props) =>
+      props.isIndented
+        ? `${dimensions.unitSpacing * 3 + 7}px`
+        : `${dimensions.unitSpacing * 2}px`}; 
     white-space: normal;
     font-size: 13px;
-    padding-right: ${props => props.selectable && '30px'};
+    padding-right: ${(props) => props.selectable && '30px'};
 
     i {
       &.icon-tag-alt{
@@ -87,7 +87,7 @@ const PopoverList = styledTS<{ selectable?: boolean; isIndented?: boolean }>(
     }
 
     &:before {
-      font-family: 'saashq';
+      font-family: 'erxes';
       font-size: 12px;
       width: 15px;
       height: 15px;
@@ -96,7 +96,7 @@ const PopoverList = styledTS<{ selectable?: boolean; isIndented?: boolean }>(
       position: absolute;
       color: ${colors.colorCoreDarkGray};
       top: ${dimensions.headerSpacing}%;
-      right: ${props =>
+      right: ${(props) =>
         props.isIndented
           ? `${dimensions.unitSpacing * 0.5}px`
           : `${dimensions.unitSpacing * 1.5}px`};
@@ -163,7 +163,7 @@ const iconWidth = 30;
 
 const ToggleIcon = styledTS<{ type?: string }>(styled.div)`
   position: absolute;
-  ${props =>
+  ${(props) =>
     props.type === 'list' &&
     `
   top: 8px;
@@ -174,7 +174,7 @@ const ToggleIcon = styledTS<{ type?: string }>(styled.div)`
   height: ${iconWidth}px;
   cursor: pointer;
   z-index: 1;
-  ${props =>
+  ${(props) =>
     props.type === 'params' &&
     `
   display: flex;
@@ -209,7 +209,7 @@ export {
   IconWrapper,
   ChildList,
   ToggleIcon,
-  ItemText
+  ItemText,
 };
 
 export default {
@@ -223,5 +223,5 @@ export default {
   IconWrapper,
   ChildList,
   ToggleIcon,
-  ItemText
+  ItemText,
 };

@@ -58,6 +58,9 @@ export const ImageResize = Image.extend<IImageOptions>({
           };
         },
       },
+      style: {
+        parseHTML: (element) => element.getAttribute('style'),
+      },
     };
   },
   parseHTML() {
