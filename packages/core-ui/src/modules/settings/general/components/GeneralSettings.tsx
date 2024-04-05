@@ -402,7 +402,7 @@ class GeneralSettings extends React.Component<Props, State> {
           <Info>
             <a
               target="_blank"
-              href="https://docs.saashq.org/conversations"
+              href="https://docs.saashq.io/conversations"
               rel="noopener noreferrer"
             >
               {__('Learn how to set file uploading') + '.'}
@@ -480,7 +480,7 @@ class GeneralSettings extends React.Component<Props, State> {
           <Info>
             <a
               target="_blank"
-              href="https://docs.saashq.org/conversations"
+              href="https://docs.saashq.io/conversations"
               rel="noopener noreferrer"
             >
               {__(
@@ -504,7 +504,7 @@ class GeneralSettings extends React.Component<Props, State> {
           <Info>
             <a
               target="_blank"
-              href="https://docs.saashq.org/conversations"
+              href="https://docs.saashq.io/conversations"
               rel="noopener noreferrer"
             >
               {__('Learn how to set AWS S3 Variables')}
@@ -538,7 +538,7 @@ class GeneralSettings extends React.Component<Props, State> {
             </p>
             <a
               target="_blank"
-              href="https://docs.saashq.org/conversations"
+              href="https://docs.saashq.io/conversations"
               rel="noopener noreferrer"
             >
               {__('Learn how to set Amazon SES variables')}
@@ -562,7 +562,7 @@ class GeneralSettings extends React.Component<Props, State> {
           <Info>
             <a
               target="_blank"
-              href="https://docs.saashq.org/conversations"
+              href="https://docs.saashq.io/conversations"
               rel="noopener noreferrer"
             >
               {__('Learn how to set Google variables')}
@@ -599,7 +599,7 @@ class GeneralSettings extends React.Component<Props, State> {
           <Info>
             <a
               target="_blank"
-              href="https://docs.saashq.org/conversations"
+              href="https://docs.saashq.io/conversations"
               rel="noopener noreferrer"
             >
               {__('Learn more about Email Settings')}
@@ -647,7 +647,7 @@ class GeneralSettings extends React.Component<Props, State> {
           <Info>
             <a
               target="_blank"
-              href="https://docs.saashq.org/conversations"
+              href="https://docs.saashq.io/conversations"
               rel="noopener noreferrer"
             >
               {__('Learn the case of custom email service')}
