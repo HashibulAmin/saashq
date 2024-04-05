@@ -1,3 +1,10 @@
+### [1.7.6](https://github.com/saashq-org/saashq/compare/1.7.5...1.7.6) (2024-04-05)
+
+
+### Bug Fixes
+
+* **editor:** RTE related issues ([6a922fc](https://github.com/saashq-org/saashq/commit/6a922fc015500a37f86fc43b01b53e9b85558ac8))
+
 ### [1.7.5](https://github.com/saashq-org/saashq/compare/1.7.4...1.7.5) (2024-04-02)
 
 ### [1.7.4](https://github.com/saashq-org/saashq/compare/1.7.3...1.7.4) (2024-04-01)

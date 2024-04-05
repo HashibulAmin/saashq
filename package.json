@@ -1,7 +1,7 @@
 {
   "name": "saashq",
   "private": true,
-  "version": "1.7.5",
+  "version": "1.7.6",
   "workspaces": [
     "packages/*",
     "scripts"
@@ -86,6 +86,5 @@
     "webpack-dev-server": "^4.3.1",
     "process": "0.11.10"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
