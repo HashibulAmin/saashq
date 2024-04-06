@@ -59,7 +59,7 @@ export interface IUser {
   branchIds?: string[];
   positionIds?: string[];
   employeeId?: string;
-  chatStatus?: IUserChatStatus;
+  chatStatus?: string;
 }
 
 export interface IUserChatStatus {
