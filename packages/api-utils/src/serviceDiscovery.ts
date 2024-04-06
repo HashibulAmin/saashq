@@ -1,6 +1,5 @@
 import * as dotenv from 'dotenv';
 import redis from './redis';
-import { getEnv } from './core';
 dotenv.config();
 
 const { NODE_ENV, LOAD_BALANCER_ADDRESS, ENABLED_SERVICES_JSON, MONGO_URL } =
@@ -63,6 +62,7 @@ export const join = async ({
 }: {
   name: string;
   port: string;
+  dbConnectionString: string;
   hasSubscriptions?: boolean;
   importExportTypes?: any;
   meta?: any;
@@ -108,3 +108,5 @@ export const getPluginAddress = async (name) => {
 export const getEnabledServices = async () => {
   return enabledServices;
 };
+
+export { redis };
