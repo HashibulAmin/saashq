@@ -87,7 +87,7 @@ export async function startPlugin(configs: any): Promise<express.Express> {
 
   const httpServer = http.createServer(app);
 
-  // GRACEFULL SHUTDOWN
+  // GRACEFUL SHUTDOWN
   process.stdin.resume(); // so the program will not close instantly
 
   async function closeHttpServer() {
