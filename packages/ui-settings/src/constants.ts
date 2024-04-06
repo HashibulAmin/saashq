@@ -11,9 +11,9 @@ export const EMPTY_IMPORT_CONTENT = {
     {
       title: __('Create Custom Properties'),
       description: __(
-        'If you wish to import any properties that are not available on SaasHQ, you need to create custom properties',
+        'If you wish to import any properties that are not available on saashq, you need to create custom properties',
       ),
-      url: 'https://docs.saashq.org',
+      url: 'https://docs.saashq.io',
       isOutside: true,
       target: '_blank',
     },
@@ -22,7 +22,7 @@ export const EMPTY_IMPORT_CONTENT = {
       description: `${__(
         'Make sure you’re on the right page and you’ve selected the right data type Lead, Customer, etc on the left',
       )}`,
-      url: 'http://docs.saashq.org',
+      url: 'http://docs.saashq.io',
       target: '_blank',
       isOutside: true,
     },
@@ -108,7 +108,7 @@ export const EMPTY_NEW_SEGMENT_CONTENT = {
     {
       title: 'See our documentation',
       description: 'Walk through step by step instructions.',
-      url: 'https://docs.saashq.org',
+      url: 'https://docs.saashq.io',
       urlText: 'Go to the docs',
       target: '_blank',
       isOutside: true,
@@ -117,7 +117,7 @@ export const EMPTY_NEW_SEGMENT_CONTENT = {
 };
 
 export const EMPTY_CONTENT_SCRIPT = {
-  title: __('Getting Started with SaasHQ Scripts'),
+  title: __('Getting Started with saashq Scripts'),
   description: __(
     `Avoid duplication of saashq widget scripts on your website, which might disable some of your saashq widgets (messenger, popups, etc)`,
   ),
@@ -137,7 +137,7 @@ export const EMPTY_CONTENT_SCRIPT = {
 };
 
 export const EMPTY_CONTENT_POPUPS = {
-  title: __('Getting Started with SaasHQ Forms'),
+  title: __('Getting Started with saashq forms'),
   description: __(
     'Never miss a potential lead by capturing them with a customizable Forms',
   ),
@@ -160,7 +160,7 @@ export const EMPTY_CONTENT_POPUPS = {
 };
 
 export const EMPTY_CONTENT_FORUMS = {
-  title: __('Getting Started with SaasHQ Forums'),
+  title: __('Getting Started with saashq forums'),
   description: __(
     'Never miss a potential lead by capturing them with a forums',
   ),
@@ -181,7 +181,7 @@ export const EMPTY_CONTENT_FORUMS = {
 };
 
 export const EMPTY_CONTENT_ENGAGE = {
-  title: __('Getting Started with XM Broadcast'),
+  title: __('Getting Started with Broadcast'),
   description:
     __(
       'Learn how to use this feature to engage your contacts and drive conversations',
@@ -215,7 +215,7 @@ export const EMPTY_CONTENT_ENGAGE = {
 };
 
 export const EMPTY_CONTENT_KNOWLEDGEBASE = {
-  title: __('Getting Started with SaasHQ Knowledgebase'),
+  title: __('Getting Started with saashq Knowledgebase'),
   description: __(
     'Educate your customers and staff by creating help articles to reach higher levels of satisfaction',
   ),
@@ -239,7 +239,7 @@ export const EMPTY_CONTENT_KNOWLEDGEBASE = {
 };
 
 export const EMPTY_CONTENT_MESSENGER = {
-  title: __('Getting Started with SaasHQ Messenger'),
+  title: __('Getting Started with saashq Messenger'),
   description: `${__(
     'Learn how the saashq Messenger works and it is set up',
   )}.${' It is used in the Team Inbox and Knowledgebase and Engage features uses Messenger'}`,
@@ -273,7 +273,7 @@ export const EMPTY_CONTENT_MESSENGER = {
       ),
     },
     {
-      title: __('Avoid duplication of SaasHQ widget scripts'),
+      title: __('Avoid duplication of saashq widget scripts'),
       description: __(
         'If you wish to display saashq messenger and any other saashq widgets on the same webpage, use the Script Manager to combine scripts and avoid any duplication errors.',
       ),
@@ -299,7 +299,7 @@ export const EMPTY_CONTENT_CONTACTS = {
     {
       title: __('Collect visitor information'),
       description: __(
-        'Create your SaasHQ Messenger to start capturing Visitors',
+        'Create your saashq Messenger to start capturing Visitors',
       ),
       url: '/settings/integrations/createMessenger',
       urlText: 'Create Messenger',
@@ -437,7 +437,7 @@ export const WEBHOOK_ACTIONS = [
     type: 'conversation',
   },
   { label: 'Customer messages', action: 'create', type: 'customerMessages' },
-  { label: 'Campaign', action: 'create', type: 'engageMessages' },
+  { label: 'Broadcast', action: 'create', type: 'engageMessages' },
   {
     label: 'Form submission received',
     action: 'create',
@@ -526,15 +526,15 @@ export const WEBHOOK_ACTIONS = [
 ];
 
 export const EMPTY_CONTENT_BOOKINGS = {
-  title: __('Getting Started with SaasHQ Booking'),
+  title: __('Getting Started with saashq Booking'),
   description: __(
-    'SaasHQ Booking widget helps you create listings of your Products and Services and receive bookings with your SaasHQ Form.',
+    'saashq Booking widget helps you create listings of your Products and Services and receive bookings with your saashq Form.',
   ),
   steps: [
     {
       title: __('Prepare Product Properties'),
       description: __(
-        'This widget is based on your SaasHQ Products and Services. Depending on your products, you may need to create custom Properties first. For example, you can display additional information such as Amenities, Services, etc. in the product detail page or as user filters.',
+        'This widget is based on your saashq Products and Services. Depending on your products, you may need to create custom Properties first. For example, you can display additional information such as Amenities, Services, etc. in the product detail page or as user filters.',
       ),
       url: '/settings/properties?type=products:product',
       urlText: 'Create Custom Properties',
