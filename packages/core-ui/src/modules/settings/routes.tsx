@@ -16,7 +16,7 @@ const routes = () => (
     <MainRoutes key="MainRoutes" />
     <BrandsRoutes key="BrandsRoutes" />
     <ProfileRoutes key="profile" />
-    <General key="General" />
+    {/* <General key="General" /> */}
     <TeamRoutes key="team" />
     <ImportHistory key="ImportHistory" />
     <PermissionRoutes key="PermissionRoutes" />

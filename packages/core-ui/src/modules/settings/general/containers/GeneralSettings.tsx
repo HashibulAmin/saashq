@@ -1,6 +1,6 @@
 import * as compose from 'lodash.flowright';
 
-import { Alert, getEnv, withProps } from 'modules/common/utils';
+import { Alert, withProps } from 'modules/common/utils';
 import {
   ConfigsQueryResponse,
   IConfigsMap,
