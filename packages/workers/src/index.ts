@@ -85,7 +85,6 @@ httpServer.listen(PORT, async () => {
     port: PORT,
     hasSubscriptions: false,
     meta: {},
-    dbConnectionString: '',
   });
 
   await initBroker();

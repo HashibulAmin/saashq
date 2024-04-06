@@ -1,4 +1,7 @@
-import { SectionContainer, SidebarCollapse } from '@saashq/ui/src/layout/styles';
+import {
+  SectionContainer,
+  SidebarCollapse,
+} from '@saashq/ui/src/layout/styles';
 import { getConfig, setConfig } from '../utils/core';
 
 import Icon from './Icon';
@@ -31,7 +34,7 @@ export default class Box extends React.Component<BoxProps, BoxState> {
     this.state = {
       // first check if isOpen is passed as a prop
       isOpen:
-        isOpen !== undefined ? isOpen : name ? config[name] || false : false
+        isOpen !== undefined ? isOpen : name ? config[name] || false : false,
     };
   }
 

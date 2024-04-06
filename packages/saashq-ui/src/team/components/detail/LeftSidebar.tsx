@@ -1,7 +1,7 @@
 import {
   FieldStyle,
   SidebarCounter,
-  SidebarList
+  SidebarList,
 } from '@saashq/ui/src/layout/styles';
 import { List, SkillList } from './styles';
 import { isEnabled, loadDynamicComponent } from '@saashq/ui/src/utils/core';
@@ -24,7 +24,7 @@ type Props = {
   excludeUserSkill: (skillId: string, userId: string) => void;
   renderSkillForm: ({
     closeModal,
-    user
+    user,
   }: {
     closeModal: () => void;
     user: IUser;
@@ -39,7 +39,7 @@ function LeftSidebar({
   skills = [],
   channels,
   excludeUserSkill,
-  renderSkillForm
+  renderSkillForm,
 }: Props) {
   const { details = {} } = user;
 
@@ -65,7 +65,7 @@ function LeftSidebar({
             'Birthdate',
             details.birthDate
               ? dayjs(details.birthDate).format('YYYY-MM-DD')
-              : '-'
+              : '-',
           )}
           {renderRow('Position', details.position)}
           {renderRow('Score', user.score)}
@@ -73,7 +73,7 @@ function LeftSidebar({
             'Joined date',
             details.workStartedDate
               ? dayjs(details.workStartedDate).format('YYYY-MM-DD')
-              : '-'
+              : '-',
           )}
           {renderRow('Description', details.description, true)}
         </SidebarList>
@@ -86,7 +86,7 @@ function LeftSidebar({
       <Section>
         <Title>{__('Channels')}</Title>
         <List>
-          {channels.map(channel => {
+          {channels.map((channel) => {
             return (
               <li key={channel._id}>
                 <Link to={`/settings/channels?id=${channel._id}`}>
@@ -102,7 +102,7 @@ function LeftSidebar({
   }
 
   function renderSkills() {
-    const getContent = props => {
+    const getContent = (props) => {
       return renderSkillForm(props);
     };
 
@@ -118,7 +118,7 @@ function LeftSidebar({
         </Section.QuickButtons>
         <SkillList>
           {skills.length > 0 ? (
-            skills.map(skill => {
+            skills.map((skill) => {
               const handleRemove = () => excludeUserSkill(skill._id, user._id);
 
               return (
@@ -145,7 +145,7 @@ function LeftSidebar({
     const content = () =>
       loadDynamicComponent('contactDetailLeftSidebar', {
         user: user,
-        isDetail: true
+        isDetail: true,
       });
 
     const extraButton = (
@@ -161,7 +161,7 @@ function LeftSidebar({
 
     return loadDynamicComponent('contactDetailLeftSidebar', {
       user: user,
-      isDetail: true
+      isDetail: true,
     });
   }
 

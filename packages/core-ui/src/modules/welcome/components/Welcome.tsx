@@ -97,7 +97,7 @@ function Welcome({ currentUser, branchesLength, departmentLength }: Props) {
         </h1>
         <div>
           {__(
-            'Enjoy a single yet complete Saas / Agency Management System to build your own experience.',
+            'Enjoy a single yet complete experience operating system (XOS) to build your own experience.',
           )}
           <br />
           {__(
@@ -333,7 +333,7 @@ function Welcome({ currentUser, branchesLength, departmentLength }: Props) {
             <Button
               size="large"
               btnStyle="white"
-              href={'https://saashq.org/service'}
+              href={'https://shq.saashq.org/service'}
               target="_blank"
             >
               {__('Request')}

@@ -190,7 +190,7 @@ class Store extends React.Component<Props, State> {
                 <Icon icon="search" />
               </SearchIcon>
               <SearchInput
-                placeholder={__('Type to search for results') + '...'}
+                placeholder={__('Type to search for an results') + '...'}
                 type="text"
                 onChange={this.onSearch}
               />

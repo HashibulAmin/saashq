@@ -40,6 +40,7 @@ export default class SettingsSideBar extends React.Component<Props> {
           'Departments',
           this.props.departmentTotalCount,
         )}
+        {ListItem('/settings/units', 'Units', this.props.unitTotalCount)}
         {ListItem(
           '/settings/positions',
           'Positions',

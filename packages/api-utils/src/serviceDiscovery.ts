@@ -2,7 +2,8 @@ import * as dotenv from 'dotenv';
 import redis from './redis';
 dotenv.config();
 
-const { NODE_ENV, LOAD_BALANCER_ADDRESS, ENABLED_SERVICES_JSON } = process.env;
+const { NODE_ENV, LOAD_BALANCER_ADDRESS, ENABLED_SERVICES_JSON, MONGO_URL } =
+  process.env;
 
 const isDev = NODE_ENV === 'development';
 
@@ -55,14 +56,12 @@ export const getService = async (
 export const join = async ({
   name,
   port,
-  dbConnectionString,
   hasSubscriptions = false,
   importExportTypes,
   meta,
 }: {
   name: string;
   port: string;
-  dbConnectionString: string;
   hasSubscriptions?: boolean;
   importExportTypes?: any;
   meta?: any;
@@ -71,7 +70,7 @@ export const join = async ({
     keyForConfig(name),
 
     JSON.stringify({
-      dbConnectionString,
+      dbConnectionString: MONGO_URL,
       hasSubscriptions,
       importExportTypes,
       meta,

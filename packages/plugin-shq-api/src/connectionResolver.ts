@@ -20,7 +20,7 @@ export const loadClasses = (
   const models = {} as IModels;
 
   models.Shqs = db.model<IShqDocument, IShqModel>(
-    'exms',
+    'shqs',
     loadShqClass(models, subdomain),
   );
 

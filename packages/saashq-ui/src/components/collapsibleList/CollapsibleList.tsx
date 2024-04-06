@@ -1,14 +1,14 @@
 import {
   ActionButtons,
   FlexBetween,
-  ItemCount
+  ItemCount,
 } from '@saashq/ui-settings/src/styles';
 import {
   CollapsibleListWrapper,
   FlexRow,
   ItemText,
   SidebarListItem,
-  ToggleIcon
+  ToggleIcon,
 } from './styles';
 
 import EmptyState from '../EmptyState';
@@ -51,7 +51,7 @@ class CollapsibleList extends React.Component<Props, State> {
     this.state = {
       key: '',
       items: props.items,
-      parentIds: {}
+      parentIds: {},
     };
   }
 
@@ -171,8 +171,8 @@ class CollapsibleList extends React.Component<Props, State> {
 
           <div className="child">
             {isOpen &&
-              childrens.map(childparent =>
-                this.renderTree(childparent, subFields)
+              childrens.map((childparent) =>
+                this.renderTree(childparent, subFields),
               )}
           </div>
         </SidebarList>
@@ -199,13 +199,13 @@ class CollapsibleList extends React.Component<Props, State> {
     }
 
     if (!treeView) {
-      return items.map(item => this.renderItem(item, false));
+      return items.map((item) => this.renderItem(item, false));
     }
 
-    const parents = items.filter(item => !item.parentId);
-    const subFields = items.filter(item => item.parentId);
+    const parents = items.filter((item) => !item.parentId);
+    const subFields = items.filter((item) => item.parentId);
 
-    return parents.map(parent => this.renderTree(parent, subFields));
+    return parents.map((parent) => this.renderTree(parent, subFields));
   }
 
   render() {

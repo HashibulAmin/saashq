@@ -61,7 +61,7 @@ class DetectBrowser extends React.PureComponent<{}, State> {
             </b>
             <div>
               {__(
-                'Unfortunately, You are running on a browser that may not be fully compatible with saashq'
+                'Unfortunately, You are running on a browser that may not be fully compatible with saashq',
               )}{' '}
               {__(`Please use recommended version`)} - {name.replace('/', '')}{' '}
               {minVersion}+.

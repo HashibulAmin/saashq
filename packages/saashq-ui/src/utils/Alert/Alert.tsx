@@ -1,7 +1,7 @@
 import Icon from '../../components/Icon';
 import { colors, dimensions, typography } from '../../styles';
 import { darken } from '../../styles/ecolor';
-import { slideDown } from '../animations';
+import { slideDown } from '../../utils/animations';
 import React from 'react';
 import styled from 'styled-components';
 import styledTS from 'styled-components-ts';
@@ -9,23 +9,23 @@ import styledTS from 'styled-components-ts';
 const types = {
   info: {
     background: colors.colorCoreBlue,
-    icon: 'info-circle'
+    icon: 'info-circle',
   },
 
   warning: {
     background: darken(colors.colorCoreYellow, 10),
-    icon: 'exclamation-triangle'
+    icon: 'exclamation-triangle',
   },
 
   error: {
     background: colors.colorCoreRed,
-    icon: 'times-circle'
+    icon: 'times-circle',
   },
 
   success: {
     background: colors.colorCoreGreen,
-    icon: 'check-circle'
-  }
+    icon: 'check-circle',
+  },
 };
 
 export const AlertItem = styledTS<{ type: string }>(styled.div)`
@@ -42,8 +42,8 @@ export const AlertItem = styledTS<{ type: string }>(styled.div)`
   background-color: ${colors.colorWhite};
   animation-name: ${slideDown};
   border-radius: 4px;
-  border-left: ${dimensions.unitSpacing - 4}px solid ${props =>
-  types[props.type].background};
+  border-left: ${dimensions.unitSpacing - 4}px solid ${(props) =>
+    types[props.type].background};
   animation-duration: 0.3s;
   animation-timing-function: ease;
   box-shadow: -1px 0 5px rgba(0, 0, 0, 0.3);
@@ -61,7 +61,7 @@ export const AlertItem = styledTS<{ type: string }>(styled.div)`
   i {
     margin-right: 5px;
     font-size: 25px;
-    color: ${props => types[props.type].background};
+    color: ${(props) => types[props.type].background};
   }
 
   button {
@@ -86,7 +86,7 @@ type Props = {
 
 export default class AlertStyled extends React.Component<Props> {
   static defaultProps = {
-    type: 'information'
+    type: 'information',
   };
 
   handleClose = () => {

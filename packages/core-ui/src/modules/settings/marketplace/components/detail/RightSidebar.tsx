@@ -39,13 +39,14 @@ export default class RightSidebar extends React.Component<Props> {
             <div dangerouslySetInnerHTML={{ __html: description }} />
             <SmallText withMargin={true}>
               <b>{__('Address')}:</b>{' '}
-              {address || '1931 Norris Avenue, Fort Erie Ontario, CA, L2A5M4'}
+              {address ||
+                '6525 Woodman Avenue, Los Angeles California, USA, 91401'}
             </SmallText>
             <SmallText withMargin={true}>
-              <b>{__('Tel')}</b>: {phone || '+1 289 303 7651'}
+              <b>{__('Tel')}</b>: {phone || '+1 617 506 9010'}
             </SmallText>
             <SmallText>
-              <b>{__('Email')}</b>: {email || 'saashqdev@gmail.com'}
+              <b>{__('Email')}</b>: {email || 'info@saashq.org'}
             </SmallText>
           </CardInformation>
         </DetailCard>
@@ -59,7 +60,7 @@ export default class RightSidebar extends React.Component<Props> {
         <ColorHeader>Useful links</ColorHeader>
         <PluginContainer>
           <Button
-            href="https://github.com/saashq-org/saashq"
+            href="https://github.com/saashq/saashq"
             target="_blank"
             btnStyle="simple"
           >
@@ -166,7 +167,7 @@ export default class RightSidebar extends React.Component<Props> {
         {this.renderDependencies()}
         {this.renderRelatedPlugins()}
         <Button
-          href="https://github.com/saashq-org/saashq/issues"
+          href="https://github.com/saashq/saashq/issues"
           target="_blank"
           block={true}
         >

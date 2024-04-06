@@ -1,18 +1,11 @@
 import { Mark, mergeAttributes } from '@tiptap/core';
+
 export const SpanMark = Mark.create({
   name: 'spanMark',
   excludes: '',
   parseHTML() {
-    return [
-      { tag: 'span' },
-      {
-        tag: `span[data-type="mention"]`,
-        skip: true,
-        ignore: true,
-      },
-    ];
+    return [{ tag: 'span' }];
   },
-
   renderHTML({ HTMLAttributes }) {
     return [
       'span',
@@ -20,6 +13,7 @@ export const SpanMark = Mark.create({
       0,
     ];
   },
+
   addAttributes() {
     return {
       style: {
@@ -30,18 +24,6 @@ export const SpanMark = Mark.create({
           }
           return { style: attributes.style };
         },
-      },
-      class: {
-        parseHTML: (element) => element.getAttribute('class'),
-      },
-      'data-type': {
-        parseHTML: (element) => element.getAttribute('data-type'),
-      },
-      'data-id': {
-        parseHTML: (element) => element.getAttribute('data-id'),
-      },
-      'data-label': {
-        parseHTML: (element) => element.getAttribute('data-label'),
       },
     };
   },

@@ -21,11 +21,11 @@ const ReactedEventList = () => {
 
   const goingEventList = () => {
     return (
-      <div className="border border-exm p-4 max-w-[880px] w-full rounded-lg">
+      <div className="border border-shq p-4 max-w-[880px] w-full rounded-lg">
         <div className="flex justify-between font-semibold w-full text-base mb-4">
           <div>Going</div>
         </div>
-        <div className="rounded-sm border border-exm">
+        <div className="rounded-sm border border-shq">
           {goingEvents.map((event: any, index: number) => (
             <EventItem postId={event._id} key={index} myEvent={true} />
           ))}
@@ -36,7 +36,7 @@ const ReactedEventList = () => {
 
   const interestedEventList = () => {
     return (
-      <div className="border border-exm p-4 max-w-[880px] w-full rounded-lg">
+      <div className="border border-shq p-4 max-w-[880px] w-full rounded-lg">
         <div className="flex justify-between font-semibold w-full text-base mb-4">
           <div>Interested</div>
         </div>

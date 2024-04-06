@@ -14,7 +14,7 @@ type Props = {
 };
 
 const UserResetPasswordContainer = (
-  props: Props & ResetMemberPasswordResponse
+  props: Props & ResetMemberPasswordResponse,
 ) => {
   const { usersResetMemberPassword } = props;
 
@@ -36,14 +36,14 @@ const UserResetPasswordContainer = (
         Alert.success('Your password has been changed and updated');
         props.closeModal();
       })
-      .catch(error => {
+      .catch((error) => {
         Alert.error(error.message);
       });
   };
 
   const updatedProps = {
     ...props,
-    save
+    save,
   };
 
   return <UserResetPasswordForm {...updatedProps} />;
@@ -54,8 +54,8 @@ export default withProps<Props>(
     graphql(gql(mutations.usersResetMemberPassword), {
       name: 'usersResetMemberPassword',
       options: {
-        refetchQueries: ['users']
-      }
-    })
-  )(UserResetPasswordContainer)
+        refetchQueries: ['users'],
+      },
+    }),
+  )(UserResetPasswordContainer),
 );

@@ -27,6 +27,7 @@ import {
 import { applyInspectorEndpoints } from '../inspect';
 import app from '@saashq/api-utils/src/app';
 import { consumeQueue, consumeRPCQueue } from '../messageBroker';
+import { extractUserFromHeader } from '../headers';
 
 const { PORT, USE_BRAND_RESTRICTIONS } = process.env;
 
@@ -87,7 +88,7 @@ export async function startPlugin(configs: any): Promise<express.Express> {
 
   const httpServer = http.createServer(app);
 
-  // GRACEFULL SHUTDOWN
+  // GRACEFUL SHUTDOWN
   process.stdin.resume(); // so the program will not close instantly
 
   async function closeHttpServer() {
@@ -156,17 +157,7 @@ export async function startPlugin(configs: any): Promise<express.Express> {
         ) {
           return {};
         }
-        let user: any = null;
-
-        if (req.headers.user) {
-          if (Array.isArray(req.headers.user)) {
-            throw new Error(`Multiple user headers`);
-          }
-          const userJson = Buffer.from(req.headers.user, 'base64').toString(
-            'utf-8',
-          );
-          user = JSON.parse(userJson);
-        }
+        let user: any = extractUserFromHeader(req.headers);
 
         let context;
 
@@ -621,7 +612,6 @@ export async function startPlugin(configs: any): Promise<express.Express> {
     hasSubscriptions: configs.hasSubscriptions,
     importExportTypes: configs.importExportTypes,
     meta: configs.meta,
-    dbConnectionString: configs.dbConnectionString,
   });
 
   configs.onServerInit();

@@ -1,17 +1,18 @@
-import client from '@saashq/ui/src/apolloClient';
-import { gql } from '@apollo/client';
-import { IButtonMutateProps } from '@saashq/ui/src/types';
-import { Alert } from '@saashq/ui/src/utils';
-import { generatePaginationParams } from '@saashq/ui/src/utils/router';
 import {
   ICommonFormProps,
-  ICommonListProps
+  ICommonListProps,
 } from '@saashq/ui-settings/src/common/types';
-import React from 'react';
-import { graphql } from '@apollo/client/react/hoc';
-import { commonListComposer } from '@saashq/ui/src/utils';
-import UserList from '../components/UserList';
 import { mutations, queries } from '@saashq/ui/src/team/graphql';
+
+import { Alert } from '@saashq/ui/src/utils';
+import { IButtonMutateProps } from '@saashq/ui/src/types';
+import React from 'react';
+import UserList from '../components/UserList';
+import client from '@saashq/ui/src/apolloClient';
+import { commonListComposer } from '@saashq/ui/src/utils';
+import { generatePaginationParams } from '@saashq/ui/src/utils/router';
+import { gql } from '@apollo/client';
+import { graphql } from '@apollo/client/react/hoc';
 
 type Props = ICommonListProps &
   ICommonFormProps & {
@@ -26,7 +27,7 @@ class UserListContainer extends React.Component<Props> {
     const { statusChangedMutation, listQuery } = this.props;
 
     statusChangedMutation({
-      variables: { _id: id }
+      variables: { _id: id },
     })
       .then(() => {
         listQuery.refetch();
@@ -42,12 +43,12 @@ class UserListContainer extends React.Component<Props> {
     client
       .mutate({
         mutation: gql(mutations.usersResendInvitation),
-        variables: { email }
+        variables: { email },
       })
       .then(() => {
         Alert.success('Successfully resent the invitation');
       })
-      .catch(e => {
+      .catch((e) => {
         Alert.error(e.message);
       });
   }
@@ -77,9 +78,9 @@ export const options = ({ queryParams }: { queryParams: any }): any => {
       unitId: queryParams.unitId,
       branchId: queryParams.branchId,
       segment: queryParams.segment,
-      segmentData: queryParams.segmentData
+      segmentData: queryParams.segmentData,
     },
-    fetchPolicy: 'network-only'
+    fetchPolicy: 'network-only',
   };
 };
 
@@ -88,16 +89,17 @@ export default commonListComposer<{ queryParams: any; history: any }>({
   label: 'users',
   stringAddMutation: mutations.usersInvite,
   stringEditMutation: mutations.usersEdit,
+  confirmProps: { options: { hasDeleteConfirm: true } },
 
   gqlListQuery: graphql(gql(queries.users), {
     name: 'listQuery',
-    options
+    options,
   }),
   gqlAddMutation: graphql(gql(mutations.usersInvite), {
-    name: 'addMutation'
+    name: 'addMutation',
   }),
   gqlEditMutation: graphql(gql(mutations.usersEdit), {
-    name: 'editMutation'
+    name: 'editMutation',
   }),
   gqlRemoveMutation: graphql<{ queryParams: any }>(
     gql(mutations.usersSetActiveStatus),
@@ -109,16 +111,16 @@ export default commonListComposer<{ queryParams: any; history: any }>({
             query: gql(queries.users),
             variables: {
               ...generatePaginationParams(queryParams),
-              isActive: !(queryParams.isActive === 'false' ? false : true)
-            }
-          }
-        ]
-      })
-    }
+              isActive: !(queryParams.isActive === 'false' ? false : true),
+            },
+          },
+        ],
+      }),
+    },
   ),
   gqlTotalCountQuery: graphql(gql(queries.usersTotalCount), {
     name: 'totalCountQuery',
-    options
+    options,
   }),
-  ListComponent: UserListContainer
+  ListComponent: UserListContainer,
 });

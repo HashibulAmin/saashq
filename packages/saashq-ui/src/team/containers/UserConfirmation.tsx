@@ -19,18 +19,14 @@ type FinalProps = Props & IRouterProps & ConfirmMutationResponse;
 
 class UserConfirmationContainer extends React.Component<FinalProps> {
   render() {
-    const {
-      usersConfirmInvitation,
-      queryParams,
-      history,
-      currentUser
-    } = this.props;
+    const { usersConfirmInvitation, queryParams, history, currentUser } =
+      this.props;
 
     const confirmUser = ({
       password,
       passwordConfirmation,
       username,
-      fullName
+      fullName,
     }: {
       password: string;
       passwordConfirmation: string;
@@ -43,21 +39,21 @@ class UserConfirmationContainer extends React.Component<FinalProps> {
           password,
           passwordConfirmation,
           username,
-          fullName
-        }
+          fullName,
+        },
       })
         .then(() => {
           Alert.success('You successfully verified');
           history.push('/');
         })
-        .catch(e => {
+        .catch((e) => {
           Alert.error(e.message);
         });
     };
 
     const updatedProps = {
       confirmUser,
-      currentUser
+      currentUser,
     };
 
     return <UserConfirmation {...updatedProps} />;
@@ -71,9 +67,9 @@ export default withProps<Props>(
       {
         name: 'usersConfirmInvitation',
         options: {
-          refetchQueries: ['users']
-        }
-      }
-    )
-  )(withRouter<FinalProps>(UserConfirmationContainer))
+          refetchQueries: ['users'],
+        },
+      },
+    ),
+  )(withRouter<FinalProps>(UserConfirmationContainer)),
 );

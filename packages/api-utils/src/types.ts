@@ -114,7 +114,7 @@ export const customFieldSchema = new Schema(
         type: [Number],
         optional: true,
       },
-      required: [false, 'Not required'],
+      required: [false, 'Location required'],
     },
   },
   { _id: false },

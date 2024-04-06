@@ -27,7 +27,7 @@ class UserMovementForm extends React.Component<FinalProps> {
 
     const updateProps = {
       list: userMovements || [],
-      loading
+      loading,
     };
 
     return <UserMovementFormComponent {...updateProps} />;
@@ -41,10 +41,10 @@ export default withProps<Props>(
       options: ({ userId, contentType }) => ({
         variables: {
           userId,
-          contentType
+          contentType,
         },
-        fetchPolicy: 'no-cache'
-      })
-    })
-  )(UserMovementForm)
+        fetchPolicy: 'no-cache',
+      }),
+    }),
+  )(UserMovementForm),
 );

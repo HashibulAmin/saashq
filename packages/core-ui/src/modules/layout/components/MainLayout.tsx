@@ -114,13 +114,25 @@ class MainLayout extends React.Component<IProps, State> {
               'links.website': links.website || '',
               isSubscribed: currentUser.isSubscribed,
             },
+            companyData: {
+              organizationName: name,
+              organizationSubDomain: subdomain,
+              organizationPlan: plan,
+              organizationExpiryDate: expiryDate,
+              organizationCreatedAt: createdAt,
+              isWhiteLabel,
+              organizationIsPaid: isPaid,
+              organizationBundles: bundleNames,
+              organizationExpierence: experienceName,
+              organizationCharges: JSON.stringify(currentOrganization.charge),
+            },
           },
         };
 
         (() => {
           const script = document.createElement('script');
           script.src =
-            'https://shq.saashq.org/widgets/build/messengerWidget.bundle.js';
+            'https://w.office.saashq.org/build/messengerWidget.bundle.js';
           script.async = true;
 
           const entry = document.getElementsByTagName('script')[0] as any;
@@ -145,7 +157,7 @@ class MainLayout extends React.Component<IProps, State> {
 
           const script = document.createElement('script');
           script.src =
-            'https://shq.saashq.org/widgets/build/messengerWidget.bundle.js';
+            'https://w.office.saashq.org/build/messengerWidget.bundle.js';
           const entry = document.getElementsByTagName('script')[0];
           (entry as any).parentNode.insertBefore(script, entry);
         }

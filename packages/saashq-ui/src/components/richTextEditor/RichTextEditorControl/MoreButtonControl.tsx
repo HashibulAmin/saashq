@@ -38,7 +38,7 @@ export const MoreButtonControl = (props: IRichTextEditorMoreControlProps) => {
 
   return (
     <OverlayTrigger
-      rootClose={false}
+      rootClose={true}
       ref={(overlayTrigger) => {
         overLayRef = overlayTrigger;
       }}

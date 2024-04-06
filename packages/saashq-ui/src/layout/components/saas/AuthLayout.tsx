@@ -27,7 +27,7 @@ class AuthLayout extends React.Component<Props, {}> {
       <MobileRecommend>
         <CenterContent>
           <div>
-            <b>{__('SaasHQ Inc')}</b>
+            <b>{__('saashq Inc')}</b>
             <div>{__(desciption)}</div>
           </div>
           <Button btnStyle="link" size="small" href={link}>
@@ -59,7 +59,7 @@ class AuthLayout extends React.Component<Props, {}> {
     if (description) {
       return (
         <AuthCustomDescription>
-          <img src="/images/logo.png" alt="SaasHQ" />
+          <img src="/images/logo.png" alt="saashq" />
           {description}
         </AuthCustomDescription>
       );
@@ -72,8 +72,8 @@ class AuthLayout extends React.Component<Props, {}> {
           <h2>{currentOrganization.description}</h2>
         ) : (
           <h2>
-            All in one <b>Saas / Agency Management System</b> to align your
-            entire business
+            Single <b>experience operating system (XOS)</b> to align your entire
+            business
           </h2>
         )}
       </AuthDescription>

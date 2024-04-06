@@ -5,7 +5,7 @@ import {
   Progress,
   Radio,
   Select,
-  SelectWrapper
+  SelectWrapper,
 } from './styles';
 
 import { Column } from '@saashq/ui/src/styles/main';
@@ -69,7 +69,7 @@ class FormControl extends React.Component<Props> {
     componentClass: 'input',
     required: false,
     defaultChecked: false,
-    disabled: false
+    disabled: false,
   };
 
   componentDidMount() {
@@ -87,7 +87,7 @@ class FormControl extends React.Component<Props> {
     const errorMessage = props.errors && props.errors[props.name || ''];
 
     // cancel custom browser default form validation error
-    const onChange = e => {
+    const onChange = (e) => {
       if (props.onChange) {
         props.onChange(e);
       }
@@ -101,11 +101,8 @@ class FormControl extends React.Component<Props> {
       onBlur: props.onBlur,
       value: props.value,
       defaultValue: props.defaultValue,
-      [props.defaultChecked
-        ? 'defaultChecked'
-        : 'checked']: props.defaultChecked
-        ? props.defaultChecked
-        : props.checked,
+      [props.defaultChecked ? 'defaultChecked' : 'checked']:
+        props.defaultChecked ? props.defaultChecked : props.checked,
       placeholder: props.placeholder,
       hasError: errorMessage ? true : false,
       type: props.type,
@@ -122,7 +119,7 @@ class FormControl extends React.Component<Props> {
       maxHeight: props.maxHeight,
       maxLength: props.maxLength,
       color: props.color,
-      align: props.align
+      align: props.align,
     };
 
     if (elementType === 'select') {
@@ -166,7 +163,7 @@ class FormControl extends React.Component<Props> {
             Radio,
             { key: index, ...attributes, ...option },
             elementType,
-            option.childNode
+            option.childNode,
           );
         });
       }

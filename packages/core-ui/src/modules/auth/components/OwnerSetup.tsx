@@ -163,7 +163,7 @@ const OwnerSetup = (props: Props) => {
         </FormGroup>
 
         <FormGroup>
-          <p>{__('I am planning to use SaasHQ to')}</p>
+          <p>{__('I am planning to use saashq to')}</p>
 
           <FormControl
             componentClass="select"

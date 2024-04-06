@@ -13,7 +13,7 @@ const MainContainer = styledTS<{ active?: boolean }>(styled.div)`
     props.active ? colors.colorWhite : colors.bgMain};
   border: 1px solid ${(props) =>
     props.active ? colors.borderDarker : colors.bgMain};
-  border-radius: 35px;  
+  border-radius: 35px;
   height: 32px;
   position: relative;
   transition: .3s all;

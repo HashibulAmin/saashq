@@ -13,7 +13,7 @@ type Props = {
   user: IUser;
   renderEditForm: ({
     closeModal,
-    user
+    user,
   }: {
     closeModal: () => void;
     user: IUser;
@@ -67,7 +67,7 @@ class InfoSection extends React.Component<Props> {
       return null;
     }
 
-    const customerForm = props => {
+    const customerForm = (props) => {
       return renderEditForm({ ...props, user });
     };
 

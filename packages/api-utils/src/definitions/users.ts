@@ -59,12 +59,12 @@ export interface IUser {
   branchIds?: string[];
   positionIds?: string[];
   employeeId?: string;
-  chatStatus?: string;
+  chatStatus?: IUserChatStatus;
 }
 
-export interface IUserChatStatus {
-  type: String;
-  enum: ['online', 'offline'];
+enum IUserChatStatus {
+  online = 'online',
+  offline = 'offline',
 }
 
 export interface IUserDocument extends IUser, Document {
@@ -77,14 +77,9 @@ export interface IUserDocument extends IUser, Document {
 }
 
 // Mongoose schemas ===============================
-const UserChatStatus = new Schema({
-  type: String,
-  enum: ['online', 'offline'],
-});
-
 const emailSignatureSchema = new Schema(
   {
-    brandId: field({ type: String, label: 'Email signature brand' }),
+    brandId: field({ type: String, label: 'Email signature nrand' }),
     signature: field({ type: String, label: 'Email signature' }),
   },
   { _id: false },
@@ -217,7 +212,7 @@ export const userSchema = schemaWrapper(
       sparse: true,
     }),
     chatStatus: field({
-      type: UserChatStatus,
+      type: IUserChatStatus,
       optional: true,
       label: 'User chat status /used for shq/',
     }),

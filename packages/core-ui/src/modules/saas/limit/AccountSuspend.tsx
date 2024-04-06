@@ -43,7 +43,7 @@ function AccountSuspended() {
       </WarningSign>
       <h3>Account Suspended</h3>
       <p>You've reached the maximum limit of your Contacts.</p>
-      <Button href="https://saashq.org/marketplace-global">
+      <Button href="https://shq.saashq.org/marketplace-global">
         Go to Marketplace
       </Button>
     </AccountSuspendedMessage>

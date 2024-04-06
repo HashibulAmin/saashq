@@ -5,14 +5,14 @@ import { IBranch } from '@saashq/ui/src/team/types';
 import { generateTree } from '../../utils';
 import {
   commonStructureParamsDef,
-  commonStructureParamsValue
+  commonStructureParamsValue,
 } from '../graphql/queries';
 
 // get user options for react-select-plus
 export function generateBranchOptions(array: IBranch[] = []): IOption[] {
   const generateList = () => {
-    const list = array.map(item => {
-      if (!array.find(dep => dep._id === item.parentId)) {
+    const list = array.map((item) => {
+      if (!array.find((dep) => dep._id === item.parentId)) {
         return { ...item, parentId: null };
       }
       return item;
@@ -22,7 +22,7 @@ export function generateBranchOptions(array: IBranch[] = []): IOption[] {
 
   return generateTree(generateList(), null, (node, level) => ({
     value: node._id,
-    label: `${'\u00A0 \u00A0 '.repeat(level)} ${node.code} - ${node.title}`
+    label: `${'\u00A0 \u00A0 '.repeat(level)} ${node.code} - ${node.title}`,
   }));
 }
 
@@ -60,7 +60,7 @@ export default (props: {
     multi = true,
     label,
     filterParams,
-    name
+    name,
   } = props;
   const defaultValue = queryParams ? queryParams[name] : initialValue;
 

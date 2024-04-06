@@ -59,7 +59,7 @@ function GreetingContent(props: Props) {
       </ContentBox>
 
       <TextContainer>
-        <h3>Powered by SaasHQ</h3>
+        <h3>Powered by saashq</h3>
       </TextContainer>
     </SaasHQContent>
   );
