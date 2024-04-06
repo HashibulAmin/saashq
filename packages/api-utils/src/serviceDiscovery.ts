@@ -62,7 +62,6 @@ export const join = async ({
 }: {
   name: string;
   port: string;
-  dbConnectionString: string;
   hasSubscriptions?: boolean;
   importExportTypes?: any;
   meta?: any;
