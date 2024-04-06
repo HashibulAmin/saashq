@@ -174,7 +174,7 @@ export const getMappings = async (index: string) => {
 export function getDbNameFromConnectionString(connectionString) {
   const parsedUrl = parse(connectionString, true);
 
-  const VERSION = getEnv({ name: 'VERSION' });
+  let VERSION = getEnv({ name: 'VERSION' });
 
   if (VERSION && VERSION === 'saas') {
     return 'saashq';
