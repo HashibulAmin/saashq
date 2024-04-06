@@ -11,7 +11,7 @@ export const EMPTY_IMPORT_CONTENT = {
     {
       title: __('Create Custom Properties'),
       description: __(
-        'If you wish to import any properties that are not available on saashq, you need to create custom properties',
+        'If you wish to import any properties that are not available on SaasHQ, you need to create custom properties',
       ),
       url: 'https://docs.saashq.org',
       isOutside: true,
