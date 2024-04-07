@@ -14,7 +14,7 @@ class ServiceBox extends React.Component<Props, { showMore: boolean }> {
     super(props);
 
     this.state = {
-      showMore: false
+      showMore: false,
     };
   }
 
@@ -35,7 +35,7 @@ class ServiceBox extends React.Component<Props, { showMore: boolean }> {
 
     return (
       <Service
-        // href={`https://saashq.org/marketplace-global?domain=${domain}`}
+        // href={`https://shq.saashq.org/marketplace-global?domain=${domain}`}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -47,8 +47,8 @@ class ServiceBox extends React.Component<Props, { showMore: boolean }> {
               {prices && prices.oneTime
                 ? '/ One Time'
                 : prices && prices.monthly
-                ? '/ Monthly'
-                : ''}
+                  ? '/ Monthly'
+                  : ''}
             </span>
           </Price>
           <ServiceText showMore={this.state.showMore}>

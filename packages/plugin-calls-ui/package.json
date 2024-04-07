@@ -6,7 +6,7 @@
     "build": "webpack --mode production"
   },
   "dependencies": {
-    "@saashq/ui" : "*",
-    "jssip": "^3.10.0"
+    "@saashq/ui": "*",
+    "jssip": "^3.10.1"
   }
 }

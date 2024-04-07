@@ -1,7 +1,7 @@
 module.exports = {
-  dashboards: {
-    name: "dashboards",
-    description: "Dashboards",
+  dashboardz: {
+    name: "dashboardz",
+    description: "Dashboardz",
     actions: [
       {
         name: "dashboardsAll",

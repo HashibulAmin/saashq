@@ -9,7 +9,7 @@ import {
   ItalicButton,
   OrderedListButton,
   UnderlineButton,
-  UnorderedListButton
+  UnorderedListButton,
 } from 'draft-js-buttons';
 import createEmojiPlugin from 'draft-js-emoji-plugin';
 import 'draft-js-emoji-plugin/lib/plugin.css';
@@ -17,7 +17,7 @@ import { stateToHTML } from 'draft-js-export-html';
 import Editor from 'draft-js-plugins-editor';
 import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin';
 import 'draft-js-static-toolbar-plugin/lib/plugin.css';
-import { getDraftDecorator } from './DraftjsHelpers';
+import { getDraftDecorator } from '../editor/DraftjsHelpers';
 import Icon from '../Icon';
 import React from 'react';
 import HeadlinesButton from './HeadlinesButton';
@@ -50,17 +50,17 @@ export class SaasHQEditor extends React.Component<SaasHQEditorProps> {
   constructor(props) {
     super(props);
 
-    const options = settings => {
+    const options = (settings) => {
       if (props.isTopPopup) {
         return {
           top: settings.decoratorRect.y - 30 + 'px', // change this value (30) for manage the distance between cursor and bottom edge of popover
-          transform: 'scale(1) translateY(-100%)'
+          transform: 'scale(1) translateY(-100%)',
         };
       }
 
       return {
         top: settings.decoratorRect.y + 'px',
-        transform: 'scale(1)'
+        transform: 'scale(1)',
       };
     };
 
@@ -69,16 +69,16 @@ export class SaasHQEditor extends React.Component<SaasHQEditorProps> {
     this.emojiPlugin = createEmojiPlugin({
       useNativeArt: true,
       selectButtonContent: <Icon icon="smile" />,
-      positionSuggestions: settings => {
+      positionSuggestions: (settings) => {
         return {
           left: settings.decoratorRect.x + 'px',
           boxShadow: '0 0 12px 0 rgba(0, 0, 0, 0.1)',
           transformOrigin: '1em 0%',
           position: 'fixed',
           transition: 'all 0.2s cubic-bezier(0.3, 1.2, 0.2, 1) 0s',
-          ...options(settings)
+          ...options(settings),
         };
-      }
+      },
     });
   }
 
@@ -86,7 +86,7 @@ export class SaasHQEditor extends React.Component<SaasHQEditorProps> {
     this.editor.focus();
   };
 
-  onTab = e => {
+  onTab = (e) => {
     const { onChange, editorState } = this.props;
     const maxDepth = 4;
 
@@ -112,13 +112,13 @@ export class SaasHQEditor extends React.Component<SaasHQEditorProps> {
     onChange(RichUtils.toggleBlockType(editorState, blockType));
   };
 
-  toggleInlineStyle = inlineStyle => {
+  toggleInlineStyle = (inlineStyle) => {
     const { onChange, editorState } = this.props;
 
     onChange(RichUtils.toggleInlineStyle(editorState, inlineStyle));
   };
 
-  handlePastedFile = e => {
+  handlePastedFile = (e) => {
     if (this.props.handleFileInput) {
       this.props.handleFileInput(e);
     }
@@ -128,38 +128,38 @@ export class SaasHQEditor extends React.Component<SaasHQEditorProps> {
     const { editorState } = this.props;
     const currentContent = editorState.getCurrentContent();
 
-    return currentContent.getPlainText('').length
-  }
+    return currentContent.getPlainText('').length;
+  };
 
   handlePastedText = (pastedText) => {
     const { integrationKind } = this.props;
 
-    if (integrationKind !== "telnyx"){
+    if (integrationKind !== 'telnyx') {
       return 'un-handled';
     }
 
     const contentLength = this.getContentLength();
 
-  	if (contentLength + pastedText.length > 160) {
-    	return 'handled';
+    if (contentLength + pastedText.length > 160) {
+      return 'handled';
     }
 
-    return 'un-handled'
-  }
+    return 'un-handled';
+  };
 
   renderChar = () => {
     const { editorState, integrationKind } = this.props;
 
-    if (integrationKind !== "telnyx") {
+    if (integrationKind !== 'telnyx') {
       return;
     }
 
     const currentContent = editorState.getCurrentContent();
-    const currentContentLength = currentContent.getPlainText('').length
+    const currentContentLength = currentContent.getPlainText('').length;
     const characterCount = 160 - currentContentLength;
 
-    return <Char count={characterCount}>{characterCount}</Char>
-  }
+    return <Char count={characterCount}>{characterCount}</Char>;
+  };
 
   render() {
     const {
@@ -171,13 +171,13 @@ export class SaasHQEditor extends React.Component<SaasHQEditorProps> {
       bordered,
       isTopPopup = false,
       plugins,
-      integrationKind
+      integrationKind,
     } = this.props;
 
     const updatedPlugins = [
       this.toolbarPlugin,
       this.linkPlugin,
-      this.emojiPlugin
+      this.emojiPlugin,
     ].concat(plugins || []);
 
     // plugins
@@ -191,12 +191,7 @@ export class SaasHQEditor extends React.Component<SaasHQEditorProps> {
     const contentState = editorState.getCurrentContent();
 
     if (!contentState.hasText()) {
-      if (
-        contentState
-          .getBlockMap()
-          .first()
-          .getType() !== 'unstyled'
-      ) {
+      if (contentState.getBlockMap().first().getType() !== 'unstyled') {
         className += ' RichEditor-hidePlaceholder';
       }
     }
@@ -216,7 +211,7 @@ export class SaasHQEditor extends React.Component<SaasHQEditorProps> {
             onUpArrow={onUpArrow}
             onDownArrow={onDownArrow}
             onEscape={onEscape}
-            ref={element => {
+            ref={(element) => {
               this.editor = element;
             }}
             plugins={updatedPlugins}
@@ -227,28 +222,28 @@ export class SaasHQEditor extends React.Component<SaasHQEditorProps> {
         </div>
         <RichEditorControlsRoot isTopPopup={isTopPopup}>
           <Toolbar>
-            {externalProps => (
+            {(externalProps) => (
               <>
-              { integrationKind !== 'telnyx' &&
+                {integrationKind !== 'telnyx' && (
                   <>
-                  <BoldButton {...externalProps} />
-                  <ItalicButton {...externalProps} />
-                  <UnderlineButton {...externalProps} />
-                  <Separator {...externalProps} />
-                  <HeadlinesButton {...externalProps} />
-                  <UnorderedListButton {...externalProps} />
-                  <OrderedListButton {...externalProps} />
-                  <BlockquoteButton {...externalProps} />
-                  <CodeBlockButton {...externalProps} />
-                  <LinkButton {...externalProps} />
+                    <BoldButton {...externalProps} />
+                    <ItalicButton {...externalProps} />
+                    <UnderlineButton {...externalProps} />
+                    <Separator {...externalProps} />
+                    <HeadlinesButton {...externalProps} />
+                    <UnorderedListButton {...externalProps} />
+                    <OrderedListButton {...externalProps} />
+                    <BlockquoteButton {...externalProps} />
+                    <CodeBlockButton {...externalProps} />
+                    <LinkButton {...externalProps} />
                   </>
-             }
+                )}
                 <EmojiSelect />
                 {controls ? controls : null}
               </>
             )}
           </Toolbar>
-          {this.renderChar()} 
+          {this.renderChar()}
         </RichEditorControlsRoot>
         {this.props.pluginContent}
       </RichEditorRoot>
@@ -261,7 +256,7 @@ export const toHTML = (state: EditorState) =>
 
 export const createStateFromHTML = (
   editorState: EditorState,
-  html: string
+  html: string,
 ): EditorState => {
   if (!html) {
     return editorState;
@@ -279,16 +274,16 @@ export const createStateFromHTML = (
 };
 
 // TODO: Check insert-fragment
-export const clearContent = editorState =>
+export const clearContent = (editorState) =>
   EditorState.push(
     editorState,
     ContentState.createFromText(''),
-    'insert-fragment'
+    'insert-fragment',
   );
 
 export default {
   SaasHQEditor,
   toHTML,
   createStateFromHTML,
-  clearContent
+  clearContent,
 };

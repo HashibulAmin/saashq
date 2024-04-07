@@ -8,7 +8,7 @@ import {
   TemplateBox,
   TemplateBoxInfo,
   TemplateInfo,
-  Templates
+  Templates,
 } from '@saashq/ui-emailtemplates/src/styles';
 import { IButtonMutateProps, IRouterProps } from '@saashq/ui/src/types';
 import { __, router } from 'coreui/utils';
@@ -36,14 +36,14 @@ type Props = {
 type FinalProps = Props & IRouterProps;
 
 class ScriptList extends React.Component<FinalProps> {
-  renderForm = props => {
+  renderForm = (props) => {
     return <Form {...props} renderButton={this.props.renderButton} />;
   };
 
-  renderEditAction = object => {
+  renderEditAction = (object) => {
     const { save } = this.props;
 
-    const content = props => {
+    const content = (props) => {
       return this.renderForm({ ...props, object, save });
     };
 
@@ -62,8 +62,8 @@ class ScriptList extends React.Component<FinalProps> {
     );
   };
 
-  installCodeAction = object => {
-    const content = props => <InstallCode {...props} script={object} />;
+  installCodeAction = (object) => {
+    const content = (props) => <InstallCode {...props} script={object} />;
 
     return (
       <ModalTrigger
@@ -92,7 +92,7 @@ class ScriptList extends React.Component<FinalProps> {
     router.setParams(this.props.history, { [name]: values });
   };
 
-  renderForms = forms => {
+  renderForms = (forms) => {
     if (forms.length === 0) {
       return '-';
     }
@@ -101,7 +101,7 @@ class ScriptList extends React.Component<FinalProps> {
 
     return (
       <>
-        <EllipsedRow>{forms.map(lead => `${lead.name},`)}</EllipsedRow>
+        <EllipsedRow>{forms.map((lead) => `${lead.name},`)}</EllipsedRow>
         <span>&nbsp;{showEllipsis && '...'}</span>
       </>
     );
@@ -170,7 +170,7 @@ class ScriptList extends React.Component<FinalProps> {
         formTitle="New widget script"
         breadcrumb={[
           { title: __('Settings'), link: '/settings' },
-          { title: __('Widget Script Manager') }
+          { title: __('Widget Script Manager') },
         ]}
         title={__('Widget Script Manager')}
         leftActionBar={
@@ -178,9 +178,9 @@ class ScriptList extends React.Component<FinalProps> {
             icon="/images/actions/23.svg"
             title="Scripts"
             description={`${__(
-              'Script manager allows saashq users to quickly and easily generate and update related scripts for any of their business websites'
+              'Script manager allows saashq users to quickly and easily generate and update related scripts for any of their business websites',
             )}.${__(
-              `Set up once and your team will be able to easily display multiple saashq widgets on any of their businesses websites`
+              `Set up once and your team will be able to easily display multiple saashq widgets on any of their businesses websites`,
             )}`}
           />
         }

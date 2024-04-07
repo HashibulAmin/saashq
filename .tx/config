@@ -1,7 +1,7 @@
 [main]
 host = https://www.transifex.com
 
-[erxes.en-json]
+[saashq.en-json]
 file_filter = ui/src/locales/<lang>.json
 minimum_perc = 0
 source_file = ui/src/locales/en.json

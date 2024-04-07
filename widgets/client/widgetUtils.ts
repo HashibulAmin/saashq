@@ -66,17 +66,17 @@ export const getBrowserInfo = async () => {
       hostname: window.location.href,
       language: navigator.language,
       userAgent: navigator.userAgent,
-      countryCode: 'CA',
+      countryCode: 'MN',
     };
   }
 
   let location;
 
   try {
-    const response = await fetch('https://geo.saashq.org');
+    const response = await fetch('https://geo.saashq.io');
 
     location = await response.json();
-    
+
   } catch (e) {
     location = {
       city: '',

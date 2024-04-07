@@ -26,9 +26,9 @@ export const stageSchema = new Schema(
     _id: field({ type: String }),
     name: field({ type: String, label: 'Stage name' }),
     formId: field({ type: String, optional: true, label: 'Form' }),
-    order: field({ type: Number, label: 'Order' })
+    order: field({ type: Number, label: 'Order' }),
   },
-  { _id: false }
+  { _id: false },
 );
 
 export const pipelineTemplateSchema = new Schema({
@@ -40,12 +40,12 @@ export const pipelineTemplateSchema = new Schema({
   isDefinedBySaasHQ: field({
     type: Boolean,
     default: false,
-    label: 'Is defined by saashq'
+    label: 'Is defined by SaasHQ',
   }),
   createdBy: field({ type: String, label: 'Created by' }),
   createdAt: field({
     type: Date,
     default: new Date(),
-    label: 'Created at'
-  })
+    label: 'Created at',
+  }),
 });

@@ -333,7 +333,6 @@ httpServer.listen(PORT, async () => {
   await join({
     name: 'core',
     port: PORT,
-    dbConnectionString: MONGO_URL,
     hasSubscriptions: false,
     meta: {
       logs: { providesActivityLog: true, consumers: logs },

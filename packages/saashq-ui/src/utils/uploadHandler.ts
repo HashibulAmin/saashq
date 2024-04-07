@@ -1,5 +1,5 @@
-import Alert from './Alert';
-import { getEnv } from './core';
+import Alert from '../utils/Alert';
+import { getEnv } from '../utils/core';
 
 type FileInfo = {
   name: string;
@@ -33,7 +33,7 @@ type Params = {
   maxWidth?: number;
 };
 
-const getVideoDuration = file =>
+const getVideoDuration = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader() as any;
     reader.onload = () => {
@@ -41,7 +41,7 @@ const getVideoDuration = file =>
       media.onloadedmetadata = () => resolve(media.duration);
     };
     reader.readAsDataURL(file);
-    reader.onerror = error => reject(error);
+    reader.onerror = (error) => reject(error);
   });
 
 export const deleteHandler = (params: {
@@ -58,23 +58,23 @@ export const deleteHandler = (params: {
   fetch(url, {
     method: 'post',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
     },
     body: `fileName=${fileName}`,
-    credentials: 'include'
-  }).then(response => {
+    credentials: 'include',
+  }).then((response) => {
     response
       .text()
-      .then(text => {
+      .then((text) => {
         if (!response.ok) {
           return afterUpload({
-            status: text
+            status: text,
           });
         }
 
         return afterUpload({ status: 'ok' });
       })
-      .catch(error => {
+      .catch((error) => {
         Alert.error(error.message);
       });
   });
@@ -94,7 +94,7 @@ const uploadHandler = async (params: Params) => {
     userId,
     extraFormData = [],
     maxHeight = '',
-    maxWidth = ''
+    maxWidth = '',
   } = params;
 
   if (!files) {
@@ -116,7 +116,7 @@ const uploadHandler = async (params: Params) => {
       name: file.name,
       size: file.size,
       type: file.type,
-      duration: 0
+      duration: 0,
     } as any;
 
     if (file.type.includes('audio') || file.type.includes('video')) {
@@ -131,11 +131,9 @@ const uploadHandler = async (params: Params) => {
     // skip file that size is more than REACT_APP_FILE_UPLOAD_MAX_SIZE
     if (fileInfo.size > parseInt(fileUploadMaxSize, 10)) {
       Alert.warning(
-        `Your file ${
-          fileInfo.name
-        } size is too large. Upload files less than ${fileUploadMaxSize /
-          1024 /
-          1024}MB of size.`
+        `Your file ${fileInfo.name} size is too large. Upload files less than ${
+          fileUploadMaxSize / 1024 / 1024
+        }MB of size.`,
       );
 
       continue;
@@ -159,16 +157,16 @@ const uploadHandler = async (params: Params) => {
         method: 'post',
         body: formData,
         credentials: 'include',
-        ...(userId ? { headers: { userId } } : {})
+        ...(userId ? { headers: { userId } } : {}),
       })
-        .then(response => {
+        .then((response) => {
           response[responseType]()
-            .then(text => {
+            .then((text) => {
               if (!response.ok) {
                 return afterUpload({
                   status: 'error',
                   response,
-                  fileInfo
+                  fileInfo,
                 });
               }
 
@@ -177,11 +175,11 @@ const uploadHandler = async (params: Params) => {
                 afterUpload({ status: 'ok', response: text, fileInfo });
               }
             })
-            .catch(error => {
+            .catch((error) => {
               Alert.error(error.message);
             });
         })
-        .catch(error => {
+        .catch((error) => {
           Alert.error(error.message);
         });
     };

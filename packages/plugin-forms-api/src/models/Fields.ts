@@ -94,7 +94,7 @@ export const loadFieldClass = (models: IModels, subdomain: string) => {
       }
     }
     /*
-     * Check if Group is defined by saashq by default
+     * Check if Group is defined by SaasHQ by default
      */
     public static async checkIsDefinedBySaasHQ(_id: string) {
       const fieldObj = await models.Fields.findOne({ _id });
@@ -613,7 +613,7 @@ export const loadGroupClass = (models: IModels) => {
       }
     }
     /*
-     * Check if Group is defined by saashq by default
+     * Check if Group is defined by SaasHQ by default
      */
     public static async checkIsDefinedBySaasHQ(_id: string) {
       const groupObj = await models.FieldsGroups.findOne({ _id });
@@ -668,7 +668,7 @@ export const loadGroupClass = (models: IModels) => {
         await this.checkCodeDuplication(doc.code);
       }
 
-      // Can not edit group that is defined by saashq
+      // Can not edit group that is defined by SaasHQ
       await this.checkIsDefinedBySaasHQ(_id);
 
       await models.FieldsGroups.updateOne({ _id }, { $set: doc });
@@ -686,7 +686,7 @@ export const loadGroupClass = (models: IModels) => {
         throw new Error(`Group not found with id of ${_id}`);
       }
 
-      // Can not delete group that is defined by saashq
+      // Can not delete group that is defined by SaasHQ
       await this.checkIsDefinedBySaasHQ(_id);
 
       // Deleting fields that are associated with this group
@@ -710,7 +710,7 @@ export const loadGroupClass = (models: IModels) => {
       isVisible?: boolean,
       isVisibleInDetail?: boolean,
     ) {
-      // Can not update group that is defined by saashq
+      // Can not update group that is defined by SaasHQ
       await this.checkIsDefinedBySaasHQ(_id);
 
       // Updating visible

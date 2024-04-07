@@ -21,7 +21,7 @@ class Header extends React.Component<Props> {
 
     setTitle(
       title,
-      title === `${__('Team Inbox')}` && document.title.startsWith('(1)')
+      title === `${__('Team Inbox')}` && document.title.startsWith('(1)'),
     );
   }
 
@@ -39,7 +39,7 @@ class Header extends React.Component<Props> {
       submenu,
       queryParams,
       additionalMenuItem,
-      filterTitle
+      filterTitle,
     } = this.props;
 
     return (

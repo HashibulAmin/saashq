@@ -307,7 +307,7 @@ export const updateMobileAmount = async (
         },
       });
     } catch (e) {
-      debugError(`Error occurred while sending data to saashq: ${e.message}`);
+      debugError(`Error occurred while sending data to SaasHQ: ${e.message}`);
     }
   }
 
@@ -464,7 +464,7 @@ export const prepareSettlePayment = async (
         },
       });
     } catch (e) {
-      debugError(`Error occurred while sending data to saashq: ${e.message}`);
+      debugError(`Error occurred while sending data to SaasHQ: ${e.message}`);
     }
 
     return ebarimtResponses;

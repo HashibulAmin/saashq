@@ -1141,6 +1141,7 @@ export const uploadFile = async (
   models: IModels,
 ): Promise<any> => {
   const IS_PUBLIC = await getConfig('FILE_SYSTEM_PUBLIC', '', models);
+  const VERSION = getEnv({ name: 'VERSION' });
   const UPLOAD_SERVICE_TYPE = await getConfig(
     'UPLOAD_SERVICE_TYPE',
     'AWS',
@@ -1158,7 +1159,11 @@ export const uploadFile = async (
   }
 
   if (UPLOAD_SERVICE_TYPE === 'CLOUDFLARE') {
-    nameOrLink = await uploadFileCloudflare(file, false, models);
+    nameOrLink = await uploadFileCloudflare(
+      file,
+      VERSION === 'saas' ? true : false,
+      models,
+    );
   }
 
   if (UPLOAD_SERVICE_TYPE === 'local') {
@@ -1282,7 +1287,7 @@ export const getCoreDomain = () => {
   const NODE_ENV = process.env.NODE_ENV;
 
   return NODE_ENV === 'production'
-    ? 'https://saashq.org'
+    ? 'https://saashq.io'
     : 'http://localhost:3500';
 };
 

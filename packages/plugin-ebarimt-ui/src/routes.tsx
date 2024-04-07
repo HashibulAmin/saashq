@@ -5,28 +5,44 @@ import { Route } from 'react-router-dom';
 
 import asyncComponent from '@saashq/ui/src/components/AsyncComponent';
 
-const GeneralSettings = asyncComponent(() =>
-  import(/* webpackChunkName: "KnowledgeBase" */ './components/GeneralSettings')
+const GeneralSettings = asyncComponent(
+  () =>
+    import(
+      /* webpackChunkName: "KnowledgeBase" */ './components/GeneralSettings'
+    ),
 );
 
-const StageSettings = asyncComponent(() =>
-  import(/* webpackChunkName: "KnowledgeBase" */ './components/StageSettings')
+const StageSettings = asyncComponent(
+  () =>
+    import(
+      /* webpackChunkName: "KnowledgeBase" */ './components/StageSettings'
+    ),
 );
 
-const ReturnStageSettings = asyncComponent(() =>
-  import(
-    /* webpackChunkName: "KnowledgeBase" */ './components/ReturnStageSettings'
-  )
+const ReturnStageSettings = asyncComponent(
+  () =>
+    import(
+      /* webpackChunkName: "KnowledgeBase" */ './components/ReturnStageSettings'
+    ),
 );
 
-const PutResponses = asyncComponent(() =>
-  import(/* webpackChunkName: "KnowledgeBase" */ './containers/PutResponses')
+const PutResponses = asyncComponent(
+  () =>
+    import(/* webpackChunkName: "KnowledgeBase" */ './containers/PutResponses'),
 );
 
-const PutResponsesByDate = asyncComponent(() =>
-  import(
-    /* webpackChunkName: "KnowledgeBase" */ './containers/PutResponsesByDate'
-  )
+const PutResponsesByDate = asyncComponent(
+  () =>
+    import(
+      /* webpackChunkName: "KnowledgeBase" */ './containers/PutResponsesByDate'
+    ),
+);
+
+const PutResponsesDuplicated = asyncComponent(
+  () =>
+    import(
+      /* webpackChunkName: "PutResponsesDuplicated" */ './containers/PutResponsesDuplicated'
+    ),
 );
 
 const GeneralSetting = () => {
@@ -64,6 +80,15 @@ const PutResponsesByDateComponent = ({ location, history }) => {
   );
 };
 
+const PutResponsesDuplicatedComponent = ({ location, history }) => {
+  return (
+    <PutResponsesDuplicated
+      queryParams={queryString.parse(location.search)}
+      history={history}
+    />
+  );
+};
+
 const routes = () => {
   return (
     <React.Fragment>
@@ -83,6 +108,10 @@ const routes = () => {
       <Route
         path="/put-responses-by-date"
         component={PutResponsesByDateComponent}
+      />
+      <Route
+        path="/put-responses-duplicated"
+        component={PutResponsesDuplicatedComponent}
       />
     </React.Fragment>
   );

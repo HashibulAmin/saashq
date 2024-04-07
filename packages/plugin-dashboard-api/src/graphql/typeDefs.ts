@@ -1,4 +1,5 @@
 import { gql } from 'apollo-server-express';
+import { isEnabled } from '@saashq/api-utils/src/serviceDiscovery';
 
 import {
   mutations as DashboardMutations,
@@ -6,8 +7,8 @@ import {
   types as DashboardTypes,
 } from './dashboardTypeDefs';
 
-const typeDefs = async (serviceDiscovery) => {
-  const tagsAvailable = await serviceDiscovery.isEnabled('tags');
+const typeDefs = async () => {
+  const tagsAvailable = await isEnabled('tags');
 
   return gql`
   scalar JSON

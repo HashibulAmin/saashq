@@ -4,7 +4,6 @@ import Header from '@saashq/ui/src/layout/components/Header';
 import React from 'react';
 import { __ } from 'coreui/utils';
 import asyncComponent from '@saashq/ui/src/components/AsyncComponent';
-import { loadDynamicComponent } from '@saashq/ui/src/utils/core';
 
 const Sidebar = asyncComponent(
   () =>
@@ -23,7 +22,6 @@ const ConversationDetail = asyncComponent(
 
 type Props = {
   queryParams: any;
-  history?: any;
   currentConversationId: string;
 };
 class Inbox extends React.Component<Props> {
@@ -31,12 +29,6 @@ class Inbox extends React.Component<Props> {
     const { currentConversationId, queryParams } = this.props;
 
     const menuInbox = [{ title: 'Team Inbox', link: '/inbox/index' }];
-
-    const ReportsFormButton = loadDynamicComponent('reportsCommonFormButton', {
-      serviceName: 'inbox',
-      reportTemplateType: 'inbox',
-      ...this.props,
-    });
 
     return (
       <HeightedWrapper>

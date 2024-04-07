@@ -9,6 +9,7 @@ import {
   IScheduleDocument,
   IShiftDocument,
   IUserAbsenceInfo,
+  IUserReport,
   IUsersReport,
 } from '../../models/definitions/timeclock';
 import { customFixDate } from '../../utils';
@@ -235,9 +236,7 @@ export const timeclockReportByUser = async (
 
   const scheduleShiftConfigsSelectedMonth = await models.ScheduleConfigs.find({
     _id: {
-      $in: scheduleShiftsSelectedMonth.map(
-        (shift) => shift.scheduleConfigId,
-      ) as string[],
+      $in: scheduleShiftsSelectedMonth.map((shift) => shift.scheduleConfigId),
     },
   });
 
@@ -281,7 +280,7 @@ export const timeclockReportByUser = async (
   let totalHoursAbsenceSelectedMonth = 0;
 
   const absenceTypes = await models.AbsenceTypes.find({
-    _id: { $in: absenceTypeIds as string[] },
+    _id: { $in: absenceTypeIds },
   });
 
   for (const request of requestsOfSelectedMonth) {
@@ -690,7 +689,7 @@ export const timeclockReportFinal = async (
   });
 
   const relatedAbsenceTypes = await models.AbsenceTypes.find({
-    _id: { $in: requests.map((request) => request.absenceTypeId) as string[] },
+    _id: { $in: requests.map((request) => request.absenceTypeId) },
   });
 
   // get all related absences
@@ -1461,4 +1460,133 @@ const createSchedulesObj = (
   }
 
   return returnObject;
+};
+export const findTimeclockTeamMemberIds = async (
+  models: any,
+  startDate: Date,
+  endDate: Date,
+) => {
+  const timeclockUserIds = await models.Timeclocks.find({
+    shiftStart: {
+      $gte: fixDate(startDate),
+      $lte: customFixDate(endDate),
+    },
+  }).distinct('userId');
+
+  const requestsUserIds = await models.Absences.find({
+    solved: true,
+    status: /approved/gi,
+    startTime: {
+      $gte: fixDate(startDate),
+      $lte: customFixDate(endDate),
+    },
+  }).distinct('userId');
+
+  const scheduleIds = await models.Shifts.find({
+    status: 'Approved',
+    shiftStart: {
+      $gte: fixDate(startDate),
+      $lte: customFixDate(endDate),
+    },
+    shiftEnd: {
+      $gte: fixDate(startDate),
+      $lte: customFixDate(endDate),
+    },
+  }).distinct('scheduleId');
+
+  const scheduleUserIds = await models.Schedules.find({
+    _id: { $in: scheduleIds },
+  }).distinct('userId');
+
+  const allUserIds = Array.from(
+    new Set([...timeclockUserIds, ...requestsUserIds, ...scheduleUserIds]),
+  );
+
+  return allUserIds;
+};
+
+export const timeclockReportByUsers = async (
+  userIds: string[],
+  models: IModels,
+  queryParams: any,
+): Promise<IUserReport[]> => {
+  const returnReport: any[] = [];
+
+  const { startDate, endDate } = queryParams;
+
+  const schedules = await models.Schedules.find({
+    userId: { $in: userIds },
+    solved: true,
+    status: /approved/gi,
+  });
+
+  // find total Timeclocks
+  const timeclocks = await models.Timeclocks.find({
+    $and: [
+      { userId: { $in: userIds } },
+      {
+        shiftStart: {
+          $gte: fixDate(startDate),
+          $lte: customFixDate(endDate),
+        },
+      },
+    ],
+  }).sort({ userId: 1 });
+
+  // get all approved absence requests
+  const requests = await models.Absences.find({
+    userId: { $in: userIds },
+    solved: true,
+    status: /approved/gi,
+    $or: [
+      {
+        startTime: {
+          $gte: fixDate(startDate),
+          $lte: customFixDate(endDate),
+        },
+      },
+      {
+        endTime: {
+          $gte: fixDate(startDate),
+          $lte: customFixDate(endDate),
+        },
+      },
+    ],
+  });
+
+  const absTypeObject: { [id: string]: any } = {};
+
+  const absenceTypes = await models.AbsenceTypes.find({
+    _id: { $in: requests.map((r) => r.absenceTypeId) },
+  });
+
+  for (const absType of absenceTypes) {
+    absTypeObject[absType._id] = absType.requestType;
+  }
+
+  const requestsFiltered: any = [];
+  for (const request of requests) {
+    requestsFiltered.push({
+      absenceType: absTypeObject[request.absenceTypeId || ''],
+      absenceTimeType: request.absenceTimeType,
+      requestDates: request.requestDates,
+      userId: request.userId,
+      solved: request.solved,
+      reason: request.reason,
+      totalHoursOfAbsence: request.totalHoursOfAbsence,
+      startTime: request.startTime,
+      endTime: request.endTime,
+    });
+  }
+
+  for (const userId of userIds) {
+    returnReport.push({
+      userId,
+      requests: requestsFiltered.filter((request) => request.userId === userId),
+      schedules: schedules.filter((schedule) => schedule.userId === userId),
+      timeclocks: timeclocks.filter((t) => t.userId === userId),
+    });
+  }
+
+  return returnReport;
 };

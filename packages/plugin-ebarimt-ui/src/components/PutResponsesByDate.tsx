@@ -41,11 +41,11 @@ class PutResponsesByDate extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue
+      searchValue: this.props.searchValue,
     };
   }
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -60,7 +60,7 @@ class PutResponsesByDate extends React.Component<IProps, State> {
     }, 500);
   };
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -92,7 +92,7 @@ class PutResponsesByDate extends React.Component<IProps, State> {
       onFilter,
       onSelect,
       isFiltered,
-      clearFilter
+      clearFilter,
     } = this.props;
 
     const mainContent = errorMsg ? (
@@ -116,7 +116,7 @@ class PutResponsesByDate extends React.Component<IProps, State> {
           </thead>
           <tbody id="putResponses">
             {(putResponses || []).map((putResponse, index) =>
-              this.renderRow(putResponse, index)
+              this.renderRow(putResponse, index),
             )}
           </tbody>
         </Table>
@@ -130,7 +130,7 @@ class PutResponsesByDate extends React.Component<IProps, State> {
       isFiltered,
       clearFilter,
       queryParams,
-      showMenu: errorMsg ? true : false
+      showMenu: !!errorMsg,
     };
 
     const actionBarRight = (
@@ -173,4 +173,4 @@ class PutResponsesByDate extends React.Component<IProps, State> {
   }
 }
 
-export default withRouter<IRouterProps>(PutResponsesByDate);
+export default withRouter<IRouterProps, any>(PutResponsesByDate);

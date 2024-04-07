@@ -1,8 +1,11 @@
 import { paginate } from '@saashq/api-utils/src';
 import { IUserDocument } from '@saashq/api-utils/src/types';
-import { serviceDiscovery } from '../../configs';
 import { IContext } from '../../connectionResolver';
 import { sendCoreMessage, sendTagsMessage } from '../../messageBroker';
+import {
+  getService,
+  getServices,
+} from '@saashq/api-utils/src/serviceDiscovery';
 
 interface IListArgs {
   status: string;
@@ -73,7 +76,7 @@ const generateFilter = async (
 };
 
 const dashBoardQueries = {
-  async dashboards(
+  async dashboardz(
     _root,
     params: IListArgs,
     { models, user, subdomain }: IContext,
@@ -92,7 +95,7 @@ const dashBoardQueries = {
 
     const filter = await generateFilter(params, user, subdomain);
 
-    const dashboards = paginate(
+    const dashboardz = paginate(
       models.Dashboards.find(filter).sort({ createdAt: -1 }),
       { perPage, page },
     );
@@ -100,7 +103,7 @@ const dashBoardQueries = {
     const totalCount = await models.Dashboards.find(filter).countDocuments();
 
     return {
-      list: dashboards,
+      list: dashboardz,
       totalCount,
     };
   },
@@ -114,11 +117,11 @@ const dashBoardQueries = {
   },
 
   async dashboardGetTypes() {
-    const services = await serviceDiscovery.getServices();
+    const services = await getServices();
     let dashboardTypes: string[] = [];
 
     for (const serviceName of services) {
-      const service = await serviceDiscovery.getService(serviceName, true);
+      const service = await getService(serviceName);
       const meta = service.config?.meta || {};
 
       if (meta && meta.dashboards) {

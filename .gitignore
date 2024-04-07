@@ -5,11 +5,11 @@ dist
 .next
 out
 .env
+build
 *.un~
 *.swp
 *.swo
 *.log
-build
 /dock
 .env.local
 .env.development.local

@@ -1,15 +1,12 @@
 import { MessageArgs, sendMessage } from '@saashq/api-utils/src/core';
-import { serviceDiscovery } from './configs';
 import { generateModels } from './connectionResolver';
+import {
+  consumeQueue,
+  consumeRPCQueue,
+} from '@saashq/api-utils/src/messageBroker';
 
-let client;
-
-export const initBroker = async (cl) => {
-  client = cl;
-
-  const { consumeRPCQueue } = client;
-
-  consumeRPCQueue('dashboards:find.count', async ({ subdomain, data }) => {
+export const setupMessageConsumers = async () => {
+  consumeRPCQueue('dashboardz:find.count', async ({ subdomain, data }) => {
     const models = await generateModels(subdomain);
 
     const { query = {} } = data || {};
@@ -44,7 +41,3 @@ export const sendTagsMessage = async (args: MessageArgs): Promise<any> => {
     ...args,
   });
 };
-
-export default function () {
-  return client;
-}

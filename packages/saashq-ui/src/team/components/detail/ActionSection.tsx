@@ -18,7 +18,7 @@ type Props = {
   changeStatus: (id: string) => void;
   renderEditForm: ({
     closeModal,
-    user
+    user,
   }: {
     closeModal: () => void;
     user: IUser;
@@ -66,7 +66,7 @@ class ActionSection extends React.Component<Props> {
   renderEditButton() {
     const { user, renderEditForm } = this.props;
 
-    const userForm = props => {
+    const userForm = (props) => {
       return renderEditForm({ ...props, user });
     };
 
@@ -119,7 +119,7 @@ class ActionSection extends React.Component<Props> {
   };
 
   renderResetPassword = () => {
-    const content = props => {
+    const content = (props) => {
       return <UserResetPasswordForm {...props} object={this.props.user} />;
     };
 

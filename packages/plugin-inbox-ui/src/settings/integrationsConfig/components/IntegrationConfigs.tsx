@@ -27,11 +27,11 @@ class IntegrationConfigs extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      configsMap: props.configsMap
+      configsMap: props.configsMap,
     };
   }
 
-  save = e => {
+  save = (e) => {
     e.preventDefault();
 
     const { configsMap } = this.state;
@@ -56,7 +56,7 @@ class IntegrationConfigs extends React.Component<Props, State> {
     type?: string,
     description?: string,
     defaultValue?: string,
-    label?: string
+    label?: string,
   ) => {
     const { configsMap } = this.state;
 
@@ -86,7 +86,7 @@ class IntegrationConfigs extends React.Component<Props, State> {
           <Info>
             <a
               target="_blank"
-              href="https://docs.saashq.org/docs/user-guide/xos/system-configuration#twitter"
+              href="https://docs.saashq.io/docs/user-guide/xos/system-configuration#twitter"
               rel="noopener noreferrer"
             >
               {__('Learn how to set Twitter Integration Variables')}
@@ -107,7 +107,7 @@ class IntegrationConfigs extends React.Component<Props, State> {
           <Info>
             <a
               target="_blank"
-              href="https://docs.saashq.org/docs/user-guide/xos/system-configuration#nylas-integrations"
+              href="https://docs.saashq.io/docs/user-guide/xos/system-configuration#nylas-integrations"
               rel="noopener noreferrer"
             >
               {__('Learn how to set Nylas Integration')}
@@ -118,7 +118,7 @@ class IntegrationConfigs extends React.Component<Props, State> {
           {this.renderItem('NYLAS_CLIENT_SECRET')}
           {this.renderItem(
             'NYLAS_WEBHOOK_CALLBACK_URL',
-            'https://yourdomain/nylas/webhook'
+            'https://yourdomain/nylas/webhook',
           )}
           {this.renderItem('MICROSOFT_CLIENT_ID')}
           {this.renderItem('MICROSOFT_CLIENT_SECRET')}
@@ -132,7 +132,7 @@ class IntegrationConfigs extends React.Component<Props, State> {
           <Info>
             <a
               target="_blank"
-              href="https://docs.saashq.org/docs/user-guide/xos/system-configuration#video-calls"
+              href="https://docs.saashq.io/docs/user-guide/xos/system-configuration#video-calls"
               rel="noopener noreferrer"
             >
               {__('Learn more about Video call configuration')}
@@ -146,7 +146,7 @@ class IntegrationConfigs extends React.Component<Props, State> {
               componentClass="select"
               options={[
                 { value: '', label: '' },
-                { value: 'daily', label: 'Daily' }
+                { value: 'daily', label: 'Daily' },
               ]}
               onChange={this.onChangeInput.bind(this, 'VIDEO_CALL_TYPE')}
             />
@@ -165,7 +165,7 @@ class IntegrationConfigs extends React.Component<Props, State> {
           <Info>
             <a
               target="_blank"
-              href="https://docs.saashq.org/docs/user-guide/xos/system-configuration#sunshine-conversations-api-integration"
+              href="https://docs.saashq.io/docs/user-guide/xos/system-configuration#sunshine-conversations-api-integration"
               rel="noopener noreferrer"
             >
               {__('Learn how to set Smooch Integration Variables')}
@@ -177,7 +177,7 @@ class IntegrationConfigs extends React.Component<Props, State> {
           {this.renderItem(
             'SMOOCH_WEBHOOK_CALLBACK_URL',
             '',
-            'https://yourdomain/smooch/webhook'
+            'https://yourdomain/smooch/webhook',
           )}
         </CollapseContent>
 
@@ -189,7 +189,7 @@ class IntegrationConfigs extends React.Component<Props, State> {
           <Info>
             <a
               target="_blank"
-              href="https://docs.saashq.org/docs/user-guide/xos/system-configuration#whatsapp-integration"
+              href="https://docs.saashq.io/docs/user-guide/xos/system-configuration#whatsapp-integration"
               rel="noopener noreferrer"
             >
               {__('Learn how to set WhatsApp Integration Variables')}
@@ -210,9 +210,9 @@ class IntegrationConfigs extends React.Component<Props, State> {
         {loadDynamicComponent(
           'inboxIntegrationSettings',
           {
-            renderItem: this.renderItem
+            renderItem: this.renderItem,
           },
-          true
+          true,
         )}
       </ContentBox>
     );
@@ -227,7 +227,7 @@ class IntegrationConfigs extends React.Component<Props, State> {
 
     const breadcrumb = [
       { title: __('Settings'), link: '/settings' },
-      { title: __('Integrations config') }
+      { title: __('Integrations config') },
     ];
 
     return (

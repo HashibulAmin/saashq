@@ -92,7 +92,6 @@ class WithCurrentId extends React.Component<IProps> {
               <InboxCore
                 queryParams={queryParams}
                 currentConversationId={_id}
-                history={this.props.history}
               />
             </WithRefetchHandling>
           );

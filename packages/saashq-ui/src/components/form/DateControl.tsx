@@ -17,7 +17,7 @@ type Props = {
 
 class DateControl extends React.Component<Props> {
   static defaultProps = {
-    dateFormat: 'MMM,DD YYYY'
+    dateFormat: 'MMM,DD YYYY',
   };
 
   componentDidMount() {
@@ -36,12 +36,12 @@ class DateControl extends React.Component<Props> {
       placeholder,
       dateFormat,
       timeFormat,
-      required
+      required,
     } = this.props;
     const errorMessage = errors && errors[name || ''];
 
     // cancel custom browser default form validation error
-    const onChange = e => {
+    const onChange = (e) => {
       if (this.props.onChange) {
         this.props.onChange(e);
       }
@@ -51,7 +51,7 @@ class DateControl extends React.Component<Props> {
       name,
       placeholder: placeholder || '',
       required: required || false,
-      autoComplete: 'off'
+      autoComplete: 'off',
     };
 
     const attributes = {
@@ -61,7 +61,7 @@ class DateControl extends React.Component<Props> {
       value,
       closeOnSelect: true,
       onChange,
-      utc: true
+      utc: true,
     };
 
     return (

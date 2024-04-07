@@ -7,7 +7,7 @@ import {
   PluginContainer,
   SidebarBox,
   SidebarWrapper,
-  SmallText
+  SmallText,
 } from '../../styles';
 
 import Button from '@saashq/ui/src/components/Button';
@@ -60,7 +60,7 @@ export default class RightSidebar extends React.Component<Props> {
         <ColorHeader>Useful links</ColorHeader>
         <PluginContainer>
           <Button
-            href="https://github.com/saashq-org/saashq"
+            href="https://github.com/saashq/saashq"
             target="_blank"
             btnStyle="simple"
           >
@@ -95,15 +95,15 @@ export default class RightSidebar extends React.Component<Props> {
       return null;
     }
 
-    const dependentPlugins = this.props.plugins.filter(item =>
-      dependencies.includes(item._id)
+    const dependentPlugins = this.props.plugins.filter((item) =>
+      dependencies.includes(item._id),
     );
 
     return (
       <SidebarBox>
         <ColorHeader>Dependent plugins</ColorHeader>
         <AddOns>
-          {(dependentPlugins || []).map(dependency => (
+          {(dependentPlugins || []).map((dependency) => (
             <Link
               to={`installer/details/${dependency._id}`}
               key={dependency._id}
@@ -133,15 +133,15 @@ export default class RightSidebar extends React.Component<Props> {
       return null;
     }
 
-    const relations = this.props.plugins.filter(item =>
-      relatedPlugins.includes(item._id)
+    const relations = this.props.plugins.filter((item) =>
+      relatedPlugins.includes(item._id),
     );
 
     return (
       <SidebarBox>
         <ColorHeader>Related plugins</ColorHeader>
         <AddOns>
-          {(relations || []).map(related => (
+          {(relations || []).map((related) => (
             <Link to={`installer/details/${related._id}`} key={related._id}>
               <Addon>
                 <img
@@ -167,7 +167,7 @@ export default class RightSidebar extends React.Component<Props> {
         {this.renderDependencies()}
         {this.renderRelatedPlugins()}
         <Button
-          href="https://github.com/saashq-org/saashq/issues"
+          href="https://github.com/saashq/saashq/issues"
           target="_blank"
           block={true}
         >

@@ -209,6 +209,15 @@ export const sendClientPortalMessage = (args: MessageArgsOmitService) => {
   });
 };
 
+export const sendNotificationsMessage = async (
+  args: MessageArgsOmitService,
+): Promise<any> => {
+  return sendMessage({
+    serviceName: 'notifications',
+    ...args,
+  });
+};
+
 export const sendToWebhook = ({ subdomain, data }) => {
   return sendWebhook({ subdomain, data });
 };

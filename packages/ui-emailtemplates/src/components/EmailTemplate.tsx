@@ -112,9 +112,8 @@ class EmailTemplate extends React.Component<Props> {
                   <p>{createdUser.details.fullName}</p>
                 )
               ) : (
-                <p>saashq Inc</p>
+                <p>SaasHQ Inc</p>
               )}
-
             </TemplateInfo>
           </div>
         </TemplateBoxInfo>

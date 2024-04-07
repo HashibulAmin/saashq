@@ -5,7 +5,7 @@ export const PLACEHOLDER = 'Choose one';
 export const ROLE_VALUE = [
   { _id: 'answerOne', name: 'I’ve never used a CRM or business tools before' },
   { _id: 'answerTwo', name: 'I’m new to saashq, but I have used a CRM before' },
-  { _id: 'answerThree', name: 'I know my way around saashq well' }
+  { _id: 'answerThree', name: 'I know my way around saashq well' },
 ];
 
 export const ROLE_OPTIONS = [
@@ -13,7 +13,7 @@ export const ROLE_OPTIONS = [
   { _id: 'marketing', name: 'Marketing' },
   { _id: 'customerSupport', name: 'Customer support' },
   { _id: 'managementAndOperations', name: 'Management and Operations' },
-  { _id: 'above', name: 'All of the above' }
+  { _id: 'above', name: 'All of the above' },
 ];
 
 export const ROLE_SETUP = [
@@ -30,8 +30,8 @@ export const ROLE_SETUP = [
           'marketing',
           'customerSupport',
           'managementAndOperations',
-          'above'
-        ]
+          'above',
+        ],
       },
       {
         name: 'Create your brands and channels',
@@ -42,8 +42,8 @@ export const ROLE_SETUP = [
           'marketing',
           'customerSupport',
           'managementAndOperations',
-          'above'
-        ]
+          'above',
+        ],
       },
       {
         name: 'Integrate other apps into saashq',
@@ -54,8 +54,8 @@ export const ROLE_SETUP = [
           'marketing',
           'customerSupport',
           'managementAndOperations',
-          'above'
-        ]
+          'above',
+        ],
       },
       {
         name: 'Customize your saashq database',
@@ -66,10 +66,10 @@ export const ROLE_SETUP = [
           'marketing',
           'customerSupport',
           'managementAndOperations',
-          'above'
-        ]
-      }
-    ]
+          'above',
+        ],
+      },
+    ],
   },
   {
     title: 'Operational',
@@ -79,13 +79,13 @@ export const ROLE_SETUP = [
         name: 'Import your existing contacts',
         title: 'importExistingContacts',
         steps: 4,
-        types: ['sales', 'marketing']
+        types: ['sales', 'marketing'],
       },
       {
         name: 'Customize your Sales Pipeline',
         title: 'salesPipeline',
         steps: 3,
-        types: ['sales', 'above']
+        types: ['sales', 'above'],
       },
       {
         name: 'Invite your team members',
@@ -96,70 +96,70 @@ export const ROLE_SETUP = [
           'marketing',
           'customerSupport',
           'managementAndOperations',
-          'above'
-        ]
+          'above',
+        ],
       },
       {
         name: 'Add your product and services',
         title: 'createProductServices',
         steps: 2,
-        types: ['sales', 'above']
+        types: ['sales', 'above'],
       },
       {
         name: 'Install saashq widgets',
         title: 'installSaasHQWidgets',
         steps: 1,
-        types: ['sales', 'marketing', 'customerSupport', 'above']
+        types: ['sales', 'marketing', 'customerSupport', 'above'],
       },
       {
         name: 'Create your lead generation Forms',
         title: 'createLeadGenerationForm',
         steps: 2,
-        types: ['marketing']
+        types: ['marketing'],
       },
       {
         name: 'Create your Knowledge Base',
         title: 'customizeKnowledgeBase',
         steps: 4,
-        types: ['customerSupport', 'managementAndOperations']
+        types: ['customerSupport', 'managementAndOperations'],
       },
       {
         name: 'Plan your content with Tasks',
         title: 'customizeTickets',
         steps: 3,
-        types: ['marketing']
+        types: ['marketing'],
       },
       {
         name: 'Customize your Tickets',
         title: 'customizeTickets',
         steps: 3,
-        types: ['customerSupport', 'managementAndOperations', 'above']
+        types: ['customerSupport', 'managementAndOperations', 'above'],
       },
       {
         name: 'Customize your Tasks',
         title: 'customizeTasks',
         steps: 3,
-        types: ['customerSupport', 'managementAndOperations', 'above']
+        types: ['customerSupport', 'managementAndOperations', 'above'],
       },
       {
         name: 'Import your existing customer data to saashq',
         title: 'importExistingContacts',
         steps: 4,
-        types: ['above']
+        types: ['above'],
       },
       {
         name: 'Create your Forms',
         title: 'createLeadGenerationForm',
         steps: 2,
-        types: ['above']
+        types: ['above'],
       },
       {
         name: 'Customize your Knowledge Base',
         title: 'customizeKnowledgeBase',
         steps: 4,
-        types: ['above']
-      }
-    ]
+        types: ['above'],
+      },
+    ],
   },
   {
     title: 'On-going',
@@ -169,21 +169,21 @@ export const ROLE_SETUP = [
         name: 'Segment your contacts',
         title: 'customizeSegmentation',
         steps: 2,
-        types: ['sales', 'marketing', 'above']
+        types: ['sales', 'marketing', 'above'],
       },
 
       {
         name: 'Prepare content templates',
         title: 'prepareContentTemplates',
         steps: 3,
-        types: ['sales', 'customerSupport', 'managementAndOperations', 'above']
+        types: ['sales', 'customerSupport', 'managementAndOperations', 'above'],
       },
 
       {
         name: 'Automate your sales with Campaigns',
         title: 'automateCampaigns',
         steps: 3,
-        types: ['sales']
+        types: ['sales'],
       },
       {
         name: 'Customize your Reports',
@@ -194,41 +194,41 @@ export const ROLE_SETUP = [
           'marketing',
           'customerSupport',
           'managementAndOperations',
-          'above'
-        ]
+          'above',
+        ],
       },
       {
         name: 'Customize your Growth Hacking',
         title: 'customizeGrowthHacking',
         steps: 4,
-        types: ['marketing', 'above']
+        types: ['marketing', 'above'],
       },
       {
         name: 'Customize your customer segmentation',
         title: 'customizeSegmentation',
         steps: 2,
-        types: ['marketing']
+        types: ['marketing'],
       },
       {
         name: 'Prepare the email/response templates',
         title: 'prepareMailResponseTemplates',
         steps: 2,
-        types: ['marketing']
+        types: ['marketing'],
       },
       {
         name: 'Automate your lead generation with Campaigns',
         title: 'automateCampaigns',
         steps: 3,
-        types: ['marketing']
+        types: ['marketing'],
       },
       {
         name: 'Automate with Campaigns',
         title: 'automateCampaigns',
         steps: 3,
-        types: ['above']
-      }
-    ]
-  }
+        types: ['above'],
+      },
+    ],
+  },
 ];
 
 export const ROLE_SETUP_DETAILS = {
@@ -241,17 +241,17 @@ export const ROLE_SETUP_DETAILS = {
     settingsDetails: {
       generalSettingsCreate: {
         name: 'Set your general setting',
-        url: '/settings/general'
+        url: '/settings/general',
       },
       generalSettingsUploadCreate: {
         name: 'Set the types of file you would like to upload',
-        url: '/settings/general/'
+        url: '/settings/general/',
       },
       generelSettingsConstantsCreate: {
         name: 'Set your constants',
-        url: '/settings/general/'
-      }
-    }
+        url: '/settings/general/',
+      },
+    },
   },
   channelBrands: {
     text: 'Brand & Channel Set Up',
@@ -262,13 +262,13 @@ export const ROLE_SETUP_DETAILS = {
     settingsDetails: {
       brandCreate: {
         name: 'Create brands',
-        url: '/settings/brands#showBrandAddModal=true'
+        url: '/settings/brands#showBrandAddModal=true',
       },
       channelCreate: {
         name: 'Create channels',
-        url: '/settings/channels#showChannelAddModal=true'
-      }
-    }
+        url: '/settings/channels#showChannelAddModal=true',
+      },
+    },
   },
   integrationOtherApps: {
     text: 'Integration/ App Store',
@@ -279,14 +279,13 @@ export const ROLE_SETUP_DETAILS = {
     settingsDetails: {
       integrationsCreate: {
         name: 'Choose which integrations you would like to add',
-        url: '/settings/integrations/'
+        url: '/settings/integrations/',
       },
       connectIntegrationsToChannel: {
-        name:
-          'Follow the instructions as shown to successfully integrate communication channels',
-        url: '/settings/channels/'
-      }
-    }
+        name: 'Follow the instructions as shown to successfully integrate communication channels',
+        url: '/settings/channels/',
+      },
+    },
   },
   customizeDatabase: {
     text: 'Properties',
@@ -296,15 +295,14 @@ export const ROLE_SETUP_DETAILS = {
     videoThumb: '',
     settingsDetails: {
       fieldGroupCreate: {
-        name:
-          'Add new groups and fields if the fields you require are not there',
-        url: '/settings/properties/'
+        name: 'Add new groups and fields if the fields you require are not there',
+        url: '/settings/properties/',
       },
       fieldCreate: {
         name: 'Adjust the existing fields',
-        url: '/settings/properties/'
-      }
-    }
+        url: '/settings/properties/',
+      },
+    },
   },
   importExistingContacts: {
     text: 'Import',
@@ -315,21 +313,21 @@ export const ROLE_SETUP_DETAILS = {
     settingsDetails: {
       fieldGroupCreate: {
         name: 'Add groups',
-        url: '/settings/properties/'
+        url: '/settings/properties/',
       },
       fieldCreate: {
         name: 'Add properties',
-        url: '/settings/properties/'
+        url: '/settings/properties/',
       },
       importDownloadTemplate: {
         name: 'Download a template',
-        url: '/settings/importHistories/'
+        url: '/settings/importHistories/',
       },
       importCreate: {
         name: 'Import the file',
-        url: '/settings/importHistories/'
-      }
-    }
+        url: '/settings/importHistories/',
+      },
+    },
   },
   inviteTeamMembers: {
     text: 'Team members/ Permission',
@@ -340,17 +338,17 @@ export const ROLE_SETUP_DETAILS = {
     settingsDetails: {
       userGroupCreate: {
         name: 'Create user group for permission',
-        url: '/settings/permissions'
+        url: '/settings/permissions',
       },
       usersInvite: {
         name: 'Add your team member(s)',
-        url: '/settings/team/'
+        url: '/settings/team/',
       },
       userEdit: {
         name: "Enter your team member's information",
-        url: '/settings/team/'
-      }
-    }
+        url: '/settings/team/',
+      },
+    },
   },
   salesPipeline: {
     text: 'Sales stage',
@@ -361,17 +359,17 @@ export const ROLE_SETUP_DETAILS = {
     settingsDetails: {
       dealBoardsCreate: {
         name: 'Create a board',
-        url: '/settings/boards/deal#showBoardModal=true'
+        url: '/settings/boards/deal#showBoardModal=true',
       },
       dealPipelinesCreate: {
         name: 'Create a pipeline to be used on your board',
-        url: '/settings/boards/deal#showPipelineModal=true'
+        url: '/settings/boards/deal#showPipelineModal=true',
       },
       dealCreate: {
         name: 'Create deal',
-        url: '/deal/board'
-      }
-    }
+        url: '/deal/board',
+      },
+    },
   },
   purchasePipeline: {
     text: 'Purchase stage',
@@ -382,17 +380,17 @@ export const ROLE_SETUP_DETAILS = {
     settingsDetails: {
       purchaseBoardsCreate: {
         name: 'Create a board',
-        url: '/settings/boards/purchase#showBoardModal=true'
+        url: '/settings/boards/purchase#showBoardModal=true',
       },
       purchasePipelinesCreate: {
         name: 'Create a purchase to be used on your board',
-        url: '/settings/boards/purchase#showPipelineModal=true'
+        url: '/settings/boards/purchase#showPipelineModal=true',
       },
       purchaseCreate: {
         name: 'Create purchase',
-        url: '/purchase/board'
-      }
-    }
+        url: '/purchase/board',
+      },
+    },
   },
   createProductServices: {
     text: 'Product & Service',
@@ -402,13 +400,13 @@ export const ROLE_SETUP_DETAILS = {
     settingsDetails: {
       productCategoryCreate: {
         name: 'Add a category',
-        url: '/settings/boards/'
+        url: '/settings/boards/',
       },
       productCreate: {
         name: 'Add a product & service into the category',
-        url: '/settings/boards/'
-      }
-    }
+        url: '/settings/boards/',
+      },
+    },
   },
   customizeTickets: {
     text: 'Ticket stage',
@@ -419,17 +417,17 @@ export const ROLE_SETUP_DETAILS = {
     settingsDetails: {
       ticketBoardsCreate: {
         name: 'Create a board',
-        url: '/settings/boards/ticket#showBoardModal=true'
+        url: '/settings/boards/ticket#showBoardModal=true',
       },
       ticketPipelinesCreate: {
         name: 'Create a pipeline to be used on your board',
-        url: '/settings/boards/ticket#showPipelineModal=true'
+        url: '/settings/boards/ticket#showPipelineModal=true',
       },
       ticketCreate: {
         name: 'Create ticket',
-        url: '/ticket/board'
-      }
-    }
+        url: '/ticket/board',
+      },
+    },
   },
   customizeTasks: {
     text: 'Task stage',
@@ -440,17 +438,17 @@ export const ROLE_SETUP_DETAILS = {
     settingsDetails: {
       taskBoardsCreate: {
         name: 'Create a board',
-        url: '/settings/boards/task#showBoardModal=true'
+        url: '/settings/boards/task#showBoardModal=true',
       },
       taskPipelinesCreate: {
         name: 'Create a pipeline to be used on your board',
-        url: '/settings/boards/task#showBoardModal=true'
+        url: '/settings/boards/task#showBoardModal=true',
       },
       taskCreate: {
         name: 'Create task',
-        url: '/task/board'
-      }
-    }
+        url: '/task/board',
+      },
+    },
   },
   customizeGrowthHacking: {
     text: 'Growth hacking stage',
@@ -461,24 +459,24 @@ export const ROLE_SETUP_DETAILS = {
     settingsDetails: {
       growthHackBoardCreate: {
         name: 'Create marketing campaign',
-        url: '/settings/boards/growthHack#showBoardModal=true'
+        url: '/settings/boards/growthHack#showBoardModal=true',
       },
 
       pipelineTemplate: {
         name: 'Create a growth hacking template',
-        url: '/settings/boards/growthHackTemplate'
+        url: '/settings/boards/growthHackTemplate',
       },
 
       growthHackPipelines: {
         name: 'Create marketing projects',
-        url: '/settings/boards/growthHack#showPipelineModal=true'
+        url: '/settings/boards/growthHack#showPipelineModal=true',
       },
 
       growthHackCreate: {
         name: 'Create experiments',
-        url: '/growthHack/board'
-      }
-    }
+        url: '/growthHack/board',
+      },
+    },
   },
   customizeSegmentation: {
     text: 'Contact',
@@ -489,13 +487,13 @@ export const ROLE_SETUP_DETAILS = {
     settingsDetails: {
       segmentCreate: {
         name: 'Create a segment',
-        url: '/segments/new?contentType=customer'
+        url: '/segments/new?contentType=customer',
       },
       subSegmentCreate: {
         name: 'Create a subsegment within the previous segment',
-        url: '/segments/new?contentType=customer'
-      }
-    }
+        url: '/segments/new?contentType=customer',
+      },
+    },
   },
   prepareMailResponseTemplates: {
     text: 'Email/response template',
@@ -506,13 +504,13 @@ export const ROLE_SETUP_DETAILS = {
     settingsDetails: {
       createResponseTemplate: {
         name: 'Create a response template',
-        url: '/settings/response-templates#showListFormModal=true'
+        url: '/settings/response-templates#showListFormModal=true',
       },
       createEmailTemplate: {
         name: 'Create an email template',
-        url: '/settings/email-templates#showListFormModal=true'
-      }
-    }
+        url: '/settings/email-templates#showListFormModal=true',
+      },
+    },
   },
   automateCampaigns: {
     text: 'Campaigns',
@@ -523,17 +521,17 @@ export const ROLE_SETUP_DETAILS = {
     settingsDetails: {
       engageVerifyEmail: {
         name: 'Verify your sending email',
-        url: '/settings/campaign-configs'
+        url: '/settings/campaign-configs',
       },
       engageSendTestEmail: {
         name: 'Send test email',
-        url: '/settings/campaign-configs'
+        url: '/settings/campaign-configs',
       },
       engageCreate: {
         name: 'Create a campaign',
-        url: '/campaigns/create?kind=auto'
-      }
-    }
+        url: '/campaigns/create?kind=auto',
+      },
+    },
   },
   customizeKnowledgeBase: {
     text: 'Khowledge Base',
@@ -544,21 +542,21 @@ export const ROLE_SETUP_DETAILS = {
     settingsDetails: {
       knowledgeBaseTopicCreate: {
         name: 'Create topic',
-        url: '/knowledgebase#showKBAddModal=true'
+        url: '/knowledgebase#showKBAddModal=true',
       },
       knowledgeBaseCategoryCreate: {
         name: 'Create category',
-        url: '/knowledgebase#showKBAddCategoryModal=true'
+        url: '/knowledgebase#showKBAddCategoryModal=true',
       },
       knowledgeBaseArticleCreate: {
         name: 'Now write articles',
-        url: '/knowledgebase#showKBAddArticleModal=true'
+        url: '/knowledgebase#showKBAddArticleModal=true',
       },
       knowledgeBaseInstalled: {
         name: 'Embed knowledge base',
-        url: '#'
-      }
-    }
+        url: '#',
+      },
+    },
   },
   installSaasHQWidgets: {
     text: 'SaasHQ Widgets',
@@ -569,9 +567,9 @@ export const ROLE_SETUP_DETAILS = {
     settingsDetails: {
       messengerIntegrationCreate: {
         name: 'Add the saashq messenger',
-        url: '/settings/integrations/createMessenger'
-      }
-    }
+        url: '/settings/integrations/createMessenger',
+      },
+    },
   },
   createLeadGenerationForm: {
     text: 'Form',
@@ -582,13 +580,13 @@ export const ROLE_SETUP_DETAILS = {
     settingsDetails: {
       leadIntegrationCreate: {
         name: 'Create form',
-        url: '/forms/create'
+        url: '/forms/create',
       },
       leadIntegrationInstalled: {
         name: 'Install on website',
-        url: '/forms'
-      }
-    }
+        url: '/forms',
+      },
+    },
   },
   prepareContentTemplates: {
     text: 'Content template',
@@ -599,19 +597,19 @@ export const ROLE_SETUP_DETAILS = {
     settingsDetails: {
       createResponseTemplate: {
         name: 'Create a response template',
-        url: '/settings/response-templates#showListFormModal=true'
+        url: '/settings/response-templates#showListFormModal=true',
       },
 
       createEmailTemplate: {
         name: 'Create an email template',
-        url: '/settings/email-templates#showListFormModal=true'
+        url: '/settings/email-templates#showListFormModal=true',
       },
 
       pipelineTemplate: {
         name: 'Create a growth hacking template',
-        url: '/settings/boards/growthHackTemplate'
-      }
-    }
+        url: '/settings/boards/growthHackTemplate',
+      },
+    },
   },
   customizeReports: {
     text: 'Reports',
@@ -622,12 +620,12 @@ export const ROLE_SETUP_DETAILS = {
     settingsDetails: {
       dashboardCreate: {
         name: 'Create a Dashboard',
-        url: '/dashboard#showDashboardAddModal=true'
+        url: '/dashboard#showDashboardAddModal=true',
       },
       dashboardItemCreate: {
         name: 'Create a chart',
-        url: '/settings/boards/'
-      }
-    }
-  }
+        url: '/settings/boards/',
+      },
+    },
+  },
 };

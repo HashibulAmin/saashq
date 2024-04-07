@@ -67,11 +67,9 @@ export const loadEngageMessageClass = (models: IModels, subdomain: string) => {
      */
     public static async getEngageMessage(_id: string) {
       const engageMessage = await models.EngageMessages.findOne({ _id });
-
       if (!engageMessage) {
         throw new Error('Campaign not found');
       }
-
       return engageMessage;
     }
 

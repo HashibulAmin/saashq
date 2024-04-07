@@ -33,7 +33,7 @@ const BrandForm = (props: Props) => {
 
     const updatedValues = {
       ...values,
-      emailConfig
+      emailConfig,
     };
 
     return (
@@ -52,7 +52,7 @@ const BrandForm = (props: Props) => {
           values: updatedValues,
           isSubmitted,
           callback: closeModal || afterSave,
-          object: brand
+          object: brand,
         })}
       </ModalFooter>
     );

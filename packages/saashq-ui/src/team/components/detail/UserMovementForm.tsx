@@ -3,7 +3,7 @@ import {
   ActivityIcon,
   ActivityRow,
   FlexCenterContent,
-  Timeline
+  Timeline,
 } from '@saashq/ui-log/src/activityLogs/styles';
 import React from 'react';
 import { DataWithLoader, NameCard, Tip } from '../../../components';
@@ -48,14 +48,14 @@ class UserMovementForm extends React.Component<Props> {
       contentTypeDetail,
       createdAt,
       contentType,
-      status
+      status,
     } = movement;
 
     const { color, label, label2, icon } = {
       color: status === 'removed' ? colors.colorCoreRed : colors.colorCoreGreen,
       label: status === 'removed' ? 'Removed:' : 'Moved:',
       label2: status === 'removed' ? 'From' : 'To',
-      icon: status === 'removed' ? 'user-minus' : 'user-plus'
+      icon: status === 'removed' ? 'user-minus' : 'user-plus',
     };
 
     return (
@@ -101,7 +101,7 @@ class UserMovementForm extends React.Component<Props> {
           count={list?.length || 0}
           data={
             <Timeline>
-              {(list || []).map(movement => this.renderRow(movement))}
+              {(list || []).map((movement) => this.renderRow(movement))}
             </Timeline>
           }
           emptyText="No movements of user"

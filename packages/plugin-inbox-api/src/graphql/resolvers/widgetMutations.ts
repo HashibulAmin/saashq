@@ -91,19 +91,22 @@ export const pConversationClientMessageInserted = async (
   }
 
   graphqlPubsub.publish(`conversationMessageInserted:${conversation._id}`, {
-    conversationClientMessageInserted: message,
+    conversationMessageInserted: message,
     subdomain,
     conversation,
     integration,
   });
 
   for (const userId of channelMemberIds) {
-    graphqlPubsub.publish(`conversationClientMessageInserted:${userId}`, {
-      conversationClientMessageInserted: message,
-      subdomain,
-      conversation,
-      integration,
-    });
+    graphqlPubsub.publish(
+      `conversationClientMessageInserted:${subdomain}:${userId}`,
+      {
+        conversationClientMessageInserted: message,
+        subdomain,
+        conversation,
+        integration,
+      },
+    );
   }
 
   if (message.content) {

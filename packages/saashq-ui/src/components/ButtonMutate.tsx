@@ -7,7 +7,7 @@ import confirm from '../utils/confirmation/confirm';
 import { rotate } from '../utils/animations';
 import React from 'react';
 import styled from 'styled-components';
-import Button from './Button';
+import Button from '../components/Button';
 
 export const SmallLoader = styled.i`
   width: 13px;

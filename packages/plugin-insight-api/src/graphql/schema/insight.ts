@@ -5,8 +5,8 @@ export const types = `
   }
 
   enum VisibilityType {
-    public
-    private
+    PUBLIC
+    PRIVATE
   }
 
   type Dashboard {

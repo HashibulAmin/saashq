@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo 'Clone saashq-widgets repository and install its dependencies:'
-git clone https://github.com/saashq-org/saashq-widgets.git
+git clone https://github.com/saashq/saashq-widgets.git
 cd saashq-widgets
 git checkout develop
 yarn install

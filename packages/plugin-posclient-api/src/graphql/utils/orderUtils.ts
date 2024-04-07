@@ -99,7 +99,7 @@ export const validateOrder = async (
 ) => {
   const { items = [] } = doc;
 
-  if (items.filter((i) => !i.isPackage).length < 1) {
+  if (!items.filter((i) => !i.isPackage).length) {
     throw new Error('Products missing in order. Please add products');
   }
 
@@ -127,14 +127,14 @@ export const validateOrder = async (
     config.departmentId
   ) {
     const checkProducts = products.filter(
-      (p) => (p.isCheckRems || {})[config.token] || false,
+      (p) => (p.isCheckRems || {})[config.token || ''] || false,
     );
 
     if (checkProducts.length) {
       const result = await checkRemainders(
         subdomain,
         config,
-        checkProducts as IProductDocument[],
+        checkProducts,
         doc.branchId || config.branchId,
       );
 
@@ -581,9 +581,7 @@ export const prepareOrderDoc = async (
       (htpi) => (productsOfId[htpi] || {}).categoryId,
     );
     const categories = await models.ProductCategories.find({
-      _id: {
-        $in: [...(mapCatIds as string[]), ...(hasTakeCatIds as string[])],
-      },
+      _id: { $in: [...mapCatIds, ...hasTakeCatIds] },
     }).lean();
 
     const categoriesOfId = {};
@@ -657,16 +655,19 @@ export const prepareOrderDoc = async (
     const deliveryProd = await models.Products.findOne({
       _id: config.deliveryConfig.productId,
     }).lean();
+
     if (deliveryProd) {
+      const deliveryUnitPrice =
+        (deliveryProd.prices || {})[config.token || ''] || 0;
       items.push({
         _id: Math.random().toString(),
         productId: deliveryProd._id,
         count: 1,
-        unitPrice: deliveryProd.unitPrice,
+        unitPrice: deliveryUnitPrice,
         isPackage: true,
         isTake: true,
       });
-      doc.totalAmount += deliveryProd.unitPrice;
+      doc.totalAmount += deliveryUnitPrice;
     }
   }
 

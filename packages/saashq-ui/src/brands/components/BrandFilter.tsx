@@ -17,7 +17,7 @@ interface IProps extends IRouterProps {
 function Brands({ history, counts, brands, loading, emptyText }: IProps) {
   const data = (
     <SidebarList>
-      {brands.map(brand => {
+      {brands.map((brand) => {
         const onClick = () => {
           router.setParams(history, { brand: brand._id });
           router.removeParams(history, 'page');

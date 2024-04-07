@@ -13,7 +13,7 @@ class Confirmation extends React.Component<{
     password,
     passwordConfirmation,
     fullName,
-    username
+    username,
   }: {
     password: string;
     passwordConfirmation: string;
@@ -22,15 +22,15 @@ class Confirmation extends React.Component<{
   }) => void;
   currentUser?: IUser;
 }> {
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
 
     const password = (document.getElementById('password') as HTMLInputElement)
       .value;
 
-    const passwordConfirmation = (document.getElementById(
-      'passwordConfirmation'
-    ) as HTMLInputElement).value;
+    const passwordConfirmation = (
+      document.getElementById('passwordConfirmation') as HTMLInputElement
+    ).value;
 
     const fullName = (document.getElementById('fullName') as HTMLInputElement)
       .value;
@@ -42,7 +42,7 @@ class Confirmation extends React.Component<{
       fullName,
       username,
       password,
-      passwordConfirmation
+      passwordConfirmation,
     });
   };
 

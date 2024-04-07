@@ -1,9 +1,9 @@
 import { Document, Schema } from 'mongoose';
 import { field, schemaHooksWrapper } from './utils';
 
-export interface IVisibilityType {
-  type: String;
-  enum: ['public', 'private'];
+enum IVisibilityType {
+  PUBLIC = 'public',
+  PRIVATE = 'private',
 }
 
 export interface IChartFilterType {

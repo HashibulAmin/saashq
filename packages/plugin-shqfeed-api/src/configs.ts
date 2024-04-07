@@ -15,7 +15,7 @@ import forms from './forms';
 import app from '@saashq/api-utils/src/app';
 
 export default {
-  name: 'exmfeed',
+  name: 'shqfeed',
   permissions,
   graphql: async () => {
     return {
@@ -45,5 +45,5 @@ export default {
   },
   setupMessageConsumers,
 
-  meta: { cronjobs, automations, segments, forms },
+  meta: { cronjobs, automations, segments, forms, permissions },
 };

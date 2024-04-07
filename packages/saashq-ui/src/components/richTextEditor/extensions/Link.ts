@@ -5,6 +5,6 @@ export const Link = TipTapLink.extend({
     'Mod-k': () => {
       window.dispatchEvent(new Event('edit-link'));
       return true;
-    }
-  })
+    },
+  }),
 }).configure({ openOnClick: false });

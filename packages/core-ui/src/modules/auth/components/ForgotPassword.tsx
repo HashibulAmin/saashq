@@ -10,7 +10,7 @@ import { AuthBox } from '../styles';
 type Props = {
   forgotPassword: (
     doc: { email: string },
-    callback: (e: Error) => void
+    callback: (e: Error) => void,
   ) => void;
 };
 
@@ -21,19 +21,19 @@ class ForgotPassword extends React.Component<Props, { email: string }> {
     this.state = { email: '' };
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
 
     const { email } = this.state;
 
-    this.props.forgotPassword({ email }, err => {
+    this.props.forgotPassword({ email }, (err) => {
       if (!err) {
         window.location.href = '/sign-in';
       }
     });
   };
 
-  handleEmailChange = e => {
+  handleEmailChange = (e) => {
     e.preventDefault();
     this.setState({ email: e.target.value });
   };

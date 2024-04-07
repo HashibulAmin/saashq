@@ -1,6 +1,6 @@
-## Contribute to saashq
+## Contribute to SaasHQ
 
-Thank you for considering to contribute to saashq! This document will outline how to submit changes to this repository and which conventions to follow. If you are ever in doubt about anything, we encourage you to reach out by submitting an issue here or via <a href="https://discord.com/invite/aaGzy3gQK5" target="_blank">Discord</a>.
+Thank you for considering to contribute to SaasHQ! This document will outline how to submit changes to this repository and which conventions to follow. If you are ever in doubt about anything, we encourage you to reach out by submitting an issue here or via <a href="https://discord.com/invite/aaGzy3gQK5" target="_blank">Discord</a>.
 
 **Prerequisites**
 
@@ -10,7 +10,7 @@ Thank you for considering to contribute to saashq! This document will outline ho
 
 **Issues before PRs**
 
-1. Before you start working on a change, please make sure there is an issue with what you will be working on. You can either find an <a href="https://github.com/saashq-org/saashq/issues" target="_blank">existing issue</a> or <a href="https://github.com/saashq-org/saashq/issues/new/choose" target="_blank">open a new issue</a> if none exists. Doing this ensures that others can contribute with thoughts or suggest alternatives, ultimately making sure that we only add changes that make the most sense to saashq future.
+1. Before you start working on a change, please make sure there is an issue with what you will be working on. You can either find an <a href="https://github.com/saashq-org/saashq/issues" target="_blank">existing issue</a> or <a href="https://github.com/saashq-org/saashq/issues/new/choose" target="_blank">open a new issue</a> if none exists. Doing this ensures that others can contribute with thoughts or suggest alternatives, ultimately making sure that we only add changes that make the most sense to SaasHQ future.
 2. When you are ready to start working on a change, you should first <a href="https://help.github.com/en/github/getting-started-with-github/fork-a-repo" target="_blank">fork the saashq repo</a> and <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-and-deleting-branches-within-your-repository" target="_blank">branch out</a> from the develop branch.
 3. Make your changes.
 4. <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork" target="_blank">Open a pull request towards the development branch in the saashq repo</a>. Within a couple of days, saashq team members will review, comment, and eventually approve your PR.
@@ -58,7 +58,7 @@ All PRs should include tests for the changes that are included. We have two type
 - We generally encourage to document your changes through comments in your code.
 - If you alter user-facing behavior, you must provide documentation for such changes.
 - All methods and endpoints should be documented using <a href="https://jsdoc.app/" target="_blank">JSDoc</a> and <a href="https://www.npmjs.com/package/swagger-inline" target="_blank">swagger-inline</a>.
-- Afterwars, if you're contributing to our documentation about changes you made to saashq codebase make sure to also check out <a href="https://docs.saashq.org/" target="_blank">the contribution guidelines on our documentation website.</a>
+- Afterwars, if you're contributing to our documentation about changes you made to SaasHQ codebase make sure to also check out <a href="https://docs.saashq.org/" target="_blank">the contribution guidelines on our documentation website.</a>
 
 ## Release
 

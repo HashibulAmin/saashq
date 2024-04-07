@@ -1,17 +1,21 @@
 import { getSubdomain } from '@saashq/api-utils/src/core';
 import * as dotenv from 'dotenv';
-dotenv.config()
+dotenv.config();
 
-
-import { generateModels } from "../connectionResolver";
+import { IModels, generateModels } from '../connectionResolver';
 
 const widgetsMiddleware = async (req, res) => {
   const { WIDGETS_DOMAIN } = process.env;
 
-  const domain = WIDGETS_DOMAIN || 'http://localhost:3200'
+  const domain = WIDGETS_DOMAIN || 'http://localhost:3200';
 
   const subdomain = getSubdomain(req);
-  const models = await generateModels(subdomain);
+  let models: IModels;
+  try {
+    models = await generateModels(subdomain);
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
+  }
 
   const script = await models.Scripts.findOne({ _id: req.query.id });
 
@@ -19,7 +23,7 @@ const widgetsMiddleware = async (req, res) => {
     return res.end('Not found');
   }
 
-  const generateScript = type => {
+  const generateScript = (type) => {
     return `
       (function() {
         var script = document.createElement('script');
@@ -48,7 +52,7 @@ const widgetsMiddleware = async (req, res) => {
   if (script.leadMaps) {
     saashqSettings += 'forms: [';
 
-    script.leadMaps.forEach(map => {
+    script.leadMaps.forEach((map) => {
       saashqSettings += `{ brand_id: "${map.brandCode}", form_id: "${map.formCode}" },`;
       includeScripts += generateScript('form');
     });

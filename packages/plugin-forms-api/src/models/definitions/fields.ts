@@ -27,14 +27,14 @@ export const logicSchema = new Schema(
     fieldId: field({ type: String }),
     logicOperator: field({
       type: String,
-      optional: true
+      optional: true,
     }),
     logicValue: field({
       type: Schema.Types.Mixed,
-      optional: true
-    })
+      optional: true,
+    }),
   },
-  { _id: false }
+  { _id: false },
 );
 
 const ObjectListSchema = new Schema({
@@ -42,10 +42,10 @@ const ObjectListSchema = new Schema({
   label: field({ type: String, optional: true, label: 'Label' }),
   type: field({
     type: String,
-    enum: INPUT_TYPE.map(option => option.value),
+    enum: INPUT_TYPE.map((option) => option.value),
     optional: true,
-    label: 'Type'
-  })
+    label: 'Type',
+  }),
 });
 
 interface IVisibility {
@@ -134,110 +134,110 @@ export const fieldSchema = schemaWrapper(
     validation: field({
       type: String,
       optional: true,
-      label: 'Validation'
+      label: 'Validation',
     }),
     text: field({ type: String, label: 'Text' }),
     field: field({ type: String, optional: true, label: 'Field identifier' }),
     description: field({
       type: String,
       optional: true,
-      label: 'Description'
+      label: 'Description',
     }),
     code: field({
       type: String,
       optional: true,
-      label: 'Unique code'
+      label: 'Unique code',
     }),
     options: field({
       type: [String],
       optional: true,
-      label: 'Options'
+      label: 'Options',
     }),
     locationOptions: field({
       type: Array,
       optional: true,
-      label: 'Location Options'
+      label: 'Location Options',
     }),
     objectListConfigs: field({
       type: [ObjectListSchema],
       optional: true,
-      label: 'object list config'
+      label: 'object list config',
     }),
     optionsValues: field({
       type: String,
-      label: 'Field Options object'
+      label: 'Field Options object',
     }),
     isRequired: field({ type: Boolean, label: 'Is required' }),
-    isDefinedBySaasHQ: field({ type: Boolean, label: 'Is defined by saashq' }),
+    isDefinedBySaasHQ: field({ type: Boolean, label: 'Is defined by SaasHQ' }),
     order: field({ type: Number, label: 'Order' }),
     groupId: field({ type: String, label: 'Field group' }),
     isVisible: field({ type: Boolean, default: true, label: 'Is visible' }),
     isVisibleInDetail: field({
       type: Boolean,
       default: true,
-      label: 'Is group visible in detail'
+      label: 'Is group visible in detail',
     }),
     canHide: field({
       type: Boolean,
       default: true,
-      label: 'Can toggle isVisible'
+      label: 'Can toggle isVisible',
     }),
     isVisibleToCreate: field({
       type: Boolean,
       default: false,
-      label: 'Is visible to create'
+      label: 'Is visible to create',
     }),
     searchable: field({
       type: Boolean,
       default: false,
-      label: 'Useful for searching'
+      label: 'Useful for searching',
     }),
     lastUpdatedUserId: field({ type: String, label: 'Last updated by' }),
     associatedFieldId: field({
       type: String,
       optional: true,
-      label: 'Stores custom property fieldId for form field id'
+      label: 'Stores custom property fieldId for form field id',
     }),
     logics: field({ type: [logicSchema] }),
     column: field({ type: Number, optional: true }),
     logicAction: field({
       type: String,
       label:
-        'If action is show field will appear when logics fulfilled, if action is hide it will disappear when logic fulfilled'
+        'If action is show field will appear when logics fulfilled, if action is hide it will disappear when logic fulfilled',
     }),
     content: field({
       type: String,
       optional: true,
-      label: 'Stores html content form of field type with html'
+      label: 'Stores html content form of field type with html',
     }),
     pageNumber: field({
       type: Number,
       optional: true,
       label: 'Number of page',
-      min: 1
+      min: 1,
     }),
     showInCard: field({
       type: Boolean,
       default: false,
       optional: true,
-      label: 'Show in card'
+      label: 'Show in card',
     }),
     productCategoryId: field({
       type: String,
       optional: true,
-      label: 'Product category'
+      label: 'Product category',
     }),
     relationType: field({
       type: String,
       optional: true,
-      label: 'Relation type'
+      label: 'Relation type',
     }),
     subFieldIds: field({
       type: [String],
       optional: true,
-      label: 'Sub field ids'
-    })
-  })
+      label: 'Sub field ids',
+    }),
+  }),
 );
 
 export const fieldGroupSchema = schemaWrapper(
@@ -247,20 +247,20 @@ export const fieldGroupSchema = schemaWrapper(
     // customer, company
     contentType: field({
       type: String,
-      label: 'Content type'
+      label: 'Content type',
     }),
     order: field({ type: Number, label: 'Order' }),
     isDefinedBySaasHQ: field({
       type: Boolean,
       default: false,
-      label: 'Is defined by saashq'
+      label: 'Is defined by SaasHQ',
     }),
     description: field({ type: String, label: 'Description' }),
     parentId: field({ type: String, label: 'Parent Group ID', optional: true }),
     code: field({
       type: String,
       optional: true,
-      label: 'Unique code'
+      label: 'Unique code',
     }),
     // Id of user who updated the group
     lastUpdatedUserId: field({ type: String, label: 'Last updated by' }),
@@ -269,12 +269,12 @@ export const fieldGroupSchema = schemaWrapper(
     isVisibleInDetail: field({
       type: Boolean,
       default: true,
-      label: 'Is group visible in detail'
+      label: 'Is group visible in detail',
     }),
     alwaysOpen: field({
       type: Boolean,
       default: false,
-      label: 'Always open'
+      label: 'Always open',
     }),
     config: { type: Object },
 
@@ -283,7 +283,7 @@ export const fieldGroupSchema = schemaWrapper(
     logicAction: field({
       type: String,
       label:
-        'If action is show field will appear when logics fulfilled, if action is hide it will disappear when logic fulfilled'
-    })
-  })
+        'If action is show field will appear when logics fulfilled, if action is hide it will disappear when logic fulfilled',
+    }),
+  }),
 );

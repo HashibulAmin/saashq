@@ -492,7 +492,7 @@ const orderMutations = {
           },
         });
       } catch (e) {
-        debugError(`Error occurred while sending data to saashq: ${e.message}`);
+        debugError(`Error occurred while sending data to SaasHQ: ${e.message}`);
       }
     }
   },
@@ -610,7 +610,7 @@ const orderMutations = {
           },
         });
       } catch (e) {
-        debugError(`Error occurred while sending data to saashq: ${e.message}`);
+        debugError(`Error occurred while sending data to SaasHQ: ${e.message}`);
       }
 
       return ebarimtResponses;
@@ -680,7 +680,7 @@ const orderMutations = {
           },
         });
       } catch (e) {
-        debugError(`Error occurred while sending data to saashq: ${e.message}`);
+        debugError(`Error occurred while sending data to SaasHQ: ${e.message}`);
       }
     }
 
@@ -709,7 +709,7 @@ const orderMutations = {
     }
 
     if (order.synced === true) {
-      throw new Error('Order is already synced to saashq');
+      throw new Error('Order is already synced to SaasHQ');
     }
 
     await models.OrderItems.deleteMany({ orderId: _id });
@@ -981,7 +981,7 @@ const orderMutations = {
           },
         });
       } catch (e) {
-        debugError(`Error occurred while sending data to saashq: ${e.message}`);
+        debugError(`Error occurred while sending data to SaasHQ: ${e.message}`);
       }
 
       return order;
@@ -1109,7 +1109,7 @@ const orderMutations = {
         },
       });
     } catch (e) {
-      debugError(`Error occurred while sending data to saashq: ${e.message}`);
+      debugError(`Error occurred while sending data to SaasHQ: ${e.message}`);
     }
 
     return models.Orders.findOne({ _id: order._id });

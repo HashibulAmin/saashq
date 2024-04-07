@@ -13,7 +13,7 @@ export const EMPTY_IMPORT_CONTENT = {
       description: __(
         'If you wish to import any properties that are not available on saashq, you need to create custom properties',
       ),
-      url: 'https://docs.saashq.org',
+      url: 'https://docs.saashq.io',
       isOutside: true,
       target: '_blank',
     },
@@ -22,7 +22,7 @@ export const EMPTY_IMPORT_CONTENT = {
       description: `${__(
         'Make sure you’re on the right page and you’ve selected the right data type Lead, Customer, etc on the left',
       )}`,
-      url: 'http://docs.saashq.org',
+      url: 'http://docs.saashq.io',
       target: '_blank',
       isOutside: true,
     },
@@ -108,7 +108,7 @@ export const EMPTY_NEW_SEGMENT_CONTENT = {
     {
       title: 'See our documentation',
       description: 'Walk through step by step instructions.',
-      url: 'https://docs.saashq.org',
+      url: 'https://docs.saashq.io',
       urlText: 'Go to the docs',
       target: '_blank',
       isOutside: true,
@@ -181,7 +181,7 @@ export const EMPTY_CONTENT_FORUMS = {
 };
 
 export const EMPTY_CONTENT_ENGAGE = {
-  title: __('Getting Started with Campaigns'),
+  title: __('Getting Started with Broadcast'),
   description:
     __(
       'Learn how to use this feature to engage your contacts and drive conversations',
@@ -437,7 +437,7 @@ export const WEBHOOK_ACTIONS = [
     type: 'conversation',
   },
   { label: 'Customer messages', action: 'create', type: 'customerMessages' },
-  { label: 'Campaign', action: 'create', type: 'engageMessages' },
+  { label: 'Broadcast', action: 'create', type: 'engageMessages' },
   {
     label: 'Form submission received',
     action: 'create',

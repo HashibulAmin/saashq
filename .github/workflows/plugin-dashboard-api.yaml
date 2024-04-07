@@ -48,7 +48,6 @@ jobs:
         run: |
           cp -r builder dist
           cd dist
-          yarn cache clean
           yarn install
           yarn build plugin dashboard
 

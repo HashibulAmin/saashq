@@ -1,12 +1,13 @@
 export const SUB_MENUS = [
   { title: 'Put Response', link: '/put-responses' },
-  { title: 'By Date', link: '/put-responses-by-date' }
+  { title: 'By Date', link: '/put-responses-by-date' },
+  { title: 'Duplicated', link: '/put-responses-duplicated' },
 ];
 
 export const KEY_LABELS = {
   companyName: 'company name',
   checkCompanyUrl: 'check Company url',
-  ebarimtUrl: 'ebarimt Url'
+  ebarimtUrl: 'ebarimt Url',
 };
 
 export const FILTER_PARAMS = [
@@ -24,7 +25,7 @@ export const FILTER_PARAMS = [
   'dealName',
   'createdStartDate',
   'createdEndDate',
-  'paidDate'
+  'paidDate',
 ];
 
 export const DISTRICTS = [
@@ -57,5 +58,5 @@ export const DISTRICTS = [
   { value: 'Багахангай', label: 'Багахангай' },
   { value: 'Налайх', label: 'Налайх' },
   { value: 'Сонгинохайрхан', label: 'Сонгинохайрхан' },
-  { value: 'Чингэлтэй', label: 'Чингэлтэй' }
+  { value: 'Чингэлтэй', label: 'Чингэлтэй' },
 ];

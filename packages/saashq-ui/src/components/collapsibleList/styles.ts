@@ -27,7 +27,7 @@ const AvatarImg = styled.img`
 `;
 
 const ToggleIcon = styledTS<{ isIndented?: boolean; type?: string }>(
-  styled.div
+  styled.div,
 )`
   margin-left: -${dimensions.unitSpacing - 5}px;
   
@@ -63,7 +63,7 @@ const SidebarListItem = styledTS<{
   backgroundColor?: string;
 }>(styled.li)`
   position: relative;
-  background: ${props =>
+  background: ${(props) =>
     (props.isActive && rgba(colors.colorPrimary, 0.2)) ||
     props.backgroundColor ||
     colors.colorWhite};
@@ -74,23 +74,23 @@ const SidebarListItem = styledTS<{
   flex: 1;
   white-space: normal;
   padding: ${dimensions.unitSpacing - 2}px 0 ${dimensions.unitSpacing - 2}px ${
-  dimensions.coreSpacing
-}px;
+    dimensions.coreSpacing
+  }px;
 
   span, i {
-    color: ${props => props.isActive && colors.colorPrimary} !important;
+    color: ${(props) => props.isActive && colors.colorPrimary} !important;
   }
   
   a {
     white-space: normal;
     flex: 1;
     padding: 0;
-    color: ${props => props.isActive && colors.colorPrimary} !important;
-    font-weight: ${props => (props.isActive ? 500 : 400)};
+    color: ${(props) => props.isActive && colors.colorPrimary} !important;
+    font-weight: ${(props) => (props.isActive ? 500 : 400)};
 
     &:hover {
       background: none;
-      color: ${props => !props.isActive && lighten(colors.textPrimary, 40)};
+      color: ${(props) => !props.isActive && lighten(colors.textPrimary, 40)};
     }
 
     &:focus {
@@ -114,12 +114,12 @@ const SidebarListItem = styledTS<{
   
   &:hover {
     cursor: pointer;
-    background: ${props => !props.isActive && colors.bgLight};
+    background: ${(props) => !props.isActive && colors.bgLight};
     
     ${ActionButtons} {
       width: 60px;
       z-index: 1;
-      background: ${props => (props.isActive ? '#e2dcf2' : colors.bgLight)};
+      background: ${(props) => (props.isActive ? '#e2dcf2' : colors.bgLight)};
     }
   }
 `;
@@ -130,5 +130,5 @@ export {
   ToggleIcon,
   CollapsibleListWrapper,
   ItemText,
-  SidebarListItem
+  SidebarListItem,
 };

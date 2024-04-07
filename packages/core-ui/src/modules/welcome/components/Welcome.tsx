@@ -333,7 +333,7 @@ function Welcome({ currentUser, branchesLength, departmentLength }: Props) {
             <Button
               size="large"
               btnStyle="white"
-              href={'https://saashq.org/service'}
+              href={'https://shq.saashq.org/service'}
               target="_blank"
             >
               {__('Request')}

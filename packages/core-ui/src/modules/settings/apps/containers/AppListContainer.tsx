@@ -1,23 +1,24 @@
-import React from 'react';
-import { gql } from '@apollo/client';
-import { graphql } from '@apollo/client/react/hoc';
 import * as compose from 'lodash.flowright';
 
-import { Alert, confirm, __ } from 'modules/common/utils';
-import Spinner from 'modules/common/components/Spinner';
-import { queries as permissionQueries } from '../../permissions/graphql/index';
-import { mutations, queries } from '../graphql/index';
-import AppList from '../components/AppList';
+import { Alert, __, confirm } from 'modules/common/utils';
 import {
-  AppsQueryResponse,
-  AppsTotalCountQueryResponse,
   AppsAddMutationResponse,
   AppsEditMutationResponse,
+  AppsQueryResponse,
   AppsRemoveMutationResponse,
-  IAppParams,
+  AppsTotalCountQueryResponse,
+  IApp,
   IAppEditParams,
-  IApp
+  IAppParams,
 } from '../types';
+import { mutations, queries } from '../graphql/index';
+
+import AppList from '../components/AppList';
+import React from 'react';
+import Spinner from 'modules/common/components/Spinner';
+import { gql } from '@apollo/client';
+import { graphql } from '@apollo/client/react/hoc';
+import { queries as permissionQueries } from '../../permissions/graphql/index';
 
 type Props = {
   listQuery: AppsQueryResponse;
@@ -36,7 +37,7 @@ class AppListContainer extends React.Component<Props> {
       userGroupsQuery,
       addMutation,
       editMutation,
-      removeMutation
+      removeMutation,
     } = this.props;
 
     const isLoading =
@@ -51,7 +52,7 @@ class AppListContainer extends React.Component<Props> {
         .then(() => {
           Alert.success('You successfully created an app');
         })
-        .catch(e => {
+        .catch((e) => {
           Alert.error(__(e.message));
         });
     };
@@ -61,18 +62,20 @@ class AppListContainer extends React.Component<Props> {
         .then(() => {
           Alert.success('You successfully edited an app');
         })
-        .catch(e => {
+        .catch((e) => {
           Alert.error(__(e.message));
         });
     };
 
     const removeApp = (_id: string) => {
-      confirm().then(() => {
+      confirm('This will permanently delete are you absolutely sure?', {
+        hasDeleteConfirm: true,
+      }).then(() => {
         removeMutation({ variables: { _id } })
           .then(() => {
             Alert.success('You successfully deleted an app');
           })
-          .catch(e => {
+          .catch((e) => {
             Alert.error(__(e.message));
           });
       });
@@ -97,24 +100,24 @@ const options = () => ({ refetchQueries: ['apps'] });
 
 export default compose(
   graphql(gql(queries.apps), {
-    name: 'listQuery'
+    name: 'listQuery',
   }),
   graphql<AppsAddMutationResponse, Props>(gql(mutations.appsAdd), {
     name: 'addMutation',
-    options
+    options,
   }),
   graphql<AppsEditMutationResponse, Props>(gql(mutations.appsEdit), {
     name: 'editMutation',
-    options
+    options,
   }),
   graphql<AppsRemoveMutationResponse, Props>(gql(mutations.appsRemove), {
     name: 'removeMutation',
-    options
+    options,
   }),
   graphql(gql(queries.appsTotalCount), {
-    name: 'totalCountQuery'
+    name: 'totalCountQuery',
   }),
   graphql(gql(permissionQueries.usersGroups), {
-    name: 'userGroupsQuery'
-  })
+    name: 'userGroupsQuery',
+  }),
 )(AppListContainer);

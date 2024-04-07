@@ -5,7 +5,7 @@ import {
   EntriesMainQueryResponse,
   EntriesRemoveMutationResponse,
   IContentType,
-  TypeDetailQueryResponse
+  TypeDetailQueryResponse,
 } from '../../types';
 import { mutations, queries } from '../../graphql';
 
@@ -42,7 +42,7 @@ function ListContainer(props: FinalProps) {
 
           entriesMainQuery.refetch();
         })
-        .catch(e => {
+        .catch((e) => {
           Alert.error(e.message);
         });
     });
@@ -57,7 +57,7 @@ function ListContainer(props: FinalProps) {
     loading: entriesMainQuery.loading,
     contentType,
     remove,
-    entriesCount: totalCount
+    entriesCount: totalCount,
   };
 
   return <List {...updatedProps} />;
@@ -69,12 +69,13 @@ export default compose(
     options: ({ contentType, queryParams }) => ({
       variables: {
         contentTypeId: contentType._id || '',
-        ...generatePaginationParams(queryParams)
+        page: 1,
+        perPage: 100,
       },
-      fetchPolicy: 'network-only'
-    })
+      fetchPolicy: 'network-only',
+    }),
   }),
   graphql<{}, EntriesRemoveMutationResponse>(gql(mutations.entriesRemove), {
-    name: 'entriesRemoveMutation'
-  })
+    name: 'entriesRemoveMutation',
+  }),
 )(ListContainer);

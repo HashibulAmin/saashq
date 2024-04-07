@@ -11,5 +11,5 @@ export {
   Sidebar,
   RespondBox,
   ResponseTemplate,
-  SidebarActivity
+  SidebarActivity,
 };

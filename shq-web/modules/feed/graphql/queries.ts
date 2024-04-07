@@ -40,6 +40,7 @@ const commonFeedFields = `
   isPinned
   commentCount
   recipientIds
+  background  
   createdUser {
     ${userFields}
   }
@@ -394,6 +395,43 @@ const emojiReactedUsers = gql`
   }
 `
 
+const userEvents = gql`
+  query ShqFeedEventsByUser($userId: String) {
+    shqFeedEventsByUser(userId: $userId) {
+      goingEvents {
+        _id
+        attachments
+        background
+        eventData {
+          endDate
+          goingUserIds
+          interestedUserIds
+          startDate
+          where
+        }
+        images
+        description
+        title
+      }
+      interestedEvents {
+        _id
+        attachments
+        background
+        eventData {
+          endDate
+          goingUserIds
+          interestedUserIds
+          startDate
+          where
+        }
+        images
+        description
+        title
+      }
+    }
+  }
+`  
+  
 export default {
   feed,
   shqFeedDetail,
@@ -412,4 +450,5 @@ export default {
   emojiCount,
   emojiIsReacted,
   emojiReactedUsers,
+  userEvents,  
 }

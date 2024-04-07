@@ -161,4 +161,4 @@ export const INTEGRATIONS = [
   },
 ];
 
-export const WEBHOOK_DOC_URL = 'https://docs.saashq.org/';
+export const WEBHOOK_DOC_URL = 'https://docs.saashq.io/';

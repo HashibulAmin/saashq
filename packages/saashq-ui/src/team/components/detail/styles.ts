@@ -51,7 +51,7 @@ const NameContainer = styled.div`
 `;
 
 const Name = styledTS<{ fontSize?: number }>(styled.div)`
-  font-size: ${props => props.fontSize && `${props.fontSize}px`};
+  font-size: ${(props) => props.fontSize && `${props.fontSize}px`};
   font-weight: 500;
 
   i {
@@ -82,5 +82,5 @@ export {
   NameContainer,
   Name,
   UserHeader,
-  BoxWrapper
+  BoxWrapper,
 };

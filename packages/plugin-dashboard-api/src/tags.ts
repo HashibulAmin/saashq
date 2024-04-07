@@ -4,7 +4,7 @@ export default {
   types: [
     {
       description: 'Dashboard',
-      type: 'dashboard',
+      type: 'dashboardz',
     },
   ],
   tag: async ({ subdomain, data }) => {
