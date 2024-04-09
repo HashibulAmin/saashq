@@ -23,7 +23,7 @@ const commonOptions = () => ({
 
 export default commonListComposer<Props>({
   label: 'usersGroups',
-  text: 'user group',
+  text: 'uživatelská skupina',
   stringEditMutation: mutations.usersGroupsEdit,
   stringAddMutation: mutations.usersGroupsAdd,
   stringCopyMutation: mutations.usersGroupsCopy,

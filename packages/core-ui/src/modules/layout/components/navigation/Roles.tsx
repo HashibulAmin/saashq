@@ -82,11 +82,11 @@ class Roles extends React.Component<Props, State> {
     return (
       <Container>
         <SubContent>
-          <h4>{__('Your Role')}</h4>
+          <h4>{__('Tvá role')}</h4>
         </SubContent>
 
         <p>
-          {__("What's your main area of work")}?{' '}
+          {__('Jaká je vaše hlavní pracovní oblast')}?{' '}
           <Tip placement="left-end" text={__(TOOLTIP)}>
             <Icon icon="info-circle" color="hsl(259,50%,51.9%)" />
           </Tip>

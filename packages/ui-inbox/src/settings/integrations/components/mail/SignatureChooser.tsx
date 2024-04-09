@@ -2,7 +2,7 @@ import {
   SignatureChooserFooter,
   SignatureDropdownWrapper,
   SignatureHiderButton,
-  SignatureOptionWrapper
+  SignatureOptionWrapper,
 } from './styles';
 
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -36,12 +36,12 @@ const SignatureChooser = ({
   brands,
   emailContent,
   onContentChange,
-  onSignatureChange
+  onSignatureChange,
 }: Props) => {
   const removeSignature = ({
     openingTag = '<data>',
     closingTag = '</data>',
-    content
+    content,
   }) => {
     const closingTagLength = closingTag.length + 1;
     const firstIndexOfSignature = content.indexOf(openingTag);
@@ -81,7 +81,7 @@ const SignatureChooser = ({
     }
 
     const brandSignature = signatures?.find(
-      (signature: IEmailSignature) => signature?.brandId === val
+      (signature: IEmailSignature) => signature?.brandId === val,
     );
 
     /** If selected brand exists */
@@ -90,8 +90,8 @@ const SignatureChooser = ({
 
       onContentChange(
         removeSignature({ content: emailContent }).concat(
-          `<data><span> -- </span>${signatureString}</data>`
-        )
+          `<data><span> -- </span>${signatureString}</data>`,
+        ),
       );
 
       onSignatureChange(val);
@@ -128,7 +128,7 @@ const SignatureChooser = ({
     }
 
     return (signatures || []).map((signature: IEmailSignature) =>
-      renderSignatureDropdownItem(signature)
+      renderSignatureDropdownItem(signature),
     );
   };
 
@@ -172,7 +172,7 @@ const SignatureChooser = ({
   return (
     <Dropdown>
       <Dropdown.Toggle as={DropdownToggle} id="signature-dropdown">
-        {renderIcon({ text: 'Insert signature', icon: 'edit-alt' })}
+        {renderIcon({ text: 'Vložte podpis', icon: 'edit-alt' })}
       </Dropdown.Toggle>
 
       <Dropdown.Menu style={{ overflow: 'auto', maxHeight: 500 }}>

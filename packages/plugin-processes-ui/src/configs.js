@@ -12,7 +12,7 @@ module.exports = {
   },
   menus: [
     {
-      text: 'Processes',
+      text: 'Procesy',
       to: '/processes/jobs',
       image: '/images/icons/saashq-31.png',
       location: 'settings',
@@ -21,7 +21,7 @@ module.exports = {
       permissions: ['showJobs', 'manageJobs']
     },
     {
-      text: 'Processes',
+      text: 'Procesy',
       url: '/processes/overallWorks',
       icon: 'icon-file-check-alt',
       location: 'mainNavigation'

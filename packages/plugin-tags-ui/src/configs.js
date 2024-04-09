@@ -15,7 +15,7 @@ module.exports = {
   activityLog: './activityLog',
   menus: [
     {
-      text: 'Tags',
+      text: 'Tagy',
       to: '/settings/tags',
       image: '/images/icons/saashq-18.svg',
       location: 'settings',

@@ -25,7 +25,7 @@ module.exports = {
   contactDetailLeftSidebar: './contactDetailLeftSidebar',
   menus: [
     {
-      text: 'Properties',
+      text: 'Vlastnosti',
       to: '/settings/properties',
       image: '/images/icons/saashq-01.svg',
       location: 'settings',

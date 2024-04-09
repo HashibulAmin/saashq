@@ -13,7 +13,7 @@ module.exports = {
   },
   menus: [
     {
-      text: 'Timeclocks',
+      text: 'Hodiny',
       url: '/timeclocks',
       icon: 'icon-star',
       location: 'mainNavigation'

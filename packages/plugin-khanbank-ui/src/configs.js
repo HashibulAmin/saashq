@@ -33,7 +33,7 @@ module.exports = {
       permissions: ['khanbankConfigsShow']
     },
     {
-      text: 'Currency Rates Widget',
+      text: 'Widget pro kurzy měn',
       url: '/khanbank-corporate-gateway/widget',
       icon: 'icon-dollar-sign',
       location: 'topNavigation',

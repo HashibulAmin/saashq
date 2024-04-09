@@ -13,7 +13,7 @@ module.exports = {
   },
   menus: [
     {
-      text: 'Saving Contract',
+      text: 'Smlouva o uložení',
       url: '/saashq-plugin-saving/contract-list',
       icon: 'icon-piggybank',
       location: 'mainNavigation',
@@ -21,7 +21,7 @@ module.exports = {
       permission: 'showContracts'
     },
     {
-      text: 'Saving Contract types',
+      text: 'Ukládání typů smluv',
       image: '/images/icons/saashq-01.svg',
       to: '/saashq-plugin-saving/contract-types/',
       action: 'savingConfig',
@@ -31,7 +31,7 @@ module.exports = {
       permission: 'showContracts'
     },
     {
-      text: 'Saving Transaction',
+      text: 'Ukládání transakce',
       image: '/images/icons/saashq-16.svg',
       to: '/saashq-plugin-saving/transaction-list',
       action: 'transaction',
@@ -42,7 +42,7 @@ module.exports = {
   ],
   customerRightSidebarSection: [
     {
-      text: 'customerRightSidebarSection',
+      text: 'Sekce pravého bočního panelu zákazníka',
       component: './contractSection',
       scope: 'savings'
     }

@@ -17,7 +17,7 @@ module.exports = {
   activityLog: './activityLog',
   menus: [
     {
-      text: 'Blocks',
+      text: 'Bloky',
       to: '/block/list',
       image: '/images/icons/saashq-18.svg',
       location: 'settings'
@@ -25,7 +25,7 @@ module.exports = {
   ],
   customerRightSidebarSection: [
     {
-      text: 'customerSection',
+      text: 'zákaznická sekce',
       component: './customerSidebar',
       scope: 'block'
     }

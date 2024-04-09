@@ -15,7 +15,7 @@ module.exports = {
   automation: './automation',
   menus: [
     {
-      text: 'Outgoing webhooks',
+      text: 'Odchozí webhooky',
       to: '/settings/webhooks',
       image: '/images/icons/saashq-11.svg',
       location: 'settings',

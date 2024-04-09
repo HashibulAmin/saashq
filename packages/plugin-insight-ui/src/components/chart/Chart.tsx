@@ -149,7 +149,7 @@ const ChartComponent: React.FC<IChartProps> = ({
       //       },
       //       title: {
       //         display: true,
-      //         text: 'Chart.js Bar Chart'
+      //         text: 'Chart.js Sloupcový graf'
       //       }
       //     }
       //   }

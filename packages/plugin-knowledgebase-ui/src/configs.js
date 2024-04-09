@@ -12,7 +12,7 @@ module.exports = {
   },
   menus: [
     {
-      text: 'Knowledge Base',
+      text: 'Znalostní báze',
       url: '/knowledgeBase',
       icon: 'icon-book-open',
       location: "mainNavigation",

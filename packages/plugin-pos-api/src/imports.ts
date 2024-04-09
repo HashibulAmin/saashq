@@ -1,11 +1,11 @@
 import { generateModels } from './connectionResolver';
 const IMPORT_EXPORT_TYPES = [
   {
-    text: 'Pos Order',
+    text: 'Pos objednávky',
     contentType: 'pos',
     icon: 'server-alt',
-    skipFilter: false
-  }
+    skipFilter: false,
+  },
 ];
 export default {
   importExportTypes: IMPORT_EXPORT_TYPES,
@@ -26,7 +26,7 @@ export default {
             delete doc.code;
             await models.PosOrders.updateOne(
               { _id: pos_orders._id },
-              { $set: { ...doc } }
+              { $set: { ...doc } },
             );
             updated++;
           } else {
@@ -56,7 +56,7 @@ export default {
     // Iterating field values
     for (const fieldValue of result) {
       const doc: any = {
-        customFieldsData: []
+        customFieldsData: [],
       };
 
       let colIndex: number = 0;
@@ -67,27 +67,27 @@ export default {
         switch (property.name) {
           case 'createdAt':
             const createdAt = await models.PosOrders.findOne({
-              createdAt: new Date(value)
+              createdAt: new Date(value),
             });
             doc.createdAt = createdAt ? createdAt.createdAt : new Date(value);
             break;
 
           case 'status':
             const status = await models.PosOrders.findOne({
-              status: value
+              status: value,
             });
             doc.status = status ? status.status : value;
             break;
 
           case 'paidDate':
             const paidDate = await models.PosOrders.findOne({
-              paidDate: new Date(value)
+              paidDate: new Date(value),
             });
             doc.paidDate = paidDate ? paidDate.paidDate : new Date(value);
             break;
           case 'dueDate':
             const dueDate = await models.PosOrders.findOne({
-              dueDate: new Date(value)
+              dueDate: new Date(value),
             });
             doc.dueDate = dueDate ? dueDate.dueDate : new Date(value);
             break;
@@ -131,5 +131,5 @@ export default {
     }
 
     return bulkDoc;
-  }
+  },
 };

@@ -164,7 +164,7 @@ export const loadFormClass = (models: IModels) => {
           errors.push({
             fieldId: field._id,
             code: 'required',
-            text: 'Required',
+            text: 'Požadované',
           });
         }
 
@@ -177,7 +177,7 @@ export const loadFormClass = (models: IModels) => {
             errors.push({
               fieldId: field._id,
               code: 'invalidEmail',
-              text: 'Invalid email',
+              text: 'Neplatný e-mail',
             });
           }
 
@@ -189,7 +189,7 @@ export const loadFormClass = (models: IModels) => {
             errors.push({
               fieldId: field._id,
               code: 'invalidPhone',
-              text: 'Invalid phone',
+              text: 'Neplatný telefon',
             });
           }
 
@@ -201,7 +201,7 @@ export const loadFormClass = (models: IModels) => {
             errors.push({
               fieldId: field._id,
               code: 'invalidNumber',
-              text: 'Invalid number',
+              text: 'Neplatné číslo',
             });
           }
 
@@ -210,7 +210,7 @@ export const loadFormClass = (models: IModels) => {
             errors.push({
               fieldId: field._id,
               code: 'invalidDate',
-              text: 'Invalid Date',
+              text: 'Neplatné datum',
             });
           }
         }

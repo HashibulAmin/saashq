@@ -52,7 +52,7 @@ export default class Navigation extends React.Component<Props> {
           {!VERSION || VERSION !== 'saas' ? (
             <NavigationItem
               plugin={{
-                text: 'Marketplace',
+                text: 'Tržiště',
                 url: '/marketplace',
                 icon: 'icon-store',
               }}
@@ -62,7 +62,7 @@ export default class Navigation extends React.Component<Props> {
 
           <NavigationItem
             plugin={{
-              text: 'Settings',
+              text: 'Nastavení',
               url: '/settings',
               icon: 'icon-settings',
             }}

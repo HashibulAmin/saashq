@@ -12,7 +12,7 @@ module.exports = {
   },
   menus: [
     {
-      text: 'Sync Erkhet',
+      text: 'Synchronizovat Erkhet',
       to: '/saashq-plugin-sync-erkhet/settings/general',
       image: '/images/icons/saashq-04.svg',
       location: "settings",
@@ -21,7 +21,7 @@ module.exports = {
       permission: "syncErkhetConfig",
     },
     {
-      text: 'Sync Erkhet',
+      text: 'Synchronizovat Erkhet',
       url: '/sync-erkhet-history',
       icon: 'icon-file-check-alt',
       location: "mainNavigation",

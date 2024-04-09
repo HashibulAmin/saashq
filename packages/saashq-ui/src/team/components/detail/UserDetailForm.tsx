@@ -72,14 +72,17 @@ function UserDetails({
     isChanged: false,
   });
 
-  const title = details.fullName || 'Unknown';
-  const breadcrumb = [{ title: 'Users', link: '/settings/team' }, { title }];
+  const title = details.fullName || 'Neznámý';
+  const breadcrumb = [
+    { title: 'Uživatelé', link: '/settings/team' },
+    { title },
+  ];
 
   if (!user._id) {
     return (
       <EmptyState
         image="/images/actions/11.svg"
-        text="User not found"
+        text="Uživatel nenalezen"
         size="small"
       />
     );
@@ -98,14 +101,14 @@ function UserDetails({
       handleState({ ids: value, isChanged: true });
     };
 
-    if (key === 'department') {
+    if (key === 'oddělení') {
       Selection = SelectDepartments;
     }
-    if (key === 'branch') {
+    if (key === 'větev') {
       Selection = SelectBranches;
     }
 
-    if (key === 'position') {
+    if (key === 'pozice') {
       Selection = SelectPositions;
     }
     const content = (formProps) => {
@@ -124,7 +127,7 @@ function UserDetails({
       const movementForm = () => {
         const trigger = (
           <ButtonRelated>
-            <span>{`See User Movement of ${label}`}</span>
+            <span>{`Viz Pohyb uživatelů ${label}`}</span>
           </ButtonRelated>
         );
 
@@ -139,7 +142,7 @@ function UserDetails({
 
         return (
           <ModalTrigger
-            title={`User ${label} Movements`}
+            title={`Uživatel ${label} Pohyby`}
             content={content}
             trigger={trigger}
             size="xl"
@@ -152,7 +155,7 @@ function UserDetails({
           <FormGroup>
             <ControlLabel>{__(`${label}`)}</ControlLabel>
             <Selection
-              label={`Choose ${label}`}
+              label={`Vybrat ${label}`}
               name={`${key}Ids`}
               initialValue={ids}
               onSelect={(value) => handleChange(value)}
@@ -165,7 +168,7 @@ function UserDetails({
                 {__('Cancel')}
               </Button>
               {renderButton({
-                text: 'user movement',
+                text: 'pohyb uživatele',
                 values: generateDoc(),
                 isSubmitted: formProps.isSubmitted,
                 callback,
@@ -181,24 +184,24 @@ function UserDetails({
 
   const leftSidebar = (
     <Sidebar>
-      <Box title="Branches">
-        {list(branch.ids, branch.isChanged, 'Branches', 'branch', setBranchIds)}
+      <Box title="Větve">
+        {list(branch.ids, branch.isChanged, 'Větve', 'větev', setBranchIds)}
       </Box>
-      <Box title="Departments">
+      <Box title="Oddělení">
         {list(
           department.ids,
           department.isChanged,
-          'Departments',
-          'department',
+          'Oddělení',
+          'oddělení',
           setDepartmentIds,
         )}
       </Box>
-      <Box title="Positions">
+      <Box title="Pozice">
         {list(
           position.ids,
           position.isChanged,
-          'Positions',
-          'position',
+          'Pozice',
+          'pozice',
           setPositionIds,
         )}
       </Box>

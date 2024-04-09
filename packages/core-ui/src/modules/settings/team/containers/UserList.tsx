@@ -32,7 +32,7 @@ class UserListContainer extends React.Component<Props> {
       .then(() => {
         listQuery.refetch();
 
-        Alert.success('Congrats, Successfully updated.');
+        Alert.success('Gratulujeme, úspěšně aktualizováno.');
       })
       .catch((error: Error) => {
         Alert.error(error.message);
@@ -46,7 +46,7 @@ class UserListContainer extends React.Component<Props> {
         variables: { email },
       })
       .then(() => {
-        Alert.success('Successfully resent the invitation');
+        Alert.success('Úspěšně znovu odeslat pozvánku');
       })
       .catch((e) => {
         Alert.error(e.message);
@@ -85,7 +85,7 @@ export const options = ({ queryParams }: { queryParams: any }): any => {
 };
 
 export default commonListComposer<{ queryParams: any; history: any }>({
-  text: 'team member',
+  text: 'člen týmu',
   label: 'users',
   stringAddMutation: mutations.usersInvite,
   stringEditMutation: mutations.usersEdit,

@@ -34,7 +34,7 @@ const data = {
 //       },
 //       title: {
 //         display: true,
-//         text: 'Line chart'
+//         text: 'Spojnicový graf'
 //       }
 //     }
 //   }

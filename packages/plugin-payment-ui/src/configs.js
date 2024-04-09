@@ -19,14 +19,14 @@ module.exports = {
   conversationDetailSidebar: './invoiceSection',
   menus: [
     {
-      text: 'Invoices',
+      text: 'Faktury',
       url: '/payment/invoices',
       icon: 'icon-list',
       location: 'mainNavigation',
       permission: 'showInvoices',
     },
     {
-      text: 'Payments',
+      text: 'Platby',
       to: '/settings/payments',
       image: '/images/icons/saashq-18.svg',
       location: 'settings',
@@ -37,7 +37,7 @@ module.exports = {
   ],
   dealRightSidebarSection: [
     {
-      text: "invoiceSection",
+      text: "sekce faktur",
       component: "./invoiceSection",
       scope: "payment"
     }

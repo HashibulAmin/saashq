@@ -41,7 +41,7 @@ export default class MyDocument extends Document {
           <meta charSet="UTF-8" />
           <meta
             name="keywords"
-            content="saashq, saashq Inc, saashq mongolia, shq, team, team member, help center"
+            content="saashq, SaasHQ Inc, saashq mongolia, shq, team, team member, help center"
           />
           <meta
             name="description"

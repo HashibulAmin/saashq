@@ -39,7 +39,7 @@ const ListContainer = (props: FinalProps) => {
   // get current location of an user
   let long = 0;
   let lat = 0;
-  navigator.geolocation.getCurrentPosition(position => {
+  navigator.geolocation.getCurrentPosition((position) => {
     long = position.coords.longitude;
     lat = position.coords.latitude;
   });
@@ -50,13 +50,13 @@ const ListContainer = (props: FinalProps) => {
         userId: `${userId}`,
         longitude: long,
         latitude: lat,
-        deviceType: 'XOS'
-      }
+        deviceType: 'SHQ',
+      },
     })
       .then(() => {
         Alert.success('Successfully clocked in');
       })
-      .catch(err => Alert.error(err.message));
+      .catch((err) => Alert.error(err.message));
   };
 
   const stopClockTime = (userId: string, timeId?: string) => {
@@ -66,20 +66,20 @@ const ListContainer = (props: FinalProps) => {
         userId,
         longitude: long,
         latitude: lat,
-        deviceType: 'XOS'
-      }
+        deviceType: 'SHQ',
+      },
     })
       .then(() => {
         Alert.success('Successfully clocked out');
       })
-      .catch(err => Alert.error(err.message));
+      .catch((err) => Alert.error(err.message));
   };
 
   const updatedProps = {
     ...props,
     timeclocks,
     startClockTime,
-    stopClockTime
+    stopClockTime,
   };
   return <TimeForm {...updatedProps} />;
 };
@@ -92,10 +92,10 @@ export default withProps<Props>(
         variables: {
           userId,
           longitude,
-          latitude
+          latitude,
         },
-        refetchQueries: ['timeclocksMain', 'bichilTimeclockReportByUsers']
-      })
+        refetchQueries: ['timeclocksMain', 'bichilTimeclockReportByUsers'],
+      }),
     }),
 
     graphql<Props, TimeClockMutationResponse>(gql(mutations.timeclockStop), {
@@ -105,10 +105,10 @@ export default withProps<Props>(
           userId,
           _id: timeId,
           longitude,
-          latitude
+          latitude,
         },
-        refetchQueries: ['timeclocksMain', 'bichilTimeclockReportByUsers']
-      })
-    })
-  )(ListContainer)
+        refetchQueries: ['timeclocksMain', 'bichilTimeclockReportByUsers'],
+      }),
+    }),
+  )(ListContainer),
 );

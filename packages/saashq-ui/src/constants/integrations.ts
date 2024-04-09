@@ -66,17 +66,17 @@ export const hours = [
 ];
 
 export const INTEGRATION_KINDS = {
-  MESSENGER: 'messenger',
+  MESSENGER: 'posel',
   FACEBOOK_MESSENGER: 'facebook-messenger',
   INSTAGRAM_MESSENGER: 'instagram-messenger',
   FACEBOOK_POST: 'facebook-post',
-  FORMS: 'lead',
+  FORMS: 'Vést',
   CALLPRO: 'callpro',
   WEBHOOK: 'webhook',
-  BOOKING: 'booking',
+  BOOKING: 'rezervace',
   ALL: [
-    { text: 'Messenger', value: 'messenger' },
-    { text: 'Forms', value: 'lead' },
+    { text: 'Posel', value: 'messenger' },
+    { text: 'Formuláře', value: 'lead' },
     {
       text: 'Facebook Messenger',
       value: 'facebook-messenger',
@@ -87,25 +87,25 @@ export const INTEGRATION_KINDS = {
     },
     { text: 'Webhook', value: 'webhook' },
     { text: 'Callpro', value: 'callpro' },
-    { text: 'Booking', value: 'booking' },
+    { text: 'Rezervace', value: 'booking' },
   ],
 };
 
 export const FORM_LOAD_TYPES = {
-  SHOUTBOX: 'shoutbox',
-  POPUP: 'popup',
-  EMBEDDED: 'embedded',
-  ALL_LIST: ['', 'shoutbox', 'popup', 'embedded'],
+  SHOUTBOX: 'křikbox',
+  POPUP: 'vyskakovat',
+  EMBEDDED: 'vložené',
+  ALL_LIST: ['', 'křikbox', 'vyskakovat', 'vložené'],
 };
 
 export const FORM_SUCCESS_ACTIONS = {
-  EMAIL: 'email',
-  REDIRECT: 'redirect',
-  ONPAGE: 'onPage',
+  EMAIL: 'e-mailem',
+  REDIRECT: 'přesměrovat',
+  ONPAGE: 'na stránce',
   ALL_LIST: [
-    { text: 'On page', value: 'onPage' },
-    { text: 'Email', value: 'email' },
-    { text: 'Page redirect', value: 'redirect' },
+    { text: 'Na stránce', value: 'onPage' },
+    { text: 'E-mailem', value: 'email' },
+    { text: 'Přesměrování stránky', value: 'redirect' },
   ],
 };
 
@@ -126,8 +126,9 @@ export const MAIL_TOOLBARS_CONFIG = [
 
 export const INTEGRATIONS = [
   {
-    name: 'Messenger',
-    description: 'See and reply to Messenger messages in your Team Inbox',
+    name: 'Posel',
+    description:
+      'Prohlížení zpráv Messengeru a odpovídání na ně ve vaší týmové schránce',
     inMessenger: false,
     isAvailable: true,
     kind: 'messenger',
@@ -135,29 +136,29 @@ export const INTEGRATIONS = [
     createModal: 'messenger',
     createUrl: '/settings/integrations/createMessenger',
     category:
-      'All integrations, For support teams, For marketing teams, Marketing automation, Conversation',
+      'Všechny integrace, Pro týmy podpory, Pro marketingové týmy, Marketingová automatizace, Konverzace',
   },
   {
     name: 'Call Pro',
-    description: 'Connect your call pro phone number',
+    description: 'Připojte své telefonní číslo call pro',
     inMessenger: false,
     isAvailable: true,
     kind: 'callpro',
     logo: '/images/integrations/callpro.png',
     createModal: 'callpro',
     category:
-      'All integrations, For support teams, Marketing automation, Phone and video, Conversation',
+      'Všechny integrace, Pro týmy podpory, Marketingová automatizace, Telefon a video, Konverzace',
   },
   {
-    name: 'Incoming Webhook',
-    description: 'Configure incoming webhooks',
+    name: 'Příchozí webhook',
+    description: 'Konfigurace příchozích webhooků',
     inMessenger: false,
     isAvailable: true,
     kind: 'webhook',
     logo: '/images/integrations/incoming-webhook.png',
     createModal: 'webhook',
     category:
-      'All integrations, For support teams, Conversation, Marketing automation',
+      'Všechny integrace, pro týmy podpory, konverzace, automatizace marketingu',
   },
 ];
 

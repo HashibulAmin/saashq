@@ -15,10 +15,10 @@ type Props = {
 };
 
 class SignIn extends React.Component<Props> {
-  renderContent = formProps => {
+  renderContent = (formProps) => {
     const { values, isSubmitted } = formProps;
     const url = window.location.href;
-    const demoUrl = url.includes('xosdemo.saashq.org');
+    const demoUrl = url.includes('shqcs.saashq.org');
 
     return (
       <>
@@ -26,7 +26,9 @@ class SignIn extends React.Component<Props> {
           <FormControl
             {...formProps}
             name="email"
-            placeholder={demoUrl ? 'guest@saashq.org' : __('Enter your email')}
+            placeholder={
+              demoUrl ? 'guest@saashq.org' : __('Vložte svůj e-mail')
+            }
             required={true}
           />
         </FormGroup>
@@ -36,14 +38,14 @@ class SignIn extends React.Component<Props> {
             {...formProps}
             name="password"
             type="password"
-            placeholder={demoUrl ? 'Demo@123' : __('Enter your password')}
+            placeholder={demoUrl ? 'Demo@123' : __('Zadejte heslo')}
             required={true}
           />
         </FormGroup>
 
         {this.props.renderButton({
           values,
-          isSubmitted
+          isSubmitted,
         })}
       </>
     );
@@ -58,11 +60,11 @@ class SignIn extends React.Component<Props> {
   render() {
     return (
       <AuthBox>
-        <img src={this.renderLogo()} alt="saashq" />
-        <h2>{__('Welcome!')}</h2>
-        <p>{__('Please sign in to your account to continue')}</p>
+        <img src={this.renderLogo()} alt="SaasHQ" />
+        <h2>{__('Vítejte!')}</h2>
+        <p>{__('Chcete-li pokračovat, přihlaste se ke svému účtu')}</p>
         <Form renderContent={this.renderContent} />
-        <Link to="/forgot-password">{__('Forgot password?')}</Link>
+        <Link to="/forgot-password">{__('Zapomenuté heslo?')}</Link>
       </AuthBox>
     );
   }

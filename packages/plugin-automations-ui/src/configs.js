@@ -15,14 +15,14 @@ module.exports = {
   activityLog: './activityLog',
   menus: [
     {
-      text: 'Automations',
+      text: 'Automatizace',
       url: '/automations',
       location: 'mainNavigation',
       icon: 'icon-circular',
       permission: 'showAutomations'
     },
     {
-      text: 'Automations config',
+      text: 'Konfigurace automatizace',
       to: '/settings/automations/general',
       image: '/images/icons/saashq-14.svg',
       location: 'settings',

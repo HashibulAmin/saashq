@@ -13,7 +13,7 @@ module.exports = {
   },
   menus: [
     {
-      text: 'Goals',
+      text: 'Cíle',
       to: '/saashq-plugin-goalType/goalType',
       image: '/images/icons/saashq-18.svg',
       location: 'settings',

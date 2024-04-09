@@ -8,7 +8,7 @@ import {
   getFullTitle,
   monthColumns,
   nextMonth,
-  previousMonth
+  previousMonth,
 } from '../utils/calendar';
 import Button from './Button';
 
@@ -59,7 +59,7 @@ type ItemButton = {
 type Props = {
   renderContent: (
     renderMonths: () => React.ReactNode[],
-    renderMiddleContent: () => React.ReactNode
+    renderMiddleContent: () => React.ReactNode,
   ) => React.ReactNode;
   renderColumn: (date: IDateColumn) => React.ReactNode;
 };
@@ -91,8 +91,8 @@ class Calendar extends React.Component<Props, State> {
           {renderButton({ icon: 'rightarrow', onClick: this.onNextClick })}
           {renderButton({
             onClick: this.setCurrentDate,
-            text: 'Today',
-            btnStyle: 'primary'
+            text: 'Dnes',
+            btnStyle: 'primary',
           })}
         </HeaderWrapper>
       </Header>
@@ -104,7 +104,7 @@ class Calendar extends React.Component<Props, State> {
     const months = monthColumns(currentDate, 3);
 
     return months.map((date: IDateColumn, index: number) =>
-      this.renderColumns(index, date)
+      this.renderColumns(index, date),
     );
   };
 

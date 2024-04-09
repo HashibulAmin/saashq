@@ -152,7 +152,9 @@ function GenerateButtons({
   return (
     <List>
       {renderListOption}
-      <LinkButton onClick={handleAddButton}>{__('+ Add Button')}</LinkButton>
+      <LinkButton onClick={handleAddButton}>
+        {__('+ Přidat tlačítko')}
+      </LinkButton>
     </List>
   );
 }

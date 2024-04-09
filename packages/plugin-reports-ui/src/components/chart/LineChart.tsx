@@ -12,15 +12,15 @@ const data = {
       label: 'Dataset 1',
       data: [1, 2, 3, 4, 5, 6, 7],
       borderColor: 'rgba(255, 99, 132, 0.6)',
-      backgroundColor: 'rgba(255, 99, 132, 0.6)'
+      backgroundColor: 'rgba(255, 99, 132, 0.6)',
     },
     {
       label: 'Dataset 2',
       data: [0, 2, 3, 4, 6, 7],
       borderColor: 'rgba(255, 206, 86, 0.6)',
-      backgroundColor: 'rgba(255, 206, 86, 0.6)'
-    }
-  ]
+      backgroundColor: 'rgba(255, 206, 86, 0.6)',
+    },
+  ],
 };
 
 // const config = {
@@ -34,7 +34,7 @@ const data = {
 //       },
 //       title: {
 //         display: true,
-//         text: 'Line chart'
+//         text: 'Spojnicový graf'
 //       }
 //     }
 //   }
@@ -47,11 +47,11 @@ const config = {
       {
         data: [20, 10],
         borderColor: ['rgba(255, 99, 132, 0.6)', 'rgba(255, 206, 86, 0.6)'],
-        backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(255, 206, 86, 0.6)']
-      }
+        backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(255, 206, 86, 0.6)'],
+      },
     ],
-    labels: ['a', 'b']
-  }
+    labels: ['a', 'b'],
+  },
 };
 
 export default function LineChart() {

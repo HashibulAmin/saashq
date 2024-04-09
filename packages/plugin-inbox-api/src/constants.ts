@@ -33,48 +33,48 @@ export const LOG_MAPPINGS = [
 ];
 
 export const CONVERSATION_INFO = {
-  opened: 'Opened',
-  channels: 'Channels',
-  brand: 'Brand',
-  integration: 'Integration',
-  count: 'Conversations',
+  opened: 'Otevřeno',
+  channels: 'Kanály',
+  brand: 'Značka',
+  integration: 'Integrace',
+  count: 'Konverzace',
   ALL: [
-    { field: 'opened', label: 'Opened' },
-    { field: 'channels', label: 'Channels' },
-    { field: 'brand', label: 'Brand' },
-    { field: 'integration', label: 'Integration' },
-    { field: 'count', label: 'Conversations' },
+    { field: 'opened', label: 'Otevřeno' },
+    { field: 'channels', label: 'Kanály' },
+    { field: 'brand', label: 'Značka' },
+    { field: 'integration', label: 'Integrace' },
+    { field: 'count', label: 'Konverzace' },
   ],
 };
 
 export const NOTIFICATION_MODULES = [
   {
     name: 'conversations',
-    description: 'Conversations',
+    description: 'Konverzace',
     icon: 'chat',
     types: [
       {
         name: 'conversationStateChange',
-        text: 'State change',
+        text: 'Změna stavu',
       },
       {
         name: 'conversationAssigneeChange',
-        text: 'Assignee change',
+        text: 'Změna příjemce',
       },
       {
         name: 'conversationAddMessage',
-        text: 'Add message',
+        text: 'Přidat zprávu',
       },
     ],
   },
   {
     name: 'channels',
-    description: 'Channels',
+    description: 'Kanály',
     icon: 'laptop',
     types: [
       {
         name: 'channelMembersChange',
-        text: 'Members change',
+        text: 'Členové se mění',
       },
     ],
   },
@@ -82,6 +82,7 @@ export const NOTIFICATION_MODULES = [
 
 export const VERIFY_EMAIL_TRANSLATIONS = {
   en: 'Click here to verify your email',
+  cs: 'Kliknutím sem ověřte svůj e-mail',
   mn: 'Имэйл хаягаа баталгаажуулахын тулд энд дарна уу',
   tr: 'E-postanızı doğrulamak için buraya tıklayın',
   zh: '点击此处验证您的电子邮件',
@@ -102,7 +103,7 @@ export const VERIFY_EMAIL_TRANSLATIONS = {
 
 export const IMPORT_EXPORT_TYPES = [
   {
-    text: 'Conversations',
+    text: 'Konverzace',
     contentType: 'conversation',
     icon: 'chat',
   },

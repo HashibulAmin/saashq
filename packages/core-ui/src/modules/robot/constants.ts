@@ -1,231 +1,234 @@
-export const TOOLTIP = 'Your responsive will determine your onboarindg guides';
+export const TOOLTIP = 'Vaše odpověď určí vaše průvodce pro přihlášení';
 
-export const PLACEHOLDER = 'Choose one';
+export const PLACEHOLDER = 'Vyber jeden';
 
 export const ROLE_VALUE = [
-  { _id: 'answerOne', name: 'I’ve never used a CRM or business tools before' },
-  { _id: 'answerTwo', name: 'I’m new to saashq, but I have used a CRM before' },
-  { _id: 'answerThree', name: 'I know my way around saashq well' },
+  {
+    _id: 'answerOne',
+    name: 'Nikdy předtím jsem nepoužíval CRM ani obchodní nástroje',
+  },
+  { _id: 'answerTwo', name: 'Jsem nový v SaasHQ, ale dříve jsem používal CRM' },
+  { _id: 'answerThree', name: 'V SaasHQ se dobře vyznám' },
 ];
 
 export const ROLE_OPTIONS = [
-  { _id: 'sales', name: 'Sales' },
-  { _id: 'marketing', name: 'Marketing' },
-  { _id: 'customerSupport', name: 'Customer support' },
-  { _id: 'managementAndOperations', name: 'Management and Operations' },
-  { _id: 'above', name: 'All of the above' },
+  { _id: 'odbyt', name: 'Odbyt' },
+  { _id: 'marketingový', name: 'marketingovýový' },
+  { _id: 'zákaznická podpora', name: 'Zákaznická podpora' },
+  { _id: 'řízení a provoz', name: 'Řízení a provoz' },
+  { _id: 'výše', name: 'Vše výše uvedené' },
 ];
 
 export const ROLE_SETUP = [
   {
-    title: 'Setup',
+    title: 'Založit',
     key: 'setup',
     content: [
       {
-        name: 'Set your general settings',
+        name: 'Nastavte obecná nastavení',
         title: 'generalSettings',
         steps: 3,
         types: [
-          'sales',
-          'marketing',
-          'customerSupport',
-          'managementAndOperations',
-          'above',
+          'odbyt',
+          'marketingovýový',
+          'zákaznická podpora',
+          'řízení a provoz',
+          'výše',
         ],
       },
       {
-        name: 'Create your brands and channels',
+        name: 'Vytvořte své značky a kanály',
         title: 'channelBrands',
         steps: 2,
         types: [
-          'sales',
-          'marketing',
-          'customerSupport',
-          'managementAndOperations',
-          'above',
+          'odbyt',
+          'marketingovýový',
+          'zákaznická podpora',
+          'řízení a provoz',
+          'výše',
         ],
       },
       {
-        name: 'Integrate other apps into saashq',
+        name: 'Integrujte další aplikace do SaasHQ',
         title: 'integrationOtherApps',
         steps: 2,
         types: [
-          'sales',
-          'marketing',
-          'customerSupport',
-          'managementAndOperations',
-          'above',
+          'odbyt',
+          'marketingovýový',
+          'zákaznická podpora',
+          'řízení a provoz',
+          'výše',
         ],
       },
       {
-        name: 'Customize your saashq database',
+        name: 'Přizpůsobte si databázi SaasHQ',
         title: 'customizeDatabase',
         steps: 2,
         types: [
-          'sales',
-          'marketing',
-          'customerSupport',
-          'managementAndOperations',
-          'above',
+          'odbyt',
+          'marketingovýový',
+          'zákaznická podpora',
+          'řízení a provoz',
+          'výše',
         ],
       },
     ],
   },
   {
-    title: 'Operational',
+    title: 'Provozní',
     key: 'operational',
     content: [
       {
-        name: 'Import your existing contacts',
+        name: 'Importujte své stávající kontakty',
         title: 'importExistingContacts',
         steps: 4,
-        types: ['sales', 'marketing'],
+        types: ['odbyt', 'marketingovýový'],
       },
       {
-        name: 'Customize your Sales Pipeline',
+        name: 'Přizpůsobte si svůj prodejní kanál',
         title: 'salesPipeline',
         steps: 3,
-        types: ['sales', 'above'],
+        types: ['odbyt', 'výše'],
       },
       {
-        name: 'Invite your team members',
+        name: 'Pozvěte členy svého týmu',
         title: 'inviteTeamMembers',
         steps: 3,
         types: [
-          'sales',
-          'marketing',
-          'customerSupport',
-          'managementAndOperations',
-          'above',
+          'odbyt',
+          'marketingový',
+          'zákaznická podpora',
+          'řízení a provoz',
+          'výše',
         ],
       },
       {
-        name: 'Add your product and services',
+        name: 'Přidejte svůj produkt a služby',
         title: 'createProductServices',
         steps: 2,
-        types: ['sales', 'above'],
+        types: ['odbyt', 'výše'],
       },
       {
-        name: 'Install saashq widgets',
+        name: 'Nainstalujte widgety SaasHQ',
         title: 'installSaasHQWidgets',
         steps: 1,
-        types: ['sales', 'marketing', 'customerSupport', 'above'],
+        types: ['odbyt', 'marketingový', 'zákaznická podpora', 'výše'],
       },
       {
-        name: 'Create your lead generation Forms',
+        name: 'Vytvořte si formuláře pro generování potenciálních zákazníků',
         title: 'createLeadGenerationForm',
         steps: 2,
-        types: ['marketing'],
+        types: ['marketingový'],
       },
       {
-        name: 'Create your Knowledge Base',
+        name: 'Vytvořte si znalostní bázi',
         title: 'customizeKnowledgeBase',
         steps: 4,
-        types: ['customerSupport', 'managementAndOperations'],
+        types: ['zákaznická podpora', 'řízení a provoz'],
       },
       {
-        name: 'Plan your content with Tasks',
+        name: 'Naplánujte si obsah pomocí Úkolů',
         title: 'customizeTickets',
         steps: 3,
-        types: ['marketing'],
+        types: ['marketingový'],
       },
       {
-        name: 'Customize your Tickets',
+        name: 'Přizpůsobte si vstupenky',
         title: 'customizeTickets',
         steps: 3,
-        types: ['customerSupport', 'managementAndOperations', 'above'],
+        types: ['zákaznická podpora', 'řízení a provoz', 'výše'],
       },
       {
-        name: 'Customize your Tasks',
+        name: 'Přizpůsobte si úkoly',
         title: 'customizeTasks',
         steps: 3,
-        types: ['customerSupport', 'managementAndOperations', 'above'],
+        types: ['zákaznická podpora', 'řízení a provoz', 'výše'],
       },
       {
-        name: 'Import your existing customer data to saashq',
+        name: 'Importujte svá stávající zákaznická data do SaasHQ',
         title: 'importExistingContacts',
         steps: 4,
-        types: ['above'],
+        types: ['výše'],
       },
       {
-        name: 'Create your Forms',
+        name: 'Vytvořte si formuláře',
         title: 'createLeadGenerationForm',
         steps: 2,
-        types: ['above'],
+        types: ['výše'],
       },
       {
-        name: 'Customize your Knowledge Base',
+        name: 'Přizpůsobte si znalostní bázi',
         title: 'customizeKnowledgeBase',
         steps: 4,
-        types: ['above'],
+        types: ['výše'],
       },
     ],
   },
   {
-    title: 'On-going',
+    title: 'Pokračující',
     key: 'on-going',
     content: [
       {
-        name: 'Segment your contacts',
+        name: 'Segmentujte své kontakty',
         title: 'customizeSegmentation',
         steps: 2,
-        types: ['sales', 'marketing', 'above'],
+        types: ['odbyt', 'marketingový', 'výše'],
       },
 
       {
-        name: 'Prepare content templates',
+        name: 'Připravte si šablony obsahu',
         title: 'prepareContentTemplates',
         steps: 3,
-        types: ['sales', 'customerSupport', 'managementAndOperations', 'above'],
+        types: ['odbyt', 'zákaznická podpora', 'řízení a provoz', 'výše'],
       },
 
       {
-        name: 'Automate your sales with Campaigns',
+        name: 'Automatizujte svůj prodej pomocí kampaně',
         title: 'automateCampaigns',
         steps: 3,
-        types: ['sales'],
+        types: ['odbyt'],
       },
       {
-        name: 'Customize your Reports',
+        name: 'Přizpůsobte si přehledy',
         title: 'customizeReports',
         steps: 2,
         types: [
-          'sales',
-          'marketing',
-          'customerSupport',
-          'managementAndOperations',
-          'above',
+          'odbyt',
+          'marketingový',
+          'zákaznická podpora',
+          'řízení a provoz',
+          'výše',
         ],
       },
       {
-        name: 'Customize your Growth Hacking',
+        name: 'Přizpůsobte si hackování růstu',
         title: 'customizeGrowthHacking',
         steps: 4,
-        types: ['marketing', 'above'],
+        types: ['marketingový', 'výše'],
       },
       {
-        name: 'Customize your customer segmentation',
+        name: 'Přizpůsobte si segmentaci zákazníků',
         title: 'customizeSegmentation',
         steps: 2,
-        types: ['marketing'],
+        types: ['marketingový'],
       },
       {
-        name: 'Prepare the email/response templates',
+        name: 'Připravte si šablony e-mailu/odpovědi',
         title: 'prepareMailResponseTemplates',
         steps: 2,
-        types: ['marketing'],
+        types: ['marketingový'],
       },
       {
-        name: 'Automate your lead generation with Campaigns',
+        name: 'Automatizujte generování potenciálních zákazníků pomocí kampaní',
         title: 'automateCampaigns',
         steps: 3,
-        types: ['marketing'],
+        types: ['marketingový'],
       },
       {
-        name: 'Automate with Campaigns',
+        name: 'Automatizujte pomocí kampaní',
         title: 'automateCampaigns',
         steps: 3,
-        types: ['above'],
+        types: ['výše'],
       },
     ],
   },
@@ -233,397 +236,398 @@ export const ROLE_SETUP = [
 
 export const ROLE_SETUP_DETAILS = {
   generalSettings: {
-    text: 'Set your general settings',
+    text: 'Nastavte obecná nastavení',
     description:
-      'Setting your general configuration adjusts the basic fundamental features on our platform',
+      'Nastavení vaší obecné konfigurace upraví základní základní funkce na naší platformě',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       generalSettingsCreate: {
-        name: 'Set your general setting',
+        name: 'Nastavte své obecné nastavení',
         url: '/settings/general',
       },
       generalSettingsUploadCreate: {
-        name: 'Set the types of file you would like to upload',
+        name: 'Nastavte typy souborů, které chcete nahrát',
         url: '/settings/general/',
       },
       generelSettingsConstantsCreate: {
-        name: 'Set your constants',
+        name: 'Nastavte si konstanty',
         url: '/settings/general/',
       },
     },
   },
   channelBrands: {
-    text: 'Brand & Channel Set Up',
+    text: 'Nastavení značky a kanálu',
     description:
-      'Creating brands and channels allows you can organize and view all messages and emails sent from customers under one platform',
+      'Vytváření značek a kanálů vám umožňuje organizovat a zobrazovat všechny zprávy a e-maily odeslané od zákazníků na jedné platformě',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       brandCreate: {
-        name: 'Create brands',
+        name: 'Vytvářejte značky',
         url: '/settings/brands#showBrandAddModal=true',
       },
       channelCreate: {
-        name: 'Create channels',
+        name: 'Vytvořte kanály',
         url: '/settings/channels#showChannelAddModal=true',
       },
     },
   },
   integrationOtherApps: {
-    text: 'Integration/ App Store',
+    text: 'Integrace / App Store',
     description:
-      'You can bring all inboxes to one window and manage your interactions with your customers',
+      'Všechny doručené pošty můžete přenést do jednoho okna a spravovat své interakce se zákazníky',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       integrationsCreate: {
-        name: 'Choose which integrations you would like to add',
+        name: 'Vyberte, které integrace chcete přidat',
         url: '/settings/integrations/',
       },
       connectIntegrationsToChannel: {
-        name: 'Follow the instructions as shown to successfully integrate communication channels',
+        name: 'Pro úspěšnou integraci komunikačních kanálů postupujte podle zobrazených pokynů',
         url: '/settings/channels/',
       },
     },
   },
   customizeDatabase: {
-    text: 'Properties',
+    text: 'Vlastnosti',
     description:
-      'Adjust customer data settings, add properties for customer information, etc for your customer database',
+      'Upravte nastavení údajů o zákaznících, přidejte vlastnosti pro informace o zákaznících atd. pro vaši databázi zákazníků',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       fieldGroupCreate: {
-        name: 'Add new groups and fields if the fields you require are not there',
+        name: 'Přidejte nové skupiny a pole, pokud tam požadovaná pole nejsou',
         url: '/settings/properties/',
       },
       fieldCreate: {
-        name: 'Adjust the existing fields',
+        name: 'Upravte stávající pole',
         url: '/settings/properties/',
       },
     },
   },
   importExistingContacts: {
-    text: 'Import',
+    text: 'Importovat',
     description:
-      'You will be able to import large files and export data from our system',
+      'Budete moci importovat velké soubory a exportovat data z našeho systému',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       fieldGroupCreate: {
-        name: 'Add groups',
+        name: 'Přidat skupiny',
         url: '/settings/properties/',
       },
       fieldCreate: {
-        name: 'Add properties',
+        name: 'Přidat vlastnosti',
         url: '/settings/properties/',
       },
       importDownloadTemplate: {
-        name: 'Download a template',
+        name: 'Stáhněte si šablonu',
         url: '/settings/importHistories/',
       },
       importCreate: {
-        name: 'Import the file',
+        name: 'Importujte soubor',
         url: '/settings/importHistories/',
       },
     },
   },
   inviteTeamMembers: {
-    text: 'Team members/ Permission',
+    text: 'Členové týmu / Povolení',
     description:
-      'Invite your team members into your organization to manage all internal and external activities in one location',
+      'Pozvěte členy svého týmu do vaší organizace, aby spravovali všechny interní a externí aktivity na jednom místě',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       userGroupCreate: {
-        name: 'Create user group for permission',
+        name: 'Vytvořte skupinu uživatelů pro oprávnění',
         url: '/settings/permissions',
       },
       usersInvite: {
-        name: 'Add your team member(s)',
+        name: 'Přidejte členy svého týmu',
         url: '/settings/team/',
       },
       userEdit: {
-        name: "Enter your team member's information",
+        name: 'Zadejte informace o členu týmu',
         url: '/settings/team/',
       },
     },
   },
-  salesPipeline: {
-    text: 'Sales stage',
+  odbytPipeline: {
+    text: 'Fáze prodeje',
     description:
-      'Create sales stages to track your entire sales pipeline from one dashboard',
+      'Vytvořte prodejní fáze pro sledování celého prodejního kanálu z jednoho řídicího panelu',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       dealBoardsCreate: {
-        name: 'Create a board',
+        name: 'Vytvořte desku',
         url: '/settings/boards/deal#showBoardModal=true',
       },
       dealPipelinesCreate: {
-        name: 'Create a pipeline to be used on your board',
+        name: 'Vytvořte potrubí, které bude použito na vaší desce',
         url: '/settings/boards/deal#showPipelineModal=true',
       },
       dealCreate: {
-        name: 'Create deal',
+        name: 'Vytvořit dohodu',
         url: '/deal/board',
       },
     },
   },
   purchasePipeline: {
-    text: 'Purchase stage',
+    text: 'Fáze nákupu',
     description:
-      'Create purchase stages to track your entire purchase pipeline from one dashboard',
+      'Vytvořte nákupní fáze pro sledování celého nákupního kanálu z jednoho řídicího panelu',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       purchaseBoardsCreate: {
-        name: 'Create a board',
+        name: 'Vytvořte desku',
         url: '/settings/boards/purchase#showBoardModal=true',
       },
       purchasePipelinesCreate: {
-        name: 'Create a purchase to be used on your board',
+        name: 'Vytvořte nákup, který použijete na své desce',
         url: '/settings/boards/purchase#showPipelineModal=true',
       },
       purchaseCreate: {
-        name: 'Create purchase',
+        name: 'Vytvořit nákup',
         url: '/purchase/board',
       },
     },
   },
   createProductServices: {
-    text: 'Product & Service',
-    description: 'Add and categorize your products and services to our system',
+    text: 'Produkt a služba',
+    description:
+      'Přidejte a kategorizujte své produkty a služby do našeho systému',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       productCategoryCreate: {
-        name: 'Add a category',
+        name: 'Přidejte kategorii',
         url: '/settings/boards/',
       },
       productCreate: {
-        name: 'Add a product & service into the category',
+        name: 'Přidejte produkt a službu do kategorie',
         url: '/settings/boards/',
       },
     },
   },
   customizeTickets: {
-    text: 'Ticket stage',
+    text: 'Vstupenka fáze',
     description:
-      "Customizing your ticket stages will help your team members with the process of receiving, maintaining, and resolving complaints from the organization's customers",
+      'Přizpůsobení fází vstupenek pomůže členům vašeho týmu s procesem přijímání, udržování a řešení stížností od zákazníků organizace.',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       ticketBoardsCreate: {
-        name: 'Create a board',
+        name: 'Vytvořte desku',
         url: '/settings/boards/ticket#showBoardModal=true',
       },
       ticketPipelinesCreate: {
-        name: 'Create a pipeline to be used on your board',
+        name: 'Vytvořte potrubí, které bude použito na vaší desce',
         url: '/settings/boards/ticket#showPipelineModal=true',
       },
       ticketCreate: {
-        name: 'Create ticket',
+        name: 'Vytvořit lístek',
         url: '/ticket/board',
       },
     },
   },
   customizeTasks: {
-    text: 'Task stage',
+    text: 'Fáze úkolu',
     description:
-      "Customizing your ticket stages will help you manage and keep track of the organization's internal operations and activities",
+      'Přizpůsobení fází tiketu vám pomůže spravovat a sledovat interní operace a aktivity organizace',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       taskBoardsCreate: {
-        name: 'Create a board',
+        name: 'Vytvořte desku',
         url: '/settings/boards/task#showBoardModal=true',
       },
       taskPipelinesCreate: {
-        name: 'Create a pipeline to be used on your board',
+        name: 'Vytvořte potrubí, které bude použito na vaší desce',
         url: '/settings/boards/task#showBoardModal=true',
       },
       taskCreate: {
-        name: 'Create task',
+        name: 'Vytvořit úkol',
         url: '/task/board',
       },
     },
   },
   customizeGrowthHacking: {
-    text: 'Growth hacking stage',
+    text: 'Fáze hackování růstu',
     description:
-      'Evaluate the percentage of success on every idea by dividing them into categories',
+      'Vyhodnoťte procento úspěšnosti každého nápadu rozdělením do kategorií',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       growthHackBoardCreate: {
-        name: 'Create marketing campaign',
+        name: 'Vytvořte marketingovou kampaň',
         url: '/settings/boards/growthHack#showBoardModal=true',
       },
 
       pipelineTemplate: {
-        name: 'Create a growth hacking template',
+        name: 'Vytvořte šablonu pro hackování růstu',
         url: '/settings/boards/growthHackTemplate',
       },
 
       growthHackPipelines: {
-        name: 'Create marketing projects',
+        name: 'Vytvářejte marketingové projekty',
         url: '/settings/boards/growthHack#showPipelineModal=true',
       },
 
       growthHackCreate: {
-        name: 'Create experiments',
+        name: 'Vytvářejte experimenty',
         url: '/growthHack/board',
       },
     },
   },
   customizeSegmentation: {
-    text: 'Contact',
+    text: 'Kontakt',
     description:
-      'A segment is smaller group of your contacts defined by rules or filters that you set',
+      'Segment je menší skupina vašich kontaktů definovaná pravidly nebo filtry, které nastavíte',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       segmentCreate: {
-        name: 'Create a segment',
+        name: 'Vytvořte segment',
         url: '/segments/new?contentType=customer',
       },
       subSegmentCreate: {
-        name: 'Create a subsegment within the previous segment',
+        name: 'Vytvořte podsegment v rámci předchozího segmentu',
         url: '/segments/new?contentType=customer',
       },
     },
   },
   prepareMailResponseTemplates: {
-    text: 'Email/response template',
+    text: 'Šablona e-mailu/odpovědi',
     description:
-      'You can save a lot of time by preparing email/response templates, all you need to do is automate your entire operation with prepared scripts. ',
+      'Můžete ušetřit spoustu času přípravou šablon e-mailů/odpovědí, vše, co musíte udělat, je automatizovat celý váš provoz pomocí připravených skriptů. ',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       createResponseTemplate: {
-        name: 'Create a response template',
+        name: 'Vytvořte šablonu odpovědi',
         url: '/settings/response-templates#showListFormModal=true',
       },
       createEmailTemplate: {
-        name: 'Create an email template',
+        name: 'Vytvořte šablonu e-mailu',
         url: '/settings/email-templates#showListFormModal=true',
       },
     },
   },
   automateCampaigns: {
-    text: 'Campaigns',
+    text: 'Kampaně',
     description:
-      'Create campaigns that automatically deliver information to customers based on segments and labels',
+      'Vytvářejte kampaně, které automaticky doručují informace zákazníkům na základě segmentů a štítků',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       engageVerifyEmail: {
-        name: 'Verify your sending email',
+        name: 'Ověřte svůj odesílací e-mail',
         url: '/settings/campaign-configs',
       },
       engageSendTestEmail: {
-        name: 'Send test email',
+        name: 'Odeslat zkušební e-mail',
         url: '/settings/campaign-configs',
       },
       engageCreate: {
-        name: 'Create a campaign',
+        name: 'Vytvořte kampaň',
         url: '/campaigns/create?kind=auto',
       },
     },
   },
   customizeKnowledgeBase: {
-    text: 'Khowledge Base',
+    text: 'Znalostní báze',
     description:
-      'Educate both your customers and staff by creating a help center related to your brands, products and services to reach higher level of satisfactions',
+      'Vzdělávejte své zákazníky i zaměstnance vytvořením centra nápovědy souvisejícího s vašimi značkami, produkty a službami, abyste dosáhli vyšší úrovně spokojenosti',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       knowledgeBaseTopicCreate: {
-        name: 'Create topic',
+        name: 'Vytvořte téma',
         url: '/knowledgebase#showKBAddModal=true',
       },
       knowledgeBaseCategoryCreate: {
-        name: 'Create category',
+        name: 'Vytvořit kategorii',
         url: '/knowledgebase#showKBAddCategoryModal=true',
       },
       knowledgeBaseArticleCreate: {
-        name: 'Now write articles',
+        name: 'Nyní pište články',
         url: '/knowledgebase#showKBAddArticleModal=true',
       },
       knowledgeBaseInstalled: {
-        name: 'Embed knowledge base',
+        name: 'Vložit znalostní bázi',
         url: '#',
       },
     },
   },
   installSaasHQWidgets: {
-    text: 'SaasHQ Widgets',
+    text: 'Widgety SaasHQ',
     description:
-      "With saashq Messenger, you can have live direct chats with your customers regardless of it's placement",
+      'Se SaasHQ Messenger můžete mít živé přímé chaty se svými zákazníky bez ohledu na jejich umístění',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       messengerIntegrationCreate: {
-        name: 'Add the saashq messenger',
+        name: 'Přidejte SaasHQ messenger',
         url: '/settings/integrations/createMessenger',
       },
     },
   },
   createLeadGenerationForm: {
-    text: 'Form',
+    text: 'Formulář',
     description:
-      "This allows you to add a form on your organization's website/business messenger to collect information from your potential leads",
+      'To vám umožní přidat formulář na webové stránky vaší organizace/business messenger pro shromažďování informací od vašich potenciálních potenciálních zákazníků',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       leadIntegrationCreate: {
-        name: 'Create form',
+        name: 'Vytvořit formulář',
         url: '/forms/create',
       },
       leadIntegrationInstalled: {
-        name: 'Install on website',
+        name: 'Nainstalujte na web',
         url: '/forms',
       },
     },
   },
   prepareContentTemplates: {
-    text: 'Content template',
+    text: 'Šablona obsahu',
     description:
-      'You can save a lot of time by preparing email/response templates, all you need to do is automate your entire operation with prepared scripts',
+      'Můžete ušetřit spoustu času přípravou šablon e-mailů/odpovědí, vše, co musíte udělat, je automatizovat celý váš provoz pomocí připravených skriptů',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       createResponseTemplate: {
-        name: 'Create a response template',
+        name: 'Vytvořte šablonu odpovědi',
         url: '/settings/response-templates#showListFormModal=true',
       },
 
       createEmailTemplate: {
-        name: 'Create an email template',
+        name: 'Vytvořte šablonu e-mailu',
         url: '/settings/email-templates#showListFormModal=true',
       },
 
       pipelineTemplate: {
-        name: 'Create a growth hacking template',
+        name: 'Vytvořte šablonu pro hackování růstu',
         url: '/settings/boards/growthHackTemplate',
       },
     },
   },
   customizeReports: {
-    text: 'Reports',
+    text: 'Zprávy',
     description:
-      'Reports help you oversee the progress and effectiveness of your organization’s activities and make management decisions',
+      'Zprávy vám pomohou dohlížet na pokrok a efektivitu činností vaší organizace a činit manažerská rozhodnutí',
     videoUrl: '',
     videoThumb: '',
     settingsDetails: {
       dashboardCreate: {
-        name: 'Create a Dashboard',
+        name: 'Vytvořte řídicí panel',
         url: '/dashboard#showDashboardAddModal=true',
       },
       dashboardItemCreate: {
-        name: 'Create a chart',
+        name: 'Vytvořte graf',
         url: '/settings/boards/',
       },
     },

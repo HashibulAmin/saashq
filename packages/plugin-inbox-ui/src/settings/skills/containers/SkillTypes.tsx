@@ -2,7 +2,7 @@ import {
   SkillTypesAddMutation,
   SkillTypesEditMutation,
   SkillTypesRemoveMutation,
-  SkillTypesTotalCountQueryResponse
+  SkillTypesTotalCountQueryResponse,
 } from '../types';
 
 import SkillTypes from '../components/SkillTypes';
@@ -26,22 +26,22 @@ const commonOptions = ({ queryParams }: { queryParams?: any }) => ({
       query: gql(queries.skills),
       variables: {
         typeId: queryParams.typeId,
-        ...generatePaginationParams(queryParams)
-      }
-    }
-  ]
+        ...generatePaginationParams(queryParams),
+      },
+    },
+  ],
 });
 
 export default commonListComposer<Props>({
-  label: 'skillTypes',
-  text: 'skill types',
+  label: 'dovednostiTypy',
+  text: 'Typy dovedností',
   stringEditMutation: mutations.skillTypeEdit,
   stringAddMutation: mutations.skillTypeAdd,
 
   confirmProps: {
     message:
-      'This will permanently delete this skill type and skills in it. Are you absolutely sure?',
-    options: { hasDeleteConfirm: true }
+      'Toto trvale odstraní tento typ dovednosti a dovednosti v něm. jsi si naprosto jistý?',
+    options: { hasDeleteConfirm: true },
   },
 
   gqlListQuery: graphql<Props, SkillTypesQueryResponse>(
@@ -49,41 +49,41 @@ export default commonListComposer<Props>({
     {
       name: 'listQuery',
       options: () => ({
-        notifyOnNetworkStatusChange: true
-      })
-    }
+        notifyOnNetworkStatusChange: true,
+      }),
+    },
   ),
 
   gqlTotalCountQuery: graphql<{}, SkillTypesTotalCountQueryResponse>(
     gql(queries.skillTypesTotalCount),
     {
-      name: 'totalCountQuery'
-    }
+      name: 'totalCountQuery',
+    },
   ),
 
   gqlAddMutation: graphql<{}, SkillTypesAddMutation>(
     gql(mutations.skillTypeAdd),
     {
       name: 'addMutation',
-      options: commonOptions
-    }
+      options: commonOptions,
+    },
   ),
 
   gqlEditMutation: graphql<{}, SkillTypesEditMutation>(
     gql(mutations.skillTypeEdit),
     {
       name: 'editMutation',
-      options: commonOptions
-    }
+      options: commonOptions,
+    },
   ),
 
   gqlRemoveMutation: graphql<Props, SkillTypesRemoveMutation>(
     gql(mutations.skillTypeRemove),
     {
       name: 'removeMutation',
-      options: commonOptions
-    }
+      options: commonOptions,
+    },
   ),
 
-  ListComponent: SkillTypes
+  ListComponent: SkillTypes,
 });

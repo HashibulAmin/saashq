@@ -49,14 +49,14 @@ class ForgotPassword extends React.Component<Props, { email: string }> {
   render() {
     return (
       <AuthBox>
-        <img src={this.renderLogo()} alt="saashq" />
-        <h2>{__('Reset your password')}</h2>
-        <p>{__('Please reset your password via email')}</p>
+        <img src={this.renderLogo()} alt="SaasHQ" />
+        <h2>{__('Obnovit heslo')}</h2>
+        <p>{__('Obnovte si heslo prostřednictvím e-mailu')}</p>
         <form onSubmit={this.handleSubmit}>
           <FormGroup>
             <FormControl
               type="email"
-              placeholder={__('Enter your email')}
+              placeholder={__('Vložte svůj e-mail')}
               value={this.state.email}
               required={true}
               onChange={this.handleEmailChange}
@@ -66,7 +66,7 @@ class ForgotPassword extends React.Component<Props, { email: string }> {
             Email me the instruction
           </Button>
         </form>
-        <Link to="/sign-in">{__('Sign in')}</Link>
+        <Link to="/sign-in">{__('Přihlásit se')}</Link>
       </AuthBox>
     );
   }

@@ -2,255 +2,255 @@ import { companySchema } from './models/definitions/companies';
 import {
   customerSchema,
   locationSchema,
-  visitorContactSchema
+  visitorContactSchema,
 } from './models/definitions/customers';
 
 export const MODULE_NAMES = {
-  COMPANY: 'company',
-  CUSTOMER: 'customer'
+  COMPANY: 'společnost',
+  CUSTOMER: 'zákazník',
 };
 
 export const COC_LEAD_STATUS_TYPES = [
   '',
-  'new',
-  'open',
-  'inProgress',
-  'openDeal',
-  'unqualified',
-  'attemptedToContact',
-  'connected',
-  'badTiming'
+  'Nový',
+  'OTEVŘENO',
+  'probíhá',
+  'otevřít dohodu',
+  'nekvalifikovaný',
+  'se pokusili kontaktovat',
+  'připojeno',
+  'špatné načasování',
 ];
 
 export const COC_LIFECYCLE_STATE_TYPES = [
   '',
-  'subscriber',
-  'lead',
-  'marketingQualifiedLead',
-  'salesQualifiedLead',
-  'opportunity',
-  'customer',
-  'evangelist',
-  'other'
+  'odběratel',
+  'Vést',
+  'marketing kvalifikovaný vedoucí',
+  'prodeje kvalifikovaný vedoucí',
+  'příležitost',
+  'zákazník',
+  'evangelista',
+  'jiný',
 ];
 
 export const IMPORT_EXPORT_TYPES = [
   {
-    text: 'Customers',
+    text: 'Zákazníci',
     contentType: 'customer',
-    icon: 'users-alt'
+    icon: 'users-alt',
   },
   {
-    text: 'Leads',
+    text: 'Vede',
     contentType: 'lead',
-    icon: 'file-alt'
+    icon: 'file-alt',
   },
   {
-    text: 'Companies',
+    text: 'Společnosti',
     contentType: 'company',
-    icon: 'building'
-  }
+    icon: 'building',
+  },
 ];
 
 export const CUSTOMER_BASIC_INFOS = [
-  'state',
-  'firstName',
-  'lastName',
-  'middleName',
-  'primaryEmail',
-  'emails',
-  'primaryPhone',
-  'phones',
+  'Stát',
+  'jméno',
+  'příjmení',
+  'prostřední jméno',
+  'Primární email',
+  'e-maily',
+  'hlavní telefon',
+  'telefony',
   'ownerId',
-  'position',
-  'department',
+  'pozice',
+  'oddělení',
   'leadStatus',
-  'status',
+  'postavení',
   'hasAuthority',
-  'description',
-  'isSubscribed',
+  'popis',
+  'je přihlášeno',
   'integrationId',
-  'code',
-  'mergedIds'
+  'kód',
+  'mergedIds',
 ];
 
 export const COMPANY_BASIC_INFOS = [
   'primaryName',
-  'names',
-  'size',
-  'industry',
-  'website',
-  'plan',
-  'primaryEmail',
-  'primaryPhone',
+  'jména',
+  'velikost',
+  'průmysl',
+  'webová stránka',
+  'plán',
+  'Primární email',
+  'hlavní telefon',
   'businessType',
-  'description',
-  'isSubscribed',
-  'parentCompanyId'
+  'popis',
+  'je přihlášeno',
+  'id mateřské společnosti',
 ];
 export const LOG_MAPPINGS = [
   {
     name: MODULE_NAMES.COMPANY,
-    schemas: [companySchema]
+    schemas: [companySchema],
   },
   {
     name: MODULE_NAMES.CUSTOMER,
-    schemas: [customerSchema, locationSchema, visitorContactSchema]
-  }
+    schemas: [customerSchema, locationSchema, visitorContactSchema],
+  },
 ];
 
 export const EMAIL_VALIDATION_STATUSES = {
-  VALID: 'valid',
-  INVALID: 'invalid',
-  ACCEPT_ALL_UNVERIFIABLE: 'accept_all_unverifiable',
-  UNVERIFIABLE: 'unverifiable',
-  UNKNOWN: 'unknown',
-  DISPOSABLE: 'disposable',
-  CATCH_ALL: 'catchall',
-  BAD_SYNTAX: 'badsyntax'
+  VALID: 'platný',
+  INVALID: 'neplatný',
+  ACCEPT_ALL_UNVERIFIABLE: 'přijmout_vše_neověřitelné',
+  UNVERIFIABLE: 'neověřitelné',
+  UNKNOWN: 'neznámý',
+  DISPOSABLE: 'jednorázový',
+  CATCH_ALL: 'úlovek',
+  BAD_SYNTAX: 'špatná syntaxe',
 };
 
 export const AWS_EMAIL_STATUSES = {
-  SEND: 'send',
-  DELIVERY: 'delivery',
-  OPEN: 'open',
-  CLICK: 'click',
-  COMPLAINT: 'complaint',
-  BOUNCE: 'bounce',
-  RENDERING_FAILURE: 'renderingfailure',
-  REJECT: 'reject'
+  SEND: 'poslat',
+  DELIVERY: 'dodávka',
+  OPEN: 'otevřít',
+  CLICK: 'klikněte',
+  COMPLAINT: 'stížnost',
+  BOUNCE: 'odskočit',
+  RENDERING_FAILURE: 'selhání vykreslování',
+  REJECT: 'odmítnout',
 };
 export const CUSTOMER_BASIC_INFO = {
   avatar: 'Avatar',
-  firstName: 'First Name',
-  lastName: 'Last Name',
-  middleName: 'Middle Name',
-  primaryEmail: 'Primary E-mail',
-  primaryPhone: 'Primary Phone',
-  position: 'Position',
-  department: 'Department',
-  owner: 'Owner',
-  pronoun: 'Pronoun',
-  birthDate: 'Birthday',
-  hasAuthority: 'Has Authority',
-  description: 'Description',
-  isSubscribed: 'Subscribed',
-  code: 'Code',
-  score: 'Score',
+  firstName: 'Jméno',
+  lastName: 'Příjmení',
+  middleName: 'Prostřední jméno',
+  primaryEmail: 'Primární email',
+  primaryPhone: 'hlavní telefon',
+  position: 'Pozice',
+  department: 'oddělení',
+  owner: 'Majitel',
+  pronoun: 'Zájmeno',
+  birthDate: 'Narozeniny',
+  hasAuthority: 'Má autoritu',
+  description: 'Popis',
+  isSubscribed: 'Odebíráno',
+  code: 'Kód',
+  score: 'Skóre',
 
   ALL: [
     { field: 'avatar', label: 'Avatar', canHide: false },
-    { field: 'firstName', label: 'First Name', canHide: false },
-    { field: 'lastName', label: 'Last Name', canHide: false },
-    { field: 'middleName', label: 'Middle Name', canHide: false },
+    { field: 'firstName', label: 'Jméno', canHide: false },
+    { field: 'lastName', label: 'Příjmení', canHide: false },
+    { field: 'middleName', label: 'Prostřední jméno', canHide: false },
     {
       field: 'primaryEmail',
-      label: 'Primary E-mail',
+      label: 'Primární email',
       validation: 'email',
-      canHide: false
+      canHide: false,
     },
     {
       field: 'primaryPhone',
-      label: 'Primary Phone',
+      label: 'hlavní telefon',
       validation: 'phone',
-      canHide: false
+      canHide: false,
     },
-    { field: 'position', label: 'Position', canHide: true },
-    { field: 'department', label: 'Department', canHide: true },
-    { field: 'hasAuthority', label: 'Has Authority', canHide: true },
-    { field: 'description', label: 'Description', canHide: true },
-    { field: 'isSubscribed', label: 'Subscribed', canHide: true },
-    { field: 'owner', label: 'Owner', canHide: true },
-    { field: 'pronoun', label: 'Pronoun', canHide: true },
-    { field: 'birthDate', label: 'Birthday', canHide: true },
-    { field: 'code', label: 'Code', canHide: true },
-    { field: 'score', label: 'Score', canHide: true }
-  ]
+    { field: 'position', label: 'Pozice', canHide: true },
+    { field: 'department', label: 'oddělení', canHide: true },
+    { field: 'hasAuthority', label: 'Má autoritu', canHide: true },
+    { field: 'description', label: 'Popis', canHide: true },
+    { field: 'isSubscribed', label: 'Odebíráno', canHide: true },
+    { field: 'owner', label: 'Majitel', canHide: true },
+    { field: 'pronoun', label: 'Zájmeno', canHide: true },
+    { field: 'birthDate', label: 'Narozeniny', canHide: true },
+    { field: 'code', label: 'Kód', canHide: true },
+    { field: 'score', label: 'Skóre', canHide: true },
+  ],
 };
 
 export const COMPANY_INFO = {
-  avatar: 'Logo',
-  code: 'Code',
-  primaryName: 'Primary Name',
-  size: 'Size',
-  industry: 'Industries',
-  plan: 'Plan',
-  primaryEmail: 'Primary Email',
-  primaryPhone: 'Primary Phone',
-  businessType: 'Business Type',
-  description: 'Description',
-  isSubscribed: 'Subscribed',
-  location: 'Headquarters Country',
-  score: 'Score',
+  avatar: 'Emblém',
+  code: 'Kód',
+  primaryName: 'Primární jméno',
+  size: 'Velikost',
+  industry: 'Průmyslová odvětví',
+  plan: 'Plán',
+  primaryEmail: 'Primární email',
+  primaryPhone: 'hlavní telefon',
+  businessType: 'Typ podnikání',
+  description: 'Popis',
+  isSubscribed: 'Odebíráno',
+  location: 'Země ústředí',
+  score: 'Skóre',
 
   ALL: [
-    { field: 'avatar', label: 'Logo', canHide: false },
-    { field: 'primaryName', label: 'Primary Name', canHide: false },
+    { field: 'avatar', label: 'Emblém', canHide: false },
+    { field: 'primaryName', label: 'Primární jméno', canHide: false },
     {
       field: 'primaryEmail',
-      label: 'Primary E-mail',
+      label: 'Primární email',
       validation: 'email',
-      canHide: false
+      canHide: false,
     },
     {
       field: 'primaryPhone',
-      label: 'Primary Phone',
+      label: 'hlavní telefon',
       validation: 'phone',
-      canHide: false
+      canHide: false,
     },
-    { field: 'size', label: 'Size' },
-    { field: 'industry', label: 'Industries' },
-    { field: 'plan', label: 'Plan' },
-    { field: 'owner', label: 'Owner', canHide: true },
-    { field: 'businessType', label: 'Business Type', canHide: true },
-    { field: 'code', label: 'Code', canHide: true },
-    { field: 'description', label: 'Description', canHide: true },
-    { field: 'isSubscribed', label: 'Subscribed', canHide: true },
-    { field: 'location', label: 'Headquarters Country', canHide: true },
-    { field: 'score', label: 'Score', canHide: true }
-  ]
+    { field: 'size', label: 'Velikost' },
+    { field: 'industry', label: 'Průmyslová odvětví' },
+    { field: 'plan', label: 'Plán' },
+    { field: 'owner', label: 'Majitel', canHide: true },
+    { field: 'businessType', label: 'Typ podnikání', canHide: true },
+    { field: 'code', label: 'Kód', canHide: true },
+    { field: 'description', label: 'Popis', canHide: true },
+    { field: 'isSubscribed', label: 'Odebíráno', canHide: true },
+    { field: 'location', label: 'Země ústředí', canHide: true },
+    { field: 'score', label: 'Skóre', canHide: true },
+  ],
 };
 
 export const DEVICE_PROPERTIES_INFO = {
-  location: 'Location',
-  browser: 'Browser',
-  platform: 'Platform',
-  ipAddress: 'IP Address',
-  hostName: 'Hostname',
-  language: 'Language',
-  agent: 'User Agent',
+  location: 'Umístění',
+  browser: 'Prohlížeč',
+  platform: 'Plošina',
+  ipAddress: 'IP adresa',
+  hostName: 'Název hostitele',
+  language: 'Jazyk',
+  agent: 'uživatelský agent',
   ALL: [
-    { field: 'location', label: 'Location' },
-    { field: 'browser', label: 'Browser' },
-    { field: 'platform', label: 'Platform' },
-    { field: 'ipAddress', label: 'IP Address' },
-    { field: 'hostName', label: 'Hostname' },
-    { field: 'language', label: 'Language' },
-    { field: 'agent', label: 'User Agent' }
-  ]
+    { field: 'location', label: 'Umístění' },
+    { field: 'browser', label: 'Prohlížeč' },
+    { field: 'platform', label: 'Plošina' },
+    { field: 'ipAddress', label: 'IP adresa' },
+    { field: 'hostName', label: 'Název hostitele' },
+    { field: 'language', label: 'Jazyk' },
+    { field: 'agent', label: 'uživatelský agent' },
+  ],
 };
 
 export const NOTIFICATION_MODULES = [
   {
     name: 'customers',
-    description: 'Customers',
+    description: 'Zákazníci',
     icon: 'user',
     types: [
       {
         name: 'customerMention',
-        text: 'Mention on customer note'
-      }
-    ]
+        text: 'Uveďte v poznámce zákazníka',
+      },
+    ],
   },
   {
     name: 'companies',
-    description: 'Companies',
+    description: 'Společnosti',
     icon: 'building',
     types: [
       {
         name: 'companyMention',
-        text: 'Mention on company note'
-      }
-    ]
-  }
+        text: 'Uveďte ve firemní poznámce',
+      },
+    ],
+  },
 ];

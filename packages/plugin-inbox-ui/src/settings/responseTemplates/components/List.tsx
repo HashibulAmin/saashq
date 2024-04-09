@@ -7,7 +7,7 @@ import {
   TemplateBox,
   TemplateBoxInfo,
   TemplateInfo,
-  Templates
+  Templates,
 } from '@saashq/ui-emailtemplates/src/styles';
 import { FlexItem, FlexRow, InputBar } from '@saashq/ui-settings/src/styles';
 import { IButtonMutateProps, IRouterProps } from '@saashq/ui/src/types';
@@ -46,7 +46,7 @@ class ResponseTemplateList extends React.Component<FinalProps, States> {
       queryParams && queryParams.searchValue ? queryParams.searchValue : '';
 
     this.state = {
-      searchValue
+      searchValue,
     };
   }
 
@@ -56,14 +56,14 @@ class ResponseTemplateList extends React.Component<FinalProps, States> {
     this.setState({ searchValue: value });
   };
 
-  renderForm = props => {
+  renderForm = (props) => {
     return <Form {...props} renderButton={this.props.renderButton} />;
   };
 
-  renderEditAction = object => {
+  renderEditAction = (object) => {
     const { save } = this.props;
 
-    const content = props => {
+    const content = (props) => {
       return this.renderForm({ ...props, object, save });
     };
 
@@ -174,7 +174,7 @@ class ResponseTemplateList extends React.Component<FinalProps, States> {
         formTitle="New response template"
         breadcrumb={[
           { title: __('Settings'), link: '/settings' },
-          { title: __('Response templates') }
+          { title: __('Response templates') },
         ]}
         title={__('Response templates')}
         leftActionBar={
@@ -182,9 +182,9 @@ class ResponseTemplateList extends React.Component<FinalProps, States> {
             icon="/images/actions/24.svg"
             title="Response templates"
             description={`${__(
-              'Make things easy for your team members and add in ready made response templates'
+              'Make things easy for your team members and add in ready made response templates',
             )}.${__(
-              'Manage and edit your response templates according to each situation and respond in a timely manner and without the hassle'
+              'Manage and edit your response templates according to each situation and respond in a timely manner and without the hassle',
             )}`}
           />
         }
@@ -198,4 +198,4 @@ class ResponseTemplateList extends React.Component<FinalProps, States> {
   }
 }
 
-export default withRouter<FinalProps>(ResponseTemplateList);
+export default withRouter<FinalProps, any>(ResponseTemplateList);

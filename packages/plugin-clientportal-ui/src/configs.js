@@ -19,7 +19,7 @@ module.exports = {
   },
   menus: [
     {
-      text: 'Business Portal',
+      text: 'Obchodní portál',
       to: '/settings/business-portal',
       image: '/images/icons/saashq-32.png',
       location: 'settings',
@@ -31,36 +31,36 @@ module.exports = {
 
   ticketRightSidebarSection: [
     {
-      text: "vendorSection",
+      text: "sekce prodejce",
       component: "./vendorSection",
       scope: "clientportal"
     },
     {
-      text: "clientSection",
+      text: "klientská sekce",
       component: "./clientSection",
       scope: "clientportal"
     }
   ],
   taskRightSidebarSection: [
     {
-      text: "vendorSection",
+      text: "sekce prodejce",
       component: "./vendorSection",
       scope: "clientportal"
     },
     {
-      text: "clientSection",
+      text: "klientská sekce",
       component: "./clientSection",
       scope: "clientportal"
     }
   ],
   dealRightSidebarSection: [
     {
-      text: "vendorSection",
+      text: "sekce prodejce",
       component: "./vendorSection",
       scope: "clientportal"
     },
     {
-      text: "clientSection",
+      text: "klientská sekce",
       component: "./clientSection",
       scope: "clientportal"
     }

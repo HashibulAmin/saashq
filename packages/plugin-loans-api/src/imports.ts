@@ -3,10 +3,10 @@ import { IContract } from './models/definitions/contracts';
 
 export const IMPORT_EXPORT_TYPES = [
   {
-    text: 'Loan Contract',
+    text: 'Smlouva o půjčce',
     contentType: 'contract',
-    icon: 'server-alt'
-  }
+    icon: 'server-alt',
+  },
 ];
 
 export default {
@@ -14,7 +14,7 @@ export default {
 
   insertImportItems: async ({
     subdomain,
-    data
+    data,
   }: {
     data: { docs: [IContract] };
     subdomain: string;
@@ -34,7 +34,7 @@ export default {
           if (contract) {
             await models.Contracts.updateOne(
               { _id: contract._id },
-              { $set: { ...doc } }
+              { $set: { ...doc } },
             );
             updated++;
           } else {
@@ -78,5 +78,5 @@ export default {
     }
 
     return bulkDoc;
-  }
+  },
 };

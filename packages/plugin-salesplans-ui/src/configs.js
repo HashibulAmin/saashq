@@ -12,7 +12,7 @@ module.exports = {
   },
   menus: [
     {
-      text: 'Sales Plans',
+      text: 'Prodejní plány',
       to: '/salesplans/labels',
       image: '/images/icons/saashq-31.png',
       location: 'settings',
@@ -21,7 +21,7 @@ module.exports = {
       // permissions: ['showJobs', 'manageJobs']
     },
     {
-      text: 'Sales Plans',
+      text: 'Prodejní plány',
       url: '/sales-plans/day-labels',
       icon: 'icon-file-check-alt',
       location: 'mainNavigation',

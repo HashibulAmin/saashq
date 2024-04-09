@@ -326,9 +326,7 @@ class Search extends React.Component<
             size="full"
             extra={
               <Suggest>
-                {__(
-                  'Zdá se, že na základě vašeho vyhledávání nemůžeme najít žádné výsledky',
-                )}
+                {__('Zdá se, že na základě vašeho vyhledávání nemůžeme najít žádné výsledky')}
               </Suggest>
             }
           />
@@ -367,7 +365,7 @@ class Search extends React.Component<
         {showInput ? (
           <>
             <input
-              placeholder={__('Vyhledávání')}
+              placeholder={__('Search')}
               value={searchValue}
               autoFocus={true}
               onKeyDown={onSearch}
@@ -376,7 +374,7 @@ class Search extends React.Component<
             <Icon icon="times" size={18} onClick={this.closeInput} />
           </>
         ) : (
-          <span>{__('Vyhledávání')}...</span>
+          <span>{__('Search')}...</span>
         )}
       </>
     );

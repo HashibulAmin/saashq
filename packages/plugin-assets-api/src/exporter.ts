@@ -96,13 +96,13 @@ export const fillValue = async (
 
 export const IMPORT_EXPORT_TYPES = [
   {
-    text: 'Assets',
+    text: 'Aktiva',
     contentType: 'asset',
     icon: 'piggy-bank',
     skipFilter: true,
   },
   {
-    text: 'Assets Movement',
+    text: 'Pohyb aktiv',
     contentType: 'assets-movement',
     icon: 'piggy-bank',
   },

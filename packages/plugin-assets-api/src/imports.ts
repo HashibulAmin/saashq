@@ -3,18 +3,18 @@ import { sendContactsMessage, sendCoreMessage } from './messageBroker';
 
 export const EXPORT_TYPES = [
   {
-    text: 'Assets',
+    text: 'Aktiva',
     contentType: 'asset',
-    icon: 'piggy-bank'
-  }
+    icon: 'piggy-bank',
+  },
 ];
 
 export const IMPORT_TYPES = [
   {
-    text: ' Assets',
+    text: ' Aktiva',
     contentType: 'asset',
-    icon: 'piggybank'
-  }
+    icon: 'piggybank',
+  },
 ];
 
 const generateAssetsDocs = async (subdomain, result, properties) => {
@@ -23,7 +23,7 @@ const generateAssetsDocs = async (subdomain, result, properties) => {
 
   for (const fieldValue of result) {
     const doc: any = {
-      customFieldData: []
+      customFieldData: [],
     };
 
     let colIndex: number = 0;
@@ -35,14 +35,14 @@ const generateAssetsDocs = async (subdomain, result, properties) => {
           {
             doc.customFieldData.push({
               field: property.id,
-              value: fieldValue[colIndex]
+              value: fieldValue[colIndex],
             });
           }
           break;
         case 'categoryName':
           {
             const category = await models.AssetCategories.findOne({
-              name: { $regex: new RegExp(`^${value}$`, 'i') }
+              name: { $regex: new RegExp(`^${value}$`, 'i') },
             });
             doc.categoryId = category ? category._id : '';
           }
@@ -54,8 +54,8 @@ const generateAssetsDocs = async (subdomain, result, properties) => {
             const parent = await models.Assets.findOne({
               $or: [
                 { name: { $regex: new RegExp(`^${value}$`, 'i') } },
-                { code }
-              ]
+                { code },
+              ],
             });
             doc.parentId = parent ? parent._id : '';
           }
@@ -114,8 +114,8 @@ const generateAssetsMovementsDocs = async (subdomain, result, properties) => {
             const asset = await models.Assets.findOne({
               $or: [
                 { name: { $regex: new RegExp(`^${value}$`, 'i') } },
-                { code }
-              ]
+                { code },
+              ],
             });
             item.assetId = asset ? asset._id : '';
           }
@@ -129,11 +129,11 @@ const generateAssetsMovementsDocs = async (subdomain, result, properties) => {
               data: {
                 $or: [
                   { title: { $regex: `^${value}$`, $options: 'i' } },
-                  { code }
-                ]
+                  { code },
+                ],
               },
               isRPC: true,
-              defaultValue: {}
+              defaultValue: {},
             });
 
             item.branchId = branch ? branch._id : '';
@@ -148,11 +148,11 @@ const generateAssetsMovementsDocs = async (subdomain, result, properties) => {
               data: {
                 $or: [
                   { title: { $regex: `^${value}$`, $options: 'i' } },
-                  { code }
-                ]
+                  { code },
+                ],
               },
               isRPC: true,
-              defaultValue: {}
+              defaultValue: {},
             });
 
             item.departmentId = department ? department._id : '';
@@ -164,8 +164,8 @@ const generateAssetsMovementsDocs = async (subdomain, result, properties) => {
               subdomain,
               action: 'users.findOne',
               data: {
-                email: { $regex: `^${value}$`, $options: 'i' }
-              }
+                email: { $regex: `^${value}$`, $options: 'i' },
+              },
             });
             item.teamMemberId = teamMember ? teamMember._id : '';
           }
@@ -176,10 +176,10 @@ const generateAssetsMovementsDocs = async (subdomain, result, properties) => {
               subdomain,
               action: 'customers.find',
               data: {
-                primaryEmail: { $regex: `^${value}$`, $options: 'i' }
+                primaryEmail: { $regex: `^${value}$`, $options: 'i' },
               },
               isRPC: true,
-              defaultValue: {}
+              defaultValue: {},
             });
 
             item.customerId = customer ? customer._id : '';
@@ -191,10 +191,10 @@ const generateAssetsMovementsDocs = async (subdomain, result, properties) => {
               subdomain,
               action: 'companies.find',
               data: {
-                primaryName: { $regex: `^${value}$`, $options: 'i' }
+                primaryName: { $regex: `^${value}$`, $options: 'i' },
               },
               isRPC: true,
-              defaultValue: {}
+              defaultValue: {},
             });
 
             item.companyId = company ? company._id : '';
@@ -211,7 +211,7 @@ const generateAssetsMovementsDocs = async (subdomain, result, properties) => {
   for (const item of items) {
     const { movedAt, description, ...itemDoc } = item;
     const doc = bulkDocs.find(
-      bulkDoc => bulkDoc.description === item.description
+      (bulkDoc) => bulkDoc.description === item.description,
     );
     if (doc) {
       doc.items = [...doc.items, { ...itemDoc }];
@@ -266,10 +266,10 @@ export default {
       bulkDoc = await generateAssetsMovementsDocs(
         subdomain,
         result,
-        properties
+        properties,
       );
     }
 
     return bulkDoc;
-  }
+  },
 };

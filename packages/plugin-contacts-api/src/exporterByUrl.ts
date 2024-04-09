@@ -331,7 +331,7 @@ const prepareData = async (
               _id: 'created',
               type: 'input',
               validation: 'date',
-              text: 'Created',
+              text: 'Vytvořeno',
               value: message.createdAt,
             },
           });

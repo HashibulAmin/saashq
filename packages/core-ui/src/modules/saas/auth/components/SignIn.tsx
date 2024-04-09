@@ -55,7 +55,7 @@ class SignIn extends React.Component<Props> {
       <AuthBox backgroundColor={backgroundColor}>
         <img src={readFile(logo) || '/images/logo-dark.png'} alt="saashq" />
         <h2>{__('Welcome!')}</h2>
-        <p>{__('Please sign in to your account to continue')}</p>
+        <p>{__('Chcete-li pokračovat, přihlaste se ke svému účtu')}</p>
 
         <AuthButton className="google">
           <Link to="/sign-in-with-email">

@@ -26,7 +26,7 @@ class AuthLayout extends React.Component<Props, {}> {
       <MobileRecommend>
         <CenterContent>
           <div>
-            <b>{__('saashq Inc')}</b>
+            <b>{__('SaasHQ Inc')}</b>
             <div>{__(desciption)}</div>
           </div>
           <Button btnStyle="link" size="small" href={link}>
@@ -43,7 +43,7 @@ class AuthLayout extends React.Component<Props, {}> {
     if (userAgent.indexOf('Mobile') !== -1) {
       if (userAgent.match(/Android/i)) {
         return this.renderContent(
-          'Download android app for free on the Google play',
+          'Stáhněte si aplikaci pro Android zdarma na Google Play',
           'https://play.google.com/store/apps/details?id=io.saashq.saashq_android&fbclid=IwAR1bVPBSE0pC_KUNNjOJQA4upb1AuTUfqFcDaHTHTptyke7rNvuvb2mgwb0',
         );
       }
@@ -67,14 +67,15 @@ class AuthLayout extends React.Component<Props, {}> {
     return (
       <AuthDescription>
         <h1>
-          {getThemeItem('motto') || __('Grow your business better and faster')}
+          {getThemeItem('motto') ||
+            __('Rozvíjejte své podnikání lépe a rychleji')}
         </h1>
         <h2>
           {getThemeItem('login_page_description') || (
             <>
-              {__('Single ')}
-              <b>{__('experience operating system (XOS)')}</b>
-              {__(' to align your entire business')}
+              {__('Singl ')}
+              <b>{__('zkušenosti s operačním systémem (SHQ)')}</b>
+              {__(' sladit celé vaše podnikání')}
             </>
           )}
         </h2>

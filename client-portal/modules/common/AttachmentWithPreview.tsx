@@ -285,16 +285,18 @@ class AttachmentWithPreview extends React.Component<Props, State> {
     }
 
     return (
-      <CommonPortal>
-        <PreviewWrapper onClick={this.onToggle}>
-          <CloseAttachment>
-            <Icon icon="cancel" size={20} onClick={this.onToggle} />
-          </CloseAttachment>
+      <>
+        <CommonPortal>
+          <PreviewWrapper onClick={this.onToggle}>
+            <CloseAttachment>
+              <Icon icon="cancel" size={20} onClick={this.onToggle} />
+            </CloseAttachment>
 
-          {this.renderModalPreview()}
-        </PreviewWrapper>
-        {this.renderModalContent()}
-      </CommonPortal>
+            {this.renderModalPreview()}
+          </PreviewWrapper>
+          {this.renderModalContent()}
+        </CommonPortal>
+      </>
     );
   }
 

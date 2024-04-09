@@ -94,7 +94,7 @@ export const useTimeclocksMutation = ({
         userId: `${userId}`,
         longitude: long,
         latitude: lat,
-        deviceType: "XOS",
+        deviceType: "SHQ",
       },
     })
       .then(() => {
@@ -121,7 +121,7 @@ export const useTimeclocksMutation = ({
         userId,
         longitude: long,
         latitude: lat,
-        deviceType: "XOS",
+        deviceType: "SHQ",
       },
     })
       .then(() => {

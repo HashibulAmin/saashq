@@ -15,11 +15,15 @@ type Props = {
 export const OwnerDescription = () => {
   return (
     <>
-      <h1>{__('Welcome to SaasHQ')}</h1>
-      <h2>{__('SaasHQ is the partner your website needs for success')}</h2>
+      <h1>{__('Vítejte v SaasHQ')}</h1>
+      <h2>
+        {__(
+          'SaasHQ je partnerem, který vaše webové stránky potřebují k úspěchu',
+        )}
+      </h2>
       <p>
         {__(
-          'You will configure several settings on this page. You will be able to change these settings in the saashq settings tab. You will be creating the top level administrator account profile. Please complete all the data in Initial Configuration Steps.',
+          'Na této stránce provedete konfiguraci několika nastavení. Tato nastavení budete moci změnit na záložce nastavení saashq. Budete vytvářet profil účtu správce nejvyšší úrovně. Vyplňte prosím všechna data v krocích počáteční konfigurace.',
         )}
       </p>
     </>
@@ -32,7 +36,7 @@ const OwnerSetup = (props: Props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
-  const [purpose, setPurpose] = useState('manage a personal project');
+  const [purpose, setPurpose] = useState('řídit osobní projekt');
   const [lastName, setLastName] = useState('');
   const [subscribeEmail, setSubscribeEmail] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -42,18 +46,18 @@ const OwnerSetup = (props: Props) => {
 
     if (!firstName) {
       return Alert.error(
-        'We would love your real first name, but you are free to choose any name you want to be called.',
+        'Rádi bychom vaše skutečné křestní jméno, ale můžete si vybrat jakékoli jméno, které chcete, aby se vám říkalo.',
       );
     }
 
     if (!email) {
       return Alert.error(
-        'Your best email address is required. You will want to receive these notifications.',
+        'Je vyžadována vaše nejlepší e-mailová adresa. Tato upozornění budete chtít dostávat.',
       );
     }
 
     if (!password) {
-      return Alert.error('Your password is required.');
+      return Alert.error('Je vyžadováno vaše heslo.');
     }
 
     createOwner({
@@ -106,15 +110,14 @@ const OwnerSetup = (props: Props) => {
 
   return (
     <AuthBox>
-      <h2>{__('Initial Configuration Steps')}</h2>
+      <h2>{__('Kroky počáteční konfigurace')}</h2>
       <p>
-        {__('Please fill out the following form to complete your installation')}
-        .
+        {__('Pro dokončení instalace vyplňte prosím následující formulář')}.
       </p>
       <form onSubmit={handleSubmit}>
         <FormGroup>
           <FormControl
-            placeholder="First name"
+            placeholder="Jméno"
             type="text"
             name="firstName"
             onChange={handleFirstName}
@@ -122,7 +125,7 @@ const OwnerSetup = (props: Props) => {
         </FormGroup>
         <FormGroup>
           <FormControl
-            placeholder="Last name"
+            placeholder="Příjmení"
             type="text"
             name="lastName"
             onChange={handleLastName}
@@ -131,14 +134,14 @@ const OwnerSetup = (props: Props) => {
         <br />
         <p>
           {__(
-            'Please input the best email address to use as your login and to receive emails from your installation such as notifications, alerts and other messages',
+            'Zadejte prosím nejlepší e-mailovou adresu, kterou budete používat jako přihlašovací údaje a pro příjem e-mailů z vaší instalace, jako jsou upozornění, upozornění a další zprávy',
           )}
           .
         </p>
 
         <FormGroup>
           <FormControl
-            placeholder="Email"
+            placeholder="E-mailem"
             type="text"
             name="email"
             onChange={handleEmail}
@@ -148,7 +151,7 @@ const OwnerSetup = (props: Props) => {
         <FormGroup>
           <PasswordWithEye>
             <FormControl
-              placeholder="Password"
+              placeholder="Heslo"
               type={showPassword ? 'text' : 'password'}
               name="password"
               onChange={handlePassword}
@@ -163,7 +166,7 @@ const OwnerSetup = (props: Props) => {
         </FormGroup>
 
         <FormGroup>
-          <p>{__('I am planning to use saashq to')}</p>
+          <p>{__('Plánuji používat SaasHQ')}</p>
 
           <FormControl
             componentClass="select"
@@ -171,15 +174,15 @@ const OwnerSetup = (props: Props) => {
             options={[
               {
                 value: 'manage a personal project',
-                label: 'Manage a personal project',
+                label: 'Řídit osobní projekt',
               },
               {
                 value: 'manage an internal company use case',
-                label: 'Manage an internal company use case',
+                label: 'Správa případu použití v rámci společnosti',
               },
               {
                 value: 'attract new businesses',
-                label: 'Attract new businesses',
+                label: 'Přilákejte nové podniky',
               },
             ]}
             onChange={handlePurpose}
@@ -189,7 +192,7 @@ const OwnerSetup = (props: Props) => {
         <br />
         <p>
           {__(
-            'You must check below to receive information about upgrades and upgrading instructions, new tutorials, occasional requests for feedback and the monthly newsletter',
+            'Chcete-li dostávat informace o upgradech a pokynech k upgradu, nových výukových programech, příležitostných žádostech o zpětnou vazbu a měsíčním zpravodaji, musíte zkontrolovat níže',
           )}
           .
         </p>
@@ -201,7 +204,10 @@ const OwnerSetup = (props: Props) => {
             checked={subscribeEmail}
             onChange={toggleSubscribeEmail}
           >
-            {__('Yes, I want in. I know I can unsubscribe easily at any time')}.
+            {__(
+              'Ano, chci se přihlásit. Vím, že se mohu kdykoli snadno odhlásit',
+            )}
+            .
           </FormControl>
         </FormGroup>
         <Button
@@ -210,7 +216,7 @@ const OwnerSetup = (props: Props) => {
           block={true}
           disabled={!subscribeEmail}
         >
-          Save and continue to login
+          Uložte a pokračujte v přihlášení
         </Button>
       </form>
     </AuthBox>

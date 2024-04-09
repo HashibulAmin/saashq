@@ -1,10 +1,10 @@
 import {
   ICommonFormProps,
-  ICommonListProps
+  ICommonListProps,
 } from '@saashq/ui-settings/src/common/types';
 import {
   mutations,
-  queries
+  queries,
 } from '@saashq/ui-inbox/src/settings/responseTemplates/graphql';
 
 import { IButtonMutateProps } from '@saashq/ui/src/types';
@@ -30,7 +30,7 @@ class ResponseListContainer extends React.Component<Props> {
 }
 
 export default commonListComposer<Props>({
-  text: 'response template',
+  text: 'šablona odpovědi',
   label: 'responseTemplates',
   stringEditMutation: mutations.responseTemplatesEdit,
   stringAddMutation: mutations.responseTemplatesAdd,
@@ -43,10 +43,10 @@ export default commonListComposer<Props>({
         variables: {
           searchValue: queryParams.searchValue,
           brandId: queryParams.brandId,
-          ...generatePaginationParams(queryParams)
-        }
+          ...generatePaginationParams(queryParams),
+        },
       };
-    }
+    },
   }),
 
   gqlTotalCountQuery: graphql(gql(queries.responseTemplatesTotalCount), {
@@ -56,23 +56,23 @@ export default commonListComposer<Props>({
         notifyOnNetworkStatusChange: true,
         variables: {
           searchValue: queryParams.searchValue,
-          brandId: queryParams.brandId
-        }
+          brandId: queryParams.brandId,
+        },
       };
-    }
+    },
   }),
 
   gqlAddMutation: graphql(gql(mutations.responseTemplatesAdd), {
-    name: 'addMutation'
+    name: 'addMutation',
   }),
 
   gqlEditMutation: graphql(gql(mutations.responseTemplatesEdit), {
-    name: 'editMutation'
+    name: 'editMutation',
   }),
 
   gqlRemoveMutation: graphql(gql(mutations.responseTemplatesRemove), {
-    name: 'removeMutation'
+    name: 'removeMutation',
   }),
 
-  ListComponent: ResponseListContainer
+  ListComponent: ResponseListContainer,
 });

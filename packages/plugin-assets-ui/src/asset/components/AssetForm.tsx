@@ -366,7 +366,7 @@ function AssetForm({
           </Button>
 
           {renderButton({
-            text: 'asset and movements',
+            text: 'aktiva a pohyby',
             values: generateDoc(values),
             isSubmitted,
             callback: closeModal,

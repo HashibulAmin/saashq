@@ -1,3 +1,5 @@
+### 1.7.6 (2024-04-08)
+
 ### [1.7.6](https://github.com/saashq-org/saashq/compare/1.7.5...1.7.6) (2024-04-05)
 
 

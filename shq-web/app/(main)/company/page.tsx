@@ -32,21 +32,21 @@ const CompanyPage = () => {
                 value="teamMembers"
                 onClick={() => handleClick("teamMembers")}
               >
-                Team members
+                Členové týmu
               </TabsTrigger>
               <TabsTrigger
                 className={style}
                 value="structure"
                 onClick={() => handleClick("structure")}
               >
-                Structure
+                Struktura
               </TabsTrigger>
               <TabsTrigger
                 className={style}
                 value="company"
                 onClick={() => handleClick("company")}
               >
-                Company
+                Společnost
               </TabsTrigger>
             </div>
           </div>

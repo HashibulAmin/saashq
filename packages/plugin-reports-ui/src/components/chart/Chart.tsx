@@ -5,7 +5,7 @@ import {
   ChartConfigurationCustomTypesPerDataset,
   ChartOptions,
   ChartType,
-  Colors
+  Colors,
 } from 'chart.js';
 import { IChart } from '../../types';
 import { DEFAULT_BACKGROUND_COLORS, DEFAULT_BORDER_COLORS } from './utils';
@@ -25,15 +25,15 @@ interface IChartProps {
 const CHART_DEFAULT_SCALES = {
   y: {
     min: 0,
-    max: 100
-  }
+    max: 100,
+  },
 };
 
 const ChartComponent: React.FC<IChartProps> = ({
   data,
   labels,
   chartType,
-  name
+  name,
 }) => {
   const chartRef = useRef<HTMLCanvasElement>(null);
 
@@ -100,7 +100,7 @@ const ChartComponent: React.FC<IChartProps> = ({
                   'rgba(255, 206, 86, 0.6)',
                   'rgba(75, 192, 192, 0.6)',
                   'rgba(153, 102, 255, 0.6)',
-                  'rgba(255, 159, 64, 0.6)'
+                  'rgba(255, 159, 64, 0.6)',
                 ],
 
                 borderColor: [
@@ -109,23 +109,23 @@ const ChartComponent: React.FC<IChartProps> = ({
                   'rgba(255, 206, 86, 1)',
                   'rgba(75, 192, 192, 1)',
                   'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
+                  'rgba(255, 159, 64, 1)',
                 ],
-                borderWidth: 1
-              }
-            ]
+                borderWidth: 1,
+              },
+            ],
           },
           options: {
             scales: {
               yAxes: [
                 {
                   ticks: {
-                    beginAtZero: true
-                  }
-                }
-              ]
-            }
-          }
+                    beginAtZero: true,
+                  },
+                },
+              ],
+            },
+          },
         };
 
       // {
@@ -148,7 +148,7 @@ const ChartComponent: React.FC<IChartProps> = ({
       //       },
       //       title: {
       //         display: true,
-      //         text: 'Chart.js Bar Chart'
+      //         text: 'Chart.js Sloupcový graf'
       //       }
       //     }
       //   }
@@ -177,11 +177,11 @@ const ChartComponent: React.FC<IChartProps> = ({
             {
               data: [0, 1, 1],
               backgroundColor: DEFAULT_BACKGROUND_COLORS,
-              borderColor: DEFAULT_BORDER_COLORS
-            }
+              borderColor: DEFAULT_BORDER_COLORS,
+            },
           ],
-          labels: ['Ariuka ', 'Enkhtuvshin Narmandakh', 'Erdembileg Ebi']
-        }
+          labels: ['Ariuka ', 'Enkhtuvshin Narmandakh', 'Erdembileg Ebi'],
+        },
       };
       const myChart = new Chart(chartRef.current, cfg);
 

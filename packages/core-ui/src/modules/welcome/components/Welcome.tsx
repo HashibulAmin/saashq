@@ -90,18 +90,18 @@ function Welcome({ currentUser, branchesLength, departmentLength }: Props) {
     return (
       <Header>
         <h1>
-          {__('Welcome!')} {renderUserName()} &nbsp;
+          {__('Vítejte!')} {renderUserName()} &nbsp;
           <span role="img" aria-label="Wave">
             👋
           </span>
         </h1>
         <div>
           {__(
-            'Enjoy a single yet complete experience operating system (XOS) to build your own experience.',
+            'Užijte si jeden, ale kompletní operační systém (SHQ), abyste si vytvořili svůj vlastní zážitek.',
           )}
           <br />
           {__(
-            'All-in-one cost-effective platform for customer service, marketing, sales, and employees. ',
+            'Cenově efektivní platforma typu vše v jednom pro služby zákazníkům, marketing, prodej a zaměstnance. ',
           )}
         </div>
       </Header>
@@ -121,7 +121,7 @@ function Welcome({ currentUser, branchesLength, departmentLength }: Props) {
       <BoxHeader
         onClick={() => handleOpen()}
         isOpen={isOpen}
-        isSetup={title === 'Getting Started'}
+        isSetup={title === 'Začínáme'}
       >
         <Left>
           {image && <DescImg src={image} />}
@@ -129,7 +129,7 @@ function Welcome({ currentUser, branchesLength, departmentLength }: Props) {
             <h4>{title}</h4>
           </div>
         </Left>
-        {title === 'Getting Started' && (
+        {title === 'Začínáme' && (
           <ProgressBar
             percentage={percentage}
             color={percentage === 100 ? '#3CCC38' : '#673FBD'}
@@ -137,9 +137,7 @@ function Welcome({ currentUser, branchesLength, departmentLength }: Props) {
             height="70px"
           />
         )}
-        {title !== 'Getting Started' && (
-          <Icon icon={icon} size={25} color="#673FBD" />
-        )}
+        {title !== 'Začínáme' && <Icon icon={icon} size={25} color="#673FBD" />}
       </BoxHeader>
     );
   };
@@ -275,8 +273,8 @@ function Welcome({ currentUser, branchesLength, departmentLength }: Props) {
     return (
       <WidgetBackgrounds>
         <h5>
-          Join our community to engage in discussions with team members,
-          contributors, and developers across various channels.
+          Připojte se k naší komunitě a zapojte se do diskuzí se členy týmu,
+          přispěvatelé a vývojáři napříč různými kanály.
         </h5>
         <br />
         {COMMUNITY.map((com, index) => (
@@ -327,8 +325,8 @@ function Welcome({ currentUser, branchesLength, departmentLength }: Props) {
       <React.Fragment>
         <Card>
           <div>
-            <h4>{__('Onboarding optimized for you')}</h4>
-            <p>{__('Contact us to start the onboarding process')}</p>
+            <h4>{__('Onboarding optimalizovaný pro vás')}</h4>
+            <p>{__('Chcete-li zahájit proces registrace, kontaktujte nás')}</p>
             <br />
             <Button
               size="large"
@@ -336,7 +334,7 @@ function Welcome({ currentUser, branchesLength, departmentLength }: Props) {
               href={'https://shq.saashq.org/service'}
               target="_blank"
             >
-              {__('Request')}
+              {__('Žádost')}
             </Button>
           </div>
         </Card>

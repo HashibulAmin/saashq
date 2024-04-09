@@ -178,8 +178,8 @@ function ButtonsGenerator({
             <Dropdown.Menu rootCloseEvent="click">
               <Container>
                 {[
-                  { type: 'btn', text: 'Button' },
-                  { type: 'link', text: 'Link' },
+                  { type: 'btn', text: 'Knoflík' },
+                  { type: 'link', text: 'Odkaz' },
                 ].map(({ text, type }) => (
                   <Dropdown.Item
                     className="dropdown-item"
@@ -210,7 +210,7 @@ function ButtonsGenerator({
       ...generateButtons(),
       {
         _id: Math.random().toString(),
-        text: `New Button #${newBtnCount + 1}`,
+        text: `Nové tlačítko #${newBtnCount + 1}`,
         type: 'button',
         isEditing: true,
       },

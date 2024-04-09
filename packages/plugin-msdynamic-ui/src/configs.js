@@ -20,7 +20,7 @@ module.exports = {
       scope: 'msdynamic'
     },
     {
-      text: 'Sync MS Dynamic',
+      text: 'Synchronizace MS Dynamic',
       url: '/sync-msdynamic-history',
       icon: 'icon-file-check-alt',
       location: 'mainNavigation',

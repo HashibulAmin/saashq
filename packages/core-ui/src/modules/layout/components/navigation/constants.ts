@@ -1,66 +1,66 @@
 export const GENERAL_SETTINGS = [
   {
     name: 'General Settings',
-    text: 'System Configuration',
+    text: 'Konfigurace systému',
     icon: 'icon-settings',
-    url: '/settings/general'
+    url: '/settings/general',
   },
   {
     name: 'General Settings',
-    text: 'Permissions',
+    text: 'Oprávnění',
     icon: 'icon-settings',
-    url: '/settings/permissions'
+    url: '/settings/permissions',
   },
   {
     name: 'General Settings',
-    text: 'Team Members',
+    text: 'Členové týmu',
     icon: 'icon-settings',
-    url: '/settings/team'
+    url: '/settings/team',
   },
   {
     name: 'General Settings',
-    text: 'Brands',
+    text: 'Značky',
     icon: 'icon-settings',
-    url: '/settings/brands'
+    url: '/settings/brands',
   },
   {
     name: 'General Settings',
     text: 'Import & Export',
     icon: 'icon-settings',
-    url: '/settings/selectMenu'
+    url: '/settings/selectMenu',
   },
   {
     name: 'General Settings',
-    text: 'Apps',
+    text: 'Aplikace',
     icon: 'icon-settings',
-    url: '/settings/apps'
-  }
+    url: '/settings/apps',
+  },
 ];
 
 export const ACTIONS = [
   {
     name: 'Actions',
-    text: 'Add brand',
+    text: 'Přidat značku',
     icon: 'icon-plus',
-    url: '/settings/brands#showBrandAddModal=true'
+    url: '/settings/brands#showBrandAddModal=true',
   },
   {
     name: 'Actions',
-    text: 'Add permission',
+    text: 'Přidat oprávnění',
     icon: 'icon-plus',
-    url: '/settings/permissions#showUserGroupAddModal=true'
+    url: '/settings/permissions#showUserGroupAddModal=true',
   },
   {
     name: 'Actions',
-    text: 'Add team member',
+    text: 'Přidat člena týmu',
     icon: 'icon-plus',
-    url: '/settings/team#showMemberInviteModal=true'
+    url: '/settings/team#showMemberInviteModal=true',
   },
   {
     name: 'Actions',
-    text: 'New Email',
+    text: 'Nový Email',
     icon: 'icon-plus',
     url: '#',
-    type: 'email'
-  }
+    type: 'email',
+  },
 ];

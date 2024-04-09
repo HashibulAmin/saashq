@@ -35,7 +35,7 @@ const SignInContainer = (props: IRouterProps) => {
         block={true}
         icon="none"
       >
-        {__('Sign in')}
+        {__('Přihlásit se')}
       </ButtonMutate>
     );
   };

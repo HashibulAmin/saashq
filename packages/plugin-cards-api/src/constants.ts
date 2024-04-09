@@ -25,67 +25,67 @@ import { ticketSchema } from './models/definitions/tickets';
 
 export const IMPORT_EXPORT_TYPES = [
   {
-    text: 'Deal',
+    text: 'Obchod',
     contentType: 'deal',
     icon: 'signal-alt-3',
   },
   {
-    text: 'Purchase',
+    text: 'Nákup',
     contentTypeL: 'purchase',
     icon: 'signal-alt-3',
   },
   {
-    text: 'Task',
+    text: 'Úkol',
     contentType: 'task',
     icon: 'laptop',
   },
   {
-    text: 'Ticket',
+    text: 'Lístek',
     contentType: 'ticket',
     icon: 'ticket',
   },
 ];
 export const PRIORITIES = {
-  CRITICAL: 'Critical',
-  HIGH: 'High',
-  NORMAL: 'Normal',
-  LOW: 'Low',
+  CRITICAL: 'Kritické',
+  HIGH: 'Vysoký',
+  NORMAL: 'Normální',
+  LOW: 'Nízký',
   ALL: [
     {
-      name: 'Critical',
+      name: 'Kritické',
       color: '#EA475D',
     },
-    { name: 'High', color: '#F7CE53' },
-    { name: 'Normal', color: '#3B85F4' },
-    { name: 'Low', color: '#AAAEB3' },
+    { name: 'Vysoký', color: '#F7CE53' },
+    { name: 'Normální', color: '#3B85F4' },
+    { name: 'Nízký', color: '#AAAEB3' },
   ],
 };
 
 export const CLOSE_DATE_TYPES = {
-  NEXT_DAY: 'nextDay',
-  NEXT_WEEK: 'nextWeek',
-  NEXT_MONTH: 'nextMonth',
-  NO_CLOSE_DATE: 'noCloseDate',
-  OVERDUE: 'overdue',
+  NEXT_DAY: 'dalšíDen',
+  NEXT_WEEK: 'příštíTýden',
+  NEXT_MONTH: 'příštíMěsíc',
+  NO_CLOSE_DATE: 'žádné datum uzavření',
+  OVERDUE: 'zpožděný',
   ALL: [
     {
-      name: 'Next day',
+      name: 'Další den',
       value: 'nextDay',
     },
     {
-      name: 'Next week',
+      name: 'Příští týden',
       value: 'nextWeek',
     },
     {
-      name: 'Next month',
+      name: 'Příští měsíc',
       value: 'nextMonth',
     },
     {
-      name: 'No close date',
+      name: 'Žádné datum uzavření',
       value: 'noCloseDate',
     },
     {
-      name: 'Over due',
+      name: 'Zpožděný',
       value: 'overdue',
     },
   ],
@@ -95,13 +95,13 @@ export const BOARD_ITEM_EXTENDED_FIELDS = [
   {
     _id: Math.random(),
     name: 'boardName',
-    label: 'Board name',
+    label: 'Název desky',
     type: 'string',
   },
   {
     _id: Math.random(),
     name: 'pipelineName',
-    label: 'Pipeline name',
+    label: 'Název potrubí',
     type: 'string',
   },
   {
@@ -113,19 +113,19 @@ export const BOARD_ITEM_EXTENDED_FIELDS = [
   {
     _id: Math.random(),
     name: 'assignedUserEmail',
-    label: 'Assigned user email',
+    label: 'Přidělený e-mail uživatele',
     type: 'string',
   },
   {
     _id: Math.random(),
     name: 'labelIds',
-    label: 'Label',
+    label: 'Označení',
     type: 'string',
   },
   {
     _id: Math.random(),
     name: 'totalAmount',
-    label: 'Total Amount',
+    label: 'Celková částka',
     type: 'number',
   },
 ];
@@ -134,25 +134,25 @@ export const BOARD_ITEM_EXPORT_EXTENDED_FIELDS = [
   {
     _id: Math.random(),
     name: 'totalAmount',
-    label: 'Total Amount',
+    label: 'Celková částka',
     type: 'number',
   },
   {
     _id: Math.random(),
     name: 'totalLabelCount',
-    label: 'Total Label Counts',
+    label: 'Celkový počet štítků',
     type: 'number',
   },
   {
     _id: Math.random(),
     name: 'stageMovedUser',
-    label: 'Stage Moved User',
+    label: 'Uživatel přesunutý do fáze',
     type: 'string',
   },
   {
     _id: Math.random(),
     name: 'internalNotes',
-    label: 'Internal Notes',
+    label: 'Interní poznámky',
     type: 'string',
   },
 ];
@@ -301,19 +301,19 @@ export const LOG_MAPPINGS: ISchemaMap[] = [
 ];
 
 export const CARD_PROPERTIES_INFO = {
-  priority: 'Priority',
+  priority: 'Přednost',
 
   ALL: [
     {
-      label: 'Priority',
+      label: 'Přednost',
       field: 'priority',
       canHide: false,
       validation: null,
       type: 'select',
-      options: ['Critical', 'High', 'Normal', 'Low'],
+      options: ['Kritické', 'Vysoký', 'Normální', 'Nízký'],
     },
     {
-      label: 'Label',
+      label: 'Označení',
       field: 'labelIds',
       canHide: false,
       validation: null,
@@ -321,21 +321,21 @@ export const CARD_PROPERTIES_INFO = {
       options: [],
     },
     {
-      label: 'Start date',
+      label: 'Datum zahájení',
       field: 'startDate',
       canHide: false,
       validation: 'date',
       type: 'input',
     },
     {
-      label: 'Close date',
+      label: 'Datum uzavření',
       field: 'closeDate',
       canHide: false,
       validation: 'date',
       type: 'input',
     },
     {
-      label: 'Assigned to',
+      label: 'Přiřazen',
       field: 'assignedUserIds',
       canHide: false,
       validation: null,
@@ -343,20 +343,20 @@ export const CARD_PROPERTIES_INFO = {
       options: [],
     },
     {
-      label: 'Attachments',
+      label: 'Přílohy',
       field: 'attachments',
       canHide: false,
       type: 'file',
     },
     {
-      label: 'Description',
+      label: 'Popis',
       field: 'description',
       canHide: false,
       validation: null,
       type: 'textarea',
     },
     {
-      label: 'Branches',
+      label: 'Větve',
       field: 'branchIds',
       canHide: false,
       validation: null,
@@ -364,7 +364,7 @@ export const CARD_PROPERTIES_INFO = {
       options: [],
     },
     {
-      label: 'Departments',
+      label: 'oddělení',
       field: 'departmentIds',
       canHide: false,
       validation: null,
@@ -377,128 +377,128 @@ export const CARD_PROPERTIES_INFO = {
 export const NOTIFICATION_MODULES = [
   {
     name: 'deals',
-    description: 'Deals',
+    description: 'Nabídky',
     icon: 'piggy-bank',
     types: [
       {
         name: 'dealAdd',
-        text: 'Assigned a new deal  card',
+        text: 'Přiřazena nová karta',
       },
       {
         name: 'dealRemoveAssign',
-        text: 'Removed from the deal card',
+        text: 'Odebráno z karty rozdání',
       },
       {
         name: 'dealEdit',
-        text: 'Deal card edited',
+        text: 'Deal karta upravena',
       },
       {
         name: 'dealChange',
-        text: 'Moved between stages',
+        text: 'Přesouval se mezi fázemi',
       },
       {
         name: 'dealDueDate',
-        text: 'Due date is near',
+        text: 'Termín splatnosti se blíží',
       },
       {
         name: 'dealDelete',
-        text: 'Deal card deleted',
+        text: 'Deal karta smazána',
       },
     ],
   },
 
   {
     name: 'purchases',
-    description: 'Purchases',
+    description: 'Nákupy',
     icon: 'bag-alt',
     types: [
       {
         name: 'purchaseAdd',
-        text: 'Assigned a new purchase  card',
+        text: 'Přiřazena nová nákupní karta',
       },
       {
         name: 'purchaseRemoveAssign',
-        text: 'Removed from the purchase card',
+        text: 'Odebráno z nákupní karty',
       },
       {
         name: 'purchaseEdit',
-        text: 'Purchase card edited',
+        text: 'Nákupní karta upravena',
       },
       {
         name: 'purchaseChange',
-        text: 'Moved between stages',
+        text: 'Přesouval se mezi fázemi',
       },
       {
         name: 'purchaseDueDate',
-        text: 'Due date is near',
+        text: 'Termín splatnosti se blíží',
       },
       {
         name: 'purchaseDelete',
-        text: 'Purchase card deleted',
+        text: 'Nákupní karta byla smazána',
       },
     ],
   },
 
   {
     name: 'tickets',
-    description: 'Tickets',
+    description: 'Vstupenky',
     icon: 'ticket',
     types: [
       {
         name: 'ticketAdd',
-        text: 'Assigned a new ticket  card',
+        text: 'Přiřazena nová karta jízdenek',
       },
       {
         name: 'ticketRemoveAssign',
-        text: 'Removed from the ticket card',
+        text: 'Odebráno z lístku',
       },
       {
         name: 'ticketEdit',
-        text: 'Ticket card edited',
+        text: 'Vstupenka upravena',
       },
       {
         name: 'ticketChange',
-        text: 'Moved between stages',
+        text: 'Přesouval se mezi fázemi',
       },
       {
         name: 'ticketDueDate',
-        text: 'Due date is near',
+        text: 'Termín splatnosti se blíží',
       },
       {
         name: 'ticketDelete',
-        text: 'Ticket card deleted',
+        text: 'Karta vstupenky byla smazána',
       },
     ],
   },
 
   {
     name: 'tasks',
-    description: 'Tasks',
+    description: 'Úkoly',
     icon: 'file-check-alt',
     types: [
       {
         name: 'taskAdd',
-        text: 'Assigned a new task  card',
+        text: 'Přiřazena nová karta úkolu',
       },
       {
         name: 'taskRemoveAssign',
-        text: 'Removed from the task card',
+        text: 'Odebráno z karty úkolu',
       },
       {
         name: 'taskEdit',
-        text: 'Task card edited',
+        text: 'Karta úkolu upravena',
       },
       {
         name: 'taskChange',
-        text: 'Moved between stages',
+        text: 'Přesouval se mezi fázemi',
       },
       {
         name: 'taskDueDate',
-        text: 'Due date is near',
+        text: 'Termín splatnosti se blíží',
       },
       {
         name: 'taskDelete',
-        text: 'Task card deleted',
+        text: 'Karta úkolu byla smazána',
       },
     ],
   },

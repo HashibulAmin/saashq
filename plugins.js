@@ -10,7 +10,7 @@ window.plugins = [
     },
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-contacts-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-contacts-ui/remoteEntry.js',
       scope: 'contacts',
       module: './routes'
     },
@@ -19,7 +19,7 @@ window.plugins = [
     contactDetailHeader: './contactDetailHeader',
     menus: [
       {
-        text: 'Contacts',
+        text: 'Kontakty',
         url: '/contacts/customer',
         icon: 'icon-users',
         location: 'mainNavigation',
@@ -27,7 +27,7 @@ window.plugins = [
       }
     ],
     url:
-      'https://bg.bichilglobus.mn/js/plugins/plugin-contacts-ui/remoteEntry.js'
+      'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-contacts-ui/remoteEntry.js'
   },
   {
     name: 'inbox',
@@ -41,7 +41,7 @@ window.plugins = [
     },
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-inbox-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-inbox-ui/remoteEntry.js',
       scope: 'inbox',
       module: './routes'
     },
@@ -50,28 +50,28 @@ window.plugins = [
     actionForms: './actionForms',
     menus: [
       {
-        text: 'Team Inbox',
+        text: 'Týmová schránka',
         url: '/inbox',
         icon: 'icon-chat',
         location: 'mainNavigation',
         permission: 'showConversations'
       },
       {
-        text: 'Bookings',
+        text: 'Rezervace',
         url: '/bookings',
         icon: 'icon-paste',
         location: 'mainNavigation',
         permission: 'showIntegrations'
       },
       {
-        text: 'Forms',
+        text: 'formuláře',
         url: '/forms',
         icon: 'icon-laptop',
         location: 'mainNavigation',
         permission: 'showForms'
       },
       {
-        text: 'Skills',
+        text: 'Dovednosti',
         to: '/settings/skills',
         image: '/images/icons/saashq-29.png',
         location: 'settings',
@@ -86,7 +86,7 @@ window.plugins = [
         ]
       },
       {
-        text: 'Channels',
+        text: 'Kanály',
         to: '/settings/channels',
         image: '/images/icons/saashq-05.svg',
         location: 'settings',
@@ -95,7 +95,7 @@ window.plugins = [
         permissions: ['showChannels', 'manageChannels']
       },
       {
-        text: 'Integrations',
+        text: 'Integrace',
         to: '/settings/integrations',
         image: '/images/icons/saashq-04.svg',
         location: 'settings',
@@ -115,7 +115,7 @@ window.plugins = [
         ]
       },
       {
-        text: 'Integrations config',
+        text: 'Konfigurace integrací',
         to: '/settings/integrations-config',
         image: '/images/icons/saashq-24.svg',
         location: 'settings',
@@ -124,7 +124,7 @@ window.plugins = [
         permissions: ['manageGeneralSettings', 'showGeneralSettings']
       },
       {
-        text: 'Responses',
+        text: 'Odezvy',
         to: '/settings/response-templates',
         image: '/images/icons/saashq-10.svg',
         location: 'settings',
@@ -133,7 +133,7 @@ window.plugins = [
         permissions: ['manageResponseTemplate', 'showResponseTemplates']
       },
       {
-        text: 'Widget Script Manager',
+        text: 'Správce skriptů widgetů',
         to: '/settings/scripts',
         image: '/images/icons/saashq-34.png',
         location: 'settings',
@@ -143,9 +143,9 @@ window.plugins = [
       }
     ],
     customNavigationLabel: [
-      { text: 'unreadCount', component: './unreadCount', scope: 'inbox' }
+      { text: 'počet nepřečtených', component: './unreadCount', scope: 'inbox' }
     ],
-    url: 'https://bg.bichilglobus.mn/js/plugins/plugin-inbox-ui/remoteEntry.js'
+    url: 'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-inbox-ui/remoteEntry.js'
   },
   {
     name: 'facebook',
@@ -162,7 +162,7 @@ window.plugins = [
     },
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-facebook-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-facebook-ui/remoteEntry.js',
       scope: 'facebook',
       module: './routes'
     },
@@ -215,7 +215,7 @@ window.plugins = [
       './inboxConversationDetailRespondBoxMask',
     inboxConversationDetail: './inboxConversationDetail',
     url:
-      'https://bg.bichilglobus.mn/js/plugins/plugin-facebook-ui/remoteEntry.js'
+      'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-facebook-ui/remoteEntry.js'
   },
   {
     name: 'tags',
@@ -226,14 +226,14 @@ window.plugins = [
     },
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-tags-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-tags-ui/remoteEntry.js',
       scope: 'tags',
       module: './routes'
     },
     activityLog: './activityLog',
     menus: [
       {
-        text: 'Tags',
+        text: 'Tagy',
         to: '/tags',
         image: '/images/icons/saashq-18.svg',
         location: 'settings',
@@ -242,12 +242,12 @@ window.plugins = [
         permissions: ['showTags', 'manageTags']
       }
     ],
-    url: 'https://bg.bichilglobus.mn/js/plugins/plugin-tags-ui/remoteEntry.js'
+    url: 'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-tags-ui/remoteEntry.js'
   },
   {
     name: 'cards',
     scope: 'cards',
-    url: 'https://bg.bichilglobus.mn/js/plugins/plugin-cards-ui/remoteEntry.js',
+    url: 'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-cards-ui/remoteEntry.js',
     exposes: {
       './routes': './src/routes.tsx',
       './settings': './src/Settings.tsx',
@@ -259,7 +259,7 @@ window.plugins = [
     },
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-cards-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-cards-ui/remoteEntry.js',
       scope: 'cards',
       module: './routes'
     },
@@ -277,35 +277,35 @@ window.plugins = [
         permission: 'showDeals'
       },
       {
-        text: 'Purchase Pipeline',
+        text: 'Prodejní potrubí',
         url: '/purchase',
         icon: 'icon-bag-alt',
         location: 'mainNavigation',
         permission: 'showPurchases'
       },
       {
-        text: 'Task',
+        text: 'Úkol',
         url: '/task',
         icon: 'icon-file-check-alt',
         location: 'mainNavigation',
         permission: 'showTasks'
       },
       {
-        text: 'Ticket',
+        text: 'Lístek',
         url: '/ticket',
         icon: 'icon-ticket',
         location: 'mainNavigation',
         permission: 'showTickets'
       },
       {
-        text: 'Growth Hacking',
+        text: 'hackování růstu',
         url: '/growthHack',
         icon: 'icon-idea',
         location: 'mainNavigation',
         permission: 'showGrowthHacks'
       },
       {
-        text: 'Sales Pipelines',
+        text: 'Prodejní potrubí',
         to: '/settings/boards/deal',
         image: '/images/icons/saashq-25.png',
         location: 'settings',
@@ -328,7 +328,7 @@ window.plugins = [
         ]
       },
       {
-        text: 'Purchases Pipelines',
+        text: 'Nákupní potrubí',
         to: '/settings/boards/purchase',
         image: '/images/icons/saashq-25.png',
         location: 'settings',
@@ -352,7 +352,7 @@ window.plugins = [
       },
 
       {
-        text: 'Task Pipelines',
+        text: 'Potrubí úloh',
         to: '/settings/boards/task',
         image: '/images/icons/saashq-13.svg',
         location: 'settings',
@@ -376,7 +376,7 @@ window.plugins = [
         ]
       },
       {
-        text: 'Ticket Pipelines',
+        text: 'Vstupenky',
         to: '/settings/boards/ticket',
         image: '/images/icons/saashq-19.svg',
         location: 'settings',
@@ -399,7 +399,7 @@ window.plugins = [
         ]
       },
       {
-        text: 'Growth Hacking Templates',
+        text: 'Šablony pro hackování růstu',
         to: '/settings/boards/growthHackTemplate',
         image: '/images/icons/saashq-12.svg',
         location: 'settings',
@@ -420,13 +420,13 @@ window.plugins = [
     exposes: { './routes': './src/routes.tsx' },
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-automations-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-automations-ui/remoteEntry.js',
       scope: 'automations',
       module: './routes'
     },
     menus: [
       {
-        text: 'Automations',
+        text: 'Automatizace',
         url: '/automations',
         location: 'mainNavigation',
         icon: 'icon-circular',
@@ -434,7 +434,7 @@ window.plugins = [
       }
     ],
     url:
-      'https://bg.bichilglobus.mn/js/plugins/plugin-automations-ui/remoteEntry.js'
+      'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-automations-ui/remoteEntry.js'
   },
   {
     name: 'segments',
@@ -446,7 +446,7 @@ window.plugins = [
     },
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-segments-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-segments-ui/remoteEntry.js',
       scope: 'segments',
       module: './routes'
     },
@@ -454,7 +454,7 @@ window.plugins = [
     teamMemberSidebarComp: './teamMemberSidebarComp',
     menus: [
       {
-        text: 'Segments',
+        text: 'Segmenty',
         url: '/segments',
         icon: 'icon-chart-pie-alt',
         location: 'mainNavigation',
@@ -462,7 +462,7 @@ window.plugins = [
       }
     ],
     url:
-      'https://bg.bichilglobus.mn/js/plugins/plugin-segments-ui/remoteEntry.js'
+      'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-segments-ui/remoteEntry.js'
   },
   {
     name: 'forms',
@@ -477,7 +477,7 @@ window.plugins = [
     },
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-forms-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-forms-ui/remoteEntry.js',
       scope: 'forms',
       module: './routes'
     },
@@ -488,7 +488,7 @@ window.plugins = [
     contactDetailLeftSidebar: './contactDetailLeftSidebar',
     menus: [
       {
-        text: 'Properties',
+        text: 'Vlastnosti',
         to: '/settings/properties',
         image: '/images/icons/saashq-01.svg',
         location: 'settings',
@@ -497,27 +497,27 @@ window.plugins = [
         permissions: ['showForms', 'manageForms']
       }
     ],
-    url: 'https://bg.bichilglobus.mn/js/plugins/plugin-forms-ui/remoteEntry.js'
+    url: 'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-forms-ui/remoteEntry.js'
   },
   {
     name: 'engages',
     exposes: { './routes': './src/routes.tsx' },
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-engages-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-engages-ui/remoteEntry.js',
       scope: 'engages',
       module: './routes'
     },
     menus: [
       {
-        text: 'Campaigns',
+        text: 'Kampaně',
         url: '/campaigns',
         icon: 'icon-megaphone',
         location: 'mainNavigation',
         permission: 'showEngagesMessages'
       },
       {
-        text: 'Campaign settings',
+        text: 'Nastavení kampaně',
         to: '/settings/campaign-configs',
         image: '/images/icons/saashq-08.svg',
         location: 'settings',
@@ -527,7 +527,7 @@ window.plugins = [
       }
     ],
     url:
-      'https://bg.bichilglobus.mn/js/plugins/plugin-engages-ui/remoteEntry.js'
+      'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-engages-ui/remoteEntry.js'
   },
   {
     name: 'logs',
@@ -538,14 +538,14 @@ window.plugins = [
     },
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-logs-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-logs-ui/remoteEntry.js',
       scope: 'logs',
       module: './routes'
     },
     contactDetailContent: './contactDetailContent',
     menus: [
       {
-        text: 'logs',
+        text: 'protokoly',
         to: '/settings/logs',
         image: '/images/icons/saashq-33.png',
         location: 'settings',
@@ -555,7 +555,7 @@ window.plugins = [
         permissions: []
       },
       {
-        text: 'Email Deliveries',
+        text: 'Doručování e-mailem',
         to: '/settings/emailDelivery',
         image: '/images/icons/saashq-27.png',
         location: 'settings',
@@ -565,20 +565,20 @@ window.plugins = [
         permissions: []
       }
     ],
-    url: 'https://bg.bichilglobus.mn/js/plugins/plugin-logs-ui/remoteEntry.js'
+    url: 'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-logs-ui/remoteEntry.js'
   },
   {
     name: 'knowledgebase',
     exposes: { './routes': './src/routes.tsx' },
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-knowledgebase-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-knowledgebase-ui/remoteEntry.js',
       scope: 'knowledgebase',
       module: './routes'
     },
     menus: [
       {
-        text: 'Knowledge Base',
+        text: 'Znalostní báze',
         url: '/knowledgeBase',
         icon: 'icon-book-open',
         location: 'mainNavigation',
@@ -586,7 +586,7 @@ window.plugins = [
       }
     ],
     url:
-      'https://bg.bichilglobus.mn/js/plugins/plugin-knowledgebase-ui/remoteEntry.js'
+      'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-knowledgebase-ui/remoteEntry.js'
   },
   {
     name: 'notifications',
@@ -596,13 +596,13 @@ window.plugins = [
     },
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-notifications-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-notifications-ui/remoteEntry.js',
       scope: 'notifications',
       module: './routes'
     },
     menus: [
       {
-        text: 'notifications',
+        text: 'oznámení',
         url: '/notifications',
         icon: 'icon-book-open',
         location: 'topNavigation',
@@ -610,7 +610,7 @@ window.plugins = [
         component: './settings'
       },
       {
-        text: 'Notification settings',
+        text: 'Nastavení upozornění',
         to: '/settings/notifications',
         image: '/images/icons/saashq-11.svg',
         location: 'settings',
@@ -618,7 +618,7 @@ window.plugins = [
       }
     ],
     url:
-      'https://bg.bichilglobus.mn/js/plugins/plugin-notifications-ui/remoteEntry.js'
+      'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-notifications-ui/remoteEntry.js'
   },
   {
     name: 'chats',
@@ -629,13 +629,13 @@ window.plugins = [
     widget: './widget',
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-chats-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-chats-ui/remoteEntry.js',
       scope: 'chats',
       module: './routes'
     },
     menus: [
       {
-        text: 'Chat Widget',
+        text: 'Widget chatu',
         url: '/saashq-plugin-chat/widget',
         icon: 'icon-chat-1',
         location: 'topNavigation',
@@ -643,14 +643,14 @@ window.plugins = [
         component: './widget'
       },
       {
-        text: 'Chat',
+        text: 'Povídat si',
         url: '/saashq-plugin-chat',
         icon: 'icon-chat-1',
         location: 'mainNavigation',
         permission: 'showChats'
       }
     ],
-    url: 'https://bg.bichilglobus.mn/js/plugins/plugin-chats-ui/remoteEntry.js'
+    url: 'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-chats-ui/remoteEntry.js'
   },
   {
     name: 'clientportal',
@@ -662,13 +662,13 @@ window.plugins = [
     cardDetailAction: './cardDetailAction',
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-clientportal-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-clientportal-ui/remoteEntry.js',
       scope: 'clientportal',
       module: './routes'
     },
     menus: [
       {
-        text: 'Client Portal',
+        text: 'Klientský portál',
         to: '/settings/client-portal',
         image: '/images/icons/saashq-32.png',
         location: 'settings',
@@ -678,7 +678,7 @@ window.plugins = [
       }
     ],
     url:
-      'https://bg.bichilglobus.mn/js/plugins/plugin-clientportal-ui/remoteEntry.js'
+      'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-clientportal-ui/remoteEntry.js'
   },
   {
     name: 'products',
@@ -691,7 +691,7 @@ window.plugins = [
     },
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-products-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-products-ui/remoteEntry.js',
       scope: 'products',
       module: './routes'
     },
@@ -699,7 +699,7 @@ window.plugins = [
     extendFormFieldChoice: './extendFormFieldChoice',
     menus: [
       {
-        text: 'Product and services',
+        text: 'Produkt a služby',
         to: '/settings/product-service/',
         image: '/images/icons/saashq-31.png',
         location: 'settings',
@@ -708,7 +708,7 @@ window.plugins = [
         permissions: ['showProducts', 'manageProducts']
       },
       {
-        text: 'Configs of Products',
+        text: 'Konfigurace produktů',
         to: '/settings/products-config/',
         image: '/images/icons/saashq-07.svg',
         location: 'settings',
@@ -718,20 +718,20 @@ window.plugins = [
       }
     ],
     url:
-      'https://bg.bichilglobus.mn/js/plugins/plugin-products-ui/remoteEntry.js'
+      'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-products-ui/remoteEntry.js'
   },
   {
     name: 'dashboard',
     exposes: { './routes': './src/routes.tsx' },
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-dashboard-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-dashboard-ui/remoteEntry.js',
       scope: 'dashboard',
       module: './routes'
     },
     menus: [
       {
-        text: 'Reports',
+        text: 'Zprávy',
         url: '/dashboard',
         icon: 'icon-dashboard',
         location: 'mainNavigation',
@@ -739,20 +739,20 @@ window.plugins = [
       }
     ],
     url:
-      'https://bg.bichilglobus.mn/js/plugins/plugin-dashboard-ui/remoteEntry.js'
+      'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-dashboard-ui/remoteEntry.js'
   },
   {
     name: 'emailtemplates',
     exposes: { './routes': './src/routes.tsx' },
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-emailtemplates-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-emailtemplates-ui/remoteEntry.js',
       scope: 'emailtemplates',
       module: './routes'
     },
     menus: [
       {
-        text: 'Email Templates',
+        text: 'Šablony e-mailů',
         to: '/settings/email-templates',
         image: '/images/icons/saashq-09.svg',
         location: 'settings',
@@ -762,19 +762,19 @@ window.plugins = [
       }
     ],
     url:
-      'https://bg.bichilglobus.mn/js/plugins/plugin-emailtemplates-ui/remoteEntry.js'
+      'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-emailtemplates-ui/remoteEntry.js'
   },
   {
     name: 'shq',
     exposes: { './routes': './src/routes.tsx' },
     routes: {
-      url: 'https://bg.bichilglobus.mn/js/plugins/plugin-shq-ui/remoteEntry.js',
+      url: 'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-shq-ui/remoteEntry.js',
       scope: 'shq',
       module: './routes'
     },
     menus: [
       {
-        text: 'Shq core',
+        text: 'Shq jádro',
         to: '/saashq-plugin-shq/home',
         image: '/images/icons/saashq-30.png',
         location: 'settings',
@@ -782,20 +782,20 @@ window.plugins = [
         permissions: ['showShqs']
       }
     ],
-    url: 'https://bg.bichilglobus.mn/js/plugins/plugin-shq-ui/remoteEntry.js'
+    url: 'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-shq-ui/remoteEntry.js'
   },
   {
     name: 'shqfeed',
     exposes: { './routes': './src/routes.tsx' },
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-shqfeed-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-shqfeed-ui/remoteEntry.js',
       scope: 'shqfeed',
       module: './routes'
     },
     menus: [
       {
-        text: 'Shq feed',
+        text: 'Shq krmivo',
         url: '/saashq-plugin-shq-feed/home',
         icon: 'icon-list-2',
         location: 'mainNavigation',
@@ -803,7 +803,7 @@ window.plugins = [
       }
     ],
     url:
-      'https://bg.bichilglobus.mn/js/plugins/plugin-shqfeed-ui/remoteEntry.js'
+      'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-shqfeed-ui/remoteEntry.js'
   },
   {
     name: 'timeclock',
@@ -811,20 +811,20 @@ window.plugins = [
     exposes: { './routes': './src/routes.tsx' },
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-timeclock-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-timeclock-ui/remoteEntry.js',
       scope: 'timeclock',
       module: './routes'
     },
     menus: [
       {
-        text: 'Timeclocks',
+        text: 'Hodiny',
         url: '/timeclocks',
         icon: 'icon-star',
         location: 'mainNavigation'
       }
     ],
     url:
-      'https://bg.bichilglobus.mn/js/plugins/plugin-timeclock-ui/remoteEntry.js'
+      'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-timeclock-ui/remoteEntry.js'
   },
   {
     name: 'documents',
@@ -838,13 +838,13 @@ window.plugins = [
     productListAction: './productListAction',
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-documents-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-documents-ui/remoteEntry.js',
       scope: 'documents',
       module: './routes'
     },
     menus: [
       {
-        text: 'Documents',
+        text: 'Dokumenty',
         to: '/settings/documents',
         image: '/images/icons/saashq-09.svg',
         location: 'settings',
@@ -854,7 +854,7 @@ window.plugins = [
       }
     ],
     url:
-      'https://bg.bichilglobus.mn/js/plugins/plugin-documents-ui/remoteEntry.js'
+      'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-documents-ui/remoteEntry.js'
   },
   {
     name: 'filemanager',
@@ -862,13 +862,13 @@ window.plugins = [
     exposes: { './routes': './src/routes.tsx' },
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-filemanager-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-filemanager-ui/remoteEntry.js',
       scope: 'filemanager',
       module: './routes'
     },
     menus: [
       {
-        text: 'File Manager',
+        text: 'Správce souborů',
         url: '/filemanager',
         icon: 'icon-folder-1',
         location: 'mainNavigation',
@@ -876,7 +876,7 @@ window.plugins = [
       }
     ],
     url:
-      'https://bg.bichilglobus.mn/js/plugins/plugin-filemanager-ui/remoteEntry.js'
+      'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-filemanager-ui/remoteEntry.js'
   },
   {
     name: 'bichil',
@@ -888,7 +888,7 @@ window.plugins = [
     },
     routes: {
       url:
-        'https://bg.bichilglobus.mn/js/plugins/plugin-bichil-ui/remoteEntry.js',
+        'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-bichil-ui/remoteEntry.js',
       scope: 'bichil',
       module: './routes'
     },
@@ -903,6 +903,6 @@ window.plugins = [
         scope: 'bichil'
       }
     ],
-    url: 'https://bg.bichilglobus.mn/js/plugins/plugin-bichil-ui/remoteEntry.js'
+    url: 'https://saashq-main-plugins.s3.us-east-1.amazonaws.com/uis/plugin-bichil-ui/remoteEntry.js'
   }
 ];

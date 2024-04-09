@@ -3,7 +3,7 @@ import { IButtonMutateProps } from '@saashq/ui/src/types';
 import { generatePaginationParams } from '@saashq/ui/src/utils/router';
 import {
   ICommonFormProps,
-  ICommonListProps
+  ICommonListProps,
 } from '@saashq/ui-settings/src/common/types';
 import { queries as generalQueries } from '@saashq/ui-settings/src/general/graphql';
 
@@ -37,7 +37,7 @@ class WebhookListContainer extends React.Component<Props> {
 const getRefetchQueries = () => {
   return [
     { query: gql(queries.webhooks), options },
-    { query: gql(queries.webhooksTotalCount), options }
+    { query: gql(queries.webhooksTotalCount), options },
   ];
 };
 
@@ -45,42 +45,42 @@ const options = ({ queryParams }: { queryParams: any }): any => {
   return {
     variables: {
       ...generatePaginationParams(queryParams),
-      _id: queryParams._id
+      _id: queryParams._id,
     },
-    fetchPolicy: 'network-only'
+    fetchPolicy: 'network-only',
   };
 };
 
 export default commonListComposer<{ queryParams: any; history: any }>({
   text: 'webhook',
-  label: 'webhooks',
+  label: 'webhooky',
   stringAddMutation: mutations.webhooksAdd,
   stringEditMutation: mutations.webhooksEdit,
 
   gqlListQuery: graphql(gql(queries.webhooks), {
     name: 'listQuery',
-    options
+    options,
   }),
   gqlGetActionsQuery: graphql(gql(queries.webhooksGetActions), {
-    name: 'webhooksGetActionsQuery'
+    name: 'webhooksGetActionsQuery',
   }),
   gqlAddMutation: graphql(gql(mutations.webhooksAdd), {
-    name: 'addMutation'
+    name: 'addMutation',
   }),
   gqlEditMutation: graphql(gql(mutations.webhooksEdit), {
-    name: 'editMutation'
+    name: 'editMutation',
   }),
   gqlRemoveMutation: graphql(gql(mutations.webhooksRemove), {
-    name: 'removeMutation'
+    name: 'removeMutation',
   }),
   gqlTotalCountQuery: graphql(gql(queries.webhooksTotalCount), {
     name: 'totalCountQuery',
-    options
+    options,
   }),
 
   ListComponent: WebhookListContainer,
   gqlConfigsQuery: graphql(gql(generalQueries.configsGetEnv), {
     name: 'configsEnvQuery',
-    options: { fetchPolicy: 'network-only' }
-  })
+    options: { fetchPolicy: 'network-only' },
+  }),
 });

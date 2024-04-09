@@ -14,20 +14,20 @@ const Login = () => {
         <div className="flex justify-center items-center flex-col relative">
           <div>
             <h2 className="text-[#673FBD] text-3xl font-bold mb-4">
-              {"Welcome!"}
+              {"Vítejte!"}
             </h2>
             <p className="text-[#A0AEC0] mb-4">
               {type === "login"
-                ? "Please sign in to your account to continue"
-                : "Please reset your password via email"}
+                ? "Chcete-li pokračovat, přihlaste se ke svému účtu"
+                : "Obnovte si heslo prostřednictvím e-mailu"}
             </p>
             <LoginContainer type={type} setType={setType} />
           </div>
 
           <div className="flex justify-center absolute bottom-[20px]">
             <span className="text-[#A0AEC0] text-xs">
-              @ 2023, Made with ❤️ by{" "}
-              <b className="text-[#6569DF]">saashq Team</b> for a better web
+              @ 2024, Vyrobeno s ❤️ o{" "}
+              <b className="text-[#6569DF]">SaasHQ tým</b> pro lepší web
             </span>
           </div>
         </div>

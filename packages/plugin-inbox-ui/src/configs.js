@@ -22,28 +22,28 @@ module.exports = {
   actionForms: './actionForms',
   menus: [
     {
-      text: 'Team Inbox',
+      text: 'Týmová schránka',
       url: '/inbox',
       icon: 'icon-chat',
       location: 'mainNavigation',
       permission: 'showConversations'
     },
     {
-      text: 'Bookings',
+      text: 'Rezervace',
       url: '/bookings',
       icon: 'icon-paste',
       location: 'mainNavigation',
       permission: 'showIntegrations'
     },
     {
-      text: 'Forms',
+      text: 'Formuláře',
       url: '/forms',
       icon: 'icon-laptop',
       location: 'mainNavigation',
       permission: 'showForms'
     },
     {
-      text: 'Skills',
+      text: 'Dovednosti',
       to: '/settings/skills',
       image: '/images/icons/saashq-29.png',
       location: 'settings',
@@ -58,7 +58,7 @@ module.exports = {
       ]
     },
     {
-      text: 'Channels',
+      text: 'Kanály',
       to: '/settings/channels',
       image: '/images/icons/saashq-05.svg',
       location: 'settings',
@@ -67,7 +67,7 @@ module.exports = {
       permissions: ['showChannels', 'manageChannels']
     },
     {
-      text: 'Integrations',
+      text: 'Integrace',
       to: '/settings/integrations',
       image: '/images/icons/saashq-04.svg',
       location: 'settings',
@@ -87,7 +87,7 @@ module.exports = {
       ]
     },
     {
-      text: 'Integrations config',
+      text: 'Konfigurace integrací',
       to: '/settings/integrations-config',
       image: '/images/icons/saashq-24.svg',
       location: 'settings',
@@ -96,7 +96,7 @@ module.exports = {
       permissions: ['manageGeneralSettings', 'showGeneralSettings']
     },
     {
-      text: 'Responses',
+      text: 'Odezvy',
       to: '/settings/response-templates',
       image: '/images/icons/saashq-10.svg',
       location: 'settings',
@@ -105,7 +105,7 @@ module.exports = {
       permissions: ['manageResponseTemplate', 'showResponseTemplates']
     },
     {
-      text: 'Widget Script Manager',
+      text: 'Správce skriptů widgetů',
       to: '/settings/scripts',
       image: '/images/icons/saashq-34.png',
       location: 'settings',
@@ -114,7 +114,7 @@ module.exports = {
       permissions: ['manageScripts', 'showScripts']
     },
     {
-      text: "Send an Email",
+      text: "Poslat email",
       url: "/emailWidget",
       icon: "icon-envelope",
       location: "topNavigation",
@@ -124,7 +124,7 @@ module.exports = {
   ],
   customNavigationLabel: [
     {
-      text: "unreadCount",
+      text: "počet nepřečtených",
       component: "./unreadCount",
       scope: "inbox",
     }

@@ -13,7 +13,7 @@ module.exports = {
   },
   menus:[
     {
-      text: 'Sync polaris config',
+      text: 'Konfigurace synchronizace polaris',
       to: '/saashq-plugin-sync-polaris/settings/general',
       image: '/images/icons/saashq-04.svg',
       location: "settings",

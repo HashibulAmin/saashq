@@ -121,7 +121,7 @@ export const fillValue = async (
 
 export const IMPORT_EXPORT_TYPES = [
   {
-    text: 'Product & Services',
+    text: 'Produkt a služby',
     contentType: 'product',
     icon: 'server-alt',
     skipFilter: true,

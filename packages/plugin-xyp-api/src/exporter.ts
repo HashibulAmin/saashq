@@ -82,7 +82,7 @@ const getExcelHeader = async (subdomain, columnsConfig) => {
 
 export const IMPORT_EXPORT_TYPES = [
   {
-    text: 'Хурдан',
+    text: 'Rychle',
     contentType: 'xyp',
     icon: 'server-alt',
   },
@@ -144,7 +144,7 @@ export default {
         docs.push(result);
       }
     } catch (e) {
-      console.log(`export error: ${e.message}`);
+      console.log(`chyba exportu: ${e.message}`);
       return { error: e.message };
     }
 

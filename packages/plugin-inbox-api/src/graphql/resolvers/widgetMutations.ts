@@ -945,20 +945,20 @@ const widgetMutations = {
           },
         );
       } catch (e) {
-        debugError(`Failed to connect to BOTPRESS: ${e.message}`);
+        debugError(`Připojení se nezdařilo BOTPRESS: ${e.message}`);
       }
     }
 
     const customerLastStatus =
-      (await redis.get(`customer_last_status_${customerId}`)) || 'left';
+      (await redis.get(`customer_last_status_${customerId}`)) || 'vlevo';
 
-    if (customerLastStatus === 'left' && customerId) {
-      await redis.set(`customer_last_status_${customerId}`, 'joined');
+    if (customerLastStatus === 'vlevo' && customerId) {
+      await redis.set(`customer_last_status_${customerId}`, 'se připojil');
 
       // customer has joined + time
       const conversationMessages =
         await models.Conversations.changeCustomerStatus(
-          'joined',
+          'se připojil',
           customerId,
           conversation.integrationId,
         );
@@ -972,11 +972,11 @@ const widgetMutations = {
         );
       }
 
-      // notify as connected
+      // notify as připojeno
       graphqlPubsub.publish('customerConnectionChanged', {
         customerConnectionChanged: {
           _id: customerId,
-          status: 'connected',
+          status: 'připojeno',
         },
       });
     }
@@ -1188,7 +1188,7 @@ const widgetMutations = {
     });
 
     if (!integration) {
-      throw new Error('Integration not found');
+      throw new Error('Integrace nenalezena');
     }
 
     const { verifyEmail = false } = integration.leadData || {};
@@ -1385,7 +1385,7 @@ const widgetMutations = {
       method: 'POST',
       body: JSON.stringify({
         type: 'text',
-        text: 'getStarted',
+        text: 'začít',
       }),
       headers: { 'Content-Type': 'application/json' },
     }).then((r) => r.json());

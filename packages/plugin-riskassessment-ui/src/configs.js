@@ -22,7 +22,7 @@ module.exports = {
   ],
   menus: [
     {
-      text: 'Risk Assessments',
+      text: 'Hodnocení rizik',
       to: '/settings/risk-indicators',
       image: '/images/icons/saashq-18.svg',
       location: 'settings',
@@ -31,7 +31,7 @@ module.exports = {
       permissions: ['showRiskAssessment', 'manageRiskAssessment']
     },
     {
-      text: 'Operations',
+      text: 'Operace',
       to: '/settings/operations',
       image: '/images/icons/saashq-18.svg',
       location: 'settings',
@@ -40,7 +40,7 @@ module.exports = {
       permissions: ['showRiskAssessment', 'manageRiskAssessment']
     },
     {
-      text: 'Risk Assessments',
+      text: 'Hodnocení rizik',
       url: '/risk-assessments',
       icon: 'icon-followers',
       location: 'mainNavigation',
@@ -50,7 +50,7 @@ module.exports = {
   ],
   dealRightSidebarSection: [
     {
-      text: 'riskAssessmentSection',
+      text: 'sekce hodnocení rizik',
       component: './cardSideBarSection',
       scope: 'riskassessment',
       action: 'riskAssessmentAll',
@@ -59,7 +59,7 @@ module.exports = {
   ],
   ticketRightSidebarSection: [
     {
-      text: 'riskAssessmentSection',
+      text: 'sekce hodnocení rizik',
       component: './cardSideBarSection',
       scope: 'riskassessment',
       action: 'riskAssessmentAll',
@@ -68,7 +68,7 @@ module.exports = {
   ],
   taskRightSidebarSection: [
     {
-      text: 'riskAssessmentSection',
+      text: 'sekce hodnocení rizik',
       component: './cardSideBarSection',
       scope: 'riskassessment',
       action: 'riskAssessmentAll',

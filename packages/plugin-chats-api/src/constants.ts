@@ -1,17 +1,17 @@
 export const NOTIFICATION_MODULES = [
   {
     name: 'chats',
-    description: 'Chats',
+    description: 'Chaty',
     icon: 'chat-1',
     types: [
       {
         name: 'chatMention',
-        text: 'Mention on chats'
+        text: 'Zmínka na chatech',
       },
       {
         name: 'chatReceive',
-        text: 'Recieved chat'
-      }
-    ]
-  }
+        text: 'Přijatý chat',
+      },
+    ],
+  },
 ];

@@ -378,12 +378,12 @@ class MailForm extends React.Component<Props, State> {
     } = this.state;
 
     if (!to) {
-      return Alert.warning('This message must have at least one recipient.');
+      return Alert.warning('Tato zpráva musí mít alespoň jednoho příjemce.');
     }
 
     if (!isReply && (!subject || !content)) {
       return Alert.warning(
-        'Send this message with a subject or text in the body.',
+        'Pošlete tuto zprávu s předmětem nebo textem v těle.',
       );
     }
 
@@ -760,8 +760,8 @@ class MailForm extends React.Component<Props, State> {
               {isReply &&
                 this.renderSubmit(
                   conversationStatus === 'closed'
-                    ? 'Send and Open'
-                    : 'Send and Resolve',
+                    ? 'Odeslat a otevřít'
+                    : 'Odeslat a vyřešit',
                   onSubmitResolve,
                   conversationStatus === 'closed' ? 'warning' : 'success',
                   conversationStatus === 'closed' ? 'redo' : 'check-circle',
@@ -800,7 +800,7 @@ class MailForm extends React.Component<Props, State> {
           </EditorFooterGroup>
           <ToolBar>
             {this.renderIcon({
-              text: 'Delete',
+              text: 'Vymazat',
               icon: 'trash-alt',
               onClick: toggleReply,
             })}
@@ -819,7 +819,7 @@ class MailForm extends React.Component<Props, State> {
 
     return (
       <ShowReplyButtonWrapper>
-        <Tip text="Show trimmed content">
+        <Tip text="Zobrazit oříznutý obsah">
           <ShowReplies onClick={this.onShowReplies}>
             <span />
             <span />

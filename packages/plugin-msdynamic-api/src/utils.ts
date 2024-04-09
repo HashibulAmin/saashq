@@ -41,7 +41,7 @@ const companyRequest = async (subdomain, config, action, updateCode, doc) => {
         action: 'fields.findOne',
         data: {
           query: {
-            text: 'post code',
+            text: 'směrovací číslo',
             contentType: 'contacts:company',
           },
         },
@@ -60,7 +60,7 @@ const companyRequest = async (subdomain, config, action, updateCode, doc) => {
         action: 'fields.findOne',
         data: {
           query: {
-            text: 'city',
+            text: 'město',
             contentType: 'contacts:company',
           },
         },
@@ -155,7 +155,7 @@ const customerRequest = async (subdomain, config, action, updateCode, doc) => {
         action: 'fields.findOne',
         data: {
           query: {
-            text: 'post code',
+            text: 'směrovací číslo',
             contentType: 'contacts:customer',
           },
         },
@@ -174,7 +174,7 @@ const customerRequest = async (subdomain, config, action, updateCode, doc) => {
         action: 'fields.findOne',
         data: {
           query: {
-            text: 'city',
+            text: 'město',
             contentType: 'contacts:customer',
           },
         },

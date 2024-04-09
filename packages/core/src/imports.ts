@@ -4,7 +4,7 @@ import { sendFormsMessage } from './messageBroker';
 
 const IMPORT_EXPORT_TYPES = [
   {
-    text: 'Team member',
+    text: 'Člen týmu',
     contentType: 'user',
     icon: 'user-square',
   },

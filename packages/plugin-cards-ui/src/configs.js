@@ -29,42 +29,42 @@ module.exports = {
   selectRelation: './selectRelation',
   menus: [
     {
-      text: 'Sales Pipeline',
+      text: 'Prodejní potrubí',
       url: '/deal',
       icon: 'icon-piggy-bank',
       location: 'mainNavigation',
       permission: 'showDeals'
     },
     {
-      text: 'Purchases Pipeline',
+      text: 'Nákupní potrubí',
       url: '/purchase',
       icon: 'icon-bag-alt',
       location: 'mainNavigation',
       permission: 'showPurchases'
     },
     {
-      text: 'Task',
+      text: 'Úkol',
       url: '/task',
       icon: 'icon-file-check-alt',
       location: 'mainNavigation',
       permission: 'showTasks'
     },
     {
-      text: 'Ticket',
+      text: 'Lístek',
       url: '/ticket',
       icon: 'icon-ticket',
       location: 'mainNavigation',
       permission: 'showTickets'
     },
     {
-      text: 'Growth Hacking',
+      text: 'hackování růstu',
       url: '/growthHack',
       icon: 'icon-idea',
       location: 'mainNavigation',
       permission: 'showGrowthHacks'
     },
     {
-      text: 'Sales Pipelines',
+      text: 'Prodejní potrubí',
       to: '/settings/boards/deal',
       image: '/images/icons/saashq-25.png',
       location: 'settings',
@@ -87,7 +87,7 @@ module.exports = {
       ]
     },
     {
-      text: 'Purchases Pipelines',
+      text: 'Nákupní potrubí',
       to: '/settings/boards/purchase',
       image: '/images/icons/saashq-25.png',
       location: 'settings',
@@ -110,7 +110,7 @@ module.exports = {
       ]
     },
     {
-      text: 'Task Pipelines',
+      text: 'Potrubí úloh',
       to: '/settings/boards/task',
       image: '/images/icons/saashq-13.svg',
       location: 'settings',
@@ -134,7 +134,7 @@ module.exports = {
       ]
     },
     {
-      text: 'Ticket Pipelines',
+      text: 'Vstupenky',
       to: '/settings/boards/ticket',
       image: '/images/icons/saashq-19.svg',
       location: 'settings',
@@ -157,7 +157,7 @@ module.exports = {
       ]
     },
     {
-      text: 'Growth Hacking Templates',
+      text: 'Šablony pro hackování růstu',
       to: '/settings/boards/growthHackTemplate',
       image: '/images/icons/saashq-12.svg',
       location: 'settings',

@@ -1,6 +1,6 @@
 import {
   ICommonFormProps,
-  ICommonListProps
+  ICommonListProps,
 } from '@saashq/ui-settings/src/common/types';
 import { mutations, queries } from '../graphql';
 
@@ -32,14 +32,14 @@ class TemplateListContainer extends React.Component<Props> {
     client
       .mutate({
         mutation: gql(mutations.pipelineTemplatesDuplicate),
-        variables: { _id: id }
+        variables: { _id: id },
       })
       .then(() => {
         Alert.success('Successfully duplicated a template');
 
         this.props.refetch();
       })
-      .catch(e => {
+      .catch((e) => {
         Alert.error(e.message);
       });
   };
@@ -50,7 +50,7 @@ class TemplateListContainer extends React.Component<Props> {
 }
 
 export default commonListComposer<Props>({
-  text: 'growth hack template',
+  text: 'šablona pro hackování růstu',
   label: 'pipelineTemplates',
   stringEditMutation: mutations.pipelineTemplatesEdit,
   stringAddMutation: mutations.pipelineTemplatesAdd,
@@ -62,27 +62,27 @@ export default commonListComposer<Props>({
         notifyOnNetworkStatusChange: true,
         variables: {
           ...generatePaginationParams(queryParams),
-          type: 'growthHack'
-        }
+          type: 'growthHack',
+        },
       };
-    }
+    },
   }),
 
   gqlTotalCountQuery: graphql(gql(queries.totalCount), {
-    name: 'totalCountQuery'
+    name: 'totalCountQuery',
   }),
 
   gqlAddMutation: graphql(gql(mutations.pipelineTemplatesAdd), {
-    name: 'addMutation'
+    name: 'addMutation',
   }),
 
   gqlEditMutation: graphql(gql(mutations.pipelineTemplatesEdit), {
-    name: 'editMutation'
+    name: 'editMutation',
   }),
 
   gqlRemoveMutation: graphql(gql(mutations.pipelineTemplatesRemove), {
-    name: 'removeMutation'
+    name: 'removeMutation',
   }),
 
-  ListComponent: TemplateListContainer
+  ListComponent: TemplateListContainer,
 });

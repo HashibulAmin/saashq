@@ -13,7 +13,7 @@ module.exports = {
   },
   menus: [
     {
-      text: 'Sync Multi Erkhet',
+      text: 'Synchronizace Multi Erkhet',
       to: '/saashq-plugin-multi-erkhet/settings/general',
       image: '/images/icons/saashq-04.svg',
       location: "settings",
@@ -22,7 +22,7 @@ module.exports = {
       permission: "multiErkhetConfig",
     },
     {
-      text: 'Sync Multi Erkhet',
+      text: 'Synchronizace Multi Erkhet',
       url: '/multi-erkhet-history',
       icon: 'icon-file-check-alt',
       location: "mainNavigation",

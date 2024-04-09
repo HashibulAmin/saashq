@@ -15,7 +15,7 @@ module.exports = {
   contactDetailContent: './contactDetailContent',
   menus: [
     {
-      text: 'System Logs',
+      text: 'Systémové protokoly',
       to: '/settings/logs',
       image: '/images/icons/saashq-33.png',
       location: 'settings',
@@ -25,7 +25,7 @@ module.exports = {
       permissions: []
     },
     {
-      text: 'Email Delivery Logs',
+      text: 'Záznamy o doručení e-mailu',
       to: '/settings/emailDelivery',
       image: '/images/icons/saashq-27.png',
       location: 'settings',

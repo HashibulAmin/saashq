@@ -15,7 +15,7 @@ module.exports = {
   reportsCommonFormButton: './reportsCommonFormButton',
   menus: [
     {
-      text: 'Reports',
+      text: 'Zprávy',
       to: '/reports',
       image: '/images/icons/saashq-18.svg',
       location: 'settings',

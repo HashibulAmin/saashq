@@ -5,7 +5,7 @@ import {
   FormControl,
   FormGroup,
   SelectTeamMembers,
-  __
+  __,
 } from '@saashq/ui/src';
 import { ModalFooter } from '@saashq/ui/src/styles/main';
 import { IButtonMutateProps, IFormProps } from '@saashq/ui/src/types';
@@ -27,7 +27,7 @@ class Form extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      operation: props?.operation || {}
+      operation: props?.operation || {},
     };
 
     this.renderForm = this.renderForm.bind(this);
@@ -42,20 +42,20 @@ class Form extends React.Component<Props, State> {
     const { operation } = this.state;
     const { renderButton, closeModal } = this.props;
 
-    const onChangeParent = value => {
+    const onChangeParent = (value) => {
       operation.parentId = value;
 
       this.setState({ operation });
     };
 
-    const handleChange = e => {
+    const handleChange = (e) => {
       const { operation } = this.state;
       const { name, value } = e.currentTarget as HTMLInputElement;
       operation[name] = value;
       this.setState({ operation });
     };
 
-    const handleTeamMember = values => {
+    const handleTeamMember = (values) => {
       this.setState({ operation: { ...operation, teamMemberIds: values } });
     };
 
@@ -95,7 +95,7 @@ class Form extends React.Component<Props, State> {
           <ControlLabel>{__('Team Members')}</ControlLabel>
           <SelectTeamMembers
             name="teamMemberIds"
-            label="Choose team members"
+            label="Vyberte členy týmu"
             initialValue={operation?.teamMemberIds}
             onSelect={handleTeamMember}
             multi={true}
@@ -105,7 +105,7 @@ class Form extends React.Component<Props, State> {
           <ControlLabel>{__('Parent')}</ControlLabel>
           <SelectOperations
             name="parentId"
-            label="Choose Operation"
+            label="Vyberte operaci"
             multi={false}
             initialValue={operation?.parentId}
             onSelect={onChangeParent}
@@ -115,11 +115,11 @@ class Form extends React.Component<Props, State> {
         <ModalFooter>
           <Button btnStyle="simple">{__('Close')}</Button>
           {renderButton({
-            text: 'Operation',
+            text: 'Úkon',
             values: this.generateDoc(formProps.values),
             callback: closeModal,
             isSubmitted: formProps.isSubmitted,
-            object: this.props.operation
+            object: this.props.operation,
           })}
         </ModalFooter>
       </>

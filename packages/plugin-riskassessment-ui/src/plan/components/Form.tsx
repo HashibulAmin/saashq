@@ -5,13 +5,13 @@ import {
   PageHeader,
   Step,
   Steps,
-  __
+  __,
 } from '@saashq/ui/src';
 import { StepWrapper } from '@saashq/ui/src/components/step/styles';
 import {
   IButtonMutateProps,
   IFormProps,
-  IRouterProps
+  IRouterProps,
 } from '@saashq/ui/src/types';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -43,7 +43,7 @@ class Form extends React.Component<Props, State> {
 
     this.state = {
       plan: props?.plan || {},
-      useGroup: false
+      useGroup: false,
     };
 
     this.renderContent = this.renderContent.bind(this);
@@ -78,7 +78,7 @@ class Form extends React.Component<Props, State> {
     const updatedProps = {
       ...schedule,
       history,
-      plan
+      plan,
     };
 
     return <SchedulesConfig {...updatedProps} />;
@@ -87,23 +87,23 @@ class Form extends React.Component<Props, State> {
   renderContent(formProps: IFormProps) {
     const { renderButton, plan, forceStart } = this.props;
 
-    const saveSteps = stepNumber => {
+    const saveSteps = (stepNumber) => {
       const fieldName = plan ? plan._id : 'create';
       const steps = JSON.parse(
-        localStorage.getItem('risk_assessment_plans_active_step') || '{}'
+        localStorage.getItem('risk_assessment_plans_active_step') || '{}',
       );
 
       const updateSteps = { ...steps, [fieldName]: stepNumber };
 
       localStorage.setItem(
         'risk_assessment_plans_active_step',
-        JSON.stringify(updateSteps)
+        JSON.stringify(updateSteps),
       );
     };
 
     const activeStep = (): number => {
       const steps = JSON.parse(
-        localStorage.getItem('risk_assessment_plans_active_step') || '{}'
+        localStorage.getItem('risk_assessment_plans_active_step') || '{}',
       );
 
       const fieldName = plan ? plan._id : 'create';
@@ -115,7 +115,7 @@ class Form extends React.Component<Props, State> {
       <StepWrapper>
         <Steps active={activeStep()}>
           <Step
-            title="General"
+            title="Všeobecné"
             img="/images/icons/saashq-24.svg"
             noButton={plan?.status === 'archived'}
             additionalButton={
@@ -131,9 +131,9 @@ class Form extends React.Component<Props, State> {
                 )}
                 {renderButton({
                   ...formProps,
-                  text: 'Plan',
+                  text: 'Plán',
                   values: this.generateDoc(),
-                  object: plan
+                  object: plan,
                 })}
               </>
             }
@@ -144,7 +144,7 @@ class Form extends React.Component<Props, State> {
 
           {this.props.plan && (
             <Step
-              title="Schedules"
+              title="Jízdní řády"
               img="/images/icons/saashq-21.svg"
               noButton
               onClick={saveSteps}
@@ -156,7 +156,7 @@ class Form extends React.Component<Props, State> {
             <Step
               img="/images/icons/saashq-33.png"
               onClick={saveSteps}
-              title="Performance"
+              title="Výkon"
               noButton
             >
               <PerformanceContent plan={plan} />

@@ -326,9 +326,7 @@ class Search extends React.Component<
             size="full"
             extra={
               <Suggest>
-                {__(
-                  'Zdá se, že na základě vašeho vyhledávání nemůžeme najít žádné výsledky',
-                )}
+                {__('Zdá se, že na základě vašeho vyhledávání nemůžeme najít žádné výsledky')}
               </Suggest>
             }
           />

@@ -10,7 +10,7 @@ import { Alert } from '@saashq/ui/src/utils';
 import React from 'react';
 import {
   ICommonFormProps,
-  ICommonListProps
+  ICommonListProps,
 } from '@saashq/ui-settings/src/common/types';
 import { IButtonMutateProps } from '@saashq/ui/src/types';
 
@@ -42,14 +42,14 @@ class EmailListContainer extends React.Component<Props> {
     client
       .mutate({
         mutation: gql(mutations.emailTemplatesDuplicate),
-        variables: { _id: id }
+        variables: { _id: id },
       })
       .then(() => {
         Alert.success('Successfully duplicated a template');
 
         this.props.refetch();
       })
-      .catch(e => {
+      .catch((e) => {
         Alert.error(e.message);
       });
   };
@@ -60,8 +60,8 @@ class EmailListContainer extends React.Component<Props> {
 }
 
 export default commonListComposer<Props>({
-  text: 'email template',
-  label: 'emailTemplates',
+  text: 'šablona e-mailu',
+  label: 'šablona e-mailu',
   stringEditMutation: mutations.emailTemplatesEdit,
   stringAddMutation: mutations.emailTemplatesAdd,
 
@@ -73,29 +73,29 @@ export default commonListComposer<Props>({
         variables: {
           searchValue: queryParams.searchValue,
           status: queryParams.status,
-          ...generatePaginationParams(queryParams)
-        }
+          ...generatePaginationParams(queryParams),
+        },
       };
-    }
+    },
   }),
   gqlTotalCountQuery: graphql(gql(queries.totalCount), {
     name: 'totalCountQuery',
     options: ({ queryParams }: { queryParams: any }) => ({
       variables: {
-        searchValue: queryParams.searchValue
-      }
-    })
+        searchValue: queryParams.searchValue,
+      },
+    }),
   }),
   gqlAddMutation: graphql(gql(mutations.emailTemplatesAdd), {
-    name: 'addMutation'
+    name: 'addMutation',
   }),
 
   gqlEditMutation: graphql(gql(mutations.emailTemplatesEdit), {
-    name: 'editMutation'
+    name: 'editMutation',
   }),
 
   gqlRemoveMutation: graphql(gql(mutations.emailTemplatesRemove), {
-    name: 'removeMutation'
+    name: 'removeMutation',
   }),
-  ListComponent: EmailListContainer
+  ListComponent: EmailListContainer,
 });

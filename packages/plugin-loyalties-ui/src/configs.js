@@ -18,14 +18,14 @@ module.exports = {
   automation: './automation',
   menus: [
     {
-      text: 'Loyalties',
+      text: 'Loajalita',
       url: '/vouchers',
       icon: 'icon-piggybank',
       location: 'mainNavigation',
       permission: 'showLoyalties',
     },
     {
-      text: 'Loyalties config',
+      text: 'Konfigurace loajalit',
       to: '/saashq-plugin-loyalty/settings/general',
       image: '/images/icons/saashq-16.svg',
       location: 'settings',
@@ -36,21 +36,21 @@ module.exports = {
   ],
   customerRightSidebarSection: [
     {
-      text: 'customerSection',
+      text: 'zákaznická sekce',
       component: './customerSidebar',
       scope: 'loyalties',
     },
   ],
   companyRightSidebarSection: [
     {
-      text: 'companySection',
+      text: 'firemní sekce',
       component: './companySidebar',
       scope: 'loyalties',
     },
   ],
   userRightSidebarSection: [
     {
-      text: 'userSection',
+      text: 'uživatelská sekce',
       component: './userSidebar',
       scope: 'loyalties',
     },

@@ -7,7 +7,7 @@ import {
   FormGroup,
   SelectTeamMembers,
   __,
-  loadDynamicComponent
+  loadDynamicComponent,
 } from '@saashq/ui/src';
 import { ModalFooter } from '@saashq/ui/src/styles/main';
 import { SelectActions, generateTeamMemberParams } from '../../common/utils';
@@ -55,8 +55,8 @@ class RequestForm extends React.Component<Props, State> {
         scope: '',
         action: '',
         userIds: [],
-        params: {}
-      }
+        params: {},
+      },
     };
 
     this.renderContent = this.renderContent.bind(this);
@@ -65,7 +65,7 @@ class RequestForm extends React.Component<Props, State> {
   generateDocs() {
     const { contentTypeId, contentType } = this.props;
     const {
-      request: { action, userIds, params, scope }
+      request: { action, userIds, params, scope },
     } = this.state;
 
     return {
@@ -74,7 +74,7 @@ class RequestForm extends React.Component<Props, State> {
       action,
       userIds,
       scope,
-      params: JSON.stringify(params)
+      params: JSON.stringify(params),
     };
   }
 
@@ -96,14 +96,14 @@ class RequestForm extends React.Component<Props, State> {
       initialProps: {
         type: contentType,
         itemId: contentTypeId,
-        ...request?.params
+        ...request?.params,
       },
       source: {
         ...object,
         type: contentType,
-        pipelineId: object.pipeline?._id
+        pipelineId: object.pipeline?._id,
       },
-      onChange: params => handleSelect(params, 'params')
+      onChange: (params) => handleSelect(params, 'params'),
     };
 
     if (request?.scope === 'cards') {
@@ -113,10 +113,10 @@ class RequestForm extends React.Component<Props, State> {
     return loadDynamicComponent(
       'grantAction',
       {
-        ...updatedProps
+        ...updatedProps,
       },
       false,
-      request?.scope
+      request?.scope,
     );
   }
 
@@ -147,8 +147,8 @@ class RequestForm extends React.Component<Props, State> {
           contentType,
           contentTypeId,
           action: value,
-          scope
-        })
+          scope,
+        }),
       });
     };
 
@@ -192,12 +192,12 @@ class RequestForm extends React.Component<Props, State> {
           )}
           {this.props?.renderButton({
             name: 'grant',
-            text: 'Grant Request',
+            text: 'Žádost o grant',
             values: this.generateDocs(),
             isSubmitted: props.isSubmitted,
             object: !!Object.keys(this.props.request || {}).length
               ? request
-              : null
+              : null,
           })}
         </ModalFooter>
       </>

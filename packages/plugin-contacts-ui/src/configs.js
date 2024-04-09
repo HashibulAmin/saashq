@@ -21,7 +21,7 @@ module.exports = {
   contactDetailHeader: './contactDetailHeader',
   menus: [
     {
-      text: 'Contacts',
+      text: 'Kontakty',
       url: '/contacts/customer',
       icon: 'icon-users',
       location: 'mainNavigation',

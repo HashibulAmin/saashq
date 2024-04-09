@@ -13,7 +13,7 @@ module.exports = {
   },
   menus: [
     {
-      text: 'Product Places',
+      text: 'Produktová místa',
       to: '/saashq-plugin-product-places/settings/stage',
       image: '/images/icons/saashq-04.svg',
       location: "settings",

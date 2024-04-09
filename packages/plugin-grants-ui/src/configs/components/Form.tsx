@@ -7,7 +7,7 @@ import {
   FormControl,
   FormGroup,
   __,
-  loadDynamicComponent
+  loadDynamicComponent,
 } from '@saashq/ui/src';
 import { SelectActions } from '../../common/utils';
 import { ModalFooter } from '@saashq/ui/src/styles/main';
@@ -35,7 +35,7 @@ class ConfigForm extends React.Component<Props, State> {
       name: '',
       action: '',
       params: {},
-      config: {}
+      config: {},
     };
 
     this.renderForm = this.renderForm.bind(this);
@@ -43,7 +43,7 @@ class ConfigForm extends React.Component<Props, State> {
   handleSelect = (value, name, scope?) => {
     const updatedState = {
       ...this.state,
-      [name]: value
+      [name]: value,
     };
 
     if (scope) {
@@ -61,7 +61,7 @@ class ConfigForm extends React.Component<Props, State> {
       scope,
       action,
       params: JSON.stringify(params),
-      config: JSON.stringify(config)
+      config: JSON.stringify(config),
     };
 
     if (this.props.config) {
@@ -76,7 +76,7 @@ class ConfigForm extends React.Component<Props, State> {
 
     const updatedProps = {
       ...this.state,
-      handleSelect: this.handleSelect
+      handleSelect: this.handleSelect,
     };
 
     if (scope === 'cards') {
@@ -88,10 +88,10 @@ class ConfigForm extends React.Component<Props, State> {
       {
         action: action,
         initialProps: updatedProps,
-        handleSelect: params => this.handleSelect(params, 'params')
+        handleSelect: (params) => this.handleSelect(params, 'params'),
       },
       false,
-      scope
+      scope,
     );
   }
 
@@ -99,7 +99,7 @@ class ConfigForm extends React.Component<Props, State> {
     const { closeModal, renderButton, config } = this.props;
     const { action, params, name } = this.state;
 
-    const handleChange = e => {
+    const handleChange = (e) => {
       const { value } = e.currentTarget as HTMLInputElement;
 
       this.setState({ name: value });
@@ -120,7 +120,7 @@ class ConfigForm extends React.Component<Props, State> {
         <FormGroup>
           <ControlLabel required>{__('Actions')}</ControlLabel>
           <SelectActions
-            label="Choose a action"
+            label="Vyberte akci"
             name="action"
             initialValue={action}
             onSelect={this.handleSelect}
@@ -133,10 +133,10 @@ class ConfigForm extends React.Component<Props, State> {
           </Button>
           {renderButton({
             name: 'grant',
-            text: 'Grant config',
+            text: 'Udělit konfiguraci',
             isSubmitted: formProps.isSubmitted,
             values: this.generateDoc(),
-            object: config
+            object: config,
           })}
         </ModalFooter>
       </>

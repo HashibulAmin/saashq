@@ -14,7 +14,7 @@ module.exports = {
   },
   menus: [
     {
-      text: 'Loan Contract',
+      text: 'Smlouva o půjčce',
       url: '/saashq-plugin-loan/contract-list',
       icon: 'icon-medal',
       location: 'mainNavigation',
@@ -22,7 +22,7 @@ module.exports = {
       permission: 'showContracts'
     },
     {
-      text: 'Contract types',
+      text: 'Typy smluv',
       image: '/images/icons/saashq-01.svg',
       to: '/saashq-plugin-loan/contract-types/',
       action: 'loanConfig',
@@ -32,7 +32,7 @@ module.exports = {
       permission: 'showContracts'
     },
     {
-      text: 'Insurance types',
+      text: 'Typy pojištění',
       image: '/images/icons/saashq-13.svg',
       to: '/saashq-plugin-loan/insurance-types/',
       action: 'loanConfig',
@@ -42,7 +42,7 @@ module.exports = {
       permission: 'manageInsuranceTypes'
     },
     {
-      text: 'Loan config',
+      text: 'Konfigurace půjčky',
       image: '/images/icons/saashq-16.svg',
       to: '/saashq-plugin-loan/holiday-settings/',
       action: 'loanConfig',
@@ -52,7 +52,7 @@ module.exports = {
       permission: 'manageLoanConfigs'
     },
     {
-      text: 'Transaction',
+      text: 'Transakce',
       image: '/images/icons/saashq-16.svg',
       to: '/saashq-plugin-loan/transaction-list',
       action: 'transaction',
@@ -63,21 +63,21 @@ module.exports = {
   ],
   customerRightSidebarSection: [
     {
-      text: 'customerRightSidebarSection',
+      text: 'Sekce pravého bočního panelu zákazníka',
       component: './contractSection',
       scope: 'loans'
     }
   ],
   companyRightSidebarSection: [
     {
-      text: 'companyRightSidebarSection',
+      text: 'Sekce pravého bočního panelu společnosti',
       component: './contractSection',
       scope: 'loans'
     }
   ],
   dealRightSidebarSection: [
     {
-      text: 'dealRightSidebarSection',
+      text: 'nabídka Pravý postranní panel',
       component: './contractSection',
       scope: 'loans'
     }

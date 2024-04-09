@@ -21,7 +21,7 @@ module.exports = {
   ],
   menus: [
     {
-      text: 'Assets',
+      text: 'Aktiva',
       to: '/settings/assets/',
       image: '/images/icons/saashq-18.svg',
       location: 'settings',
@@ -30,7 +30,7 @@ module.exports = {
       permissions: ['showAssets', 'manageAssets']
     },
     {
-      text: 'Asset & Movements',
+      text: 'Aktiva a pohyby',
       url: '/asset-movements',
       icon: 'icon-piggybank',
       location: 'mainNavigation',

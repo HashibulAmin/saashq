@@ -1,7 +1,7 @@
 {
   "name": "saashq",
   "version": "1.5.5",
-  "description": "Source available experience management infrastructure. Pioneering the future of experiences with XOS (Experience Operating System)",
+  "description": "Source available experience management infrastructure. Pioneering the future of experiences with SHQ (Experience Operating System)",
   "homepage": "https://saashq.org",
   "repository": "https://github.com/saashq-org/saashq",
   "bugs": "https://github.com/saashq-org/saashq/issues",

@@ -17,7 +17,7 @@ module.exports = {
   teamMemberSidebarComp: './teamMemberSidebarComp',
   menus: [
     {
-      text: 'Segments',
+      text: 'Segmenty',
       url: '/segments',
       icon: 'icon-chart-pie-alt',
       location: 'mainNavigation',

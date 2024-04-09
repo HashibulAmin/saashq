@@ -43,7 +43,7 @@ class Lists extends React.Component<Props> {
     if (!articles || articles.length === 0) {
       return (
         <Card fullHeight={true}>
-          <EmptyContent text="There are no articles!" />
+          <EmptyContent text="Nejsou žádné články!" />
         </Card>
       );
     }

@@ -14,7 +14,7 @@ module.exports = {
   },
   menus: [
     {
-      text: 'Meetings',
+      text: 'Setkání',
       url: '/meetings/myCalendar',
       icon: 'icon-calender',
       location: 'mainNavigation'
@@ -22,7 +22,7 @@ module.exports = {
   ],
   dealRightSidebarSection: [
     {
-      text: 'meetingSection',
+      text: 'schůze sekce',
       component: './meetingSideBarSection',
       scope: 'meetings'
     }

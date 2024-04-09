@@ -14,14 +14,14 @@ module.exports = {
   },
   menus: [
     {
-      text: 'Forums',
+      text: 'Fóra',
       url: '/forums',
       icon: 'icon-idea',
       location: 'mainNavigation',
       // scope: 'forum'
     },
     {
-      text: 'Categories',
+      text: 'Kategorie',
       to: '/forums/categories',
       image: '/images/icons/saashq-18.svg',
       location: 'settings',
@@ -30,7 +30,7 @@ module.exports = {
       permissions: [],
     },
     {
-      text: 'Permission Groups',
+      text: 'Skupiny oprávnění',
       to: '/forums/permission-groups',
       image: '/images/icons/saashq-18.svg',
       location: 'settings',
@@ -39,7 +39,7 @@ module.exports = {
       permissions: [],
     },
     {
-      text: 'Subscription Products',
+      text: 'Předplatné produkty',
       to: '/forums/subscription-products',
       image: '/images/icons/saashq-18.svg',
       location: 'settings',

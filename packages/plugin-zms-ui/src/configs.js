@@ -19,7 +19,7 @@ module.exports = {
       "location":"mainNavigation"
     },
     {
-      text: 'Main config',
+      text: 'Hlavní konfigurace',
       image: '/images/icons/saashq-16.svg',
       to: '/plugin-zms/settings',
       action: 'mainConfig',

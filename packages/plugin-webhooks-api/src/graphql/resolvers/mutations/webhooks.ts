@@ -29,7 +29,7 @@ const webhookMutations = {
       },
       method: 'post',
       body: JSON.stringify({
-        text: 'You have successfully connected saashq webhook',
+        text: 'Úspěšně jste připojili webhook SaasHQ',
       }),
     })
       .then(async () => {
@@ -52,7 +52,7 @@ const webhookMutations = {
         type: WEBHOOK,
         newData: webhook,
         object: webhook,
-        description: `${webhook.url} has been created`,
+        description: `${webhook.url} byl vytvořen`,
       },
       user,
     );
@@ -78,7 +78,7 @@ const webhookMutations = {
       },
       method: 'post',
       body: JSON.stringify({
-        text: 'You have successfully connected saashq webhook',
+        text: 'Úspěšně jste připojili webhook SaasHQ',
       }),
     })
       .then(async () => {
@@ -101,7 +101,7 @@ const webhookMutations = {
         type: WEBHOOK,
         object: webhook,
         newData: doc,
-        description: `${webhook.url} has been edited`,
+        description: `${webhook.url} byl upraven`,
       },
       user,
     );
@@ -125,7 +125,7 @@ const webhookMutations = {
       {
         type: WEBHOOK,
         object: webhook,
-        description: `${webhook.url} has been removed`,
+        description: `${webhook.url} byla odstraněna`,
       },
       user,
     );

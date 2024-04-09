@@ -13,7 +13,7 @@ module.exports = {
   },
   menus: [
     {
-      text: 'Insight',
+      text: 'Porozumění',
       url: '/insight',
       icon: 'icon-reload',
       location: 'mainNavigation'

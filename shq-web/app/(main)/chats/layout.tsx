@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Chats',
-  description: 'Employee Experience Management - Chats',
+  description: 'Řízení zaměstnaneckých zkušeností – chaty',
 }
 
 interface ILayoutProps {

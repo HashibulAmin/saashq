@@ -113,8 +113,8 @@ function OptionalContent({ action, handle }: Props) {
           text: input.text,
           subtitle: `Input expires in: ${input.value} ${input.timeType}`,
           buttons: [
-            { _id: botId, text: 'If Reply' },
-            { _id: 'ifNotReply', text: 'If Not Reply' },
+            { _id: botId, text: 'Pokud Odpovědět' },
+            { _id: 'ifNotReply', text: 'Pokud ne Odpovězte' },
           ],
         });
 

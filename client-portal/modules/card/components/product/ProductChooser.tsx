@@ -69,7 +69,7 @@ class ProductChooser extends React.Component<Props, State> {
 
   search = e => {
     if (this.timer) {
-      clearTimeout(this.timer);
+      clearTimeout(this.timer as NodeJS.Timeout);
     }
 
     const { search } = this.props;

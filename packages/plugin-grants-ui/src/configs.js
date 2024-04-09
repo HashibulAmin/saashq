@@ -14,13 +14,13 @@ module.exports = {
   },
   menus: [
     {
-      text: 'Grants',
+      text: 'Granty',
       url: '/grants/requests',
       icon: 'icon-followers',
       location: 'mainNavigation'
     },
     {
-      text: 'Grants Configs',
+      text: 'Uděluje konfigurace',
       to: '/settings/grants-configs',
       image: '/images/icons/saashq-18.svg',
       location: 'settings',
@@ -29,7 +29,7 @@ module.exports = {
   ],
   dealRightSidebarSection: [
     {
-      text: 'grantsSection',
+      text: 'sekce grantů',
       component: './cardSideBarSection',
       scope: 'grants',
       withDetail: true
@@ -37,7 +37,7 @@ module.exports = {
   ],
   ticketRightSidebarSection: [
     {
-      text: 'grantsSection',
+      text: 'sekce grantů',
       component: './cardSideBarSection',
       scope: 'grants',
       withDetail: true
@@ -45,7 +45,7 @@ module.exports = {
   ],
   taskRightSidebarSection: [
     {
-      text: 'grantsSection',
+      text: 'sekce grantů',
       component: './cardSideBarSection',
       scope: 'grants',
       withDetail: true

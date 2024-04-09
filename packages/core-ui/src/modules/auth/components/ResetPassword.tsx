@@ -16,13 +16,13 @@ class ResetPassword extends React.Component<Props, { newPassword: string }> {
     this.state = { newPassword: '' };
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
 
     this.props.resetPassword(this.state.newPassword);
   };
 
-  handlePasswordChange = e => {
+  handlePasswordChange = (e) => {
     e.preventDefault();
 
     this.setState({ newPassword: e.target.value });
@@ -31,18 +31,18 @@ class ResetPassword extends React.Component<Props, { newPassword: string }> {
   render() {
     return (
       <AuthBox>
-        <h2>{__('Set your new password')}</h2>
+        <h2>{__('Nastavte si nové heslo')}</h2>
         <form onSubmit={this.handleSubmit}>
           <FormGroup>
             <FormControl
               type="password"
-              placeholder={__('new password')}
+              placeholder={__('nové heslo')}
               required={true}
               onChange={this.handlePasswordChange}
             />
           </FormGroup>
           <Button btnStyle="success" type="submit" block={true}>
-            Change password
+            Změnit heslo
           </Button>
         </form>
       </AuthBox>

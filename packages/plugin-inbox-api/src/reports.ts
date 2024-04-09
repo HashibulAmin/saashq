@@ -160,7 +160,7 @@ const getWeeks = (startDate: Date, endDate: Date) => {
 
 // integrationTypess
 
-// XOS messenger
+// SHQ messenger
 // email
 // Call
 // CallPro
@@ -189,7 +189,7 @@ const CUSTOM_DATE_FREQUENCY_TYPES = [
 ];
 
 const INTEGRATION_TYPES = [
-  { label: 'XOS Messenger', value: 'messenger' },
+  { label: 'SHQ Messenger', value: 'messenger' },
   { label: 'Email', value: 'email' },
   { label: 'Call', value: 'calls' },
   { label: 'Callpro', value: 'callpro' },

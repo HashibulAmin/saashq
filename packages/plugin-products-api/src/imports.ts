@@ -3,10 +3,10 @@ import { sendFormsMessage, sendTagsMessage } from './messageBroker';
 
 export const IMPORT_EXPORT_TYPES = [
   {
-    text: 'Product & Services',
+    text: 'Produkt a služby',
     contentType: 'product',
-    icon: 'server-alt'
-  }
+    icon: 'server-alt',
+  },
 ];
 export default {
   importExportTypes: IMPORT_EXPORT_TYPES,
@@ -28,7 +28,7 @@ export default {
             delete doc.code;
             await models.Products.updateOne(
               { _id: product._id },
-              { $set: { ...doc } }
+              { $set: { ...doc } },
             );
             updated++;
           } else {
@@ -60,7 +60,7 @@ export default {
     // Iterating field values
     for (const fieldValue of result) {
       const doc: any = {
-        customFieldsData: []
+        customFieldsData: [],
       };
 
       let colIndex: number = 0;
@@ -76,7 +76,7 @@ export default {
             {
               doc.customFieldsData.push({
                 field: property.id,
-                value: fieldValue[colIndex]
+                value: fieldValue[colIndex],
               });
 
               doc.customFieldsData = await sendFormsMessage({
@@ -85,7 +85,7 @@ export default {
                 data: doc.customFieldsData,
                 isRPC: true,
                 defaultValue: doc.customFieldsData,
-                timeout: 60 * 1000 // 1 minute
+                timeout: 60 * 1000, // 1 minute
               });
             }
             break;
@@ -93,7 +93,7 @@ export default {
           case 'categoryName':
             {
               const category = await models.ProductCategories.findOne({
-                name: { $regex: new RegExp(`^${value}$`, 'i') }
+                name: { $regex: new RegExp(`^${value}$`, 'i') },
               });
 
               doc.categoryId = category ? category._id : '';
@@ -109,7 +109,7 @@ export default {
                 subdomain,
                 action: 'findOne',
                 data: { name: tagName, type: `products:product` },
-                isRPC: true
+                isRPC: true,
               });
 
               if (!tag) {
@@ -117,7 +117,7 @@ export default {
                   subdomain,
                   action: 'createTag',
                   data: { name: tagName, type: `products:product` },
-                  isRPC: true
+                  isRPC: true,
                 });
               }
 
@@ -131,7 +131,7 @@ export default {
               doc.barcodes = value
                 .replace(/\s/g, '')
                 .split(',')
-                .filter(br => br);
+                .filter((br) => br);
             }
             break;
 
@@ -182,7 +182,7 @@ export default {
         subUoms.push({
           id: Math.random(),
           uom: uom,
-          ratio: Number(ratios[ind] || 1)
+          ratio: Number(ratios[ind] || 1),
         });
         ind += 1;
       }
@@ -192,5 +192,5 @@ export default {
     }
 
     return bulkDoc;
-  }
+  },
 };

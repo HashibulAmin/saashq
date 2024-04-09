@@ -12,7 +12,7 @@ module.exports = {
   },
   menus: [
     {
-      text: 'Shq core',
+      text: 'Shq jádro',
       to: '/saashq-plugin-shq/home',
       image: '/images/icons/saashq-30.png',
       location: 'settings',

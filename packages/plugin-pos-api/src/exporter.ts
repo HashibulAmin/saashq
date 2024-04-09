@@ -354,7 +354,7 @@ const fillPosOrderItemValue = async (subdomain, column, order) => {
 
 export const IMPORT_EXPORT_TYPES = [
   {
-    text: 'Pos Orders',
+    text: 'Pos objednávky',
     contentType: 'pos',
     icon: 'server-alt',
   },

@@ -27,7 +27,7 @@ class Step extends React.Component<Props, State> {
 
     this.state = {
       currentMode: undefined,
-      currentField: undefined
+      currentField: undefined,
     };
   }
 
@@ -37,14 +37,14 @@ class Step extends React.Component<Props, State> {
 
     let duplicated: boolean = false;
 
-    fields.forEach(fld => {
+    fields.forEach((fld) => {
       if (fld.code === field.code) {
         duplicated = true;
       }
     });
 
     if (duplicated) {
-      return Alert.error('Sorry field code duplicated!');
+      return Alert.error('Omlouváme se, kód pole duplikován!');
     }
 
     let updatedFields = fields;
@@ -75,8 +75,8 @@ class Step extends React.Component<Props, State> {
           code: '',
           text: '',
           type: choice,
-          show: false
-        }
+          show: false,
+        },
       });
     };
 

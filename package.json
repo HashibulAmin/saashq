@@ -1,5 +1,5 @@
 {
-  "name": "saashq",
+  "name": "saashq-cs",
   "private": true,
   "version": "1.7.6",
   "workspaces": [

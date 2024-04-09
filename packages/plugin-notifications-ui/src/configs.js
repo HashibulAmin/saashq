@@ -16,7 +16,7 @@ module.exports = {
   automation: './automation',
   menus: [
     {
-      text: 'notifications',
+      text: 'oznámení',
       url: '/notifications',
       icon: 'icon-book-open',
       location: 'topNavigation',
@@ -24,7 +24,7 @@ module.exports = {
       component: './settings'
     },
     {
-      text: 'Notification Config',
+      text: 'Konfigurace oznámení',
       to: '/settings/notifications',
       image: '/images/icons/saashq-11.svg',
       location: 'settings',

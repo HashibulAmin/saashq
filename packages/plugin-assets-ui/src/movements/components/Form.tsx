@@ -9,13 +9,13 @@ import {
   ModalTrigger,
   SelectTeamMembers,
   Table,
-  __
+  __,
 } from '@saashq/ui/src';
 
 import {
   ContentColumn,
   ItemRow,
-  ItemText
+  ItemText,
 } from '@saashq/ui-cards/src/deals/styles';
 import SelectCompanies from '@saashq/ui-contacts/src/companies/containers/SelectCompanies';
 import SelectCustomers from '@saashq/ui-contacts/src/customers/containers/SelectCustomers';
@@ -24,7 +24,7 @@ import {
   DateContainer,
   FormColumn,
   FormWrapper,
-  ModalFooter
+  ModalFooter,
 } from '@saashq/ui/src/styles/main';
 import SelectBranches from '@saashq/ui/src/team/containers/SelectBranches';
 import SelectDepartments from '@saashq/ui/src/team/containers/SelectDepartments';
@@ -37,7 +37,7 @@ import { CommonFormGroup, CommonItemRow } from '../../common/utils';
 import {
   ContainerBox,
   MovementItemContainer,
-  MovementTableWrapper
+  MovementTableWrapper,
 } from '../../style';
 import AssetChooser from '../containers/Chooser';
 import { queries } from '../graphql';
@@ -78,7 +78,7 @@ class Form extends React.Component<Props, State> {
     const { detail, assetId } = props;
 
     const selectedItemsIds =
-      detail?.items && detail.items.map(item => item.assetId);
+      detail?.items && detail.items.map((item) => item.assetId);
 
     this.state = {
       variables: detail?.items || [],
@@ -87,7 +87,7 @@ class Form extends React.Component<Props, State> {
       movedAt: detail?.movedAt || '',
       currentItems: [assetId],
       general: {},
-      checkedItems: []
+      checkedItems: [],
     };
   }
 
@@ -101,15 +101,15 @@ class Form extends React.Component<Props, State> {
         departmentId,
         customerId,
         companyId,
-        teamMemberId
+        teamMemberId,
       }) => ({
         assetId,
         branchId,
         departmentId,
         customerId,
         companyId,
-        teamMemberId
-      })
+        teamMemberId,
+      }),
     );
     const doc = { items, description, movedAt };
     if (!_loadash.isEmpty(detail)) {
@@ -119,29 +119,29 @@ class Form extends React.Component<Props, State> {
   }
 
   assetChooser(props) {
-    const handleSelect = datas => {
-      const selectedItemsIds = datas.map(data => data._id);
+    const handleSelect = (datas) => {
+      const selectedItemsIds = datas.map((data) => data._id);
       client
         .query({
           query: gql(queries.itemsCurrentLocation),
           fetchPolicy: 'network-only',
-          variables: { assetIds: selectedItemsIds }
+          variables: { assetIds: selectedItemsIds },
         })
-        .then(res => {
+        .then((res) => {
           const { currentAssetMovementItems } = res.data;
           this.setState({ selectedItemsIds });
 
-          const selectedItems = datas.map(data => ({
+          const selectedItems = datas.map((data) => ({
             assetId: data._id,
             assetDetail: {
               _id: data._id,
-              name: data.name
-            }
+              name: data.name,
+            },
           }));
 
-          const newVariables = selectedItems.map(selectedItem => {
+          const newVariables = selectedItems.map((selectedItem) => {
             const newItem = currentAssetMovementItems.find(
-              item => item.assetId === selectedItem.assetId
+              (item) => item.assetId === selectedItem.assetId,
             );
             if (newItem) {
               return newItem;
@@ -156,7 +156,7 @@ class Form extends React.Component<Props, State> {
     const updatedProps = {
       ...props,
       handleSelect,
-      selectedAssetIds: this.state.selectedItemsIds
+      selectedAssetIds: this.state.selectedItemsIds,
     };
 
     return <AssetChooser {...updatedProps} />;
@@ -211,11 +211,11 @@ class Form extends React.Component<Props, State> {
       text = asset?.customer?.primaryEmail;
     }
 
-    const handleChange = selected => {
-      variables = variables.map(item =>
+    const handleChange = (selected) => {
+      variables = variables.map((item) =>
         item.assetId === asset.assetId
           ? { ...item, [field]: selected === '' ? null : selected }
-          : item
+          : item,
       );
       this.setState({ variables });
     };
@@ -242,18 +242,18 @@ class Form extends React.Component<Props, State> {
     const { currentItems } = this.state;
 
     if (currentItems.includes(id)) {
-      const newCurrentItems = currentItems.filter(item => item !== id);
+      const newCurrentItems = currentItems.filter((item) => item !== id);
       return this.setState({ currentItems: newCurrentItems });
     }
 
-    this.setState(prev => ({ currentItems: [...prev.currentItems, id] }));
+    this.setState((prev) => ({ currentItems: [...prev.currentItems, id] }));
   }
 
-  handleGeneralDate = e => {
+  handleGeneralDate = (e) => {
     this.setState({ movedAt: e });
   };
 
-  handleGeneralDescription = e => {
+  handleGeneralDescription = (e) => {
     const { value } = e.currentTarget as HTMLInputElement;
 
     this.setState({ description: value });
@@ -261,15 +261,15 @@ class Form extends React.Component<Props, State> {
 
   handleChangeRowItem = (prevItemId, newItem) => {
     const { variables } = this.state;
-    const newVariables = variables.map(item =>
-      item.assetId === prevItemId ? newItem : item
+    const newVariables = variables.map((item) =>
+      item.assetId === prevItemId ? newItem : item,
     );
     const removedSeletedItemIds = this.state.selectedItemsIds.filter(
-      item => item !== prevItemId
+      (item) => item !== prevItemId,
     );
     this.setState({
       variables: newVariables,
-      selectedItemsIds: [...removedSeletedItemIds, newItem.assetId]
+      selectedItemsIds: [...removedSeletedItemIds, newItem.assetId],
     });
   };
 
@@ -279,14 +279,14 @@ class Form extends React.Component<Props, State> {
     const handleGeneralOptions = (value, field) => {
       this.setState({ currentItems: [] });
 
-      const newVariables = variables.map(item =>
+      const newVariables = variables.map((item) =>
         checkedItems.includes(item.assetId)
           ? { ...item, [field]: value === '' ? null : value }
-          : item
+          : item,
       );
       this.setState({
         variables: newVariables,
-        general: { ...general, [field]: value === '' ? null : value }
+        general: { ...general, [field]: value === '' ? null : value },
       });
     };
 
@@ -294,7 +294,7 @@ class Form extends React.Component<Props, State> {
       <CollapseContent
         title="General Location Configrations"
         description={__(
-          'If you want to change the location generally of your selected assets, you should click checkboxes below.'
+          'If you want to change the location generally of your selected assets, you should click checkboxes below.',
         )}
       >
         <BarItems>
@@ -368,34 +368,32 @@ class Form extends React.Component<Props, State> {
   }
 
   renderRow() {
-    const {
-      variables,
-      currentItems,
-      selectedItemsIds,
-      checkedItems
-    } = this.state;
-    const removeRow = id => {
-      const newVariables = variables.filter(item => item.assetId !== id);
-      const newSelectedItems = selectedItemsIds.filter(itemId => itemId !== id);
+    const { variables, currentItems, selectedItemsIds, checkedItems } =
+      this.state;
+    const removeRow = (id) => {
+      const newVariables = variables.filter((item) => item.assetId !== id);
+      const newSelectedItems = selectedItemsIds.filter(
+        (itemId) => itemId !== id,
+      );
       if (currentItems.includes(id)) {
-        const newCurrentItems = currentItems.filter(item => item !== id);
+        const newCurrentItems = currentItems.filter((item) => item !== id);
         this.setState({ currentItems: newCurrentItems });
       }
       this.setState({
         variables: newVariables,
-        selectedItemsIds: newSelectedItems
+        selectedItemsIds: newSelectedItems,
       });
     };
     const onChangeCheckedItems = (id: string) => {
       if (checkedItems.includes(id)) {
         return this.setState({
-          checkedItems: checkedItems.filter(item => item !== id)
+          checkedItems: checkedItems.filter((item) => item !== id),
         });
       }
       return this.setState({ checkedItems: [...checkedItems, id] });
     };
 
-    return variables.map(item => (
+    return variables.map((item) => (
       <MovementItems
         key={item.assetId}
         item={item}
@@ -421,9 +419,9 @@ class Form extends React.Component<Props, State> {
 
     const onChange = () => {
       const { checkedItems } = this.state;
-      const newCheckedItems = variables.map(item => item.assetId);
+      const newCheckedItems = variables.map((item) => item.assetId);
       this.setState({
-        checkedItems: checkedItems.length > 0 ? [] : newCheckedItems
+        checkedItems: checkedItems.length > 0 ? [] : newCheckedItems,
       });
     };
 
@@ -493,7 +491,7 @@ class Form extends React.Component<Props, State> {
 
         <ContainerBox justifyCenter>
           {this.assetChooserContent(
-            <Button icon="plus-circle">{__('Add Asset')}</Button>
+            <Button icon="plus-circle">{__('Add Asset')}</Button>,
           )}
         </ContainerBox>
         {renderButton && (
@@ -502,11 +500,11 @@ class Form extends React.Component<Props, State> {
               Cancel
             </Button>
             {renderButton({
-              text: 'Movement',
+              text: 'Hnutí',
               values: this.generateDoc(),
               isSubmitted,
               callback: closeModal,
-              object: !_loadash.isEmpty(detail)
+              object: !_loadash.isEmpty(detail),
             })}
           </ModalFooter>
         )}
