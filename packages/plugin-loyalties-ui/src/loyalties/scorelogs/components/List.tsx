@@ -5,7 +5,7 @@ import {
   Pagination,
   Spinner,
   Table,
-  __
+  __,
 } from '@saashq/ui/src';
 import { Wrapper } from '@saashq/ui/src/layout';
 import { IRouterProps } from '@saashq/ui/src/types';
@@ -34,15 +34,8 @@ class ScoreLogsListComponent extends React.Component<IProps> {
   }
 
   render() {
-    const {
-      loading,
-      queryParams,
-      history,
-      scoreLogs,
-      total,
-      error,
-      refetch
-    } = this.props;
+    const { loading, queryParams, history, scoreLogs, total, error, refetch } =
+      this.props;
 
     const tablehead = [
       'Email',
@@ -50,14 +43,14 @@ class ScoreLogsListComponent extends React.Component<IProps> {
       'Owner Type',
       'Changed Score',
       'Total Score',
-      'Created At'
+      'Created At',
     ];
 
     if (loading) {
       return <Spinner />;
     }
 
-    const route = type => {
+    const route = (type) => {
       switch (type) {
         case 'customer':
           return 'contacts';
@@ -108,7 +101,7 @@ class ScoreLogsListComponent extends React.Component<IProps> {
       <Table>
         <thead>
           <tr>
-            {tablehead.map(p => (
+            {tablehead.map((p) => (
               <th key={p}>{p}</th>
             ))}
           </tr>
@@ -124,7 +117,7 @@ class ScoreLogsListComponent extends React.Component<IProps> {
               <td>{name(p.ownerType, p.owner)}</td>
               <td>{p.ownerType}</td>
               <td>{p.changeScore}</td>
-              <td>{p.owner.score}</td>
+              <td>{p.owner?.score}</td>
               <td>{dayjs(p.createdAt).format('lll')}</td>
             </tr>
           ))}
@@ -173,4 +166,4 @@ class ScoreLogsListComponent extends React.Component<IProps> {
   }
 }
 
-export default withRouter<IRouterProps>(ScoreLogsListComponent);
+export default withRouter<IRouterProps, any>(ScoreLogsListComponent);
