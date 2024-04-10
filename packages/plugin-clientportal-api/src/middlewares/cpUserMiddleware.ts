@@ -12,6 +12,7 @@ export default async function cpUserMiddleware(
 ) {
   if (
     req.path === '/subscriptionPlugin.js' ||
+    req.path.startsWith('/rpc') ||
     req.body?.operationName === 'SubgraphIntrospectQuery' ||
     req.body?.operationName === 'IntrospectionQuery'
   ) {
