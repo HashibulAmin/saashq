@@ -486,8 +486,15 @@ const createDealPerOrder = async ({ subdomain, pos, newOrder }) => {
         },
       },
     });
+
+    await newOrder.updateOne(
+      { _id: newOrder._id },
+      { $set: { convertDealId: cardDeal._id } },
+    );
+    return cardDeal._id;
   }
   // end sync cards config then <
+  return;
 };
 
 const syncErkhetRemainder = async ({ subdomain, models, pos, newOrder }) => {
@@ -705,7 +712,7 @@ export const syncOrderFromClient = async ({
   await confirmLoyalties(subdomain, newOrder);
   await otherPlugins(subdomain, newOrder, oldOrder, newOrder.userId);
 
-  await createDealPerOrder({ subdomain, pos, newOrder });
+  const convertDealId = await createDealPerOrder({ subdomain, pos, newOrder });
 
   if (pos.isOnline && newOrder.subBranchId) {
     const toPos = await models.Pos.findOne({
@@ -721,7 +728,12 @@ export const syncOrderFromClient = async ({
         subdomain,
         action: 'saashq-posclient-to-pos-api',
         data: {
-          order: { ...newOrder, posToken, subToken: toPos.token },
+          order: {
+            ...newOrder,
+            convertDealId,
+            posToken,
+            subToken: toPos.token,
+          },
         },
         pos: toPos as IPosDocument,
       });
@@ -776,6 +788,7 @@ export const syncOrderFromClient = async ({
       posToken,
       responseIds: syncedResponeIds,
       orderId: newOrder._id,
+      convertDealId,
     },
     pos,
   });
