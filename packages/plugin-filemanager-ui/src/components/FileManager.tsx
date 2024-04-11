@@ -2,7 +2,7 @@ import {
   CustomRangeContainer,
   FilterWrapper,
   LeftActionbar,
-  RightMenuContainer
+  RightMenuContainer,
 } from '../styles';
 
 import { BarItems } from '@saashq/ui/src/layout';
@@ -48,14 +48,14 @@ class FileManager extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      showFilter: false
+      showFilter: false,
     };
 
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
-  setWrapperRef = node => {
+  setWrapperRef = (node) => {
     this.wrapperRef = node;
   };
 
@@ -67,7 +67,7 @@ class FileManager extends React.Component<Props, State> {
     document.removeEventListener('click', this.handleClickOutside, true);
   }
 
-  handleClickOutside = event => {
+  handleClickOutside = (event) => {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
       this.setState({ showFilter: false });
     }
@@ -100,41 +100,41 @@ class FileManager extends React.Component<Props, State> {
 
     return (
       <FilterWrapper>
-        <ControlLabel>By Name</ControlLabel>
+        <ControlLabel>Podle jména</ControlLabel>
         <FormControl
           type="text"
           defaultValue={queryParams.search}
           placeholder={__('Type to search ...')}
           onKeyPress={this.onSearch}
         />
-        <ControlLabel>By created team member</ControlLabel>
+        <ControlLabel>Vytvořeným členem týmu</ControlLabel>
         <SelectTeamMembers
-          label="Filter by team members"
+          label="Filtrujte podle členů týmu"
           name="contentTypeId"
           queryParams={queryParams}
           onSelect={onSelect}
           multi={false}
         />
-        <ControlLabel>By file type</ControlLabel>
+        <ControlLabel>Podle typu souboru</ControlLabel>
         <Select
           placeholder={__('Filter by type')}
           value={types}
           options={[
             { value: 'simple', label: 'Simple file' },
-            { value: 'dynamic', label: 'Dynamic file' }
+            { value: 'dynamic', label: 'Dynamic file' },
           ]}
           isClearable={true}
           name="type"
           onChange={onTypeSelect}
           loadingPlaceholder={__('Loading...')}
         />
-        <ControlLabel>By created date</ControlLabel>
+        <ControlLabel>Podle data vytvoření</ControlLabel>
         <CustomRangeContainer>
           <DateControl
             value={queryParams.createdAtFrom}
             required={false}
             name="createdAtFrom"
-            onChange={date => this.onChangeRangeFilter('createdAtFrom', date)}
+            onChange={(date) => this.onChangeRangeFilter('createdAtFrom', date)}
             placeholder={'Start date'}
             dateFormat={'YYYY-MM-DD'}
           />
@@ -144,7 +144,7 @@ class FileManager extends React.Component<Props, State> {
             required={false}
             name="createdAtTo"
             placeholder={'End date'}
-            onChange={date => this.onChangeRangeFilter('createdAtTo', date)}
+            onChange={(date) => this.onChangeRangeFilter('createdAtTo', date)}
             dateFormat={'YYYY-MM-DD'}
           />
         </CustomRangeContainer>
@@ -159,8 +159,8 @@ class FileManager extends React.Component<Props, State> {
     const breadcrumb = [
       { title: __('File Managers') },
       {
-        title: __(`${currentFolder.name || ''} `)
-      }
+        title: __(`${currentFolder.name || ''} `),
+      },
     ];
 
     const trigger = (
@@ -181,13 +181,15 @@ class FileManager extends React.Component<Props, State> {
       </Button>
     );
 
-    const shareContent = props => <ShareForm {...props} item={currentFolder} />;
+    const shareContent = (props) => (
+      <ShareForm {...props} item={currentFolder} />
+    );
 
-    const content = props => (
+    const content = (props) => (
       <FileFormContainer {...props} queryParams={queryParams} />
     );
 
-    const folderContent = props => (
+    const folderContent = (props) => (
       <FolderForm {...props} queryParams={queryParams} />
     );
 
@@ -196,15 +198,16 @@ class FileManager extends React.Component<Props, State> {
         <BreadCrumb
           breadcrumbs={[
             {
-              title: __(currentFolder.name)
-            }
+              title: __(currentFolder.name),
+            },
           ]}
         />
-        {currentFolder.sharedUsers && currentFolder.sharedUsers.length !== 0 && (
-          <Label lblStyle="success" ignoreTrans={true}>
-            <>Shared {(currentFolder.sharedUsers || []).length} member</>
-          </Label>
-        )}
+        {currentFolder.sharedUsers &&
+          currentFolder.sharedUsers.length !== 0 && (
+            <Label lblStyle="success" ignoreTrans={true}>
+              <>Shared {(currentFolder.sharedUsers || []).length} člen</>
+            </Label>
+          )}
       </LeftActionbar>
     );
 
@@ -212,7 +215,7 @@ class FileManager extends React.Component<Props, State> {
       <div ref={this.setWrapperRef}>
         <BarItems>
           <ModalTrigger
-            title="Share Folder"
+            title="Sdílet složku"
             trigger={shareTrigger}
             content={shareContent}
             centered={true}
@@ -220,7 +223,7 @@ class FileManager extends React.Component<Props, State> {
           />
 
           <ModalTrigger
-            title="Add Sub Folder"
+            title="Přidat podsložku"
             trigger={folderTrigger}
             content={folderContent}
             centered={true}
@@ -228,7 +231,7 @@ class FileManager extends React.Component<Props, State> {
           />
 
           <ModalTrigger
-            title="Add File"
+            title="Přidat soubor"
             trigger={trigger}
             hideHeader={true}
             content={content}
@@ -273,7 +276,7 @@ class FileManager extends React.Component<Props, State> {
             emptyContent={
               <EmptyState
                 image="/images/actions/5.svg"
-                text="No folders at the moment!"
+                text="Momentálně žádné složky!"
               />
             }
           />

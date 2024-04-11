@@ -97,7 +97,7 @@ class PutResponsesByDate extends React.Component<IProps, State> {
 
     const mainContent = errorMsg ? (
       <EmptyState
-        text={errorMsg.replace('GraphQL error: ', '')}
+        text={errorMsg.replace('GraphQL chyba: ', '')}
         size="full"
         image={'/images/actions/11.svg'}
       />
@@ -142,7 +142,7 @@ class PutResponsesByDate extends React.Component<IProps, State> {
     const actionBar = (
       <Wrapper.ActionBar
         right={actionBarRight}
-        left={`Total: ${totalCount} #SumAmount: ${(
+        left={`Celkový: ${totalCount} #SumAmount: ${(
           sumAmount || 0
         ).toLocaleString()}`}
       />
@@ -164,7 +164,7 @@ class PutResponsesByDate extends React.Component<IProps, State> {
             data={mainContent}
             loading={loading}
             count={totalCount}
-            emptyText="Add in your first putResponse!"
+            emptyText="Přidejte svou první odpověď putResponse!"
             emptyImage="/images/actions/1.svg"
           />
         }

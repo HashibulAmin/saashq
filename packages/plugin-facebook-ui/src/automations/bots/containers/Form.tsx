@@ -27,7 +27,7 @@ function Form(props: FinalProps) {
   }
 
   if (!!_id && !facebootMessengerBot) {
-    return <EmptyState text="Not Found" image="/images/actions/24.svg" />;
+    return <EmptyState text="Nenalezeno" image="/images/actions/24.svg" />;
   }
 
   const returnToList = () => {
@@ -66,7 +66,7 @@ function Form(props: FinalProps) {
         isSubmitted={isSubmitted}
         type="submit"
         confirmationUpdate={confirmationUpdate}
-        successMessage={`You successfully ${successAction} a ${name}`}
+        successMessage={`Ty úspěšně ${successAction} A ${name}`}
       />
     );
   };

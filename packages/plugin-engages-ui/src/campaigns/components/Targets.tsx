@@ -21,7 +21,7 @@ type State = {
 };
 
 class Targets<
-  Target extends { _id?: string; name?: string }
+  Target extends { _id?: string; name?: string },
 > extends React.Component<Props<Target>, State> {
   constructor(props) {
     super(props);
@@ -56,7 +56,7 @@ class Targets<
         this.props.onChangeStep(name, updatedIds);
       });
     } else {
-      const filteredIds = selectedIds.filter(target => target !== targetId);
+      const filteredIds = selectedIds.filter((target) => target !== targetId);
 
       this.setState({ selectedIds: filteredIds }, () => {
         this.props.onChangeStep(name, filteredIds);
@@ -70,7 +70,7 @@ class Targets<
 
     if (targets.length === 0) {
       return (
-        <EmptyState icon="piechart" text={`No ${messageType}`} size="small" />
+        <EmptyState icon="piechart" text={`Ne ${messageType}`} size="small" />
       );
     }
 
@@ -87,7 +87,7 @@ class Targets<
             {icons && icons[index]}
             {target.name}
             <SidebarCounter>
-              {loadingCount ? '...loading' : targetCount[_id] || 0}
+              {loadingCount ? '...načítání' : targetCount[_id] || 0}
             </SidebarCounter>
           </a>
         </ListCounter>

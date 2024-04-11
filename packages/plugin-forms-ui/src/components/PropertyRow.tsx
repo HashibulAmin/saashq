@@ -7,7 +7,7 @@ import {
   PropertyListTable,
   PropertyTableHeader,
   PropertyTableRow,
-  RowField
+  RowField,
 } from '@saashq/ui-forms/src/settings/properties/styles';
 import { IFieldGroup } from '@saashq/ui-forms/src/settings/properties/types';
 import ActionButtons from '@saashq/ui/src/components/ActionButtons';
@@ -58,7 +58,7 @@ class PropertyRow extends React.Component<Props, State> {
     this.state = {
       collapse: props.group.parentId ? false : true,
       fields,
-      groupsWithParents
+      groupsWithParents,
     };
   }
 
@@ -68,13 +68,13 @@ class PropertyRow extends React.Component<Props, State> {
 
     if (fields !== nextProps.group.fields) {
       this.setState({
-        fields: nextProps.group.fields
+        fields: nextProps.group.fields,
       });
     }
 
     if (groupsWithParents !== nextProps.groupsWithParents) {
       this.setState({
-        groupsWithParents: nextProps.groupsWithParents
+        groupsWithParents: nextProps.groupsWithParents,
       });
     }
   }
@@ -83,7 +83,7 @@ class PropertyRow extends React.Component<Props, State> {
     this.setState({ collapse: !this.state.collapse });
   };
 
-  onChangeFields = fields => {
+  onChangeFields = (fields) => {
     this.setState({ fields }, () => {
       this.props.updateFieldOrder(this.state.fields);
     });
@@ -91,7 +91,7 @@ class PropertyRow extends React.Component<Props, State> {
 
   visibleHandler = (e, property) => {
     if (!property.canHide) {
-      return Alert.error('You cannot update this property');
+      return Alert.error('Tuto vlastnost nelze aktualizovat');
     }
 
     if (e.target.id === 'visibleDetailToggle') {
@@ -99,7 +99,7 @@ class PropertyRow extends React.Component<Props, State> {
 
       return this.props.updatePropertyDetailVisible({
         _id: property._id,
-        isVisibleInDetail
+        isVisibleInDetail,
       });
     }
 
@@ -111,7 +111,7 @@ class PropertyRow extends React.Component<Props, State> {
   updateSystemFieldsHandler = (e, property) => {
     return this.props.updatePropertySystemFields({
       _id: property._id,
-      [e.target.id]: e.target.checked
+      [e.target.id]: e.target.checked,
     });
   };
 
@@ -134,14 +134,14 @@ class PropertyRow extends React.Component<Props, State> {
         .then(() => {
           remove({ _id: data._id });
         })
-        .catch(e => {
+        .catch((e) => {
           Alert.error(e.message);
         });
 
     return (
       <ActionButtons>
         <ModalTrigger
-          title={isGroup ? 'Edit group' : 'Edit field'}
+          title={isGroup ? 'Upravit skupinu' : 'Upravit pole'}
           trigger={<Button btnStyle="link" icon="edit-3" />}
           content={content}
           size={size}
@@ -155,7 +155,7 @@ class PropertyRow extends React.Component<Props, State> {
     const { removeProperty, queryParams } = this.props;
     const { lastUpdatedUser, contentType } = field;
 
-    const onChange = e => this.visibleHandler(e, field);
+    const onChange = (e) => this.visibleHandler(e, field);
 
     const hasLogic = field.logics && field.logics.length > 0;
 
@@ -178,10 +178,10 @@ class PropertyRow extends React.Component<Props, State> {
               id="isVisibleToCreate"
               defaultChecked={field.isVisibleToCreate}
               icons={{
-                checked: <span>Yes</span>,
-                unchecked: <span>No</span>
+                checked: <span>Ano</span>,
+                unchecked: <span>Ne</span>,
               }}
-              onChange={e => this.updateSystemFieldsHandler(e, field)}
+              onChange={(e) => this.updateSystemFieldsHandler(e, field)}
             />
           </RowField>
         ) : (
@@ -192,14 +192,14 @@ class PropertyRow extends React.Component<Props, State> {
                 defaultChecked={field.isVisible}
                 disabled={!field.canHide}
                 icons={{
-                  checked: <span>Yes</span>,
-                  unchecked: <span>No</span>
+                  checked: <span>Ano</span>,
+                  unchecked: <span>Ne</span>,
                 }}
                 onChange={onChange}
               />
             </RowField>
             {['visitor', 'lead', 'customer', 'device'].includes(
-              (contentType || '').split(':')[1]
+              (contentType || '').split(':')[1],
             ) && (
               <RowField>
                 <Toggle
@@ -207,8 +207,8 @@ class PropertyRow extends React.Component<Props, State> {
                   defaultChecked={field.isVisibleInDetail}
                   disabled={!field.canHide}
                   icons={{
-                    checked: <span>Yes</span>,
-                    unchecked: <span>No</span>
+                    checked: <span>Ano</span>,
+                    unchecked: <span>Ne</span>,
                   }}
                   onChange={onChange}
                 />
@@ -224,10 +224,10 @@ class PropertyRow extends React.Component<Props, State> {
                 id="isVisibleToCreate"
                 defaultChecked={field.isVisibleToCreate}
                 icons={{
-                  checked: <span>Yes</span>,
-                  unchecked: <span>No</span>
+                  checked: <span>Ano</span>,
+                  unchecked: <span>Ne</span>,
                 }}
-                onChange={e => this.updateSystemFieldsHandler(e, field)}
+                onChange={(e) => this.updateSystemFieldsHandler(e, field)}
               />
             </RowField>
             <RowField>
@@ -235,28 +235,28 @@ class PropertyRow extends React.Component<Props, State> {
                 id="isRequired"
                 defaultChecked={field.isRequired}
                 icons={{
-                  checked: <span>Yes</span>,
-                  unchecked: <span>No</span>
+                  checked: <span>Ano</span>,
+                  unchecked: <span>Ne</span>,
                 }}
-                onChange={e => this.updateSystemFieldsHandler(e, field)}
+                onChange={(e) => this.updateSystemFieldsHandler(e, field)}
               />
             </RowField>
           </>
         )}
-        <RowField>{hasLogic ? 'Yes' : 'No'}</RowField>
+        <RowField>{hasLogic ? 'Ano' : 'Ne'}</RowField>
 
         <RowField>
           {this.renderActionButtons(
             field,
             removeProperty,
-            props => (
+            (props) => (
               <PropertyForm
                 {...props}
                 field={field}
                 queryParams={queryParams}
               />
             ),
-            false
+            false,
           )}
         </RowField>
       </PropertyTableRow>
@@ -266,16 +266,13 @@ class PropertyRow extends React.Component<Props, State> {
   renderTable = (fields, contentType) => {
     if (fields.length === 0) {
       return (
-        <EmptyState
-          icon="circular"
-          text="There aren't any fields in this group"
-        />
+        <EmptyState icon="circular" text="V této skupině nejsou žádná pole" />
       );
     }
 
-    const child = field => this.renderTableRow(field);
+    const child = (field) => this.renderTableRow(field);
     let showVisibleDetail = ['visitor', 'lead', 'customer', 'device'].includes(
-      (contentType || '').split(':')[1]
+      (contentType || '').split(':')[1],
     );
 
     let isRelation = false;
@@ -326,7 +323,7 @@ class PropertyRow extends React.Component<Props, State> {
         </PropertyTableHeader>
         <div>
           {this.props.group.isDefinedBySaasHQ
-            ? fields.map(field => this.renderTableRow(field))
+            ? fields.map((field) => this.renderTableRow(field))
             : renderListRow}
         </div>
       </PropertyListTable>
@@ -338,20 +335,20 @@ class PropertyRow extends React.Component<Props, State> {
     const { groupsWithParents } = this.state;
 
     const childGroups = groupsWithParents.filter(
-      item => item.parentId === group._id
+      (item) => item.parentId === group._id,
     );
 
     if (childGroups.length === 0) {
       return null;
     }
 
-    const onChangeFieldGroups = groupsWithParents => {
+    const onChangeFieldGroups = (groupsWithParents) => {
       this.setState({ groupsWithParents }, () => {
         this.props.updateGroupOrder(this.state.groupsWithParents);
       });
     };
 
-    const renderChildGroupRow = childGroup => {
+    const renderChildGroupRow = (childGroup) => {
       const {
         queryParams,
         removePropertyGroup,
@@ -360,11 +357,11 @@ class PropertyRow extends React.Component<Props, State> {
         updatePropertyDetailVisible,
         updatePropertySystemFields,
         updateFieldOrder,
-        updateGroupOrder
+        updateGroupOrder,
       } = this.props;
 
       const fieldsGroupsWithParent = groupsWithParents.filter(
-        item => item.parentId === childGroup._id
+        (item) => item.parentId === childGroup._id,
       );
 
       return (
@@ -387,7 +384,7 @@ class PropertyRow extends React.Component<Props, State> {
     return (
       <SortableList
         fields={childGroups}
-        child={group => renderChildGroupRow(group)}
+        child={(group) => renderChildGroupRow(group)}
         onChangeFields={onChangeFieldGroups}
         isModal={true}
         showDragHandler={false}
@@ -410,14 +407,14 @@ class PropertyRow extends React.Component<Props, State> {
           {this.renderActionButtons(
             group,
             removePropertyGroup,
-            props => (
+            (props) => (
               <PropertyGroupForm
                 {...props}
                 group={group}
                 queryParams={queryParams}
               />
             ),
-            true
+            true,
           )}
         </CollapseRow>
         <Collapse in={this.state.collapse}>

@@ -26,18 +26,18 @@ class CardFileChooser extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      folderId: props.folderId || ''
+      folderId: props.folderId || '',
     };
   }
 
-  onChangeFolder = folderId => {
+  onChangeFolder = (folderId) => {
     this.setState({ folderId });
   };
 
   renderExtraButtons = () => {
     const { folders, mainType, mainTypeId, relatedFiles } = this.props;
 
-    const renderFileChooser = props => {
+    const renderFileChooser = (props) => {
       return (
         <FileChooser
           {...props}
@@ -54,7 +54,7 @@ class CardFileChooser extends React.Component<Props, State> {
 
     return (
       <ModalTrigger
-        title="Manage files"
+        title="Správa souborů"
         trigger={
           <button>
             <Icon icon="plus-circle" />
@@ -70,10 +70,10 @@ class CardFileChooser extends React.Component<Props, State> {
     const { relatedFiles } = this.props;
 
     if (relatedFiles && ((relatedFiles[0] || {}).fileIds || []).length === 0) {
-      return <EmptyState icon="file-alt" text="No files" />;
+      return <EmptyState icon="file-alt" text="Žádné soubory" />;
     }
 
-    return ((relatedFiles[0] || {}).files || []).map(file => (
+    return ((relatedFiles[0] || {}).files || []).map((file) => (
       <SectionBodyItem key={file._id}>
         <Link to={`/filemanager/details/${file.folderId}/${file._id}`}>
           {file.name || 'Unknown'}
@@ -85,7 +85,7 @@ class CardFileChooser extends React.Component<Props, State> {
   render() {
     return (
       <Box
-        title="File manager"
+        title="Správce souborů"
         name="showFiles"
         extraButtons={this.renderExtraButtons()}
       >

@@ -80,7 +80,7 @@ function renderPost(
         ) : (
           <div>
             <Icon icon="picture" size={36} />
-            <span>{'No Image'}</span>
+            <span>{'Bez obrázku'}</span>
           </div>
         )}
       </PostImage>
@@ -88,7 +88,7 @@ function renderPost(
         <h5>{post.message}</h5>
         <div>
           <TemplateInfo>
-            <p>{`Created at`}</p>
+            <p>{`Vytvořeno v`}</p>
             <Tip text={dayjs(post?.created_time || '').format('llll')}>
               <ActivityDate>
                 {dayjs(post?.created_time || '').format('MMM D, h:mm A')}
@@ -96,7 +96,7 @@ function renderPost(
             </Tip>
           </TemplateInfo>
           <a href={post.permalink_url} target="_blank">
-            See post in Facebook
+            Viz příspěvek na Facebooku
           </a>
         </div>
       </TemplateBoxInfo>
@@ -149,7 +149,7 @@ export function Post({
   if (onlyLink) {
     return (
       <a href={facebookGetBotPost?.permalink_url} target="_blank">
-        See post in Facebook
+        Viz příspěvek na Facebooku
       </a>
     );
   }

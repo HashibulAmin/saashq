@@ -5,7 +5,7 @@ import {
   Content,
   ImageWrapper,
   MessengerPreview,
-  TextWrapper
+  TextWrapper,
 } from '@saashq/ui-inbox/src/settings/integrations/styles';
 import {
   ControlWrapper,
@@ -13,7 +13,7 @@ import {
   Indicator,
   LeftItem,
   Preview,
-  StepWrapper
+  StepWrapper,
 } from '@saashq/ui/src/components/step/styles';
 import { IButtonMutateProps, IFormProps } from '@saashq/ui/src/types';
 import { Step, Steps } from '@saashq/ui/src/components/step';
@@ -57,7 +57,7 @@ class Facebook extends React.Component<Props, State> {
 
     this.state = {
       selectedPages: [],
-      channelIds: []
+      channelIds: [],
     };
   }
 
@@ -65,7 +65,7 @@ class Facebook extends React.Component<Props, State> {
     const { selectedPages } = this.state;
     if (selectedPages.includes(pageId)) {
       return this.setState({
-        selectedPages: selectedPages.filter(item => item !== pageId)
+        selectedPages: selectedPages.filter((item) => item !== pageId),
       });
     }
 
@@ -86,8 +86,8 @@ class Facebook extends React.Component<Props, State> {
       accountId: accountId ? accountId : values.accountId,
       channelIds: this.state.channelIds,
       data: {
-        pageIds: this.state.selectedPages
-      }
+        pageIds: this.state.selectedPages,
+      },
     };
   };
 
@@ -99,7 +99,9 @@ class Facebook extends React.Component<Props, State> {
     }
 
     if (pages.length === 0) {
-      return <EmptyState icon="folder-2" text={__('There is no pages')} />;
+      return (
+        <EmptyState icon="folder-2" text={__('Nejsou zde žádné stránky')} />
+      );
     }
 
     return (
@@ -107,7 +109,7 @@ class Facebook extends React.Component<Props, State> {
         <LeftItem>
           <AccountBox>
             <AccountTitle>{__('Facebook Pages')}</AccountTitle>
-            {pages.map(page => (
+            {pages.map((page) => (
               <AccountItem key={page.id}>
                 {page.name}
 
@@ -158,13 +160,13 @@ class Facebook extends React.Component<Props, State> {
             </FlexItem>
           </Step>
 
-          <Step img="/images/icons/saashq-04.svg" title="Connect Your Pages">
+          <Step img="/images/icons/saashq-04.svg" title="Připojte své stránky">
             {this.renderPages()}
           </Step>
 
           <Step
             img="/images/icons/saashq-16.svg"
-            title="Integration Setup"
+            title="Nastavení integrace"
             noButton={true}
           >
             <FlexItem>
@@ -184,7 +186,7 @@ class Facebook extends React.Component<Props, State> {
                 <SelectBrand
                   isRequired={true}
                   description={__(
-                    'Which specific Brand does this integration belong to?'
+                    'Which specific Brand does this integration belong to?',
                   )}
                   formProps={formProps}
                 />
@@ -206,14 +208,14 @@ class Facebook extends React.Component<Props, State> {
           <Button.Group>
             <Link to="/settings/integrations">
               <Button btnStyle="simple" icon="times-circle">
-                Cancel
+                Zrušení
               </Button>
             </Link>
             {renderButton({
               passedName: 'integration',
               values: this.generateDoc(values),
               isSubmitted,
-              callback: this.props.callBack
+              callback: this.props.callBack,
             })}
           </Button.Group>
         </ControlWrapper>
@@ -228,20 +230,20 @@ class Facebook extends React.Component<Props, State> {
   render() {
     let title = __('Facebook Posts');
     let description = __(
-      'Connect your Facebook Posts to start receiving Facebook post and comments in your team inbox'
+      'Connect your Facebook Posts to start receiving Facebook post and comments in your team inbox',
     );
 
     if (this.props.kind === INTEGRATION_KINDS.FACEBOOK_MESSENGER) {
       title = __('Facebook Messenger');
       description = __(
-        'Connect your Facebook Messenger to start receiving Facebook messages in your team inbox'
+        'Connect your Facebook Messenger to start receiving Facebook messages in your team inbox',
       );
     }
 
     const breadcrumb = [
       { title: __('Settings'), link: '/settings' },
       { title: __('Integrations'), link: '/settings/integrations' },
-      { title }
+      { title },
     ];
 
     return (

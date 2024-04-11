@@ -71,7 +71,7 @@ class FileList extends React.Component<Props> {
                   isFolder={true}
                 />
               ))}
-              {files.map(file => (
+              {files.map((file) => (
                 <FileRow
                   key={file._id}
                   item={file}
@@ -96,7 +96,7 @@ class FileList extends React.Component<Props> {
         emptyContent={
           <EmptyState
             image="/images/actions/24.svg"
-            text="No files at the moment!"
+            text="Momentálně žádné soubory!"
           />
         }
         data={this.renderFiles()}

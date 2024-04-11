@@ -62,9 +62,9 @@ function PersistentMenuSelector({
   if (persistentMenus.length) {
     return (
       <EmptyState
-        text="No persistent menus in selected bot"
+        text="Žádné trvalé nabídky ve vybraném robotu"
         icon="list-ul"
-        extra="Persistent menu with link can't display as selectable condition on section"
+        extra="Trvalá nabídka s odkazem se v sekci nemůže zobrazit jako volitelná podmínka"
       />
     );
   }

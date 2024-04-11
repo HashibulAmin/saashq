@@ -56,11 +56,11 @@ class Properties extends React.Component<
 
     this.state = {
       fieldsGroups: fieldsGroups.filter(
-        gro => !gro.isDefinedBySaasHQ && !gro.parentId
+        (gro) => !gro.isDefinedBySaasHQ && !gro.parentId,
       ),
       fieldsGroupsWithParent: fieldsGroups.filter(
-        gro => !gro.isDefinedBySaasHQ && gro.parentId
-      )
+        (gro) => !gro.isDefinedBySaasHQ && gro.parentId,
+      ),
     };
   }
 
@@ -68,22 +68,22 @@ class Properties extends React.Component<
     if (this.props.fieldsGroups !== nextProps.fieldsGroups) {
       this.setState({
         fieldsGroups: nextProps.fieldsGroups.filter(
-          gro => !gro.isDefinedBySaasHQ && !gro.parentId
+          (gro) => !gro.isDefinedBySaasHQ && !gro.parentId,
         ),
         fieldsGroupsWithParent: nextProps.fieldsGroups.filter(
-          gro => !gro.isDefinedBySaasHQ && gro.parentId
-        )
+          (gro) => !gro.isDefinedBySaasHQ && gro.parentId,
+        ),
       });
     }
   }
 
-  onChangeFieldGroups = fieldsGroups => {
+  onChangeFieldGroups = (fieldsGroups) => {
     this.setState({ fieldsGroups }, () => {
       this.props.updateGroupOrder(this.state.fieldsGroups);
     });
   };
 
-  renderRow = group => {
+  renderRow = (group) => {
     const {
       queryParams,
       removePropertyGroup,
@@ -92,7 +92,7 @@ class Properties extends React.Component<
       updatePropertyDetailVisible,
       updatePropertySystemFields,
       updateFieldOrder,
-      updateGroupOrder
+      updateGroupOrder,
     } = this.props;
 
     const { fieldsGroupsWithParent } = this.state;
@@ -124,7 +124,7 @@ class Properties extends React.Component<
     return (
       <SortableList
         fields={fieldsGroups}
-        child={group => this.renderRow(group)}
+        child={(group) => this.renderRow(group)}
         onChangeFields={this.onChangeFieldGroups}
         isModal={true}
         showDragHandler={false}
@@ -138,18 +138,17 @@ class Properties extends React.Component<
 
     if (fieldsGroups.length === 0) {
       return (
-        <EmptyState
-          icon="paragraph"
-          text="There aren't any groups and fields"
-        />
+        <EmptyState icon="paragraph" text="Nejsou zde žádné skupiny a pole" />
       );
     }
 
-    const defaultGroups = fieldsGroups.filter(group => group.isDefinedBySaasHQ);
+    const defaultGroups = fieldsGroups.filter(
+      (group) => group.isDefinedBySaasHQ,
+    );
 
     return (
       <PropertyList>
-        {defaultGroups.map(group => this.renderRow(group))}
+        {defaultGroups.map((group) => this.renderRow(group))}
         {this.renderSortableList()}
       </PropertyList>
     );
@@ -171,12 +170,12 @@ class Properties extends React.Component<
     const addGroup = <Dropdown.Item>{__('Add Group')}</Dropdown.Item>;
     const addField = <Dropdown.Item>{__('Add Property')}</Dropdown.Item>;
 
-    const groupContent = props => (
+    const groupContent = (props) => (
       <PropertyGroupForm {...props} queryParams={queryParams} />
     );
 
-    const propertyContent = modalProps => {
-      if (fieldsGroups.filter(e => !e.isDefinedBySaasHQ).length === 0) {
+    const propertyContent = (modalProps) => {
+      if (fieldsGroups.filter((e) => !e.isDefinedBySaasHQ).length === 0) {
         return <div>{__('Please add property Group first')}!</div>;
       }
 
@@ -221,7 +220,7 @@ class Properties extends React.Component<
     const breadcrumb = [
       { title: __('Settings'), link: '/settings' },
       { title: __('Properties'), link: '/settings/properties' },
-      { title: __(`${currentType} properties`) }
+      { title: __(`${currentType} properties`) },
     ];
 
     const title = (
@@ -235,9 +234,9 @@ class Properties extends React.Component<
         icon="/images/actions/26.svg"
         title={__('Properties')}
         description={`${__(
-          'The quick view finder helps you to view basic information on both companies and customers alike'
+          'The quick view finder helps you to view basic information on both companies and customers alike',
         )}.${__(
-          'Add groups and fields of the exact information you want to see'
+          'Add groups and fields of the exact information you want to see',
         )}`}
       />
     );

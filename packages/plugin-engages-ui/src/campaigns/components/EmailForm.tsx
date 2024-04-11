@@ -153,13 +153,13 @@ class EmailForm extends React.Component<Props, State> {
     const optionRenderer = (option) => (
       <FlexContent>
         {!option.disabled ? (
-          <Tip placement="auto" text="Email verified">
+          <Tip placement="auto" text="E-mail ověřen">
             <VerifyCheck>
               <Icon icon="check-circle" />
             </VerifyCheck>
           </Tip>
         ) : (
-          <Tip placement="auto" text="Email not verified">
+          <Tip placement="auto" text="E-mail není ověřen">
             <VerifyCancel>
               <Icon icon="times-circle" />
             </VerifyCancel>
@@ -202,8 +202,8 @@ class EmailForm extends React.Component<Props, State> {
     return (
       <TestEmailWrapper>
         <FormGroup>
-          <ControlLabel>Send to the following email as test:</ControlLabel>
-          <HelpPopover>Only one email address must be typed</HelpPopover>
+          <ControlLabel>Odešlete na následující e-mail jako test:</ControlLabel>
+          <HelpPopover>Musíte zadat pouze jednu e-mailovou adresu</HelpPopover>
           <FormControl
             type="text"
             onChange={onChange}
@@ -215,7 +215,7 @@ class EmailForm extends React.Component<Props, State> {
             icon="send"
             onClick={sendAsTest}
           >
-            Send
+            Poslat
           </Button>
         </FormGroup>
       </TestEmailWrapper>
@@ -246,23 +246,24 @@ class EmailForm extends React.Component<Props, State> {
         <FlexPad direction="column" overflow="auto">
           <FormGroup>
             <ControlLabel>
-              From:
-              <HelpPopover title="The email address is not verified (x) by Amazon Ses services.">
+              Z:
+              <HelpPopover title="E-mailová adresa není ověřena (x) službami Amazon Ses.">
                 <div>
-                  If you want to verify your email:
+                  Pokud chcete ověřit svůj e-mail:
                   <ol>
-                    <li>Log in to your AWS Management Console</li>
-                    <li>Click on the Services menu from the dropdown menu</li>
+                    <li>Přihlaste se do své konzoly pro správu AWS</li>
+                    <li>Klikněte na nabídku Služby z rozevírací nabídky</li>
                     <li>
-                      Click on the Simple Email Services menu from the left
-                      sidebar
+                      Klikněte na nabídku Simple Email Services zleva postranní
+                      panel
                     </li>
                     <li>
-                      Click on the Email Addresses menu from the left sidebar
+                      Klikněte na nabídku E-mailové adresy na levém postranním
+                      panelu
                     </li>
                     <li>
-                      Finally, click on the button that named "Verify a new
-                      email address"
+                      Nakonec klikněte na tlačítko s názvem „Ověřit nový
+                      emailová adresa"
                     </li>
                   </ol>
                 </div>
@@ -272,7 +273,7 @@ class EmailForm extends React.Component<Props, State> {
           </FormGroup>
 
           <FormGroup>
-            <ControlLabel>Sender:</ControlLabel>
+            <ControlLabel>Odesílatel:</ControlLabel>
             <FormControl
               onChange={onChangeSender}
               defaultValue={this.state.email.sender}
@@ -280,8 +281,8 @@ class EmailForm extends React.Component<Props, State> {
           </FormGroup>
 
           <FormGroup>
-            <ControlLabel>Reply to:</ControlLabel>
-            <HelpPopover>Emails must be space separated</HelpPopover>
+            <ControlLabel>Odpovědět:</ControlLabel>
+            <HelpPopover>E-maily musí být odděleny mezerou</HelpPopover>
             <FormControl
               onChange={onChangeReplyTo}
               defaultValue={this.state.email.replyTo}
@@ -289,7 +290,7 @@ class EmailForm extends React.Component<Props, State> {
           </FormGroup>
 
           <FormGroup>
-            <ControlLabel>Email subject:</ControlLabel>
+            <ControlLabel>Předmět emailu:</ControlLabel>
             <FormControl
               onChange={onChangeSubject}
               defaultValue={this.state.email.subject}
@@ -297,7 +298,7 @@ class EmailForm extends React.Component<Props, State> {
           </FormGroup>
 
           <FormGroup>
-            <ControlLabel>Email template:</ControlLabel>
+            <ControlLabel>Šablona e-mailu:</ControlLabel>
             <p>{__('Insert email template to content')}</p>
 
             <Select
@@ -308,7 +309,7 @@ class EmailForm extends React.Component<Props, State> {
             />
           </FormGroup>
           <FormGroup>
-            <ControlLabel>Attachments: </ControlLabel>
+            <ControlLabel>Přílohy: </ControlLabel>
             <Uploader
               defaultFileList={attachments || []}
               onChange={onChangeAttachment}
@@ -321,7 +322,7 @@ class EmailForm extends React.Component<Props, State> {
 
         <FlexItem overflow="auto" count="2">
           <EditorContainer>
-            <ControlLabel>Content:</ControlLabel>
+            <ControlLabel>Obsah:</ControlLabel>
             <RichTextEditor
               content={this.state.content}
               isSubmitted={this.props.isSaved}

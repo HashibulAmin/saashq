@@ -32,7 +32,7 @@ class FolderRow extends React.Component<Props> {
       </Button>
     );
 
-    const content = props => (
+    const content = (props) => (
       <FolderForm
         {...props}
         folder={this.props.folder}
@@ -41,7 +41,7 @@ class FolderRow extends React.Component<Props> {
     );
 
     return (
-      <ModalTrigger title="Edit" trigger={editTrigger} content={content} />
+      <ModalTrigger title="Upravit" trigger={editTrigger} content={content} />
     );
   };
 
@@ -73,12 +73,12 @@ class FolderRow extends React.Component<Props> {
 
           <Link to={`?_id=${folder._id}`}>
             <div>
-              <img src="/images/folder.png" alt="folder" /> {folder.name}
+              <img src="/images/folder.png" alt="složku" /> {folder.name}
             </div>
           </Link>
           <ActionButtons>
             {this.renderEditAction()}
-            <Tip text="Delete" placement="bottom">
+            <Tip text="Vymazat" placement="bottom">
               <Button btnStyle="link" onClick={this.remove} icon="cancel-1" />
             </Tip>
           </ActionButtons>

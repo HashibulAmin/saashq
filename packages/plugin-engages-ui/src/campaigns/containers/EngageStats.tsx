@@ -21,7 +21,7 @@ const EngageStatsContainer = (props: FinalProps) => {
   const { engageMessageDetailQuery } = props;
 
   if (engageMessageDetailQuery.error) {
-    return <EmptyState size="full" text="Error" icon="ban" />;
+    return <EmptyState size="full" text="Chyba" icon="ban" />;
   }
 
   if (engageMessageDetailQuery.loading) {
@@ -30,7 +30,7 @@ const EngageStatsContainer = (props: FinalProps) => {
 
   if (!engageMessageDetailQuery.engageMessageDetail) {
     return (
-      <EmptyState size="full" text="Message not found" icon="web-section-alt" />
+      <EmptyState size="full" text="Zpráva nenalezena" icon="web-section-alt" />
     );
   }
 
@@ -47,10 +47,10 @@ export default withProps<Props>(
         name: 'engageMessageDetailQuery',
         options: ({ messageId }) => ({
           variables: {
-            _id: messageId
-          }
-        })
-      }
-    )
-  )(EngageStatsContainer)
+            _id: messageId,
+          },
+        }),
+      },
+    ),
+  )(EngageStatsContainer),
 );

@@ -10,7 +10,7 @@ import { queries } from '@saashq/ui-contacts/src/customers/graphql';
 import { CustomerDetailQueryResponse } from '@saashq/ui-contacts/src/customers/types';
 import {
   PropertyConsumer,
-  PropertyProvider
+  PropertyProvider,
 } from '@saashq/ui-contacts/src/customers/propertyContext';
 
 type Props = {
@@ -30,21 +30,21 @@ function CustomerDetailsContainer(props: FinalProps) {
 
   if (!customerDetailQuery.customerDetail) {
     return (
-      <EmptyState text="Customer not found" image="/images/actions/17.svg" />
+      <EmptyState text="Zákazník nenalezen" image="/images/actions/17.svg" />
     );
   }
 
   const taggerRefetchQueries = [
     {
       query: gql(queries.customerDetail),
-      variables: { _id: id }
-    }
+      variables: { _id: id },
+    },
   ];
 
   const updatedProps = {
     ...props,
     customer: customerDetailQuery.customerDetail || ({} as any),
-    taggerRefetchQueries
+    taggerRefetchQueries,
   };
 
   return (
@@ -54,7 +54,7 @@ function CustomerDetailsContainer(props: FinalProps) {
           deviceFields,
           customerVisibility,
           deviceVisibility,
-          customerFields
+          customerFields,
         }) => {
           return (
             <CustomerDetails
@@ -79,10 +79,10 @@ export default withProps<Props>(
         name: 'customerDetailQuery',
         options: ({ id }) => ({
           variables: {
-            _id: id
-          }
-        })
-      }
-    )
-  )(CustomerDetailsContainer)
+            _id: id,
+          },
+        }),
+      },
+    ),
+  )(CustomerDetailsContainer),
 );

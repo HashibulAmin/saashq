@@ -75,16 +75,16 @@ class MessageTypeStep extends React.Component<Props, State> {
     return (
       <SelectMessageType>
         <FormGroup>
-          <ControlLabel>Select the type of business portal:</ControlLabel>
+          <ControlLabel>Vyberte typ obchodního portálu:</ControlLabel>
           <FormControl
             id="businessPortalKind"
             componentClass="select"
             defaultValue={this.props.businessPortalKind || ''}
             options={[
-              { value: '', label: 'Select a business portal' },
+              { value: '', label: 'Vyberte obchodní portál' },
               ...BUSINESS_PORTAL_KINDS.ALL.map((item) => ({
                 value: item,
-                label: item + ' portal',
+                label: item + ' portál',
               })),
             ]}
             onChange={(e) => {
@@ -109,7 +109,7 @@ class MessageTypeStep extends React.Component<Props, State> {
       return (
         <EmptyState
           icon="no-entry"
-          text={`No ${businessPortalKind}portal found`}
+          text={`Ne ${businessPortalKind}portál nalezen`}
           size="small"
         />
       );
@@ -118,14 +118,14 @@ class MessageTypeStep extends React.Component<Props, State> {
     return (
       <SelectMessageType>
         <FormGroup>
-          <ControlLabel>Choose a {businessPortalKind}portal:</ControlLabel>
+          <ControlLabel>Vyber {businessPortalKind}portál:</ControlLabel>
           <FormControl
             id="cpId"
             value={this.state.cpId}
             defaultValue={this.props.selectedCpId || ''}
             componentClass="select"
             options={[
-              { value: '', label: `Select a ${businessPortalKind} portal` },
+              { value: '', label: `Vybrat ${businessPortalKind} portál` },
               ...clientPortalGetConfigs.map((item) => ({
                 value: item._id,
                 label: item.name,
@@ -153,19 +153,19 @@ class MessageTypeStep extends React.Component<Props, State> {
     return (
       <SelectMessageType>
         <FormGroup>
-          <ControlLabel>Segment type:</ControlLabel>
+          <ControlLabel>Typ segmentu:</ControlLabel>
           <FormControl
             id="segmentType"
             value={this.state.segmentType}
             componentClass="select"
             options={[
-              { value: 'contacts:lead', label: 'Leads' },
-              { value: 'contacts:customer', label: 'Customers' },
-              { value: 'contacts:company', label: 'Company contacts' },
-              { value: 'cards:deal', label: 'Deal contacts' },
-              { value: 'cards:task', label: 'Task contacts' },
-              { value: 'cards:ticket', label: 'Ticket contacts' },
-              { value: 'cards:purchase', label: 'Purchase contacts' },
+              { value: 'contacts:lead', label: 'Vede' },
+              { value: 'contacts:customer', label: 'Zákazníci' },
+              { value: 'contacts:company', label: 'Kontakty společnosti' },
+              { value: 'cards:deal', label: 'Rozdat kontakty' },
+              { value: 'cards:task', label: 'Kontakty úkolu' },
+              { value: 'cards:ticket', label: 'Kontakty na vstupenky' },
+              { value: 'cards:purchase', label: 'Kontakty pro nákup' },
             ]}
             onChange={this.onChange.bind(this, 'segmentType')}
           />
@@ -192,7 +192,7 @@ class MessageTypeStep extends React.Component<Props, State> {
     return (
       <SelectMessageType>
         <FormGroup>
-          <ControlLabel>Choose a message type:</ControlLabel>
+          <ControlLabel>Vyberte typ zprávy:</ControlLabel>
           <FormControl
             id="messageType"
             value={this.state.messageType}

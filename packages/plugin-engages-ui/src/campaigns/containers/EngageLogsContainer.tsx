@@ -10,7 +10,7 @@ import EngageLogs from '../components/EngageLogs';
 import { queries } from '@saashq/ui-engage/src/graphql';
 import {
   EngageLogsQueryResponse,
-  IEngageLog
+  IEngageLog,
 } from '@saashq/ui-engage/src/types';
 
 type Props = {
@@ -25,7 +25,7 @@ const EngageStatsContainer = (props: FinalProps) => {
   const { engageMessageLogsQuery, messageId } = props;
 
   if (engageMessageLogsQuery.error) {
-    return <EmptyState size="full" text="Error" icon="ban" />;
+    return <EmptyState size="full" text="Chyba" icon="ban" />;
   }
 
   if (engageMessageLogsQuery.loading) {
@@ -34,7 +34,11 @@ const EngageStatsContainer = (props: FinalProps) => {
 
   if (!engageMessageLogsQuery.engageLogs) {
     return (
-      <EmptyState size="full" text="Logs not found" icon="web-section-alt" />
+      <EmptyState
+        size="full"
+        text="Protokoly nebyly nalezeny"
+        icon="web-section-alt"
+      />
     );
   }
 
@@ -42,7 +46,7 @@ const EngageStatsContainer = (props: FinalProps) => {
     engageMessageLogsQuery.fetchMore({
       variables: {
         engageMessageId: messageId,
-        perPage
+        perPage,
       },
       updateQuery: (prev, { fetchMoreResult }) => {
         if (!fetchMoreResult) {
@@ -61,9 +65,9 @@ const EngageStatsContainer = (props: FinalProps) => {
 
         return {
           ...prev,
-          engageLogs: [...prevLogs, ...fetchedLogs]
+          engageLogs: [...prevLogs, ...fetchedLogs],
         };
-      }
+      },
     });
   };
 
@@ -83,9 +87,9 @@ export default withProps<Props>(
       {
         name: 'engageMessageLogsQuery',
         options: ({ messageId }) => ({
-          variables: { engageMessageId: messageId }
-        })
-      }
-    )
-  )(EngageStatsContainer)
+          variables: { engageMessageId: messageId },
+        }),
+      },
+    ),
+  )(EngageStatsContainer),
 );

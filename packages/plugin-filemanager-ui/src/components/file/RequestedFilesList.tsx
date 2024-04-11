@@ -27,7 +27,7 @@ class RequestedFileList extends React.Component<Props> {
       return (
         <EmptyState
           image="/images/actions/5.svg"
-          text="No files at the moment!"
+          text="Momentálně žádné soubory!"
         />
       );
     }
@@ -74,9 +74,13 @@ class RequestedFileList extends React.Component<Props> {
             </tr>
           </thead>
           <tbody id="fileManagerfiles">
-            {requests.map(item => {
-              const { type, name, contentType, info = {} as any } =
-                item && item.file ? item.file : ({} as IFile);
+            {requests.map((item) => {
+              const {
+                type,
+                name,
+                contentType,
+                info = {} as any,
+              } = item && item.file ? item.file : ({} as IFile);
 
               return (
                 <tr key={item._id} className="crow">
@@ -84,7 +88,7 @@ class RequestedFileList extends React.Component<Props> {
                     <ItemName>
                       <a>
                         {renderFileIcon(
-                          type === 'dynamic' ? 'aaa.dynamic' : info.name
+                          type === 'dynamic' ? 'aaa.dynamic' : info.name,
                         )}
                         {contentType ? name : info.name}
                       </a>
@@ -98,7 +102,7 @@ class RequestedFileList extends React.Component<Props> {
                   <td>{item.description || '-'}</td>
                   <td>
                     {renderUserFullName(
-                      hideActions ? item.toUser || {} : item.fromUser || {}
+                      hideActions ? item.toUser || {} : item.fromUser || {},
                     )}
                   </td>
                   <td>{dayjs(item.createdAt).format('MMMM D, YYYY h:mm A')}</td>

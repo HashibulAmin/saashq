@@ -3,7 +3,7 @@ import {
   DetailTitle,
   DocumentPreview,
   FilePreview,
-  FlexRow
+  FlexRow,
 } from './styles';
 import { IAccessRequests, ILogs } from '../../types';
 import { TabTitle, Tabs } from '@saashq/ui/src/components/tabs';
@@ -54,7 +54,7 @@ class FileDetail extends React.Component<Props, State> {
 
     this.state = {
       currentTab: 'logs',
-      description: ''
+      description: '',
     };
   }
 
@@ -64,15 +64,15 @@ class FileDetail extends React.Component<Props, State> {
     history.push('/filemanager');
   };
 
-  onAcknowledge = callback => {
+  onAcknowledge = (callback) => {
     const { requestAck, fileId } = this.props;
 
     requestAck(
       {
         fileId,
-        description: this.state.description
+        description: this.state.description,
       },
-      callback
+      callback,
     );
   };
 
@@ -115,7 +115,7 @@ class FileDetail extends React.Component<Props, State> {
       return (
         <EmptyState
           image="/images/actions/5.svg"
-          text="No file update at the moment!"
+          text="Momentálně žádná aktualizace souboru!"
         />
       );
     }
@@ -140,7 +140,7 @@ class FileDetail extends React.Component<Props, State> {
               </tr>
             </thead>
             <tbody>
-              {logs.map(log => (
+              {logs.map((log) => (
                 <LogRow key={log._id} log={log} />
               ))}
             </tbody>
@@ -229,7 +229,7 @@ class FileDetail extends React.Component<Props, State> {
       <Label lblStyle="success" ignoreTrans={true}>
         <>
           Shared with {sharedUsers.length || 0} member
-          {sharedUsers.map(user => (
+          {sharedUsers.map((user) => (
             <React.Fragment key={user._id}>
               {renderUserFullName(user)}, &nbsp;
             </React.Fragment>
@@ -269,15 +269,15 @@ class FileDetail extends React.Component<Props, State> {
             name: item.name,
             size: item.info && item.info.size,
             type: item.info && item.info.type,
-            url: readFile(item.url)
+            url: readFile(item.url),
           }}
         />
       </FilePreview>
     );
   }
 
-  renderAckForm = props => {
-    const onChange = e =>
+  renderAckForm = (props) => {
+    const onChange = (e) =>
       this.setState({ description: (e.target as HTMLInputElement).value });
 
     return (
@@ -324,7 +324,7 @@ class FileDetail extends React.Component<Props, State> {
 
     const breadcrumb = [
       { title: __('File manager'), link: '/filemanager' },
-      { title: __(item.name) }
+      { title: __(item.name) },
     ];
 
     const trigger = (
@@ -339,8 +339,8 @@ class FileDetail extends React.Component<Props, State> {
       </Button>
     );
 
-    const content = props => <ShareForm {...props} item={item} />;
-    const relatedFileChooser = props => (
+    const content = (props) => <ShareForm {...props} item={item} />;
+    const relatedFileChooser = (props) => (
       <RelatedForm {...props} item={item} folderId={folderId} />
     );
 
@@ -359,7 +359,7 @@ class FileDetail extends React.Component<Props, State> {
         </div>
         <div>
           <ModalTrigger
-            title="Share File"
+            title="Sdílet soubor"
             trigger={trigger}
             content={content}
             centered={true}
@@ -367,7 +367,7 @@ class FileDetail extends React.Component<Props, State> {
           />
 
           <ModalTrigger
-            title="Manage related files"
+            title="Správa souvisejících souborů"
             trigger={relatedTrigger}
             content={relatedFileChooser}
             centered={true}
@@ -376,13 +376,13 @@ class FileDetail extends React.Component<Props, State> {
           />
 
           <ModalTrigger
-            title="Acknowledge file"
+            title="Soubor potvrzení"
             trigger={
               <Button btnStyle="primary" icon="hold" type="button">
                 {__('Request acknowledge')}
               </Button>
             }
-            content={props => this.renderAckForm(props)}
+            content={(props) => this.renderAckForm(props)}
             centered={true}
             enforceFocus={false}
           />

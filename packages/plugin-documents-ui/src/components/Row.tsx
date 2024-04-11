@@ -13,10 +13,10 @@ type Props = {
 };
 
 function Row({ obj, remove }: Props) {
-  const modalContent = modalProps => {
+  const modalContent = (modalProps) => {
     const props = {
       ...modalProps,
-      _id: obj._id
+      _id: obj._id,
     };
 
     return <Form {...props} />;
@@ -34,7 +34,7 @@ function Row({ obj, remove }: Props) {
         <ModalTrigger
           content={modalContent}
           size="lg"
-          title="Edit Document"
+          title="Upravit dokument"
           autoOpenKey="showDocumentModal"
           trigger={trigger}
         />

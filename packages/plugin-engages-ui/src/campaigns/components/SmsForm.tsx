@@ -13,7 +13,7 @@ import styledTS from 'styled-components-ts';
 import {
   IEngageScheduleDate,
   IEngageSms,
-  IIntegrationWithPhone
+  IIntegrationWithPhone,
 } from '@saashq/ui-engage/src/types';
 import Scheduler from './Scheduler';
 import SmsPreview from './SmsPreview';
@@ -26,7 +26,7 @@ const SMSInfo = styled.div`
 `;
 
 const Char = styledTS<{ count: number }>(styled.div)`
-  color: ${props =>
+  color: ${(props) =>
     props.count > 10
       ? props.count < 30 && colors.colorCoreOrange
       : colors.colorCoreRed};
@@ -36,7 +36,7 @@ const Char = styledTS<{ count: number }>(styled.div)`
 type Props = {
   onChange: (
     name: 'shortMessage' | 'scheduleDate' | 'fromUserId',
-    value?: IEngageScheduleDate | IEngageSms | string
+    value?: IEngageScheduleDate | IEngageSms | string,
   ) => void;
   messageKind: string;
   scheduleDate: IEngageScheduleDate;
@@ -72,7 +72,7 @@ class MessengerForm extends React.Component<Props, State> {
       titleCount: this.calcCharacterCount(15, this.getContent('from')),
       message: this.getContent('content'),
       title: this.getContent('from'),
-      fromIntegrationId: this.getContent('fromIntegrationId')
+      fromIntegrationId: this.getContent('fromIntegrationId'),
     };
   }
 
@@ -121,19 +121,19 @@ class MessengerForm extends React.Component<Props, State> {
     const { integrations } = this.props;
     const options: IOption[] = [];
 
-    integrations.map(i =>
+    integrations.map((i) =>
       options.push({
         value: i._id,
         label: i.name,
         phoneNumber: i.phoneNumber,
-        disabled: !i.isActive
-      })
+        disabled: !i.isActive,
+      }),
     );
 
     return options;
   };
 
-  fromOptionRenderer = option => (
+  fromOptionRenderer = (option) => (
     <div>
       <strong>{option.label}</strong> (<i>{option.phoneNumber}</i>)
     </div>
@@ -141,18 +141,13 @@ class MessengerForm extends React.Component<Props, State> {
 
   render() {
     const { shortMessage, smsConfig } = this.props;
-    const {
-      message,
-      title,
-      titleCount,
-      characterCount,
-      fromIntegrationId
-    } = this.state;
+    const { message, title, titleCount, characterCount, fromIntegrationId } =
+      this.state;
 
-    const onChangeTitle = e =>
+    const onChangeTitle = (e) =>
       this.onChangeSms('from', (e.target as HTMLInputElement).value);
 
-    const onChangeContent = e =>
+    const onChangeContent = (e) =>
       this.onChangeSms('content', (e.target as HTMLInputElement).value);
 
     const onChangeFrom = (value: ISelectedOption) => {
@@ -162,27 +157,27 @@ class MessengerForm extends React.Component<Props, State> {
       this.onChangeSms('fromIntegrationId', integrationId);
     };
 
-    const onChangeFromContent = e => {
+    const onChangeFromContent = (e) => {
       const from = (e.target as HTMLInputElement).value;
 
       this.setState({
         title: from,
-        titleCount: this.calcCharacterCount(15, from)
+        titleCount: this.calcCharacterCount(15, from),
       });
     };
 
-    const onChangeSmsContent = e => {
+    const onChangeSmsContent = (e) => {
       const content = (e.target as HTMLInputElement).value;
       this.setState({
         message: content,
-        characterCount: this.calcCharacterCount(160, content)
+        characterCount: this.calcCharacterCount(160, content),
       });
     };
 
     if (!smsConfig) {
       return (
         <EmptyState
-          text="SMS integration is not configured. Go to Settings > System config > Integrations config and set Telnyx SMS API key."
+          text="Integrace SMS není nakonfigurována. Přejděte do Nastavení > Konfigurace systému > Konfigurace integrací a nastavte klíč Telnyx SMS API."
           image="/images/actions/21.svg"
         />
       );

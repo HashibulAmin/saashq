@@ -61,12 +61,12 @@ class Row extends React.Component<Props> {
       (msg.kind === MESSAGE_KINDS.AUTO ||
         msg.kind === MESSAGE_KINDS.VISITOR_AUTO)
     ) {
-      return Alert.info('Pause the Campaign first and try editing');
+      return Alert.info('Nejprve kampaň pozastavte a zkuste ji upravit');
     }
 
     if (msg.isLive && msg.kind === MESSAGE_KINDS.MANUAL) {
       return Alert.warning(
-        'Unfortunately once a campaign has been sent, it cannot be stopped or edited.',
+        'Bohužel jakmile byla kampaň odeslána, nelze ji zastavit ani upravit.',
       );
     }
 
@@ -223,7 +223,7 @@ class Row extends React.Component<Props> {
 
   renderType(msg) {
     let icon: string = 'multiply';
-    let label: string = 'Other type';
+    let label: string = 'Jiný typ';
     switch (msg.method) {
       case METHODS.EMAIL:
         icon = 'envelope';

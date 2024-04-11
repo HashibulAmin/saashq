@@ -26,17 +26,17 @@ const FileRow = ({
   isChecked,
   isFolder,
   queryParams,
-  toggleBulk
+  toggleBulk,
 }: Props) => {
   const { name, size, type } = item.info || ({} as any);
 
-  const onChange = e => {
+  const onChange = (e) => {
     if (toggleBulk) {
       toggleBulk(item, e.target.checked);
     }
   };
 
-  const onClick = e => {
+  const onClick = (e) => {
     e.stopPropagation();
   };
 
@@ -55,12 +55,16 @@ const FileRow = ({
       </Button>
     );
 
-    const content = props => (
+    const content = (props) => (
       <FileFormContainer {...props} queryParams={queryParams} file={item} />
     );
 
     return (
-      <ModalTrigger title="Edit File" trigger={editTrigger} content={content} />
+      <ModalTrigger
+        title="Upravit soubor"
+        trigger={editTrigger}
+        content={content}
+      />
     );
   };
 
