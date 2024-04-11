@@ -360,7 +360,7 @@ export const checkOrganizationCharge = async (args: {
   });
 
   if (usedAmount + (aboutToAddAmout || 0) >= totalAmount) {
-    throw new Error('Your limit is reached. Please, purchase more Add Ons.');
+    throw new Error('Váš limit byl dosažen. Zakupte si prosím více doplňků.');
   }
 };
 

@@ -15,7 +15,7 @@ const windowsTrailingRe = /[\. ]+$/;
 
 export default function sanitizeFilename(input: string) {
   if (typeof input !== 'string') {
-    throw new Error('Input must be string');
+    throw new Error('Vstup musí být řetězec');
   }
   const sanitized = input
     .replace(illegalRe, '')

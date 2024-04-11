@@ -49,7 +49,7 @@ class InstallCode extends React.Component<Props, State> {
 
     this.state = {
       code,
-      copied: false
+      copied: false,
     };
   }
 
@@ -65,11 +65,15 @@ class InstallCode extends React.Component<Props, State> {
           {this.state.code ? (
             <CopyToClipboard text={this.state.code} onCopy={this.onCopy}>
               <Button size="small" btnStyle="primary" icon="copy-1">
-                {this.state.copied ? 'Copied' : 'Copy to clipboard'}
+                {this.state.copied ? 'Zkopírováno' : 'Zkopírovat do schránky'}
               </Button>
             </CopyToClipboard>
           ) : (
-            <EmptyState icon="copy" text="No copyable code" size="small" />
+            <EmptyState
+              icon="copy"
+              text="Žádný kopírovatelný kód"
+              size="small"
+            />
           )}
         </MarkdownWrapper>
 
@@ -79,7 +83,7 @@ class InstallCode extends React.Component<Props, State> {
             icon="times-circle"
             onClick={this.props.closeModal && this.props.closeModal}
           >
-            Close
+            Zavřít
           </Button>
         </ModalFooter>
       </React.Fragment>

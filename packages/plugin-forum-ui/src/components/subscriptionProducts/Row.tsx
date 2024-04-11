@@ -19,15 +19,8 @@ type Props = {
 class Row extends React.Component<Props> {
   render() {
     const { product, onDelete, renderButton } = this.props;
-    const {
-      name,
-      description,
-      multiplier,
-      unit,
-      price,
-      userType,
-      listOrder
-    } = product;
+    const { name, description, multiplier, unit, price, userType, listOrder } =
+      product;
 
     const editTrigger = (
       <Button btnStyle="link">
@@ -37,7 +30,7 @@ class Row extends React.Component<Props> {
       </Button>
     );
 
-    const content = props => (
+    const content = (props) => (
       <Form
         {...props}
         renderButton={renderButton}
@@ -54,7 +47,7 @@ class Row extends React.Component<Props> {
           <td>{unit}</td>
           <td>
             {price.toLocaleString(undefined, {
-              maximumFractionDigits: 2
+              maximumFractionDigits: 2,
             })}
           </td>
           <td>
@@ -63,8 +56,8 @@ class Row extends React.Component<Props> {
                 userType === null
                   ? 'success'
                   : userType === 'customer'
-                  ? 'warning'
-                  : 'default'
+                    ? 'warning'
+                    : 'default'
               }
             >
               {userType ? userType : 'All'}
@@ -74,7 +67,7 @@ class Row extends React.Component<Props> {
           <td>
             <ActionButtons>
               <ModalTrigger
-                title="Edit Product"
+                title="Upravit produkt"
                 trigger={editTrigger}
                 size="lg"
                 content={content}

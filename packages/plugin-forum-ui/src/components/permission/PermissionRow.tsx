@@ -14,14 +14,14 @@ type Props = {
 class PermissionRow extends React.Component<Props> {
   render() {
     const { removeItem, permissions } = this.props;
-    return permissions.map(item => (
+    return permissions.map((item) => (
       <tr key={item._id}>
         <td>{item.category?.name || ''}</td>
         <td>{item.permission || ''}</td>
         <td>{item.permissionGroup?.name || ''}</td>
         <td>
           <ActionButtons>
-            <Tip text="Delete" placement="top">
+            <Tip text="Vymazat" placement="top">
               <Button
                 btnStyle="link"
                 onClick={() =>

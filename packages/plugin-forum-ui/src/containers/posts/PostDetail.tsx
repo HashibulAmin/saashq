@@ -23,26 +23,26 @@ function PostDetail(props: FinalProps) {
 
   const [mutDraft] = useMutation(gql(mutations.postDraft), {
     variables: { _id },
-    refetchQueries: queries.postRefetchAfterEdit
+    refetchQueries: queries.postRefetchAfterEdit,
   });
 
   const [mutPublish] = useMutation(gql(mutations.postPublish), {
     variables: { _id },
-    refetchQueries: queries.postRefetchAfterEdit
+    refetchQueries: queries.postRefetchAfterEdit,
   });
 
   const [mutApprove] = useMutation(gql(mutations.postApprove), {
     variables: { _id },
-    refetchQueries: queries.postRefetchAfterEdit
+    refetchQueries: queries.postRefetchAfterEdit,
   });
 
   const [mutDeny] = useMutation(gql(mutations.postDeny), {
     variables: { _id },
-    refetchQueries: queries.postRefetchAfterEdit
+    refetchQueries: queries.postRefetchAfterEdit,
   });
 
   const [mutSetFeatured] = useMutation(gql(mutations.featuredToggle), {
-    refetchQueries: ['ForumPostDetail']
+    refetchQueries: ['ForumPostDetail'],
   });
 
   if (postDetailQuery.loading) {
@@ -50,39 +50,41 @@ function PostDetail(props: FinalProps) {
   }
 
   if (!postDetailQuery.forumPost) {
-    return <EmptyState text="Post not found" image="/images/actions/17.svg" />;
+    return (
+      <EmptyState text="Příspěvek nenalezen" image="/images/actions/17.svg" />
+    );
   }
 
   const onDraft = async () => {
-    confirm('Are you sure you want to save as draft').then(() => mutDraft());
+    confirm('Opravdu chcete uložit jako koncept?').then(() => mutDraft());
   };
 
   const onPublish = async () => {
-    confirm('Are you sure you want to publish?').then(() => mutPublish());
+    confirm('Opravdu chcete publikovat?').then(() => mutPublish());
   };
 
   const onApproveClick = async () => {
-    confirm('Are you sure you want to approve this post?').then(() =>
-      mutApprove()
+    confirm('Opravdu chcete schválit tento příspěvek?').then(() =>
+      mutApprove(),
     );
   };
 
   const onDenyClick = async () => {
-    confirm('Are you sure you want to deny this post?').then(() => mutDeny());
+    confirm('Opravdu chcete zamítnout tento příspěvek?').then(() => mutDeny());
   };
 
   const onFeature = (postId: string, forumPost: IPost) => {
     confirm(
-      `Are you sure you want to ${
+      `Jsi si jistý, že chceš ${
         forumPost.isFeaturedByAdmin ? 'unfeature' : 'feature'
-      } this post?`
+      } tento příspěvek?`,
     ).then(() =>
       mutSetFeatured({
         variables: {
           id: postId,
-          featured: !forumPost.isFeaturedByAdmin
-        }
-      })
+          featured: !forumPost.isFeaturedByAdmin,
+        },
+      }),
     );
   };
 
@@ -93,7 +95,7 @@ function PostDetail(props: FinalProps) {
     onPublish,
     onApproveClick,
     onDenyClick,
-    onFeature
+    onFeature,
   };
 
   return <Detail {...updatedProps} />;
@@ -105,10 +107,10 @@ export default withProps<Props>(
       name: 'postDetailQuery',
       options: ({ _id }) => ({
         variables: {
-          _id
+          _id,
         },
-        fetchPolicy: 'network-only'
-      })
-    })
-  )(PostDetail)
+        fetchPolicy: 'network-only',
+      }),
+    }),
+  )(PostDetail),
 );

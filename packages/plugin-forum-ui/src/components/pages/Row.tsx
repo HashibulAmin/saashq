@@ -31,13 +31,13 @@ class Row extends React.Component<Props> {
       </Button>
     );
 
-    const content = props => (
+    const content = (props) => (
       <PageForm {...props} renderButton={this.props.renderButton} page={page} />
     );
 
     return (
       <ModalTrigger
-        title={`Edit Page`}
+        title={`Upravit stránku`}
         size="lg"
         trigger={trigger}
         content={content}
@@ -65,13 +65,13 @@ class Row extends React.Component<Props> {
   render() {
     const { page, isChecked, toggleBulk } = this.props;
 
-    const onChange = e => {
+    const onChange = (e) => {
       if (toggleBulk) {
         toggleBulk(page, e.target.checked);
       }
     };
 
-    const onClick = e => {
+    const onClick = (e) => {
       e.stopPropagation();
     };
 

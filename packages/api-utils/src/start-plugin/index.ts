@@ -81,7 +81,7 @@ export async function startPlugin(configs: any): Promise<express.Express> {
   app.use((error, _req, res, _next) => {
     const msg = filterXSS(error.message);
 
-    debugError(`Error: ${msg}`);
+    debugError(`Chyba: ${msg}`);
 
     res.status(500).send(msg);
   });
@@ -110,7 +110,7 @@ export async function startPlugin(configs: any): Promise<express.Express> {
   async function leaveServiceDiscovery() {
     try {
       await leave(configs.name, PORT || '');
-      console.log(`Left service discovery. name=${configs.name} port=${PORT}`);
+      console.log(`Zjištění služby vlevo. název=${configs.name} portu=${PORT}`);
     } catch (e) {
       console.error(e);
     }
@@ -127,7 +127,7 @@ export async function startPlugin(configs: any): Promise<express.Express> {
 
   const generateApolloServer = async () => {
     const services = await getServices();
-    debugInfo(`Enabled services .... ${JSON.stringify(services)}`);
+    debugInfo(`Povolené služby .... ${JSON.stringify(services)}`);
 
     const { typeDefs, resolvers } = await configs.graphql();
 
@@ -229,7 +229,7 @@ export async function startPlugin(configs: any): Promise<express.Express> {
   }
 
   console.log(
-    `🚀 ${configs.name} graphql api ready at http://localhost:${PORT}/graphql`,
+    `🚀 ${configs.name} graphql api připraveno na http://localhost:${PORT}/graphql`,
   );
 
   await connectToMessageBroker(configs.setupMessageConsumers);
@@ -618,7 +618,7 @@ export async function startPlugin(configs: any): Promise<express.Express> {
 
   applyInspectorEndpoints(configs.name);
 
-  debugInfo(`${configs.name} server is running on port: ${PORT}`);
+  debugInfo(`${configs.name} server běží na portu: ${PORT}`);
 
   return app;
 }

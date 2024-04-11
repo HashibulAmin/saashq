@@ -25,12 +25,14 @@ function PageDetail(props: FinalProps) {
   }
 
   if (!pageDetailQuery.forumPage) {
-    return <EmptyState text="Page not found" image="/images/actions/17.svg" />;
+    return (
+      <EmptyState text="Stránka nenalezena" image="/images/actions/17.svg" />
+    );
   }
 
   const updatedProps = {
     ...props,
-    page: pageDetailQuery.forumPage || ({} as IPage)
+    page: pageDetailQuery.forumPage || ({} as IPage),
   };
 
   return <Detail {...updatedProps} />;
@@ -42,10 +44,10 @@ export default withProps<Props>(
       name: 'pageDetailQuery',
       options: ({ id }) => ({
         variables: {
-          id
+          id,
         },
-        fetchPolicy: 'network-only'
-      })
-    })
-  )(PageDetail)
+        fetchPolicy: 'network-only',
+      }),
+    }),
+  )(PageDetail),
 );

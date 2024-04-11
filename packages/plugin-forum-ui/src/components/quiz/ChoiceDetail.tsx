@@ -18,7 +18,7 @@ type Props = {
 };
 
 const ChoiceDetail = ({ choice, index, onDelete, quizId }: Props) => {
-  const renderQuestionForm = props => (
+  const renderQuestionForm = (props) => (
     <QuestionForm type="choice" choice={choice} {...props} quizId={quizId} />
   );
 
@@ -42,7 +42,7 @@ const ChoiceDetail = ({ choice, index, onDelete, quizId }: Props) => {
                 </Button>
               }
               content={renderQuestionForm}
-              title="Edit Choice"
+              title="Upravit volbu"
             />
 
             <Tip text={__('Delete')} placement="top">

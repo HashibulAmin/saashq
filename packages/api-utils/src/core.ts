@@ -25,14 +25,14 @@ export const getEnv = ({
   }
 
   if (subdomain) {
-    value = value.replace('<subdomain>', subdomain);
+    value = value.replace('<subdoména>', subdomain);
   }
 
   return value || '';
 };
 
 /**
- * Returns user's name  or email
+ * Returns user's name or email
  */
 export const getUserDetail = (user: IUserDocument) => {
   if (user.details) {
@@ -393,7 +393,7 @@ export const createGenerateModels = <IModels>(
       }
 
       if (!subdomain) {
-        throw new Error(`Subdomain is \`${subdomain}\``);
+        throw new Error(`Subdoména je \`${subdomain}\``);
       }
 
       await getCoreConnection();
@@ -401,9 +401,7 @@ export const createGenerateModels = <IModels>(
       const organization = await coreModelOrganizations.findOne({ subdomain });
 
       if (!organization) {
-        throw new Error(
-          `Organization with subdomain = ${subdomain} is not found`,
-        );
+        throw new Error(`Organizace se subdoménou = ${subdomain} není nalezen`);
       }
 
       const DB_NAME = getEnv({ name: 'DB_NAME' });

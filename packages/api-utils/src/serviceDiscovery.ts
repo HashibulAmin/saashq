@@ -9,7 +9,7 @@ const isDev = NODE_ENV === 'development';
 
 if (!ENABLED_SERVICES_JSON) {
   throw new Error(
-    'ENABLED_SERVICES_JSON environment variable is not configured.',
+    'ENABLED_SERVICES_JSON proměnná prostředí není nakonfigurována.',
   );
 }
 
@@ -17,7 +17,7 @@ const enabledServices = JSON.parse(ENABLED_SERVICES_JSON) || [];
 
 if (!Array.isArray(enabledServices)) {
   throw new Error(
-    "ENABLED_SERVICES_JSON environment variable's value must be JSON array",
+    'ENABLED_SERVICES_JSON hodnota proměnné prostředí musí být pole JSON',
   );
 }
 

@@ -4,8 +4,8 @@ export const PROMO_CODE_TYPE = {
 };
 
 export const ORGANIZATION_PLAN = {
-  LIFETIME: 'lifetime',
-  FREE: 'free',
-  GROWTH: 'growth',
-  ALL: ['lifetime', 'free', 'growth'],
+  LIFETIME: 'život',
+  FREE: 'uvolnit',
+  GROWTH: 'růst',
+  ALL: ['život', 'uvolnit', 'růst'],
 };

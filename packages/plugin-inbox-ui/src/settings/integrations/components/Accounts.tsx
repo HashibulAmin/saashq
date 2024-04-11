@@ -2,11 +2,11 @@ import {
   AccountBox,
   AccountItem,
   AccountTitle,
-  GoogleButton
+  GoogleButton,
 } from '@saashq/ui-inbox/src/settings/integrations/styles';
 import {
   IAccount,
-  IntegrationTypes
+  IntegrationTypes,
 } from '@saashq/ui-inbox/src/settings/integrations/types';
 import { __, confirm } from 'coreui/utils';
 
@@ -86,11 +86,14 @@ class Accounts extends React.Component<Props, { accountId?: string }> {
 
     if (accounts.length === 0) {
       return (
-        <EmptyState icon="user-6" text={__('There is no linked accounts')} />
+        <EmptyState
+          icon="user-6"
+          text={__('Neexistuje žádný propojený účet')}
+        />
       );
     }
 
-    return accounts.map(account => (
+    return accounts.map((account) => (
       <AccountItem key={account._id}>
         <span>{account.name}</span>
 

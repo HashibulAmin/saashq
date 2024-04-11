@@ -57,7 +57,7 @@ function Manage({ integration, closeModal }: Props) {
 
   const [state, setState] = useState<State>({
     code: installCode,
-    copied: false
+    copied: false,
   });
 
   const onSimulate = () => {
@@ -66,7 +66,7 @@ function Manage({ integration, closeModal }: Props) {
     window.open(
       `${REACT_APP_CDN_HOST}/test?type=booking&integration_id=${integration._id}`,
       'bookingWindow',
-      'width=800,height=800'
+      'width=800,height=800',
     );
   };
 
@@ -81,12 +81,16 @@ function Manage({ integration, closeModal }: Props) {
           <ReactMarkdown children={code || ''} />
           {code ? (
             <CopyToClipboard text={code} onCopy={onCopy}>
-              <Button btnStyle='primary' icon='copy-1'>
-                {copied ? 'Copied' : 'Copy to clipboard'}
+              <Button btnStyle="primary" icon="copy-1">
+                {copied ? 'Zkopírováno' : 'Zkopírovat do schránky'}
               </Button>
             </CopyToClipboard>
           ) : (
-            <EmptyState icon='copy' text='No copyable code' size='small' />
+            <EmptyState
+              icon="copy"
+              text="Žádný kopírovatelný kód"
+              size="small"
+            />
           )}
         </MarkdownWrapper>
       </>
@@ -96,18 +100,18 @@ function Manage({ integration, closeModal }: Props) {
     <>
       <Info>
         {__(
-          ' Paste this main code before the body tag on every page you want this booking to appear.'
+          ' Paste this main code before the body tag on every page you want this booking to appear.',
         )}
       </Info>
 
       {renderContent()}
       <ModalFooter>
-        <Button btnStyle='primary' icon='plus-circle' onClick={onSimulate}>
-          Simulate
+        <Button btnStyle="primary" icon="plus-circle" onClick={onSimulate}>
+          Simulovat
         </Button>
 
-        <Button btnStyle='simple' icon='times-circle' onClick={closeModal}>
-          Close
+        <Button btnStyle="simple" icon="times-circle" onClick={closeModal}>
+          Zavřít
         </Button>
       </ModalFooter>
     </>

@@ -68,7 +68,7 @@ export const getOrganizationIdBySubdomain = async (
   const organization = await getOrgsCache({ subdomain });
 
   if (!organization) {
-    throw new Error(`Invalid host, subdomain: ${subdomain}`);
+    throw new Error(`Neplatný hostitel, subdoména: ${subdomain}`);
   }
 
   ORGANIZATION_ID_MAPPING[subdomain] = organization._id;
@@ -90,7 +90,7 @@ export const getOrgsCache = async ({
   let organizations: IOrganization[] = value ? JSON.parse(value) : [];
 
   if (organizations.length === 0) {
-    console.log('Fetching organizations from database ...');
+    console.log('Načítání organizací z databáze ...');
 
     organizations = await coreModelOrganizations.find({}).lean();
 
@@ -254,7 +254,7 @@ export const getOrganizationDetail = async ({
 };
 
 export const removeOrgsCache = (source: string) => {
-  console.log(`Removing org cache ${source}`);
+  console.log(`Odebírání mezipaměti organizace ${source}`);
 
   return redis.set('core_organizations', '');
 };

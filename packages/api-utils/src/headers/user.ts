@@ -8,7 +8,7 @@ export function extractUserFromHeader(headers: IncomingHttpHeaders): any {
     return null;
   }
   if (Array.isArray(userHeader)) {
-    throw new Error(`Multiple user headers`);
+    throw new Error(`Více uživatelských hlaviček`);
   }
   const userJson = Buffer.from(userHeader, 'base64').toString('utf-8');
   return JSON.parse(userJson);

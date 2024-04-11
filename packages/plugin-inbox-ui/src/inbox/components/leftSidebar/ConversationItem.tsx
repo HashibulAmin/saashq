@@ -11,17 +11,17 @@ import {
   MessageContent,
   RowContent,
   RowItem,
-  SmallTextOneLine
+  SmallTextOneLine,
 } from './styles';
 import {
   CustomerName,
   EllipsisContent,
-  Flex as FlexRoot
+  Flex as FlexRoot,
 } from '@saashq/ui/src/styles/main';
 import {
   cleanIntegrationKind,
   readFile,
-  renderFullName
+  renderFullName,
 } from '@saashq/ui/src/utils';
 
 import { CallLabel } from '@saashq/ui-inbox/src/inbox/styles';
@@ -148,7 +148,7 @@ class ConversationItem extends React.Component<Props> {
                   </EllipsisContent>
                   <time>
                     {(dayjs(updatedAt || createdAt) || ({} as any)).fromNow(
-                      true
+                      true,
                     )}
                   </time>
                 </CustomerName>
@@ -190,7 +190,7 @@ class ConversationItem extends React.Component<Props> {
           </FlexContent>
         </RowContent>
         {this.isIdle(integration, idleTime) && (
-          <Tip placement="left" text="Idle">
+          <Tip placement="left" text="Líný">
             <Idle />
           </Tip>
         )}

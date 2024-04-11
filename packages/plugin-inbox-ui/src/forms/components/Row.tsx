@@ -53,11 +53,11 @@ class Row extends React.Component<Props> {
       </Button>
     );
 
-    const content = props => <Manage integration={integration} {...props} />;
+    const content = (props) => <Manage integration={integration} {...props} />;
 
     return (
       <ModalTrigger
-        title={`Install code of ${integration.name}`}
+        title={`Nainstalujte kód ${integration.name}`}
         size="lg"
         trigger={trigger}
         content={content}
@@ -92,7 +92,7 @@ class Row extends React.Component<Props> {
     const onClick = () => {
       window.open(
         `${REACT_APP_API_URL}/pl:contacts/file-export?type=customer&popupData=true&form=${integration.formId}`,
-        '_blank'
+        '_blank',
       );
     };
 
@@ -173,7 +173,7 @@ class Row extends React.Component<Props> {
 
     const createdUser = form.createdUser || {
       _id: '',
-      details: { fullName: '' }
+      details: { fullName: '' },
     };
     const tags = integration.tags;
 
@@ -181,7 +181,7 @@ class Row extends React.Component<Props> {
       ? lead.conversionRate.toString()
       : '0.00';
 
-    const onChange = e => {
+    const onChange = (e) => {
       if (toggleBulk) {
         toggleBulk(integration, e.target.checked);
       }

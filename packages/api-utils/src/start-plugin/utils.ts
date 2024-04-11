@@ -14,7 +14,7 @@ export const getEnv = ({
   }
 
   if (!value) {
-    debugInfo(`Missing environment variable configuration for ${name}`);
+    debugInfo(`Chybí konfigurace proměnné prostředí pro ${name}`);
   }
 
   return value || '';

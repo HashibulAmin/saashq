@@ -246,7 +246,7 @@ class RespondBox extends React.Component<Props, State> {
 
           this.setState({ attachments: remainedAttachments });
 
-          Alert.success('You successfully deleted a file');
+          Alert.success('Úspěšně jste smazali soubor');
         } else {
           Alert.error(status);
         }

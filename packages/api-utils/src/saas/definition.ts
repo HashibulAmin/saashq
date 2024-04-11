@@ -2,16 +2,16 @@ import * as mongoose from 'mongoose';
 import { PROMO_CODE_TYPE } from '../saas/constants';
 
 export const ORGANIZATION_PLAN = {
-  LIFETIME: 'lifetime',
-  FREE: 'free',
-  GROWTH: 'growth',
-  ALL: ['lifetime', 'free', 'growth'],
+  LIFETIME: 'život',
+  FREE: 'uvolnit',
+  GROWTH: 'růst',
+  ALL: ['život', 'uvolnit', 'růst'],
 };
 
 export const INTERVAL = {
-  MONTHLY: 'monthly',
-  YEARLY: 'yearly',
-  ALL: ['monthly', 'yearly'],
+  MONTHLY: 'měsíční',
+  YEARLY: 'roční',
+  ALL: ['měsíční', 'roční'],
 };
 
 const cronLastExecutedDateSchema = new mongoose.Schema(
@@ -48,11 +48,11 @@ export const organizationsSchema = new mongoose.Schema({
   },
   interval: { type: String, enum: INTERVAL.ALL, optional: true },
   subscriptionId: { type: String, optional: true },
-  expiryDate: { type: Date, label: 'Expiry date', optional: true },
+  expiryDate: { type: Date, label: 'Datum vypršení platnosti', optional: true },
   cronLastExecutedDate: { type: cronLastExecutedDateSchema },
   awsSesAccountStatus: {
     type: String,
-    label: 'AWS SES account status',
+    label: 'Stav účtu AWS SES',
     optional: true,
   },
   percentOff: Number,
@@ -71,13 +71,13 @@ export const organizationsSchema = new mongoose.Schema({
 });
 
 export const installationSchema = new mongoose.Schema({
-  createdAt: { type: Date, label: 'Created at', default: new Date() },
-  userId: { type: String, label: 'Owner user' },
+  createdAt: { type: Date, label: 'Vytvořeno v', default: new Date() },
+  userId: { type: String, label: 'Vlastník uživatel' },
   organizationId: { type: String, label: 'Linked organization' },
-  name: { type: String, label: 'Self hosted installation name' },
-  token: { type: String, label: 'Token' },
+  name: { type: String, label: 'Název vlastní hostované instalace' },
+  token: { type: String, label: 'Žeton' },
   isVerified: { type: Boolean, default: false },
-  domain: { type: String, label: 'Self hosted domain' },
+  domain: { type: String, label: 'Vlastní hostovaná doména' },
 });
 
 export const paymentSchema = new mongoose.Schema({
@@ -97,10 +97,10 @@ export const endPointSchema = new mongoose.Schema({
 });
 
 export const PROMOCODE_STATUS = {
-  REDEEMED: 'redeemed',
-  REVOKED: 'revoked',
-  UNUSED: 'unused',
-  ALL: ['redeemed', 'revoked', 'unused'],
+  REDEEMED: 'vykoupeni',
+  REVOKED: 'odvoláno',
+  UNUSED: 'nepoužitý',
+  ALL: ['vykoupeni', 'odvoláno', 'nepoužitý'],
 };
 
 export const promoCodeSchema = new mongoose.Schema({
@@ -110,52 +110,58 @@ export const promoCodeSchema = new mongoose.Schema({
     enum: PROMOCODE_STATUS.ALL,
     default: PROMOCODE_STATUS.UNUSED,
   },
-  usedBy: { type: String, label: 'Used by' },
+  usedBy: { type: String, label: 'Použito uživatelem' },
   usedAt: {
     type: Date,
-    label: 'Used at',
+    label: 'Používá se při',
   },
   type: { type: String, enum: PROMO_CODE_TYPE.ALL },
-  createdBy: { type: String, label: 'Created by' },
+  createdBy: { type: String, label: 'Vytvořil' },
   createdAt: {
     type: Date,
     default: new Date(),
-    label: 'Created at',
+    label: 'Vytvořeno v',
   },
 });
 
 export const PAYMENT_STATUS = {
-  INCOMPLETE: 'incomplete',
-  ERROR: 'error',
-  COMPLETE: 'complete',
-  CANCELED: 'canceled',
-  ALL: ['canceled', 'incomplete', 'complete', 'error'],
+  INCOMPLETE: 'neúplný',
+  ERROR: 'chyba',
+  COMPLETE: 'kompletní',
+  CANCELED: 'zrušeno',
+  ALL: ['zrušeno', 'neúplný', 'kompletní', 'chyba'],
 };
 
 export const addonSchema = new mongoose.Schema({
-  kind: { type: String, label: 'Add-on kind' },
-  subkind: { type: String, label: 'For example: It is used for setup service' },
-  quantity: { type: Number, label: 'Quantity' },
-  unitAmount: { type: Number, label: 'Unit amount' },
-  installationId: { type: String, label: 'Linked installation' },
+  kind: { type: String, label: 'Druh doplňku' },
+  subkind: {
+    type: String,
+    label: 'Například: Používá se pro službu nastavení',
+  },
+  quantity: { type: Number, label: 'Množství' },
+  unitAmount: { type: Number, label: 'Jednotková částka' },
+  installationId: { type: String, label: 'Propojená instalace' },
   subscriptionItemId: {
     type: String,
-    label: 'Linked subscription item if purchased',
+    label: 'Propojená položka předplatného, ​​pokud byla zakoupena',
   },
-  subscriptionId: { type: String, label: 'Linked subscription if purchased' },
-  expiryDate: { type: Date, label: 'Expiry date if purchased' },
-  createdUser: { type: String, label: 'Created user' },
+  subscriptionId: {
+    type: String,
+    label: 'Propojené předplatné, pokud bylo zakoupeno',
+  },
+  expiryDate: { type: Date, label: 'Datum expirace v případě zakoupení' },
+  createdUser: { type: String, label: 'Vytvořený uživatel' },
   interval: String,
   percentOff: Number,
   amountOff: Number,
   paymentStatus: {
     type: String,
     enum: PAYMENT_STATUS.ALL,
-    label: 'Картнаас төлбөр татагдсан тохиолдолд утга нь complete болно.',
+    label: 'Hodnota bude úplná, pokud bude platba stažena z karty.',
   },
   paymentStatusMessage: {
     type: String,
-    label: 'Төлбөр төлөгдсөн талаарх тайлбар',
+    label: 'Vysvětlení platby',
   },
 });
 
@@ -164,26 +170,26 @@ export const bundleSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: new Date(),
-    label: 'Created at',
+    label: 'Vytvořeno v',
   },
   title: { type: String },
   type: { type: String },
-  stripeProductId: { type: String, label: 'Product id at stripe' },
+  stripeProductId: { type: String, label: 'ID produktu v pruhu' },
   pluginLimits: {
     type: mongoose.Schema.Types.Mixed,
-    label: 'Plugins information',
+    label: 'Informace o pluginech',
   },
   comingSoon: {
     type: Boolean,
-    label: 'Show different things in UI if coming soon',
+    label: 'Zobrazit různé věci v uživatelském rozhraní, pokud již brzy',
   },
   isActive: { type: Boolean, label: '' },
-  promoCodes: { type: [String], label: 'Promo codes' },
-  description: { type: String, label: 'Description' },
-  onboardingSteps: { type: [String], label: 'Onboarding steps' },
-  onboardingDescription: { type: String, label: 'Onboarding description' },
-  features: { type: String, label: 'Features' },
-  detailedDescription: { type: String, label: 'Detailed Description' },
+  promoCodes: { type: [String], label: 'Propagační kódy' },
+  description: { type: String, label: 'Popis' },
+  onboardingSteps: { type: [String], label: 'Vstupní kroky' },
+  onboardingDescription: { type: String, label: 'Popis registrace' },
+  features: { type: String, label: 'Funkce' },
+  detailedDescription: { type: String, label: 'Detailní Popis' },
 });
 
 const creatorSchema = new mongoose.Schema(
@@ -197,96 +203,99 @@ const creatorSchema = new mongoose.Schema(
 );
 
 export const PLUGIN_MAIN_TYPES = {
-  ADDON: 'addon',
-  PLUGIN: 'plugin',
-  SERVICE: 'service',
-  POWERUP: 'power-up',
-  ALL: ['addon', 'plugin', 'service', 'power-up'],
+  ADDON: 'doplněk',
+  PLUGIN: 'zapojit',
+  SERVICE: 'servis',
+  POWERUP: 'zapnutí napájení',
+  ALL: ['doplněk', 'zapojit', 'servis', 'zapnutí napájení'],
 };
 
 export const pluginSchema = new mongoose.Schema({
-  language: { type: String, label: 'Language' },
+  language: { type: String, label: 'Jazyk' },
 
   avatar: { type: String, label: 'Avatar' },
-  images: { type: String, label: 'Images' },
+  images: { type: String, label: 'Snímky' },
   video: { type: String, label: 'Video' },
 
-  title: { type: String, label: 'Plugin title' },
-  creator: { type: creatorSchema, label: 'Creator info' },
-  department: { type: String, label: 'Department' },
+  title: { type: String, label: 'Název pluginu' },
+  creator: { type: creatorSchema, label: 'Informace o tvůrci' },
+  department: { type: String, label: 'Oddělení' },
 
-  description: { type: String, label: 'Description' },
-  shortDescription: { type: String, label: 'Short description' },
-  screenShots: { type: String, label: 'Screen shots' },
-  features: { type: String, label: 'Features' },
+  description: { type: String, label: 'Popis' },
+  shortDescription: { type: String, label: 'Stručný popis' },
+  screenShots: { type: String, label: 'Snímky obrazovky' },
+  features: { type: String, label: 'Funkce' },
 
   tango: { type: String, label: 'Tango' },
 
-  changeLog: { type: String, label: 'Change log' },
-  lastUpdatedInfo: { type: String, label: 'Last updated information' },
-  contributors: { type: String, label: 'Contributors' },
-  support: { type: String, label: 'Resolved issues' },
+  changeLog: { type: String, label: 'Změnit protokol' },
+  lastUpdatedInfo: { type: String, label: 'Poslední aktualizované informace' },
+  contributors: { type: String, label: 'Přispěvatelé' },
+  support: { type: String, label: 'Vyřešené problémy' },
 
-  createdAt: { type: Date, label: 'Created at' },
-  modifiedAt: { type: Date, label: 'Modified at' },
-  createdBy: { type: String, label: 'Created by' },
-  modifiedBy: { type: String, label: 'Modified by' },
+  createdAt: { type: Date, label: 'Vytvořeno v' },
+  modifiedAt: { type: Date, label: 'Upraveno v' },
+  createdBy: { type: String, label: 'Vytvořil' },
+  modifiedBy: { type: String, label: 'Upraven' },
 
-  selfHosted: { type: Boolean, label: 'For self hosted or not' },
+  selfHosted: { type: Boolean, label: 'Pro vlastní hostování nebo ne' },
   type: {
     type: String,
-    label: 'Value previously stored in charge item type constant variable',
+    label: 'Hodnota dříve uložená v konstantní proměnné typu položky poplatku',
   },
-  limit: { type: Number, label: 'Limit' },
-  count: { type: Number, label: 'Count' },
-  initialCount: { type: Number, label: 'Initial count' },
+  limit: { type: Number, label: 'Omezit' },
+  count: { type: Number, label: 'Počet' },
+  initialCount: { type: Number, label: 'Počáteční počet' },
   growthInitialCount: { type: Number },
-  resetMonthly: { type: Boolean, label: 'Whether limit resets monthly or not' },
-  unit: { type: String, label: 'Measurement unit' },
+  resetMonthly: {
+    type: Boolean,
+    label: 'Zda se limit resetuje měsíčně nebo ne',
+  },
+  unit: { type: String, label: 'Měřící jednotka' },
   comingSoon: {
     type: Boolean,
-    label: 'Show different things in UI if coming soon',
+    label: 'Zobrazit různé věci v uživatelském rozhraní, pokud již brzy',
   },
-  icon: { type: String, label: 'Icon path' },
+  icon: { type: String, label: 'Cesta ikony' },
   categories: {
     type: [String],
-    label: 'Related categories (marketing, sales ...etc)',
+    label: 'Související kategorie (marketing, prodej ... atd.)',
   },
-  dependencies: { type: [String], label: 'Dependent plugin ids' },
+  dependencies: { type: [String], label: 'Závislá ID pluginů' },
   mainType: {
     type: [String],
-    label: 'Whether a plugin, addon, service or power-up',
+    label: 'Ať už jde o plugin, addon, službu nebo power-up',
     enum: PLUGIN_MAIN_TYPES.ALL,
   },
-  stripeProductId: { type: String, label: 'Product id at stripe' },
+  stripeProductId: { type: String, label: 'ID produktu v pruhu' },
 });
 
 export const experiencesSchema = new mongoose.Schema({
   title: { type: String },
-  images: { type: String, label: 'images' },
+  images: { type: String, label: 'snímky' },
   video: { type: String, label: 'video' },
   createdAt: {
     type: Date,
     default: new Date(),
-    label: 'Created at',
+    label: 'Vytvořeno v',
   },
-  stripeProductId: { type: String, label: 'Product id at stripe' },
+  stripeProductId: { type: String, label: 'ID produktu v pruhu' },
   pluginLimits: {
     type: mongoose.Schema.Types.Mixed,
-    label: 'Plugins information',
+    label: 'Informace o pluginech',
   },
   comingSoon: {
     type: Boolean,
-    label: 'Show different things in UI if coming soon',
+    label: 'Zobrazit různé věci v uživatelském rozhraní, pokud již brzy',
   },
   isPrivate: {
     type: Boolean,
-    label: 'Show different things in UI if coming soon',
+    label: 'Zobrazit různé věci v uživatelském rozhraní, pokud již brzy',
   },
   isActive: { type: Boolean, label: '' },
-  promoCodes: { type: [String], label: 'Promo codes' },
-  description: { type: String, label: 'Description' },
-  onboardingSteps: { type: [String], label: 'Onboarding steps' },
-  onboardingDescription: { type: String, label: 'Onboarding description' },
-  features: { type: String, label: 'Features' },
+  promoCodes: { type: [String], label: 'Propagační kódy' },
+  description: { type: String, label: 'Popis' },
+  onboardingSteps: { type: [String], label: 'Vstupní kroky' },
+  onboardingDescription: { type: String, label: 'Popis registrace' },
+  features: { type: String, label: 'Funkce' },
 });

@@ -24,16 +24,16 @@ export interface IPermissionParams {
 
 export const permissionSchema = new Schema({
   _id: field({ pkey: true }),
-  module: field({ type: String, label: 'Module' }),
-  action: field({ type: String, label: 'Action' }),
-  userId: field({ type: String, label: 'User' }),
-  groupId: field({ type: String, label: 'User group' }),
+  module: field({ type: String, label: 'Modul' }),
+  action: field({ type: String, label: 'Akce' }),
+  userId: field({ type: String, label: 'Uživatel' }),
+  groupId: field({ type: String, label: 'Uživatelská skupina' }),
   requiredActions: field({
     type: [String],
     default: [],
-    label: 'Required actions'
+    label: 'Požadované akce',
   }),
-  allowed: field({ type: Boolean, default: false, label: 'Allowed' })
+  allowed: field({ type: Boolean, default: false, label: 'Povoleno' }),
 });
 
 export interface IUserGroup {
@@ -47,6 +47,6 @@ export interface IUserGroupDocument extends IUserGroup, Document {
 
 export const userGroupSchema = new Schema({
   _id: field({ pkey: true }),
-  name: field({ type: String, unique: true, label: 'Name' }),
-  description: field({ type: String, label: 'Description' })
+  name: field({ type: String, unique: true, label: 'Název' }),
+  description: field({ type: String, label: 'Popis' }),
 });

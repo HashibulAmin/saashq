@@ -39,7 +39,7 @@ class ChannelRow extends React.Component<Props, {}> {
       </Button>
     );
 
-    const content = props => (
+    const content = (props) => (
       <ChannelForm {...props} channel={channel} renderButton={renderButton} />
     );
 
@@ -65,7 +65,7 @@ class ChannelRow extends React.Component<Props, {}> {
         </Link>
         <ActionButtons>
           {this.renderEditAction()}
-          <Tip text="Delete" placement="bottom">
+          <Tip text="Vymazat" placement="bottom">
             <Button btnStyle="link" onClick={this.remove} icon="cancel-1" />
           </Tip>
         </ActionButtons>

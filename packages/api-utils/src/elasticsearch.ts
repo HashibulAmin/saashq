@@ -149,7 +149,7 @@ export const fetchEs = async ({
   } catch (e) {
     if (!ignoreError) {
       debugError(
-        `Error during es query: ${JSON.stringify(body)}: ${e.message}`,
+        `Chyba během dotazu es: ${JSON.stringify(body)}: ${e.message}`,
       );
     }
 

@@ -24,7 +24,7 @@ class Sidebar extends React.Component<Props, {}> {
   renderItems = () => {
     const { channels, remove, currentChannelId, renderButton } = this.props;
 
-    return channels.map(channel => (
+    return channels.map((channel) => (
       <ChannelRow
         key={channel._id}
         isActive={currentChannelId === channel._id}
@@ -41,18 +41,18 @@ class Sidebar extends React.Component<Props, {}> {
 
     const addChannel = (
       <Button btnStyle="success" block={true} icon="plus-circle">
-        Add New Channel
+        Přidat nový kanál
       </Button>
     );
 
-    const content = props => (
+    const content = (props) => (
       <ChannelForm {...props} renderButton={renderButton} />
     );
 
     return (
       <Header>
         <ModalTrigger
-          title="New Channel"
+          title="Nový kanál"
           autoOpenKey="showChannelAddModal"
           trigger={addChannel}
           content={content}
@@ -77,7 +77,7 @@ class Sidebar extends React.Component<Props, {}> {
         {!loading && channelsTotalCount === 0 && (
           <EmptyState
             image="/images/actions/18.svg"
-            text="There is no channel"
+            text="Neexistuje žádný kanál"
           />
         )}
       </LeftSidebar>

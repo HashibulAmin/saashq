@@ -97,9 +97,9 @@ interface IFinalLogParams extends ILogDataParams {
 }
 
 export const LOG_ACTIONS = {
-  CREATE: 'create',
-  UPDATE: 'update',
-  DELETE: 'delete',
+  CREATE: 'vytvořit',
+  UPDATE: 'aktualizace',
+  DELETE: 'vymazat',
 };
 
 export type LogDesc = {

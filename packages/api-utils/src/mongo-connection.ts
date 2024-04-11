@@ -12,22 +12,22 @@ export const connectionOptions: mongoose.ConnectOptions = {
 
 mongoose.connection
   .on('connected', () => {
-    console.log(`Connected to the database: ${MONGO_URL}`);
+    console.log(`Připojeno k databázi: ${MONGO_URL}`);
   })
   .on('disconnected', () => {
-    console.log(`Disconnected from the database: ${MONGO_URL}`);
+    console.log(`Odpojeno od databáze: ${MONGO_URL}`);
 
     process.exit(1);
   })
   .on('error', (error) => {
-    console.error(`Database connection error: ${MONGO_URL} ${error}`);
+    console.error(`Chyba připojení k databázi: ${MONGO_URL} ${error}`);
 
     process.exit(1);
   });
 
 export async function connect(): Promise<mongoose.Connection> {
   if (!MONGO_URL) {
-    throw new Error('MONGO_URL is not defined');
+    throw new Error('MONGO_URL není definováno');
   }
   await mongoose.connect(MONGO_URL, connectionOptions);
   return mongoose.connection;

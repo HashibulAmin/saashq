@@ -96,7 +96,7 @@ class PopoverContent extends React.Component<Props, State> {
         : this.filterByValue(filteredByBrandIdTargets, searchValue);
 
     if (filteredTargets.length === 0) {
-      return <EmptyState icon="clipboard-1" text="No templates" />;
+      return <EmptyState icon="clipboard-1" text="Žádné šablony" />;
     }
 
     return filteredTargets.map((item, i) => {

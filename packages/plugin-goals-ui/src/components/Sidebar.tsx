@@ -37,7 +37,7 @@ export default function Sidebar(props: Props) {
       'contribution',
       'date',
       'endDate',
-      'page'
+      'page',
     );
   };
 
@@ -70,11 +70,11 @@ export default function Sidebar(props: Props) {
       </Section.Title>
       <SidebarFilters>
         <FormGroup>
-          <ControlLabel>Start Date</ControlLabel>
+          <ControlLabel>Datum zahájení</ControlLabel>
           <DateControl
             value={date}
             name="date"
-            placeholder={'Start Date'}
+            placeholder={'Datum zahájení'}
             dateFormat={'YYYY-MM-DD'}
             onChange={(date: any) =>
               setFilter('date', dayjs(date).format('YYYY-MM-DD'))
@@ -82,11 +82,11 @@ export default function Sidebar(props: Props) {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>End Date</ControlLabel>
+          <ControlLabel>Datum ukončení</ControlLabel>
           <DateControl
             value={endDate}
             name="endDate"
-            placeholder={'End Date'}
+            placeholder={'Datum ukončení'}
             dateFormat={'YYYY-MM-DD'}
             onChange={(endDate: any) =>
               setFilter('endDate', dayjs(endDate).format('YYYY-MM-DD'))
@@ -94,63 +94,63 @@ export default function Sidebar(props: Props) {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>Branch</ControlLabel>
+          <ControlLabel>Větev</ControlLabel>
           <SelectBranches
-            label="Choose branch"
+            label="Vyberte pobočku"
             name="branch"
             initialValue={branch || ''}
             customOption={{
               value: '',
-              label: '...Clear branch filter'
+              label: '...Vymazat filtr větví',
             }}
-            onSelect={branch => setFilter('branch', branch)}
+            onSelect={(branch) => setFilter('branch', branch)}
             multi={false}
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>Department</ControlLabel>
+          <ControlLabel>Oddělení</ControlLabel>
           <SelectDepartments
-            label="Choose department"
+            label="Vyberte oddělení"
             name="department"
             initialValue={department || ''}
             customOption={{
               value: '',
-              label: '...Clear department filter'
+              label: '...Vymazat filtr oddělení',
             }}
-            onSelect={department => setFilter('department', department)}
+            onSelect={(department) => setFilter('department', department)}
             multi={false}
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>Units</ControlLabel>
+          <ControlLabel>Jednotky</ControlLabel>
           <SelectUnits
-            label="Choose Units"
+            label="Vyberte Jednotky"
             name="unit"
             initialValue={unit || ''}
             customOption={{
               value: '',
-              label: '...Clear unit filter'
+              label: '...Vyčistěte filtr jednotky',
             }}
-            onSelect={unit => setFilter('unit', unit)}
+            onSelect={(unit) => setFilter('unit', unit)}
             multi={false}
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>TeamMember</ControlLabel>
+          <ControlLabel>Člen týmu</ControlLabel>
           <SelectTeamMembers
-            label="Choose User"
+            label="Vyberte Uživatel"
             name="contribution"
             initialValue={contribution || ''}
             customOption={{
               value: '',
-              label: '...Clear user filter'
+              label: '...Vymazat uživatelský filtr',
             }}
-            onSelect={contribution => setFilter('contribution', contribution)}
+            onSelect={(contribution) => setFilter('contribution', contribution)}
             multi={false}
           />
         </FormGroup>
         <FormGroup>
-          <Button onClick={runFilter}>Filter</Button>
+          <Button onClick={runFilter}>Filtr</Button>
         </FormGroup>
       </SidebarFilters>
     </Wrapper.Sidebar>

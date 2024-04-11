@@ -88,7 +88,7 @@ class Manage extends React.Component<Props, State> {
       code,
       embedCode,
       buttonCode,
-      copied: false
+      copied: false,
     };
   }
 
@@ -101,7 +101,7 @@ class Manage extends React.Component<Props, State> {
     window.open(
       `${REACT_APP_CDN_HOST}/test?type=form&brand_id=${brand.code}&form_id=${form.code}`,
       'formrWindow',
-      'width=800,height=800'
+      'width=800,height=800',
     );
   };
 
@@ -116,22 +116,22 @@ class Manage extends React.Component<Props, State> {
           <ReactMarkdown children={code || ''} />
           {code ? (
             <CopyToClipboard text={code} onCopy={onCopy}>
-              <Button btnStyle='primary' icon='copy-1'>
-                {copied ? 'Copied' : 'Copy to clipboard'}
+              <Button btnStyle="primary" icon="copy-1">
+                {copied ? 'Zkopírováno' : 'Zkopírovat do schránky'}
               </Button>
             </CopyToClipboard>
           ) : (
             <EmptyState
-              icon='copy'
-              text='No copyable code. You should connect Form to brand first'
-              size='small'
+              icon="copy"
+              text="Žádný kopírovatelný kód. Nejprve byste měli propojit formulář se značkou"
+              size="small"
             />
           )}
         </MarkdownWrapper>
         <br />
         <Info>
           {__(
-            'If your form style is embedded, additionally paste this code after the main code. '
+            'If your form style is embedded, additionally paste this code after the main code. ',
           )}
         </Info>
         <MarkdownWrapper>
@@ -140,7 +140,7 @@ class Manage extends React.Component<Props, State> {
         <br />
         <Info>
           {__(
-            'If your form style is a popup, additionally paste this code after the main code.'
+            'If your form style is a popup, additionally paste this code after the main code.',
           )}
         </Info>
         <MarkdownWrapper>
@@ -155,7 +155,7 @@ class Manage extends React.Component<Props, State> {
       <>
         <Info>
           {__(
-            ' Paste this main code before the body tag on every page you want this form to appear.'
+            ' Paste this main code before the body tag on every page you want this form to appear.',
           )}
         </Info>
 
@@ -163,19 +163,19 @@ class Manage extends React.Component<Props, State> {
 
         <ModalFooter>
           <Button
-            btnStyle='primary'
-            icon='plus-circle'
+            btnStyle="primary"
+            icon="plus-circle"
             onClick={this.onSimulate}
           >
-            Simulate
+            Simulovat
           </Button>
 
           <Button
-            btnStyle='simple'
-            icon='times-circle'
+            btnStyle="simple"
+            icon="times-circle"
             onClick={this.props.closeModal}
           >
-            Close
+            Zavřít
           </Button>
         </ModalFooter>
       </>

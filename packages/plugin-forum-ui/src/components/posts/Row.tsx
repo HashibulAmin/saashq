@@ -30,11 +30,11 @@ class Row extends React.Component<Props> {
       </Button>
     );
 
-    const content = props => <PostForm {...props} post={post} />;
+    const content = (props) => <PostForm {...props} post={post} />;
 
     return (
       <ModalTrigger
-        title={`Edit Post`}
+        title={`Upravit příspěvek`}
         size="lg"
         trigger={trigger}
         content={content}
@@ -74,16 +74,16 @@ class Row extends React.Component<Props> {
       commentCount,
       upVoteCount,
       downVoteCount,
-      viewCount
+      viewCount,
     } = post;
 
-    const onChange = e => {
+    const onChange = (e) => {
       if (toggleBulk) {
         toggleBulk(post, e.target.checked);
       }
     };
 
-    const onClick = e => {
+    const onClick = (e) => {
       e.stopPropagation();
     };
 

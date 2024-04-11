@@ -8,7 +8,7 @@ import {
   ModalTrigger,
   NameCard,
   SectionBodyItem,
-  colors
+  colors,
 } from '@saashq/ui/src';
 import Form from '../containers/RequestForm';
 import { IUser } from '@saashq/ui/src/auth/types';
@@ -45,12 +45,12 @@ class Section extends React.Component<Props> {
         </Button>
       );
 
-      const content = props => {
+      const content = (props) => {
         const updatedProps = {
           ...props,
           contentTypeId,
           contentType,
-          requestId: request._id
+          requestId: request._id,
         };
 
         return <ResponseForm {...updatedProps} />;
@@ -58,7 +58,7 @@ class Section extends React.Component<Props> {
 
       return (
         <ModalTrigger
-          title="Response on Request"
+          title="Odpověď na žádost"
           content={content}
           trigger={trigger}
         />
@@ -95,14 +95,16 @@ class Section extends React.Component<Props> {
 
   renderContent() {
     const {
-      request: { users }
+      request: { users },
     } = this.props;
 
     if (!users?.length) {
-      return <EmptyState text="There has no grant request" icon="list-ul" />;
+      return (
+        <EmptyState text="Neexistuje žádná žádost o grant" icon="list-ul" />
+      );
     }
 
-    return users.map(user => (
+    return users.map((user) => (
       <SectionBodyItem key={user._id}>
         <AssignedMemberCard>
           <NameCard user={user} />
@@ -113,13 +115,8 @@ class Section extends React.Component<Props> {
   }
 
   renderRequestForm() {
-    const {
-      contentType,
-      contentTypeId,
-      object,
-      currentUser,
-      request
-    } = this.props;
+    const { contentType, contentTypeId, object, currentUser, request } =
+      this.props;
 
     if (!_loadash.isEmpty(request) && currentUser._id !== request.requesterId) {
       return null;
@@ -136,14 +133,14 @@ class Section extends React.Component<Props> {
       contentType,
       contentTypeId,
       object,
-      request
+      request,
     };
 
-    const content = props => <Form {...props} {...updatedProps} />;
+    const content = (props) => <Form {...props} {...updatedProps} />;
 
     return (
       <ModalTrigger
-        title="Send Grant Request"
+        title="Odeslat žádost o grant"
         trigger={trigger}
         content={content}
         size="lg"
@@ -154,7 +151,7 @@ class Section extends React.Component<Props> {
   render() {
     return (
       <Box
-        title="Grant Request"
+        title="Žádost o grant"
         name="grantSection"
         isOpen={true}
         extraButtons={this.renderRequestForm()}

@@ -17,11 +17,11 @@ const QuestionList: React.FC<{
   quizId: string;
   onDeleteQuestion?: (_id: string) => void;
 }> = ({ question, index, onDeleteQuestion, quizId }) => {
-  const renderQuestionForm = props => (
+  const renderQuestionForm = (props) => (
     <QuestionForm {...props} question={question} quizId={quizId} />
   );
 
-  const renderChoiceForm = props => (
+  const renderChoiceForm = (props) => (
     <QuestionForm
       questionId={question._id}
       {...props}
@@ -60,7 +60,7 @@ const QuestionList: React.FC<{
                     </Button>
                   }
                   content={renderQuestionForm}
-                  title="Edit Question"
+                  title="Upravit otázku"
                 />
 
                 <ModalTrigger
@@ -72,7 +72,7 @@ const QuestionList: React.FC<{
                     </Button>
                   }
                   content={renderChoiceForm}
-                  title="Add Choice"
+                  title="Přidat volbu"
                 />
 
                 <Tip text={__('Delete')} placement="top">

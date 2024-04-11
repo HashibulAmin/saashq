@@ -53,7 +53,7 @@ const checkQueueName = async (queueName, isSend = false) => {
 
   if (!serviceName) {
     throw new Error(
-      `Invalid queue name. ${queueName}. Queue name must include :`,
+      `Neplatný název fronty. ${queueName}. Název fronty musí obsahovat :`,
     );
   }
 
@@ -65,7 +65,7 @@ const checkQueueName = async (queueName, isSend = false) => {
       );
 
       if (isMember === 0) {
-        throw new Error(`Not existing queuename ${queueName}`);
+        throw new Error(`Neexistující název fronty ${queueName}`);
       }
     }
 
@@ -89,7 +89,7 @@ type ConsumeHandler = (message: InterMessage, msg: amqplib.Message) => any;
 
 export const consumeQueue = async (queueName, handler: ConsumeHandler) => {
   if (!channel) {
-    throw new Error(`RabbitMQ channel is ${channel}`);
+    throw new Error(`RabbitMQ kanál je ${channel}`);
   }
   queueName = queueName.concat(queuePrefix);
 
@@ -111,11 +111,11 @@ export const consumeQueue = async (queueName, handler: ConsumeHandler) => {
             await handler(JSON.parse(msg.content.toString()), msg);
           } catch (e) {
             debugError(
-              `Error occurred during callback ${queueName} ${e.message}`,
+              `Při zpětném volání došlo k chybě ${queueName} ${e.message}`,
             );
           }
           if (!channel) {
-            throw new Error(`RabbitMQ channel is ${channel}`);
+            throw new Error(`RabbitMQ kanál je ${channel}`);
           }
           channel.ack(msg);
         }
@@ -123,9 +123,7 @@ export const consumeQueue = async (queueName, handler: ConsumeHandler) => {
       { noAck: false },
     );
   } catch (e) {
-    debugError(
-      `Error occurred during consumeq queue ${queueName} ${e.message}`,
-    );
+    debugError(`Při konzumaci fronty došlo k chybě ${queueName} ${e.message}`);
   }
 };
 
@@ -158,7 +156,7 @@ export const consumeRPCQueue = async (
 
   if (procedureName.includes(':')) {
     throw new Error(
-      `${procedureName}. RPC procedure name cannot contain : character. Use dot . instead.`,
+      `${procedureName}. RPC název procedury nemůže obsahovat : charakter. Použijte tečku . namísto.`,
     );
   }
 
@@ -191,7 +189,7 @@ export const sendRPCMessage = async (
 
   if (!address) {
     throw new Error(
-      `Plugin ${pluginName} has no address value in service discovery`,
+      `Zapojit ${pluginName} nemá žádnou hodnotu adresy při zjišťování služby`,
     );
   }
 
@@ -209,13 +207,13 @@ export const sendRPCMessage = async (
       });
 
       if (!response.ok) {
-        let argsJson = '"cannot stringify"';
+        let argsJson = '"nemůže stringify"';
         try {
           argsJson = JSON.stringify(message);
         } catch (e) {}
 
         throw new Error(
-          `RPC HTTP error. Status code: ${response.status}. Remote plugin: ${pluginName}. Procedure: ${procedureName}.
+          `Chyba HTTP RPC. Stavový kód: ${response.status}. Vzdálený plugin: ${pluginName}. Postup: ${procedureName}.
             Arguments: ${argsJson}
           `,
         );
@@ -233,14 +231,14 @@ export const sendRPCMessage = async (
         if (message?.defaultValue) {
           return message.defaultValue;
         } else {
-          let argsJson = '"cannot stringify"';
+          let argsJson = '"nemůže stringify"';
           try {
             argsJson = JSON.stringify(message);
           } catch (e) {}
 
           throw new Error(
-            `RPC HTTP timeout after ${timeoutMs}ms. Remote: ${pluginName}. Procedure: ${procedureName}.
-              Arguments: ${argsJson}
+            `RPC HTTP časový limit po ${timeoutMs}ms. Dálkový: ${pluginName}. Postup: ${procedureName}.
+              Argumenty: ${argsJson}
             `,
           );
         }
@@ -279,7 +277,7 @@ export const sendRPCMessageMq = async (
   message: InterMessage,
 ): Promise<any> => {
   if (!channel) {
-    throw new Error(`RabbitMQ channel is ${channel}`);
+    throw new Error(`RabbitMQ kanál je ${channel}`);
   }
 
   queueName = queueName.concat(queuePrefix);
@@ -290,13 +288,13 @@ export const sendRPCMessageMq = async (
 
   if (showInfoDebug()) {
     debugInfo(
-      `Sending rpc message ${JSON.stringify(message)} to queue ${queueName}`,
+      `Odeslání zprávy RPC ${JSON.stringify(message)} do fronty ${queueName}`,
     );
   }
 
   const response = await new Promise<any>((resolve, reject) => {
     if (!channel) {
-      throw new Error(`RabbitMQ channel is ${channel}`);
+      throw new Error(`RabbitMQ kanál je ${channel}`);
     }
     const correlationId = uuid();
 
@@ -305,26 +303,26 @@ export const sendRPCMessageMq = async (
         message.timeout || Number(process.env.RPC_TIMEOUT) || 10000;
       var interval = setTimeout(() => {
         if (!channel) {
-          throw new Error(`RabbitMQ channel is ${channel}`);
+          throw new Error(`RabbitMQ kanál je ${channel}`);
         }
         channel.deleteQueue(q.queue);
 
         clearInterval(interval);
 
-        debugError(`${queueName} ${JSON.stringify(message)} timedout`);
+        debugError(`${queueName} ${JSON.stringify(message)} čas vypršel`);
 
         return resolve(message.defaultValue);
       }, timeoutMs);
 
       if (!channel) {
-        throw new Error(`RabbitMQ channel is ${channel}`);
+        throw new Error(`RabbitMQ kanál je ${channel}`);
       }
 
       channel.consume(
         q.queue,
         (msg) => {
           if (!channel) {
-            throw new Error(`RabbitMQ channel is ${channel}`);
+            throw new Error(`RabbitMQ kanál je ${channel}`);
           }
           clearInterval(interval);
 
@@ -339,7 +337,7 @@ export const sendRPCMessageMq = async (
             if (res.status === 'success') {
               if (showInfoDebug()) {
                 debugInfo(
-                  `RPC success response for queue ${queueName} ${JSON.stringify(
+                  `Úspěšná odpověď RPC pro frontu ${queueName} ${JSON.stringify(
                     res,
                   )}`,
                 );
@@ -348,7 +346,7 @@ export const sendRPCMessageMq = async (
               resolve(res.data);
             } else {
               debugInfo(
-                `RPC error response for queue ${queueName} ${res.errorMessage})}`,
+                `Chybová odpověď RPC pro frontu ${queueName} ${res.errorMessage})}`,
               );
 
               reject(new Error(res.errorMessage));
@@ -376,7 +374,7 @@ export const consumeRPCQueueMq = async (
   callback: RP,
 ): Promise<void> => {
   if (!channel) {
-    throw new Error(`RabbitMQ channel is ${channel}`);
+    throw new Error(`RabbitMQ kanál je ${channel}`);
   }
 
   queueName = queueName.concat(queuePrefix);
@@ -393,13 +391,13 @@ export const consumeRPCQueueMq = async (
 
     channel.consume(queueName, async (msg) => {
       if (!channel) {
-        throw new Error(`RabbitMQ channel is ${channel}`);
+        throw new Error(`RabbitMQ kanál je ${channel}`);
       }
 
       if (msg !== null) {
         if (showInfoDebug()) {
           debugInfo(
-            `Received rpc ${queueName} queue message ${msg.content.toString()}`,
+            `Přijaté rpc ${queueName} zpráva ve frontě ${msg.content.toString()}`,
           );
         }
 
@@ -409,7 +407,7 @@ export const consumeRPCQueueMq = async (
           response = await callback(JSON.parse(msg.content.toString()));
         } catch (e) {
           debugError(
-            `Error occurred during callback ${queueName} ${e.message}`,
+            `Při zpětném volání došlo k chybě ${queueName} ${e.message}`,
           );
 
           response = {
@@ -431,7 +429,7 @@ export const consumeRPCQueueMq = async (
     });
   } catch (e) {
     debugError(
-      `Error occurred during consume rpc queue ${queueName} ${e.message}`,
+      `Při konzumaci fronty RPC došlo k chybě ${queueName} ${e.message}`,
     );
   }
 };
@@ -441,7 +439,7 @@ export const sendMessage = async (
   message: InterMessage,
 ): Promise<void> => {
   if (!channel) {
-    throw new Error(`RabbitMQ channel is ${channel}`);
+    throw new Error(`RabbitMQ kanál je ${channel}`);
   }
 
   queueName = queueName.concat(queuePrefix);
@@ -454,13 +452,13 @@ export const sendMessage = async (
     const messageJson = JSON.stringify(message || {});
 
     if (showInfoDebug()) {
-      debugInfo(`Sending message ${messageJson} to ${queueName}`);
+      debugInfo(`Odesílání zprávy ${messageJson} na ${queueName}`);
     }
 
     await channel.assertQueue(queueName);
     await channel.sendToQueue(queueName, Buffer.from(messageJson));
   } catch (e) {
-    debugError(`Error occurred during send queue ${queueName} ${e.message}`);
+    debugError(`Při odesílání fronty došlo k chybě ${queueName} ${e.message}`);
   }
 };
 
@@ -475,22 +473,22 @@ export const connectToMessageBroker = async (
   con.once('close', (error) => {
     con.removeAllListeners();
     if (error) {
-      console.error('RabbitMQ: connections is closing due to an error:', error);
+      console.error('RabbitMQ: spojení se uzavírá kvůli chybě:', error);
       reconnectToMessageBroker(setupMessageConsumers);
     } else {
-      console.log('RabbitMQ: connection is closing.');
+      console.log('RabbitMQ: spojení se uzavírá.');
     }
   });
   con.on('error', async (e) => {
-    console.error('RabbitMQ: connection error:', e);
+    console.error('RabbitMQ: chyba připojení:', e);
   });
 
   channel = await con.createChannel();
   if (setupMessageConsumers) {
     await setupMessageConsumers();
-    console.log('RabbitMQ: Finished setting up message consumers');
+    console.log('RabbitMQ: Dokončeno nastavení spotřebitelů zpráv');
   }
-  console.log(`RabbitMQ connected to ${RABBITMQ_HOST}`);
+  console.log(`RabbitMQ připojen k ${RABBITMQ_HOST}`);
 };
 
 export const reconnectToMessageBroker = async (
@@ -500,12 +498,12 @@ export const reconnectToMessageBroker = async (
   let reconnectInterval = 5000;
   while (true) {
     try {
-      console.log(`RabbitMQ: Trying to reconnect to ${RABBITMQ_HOST}`);
+      console.log(`RabbitMQ: Pokus o opětovné připojení k ${RABBITMQ_HOST}`);
       await connectToMessageBroker(setupMessageConsumers);
       break;
     } catch (e) {
       console.error(
-        `RabbitMQ: Error occured while reconnecting to ${RABBITMQ_HOST}. Trying again in ${
+        `RabbitMQ: Při opětovném připojování došlo k chybě ${RABBITMQ_HOST}. Zkouším znovu ${
           reconnectInterval / 1000
         }s`,
         e,

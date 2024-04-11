@@ -90,7 +90,7 @@ export default class EditorAttributeUtil {
       href = `${this.API_DOMAIN}/read-file?key=${key}&name=${uriName}`;
     }
 
-    return `<a target="_blank" download href="${href}">${name || url}</a>`;
+    return `<a target="_blank" stažení href="${href}">${name || url}</a>`;
   }
 
   async customFieldsDataItemToFileLink(
@@ -120,7 +120,7 @@ export default class EditorAttributeUtil {
     }
 
     if (!this._possibleCustomerFields) {
-      throw new Error('Cannot acquire possibleCustomerFields');
+      throw new Error('Nelze získat possibleCustomerFields');
     }
 
     return this._possibleCustomerFields || [];
@@ -186,14 +186,14 @@ export default class EditorAttributeUtil {
 
   async generateAmounts(productsData) {
     if (!this.availableServices.has('cards')) {
-      throw new Error('Cards service is not running.');
+      throw new Error('Služba karet není spuštěna.');
     }
     return sendRPCMessage('cards:deals.generateAmounts', productsData);
   }
 
   async generateProducts(productsData): Promise<any> {
     if (!this.availableServices.has('cards')) {
-      throw new Error('Cards service is not running.');
+      throw new Error('Služba karet není spuštěna.');
     }
 
     return sendRPCMessage('cards:deals.generateProducts', productsData);

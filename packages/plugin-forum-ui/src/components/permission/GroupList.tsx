@@ -37,10 +37,10 @@ class GroupList extends React.Component<IProps> {
   }
 
   renderFormTrigger(trigger: React.ReactNode, object?: IUserGroupDocument) {
-    const content = props => <GroupForm {...props} group={object} />;
+    const content = (props) => <GroupForm {...props} group={object} />;
 
     return (
-      <ModalTrigger title="New Group" trigger={trigger} content={content} />
+      <ModalTrigger title="Nová skupina" trigger={trigger} content={content} />
     );
   }
 
@@ -76,7 +76,7 @@ class GroupList extends React.Component<IProps> {
   }
 
   renderObjects(objects: IUserGroupDocument[]) {
-    return objects.map(object => (
+    return objects.map((object) => (
       <SidebarItem key={object._id} isActive={this.isActive(object._id)}>
         <Link to={`?groupId=${object._id}`}>
           <FieldStyle>{object.name}</FieldStyle>
@@ -128,7 +128,7 @@ class GroupList extends React.Component<IProps> {
           data={this.renderContent()}
           loading={false}
           count={objects.length}
-          emptyText="There is no group"
+          emptyText="Neexistuje žádná skupina"
           emptyImage="/images/actions/26.svg"
         />
         <LoadMore all={objects.length} loading={false} />
@@ -137,4 +137,4 @@ class GroupList extends React.Component<IProps> {
   }
 }
 
-export default withRouter<IProps>(GroupList);
+export default withRouter<IProps, any>(GroupList);

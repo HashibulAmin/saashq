@@ -84,15 +84,15 @@ export const ruleSchema = new Schema(
     _id: { type: String },
 
     // browserLanguage, currentUrl, etc ...
-    kind: { type: String, label: 'Kind' },
+    kind: { type: String, label: 'Druh' },
 
     // Browser language, Current url etc ...
     text: { type: String, label: 'Text' },
 
     // is, isNot, startsWith
-    condition: { type: String, label: 'Condition' },
+    condition: { type: String, label: 'Stav' },
 
-    value: { type: String, label: 'Value', optional: true },
+    value: { type: String, label: 'Hodnota', optional: true },
   },
   { _id: false },
 );
@@ -114,7 +114,7 @@ export const customFieldSchema = new Schema(
         type: [Number],
         optional: true,
       },
-      required: [false, 'Location required'],
+      required: [false, 'Místo je povinné'],
     },
   },
   { _id: false },

@@ -28,11 +28,11 @@ class Row extends React.Component<Props> {
       </Button>
     );
 
-    const content = props => <QuizForm {...props} quiz={quiz} />;
+    const content = (props) => <QuizForm {...props} quiz={quiz} />;
 
     return (
       <ModalTrigger
-        title={`Edit Quiz`}
+        title={`Upravit kvíz`}
         size="lg"
         trigger={trigger}
         content={content}
@@ -60,13 +60,13 @@ class Row extends React.Component<Props> {
   render() {
     const { quiz, isChecked, toggleBulk } = this.props;
 
-    const onChange = e => {
+    const onChange = (e) => {
       if (toggleBulk) {
         toggleBulk(quiz, e.target.checked);
       }
     };
 
-    const onClick = e => {
+    const onClick = (e) => {
       e.stopPropagation();
     };
 

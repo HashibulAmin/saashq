@@ -9,7 +9,7 @@ import {
   Tip,
   __,
   Toggle,
-  Button
+  Button,
 } from '@saashq/ui/src';
 import {
   ClearableBtn,
@@ -18,7 +18,7 @@ import {
   SelectBoxContainer,
   SidebarHeader,
   CustomRangeContainer,
-  EndDateContainer
+  EndDateContainer,
 } from '../../styles';
 import { removeParams, setParams } from '@saashq/ui/src/utils/router';
 import { responseTypes } from '../../common/constants';
@@ -37,7 +37,7 @@ export default function SideBar({ history, queryParams }) {
   const CustomField = ({ children, label, field, clearable }: LayoutProps) => {
     const handleClearable = () => {
       if (Array.isArray(field)) {
-        field.forEach(name => {
+        field.forEach((name) => {
           return removeParams(history, name);
         });
       }
@@ -49,7 +49,7 @@ export default function SideBar({ history, queryParams }) {
         <ControlLabel>{label}</ControlLabel>
         {clearable && (
           <ClearableBtn onClick={handleClearable}>
-            <Tip text="Clear">
+            <Tip text="Vymazat">
               <Icon icon="cancel-1" />
             </Tip>
           </ClearableBtn>
@@ -64,13 +64,13 @@ export default function SideBar({ history, queryParams }) {
     setParams(history, { [name]: value });
   };
 
-  const generateQueryParamsDate = params => {
+  const generateQueryParamsDate = (params) => {
     return params ? new Date(parseInt(params)).toString() : '';
   };
   const dateOrder = (value, name) => {
     removeParams(history, 'page');
     setParams(history, {
-      [name]: new Date(value).valueOf()
+      [name]: new Date(value).valueOf(),
     });
   };
 
@@ -85,12 +85,12 @@ export default function SideBar({ history, queryParams }) {
     >
       <Padding>
         <CustomField
-          label="Requester"
+          label="Žadatel"
           field="requesterId"
           clearable={queryParams?.requesterId}
         >
           <SelectTeamMembers
-            label="Choose Requester"
+            label="Vyberte Žadatel"
             name="requesterId"
             onSelect={handleSelect}
             multi={false}
@@ -98,12 +98,12 @@ export default function SideBar({ history, queryParams }) {
           />
         </CustomField>
         <CustomField
-          label="recipient"
+          label="příjemce"
           field="recipientId"
           clearable={queryParams?.recipientId}
         >
           <SelectTeamMembers
-            label="Choose recipient"
+            label="Vyberte příjemce"
             name="recipientId"
             onSelect={handleSelect}
             multi={false}
@@ -111,7 +111,7 @@ export default function SideBar({ history, queryParams }) {
           />
         </CustomField>
         <CustomField
-          label="Created Date Range"
+          label="Vytvořené časové období"
           field={['createdAtFrom', 'createdAtTo']}
           clearable={queryParams?.createdAtFrom || queryParams?.createdAtTo}
         >
@@ -120,8 +120,8 @@ export default function SideBar({ history, queryParams }) {
               <DateControl
                 name="createdAtFrom"
                 value={generateQueryParamsDate(queryParams?.createdAtFrom)}
-                placeholder="select from date "
-                onChange={e => dateOrder(e, 'createdAtFrom')}
+                placeholder="vyberte z data "
+                onChange={(e) => dateOrder(e, 'createdAtFrom')}
               />
             </DateContainer>
             <EndDateContainer>
@@ -129,15 +129,15 @@ export default function SideBar({ history, queryParams }) {
                 <DateControl
                   name="createdAtTo"
                   value={generateQueryParamsDate(queryParams?.createdAtTo)}
-                  placeholder="select to date "
-                  onChange={e => dateOrder(e, 'createdAtTo')}
+                  placeholder="vyberte k datu "
+                  onChange={(e) => dateOrder(e, 'createdAtTo')}
                 />
               </DateContainer>
             </EndDateContainer>
           </CustomRangeContainer>
         </CustomField>
         <CustomField
-          label="Closed Date Range"
+          label="Uzavřené časové období"
           field={['closedAtFrom', 'closedAtTo']}
           clearable={queryParams?.closedAtFrom || queryParams?.closedAtTo}
         >
@@ -146,8 +146,8 @@ export default function SideBar({ history, queryParams }) {
               <DateControl
                 name="closedAtFrom"
                 value={generateQueryParamsDate(queryParams?.closedAtFrom)}
-                placeholder="select from date "
-                onChange={e => dateOrder(e, 'closedAtFrom')}
+                placeholder="vyberte z data "
+                onChange={(e) => dateOrder(e, 'closedAtFrom')}
               />
             </DateContainer>
             <EndDateContainer>
@@ -155,8 +155,8 @@ export default function SideBar({ history, queryParams }) {
                 <DateControl
                   name="closedAtTo"
                   value={generateQueryParamsDate(queryParams?.closedAtTo)}
-                  placeholder="select to date "
-                  onChange={e => dateOrder(e, 'closedAtTo')}
+                  placeholder="vyberte k datu "
+                  onChange={(e) => dateOrder(e, 'closedAtTo')}
                 />
               </DateContainer>
             </EndDateContainer>
@@ -174,19 +174,19 @@ export default function SideBar({ history, queryParams }) {
               onChange={() =>
                 handleSelect(
                   !['true'].includes(queryParams?.onlyWaitingMe),
-                  'onlyWaitingMe'
+                  'onlyWaitingMe',
                 )
               }
             />
           </Row>
         </CustomField>
         <CustomField
-          label="Response Type"
+          label="Typ odezvy"
           field="type"
           clearable={queryParams?.type}
         >
           <SelectBoxContainer>
-            {responseTypes.map(type => (
+            {responseTypes.map((type) => (
               <SelectBox
                 key={type.value}
                 className={type.value === queryParams?.type ? 'active' : ''}
@@ -199,7 +199,7 @@ export default function SideBar({ history, queryParams }) {
           </SelectBoxContainer>
         </CustomField>
         <CustomField
-          label={'Status'}
+          label={'Postavení'}
           field="archived"
           clearable={queryParams?.archived}
         >
@@ -208,7 +208,7 @@ export default function SideBar({ history, queryParams }) {
               onClick={() =>
                 handleSelect(
                   ['false', undefined].includes(queryParams?.archived),
-                  'archived'
+                  'archived',
                 )
               }
             >

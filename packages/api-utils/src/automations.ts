@@ -135,14 +135,22 @@ export const replacePlaceHolders = async ({
 };
 
 export const OPERATORS = {
-  SET: 'set',
-  CONCAT: 'concat',
-  ADD: 'add',
-  SUBTRACT: 'subtract',
-  MULTIPLY: 'multiply',
-  DIVIDE: 'divide',
-  PERCENT: 'percent',
-  ALL: ['set', 'concat', 'add', 'subtract', 'multiply', 'divide', 'percent'],
+  SET: 'soubor',
+  CONCAT: 'konkat',
+  ADD: 'přidat',
+  SUBTRACT: 'odčítat',
+  MULTIPLY: 'násobit',
+  DIVIDE: 'rozdělit',
+  PERCENT: 'procent',
+  ALL: [
+    'soubor',
+    'konkat',
+    'přidat',
+    'odčítat',
+    'násobit',
+    'rozdělit',
+    'procent',
+  ],
 };
 
 const convertOp1 = (relatedItem, field) => {
@@ -266,7 +274,7 @@ const getPerValue = async (args: {
     }
   }
 
-  if (operator === 'concat') {
+  if (operator === 'konkat') {
     updatedValue = (op1 || '').concat(updatedValue);
   }
 

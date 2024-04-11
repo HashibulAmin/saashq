@@ -33,7 +33,7 @@ export default class ConversationList extends React.Component<Props> {
         icon="redo"
         uppercase={false}
       >
-        {loading ? 'Loading...' : 'Load more'}
+        {loading ? 'Načítání...' : 'Načíst další'}
       </Button>
     );
   }
@@ -45,20 +45,20 @@ export default class ConversationList extends React.Component<Props> {
       selectedConversations,
       onChangeConversation,
       toggleRowCheckbox,
-      loading
+      loading,
     } = this.props;
 
     return (
       <React.Fragment>
         <ConversationItems id="conversations">
-          {conversations.map(conv => (
+          {conversations.map((conv) => (
             <ConversationItem
               key={conv._id}
               conversation={conv}
               toggleCheckbox={toggleRowCheckbox}
               onClick={onChangeConversation}
               selectedIds={(selectedConversations || []).map(
-                conversation => conversation._id
+                (conversation) => conversation._id,
               )}
               currentConversationId={currentConversationId}
             />
@@ -67,7 +67,7 @@ export default class ConversationList extends React.Component<Props> {
 
         {!loading && conversations.length === 0 && (
           <EmptyState
-            text="Let's get you messaging away!"
+            text="Pojďme vám poslat zprávy!"
             size="full"
             image="/images/actions/6.svg"
           />

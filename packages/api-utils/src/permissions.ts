@@ -22,7 +22,7 @@ export interface IPermissionContext {
 
 export const checkLogin = (user?: IUser) => {
   if (!user || !user._id) {
-    throw new Error('Login required');
+    throw new Error('Je vyžadováno přihlášení');
   }
 };
 
@@ -187,7 +187,7 @@ export const checkPermission = async (
         return defaultValue;
       }
 
-      throw new Error('Permission required');
+      throw new Error('Vyžaduje se povolení');
     }
 
     const VERSION = getEnv({ name: 'VERSION' });

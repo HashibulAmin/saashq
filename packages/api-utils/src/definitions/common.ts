@@ -37,9 +37,9 @@ export const customFieldSchema = new Schema(
     value: field({ type: Schema.Types.Mixed }),
     stringValue: field({ type: 'String', optional: true }),
     numberValue: field({ type: 'Number', optional: true }),
-    dateValue: field({ type: 'Date', optional: true })
+    dateValue: field({ type: 'Date', optional: true }),
   },
-  { _id: false }
+  { _id: false },
 );
 
 export interface IBrandEmailConfig {
@@ -69,17 +69,17 @@ export const ruleSchema = new Schema(
     _id: field({ type: String }),
 
     // browserLanguage, currentUrl, etc ...
-    kind: field({ type: String, label: 'Kind' }),
+    kind: field({ type: String, label: 'Druh' }),
 
     // Browser language, Current url etc ...
     text: field({ type: String, label: 'Text' }),
 
     // is, isNot, startsWith
-    condition: field({ type: String, label: 'Condition' }),
+    condition: field({ type: String, label: 'Stav' }),
 
-    value: field({ type: String, label: 'Value', optional: true })
+    value: field({ type: String, label: 'Hodnota', optional: true }),
   },
-  { _id: false }
+  { _id: false },
 );
 
 export const attachmentSchema = new Schema(
@@ -88,7 +88,7 @@ export const attachmentSchema = new Schema(
     url: field({ type: String }),
     type: field({ type: String }),
     size: field({ type: Number, optional: true }),
-    duration: field({ type: Number, optional: true })
+    duration: field({ type: Number, optional: true }),
   },
-  { _id: false }
+  { _id: false },
 );

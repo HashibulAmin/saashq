@@ -13,7 +13,7 @@ type Props = {
 };
 
 function Empty({ queryParams, currentUser }: Props) {
-  const menuInbox = [{ title: 'Team Inbox', link: '/inbox/index' }];
+  const menuInbox = [{ title: 'Týmová schránka', link: '/inbox/index' }];
 
   const suggestContent = (
     <>
@@ -30,7 +30,7 @@ function Empty({ queryParams, currentUser }: Props) {
 
   const content = (
     <EmptyState
-      text="Whoops! No messages here but you can always start"
+      text="Jejda! Nejsou zde žádné zprávy, ale vždy můžete začít"
       size="full"
       image="/images/actions/12.svg"
       extra={suggestContent}
