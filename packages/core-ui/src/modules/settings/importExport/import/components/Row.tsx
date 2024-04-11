@@ -21,7 +21,7 @@ class Row extends React.Component<Props, {}> {
 
     const sampleDatas = columns[column];
 
-    return sampleDatas.map(sample => {
+    return sampleDatas.map((sample) => {
       return (
         <span key={Math.random()}>
           <li>{sample}</li>
@@ -37,13 +37,8 @@ class Row extends React.Component<Props, {}> {
   };
 
   renderMatch = () => {
-    const {
-      column,
-      columns,
-      columnWithChosenField,
-      fields,
-      contentType
-    } = this.props;
+    const { column, columns, columnWithChosenField, fields, contentType } =
+      this.props;
 
     if (columnWithChosenField[contentType]) {
       const chosenColumn = columnWithChosenField[contentType][column];
@@ -57,7 +52,7 @@ class Row extends React.Component<Props, {}> {
       const sampleDatas = columns[column];
 
       const chosenField = fields.find(
-        field => field.value === chosenColumn.value
+        (field) => field.value === chosenColumn.value,
       );
 
       for (const sample of sampleDatas) {
@@ -81,7 +76,7 @@ class Row extends React.Component<Props, {}> {
       }
 
       return (
-        <Tip text="Not matched">
+        <Tip text="Nesouhlasí">
           <Icon icon="exclamation-triangle" color="orange" />
         </Tip>
       );
@@ -116,8 +111,8 @@ class Row extends React.Component<Props, {}> {
         return options;
       }
 
-      options.forEach(option => {
-        Object.keys(chosenField).forEach(key => {
+      options.forEach((option) => {
+        Object.keys(chosenField).forEach((key) => {
           if (chosenField[key].value === option.value) {
             option.disabled = true;
           }

@@ -18,7 +18,7 @@ type Props = {
 function PackageRow({ item, renderButton, removeItem }: Props) {
   const handleRemove = () => removeItem(item);
 
-  const renderForm = formProps => {
+  const renderForm = (formProps) => {
     return (
       <PackageForm data={item} renderButton={renderButton} {...formProps} />
     );
@@ -36,7 +36,7 @@ function PackageRow({ item, renderButton, removeItem }: Props) {
     return (
       <ActionButtons>
         <ModalTrigger
-          title="Edit item"
+          title="Upravit položku"
           trigger={trigger}
           content={renderForm}
         />

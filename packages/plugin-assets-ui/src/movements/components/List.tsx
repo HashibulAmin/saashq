@@ -8,7 +8,7 @@ import {
   router,
   Table,
   Tip,
-  __
+  __,
 } from '@saashq/ui/src';
 import { IRouterProps } from '@saashq/ui/src/types';
 import React from 'react';
@@ -39,7 +39,7 @@ class List extends React.Component<Props, State> {
 
     this.state = {
       searchValue: props.queryParams.searchValue || '',
-      selectedRows: []
+      selectedRows: [],
     };
 
     this.renderList = this.renderList.bind(this);
@@ -49,12 +49,12 @@ class List extends React.Component<Props, State> {
       Add Movement
     </Button>
   );
-  renderRightActionBarContent = props => {
+  renderRightActionBarContent = (props) => {
     const { queryParams } = this.props;
 
     const updatedProps = {
       ...props,
-      queryParams
+      queryParams,
     };
 
     return <Form {...updatedProps} />;
@@ -68,7 +68,7 @@ class List extends React.Component<Props, State> {
     />
   );
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -97,20 +97,22 @@ class List extends React.Component<Props, State> {
     const handleSelecteRow = (
       movement: IMovementType,
       movementId: string,
-      isChecked?: boolean
+      isChecked?: boolean,
     ) => {
       const { selectedRows } = this.state;
 
       props.toggleBulk(movement, isChecked);
 
       if (!isChecked) {
-        const newSelectedRow = selectedRows.filter(item => item !== movementId);
+        const newSelectedRow = selectedRows.filter(
+          (item) => item !== movementId,
+        );
         return this.setState({ selectedRows: newSelectedRow });
       }
       this.setState({ selectedRows: [...selectedRows, movementId] });
     };
 
-    return movements.map(movement => (
+    return movements.map((movement) => (
       <Row
         key={movement._id}
         movement={movement}
@@ -130,8 +132,8 @@ class List extends React.Component<Props, State> {
       toggleAll(movements, 'movements');
       this.setState({
         selectedRows: !isAllSelected
-          ? movements.map(movement => movement._id || '')
-          : []
+          ? movements.map((movement) => movement._id || '')
+          : [],
       });
     };
     return (
@@ -179,7 +181,7 @@ class List extends React.Component<Props, State> {
         />
         {this.renderRightActionBar}
         {selectedRows.length > 0 && (
-          <Tip text="Remove movement" placement="bottom">
+          <Tip text="Odstraňte pohyb" placement="bottom">
             <Button btnStyle="danger" icon="cancel-1" onClick={remove} />
           </Tip>
         )}
@@ -188,18 +190,18 @@ class List extends React.Component<Props, State> {
 
     const leftActionBar = (
       <ContainerBox row>
-        <Title>{'All Movements'}</Title>
+        <Title>{'Všechny pohyby'}</Title>
       </ContainerBox>
     );
 
     const updatedProps = {
-      title: 'Asset Movements',
+      title: 'Pohyby aktiv',
       rightActionBar,
       leftActionBar,
       content: <Bulk content={this.renderList} />,
       sidebar: <SideBar history={history} queryParams={queryParams} />,
       subMenu: menuMovements,
-      totalCount
+      totalCount,
     };
 
     return <DefaultWrapper {...updatedProps} />;

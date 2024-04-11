@@ -6,7 +6,7 @@ import React from 'react';
 
 import {
   ImportTitle,
-  ImportHistoryActions
+  ImportHistoryActions,
 } from 'modules/settings/importExport/styles';
 import TextInfo from '@saashq/ui/src/components/TextInfo';
 import Tip from 'modules/common/components/Tip';
@@ -25,7 +25,7 @@ class HistoryRow extends React.Component<Props> {
     const onClick = () => {
       if (uploadType === 'local') {
         return window.open(
-          `${REACT_APP_API_URL}/pl:workers/read-file?key=${exportLink}`
+          `${REACT_APP_API_URL}/pl:workers/read-file?key=${exportLink}`,
         );
       }
 
@@ -47,11 +47,11 @@ class HistoryRow extends React.Component<Props> {
     );
   };
 
-  renderStatus = history => {
+  renderStatus = (history) => {
     if (history.error) {
       return (
         <Tip placement="top" text={history.error}>
-          <TextInfo textStyle="warning"> In </TextInfo>
+          <TextInfo textStyle="warning"> v </TextInfo>
         </Tip>
       );
     }
@@ -62,7 +62,7 @@ class HistoryRow extends React.Component<Props> {
   render() {
     const { history } = this.props;
 
-    const renderTotal = value => {
+    const renderTotal = (value) => {
       if (!value || value === 0) {
         return '-';
       }
@@ -70,23 +70,23 @@ class HistoryRow extends React.Component<Props> {
       return value;
     };
 
-    const renderStatus = data => {
+    const renderStatus = (data) => {
       if (
         data.status === 'Done' ||
         data.percentage === 100 ||
         data.status === 'success'
       ) {
-        return <TextInfo textStyle="success"> Done </TextInfo>;
+        return <TextInfo textStyle="success"> Hotovo </TextInfo>;
       }
 
       if (data.value === 'inProcess') {
-        return <TextInfo textStyle="warning"> In Process </TextInfo>;
+        return <TextInfo textStyle="warning"> V procesu </TextInfo>;
       }
 
       if (data.value === 'failed') {
         return (
           <Tip placement="bottom" text={data.errorMsg}>
-            <TextInfo textStyle="danger"> Failed </TextInfo>
+            <TextInfo textStyle="danger"> Nepodařilo se </TextInfo>
           </Tip>
         );
       }

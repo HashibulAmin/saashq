@@ -118,7 +118,7 @@ class SendMail extends React.Component<Props, State> {
       ? [
           {
             _id: String(Math.random()),
-            label: 'Trigger Executors',
+            label: 'Spouštěcí exekutory',
             name: 'triggerExecutors',
             type: 'segment',
           },
@@ -131,7 +131,7 @@ class SendMail extends React.Component<Props, State> {
           config={config}
           triggerType={triggerType}
           inputName="attributionMails"
-          label="Attribution Mails"
+          label="Atribuční maily"
           attrTypes={['user', 'contact', 'segment']}
           attrWithSegmentConfig={triggerType === 'forms:form_submission'}
           triggerConfig={triggerConfig}
@@ -264,11 +264,11 @@ class SendMail extends React.Component<Props, State> {
             <Icon icon="angle-left" size={20} /> {__('Back')}
           </BackIcon>
           <FormGroup>
-            <ControlLabel>{'From'}</ControlLabel>
+            <ControlLabel>{'Z'}</ControlLabel>
             <SelectTeamMembers
               name="fromUserId"
               initialValue={config?.fromUserId}
-              label="Select from user"
+              label="Vyberte z uživatele"
               onSelect={onSelect}
               filterParams={{
                 status: 'Verified',
@@ -279,7 +279,7 @@ class SendMail extends React.Component<Props, State> {
 
           <PlaceHolderInput
             inputName="sender"
-            label="Sender"
+            label="Odesílatel"
             config={config}
             onChange={() => null}
             onKeyPress={onChange}
@@ -288,7 +288,7 @@ class SendMail extends React.Component<Props, State> {
 
           <PlaceHolderInput
             inputName="subject"
-            label="Email Subject"
+            label="Předmět emailu"
             config={config}
             onChange={() => null}
             onKeyPress={onChange}
@@ -341,7 +341,7 @@ class SendMail extends React.Component<Props, State> {
 
     return (
       <ModalTrigger
-        title="Add New"
+        title="Přidat nový"
         content={content}
         trigger={trigger}
         size="lg"
@@ -376,9 +376,9 @@ class SendMail extends React.Component<Props, State> {
           text=""
           extra={
             <span>
-              The send email action is not available.
+              Akce odeslání e-mailu není k dispozici.
               <br />
-              Because the email template plugin is not working
+              Protože plugin šablony e-mailu nefunguje
             </span>
           }
         />
@@ -396,7 +396,7 @@ class SendMail extends React.Component<Props, State> {
           <BarItems>
             <FormControl
               name="searchValue"
-              placeholder="type a search"
+              placeholder="zadejte vyhledávání"
               value={searchValue}
               onChange={onSearch}
             />

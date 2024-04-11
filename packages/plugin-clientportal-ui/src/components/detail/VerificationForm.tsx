@@ -1,4 +1,8 @@
-import { ControlLabel, Form, FormControl } from '@saashq/ui/src/components/form';
+import {
+  ControlLabel,
+  Form,
+  FormControl,
+} from '@saashq/ui/src/components/form';
 import { IButtonMutateProps, IFormProps } from '@saashq/ui/src/types';
 import { IClientPortalUser, IVerificationRequest } from '../../types';
 import React, { useState } from 'react';
@@ -33,30 +37,30 @@ const VerificationForm = (props: Props) => {
           icon="times-circle"
           onClick={closeModal}
         >
-          Cancel
+          Zrušení
         </Button>
 
         {renderButton({
           name: 'clientPortalUser',
           values: {
             userId: clientPortalUser._id,
-            status: vStatus
+            status: vStatus,
           },
           isSubmitted,
-          callback: closeModal
+          callback: closeModal,
         })}
       </ModalFooter>
     );
   };
 
   const renderContent = (formProps: IFormProps) => {
-    const onChange = e => {
+    const onChange = (e) => {
       setStatus(e.target.value);
     };
 
     const renderAttachment = () => {
       if (!attachments || attachments.length === 0) {
-        return <EmptyState icon="ban" text="No attachments" size="small" />;
+        return <EmptyState icon="ban" text="Žádné přílohy" size="small" />;
       }
 
       return (
@@ -71,20 +75,20 @@ const VerificationForm = (props: Props) => {
     return (
       <>
         <FormGroup>
-          <ControlLabel>Verification status</ControlLabel>
+          <ControlLabel>Stav ověření</ControlLabel>
           <FormControl
             componentClass="select"
             onChange={onChange}
             defaultValue={vStatus}
           >
-            <option value="notVerified">not verified</option>
-            <option value="pending">pending</option>
-            <option value="verified">verified</option>
+            <option value="notVerified">neověřeno</option>
+            <option value="pending">čekající</option>
+            <option value="verified">ověřeno</option>
           </FormControl>
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>Verification attachment</ControlLabel>
+          <ControlLabel>Ověřovací příloha</ControlLabel>
           {renderAttachment()}
         </FormGroup>
 

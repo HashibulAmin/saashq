@@ -38,11 +38,11 @@ class NoteForm extends React.Component<Props, State> {
     this.state = {
       description: '',
       isEditNote: false,
-      currentNote: {} as IAutomationNote
+      currentNote: {} as IAutomationNote,
     };
   }
 
-  onEdit = currentNote => {
+  onEdit = (currentNote) => {
     this.setState({ isEditNote: !this.state.isEditNote, currentNote });
   };
 
@@ -66,7 +66,7 @@ class NoteForm extends React.Component<Props, State> {
       automationId,
       description: this.state.description,
       actionId: type === 'action' ? splitItem[1] : '',
-      triggerId: type === 'trigger' ? splitItem[1] : ''
+      triggerId: type === 'trigger' ? splitItem[1] : '',
     };
   };
 
@@ -78,7 +78,7 @@ class NoteForm extends React.Component<Props, State> {
       return null;
     }
 
-    return notes.map(note => (
+    return notes.map((note) => (
       <div className="column" key={note._id}>
         <MainInfo>
           <div>
@@ -97,14 +97,14 @@ class NoteForm extends React.Component<Props, State> {
             </CustomerName>
           </div>
           <ActionButtons>
-            <Tip text="Edit" placement="bottom">
+            <Tip text="Upravit" placement="bottom">
               <Button
                 btnStyle="link"
                 icon="edit"
                 onClick={this.onEdit.bind(this, note)}
               />
             </Tip>
-            <Tip text="Delete" placement="bottom">
+            <Tip text="Vymazat" placement="bottom">
               <Button
                 btnStyle="link"
                 icon="cancel-1"

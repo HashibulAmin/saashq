@@ -42,14 +42,13 @@ class Groups extends React.Component<Props, State> {
 
     const { history } = props;
 
-    const showCalendarModal = history.location.hash.includes(
-      'showCalendarModal'
-    );
+    const showCalendarModal =
+      history.location.hash.includes('showCalendarModal');
 
     this.state = {
       showModal: false,
       groups: props.groups || [],
-      showCalendarModal
+      showCalendarModal,
     };
   }
 
@@ -93,7 +92,7 @@ class Groups extends React.Component<Props, State> {
 
   addGroup = () => {
     this.setState({
-      showModal: true
+      showModal: true,
     });
   };
 
@@ -105,7 +104,7 @@ class Groups extends React.Component<Props, State> {
     const { renderButton, removeCalendar, renderCalendarButton } = this.props;
     const { groups } = this.state;
 
-    return groups.map(group => (
+    return groups.map((group) => (
       <GroupRow
         key={group._id}
         group={group}
@@ -124,7 +123,7 @@ class Groups extends React.Component<Props, State> {
     if (groups.length === 0) {
       return (
         <EmptyState
-          text="Get started on your group"
+          text="Začněte se svou skupinou"
           size="full"
           image="/images/actions/16.svg"
         />
@@ -159,7 +158,7 @@ class Groups extends React.Component<Props, State> {
           </Button>
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          {CALENDAR_INTEGRATIONS.map(i => (
+          {CALENDAR_INTEGRATIONS.map((i) => (
             <li key={i.kind}>
               <a
                 href={`#${i.kind}`}

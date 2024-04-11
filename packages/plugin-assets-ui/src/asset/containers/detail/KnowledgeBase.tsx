@@ -32,7 +32,7 @@ const KbContainer = (props: FinalProps) => {
   }
 
   if (!knowledgeBaseArticles || error) {
-    return <EmptyState text="Not found" image="/images/actions/24.svg" />;
+    return <EmptyState text="Nenalezeno" image="/images/actions/24.svg" />;
   }
 
   const articles = knowledgeBaseArticles || ([{}] as IArticle[]);

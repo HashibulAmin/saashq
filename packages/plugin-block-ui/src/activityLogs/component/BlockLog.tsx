@@ -1,7 +1,7 @@
 import {
   ActivityDate,
   FlexBody,
-  FlexCenterContent
+  FlexCenterContent,
 } from '@saashq/ui-log/src/activityLogs/styles';
 
 import React from 'react';
@@ -13,12 +13,12 @@ class TaggedLog extends React.Component<any> {
     const { activity, investments, packageId, amount } = this.props;
 
     const found = investments.find(
-      element => element.package._id === packageId
+      (element) => element.package._id === packageId,
     );
 
     return (
       <span>
-        invested {amount} to {found.package.name}
+        investoval {amount} na {found.package.name}
       </span>
     );
   };

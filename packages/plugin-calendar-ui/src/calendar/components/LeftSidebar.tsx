@@ -38,7 +38,7 @@ class LeftSidebar extends React.Component<Props, State> {
 
     this.state = {
       isPopupVisible: false,
-      calendarIds: this.getCalendarIds(props.accounts)
+      calendarIds: this.getCalendarIds(props.accounts),
     };
   }
 
@@ -67,12 +67,12 @@ class LeftSidebar extends React.Component<Props, State> {
       return JSON.parse(storedCalendarIds);
     }
 
-    accounts.map(acc => {
+    accounts.map((acc) => {
       calendarIds.push(acc._id);
 
       return acc.calendars
-        .filter(c => !c.readOnly)
-        .map(cal => calendarIds.push(cal.providerCalendarId));
+        .filter((c) => !c.readOnly)
+        .map((cal) => calendarIds.push(cal.providerCalendarId));
     });
 
     localStorage.setItem(STORAGE_CALENDAR_IDS, JSON.stringify(calendarIds));
@@ -82,7 +82,7 @@ class LeftSidebar extends React.Component<Props, State> {
 
   onHideModal = () => {
     this.setState({
-      isPopupVisible: !this.state.isPopupVisible
+      isPopupVisible: !this.state.isPopupVisible,
     });
   };
 
@@ -108,12 +108,12 @@ class LeftSidebar extends React.Component<Props, State> {
 
   toggleAccountCheckbox = (
     account: IAccount,
-    e: React.FormEvent<HTMLElement>
+    e: React.FormEvent<HTMLElement>,
   ) => {
     const checked = (e.target as HTMLInputElement).checked;
     let calendarIds = this.state.calendarIds || [];
     const providerCalendarIds = account.calendars.map(
-      c => c.providerCalendarId
+      (c) => c.providerCalendarId,
     );
 
     const ids = [account._id, ...providerCalendarIds];
@@ -121,7 +121,7 @@ class LeftSidebar extends React.Component<Props, State> {
     if (checked) {
       calendarIds = calendarIds.concat(ids);
     } else {
-      ids.map(id => {
+      ids.map((id) => {
         const index = calendarIds.indexOf(id);
         return index >= 0 && calendarIds.splice(index, 1);
       });
@@ -135,11 +135,11 @@ class LeftSidebar extends React.Component<Props, State> {
   renderCalendars = (
     calendars: INylasCalendar[],
     color: string,
-    calendarCount: number
+    calendarCount: number,
   ) => {
     const { calendarIds } = this.state;
 
-    return calendars.map(calendar => {
+    return calendars.map((calendar) => {
       const calendarId = calendar.providerCalendarId;
 
       return (
@@ -181,8 +181,8 @@ class LeftSidebar extends React.Component<Props, State> {
 
     return (
       <FormGroup>
-        <SidebarHeading>My Calendars</SidebarHeading>
-        {this.props.accounts.map(account => {
+        <SidebarHeading>Moje Kalendáře</SidebarHeading>
+        {this.props.accounts.map((account) => {
           const calendarCount = account.calendars.length;
           return (
             <div key={account._id}>
@@ -202,7 +202,7 @@ class LeftSidebar extends React.Component<Props, State> {
               {this.renderCalendars(
                 account.calendars,
                 account.color,
-                calendarCount
+                calendarCount,
               )}
             </div>
           );
@@ -223,7 +223,7 @@ class LeftSidebar extends React.Component<Props, State> {
           icon="plus-circle"
           disabled={disabled}
         >
-          Create Event
+          Vytvořit Událost
         </Button>
         <EventForm
           {...this.props}
@@ -235,19 +235,14 @@ class LeftSidebar extends React.Component<Props, State> {
   }
 
   render() {
-    const {
-      currentDate,
-      dateOnChange,
-      currentGroup,
-      currentBoard,
-      boards
-    } = this.props;
+    const { currentDate, dateOnChange, currentGroup, currentBoard, boards } =
+      this.props;
 
     if (!currentBoard) {
       return (
         <Sidebar full={true}>
           <EmptyState
-            text="There is no connected account"
+            text="Není připojen žádný účet"
             image="/images/actions/6.svg"
             size="full"
             extra={

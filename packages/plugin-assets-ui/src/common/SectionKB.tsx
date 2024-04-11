@@ -11,7 +11,7 @@ import {
   Box,
   BarItems,
   Button,
-  Tip
+  Tip,
 } from '@saashq/ui/src';
 import { ContainerBox, KbTopics } from '../style';
 import { KbArticlesContainer, KbArticles, KbTreeViewItem } from '../style';
@@ -42,7 +42,7 @@ class SelectKbArticles extends React.Component<FinalProps, Stage> {
     this.state = {
       topicsToShow: [],
       categoriesToShow: [],
-      articles: []
+      articles: [],
     };
   }
 
@@ -55,10 +55,10 @@ class SelectKbArticles extends React.Component<FinalProps, Stage> {
       return;
     }
 
-    const handleSelect = articleId => {
+    const handleSelect = (articleId) => {
       if (articleIds.includes(articleId)) {
         return setParams(history, {
-          articleIds: (articleIds || []).filter(id => id !== articleId)
+          articleIds: (articleIds || []).filter((id) => id !== articleId),
         });
       }
 
@@ -67,7 +67,7 @@ class SelectKbArticles extends React.Component<FinalProps, Stage> {
 
     return articles
       .filter(({ categoryId }) => categoryId === catId)
-      .map(article => (
+      .map((article) => (
         <KbTreeViewItem
           key={article._id}
           className={articleIds.includes(article._id) ? 'active' : ''}
@@ -86,10 +86,10 @@ class SelectKbArticles extends React.Component<FinalProps, Stage> {
       return;
     }
 
-    const getArticlesCategory = categoryId => {
+    const getArticlesCategory = (categoryId) => {
       return this.state.articles
-        .filter(article => article.categoryId === categoryId)
-        .map(article => article._id);
+        .filter((article) => article.categoryId === categoryId)
+        .map((article) => article._id);
     };
 
     const handleOpen = (e, catId) => {
@@ -97,20 +97,20 @@ class SelectKbArticles extends React.Component<FinalProps, Stage> {
       if (categoriesToShow.includes(catId)) {
         return this.setState({
           categoriesToShow: categoriesToShow.filter(
-            topicId => topicId !== catId
-          )
+            (topicId) => topicId !== catId,
+          ),
         });
       }
       this.setState({
-        categoriesToShow: [...categoriesToShow, catId]
+        categoriesToShow: [...categoriesToShow, catId],
       });
     };
 
-    const handleSelect = catId => {
+    const handleSelect = (catId) => {
       const articleIds = getArticlesCategory(catId);
       if (
-        articleIds.every(articleId =>
-          (queryParams?.articleIds || []).includes(articleId)
+        articleIds.every((articleId) =>
+          (queryParams?.articleIds || []).includes(articleId),
         )
       ) {
         return removeParams(history, 'articleIds');
@@ -124,8 +124,8 @@ class SelectKbArticles extends React.Component<FinalProps, Stage> {
           const articleIds = getArticlesCategory(_id);
           const isSelected =
             !!articleIds?.length &&
-            articleIds.every(articleId =>
-              (queryParams?.articleIds || []).includes(articleId)
+            articleIds.every((articleId) =>
+              (queryParams?.articleIds || []).includes(articleId),
             );
 
           return (
@@ -138,7 +138,7 @@ class SelectKbArticles extends React.Component<FinalProps, Stage> {
                   <ControlLabel>{title}</ControlLabel>
                   <Icon
                     size={10}
-                    onClick={e => handleOpen(e, _id)}
+                    onClick={(e) => handleOpen(e, _id)}
                     icon={
                       categoriesToShow.includes(_id) ? 'downarrow-2' : 'chevron'
                     }
@@ -164,23 +164,23 @@ class SelectKbArticles extends React.Component<FinalProps, Stage> {
     const { knowledgeBaseTopics } = kbTopicsQueryResponse;
     const { topicsToShow } = this.state;
 
-    const loadArticles = categoryIds => {
+    const loadArticles = (categoryIds) => {
       client
         .query({
           query: gql(queries.knowledgeBaseArticles),
           fetchPolicy: 'network-only',
-          variables: { categoryIds }
+          variables: { categoryIds },
         })
         .then(({ data }) => {
           const kbArticles = data.knowledgeBaseArticles || [];
-          const articleIds = this.state.articles.map(article => article._id);
+          const articleIds = this.state.articles.map((article) => article._id);
 
           const uniqueArticles = kbArticles.filter(
-            kbArticle => !articleIds.includes(kbArticle._id)
+            (kbArticle) => !articleIds.includes(kbArticle._id),
           );
 
           this.setState({
-            articles: [...this.state.articles, ...uniqueArticles]
+            articles: [...this.state.articles, ...uniqueArticles],
           });
         });
     };
@@ -189,7 +189,7 @@ class SelectKbArticles extends React.Component<FinalProps, Stage> {
       removeParams(history, 'articleIds', 'withKnowledge');
     };
 
-    const handleWithKnowledge = type => {
+    const handleWithKnowledge = (type) => {
       if (type === 'Assigned') {
         if (queryParams?.withKnowledge === 'true') {
           return removeParams(history, 'withKnowledge');
@@ -204,7 +204,7 @@ class SelectKbArticles extends React.Component<FinalProps, Stage> {
       }
     };
 
-    const getBtnStyle = type => {
+    const getBtnStyle = (type) => {
       if (type === 'Assigned' && queryParams.withKnowledge === 'true') {
         return 'active';
       }
@@ -223,14 +223,14 @@ class SelectKbArticles extends React.Component<FinalProps, Stage> {
 
     return (
       <Box
-        title="Filter by Knowledgebase"
+        title="Filtrujte podle znalostní báze"
         name="filterByKnowledge"
         isOpen
         extraButtons={extraButtons}
       >
         <ContainerBox vertical horizontal column>
           <ContainerBox row spaceAround vertical>
-            {checkKnowledge.map(type => (
+            {checkKnowledge.map((type) => (
               <Tip key={type.title} text={type.label} placement="top">
                 <KbTreeViewItem
                   className={getBtnStyle(type.title)}
@@ -244,11 +244,13 @@ class SelectKbArticles extends React.Component<FinalProps, Stage> {
           </ContainerBox>
           {(knowledgeBaseTopics || []).map(({ _id, title, categories }) => {
             const handleTopic = () => {
-              loadArticles((categories || []).map(category => category._id));
+              loadArticles((categories || []).map((category) => category._id));
 
               if (topicsToShow.includes(_id)) {
                 return this.setState({
-                  topicsToShow: topicsToShow.filter(topicId => topicId !== _id)
+                  topicsToShow: topicsToShow.filter(
+                    (topicId) => topicId !== _id,
+                  ),
                 });
               }
               this.setState({ topicsToShow: [...topicsToShow, _id] });
@@ -280,7 +282,7 @@ class SelectKbArticles extends React.Component<FinalProps, Stage> {
 export default withProps<Props>(
   compose(
     graphql<Props>(gql(queries.knowledgeBaseTopics), {
-      name: 'kbTopicsQueryResponse'
-    })
-  )(SelectKbArticles)
+      name: 'kbTopicsQueryResponse',
+    }),
+  )(SelectKbArticles),
 );

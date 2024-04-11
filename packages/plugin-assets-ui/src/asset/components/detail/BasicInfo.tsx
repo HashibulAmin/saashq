@@ -60,7 +60,7 @@ function BasicInfo({ asset, remove, assignKbArticles, history }: Props) {
           btnStyle="link"
           style={{ padding: '0', paddingLeft: '8px' }}
         >
-          <Tip text="See Vendor Detail" placement="bottom">
+          <Tip text="Viz Detail dodavatele" placement="bottom">
             <Icon icon="rightarrow" />
           </Tip>
         </Button>
@@ -92,7 +92,7 @@ function BasicInfo({ asset, remove, assignKbArticles, history }: Props) {
 
     return (
       <ModalTrigger
-        title="Edit Assigned Knowledgebase Articles"
+        title="Upravit přiřazené články znalostní báze"
         dialogClassName="modal-1000w"
         content={content}
         size="xl"
@@ -149,7 +149,8 @@ function BasicInfo({ asset, remove, assignKbArticles, history }: Props) {
 
     return (
       <ModalTrigger
-        title="Edit basic info"
+        title="Upravit základní informace
+        "
         trigger={
           <li>
             <a href="#edit">{__('Edit')}</a>
@@ -170,7 +171,7 @@ function BasicInfo({ asset, remove, assignKbArticles, history }: Props) {
         btnStyle="link"
         style={{ padding: '0', paddingLeft: '8px' }}
       >
-        <Tip text="See Parent Asset Detail" placement="bottom">
+        <Tip text="Viz Podrobnosti nadřazeného majetku" placement="bottom">
           <Icon icon="rightarrow" />
         </Tip>
       </Button>

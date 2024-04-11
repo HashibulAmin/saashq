@@ -87,7 +87,7 @@ class ProductForm extends React.Component<Props, State> {
 
     if (productsData.length === 0) {
       return (
-        <EmptyState size="full" text="No product or services" icon="box" />
+        <EmptyState size="full" text="Žádný produkt ani služby" icon="box" />
       );
     }
 

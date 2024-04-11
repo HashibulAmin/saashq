@@ -3,7 +3,7 @@ import {
   FlexBody,
   FlexCenterContent,
   Header,
-  ShowMore
+  ShowMore,
 } from '@saashq/ui-log/src/activityLogs/styles';
 
 import CheckListItem from './ChecklistItem';
@@ -25,7 +25,7 @@ class ChecklistLog extends React.Component<Props, { toggleItems: boolean }> {
     super(props);
 
     this.state = {
-      toggleItems: false
+      toggleItems: false,
     };
   }
 
@@ -38,7 +38,7 @@ class ChecklistLog extends React.Component<Props, { toggleItems: boolean }> {
 
     const rows: React.ReactNode[] = [];
 
-    checklistItemActivity.forEach(acitivity => {
+    checklistItemActivity.forEach((acitivity) => {
       rows.push(<CheckListItem key={Math.random()} activity={acitivity} />);
     });
 
@@ -67,7 +67,7 @@ class ChecklistLog extends React.Component<Props, { toggleItems: boolean }> {
       return (
         <>
           <Header>
-            <strong>{checklistName}</strong>`s details{' '}
+            <strong>{checklistName}</strong>`s podrobnosti{' '}
             <ShowMore onClick={this.onCollapse}>hide</ShowMore>
           </Header>
 
@@ -84,7 +84,7 @@ class ChecklistLog extends React.Component<Props, { toggleItems: boolean }> {
             <span>
               <strong>{userName}</strong> {action}d&nbsp;
               <strong>{checklistName}</strong> {contentType}&nbsp;
-              <ShowMore onClick={this.onCollapse}>show details</ShowMore>
+              <ShowMore onClick={this.onCollapse}>ukázat detaily</ShowMore>
             </span>
           </FlexBody>
           <Tip text={dayjs(createdAt).format('llll')}>

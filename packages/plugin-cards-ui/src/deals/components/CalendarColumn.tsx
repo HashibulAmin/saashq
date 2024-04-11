@@ -1,7 +1,7 @@
 import {
   ColumnContainer,
   ColumnContentBody,
-  ColumnFooter
+  ColumnFooter,
 } from '@saashq/ui-cards/src/boards/components/Calendar';
 import { AddNew } from '@saashq/ui-cards/src/boards/styles/stage';
 import EmptyState from '@saashq/ui/src/components/EmptyState';
@@ -78,7 +78,7 @@ class DealColumn extends React.Component<Props, {}> {
     const { deals } = this.props;
 
     if (deals.length === 0) {
-      return <EmptyState icon="piggy-bank" text="No Sales Pipelines" />;
+      return <EmptyState icon="piggy-bank" text="Žádné prodejní kanály" />;
     }
 
     const contents = deals.map((deal: IDeal, index: number) => (
@@ -122,7 +122,7 @@ class DealColumn extends React.Component<Props, {}> {
             dealTotalAmounts={totalForType}
             deals={deals}
           />
-          {totalForType.map(type => {
+          {totalForType.map((type) => {
             if (type.name === 'In progress') {
               return null;
             }

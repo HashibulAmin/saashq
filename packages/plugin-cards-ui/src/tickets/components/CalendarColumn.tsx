@@ -1,7 +1,7 @@
 import {
   ColumnContainer,
   ColumnContentBody,
-  ColumnFooter
+  ColumnFooter,
 } from '@saashq/ui-cards/src/boards/components/Calendar';
 import { AddNew } from '@saashq/ui-cards/src/boards/styles/stage';
 import EmptyState from '@saashq/ui/src/components/EmptyState';
@@ -30,7 +30,7 @@ class TicketColumn extends React.Component<Props, {}> {
     const { tickets } = this.props;
 
     if (tickets.length === 0) {
-      return <EmptyState icon="postcard" text="No tickets" />;
+      return <EmptyState icon="postcard" text="Žádné vstupenky" />;
     }
 
     const contents = tickets.map((ticket: ITicket, index: number) => (

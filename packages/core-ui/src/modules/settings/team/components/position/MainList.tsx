@@ -192,7 +192,7 @@ const MainList = (props: Props) => {
     );
 
     return (
-      <ModalTrigger title="Add Position" content={content} trigger={trigger} />
+      <ModalTrigger title="Přidat pozici" content={content} trigger={trigger} />
     );
   };
 
@@ -260,7 +260,7 @@ const MainList = (props: Props) => {
     <Wrapper
       header={
         <Wrapper.Header
-          title="Positions"
+          title="Pozice"
           breadcrumb={[
             { title: __('Settings'), link: '/settings' },
             { title: __('Positions') },
@@ -287,7 +287,7 @@ const MainList = (props: Props) => {
           count={totalCount || 0}
           data={renderContent()}
           emptyImage="/images/actions/5.svg"
-          emptyText="No Positions"
+          emptyText="Žádné pozice"
         />
       }
       leftSidebar={

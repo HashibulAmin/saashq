@@ -13,7 +13,7 @@ type Props = {
 const Components = {
   lead: SelectCustomers,
   customer: SelectCustomers,
-  company: SelectCompanies
+  company: SelectCompanies,
 };
 
 class SelectRecipients extends React.Component<Props> {
@@ -27,7 +27,7 @@ class SelectRecipients extends React.Component<Props> {
     const Component = Components[type];
 
     if (!Component) {
-      return <EmptyState text="Empty" icon="info-circle" />;
+      return <EmptyState text="Prázdný" icon="info-circle" />;
     }
 
     return (
@@ -40,7 +40,7 @@ class SelectRecipients extends React.Component<Props> {
           onSelect={onSelect}
           filterParams={{
             type,
-            emailValidationStatus: 'valid'
+            emailValidationStatus: 'valid',
           }}
         />
       </FormGroup>

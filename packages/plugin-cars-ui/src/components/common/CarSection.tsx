@@ -68,7 +68,7 @@ function Component(
 
   const quickButtons = (
     <ModalTrigger
-      title="Associate"
+      title="Spolupracovník"
       trigger={carTrigger}
       size="lg"
       content={renderCarChooser}
@@ -77,7 +77,7 @@ function Component(
 
   const relQuickButtons = (
     <ModalTrigger
-      title="Related Associate"
+      title="Související spolupracovník"
       trigger={relCarTrigger}
       size="lg"
       content={renderRelatedCarChooser}
@@ -104,7 +104,7 @@ function Component(
             <span>{car.plateNumber || 'Unknown'}</span>
           </SectionBodyItem>
         ))}
-        {items.length === 0 && <EmptyState icon="building" text="No car" />}
+        {items.length === 0 && <EmptyState icon="building" text="Žádné auto" />}
         {mainTypeId && mainType && relQuickButtons}
       </>
     );

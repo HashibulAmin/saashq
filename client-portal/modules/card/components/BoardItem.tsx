@@ -38,7 +38,7 @@ function BoardItem({ items, viewType, type, stageId }: Props) {
     return (
       <EmptyState
         icon="ban"
-        text="There is no cards in this stage"
+        text="V této fázi nejsou žádné karty"
         size="small"
       />
     );

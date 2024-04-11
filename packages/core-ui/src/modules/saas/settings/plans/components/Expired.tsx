@@ -23,7 +23,7 @@ type Props = {
 class Expired extends React.Component<Props> {
   render() {
     const fallbackComponent = (
-      <EmptyState text="Permission denied" image="/images/actions/21.svg" />
+      <EmptyState text="Přístup odepřen" image="/images/actions/21.svg" />
     );
 
     const { logout, currentUser } = this.props;
@@ -67,7 +67,7 @@ class Expired extends React.Component<Props> {
                       icon="clipboard-notes"
                       uppercase={false}
                     >
-                      Export data
+                      Export dat
                     </Button>
                   </Link>
                   <br />

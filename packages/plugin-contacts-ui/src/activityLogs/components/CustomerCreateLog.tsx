@@ -26,7 +26,7 @@ class CustomerCreateLog extends React.Component<IActivityLogItemProps> {
 
       return (
         <span>
-          <strong>{userName}</strong> created&nbsp; this customer
+          <strong>{userName}</strong> vytvořené&nbsp; tohoto zákazníka
         </span>
       );
     }
@@ -36,7 +36,7 @@ class CustomerCreateLog extends React.Component<IActivityLogItemProps> {
 
       return (
         <span>
-          This customer registered to SaasHQ by
+          Tento zákazník se zaregistroval do SaasHQ od
           {content ? ` ${content.name}'s integrations` : ''}
         </span>
       );
@@ -47,15 +47,15 @@ class CustomerCreateLog extends React.Component<IActivityLogItemProps> {
 
       return (
         <span>
-          This customer registered to SaasHQ by
-          {content ? ` ${content.name} client portal` : ''}
+          Tento zákazník se zaregistroval do SaasHQ od
+          {content ? ` ${content.name} klientský portál` : ''}
         </span>
       );
     }
 
     return (
       <span>
-        This customer <b>registered</b> to SaasHQ
+        Tento zákazník se <b>zaregistroval</b> do SaasHQ
       </span>
     );
   };

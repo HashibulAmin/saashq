@@ -39,7 +39,7 @@ class Base extends React.Component<Props> {
         <Link
           to={`/settings/schedule/create/${this.props.queryParams.accountId}`}
         >
-          Add New Page
+          Přidat novou stránku
         </Link>
       </Button>
     );
@@ -52,14 +52,14 @@ class Base extends React.Component<Props> {
     const breadcrumb = [
       { title: __('Settings'), link: '/settings' },
       { title: __('Calendar'), link: `/settings/calendars` },
-      { title: __('Schedule'), link: '' }
+      { title: __('Schedule'), link: '' },
     ];
 
     let calendarName = '';
 
     if (accountId) {
       calendarName = (
-        calendars.find(c => c.accountId === accountId) || ({} as ICalendar)
+        calendars.find((c) => c.accountId === accountId) || ({} as ICalendar)
       ).name;
     }
 
@@ -80,7 +80,7 @@ class Base extends React.Component<Props> {
             </thead>
 
             <tbody>
-              {pages.map(page => (
+              {pages.map((page) => (
                 <PageRow
                   key={page._id}
                   page={page}
@@ -93,7 +93,7 @@ class Base extends React.Component<Props> {
         </div>
       ) : (
         <EmptyState
-          text={`Get started on your board`}
+          text={`Začněte na své desce`}
           image="/images/actions/16.svg"
         />
       );
@@ -113,9 +113,9 @@ class Base extends React.Component<Props> {
             icon="/images/actions/34.svg"
             title={`Calendar & Schedule`}
             description={`${__(
-              "Manage your boards and calendars so that its easy to manage incoming pop ups or requests that is adaptable to your team's needs"
+              "Manage your boards and calendars so that its easy to manage incoming pop ups or requests that is adaptable to your team's needs",
             )}.${__(
-              `Add in or delete boards and calendars to keep business development on track and in check`
+              `Add in or delete boards and calendars to keep business development on track and in check`,
             )}`}
           />
         }

@@ -46,7 +46,10 @@ class GrowthHacks extends React.Component<Props> {
 
     if (growthHacks.length === 0) {
       return (
-        <EmptyState icon="comment-info-alt" text="There is no experiments" />
+        <EmptyState
+          icon="comment-info-alt"
+          text="Neexistují žádné experimenty"
+        />
       );
     }
 
@@ -62,7 +65,7 @@ class GrowthHacks extends React.Component<Props> {
             </tr>
           </thead>
           <tbody>
-            {growthHacks.map(growthHack => this.renderRow(growthHack))}
+            {growthHacks.map((growthHack) => this.renderRow(growthHack))}
           </tbody>
         </Table>
       </TableContainer>

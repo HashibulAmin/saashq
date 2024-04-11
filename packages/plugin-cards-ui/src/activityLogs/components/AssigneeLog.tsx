@@ -1,7 +1,7 @@
 import {
   ActivityDate,
   FlexBody,
-  FlexCenterContent
+  FlexCenterContent,
 } from '@saashq/ui-log/src/activityLogs/styles';
 
 import { IActivityLogItemProps } from '@saashq/ui-log/src/activityLogs/types';
@@ -30,7 +30,7 @@ class AssigneeLog extends React.Component<Props> {
 
     const { addedUsers = [], removedUsers = [] } = contentDetail;
 
-    const addedUserNames = addedUsers.map(user => {
+    const addedUserNames = addedUsers.map((user) => {
       return (
         <Link
           to={`/settings/team/details/${user._id}`}
@@ -42,7 +42,7 @@ class AssigneeLog extends React.Component<Props> {
       );
     });
 
-    const removedUserNames = removedUsers.map(user => {
+    const removedUserNames = removedUsers.map((user) => {
       return (
         <Link
           to={`/settings/team/details/${user._id}`}
@@ -57,7 +57,7 @@ class AssigneeLog extends React.Component<Props> {
     if (addedUserNames.length > 0 && removedUserNames.length === 0) {
       return (
         <span>
-          {userName} assigned
+          {userName} přiděleno
           {addedUserNames}
         </span>
       );
@@ -66,16 +66,14 @@ class AssigneeLog extends React.Component<Props> {
     if (removedUserNames && !addedUserNames) {
       return (
         <span>
-          {userName} removed assignee of
-          {removedUserNames}
+          {userName} odstraněný zmocněnec z{removedUserNames}
         </span>
       );
     }
 
     return (
       <span>
-        {userName} removed assignee of
-        {removedUserNames}
+        {userName} odstraněný zmocněnec z{removedUserNames}
       </span>
     );
   };

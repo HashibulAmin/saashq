@@ -34,7 +34,9 @@ class Contact extends React.Component<Props, State> {
   renderContact = () => {
     const { customers } = this.props;
     if (!customers || customers.length === 0) {
-      return <EmptyState icon="ban" text="There is no contact" size="small" />;
+      return (
+        <EmptyState icon="ban" text="Neexistuje žádný kontakt" size="small" />
+      );
     }
 
     return customers.map((customer, i) => {

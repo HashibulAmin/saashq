@@ -8,7 +8,7 @@ import Wrapper from '@saashq/ui/src/layout/components/Wrapper';
 import {
   FieldStyle,
   SidebarCounter,
-  SidebarList
+  SidebarList,
 } from '@saashq/ui/src/layout/styles';
 import React from 'react';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
@@ -20,7 +20,7 @@ import {
   CountItem,
   FilterButton,
   FilterWrapper,
-  HelperButtons
+  HelperButtons,
 } from './styles';
 
 type Props = {
@@ -36,10 +36,10 @@ class Home extends React.Component<Props> {
     const { id = '', state = '' } = queryParams;
 
     if (boardsWithCount.length === 0) {
-      return <EmptyState text="There is no campaign" icon="folder-2" />;
+      return <EmptyState text="Neexistuje žádná kampaň" icon="folder-2" />;
     }
 
-    return boardsWithCount.map(board => (
+    return boardsWithCount.map((board) => (
       <li key={board._id}>
         <Link
           className={id === board._id ? 'active' : ''}
@@ -136,7 +136,7 @@ class Home extends React.Component<Props> {
   };
 
   renderCounts = () => {
-    return GROWTHHACK_STATES.map(state => this.renderCountItem(state));
+    return GROWTHHACK_STATES.map((state) => this.renderCountItem(state));
   };
 
   renderContent = () => {
@@ -154,7 +154,7 @@ class Home extends React.Component<Props> {
       <Wrapper
         header={
           <Wrapper.Header
-            title={`${'Growth Hacking' || ''}`}
+            title={`${'Hackování Růstu' || ''}`}
             breadcrumb={[{ title: __('Growth Hacking') }]}
           />
         }

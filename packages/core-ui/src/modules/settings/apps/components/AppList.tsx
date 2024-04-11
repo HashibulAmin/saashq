@@ -22,7 +22,7 @@ const FixedTable = styled(Table)`
 
 const breadcrumb = [
   { title: 'Settings', link: '/settings' },
-  { title: __('Apps') }
+  { title: __('Apps') },
 ];
 
 type Props = {
@@ -53,7 +53,7 @@ export default class AppList extends React.Component<Props> {
           removeApp={removeApp}
           editApp={editApp}
           userGroups={userGroups}
-        />
+        />,
       );
     }
 
@@ -79,14 +79,8 @@ export default class AppList extends React.Component<Props> {
   }
 
   render() {
-    const {
-      isLoading,
-      count,
-      errorMessage,
-      userGroups,
-      addApp,
-      editApp
-    } = this.props;
+    const { isLoading, count, errorMessage, userGroups, addApp, editApp } =
+      this.props;
 
     if (errorMessage.indexOf('Permission required') !== -1) {
       return (
@@ -104,11 +98,11 @@ export default class AppList extends React.Component<Props> {
         block={true}
         icon="plus-circle"
       >
-        Add New App
+        Přidat novou aplikaci
       </Button>
     );
 
-    const content = props => (
+    const content = (props) => (
       <AppForm
         {...props}
         extended={true}

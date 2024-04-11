@@ -12,7 +12,7 @@ type Props = {
   toggleBulk?: (
     movement: IMovementType,
     movementId: string,
-    isChecked?: boolean
+    isChecked?: boolean,
   ) => void;
   queryParams: any;
 };
@@ -32,11 +32,11 @@ class Row extends React.Component<Props> {
       history.push(`/asset-movement-items?movementId=${_id}`);
     };
 
-    const onClick = e => {
+    const onClick = (e) => {
       e.stopPropagation();
     };
 
-    const onChange = e => {
+    const onChange = (e) => {
       if (toggleBulk) {
         toggleBulk(movement, _id || '', e.target.checked);
       }
@@ -61,18 +61,18 @@ class Row extends React.Component<Props> {
         <td>{moment(createdAt || '').format('YYYY-MM-DD HH:mm')}</td>
         <td>{moment(modifiedAt || '').format('YYYY-MM-DD HH:mm')}</td>
         <td>
-          <Tip text="see movement assets">
+          <Tip text="viz pohyb aktiv">
             <Button btnStyle="link" icon="list-2" onClick={handleItems} />
           </Tip>
         </td>
       </tr>
     );
 
-    const renderDetail = props => {
+    const renderDetail = (props) => {
       const updatedProps = {
         ...props,
         movementId: _id,
-        queryParams: this.props.queryParams
+        queryParams: this.props.queryParams,
       };
 
       return <Form {...updatedProps} />;

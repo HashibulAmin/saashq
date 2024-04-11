@@ -25,7 +25,7 @@ class ActionsForm extends React.Component<Props, State> {
 
     this.state = {
       currentTab: 'actions',
-      isFavourite: false
+      isFavourite: false,
     };
   }
 
@@ -43,15 +43,15 @@ class ActionsForm extends React.Component<Props, State> {
 
     let actions = JSON.parse(actionsLocalStorage);
 
-    if (actions.find(item => item.type === action.type)) {
-      actions = actions.filter(item => item.type !== action.type);
+    if (actions.find((item) => item.type === action.type)) {
+      actions = actions.filter((item) => item.type !== action.type);
     } else {
       actions.push(action);
     }
 
     localStorage.setItem(
       'automations_favourite_actions',
-      JSON.stringify(actions)
+      JSON.stringify(actions),
     );
   };
 
@@ -88,7 +88,7 @@ class ActionsForm extends React.Component<Props, State> {
 
   renderContent() {
     const localStorageActions = JSON.parse(
-      localStorage.getItem('automations_favourite_actions') || '[]'
+      localStorage.getItem('automations_favourite_actions') || '[]',
     );
 
     const actions =
@@ -100,7 +100,7 @@ class ActionsForm extends React.Component<Props, State> {
       return (
         <EmptyState
           image="/images/actions/8.svg"
-          text="Add your favourite actions"
+          text="Přidejte své oblíbené akce"
           size="small"
         />
       );
@@ -108,7 +108,7 @@ class ActionsForm extends React.Component<Props, State> {
 
     return actions.map((action, index) => {
       const isFavourite = localStorageActions.some(
-        item => item.type === action.type
+        (item) => item.type === action.type,
       );
 
       return (

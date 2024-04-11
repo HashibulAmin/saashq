@@ -39,7 +39,7 @@ class AccountCalendars extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      calendarNames: {}
+      calendarNames: {},
     };
   }
 
@@ -59,7 +59,7 @@ class AccountCalendars extends React.Component<Props, State> {
   }
 
   renderExtraLinks(calendar: IAccountCalendar) {
-    const onColorChange = e => {
+    const onColorChange = (e) => {
       this.props.editCalendar({ _id: calendar._id, color: e.hex });
     };
 
@@ -83,7 +83,7 @@ class AccountCalendars extends React.Component<Props, State> {
 
     return (
       <>
-        <Tip text="Color" placement="top">
+        <Tip text="Barva" placement="top">
           <OverlayTrigger
             trigger="click"
             rootClose={true}
@@ -93,13 +93,13 @@ class AccountCalendars extends React.Component<Props, State> {
             <ColorPick>
               <ColorPicker
                 style={{
-                  backgroundColor: color
+                  backgroundColor: color,
                 }}
               />
             </ColorPick>
           </OverlayTrigger>
         </Tip>
-        <Tip text="View" placement="top">
+        <Tip text="Pohled" placement="top">
           <Button
             btnStyle="link"
             onClick={edit}

@@ -12,7 +12,7 @@ import {
   Tip,
   Wrapper,
   __,
-  FormControl
+  FormControl,
 } from '@saashq/ui/src';
 import { DateContainer } from '@saashq/ui/src/styles/main';
 import SelectBranches from '@saashq/ui/src/team/containers/SelectBranches';
@@ -23,7 +23,7 @@ import { SelectWithAssets } from '../../../common/utils';
 import {
   ContainerBox,
   CustomRangeContainer,
-  EndDateContainer
+  EndDateContainer,
 } from '../../../style';
 
 const { Section } = Wrapper.Sidebar;
@@ -52,7 +52,7 @@ class Sidebar extends React.Component<Props, State> {
     const { queryParams } = props;
 
     this.state = {
-      ...queryParams
+      ...queryParams,
     };
   }
 
@@ -68,12 +68,12 @@ class Sidebar extends React.Component<Props, State> {
       assetId,
       parentId,
       createdAtFrom,
-      createdAtTo
+      createdAtTo,
     } = this.state;
 
-    const clearParams = field => {
+    const clearParams = (field) => {
       if (Array.isArray(field)) {
-        field.forEach(name => {
+        field.forEach((name) => {
           this.setState({ [name]: undefined });
           return router.removeParams(this.props.history, name);
         });
@@ -85,7 +85,7 @@ class Sidebar extends React.Component<Props, State> {
       label,
       field,
       clearable,
-      children
+      children,
     }: {
       label: string;
       field: string | string[];
@@ -98,7 +98,7 @@ class Sidebar extends React.Component<Props, State> {
             <ControlLabel>{label}</ControlLabel>
             {clearable && (
               <Button btnStyle="link" onClick={() => clearParams(field)}>
-                <Tip placement="bottom" text="Clear">
+                <Tip placement="bottom" text="Průhledná">
                   <Icon icon="cancel-1" />
                 </Tip>
               </Button>
@@ -133,12 +133,12 @@ class Sidebar extends React.Component<Props, State> {
       'customerId',
       'assetId',
       'createdAtFrom',
-      'createdAtTo'
+      'createdAtTo',
     ];
 
     const extraButton = (
       <Button btnStyle="link" onClick={() => clearParams(fields)}>
-        <Tip text="Clear filters" placement="bottom">
+        <Tip text="Vymazat filtry" placement="bottom">
           <Icon icon="cancel-1" />
         </Tip>
       </Button>
@@ -149,98 +149,102 @@ class Sidebar extends React.Component<Props, State> {
         <Section.Title>
           {__('Addition Filters')}
           <Section.QuickButtons>
-            {fields.some(field => queryParams[field]) && extraButton}
+            {fields.some((field) => queryParams[field]) && extraButton}
           </Section.QuickButtons>
         </Section.Title>
         <ContainerBox vertical column gap={5}>
-          <FormGroup label="Branch" field="branchId" clearable={!!branchId}>
+          <FormGroup label="Větev" field="branchId" clearable={!!branchId}>
             <SelectBranches
-              label="Choose Branch"
+              label="Vyberte Pobočku"
               name="branchId"
               multi={false}
               initialValue={branchId}
               onSelect={handleSelect}
-              customOption={{ value: '', label: 'Choose Branch' }}
+              customOption={{ value: '', label: 'Vyberte Pobočku' }}
             />
           </FormGroup>
           <FormGroup
-            label="Department"
+            label="Oddělení"
             field="departmentId"
             clearable={!!departmentId}
           >
             <SelectDepartments
-              label="Choose Department"
+              label="Vyberte Oddělení"
               name="departmentId"
               multi={false}
               initialValue={departmentId}
               onSelect={handleSelect}
-              customOption={{ value: '', label: 'Choose Department' }}
+              customOption={{ value: '', label: 'Vyberte Oddělení' }}
             />
           </FormGroup>
           <FormGroup
-            label="Team Member"
+            label="Člen týmu"
             field="teamMemberId"
             clearable={!!teamMemberId}
           >
             <SelectCompanies
-              label="Choose Team Member"
+              label="Vyberte Člen týmu"
               name="teamMemberId"
               multi={false}
               initialValue={teamMemberId}
               onSelect={handleSelect}
-              customOption={{ value: '', label: 'Choose Team Member' }}
+              customOption={{ value: '', label: 'Vyberte Člen týmu' }}
             />
           </FormGroup>
-          <FormGroup label="Company" field="companyId" clearable={!!companyId}>
+          <FormGroup
+            label="Společnost"
+            field="companyId"
+            clearable={!!companyId}
+          >
             <SelectCompanies
-              label="Choose Company"
+              label="Vyberte Společnost"
               name="companyId"
               multi={false}
               initialValue={companyId}
               onSelect={handleSelect}
-              customOption={{ value: '', label: 'Choose Company' }}
+              customOption={{ value: '', label: 'Vyberte Společnost' }}
             />
           </FormGroup>
           <FormGroup
-            label="Customer"
+            label="Zákazník"
             field="customerId"
             clearable={!!customerId}
           >
             <SelectCustomers
-              label="Choose Customer"
+              label="Vyberte Zákazník"
               name="customerId"
               multi={false}
               initialValue={customerId}
               onSelect={handleSelect}
-              customOption={{ value: '', label: 'Choose Customer' }}
+              customOption={{ value: '', label: 'Vyberte Zákazník' }}
             />
           </FormGroup>
-          <FormGroup label="Asset" field="assetId" clearable={!!assetId}>
+          <FormGroup label="Aktivum" field="assetId" clearable={!!assetId}>
             <SelectWithAssets
-              label="Choose Asset"
+              label="Vyberte Aktivum"
               name="assetId"
               multi={false}
               initialValue={assetId}
               onSelect={handleSelect}
-              customOption={{ value: '', label: 'Choose Asset' }}
+              customOption={{ value: '', label: 'Vyberte Aktivum' }}
             />
           </FormGroup>
           <FormGroup
-            label="Asset Parent"
+            label="Nadřazená položka aktiv"
             field="parentId"
             clearable={!!parentId}
           >
             <SelectWithAssets
-              label="Choose Parent"
+              label="Vyberte možnost Rodič"
               name="parentId"
               multi={false}
               initialValue={parentId}
               onSelect={handleSelect}
-              customOption={{ value: '*', label: 'Without Parent' }}
+              customOption={{ value: '*', label: 'Bez rodiče' }}
             />
           </FormGroup>
           <FormGroup
-            label="Created Date Range"
+            label="Vytvořené časové období"
             clearable={!!createdAtFrom || !!createdAtTo}
             field={['createdAtFrom', 'createdAtTo']}
           >
@@ -248,18 +252,18 @@ class Sidebar extends React.Component<Props, State> {
               <DateContainer>
                 <DateControl
                   name="createdAtFrom"
-                  placeholder="Choose start date"
+                  placeholder="Vyberte datum zahájení"
                   value={createdAtFrom}
-                  onChange={e => handleSelect(e, 'createdAtFrom')}
+                  onChange={(e) => handleSelect(e, 'createdAtFrom')}
                 />
               </DateContainer>
               <EndDateContainer>
                 <DateContainer>
                   <DateControl
                     name="createdAtTo"
-                    placeholder="Choose end date"
+                    placeholder="Vyberte datum ukončení"
                     value={createdAtTo}
-                    onChange={e => handleSelect(e, 'createdAtTo')}
+                    onChange={(e) => handleSelect(e, 'createdAtTo')}
                   />
                 </DateContainer>
               </EndDateContainer>

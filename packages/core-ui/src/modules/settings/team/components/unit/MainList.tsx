@@ -2,7 +2,7 @@ import {
   FilterContainer,
   InputBar,
   LeftActionBar,
-  Title
+  Title,
 } from '@saashq/ui-settings/src/styles';
 import { IUnit, UnitsMainQueryResponse } from '@saashq/ui/src/team/types';
 import { __, router } from '@saashq/ui/src/utils';
@@ -43,7 +43,7 @@ class MainList extends React.Component<Props, State> {
 
     this.state = {
       selectedItems: [],
-      searchValue: props.queryParams.searchValue || ''
+      searchValue: props.queryParams.searchValue || '',
     };
   }
 
@@ -52,7 +52,7 @@ class MainList extends React.Component<Props, State> {
       this.props.deleteUnits([_id], () => this.setState({ selectedItems: [] }));
     } else {
       this.props.deleteUnits(this.state.selectedItems, () =>
-        this.setState({ selectedItems: [] })
+        this.setState({ selectedItems: [] }),
       );
     }
   };
@@ -74,7 +74,7 @@ class MainList extends React.Component<Props, State> {
   }
 
   renderSearch() {
-    const search = e => {
+    const search = (e) => {
       if (this.timer) {
         clearTimeout(this.timer);
       }
@@ -90,7 +90,7 @@ class MainList extends React.Component<Props, State> {
       }, 500);
     };
 
-    const moveCursorAtTheEnd = e => {
+    const moveCursorAtTheEnd = (e) => {
       const tmpValue = e.target.value;
 
       e.target.value = '';
@@ -120,14 +120,14 @@ class MainList extends React.Component<Props, State> {
     const handleSelect = () => {
       if (selectedItems.includes(unit._id)) {
         const removedSelectedItems = selectedItems.filter(
-          selectItem => selectItem !== unit._id
+          (selectItem) => selectItem !== unit._id,
         );
         return this.setState({ selectedItems: removedSelectedItems });
       }
       this.setState({ selectedItems: [...selectedItems, unit._id] });
     };
 
-    const onclick = e => {
+    const onclick = (e) => {
       e.stopPropagation();
     };
 
@@ -158,7 +158,7 @@ class MainList extends React.Component<Props, State> {
           <ActionButtons>
             <ModalTrigger
               key={unit._id}
-              title="Edit Unit"
+              title="Upravit jednotku"
               content={({ closeModal }) => (
                 <Form closeModal={closeModal} item={unit} queryType="units" />
               )}
@@ -186,7 +186,7 @@ class MainList extends React.Component<Props, State> {
 
     const handleSelectAll = () => {
       if (!selectedItems.length) {
-        const unitIds = units.map(unit => unit._id);
+        const unitIds = units.map((unit) => unit._id);
         return this.setState({ selectedItems: unitIds });
       }
 
@@ -212,7 +212,7 @@ class MainList extends React.Component<Props, State> {
             <th>{__('Actions')}</th>
           </tr>
         </thead>
-        <tbody>{(units || []).map(unit => this.renderRow(unit))}</tbody>
+        <tbody>{(units || []).map((unit) => this.renderRow(unit))}</tbody>
       </Table>
     );
   }
@@ -245,10 +245,10 @@ class MainList extends React.Component<Props, State> {
       <Wrapper
         header={
           <Wrapper.Header
-            title="Units"
+            title="Jednotky"
             breadcrumb={[
               { title: __('Settings'), link: '/settings' },
-              { title: __('Units') }
+              { title: __('Units') },
             ]}
           />
         }
@@ -272,7 +272,7 @@ class MainList extends React.Component<Props, State> {
             count={totalCount}
             data={this.renderContent()}
             emptyImage="/images/actions/25.svg"
-            emptyText="No Units"
+            emptyText="Žádné jednotky"
           />
         }
         leftSidebar={

@@ -31,18 +31,18 @@ function ClientPortalList({
   loading,
   totalCount,
   history,
-  queryParams
+  queryParams,
 }: Props) {
   const title = history.location.pathname.includes('vendor')
-    ? 'Vendor Portal'
-    : 'Client Portal';
+    ? 'Portál prodejců'
+    : 'Klientský portál';
 
   const kind = history.location.pathname.includes('vendor')
     ? 'vendor'
     : 'client';
 
   const renderRow = () => {
-    return configs.map(config => {
+    return configs.map((config) => {
       const onRemove = () => {
         remove(config._id);
       };
@@ -76,11 +76,11 @@ function ClientPortalList({
         uppercase={false}
         icon="plus-circle"
       >
-        {`Add New ${title}`}
+        {`Přidat nový ${title}`}
       </Button>
     );
 
-    const content = props => (
+    const content = (props) => (
       <ClientPortalDetailContainer
         {...props}
         queryParams=""
@@ -112,7 +112,7 @@ function ClientPortalList({
       {!loading && totalCount === 0 && (
         <EmptyState
           image="/images/actions/18.svg"
-          text={`There is no ${title}`}
+          text={`Tady není žádný ${title}`}
         />
       )}
     </LeftSidebar>

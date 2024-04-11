@@ -10,7 +10,7 @@ import {
   Sidebar as CommonSideBar,
   Tip,
   Wrapper,
-  __
+  __,
 } from '@saashq/ui/src';
 import { DateContainer } from '@saashq/ui/src/styles/main';
 import moment from 'moment';
@@ -18,7 +18,7 @@ import React from 'react';
 import {
   ContainerBox,
   CustomRangeContainer,
-  EndDateContainer
+  EndDateContainer,
 } from '../../style';
 
 type Props = {
@@ -42,7 +42,7 @@ export class SideBar extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      ...props.queryParams
+      ...props.queryParams,
     };
 
     this.handleValue = this.handleValue.bind(this);
@@ -70,13 +70,13 @@ export class SideBar extends React.Component<Props, State> {
       movedAtFrom,
       movedAtTo,
       modifiedAtFrom,
-      modifiedAtTo
+      modifiedAtTo,
     } = this.state;
     const { queryParams, history } = this.props;
 
-    const clearParams = field => {
+    const clearParams = (field) => {
       if (Array.isArray(field)) {
-        field.forEach(name => {
+        field.forEach((name) => {
           this.setState({ [name]: undefined });
           return router.removeParams(history, name);
         });
@@ -89,7 +89,7 @@ export class SideBar extends React.Component<Props, State> {
       label,
       field,
       clearable,
-      children
+      children,
     }: {
       label: string;
       clearable?: boolean;
@@ -101,7 +101,7 @@ export class SideBar extends React.Component<Props, State> {
           <ControlLabel>{label}</ControlLabel>
           {clearable && (
             <Button btnStyle="link" onClick={() => clearParams(field)}>
-              <Tip placement="bottom" text="Clear">
+              <Tip placement="bottom" text="Průhledná">
                 <Icon icon="cancel-1" />
               </Tip>
             </Button>
@@ -118,12 +118,12 @@ export class SideBar extends React.Component<Props, State> {
       'movedAtFrom',
       'movedAtTo',
       'modifiedAtFrom',
-      'modifiedAtTo'
+      'modifiedAtTo',
     ];
 
     const extraButton = (
       <Button btnStyle="link" onClick={() => clearParams(fields)}>
-        <Tip text="Clear filters" placement="bottom">
+        <Tip text="Vymazat filtry" placement="bottom">
           <Icon icon="cancel-1" />
         </Tip>
       </Button>
@@ -134,26 +134,26 @@ export class SideBar extends React.Component<Props, State> {
         <Section.Title>
           {__('Addition Filters')}
           <Section.QuickButtons>
-            {fields.some(field => queryParams[field]) && extraButton}
+            {fields.some((field) => queryParams[field]) && extraButton}
           </Section.QuickButtons>
         </Section.Title>
         <ContainerBox vertical column gap={5}>
           <FormGroup
             field="userId"
-            label="Moved User"
+            label="Přesunutý uživatel"
             clearable={queryParams.userId}
           >
             <SelectTeamMembers
-              label="Choose Moved User"
+              label="Zvolte Přesunutý uživatel"
               name="userId"
               multi={false}
               onSelect={this.handleValue}
               initialValue={queryParams.userId}
-              customOption={{ value: '', label: 'Choose Moved User' }}
+              customOption={{ value: '', label: 'Zvolte Přesunutý uživatel' }}
             />
           </FormGroup>
           <FormGroup
-            label="Created Date Range"
+            label="Vytvořené časové období"
             field={['createdAtFrom', 'createdAtTo']}
             clearable={queryParams?.createdAtFrom || queryParams?.createdAtTo}
           >
@@ -161,25 +161,25 @@ export class SideBar extends React.Component<Props, State> {
               <DateContainer>
                 <DateControl
                   name="createdAtFrom"
-                  placeholder="Choose start date"
+                  placeholder="Vyberte datum zahájení"
                   value={createdAtFrom}
-                  onChange={e => this.handleDate('createdAtFrom', e)}
+                  onChange={(e) => this.handleDate('createdAtFrom', e)}
                 />
               </DateContainer>
               <EndDateContainer>
                 <DateContainer>
                   <DateControl
                     name="createdAtTo"
-                    placeholder="Choose end date"
+                    placeholder="Vyberte datum ukončení"
                     value={createdAtTo}
-                    onChange={e => this.handleDate('createdAtTo', e)}
+                    onChange={(e) => this.handleDate('createdAtTo', e)}
                   />
                 </DateContainer>
               </EndDateContainer>
             </CustomRangeContainer>
           </FormGroup>
           <FormGroup
-            label="Moved Date Range"
+            label="Přesunuté časové období"
             field={['movedAtFrom', 'movedAtTo']}
             clearable={queryParams?.movedAtFrom || queryParams?.movedAtTo}
           >
@@ -187,25 +187,25 @@ export class SideBar extends React.Component<Props, State> {
               <DateContainer>
                 <DateControl
                   name="movedAtFrom"
-                  placeholder="Choose start date"
+                  placeholder="Vyberte datum zahájení"
                   value={movedAtFrom}
-                  onChange={e => this.handleDate('movedAtFrom', e)}
+                  onChange={(e) => this.handleDate('movedAtFrom', e)}
                 />
               </DateContainer>
               <EndDateContainer>
                 <DateContainer>
                   <DateControl
                     name="movedAtTo"
-                    placeholder="Choose end date"
+                    placeholder="Vyberte datum ukončení"
                     value={movedAtTo}
-                    onChange={e => this.handleDate('movedAtTo', e)}
+                    onChange={(e) => this.handleDate('movedAtTo', e)}
                   />
                 </DateContainer>
               </EndDateContainer>
             </CustomRangeContainer>
           </FormGroup>
           <FormGroup
-            label="Modified Date Range"
+            label="Upravené časové období"
             field={['modifiedAtFrom', 'modifiedAtTo']}
             clearable={queryParams?.modifiedAtFrom || queryParams?.modifiedAtTo}
           >
@@ -213,18 +213,18 @@ export class SideBar extends React.Component<Props, State> {
               <DateContainer>
                 <DateControl
                   name="modifiedAtFrom"
-                  placeholder="Choose start date"
+                  placeholder="Vyberte datum zahájení"
                   value={modifiedAtFrom}
-                  onChange={e => this.handleDate('modifiedAtFrom', e)}
+                  onChange={(e) => this.handleDate('modifiedAtFrom', e)}
                 />
               </DateContainer>
               <EndDateContainer>
                 <DateContainer>
                   <DateControl
                     name="modifiedAtTo"
-                    placeholder="Choose end date"
+                    placeholder="Vyberte datum ukončení"
                     value={modifiedAtTo}
-                    onChange={e => this.handleDate('modifiedAtTo', e)}
+                    onChange={(e) => this.handleDate('modifiedAtTo', e)}
                   />
                 </DateContainer>
               </EndDateContainer>

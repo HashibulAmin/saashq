@@ -90,7 +90,7 @@ class MainList extends React.Component<Props, State> {
     );
 
     return (
-      <ModalTrigger title="Add Branch" content={content} trigger={trigger} />
+      <ModalTrigger title="Přidat větev" content={content} trigger={trigger} />
     );
   }
 
@@ -178,7 +178,7 @@ class MainList extends React.Component<Props, State> {
           <ActionButtons>
             <ModalTrigger
               key={branch._id}
-              title="Edit Branch"
+              title="Upravit větev"
               content={({ closeModal }) => (
                 <Form
                   item={branch}
@@ -276,7 +276,7 @@ class MainList extends React.Component<Props, State> {
       <Wrapper
         header={
           <Wrapper.Header
-            title="Branches"
+            title="Větve"
             breadcrumb={[
               { title: __('Settings'), link: '/settings' },
               { title: __('Branches') },
@@ -303,7 +303,7 @@ class MainList extends React.Component<Props, State> {
             count={totalCount || 0}
             data={this.renderContent()}
             emptyImage="/images/actions/5.svg"
-            emptyText="No Branches"
+            emptyText="Žádné pobočky"
           />
         }
         leftSidebar={

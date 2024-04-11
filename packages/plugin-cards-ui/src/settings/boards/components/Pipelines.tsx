@@ -1,7 +1,7 @@
 import {
   EMPTY_CONTENT_DEAL_PIPELINE,
   EMPTY_CONTENT_TASK_PIPELINE,
-  EMPTY_CONTENT_PURCHASE_PIPELINE
+  EMPTY_CONTENT_PURCHASE_PIPELINE,
 } from '@saashq/ui-settings/src/constants';
 import { IBoard, IPipeline } from '@saashq/ui-cards/src/boards/types';
 import { IButtonMutateProps, IRouterProps } from '@saashq/ui/src/types';
@@ -77,7 +77,7 @@ class Pipelines extends React.Component<Props, State> {
       showModal,
       pipelines: props.pipelines,
       isDragDisabled: false,
-      searchValue: ''
+      searchValue: '',
     };
   }
 
@@ -106,11 +106,11 @@ class Pipelines extends React.Component<Props, State> {
 
   addPipeline = () => {
     this.setState({
-      showModal: true
+      showModal: true,
     });
   };
 
-  onChangePipelines = pipelines => {
+  onChangePipelines = (pipelines) => {
     this.setState({ pipelines });
 
     this.props.updateOrder(collectOrders(pipelines));
@@ -122,7 +122,7 @@ class Pipelines extends React.Component<Props, State> {
     this.setState({ isDragDisabled: !isDragDisabled });
   };
 
-  searchHandler = event => {
+  searchHandler = (event) => {
     const searchValue = event.target.value.toLowerCase();
     const { history, pipelines } = this.props;
 
@@ -131,8 +131,8 @@ class Pipelines extends React.Component<Props, State> {
     let updatedPipelines = pipelines;
 
     if (searchValue) {
-      updatedPipelines = pipelines.filter(p =>
-        p.name.toLowerCase().includes(searchValue)
+      updatedPipelines = pipelines.filter((p) =>
+        p.name.toLowerCase().includes(searchValue),
       );
     }
 
@@ -152,7 +152,7 @@ class Pipelines extends React.Component<Props, State> {
       sortItems(sortedPipelines, sortDirection, sortField);
     }
 
-    return sortedPipelines.map(pipeline => (
+    return sortedPipelines.map((pipeline) => (
       <PipelineRow
         key={pipeline._id}
         pipeline={pipeline}
@@ -200,7 +200,7 @@ class Pipelines extends React.Component<Props, State> {
       }
       return (
         <EmptyState
-          text={`Get started on your ${pipelineName.toLowerCase()}`}
+          text={`Začněte na svém ${pipelineName.toLowerCase()}`}
           image="/images/actions/16.svg"
         />
       );

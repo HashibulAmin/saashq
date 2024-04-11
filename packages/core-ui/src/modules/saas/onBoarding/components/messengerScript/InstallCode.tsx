@@ -167,11 +167,11 @@ class InstallCode extends React.PureComponent<Props, State> {
             onCopy={this.onCopy.bind(this, currentTab)}
           >
             <Button btnStyle={action ? 'primary' : 'success'} icon="copy-1">
-              {action ? 'Copied' : 'Copy to clipboard'}
+              {action ? 'Zkopírováno' : 'Zkopírovat do schránky'}
             </Button>
           </CopyToClipboard>
         ) : (
-          <EmptyState icon="copy" text="No copyable code" size="small" />
+          <EmptyState icon="copy" text="Žádný kopírovatelný kód" size="small" />
         )}
       </MarkdownWrapper>
     );

@@ -32,20 +32,20 @@ class BoardRow extends React.Component<Props, {}> {
 
     const editTrigger = (
       <Button btnStyle="link">
-        <Tip text="Edit" placement="bottom">
+        <Tip text="Upravit" placement="bottom">
           <Icon icon="edit" />
         </Tip>
       </Button>
     );
 
-    const content = props => (
+    const content = (props) => (
       <BoardForm {...props} board={board} renderButton={renderButton} />
     );
 
     return (
       <ModalTrigger
         size={this.size}
-        title="Edit"
+        title="Upravit"
         trigger={editTrigger}
         content={content}
       />

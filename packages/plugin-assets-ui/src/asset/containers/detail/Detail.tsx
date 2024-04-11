@@ -28,7 +28,7 @@ const AssetDetailContainer = (props: FinalProps) => {
   }
 
   if (!assetDetailQuery.assetDetail) {
-    return <EmptyState text="Asset not found" image="/images/actions/24.svg" />;
+    return <EmptyState text="Dílo nenalezeno" image="/images/actions/24.svg" />;
   }
 
   const assetDetail = assetDetailQuery.assetDetail || ({} as IAsset);
@@ -42,7 +42,7 @@ const AssetDetailContainer = (props: FinalProps) => {
     loading: assetDetailQuery.loading,
     asset: assetDetail,
     refetchDetail,
-    currentUser
+    currentUser,
   };
 
   return <AssetDetails {...updatedProps} />;
@@ -56,10 +56,10 @@ export default withProps<Props>(
         name: 'assetDetailQuery',
         options: ({ id }) => ({
           variables: {
-            _id: id
-          }
-        })
-      }
-    )
-  )(AssetDetailContainer)
+            _id: id,
+          },
+        }),
+      },
+    ),
+  )(AssetDetailContainer),
 );

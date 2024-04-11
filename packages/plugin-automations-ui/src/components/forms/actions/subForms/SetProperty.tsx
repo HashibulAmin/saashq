@@ -213,7 +213,7 @@ class SetProperty extends React.Component<Props, State> {
 
           <PlaceHolderInput
             inputName="value"
-            label="Value"
+            label="Hodnota"
             config={rule}
             onChange={onChangeValue}
             triggerType={triggerType}
@@ -235,7 +235,7 @@ class SetProperty extends React.Component<Props, State> {
             />
           </FormGroup>
 
-          <Tip text={'Delete'}>
+          <Tip text={'Vymazat'}>
             <Button
               btnStyle="simple"
               size="small"
@@ -255,7 +255,7 @@ class SetProperty extends React.Component<Props, State> {
     return (
       <DrawerDetail>
         <FormGroup>
-          <ControlLabel>Property type</ControlLabel>
+          <ControlLabel>Typ majetku</ControlLabel>
 
           <Select
             isRequired={true}

@@ -93,7 +93,9 @@ class History extends React.Component<Props, State> {
     }
 
     if (!histories || histories.length === 0) {
-      return <EmptyState icon="ban" text="There is no history" size="small" />;
+      return (
+        <EmptyState icon="ban" text="Neexistuje žádná historie" size="small" />
+      );
     }
 
     return histories.map((item, i) => {

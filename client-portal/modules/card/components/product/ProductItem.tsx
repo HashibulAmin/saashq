@@ -143,7 +143,7 @@ class ProductItem extends React.Component<Props, State> {
         <td>{productData.amount.toLocaleString()}</td>
 
         <td>
-          <Tip text="remove" placement="right">
+          <Tip text="odstranit" placement="right">
             <Icon
               onClick={removeProductItem?.bind(this, productData._id)}
               icon="times-circle"
@@ -151,7 +151,7 @@ class ProductItem extends React.Component<Props, State> {
           </Tip>
         </td>
         <td>
-          <Tip text="copy" placement="right">
+          <Tip text="kopírovat" placement="right">
             <Icon
               onClick={this.props.duplicateProductItem?.bind(
                 this,

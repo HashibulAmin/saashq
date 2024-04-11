@@ -1,12 +1,12 @@
 import {
   DepartmentsMainQueryResponse,
-  IDepartment
+  IDepartment,
 } from '@saashq/ui/src/team/types';
 import {
   FilterContainer,
   InputBar,
   LeftActionBar,
-  Title
+  Title,
 } from '@saashq/ui-settings/src/styles';
 import { __, router } from '@saashq/ui/src/utils';
 
@@ -49,7 +49,7 @@ class MainList extends React.Component<Props, State> {
     super(props);
     this.state = {
       selectedItems: [],
-      searchValue: props.queryParams.searchValue || ''
+      searchValue: props.queryParams.searchValue || '',
     };
   }
 
@@ -59,19 +59,19 @@ class MainList extends React.Component<Props, State> {
       variables: {
         withoutUserFilter: true,
         searchValue: undefined,
-        ...generatePaginationParams(this.props.queryParams || {})
-      }
-    }
+        ...generatePaginationParams(this.props.queryParams || {}),
+      },
+    },
   ];
 
   remove = (_id?: string) => {
     if (_id) {
       this.props.deleteDepartments([_id], () =>
-        this.setState({ selectedItems: [] })
+        this.setState({ selectedItems: [] }),
       );
     } else {
       this.props.deleteDepartments(this.state.selectedItems, () =>
-        this.setState({ selectedItems: [] })
+        this.setState({ selectedItems: [] }),
       );
     }
   };
@@ -93,7 +93,7 @@ class MainList extends React.Component<Props, State> {
 
     return (
       <ModalTrigger
-        title="Add Department"
+        title="Přidat oddělení"
         content={content}
         trigger={trigger}
       />
@@ -101,7 +101,7 @@ class MainList extends React.Component<Props, State> {
   }
 
   renderSearch() {
-    const search = e => {
+    const search = (e) => {
       if (this.timer) {
         clearTimeout(this.timer);
       }
@@ -117,7 +117,7 @@ class MainList extends React.Component<Props, State> {
       }, 500);
     };
 
-    const moveCursorAtTheEnd = e => {
+    const moveCursorAtTheEnd = (e) => {
       const tmpValue = e.target.value;
 
       e.target.value = '';
@@ -147,14 +147,14 @@ class MainList extends React.Component<Props, State> {
     const handleSelect = () => {
       if (selectedItems.includes(department._id)) {
         const removedSelectedItems = selectedItems.filter(
-          selectItem => selectItem !== department._id
+          (selectItem) => selectItem !== department._id,
         );
         return this.setState({ selectedItems: removedSelectedItems });
       }
       this.setState({ selectedItems: [...selectedItems, department._id] });
     };
 
-    const onclick = e => {
+    const onclick = (e) => {
       e.stopPropagation();
     };
 
@@ -183,7 +183,7 @@ class MainList extends React.Component<Props, State> {
           <ActionButtons>
             <ModalTrigger
               key={department._id}
-              title="Edit Department"
+              title="Upravit oddělení"
               content={({ closeModal }) => (
                 <Form
                   item={department}
@@ -214,7 +214,7 @@ class MainList extends React.Component<Props, State> {
 
     const handleSelectAll = () => {
       if (!selectedItems.length) {
-        const departmentIds = departments.map(department => department._id);
+        const departmentIds = departments.map((department) => department._id);
         return this.setState({ selectedItems: departmentIds });
       }
 
@@ -283,7 +283,7 @@ class MainList extends React.Component<Props, State> {
             title="Departments"
             breadcrumb={[
               { title: __('Settings'), link: '/settings' },
-              { title: __('Departments') }
+              { title: __('Departments') },
             ]}
           />
         }

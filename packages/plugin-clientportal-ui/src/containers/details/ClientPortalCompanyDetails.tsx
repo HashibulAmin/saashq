@@ -31,7 +31,7 @@ function CompanyDetailsContainer(props: FinalProps) {
   if (!clientPortalUserDetailQuery.clientPortalUserDetail) {
     return (
       <EmptyState
-        text="ClientPortal User not found"
+        text="Uživatel klientského portálu nebyl nalezen"
         image="/images/actions/17.svg"
       />
     );
@@ -41,7 +41,7 @@ function CompanyDetailsContainer(props: FinalProps) {
     ...props,
     clientPortalUser:
       clientPortalUserDetailQuery.clientPortalUserDetail || ({} as any),
-    currentUser
+    currentUser,
   };
 
   return <ClientPortalCompanyDetails {...updatedProps} />;
@@ -55,10 +55,10 @@ export default withProps<Props>(
         name: 'clientPortalUserDetailQuery',
         options: ({ id }) => ({
           variables: {
-            _id: id
-          }
-        })
-      }
-    )
-  )(CompanyDetailsContainer)
+            _id: id,
+          },
+        }),
+      },
+    ),
+  )(CompanyDetailsContainer),
 );

@@ -7,7 +7,7 @@ import {
   Label,
   ModalTrigger,
   Tip,
-  __
+  __,
 } from '@saashq/ui/src';
 import { Columns } from '@saashq/ui/src/styles/chooser';
 import { Column } from '@saashq/ui/src/styles/main';
@@ -37,7 +37,7 @@ class SendEmail extends React.Component<Props> {
   }
 
   renderEmails({ fromEmail, title, responses }) {
-    const getLabelColor = response => {
+    const getLabelColor = (response) => {
       if (response?.messageId) {
         return 'success';
       }
@@ -47,7 +47,7 @@ class SendEmail extends React.Component<Props> {
       return 'default';
     };
 
-    const getLabelText = response => {
+    const getLabelText = (response) => {
       if (response.error) {
         return typeof response?.error === 'object'
           ? JSON.stringify(response.error || {})
@@ -55,7 +55,7 @@ class SendEmail extends React.Component<Props> {
       }
 
       if (response.messageId) {
-        return 'Sent';
+        return 'Odesláno';
       }
 
       return '';
@@ -64,16 +64,16 @@ class SendEmail extends React.Component<Props> {
     return (
       <li>
         <ul>
-          <strong>{`From: `}</strong>
+          <strong>{`Z: `}</strong>
           {`${fromEmail || ''}`}
         </ul>
         <ul>
-          <strong>{`Subject: `}</strong>
+          <strong>{`Předmět: `}</strong>
           {`${title || ''}`}
         </ul>
         <ul>
           <LabelContainer>
-            <strong>{`To:`}</strong>
+            <strong>{`Na:`}</strong>
             {responses.map((response, i) => (
               <>
                 <Tip text={getLabelText(response)}>

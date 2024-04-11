@@ -13,16 +13,16 @@ type Props = {
 declare function editSchedule(editToken: string, inDarkMode: boolean): any;
 
 class PageRow extends React.Component<Props> {
-  onEdit = pageEditToken => {
+  onEdit = (pageEditToken) => {
     editSchedule(pageEditToken, false);
   };
 
-  onView = e => {
+  onView = (e) => {
     e.preventDefault();
     window.open(`/schedule/${this.props.page.slug}`);
   };
 
-  remove = pageId => {
+  remove = (pageId) => {
     this.props.remove(pageId);
   };
 
@@ -31,7 +31,7 @@ class PageRow extends React.Component<Props> {
 
     return (
       <>
-        <Tip text="Delete">
+        <Tip text="Vymazat">
           <Button
             btnStyle="link"
             onClick={this.remove.bind(this, page._id)}
@@ -39,7 +39,7 @@ class PageRow extends React.Component<Props> {
           />
         </Tip>
 
-        <Tip text="View">
+        <Tip text="Pohled">
           <Button btnStyle="link" onClick={this.onView} icon="eye" />
         </Tip>
       </>

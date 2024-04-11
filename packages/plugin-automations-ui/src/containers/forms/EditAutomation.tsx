@@ -13,7 +13,7 @@ import {
   EditMutationResponse,
   IAutomation,
   AutomationsNoteQueryResponse,
-  AutomationConstantsQueryResponse
+  AutomationConstantsQueryResponse,
 } from '../../types';
 import { withRouter } from 'react-router-dom';
 import { IRouterProps } from '@saashq/ui/src/types';
@@ -40,7 +40,7 @@ const AutomationDetailsContainer = (props: FinalProps) => {
     currentUser,
     history,
     editAutomationMutation,
-    automationConstantsQuery
+    automationConstantsQuery,
   } = props;
 
   const [saveLoading, setLoading] = useState(false);
@@ -50,8 +50,8 @@ const AutomationDetailsContainer = (props: FinalProps) => {
 
     editAutomationMutation({
       variables: {
-        ...doc
-      }
+        ...doc,
+      },
     })
       .then(() => {
         router.removeParams(history, 'isCreate');
@@ -60,10 +60,10 @@ const AutomationDetailsContainer = (props: FinalProps) => {
           setLoading(false);
         }, 300);
 
-        Alert.success(`You successfully updated a ${doc.name || 'status'}`);
+        Alert.success(`Úspěšně jste aktualizovali a ${doc.name || 'status'}`);
       })
 
-      .catch(error => {
+      .catch((error) => {
         Alert.error(error.message);
       });
   };
@@ -78,7 +78,10 @@ const AutomationDetailsContainer = (props: FinalProps) => {
 
   if (!automationDetailQuery.automationDetail) {
     return (
-      <EmptyState text="Automation not found" image="/images/actions/24.svg" />
+      <EmptyState
+        text="Automatizace nenalezena"
+        image="/images/actions/24.svg"
+      />
     );
   }
 
@@ -94,7 +97,7 @@ const AutomationDetailsContainer = (props: FinalProps) => {
     currentUser,
     save,
     saveLoading,
-    constants
+    constants,
   };
 
   return <AutomationForm {...updatedProps} />;
@@ -108,10 +111,10 @@ export default withProps<Props>(
         name: 'automationDetailQuery',
         options: ({ id }) => ({
           variables: {
-            _id: id
-          }
-        })
-      }
+            _id: id,
+          },
+        }),
+      },
     ),
     graphql<Props, AutomationsNoteQueryResponse, { automationId: string }>(
       gql(queries.automationNotes),
@@ -119,25 +122,29 @@ export default withProps<Props>(
         name: 'automationNotesQuery',
         options: ({ id }) => ({
           variables: {
-            automationId: id
-          }
-        })
-      }
+            automationId: id,
+          },
+        }),
+      },
     ),
     graphql<{}, EditMutationResponse, IAutomation>(
       gql(mutations.automationsEdit),
       {
         name: 'editAutomationMutation',
         options: () => ({
-          refetchQueries: ['automations', 'automationsMain', 'automationDetail']
-        })
-      }
+          refetchQueries: [
+            'automations',
+            'automationsMain',
+            'automationDetail',
+          ],
+        }),
+      },
     ),
     graphql<AutomationConstantsQueryResponse>(
       gql(queries.automationConstants),
       {
-        name: 'automationConstantsQuery'
-      }
-    )
-  )(withRouter<FinalProps>(AutomationDetailsContainer))
+        name: 'automationConstantsQuery',
+      },
+    ),
+  )(withRouter<FinalProps, any>(AutomationDetailsContainer)),
 );

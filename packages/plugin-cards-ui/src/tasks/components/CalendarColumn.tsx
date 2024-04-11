@@ -1,7 +1,7 @@
 import {
   ColumnContainer,
   ColumnContentBody,
-  ColumnFooter
+  ColumnFooter,
 } from '@saashq/ui-cards/src/boards/components/Calendar';
 import { AddNew } from '@saashq/ui-cards/src/boards/styles/stage';
 import EmptyState from '@saashq/ui/src/components/EmptyState';
@@ -30,7 +30,7 @@ class TaskColumn extends React.Component<Props, {}> {
     const { tasks } = this.props;
 
     if (tasks.length === 0) {
-      return <EmptyState icon="postcard" text="No tasks" />;
+      return <EmptyState icon="postcard" text="Žádné úkoly" />;
     }
 
     const contents = tasks.map((task: ITask, index: number) => (

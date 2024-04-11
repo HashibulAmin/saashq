@@ -46,7 +46,7 @@ class PermissionRow extends React.Component<Props> {
         </td>
         <td>
           <ActionButtons>
-            <Tip text="Delete" placement="top">
+            <Tip text="Vymazat" placement="top">
               <Button
                 btnStyle="link"
                 onClick={removeItem.bind(null, permission._id)}

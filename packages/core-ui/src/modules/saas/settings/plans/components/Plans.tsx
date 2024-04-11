@@ -39,11 +39,11 @@ class Plans extends React.Component<Props> {
         <StatusTitle>{__('Data Processing Agreement')}</StatusTitle>
         <CenterFlexRow>
           <p>
-            Click on the <i>Download</i> button to review and download the DPA
-            as a pdf
+            Kliknutím na tlačítko <i>Stáhnout</i> zobrazíte a stáhnete DPA jako
+            pdf
           </p>
           <Button btnStyle="primary" icon="download-1" href="/dpa">
-            Download
+            Stažení
           </Button>
         </CenterFlexRow>
       </StatusBox>
@@ -54,7 +54,7 @@ class Plans extends React.Component<Props> {
     const { currentOrganization, currentUser, usersTotalCount } = this.props;
 
     const fallbackComponent = (
-      <EmptyState text="Permission denied" image="/images/actions/21.svg" />
+      <EmptyState text="Přístup odepřen" image="/images/actions/21.svg" />
     );
 
     const content = (

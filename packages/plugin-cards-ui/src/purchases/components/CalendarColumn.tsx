@@ -2,7 +2,7 @@
 import {
   ColumnContainer,
   ColumnContentBody,
-  ColumnFooter
+  ColumnFooter,
 } from '@saashq/ui-cards/src/boards/components/Calendar';
 import { AddNew } from '@saashq/ui-cards/src/boards/styles/stage';
 import EmptyState from '@saashq/ui/src/components/EmptyState';
@@ -14,7 +14,7 @@ import styled from 'styled-components';
 import options from '@saashq/ui-cards/src/purchases/options';
 import {
   IPurchase,
-  IPurchaseTotalAmount
+  IPurchaseTotalAmount,
 } from '@saashq/ui-cards/src/purchases/types';
 import Purchase from '@saashq/ui-cards/src/purchases/components/PurchaseItem';
 
@@ -61,7 +61,7 @@ class PurchaseColumn extends React.Component<Props, {}> {
     const { purchases } = this.props;
 
     if (purchases.length === 0) {
-      return <EmptyState icon="piggy-bank" text="No Purchases Pipelines" />;
+      return <EmptyState icon="piggy-bank" text="Žádné nákupní kanály" />;
     }
 
     const contents = purchases.map((purchase: IPurchase, index: number) => (
@@ -89,7 +89,7 @@ class PurchaseColumn extends React.Component<Props, {}> {
 
     return (
       <Amount>
-        {totalForType.map(type => (
+        {totalForType.map((type) => (
           <li key={type._id}>
             <span>{type.name}: </span>
             {this.renderAmount(type.currencies)}

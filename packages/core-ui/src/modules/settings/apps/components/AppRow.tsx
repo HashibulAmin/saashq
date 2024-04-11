@@ -51,21 +51,21 @@ export default class AppRow extends React.Component<Props> {
         <td>{app.name}</td>
         <td>{app.userGroupName}</td>
         <td>
-          <Tip text="Click to copy token" placement="right">
+          <Tip text="Kliknutím zkopírujete token" placement="right">
             <TokenWrapper onClick={onClickToken}>
               {app.accessToken}
             </TokenWrapper>
           </Tip>
         </td>
         <td>
-          {app.noExpire ? 'No expire date' : ''}
+          {app.noExpire ? 'Žádné datum vypršení platnosti' : ''}
           {app.expireDate && !app.noExpire
             ? dayjs(app.expireDate).format(dateFormat)
             : ''}
         </td>
         <td>
           <ActionButtons>
-            <Tip text="Delete" placement="top">
+            <Tip text="Vymazat" placement="top">
               <Button btnStyle="link" onClick={onClick}>
                 <Icon icon="times-circle" />
               </Button>

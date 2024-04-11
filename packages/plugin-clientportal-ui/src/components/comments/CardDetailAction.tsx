@@ -4,7 +4,7 @@ import {
   CreatedUser,
   TicketComment,
   TicketContent,
-  TicketLabel
+  TicketLabel,
 } from './styles';
 import { __, readFile } from '@saashq/ui/src/utils';
 
@@ -32,8 +32,8 @@ const TriggerButton = styledTS<{ color?: string }>(styled.div)`
   font-weight: 500;
   line-height: 25px;
   font-size: 12px;
-  background-color: ${props => rgba(props.color || colors.colorPrimary, 0.1)};
-  color: ${props => props.color || colors.colorPrimaryDark};
+  background-color: ${(props) => rgba(props.color || colors.colorPrimary, 0.1)};
+  color: ${(props) => props.color || colors.colorPrimaryDark};
   padding: 0 10px;
   transition: background 0.3s ease;
   > i {
@@ -44,7 +44,7 @@ const TriggerButton = styledTS<{ color?: string }>(styled.div)`
   }
   &:hover {
     cursor: pointer;
-    background-color: ${props => rgba(props.color || colors.colorPrimary, 0.2)};
+    background-color: ${(props) => rgba(props.color || colors.colorPrimary, 0.2)};
   }
 `;
 
@@ -55,15 +55,15 @@ export default class Container extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      content: ''
+      content: '',
     };
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ content: e.target.value });
   };
 
-  onEditComment = comment => {
+  onEditComment = (comment) => {
     this.setState({ content: comment.content });
   };
 
@@ -86,7 +86,7 @@ export default class Container extends React.Component<Props, State> {
       return (
         <EmptyState
           icon="comment-1"
-          text={`There is no comments yet. Be the first one to comment.`}
+          text={`Zatím zde nejsou žádné komentáře. Buďte první, kdo okomentuje.`}
           size="small"
         />
       );
@@ -94,7 +94,7 @@ export default class Container extends React.Component<Props, State> {
 
     return (
       <CommentWrapper>
-        {comments.map(comment => {
+        {comments.map((comment) => {
           const { createdUser = {} } = comment;
 
           return (
@@ -107,7 +107,7 @@ export default class Container extends React.Component<Props, State> {
                     <div
                       className="comment"
                       dangerouslySetInnerHTML={{
-                        __html: comment.content
+                        __html: comment.content,
                       }}
                     />
                   </CommentContent>

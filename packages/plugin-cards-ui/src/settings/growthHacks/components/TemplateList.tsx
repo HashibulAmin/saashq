@@ -21,32 +21,32 @@ type Props = {
 } & ICommonListProps;
 
 class TemplateList extends React.Component<Props> {
-  renderForm = props => {
+  renderForm = (props) => {
     return <TemplateForm {...props} renderButton={this.props.renderButton} />;
   };
 
-  removeTemplate = object => {
+  removeTemplate = (object) => {
     this.props.remove(object._id);
   };
 
-  duplicateTemplate = id => {
+  duplicateTemplate = (id) => {
     this.props.duplicate(id);
   };
 
-  renderEditAction = object => {
+  renderEditAction = (object) => {
     const { save } = this.props;
 
-    const content = props => {
+    const content = (props) => {
       return this.renderForm({ ...props, object, save });
     };
 
     return (
       <ModalTrigger
         enforceFocus={false}
-        title="Edit"
+        title="Upravit"
         trigger={
           <div>
-            <Tip text="Edit">
+            <Tip text="Upravit">
               <Icon icon="edit-3" />
             </Tip>
           </div>
@@ -58,7 +58,7 @@ class TemplateList extends React.Component<Props> {
 
   renderDuplicateAction(object) {
     return (
-      <Tip text="Duplicate">
+      <Tip text="Duplikát">
         <div onClick={this.duplicateTemplate.bind(this, object._id)}>
           <Icon icon="copy-1" />
         </div>
@@ -66,7 +66,7 @@ class TemplateList extends React.Component<Props> {
     );
   }
 
-  renderActions = object => {
+  renderActions = (object) => {
     if (object.isDefinedBySaasHQ) {
       return <Actions>{this.renderDuplicateAction(object)}</Actions>;
     }
@@ -75,7 +75,7 @@ class TemplateList extends React.Component<Props> {
       <Actions>
         {this.renderEditAction(object)}
         {this.renderDuplicateAction(object)}
-        <Tip text="Remove">
+        <Tip text="Odstranit">
           <div onClick={this.removeTemplate.bind(this, object)}>
             <Icon icon="trash" />
           </div>
@@ -99,7 +99,7 @@ class TemplateList extends React.Component<Props> {
     ));
   }
 
-  renderContent = props => {
+  renderContent = (props) => {
     return <BoxContainer>{this.renderRow(props)}</BoxContainer>;
   };
 
@@ -119,17 +119,17 @@ class TemplateList extends React.Component<Props> {
         formTitle={__('New Growth Hacking Templates')}
         breadcrumb={[
           { title: __('Settings'), link: '/settings' },
-          { title: __('Growth Hacking Templates') }
+          { title: __('Growth Hacking Templates') },
         ]}
         title={__('Growth Hacking Templates')}
         leftActionBar={
           <HeaderDescription
             icon="/images/actions/34.svg"
-            title="Growth Hacking Templates"
+            title="Šablony pro hackování růstu"
             description={`${__(
-              'Manage your boards and pipelines so that its easy to manage incoming leads or requests that is adaptable to your teams needs'
+              'Manage your boards and pipelines so that its easy to manage incoming leads or requests that is adaptable to your teams needs',
             )}.${__(
-              'Add in or delete boards and pipelines to keep business development on track and in check'
+              'Add in or delete boards and pipelines to keep business development on track and in check',
             )}`}
           />
         }

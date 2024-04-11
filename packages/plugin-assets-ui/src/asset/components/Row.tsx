@@ -8,7 +8,7 @@ import {
   Tip,
   router,
   __,
-  ActionButtons
+  ActionButtons,
 } from '@saashq/ui/src';
 import { Badge, ContainerBox, MoreContainer } from '../../style';
 import { isEnabled } from '@saashq/ui/src/utils/core';
@@ -23,7 +23,7 @@ type Props = {
   toggleBulk: (asset: IAsset, isChecked?: boolean) => void;
   assignKbArticles: (
     doc: { assetIds: string[] },
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
 };
 
@@ -34,13 +34,13 @@ function Row(props: Props) {
     queryParams,
     isChecked,
     toggleBulk,
-    assignKbArticles
+    assignKbArticles,
   } = props;
 
   const { code, name, category, parent, childAssetCount, unitPrice } = asset;
 
   const renderKbAssignForm = () => {
-    const articleContent = articleProps => (
+    const articleContent = (articleProps) => (
       <AssignArticles
         {...articleProps}
         assignedArticleIds={asset.kbArticleIds}
@@ -60,7 +60,7 @@ function Row(props: Props) {
 
     return (
       <ModalTrigger
-        title="Assign knowledgebase articles"
+        title="Přiřaďte články znalostní báze"
         size="lg"
         dialogClassName="modal-1000w"
         trigger={trigger}
@@ -73,11 +73,11 @@ function Row(props: Props) {
     history.push(`/settings/assets/detail/${asset._id}`);
   };
 
-  const onCellClick = e => {
+  const onCellClick = (e) => {
     e.stopPropagation();
   };
 
-  const onChange = e => {
+  const onChange = (e) => {
     if (toggleBulk) {
       toggleBulk(asset, e.target.checked);
     }
@@ -90,7 +90,7 @@ function Row(props: Props) {
     router.setParams(history, { assetId: asset._id });
   };
 
-  const content = formProps => <AssetForm {...formProps} asset={asset} />;
+  const content = (formProps) => <AssetForm {...formProps} asset={asset} />;
 
   return (
     <tr onClick={onRowClick}>
@@ -110,7 +110,7 @@ function Row(props: Props) {
         <ActionButtons>
           {childAssetCount > 0 && (
             <Button btnStyle="link">
-              <Tip text="See sub assets">
+              <Tip text="Viz dílčí aktiva">
                 <Icon icon="sitemap-1" onClick={handleParent} />
               </Tip>
               {/* <Badge>{childAssetCount}</Badge> */}
@@ -118,7 +118,7 @@ function Row(props: Props) {
           )}
           {isEnabled('knowledgebase') && renderKbAssignForm()}
           <ModalTrigger
-            title="Edit basic info"
+            title="Upravit základní informace"
             trigger={
               <Button btnStyle="link">
                 <Tip text={__('Edit')} placement="bottom">

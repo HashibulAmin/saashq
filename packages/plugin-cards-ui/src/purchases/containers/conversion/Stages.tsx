@@ -28,7 +28,7 @@ class PurchaseStagesContainer extends React.Component<FinalProps> {
       return (
         <EmptyState
           image="/images/actions/18.svg"
-          text="Oh boy, looks like you need to get a head start on your board"
+          text="Chlapče, vypadá to, že potřebuješ získat náskok na své desce"
           size="small"
         />
       );
@@ -70,10 +70,10 @@ export default withProps<Props>(
             productIds: queryParams.productIds,
             closeDateType: queryParams.closeDateType,
             userIds: queryParams.userIds,
-            assignedToMe: queryParams.assignedToMe
-          }
-        })
-      }
-    )
-  )(PurchaseStagesContainer)
+            assignedToMe: queryParams.assignedToMe,
+          },
+        }),
+      },
+    ),
+  )(PurchaseStagesContainer),
 );

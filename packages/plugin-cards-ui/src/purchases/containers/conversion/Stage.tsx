@@ -9,7 +9,7 @@ import { queries } from '@saashq/ui-cards/src/purchases/graphql';
 import {
   PurchasesQueryResponse,
   IPurchase,
-  IQueryParams
+  IQueryParams,
 } from '@saashq/ui-cards/src/purchases/types';
 import * as React from 'react';
 import { graphql } from '@apollo/client/react/hoc';
@@ -33,7 +33,7 @@ class StageContainer extends React.PureComponent<FinalStageProps, State> {
     super(props);
 
     this.state = {
-      loadingPurchases: false
+      loadingPurchases: false,
     };
   }
 
@@ -55,7 +55,7 @@ class StageContainer extends React.PureComponent<FinalStageProps, State> {
         variables: {
           initialStageId: stage._id,
           skip: purchases.length,
-          ...getFilterParams(queryParams)
+          ...getFilterParams(queryParams),
         },
         updateQuery: (prev, { fetchMoreResult }) => {
           this.setState({ loadingPurchases: false });
@@ -66,7 +66,7 @@ class StageContainer extends React.PureComponent<FinalStageProps, State> {
 
           const prevPurchases = prev.purchases || [];
           const prevPurchaseIds = prevPurchases.map(
-            (purchase: IPurchase) => purchase._id
+            (purchase: IPurchase) => purchase._id,
           );
           const fetchedPurchases: IPurchase[] = [];
 
@@ -78,9 +78,9 @@ class StageContainer extends React.PureComponent<FinalStageProps, State> {
 
           return {
             ...prev,
-            purchases: [...prevPurchases, ...fetchedPurchases]
+            purchases: [...prevPurchases, ...fetchedPurchases],
           };
-        }
+        },
       });
     }
   };
@@ -102,7 +102,7 @@ class StageContainer extends React.PureComponent<FinalStageProps, State> {
     const purchases = purchasesQuery.purchases;
 
     if (!purchases) {
-      return <EmptyState text="Purchases not found" icon="piggy-bank" />;
+      return <EmptyState text="Nákupy nebyly nalezeny" icon="piggy-bank" />;
     }
 
     const hasMore = stage.initialPurchasesTotalCount > purchases.length;
@@ -119,7 +119,7 @@ class StageContainer extends React.PureComponent<FinalStageProps, State> {
   }
 }
 
-const getFilterParams = queryParams => {
+const getFilterParams = (queryParams) => {
   if (!queryParams) {
     return {};
   }
@@ -133,7 +133,7 @@ const getFilterParams = queryParams => {
     productIds: queryParams.productIds,
     labelIds: queryParams.labelIds,
     userIds: queryParams.userIds,
-    assignedToMe: queryParams.assignedToMe
+    assignedToMe: queryParams.assignedToMe,
   };
 };
 
@@ -145,9 +145,9 @@ export default withProps<Props>(
         variables: {
           initialStageId: stage._id,
           pipelineId,
-          ...getFilterParams(queryParams)
-        }
-      })
-    })
-  )(StageContainer)
+          ...getFilterParams(queryParams),
+        },
+      }),
+    }),
+  )(StageContainer),
 );

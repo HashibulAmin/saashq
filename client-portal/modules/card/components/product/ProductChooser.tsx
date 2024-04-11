@@ -113,14 +113,14 @@ class ProductChooser extends React.Component<Props, State> {
       );
     }
 
-    return <EmptyState text="No items added" icon="list-ul" />;
+    return <EmptyState text="Nebyly přidány žádné položky" icon="list-ul" />;
   }
 
   content() {
     const { products } = this.props;
 
     if (!products.length) {
-      return <EmptyState text="No matching items found" icon="list-ul" />;
+      return <EmptyState text="Nebyly nalezeny žádné odpovídající položky" icon="list-ul" />;
     }
 
     return (

@@ -11,7 +11,7 @@ import {
   JumpTo,
   LogWrapper,
   Row,
-  Title
+  Title,
 } from '@saashq/ui-log/src/activityLogs/styles';
 
 import Button from '@saashq/ui/src/components/Button';
@@ -59,7 +59,7 @@ class Task extends React.Component<Props, State> {
       name: task.name || '',
       closeDate: task.closeDate || dayjs(),
       showDetail: false,
-      isComplete: task.isComplete || false
+      isComplete: task.isComplete || false,
     };
   }
 
@@ -76,7 +76,7 @@ class Task extends React.Component<Props, State> {
     this.setState({ [key]: !this.state[key] } as any);
   };
 
-  handleInputChange = e => {
+  handleInputChange = (e) => {
     e.preventDefault();
 
     this.setState({ name: e.target.value });
@@ -88,11 +88,11 @@ class Task extends React.Component<Props, State> {
     this.props.save(
       {
         _id: task._id,
-        [key]: value
+        [key]: value,
       },
       () => {
         this.setState({ editing: false });
-      }
+      },
     );
   };
 
@@ -122,7 +122,7 @@ class Task extends React.Component<Props, State> {
             icon="checked-1"
             onClick={this.saveItem.bind(this, 'name', this.state.name)}
           >
-            Save
+            Uložit
           </Button>
         </>
       );
@@ -166,7 +166,7 @@ class Task extends React.Component<Props, State> {
   renderCloseDate() {
     const { closeDate } = this.state;
 
-    const onDateChange = date => {
+    const onDateChange = (date) => {
       this.setState({ closeDate: date }, () => {
         this.saveItem('closeDate', closeDate);
       });
@@ -193,7 +193,7 @@ class Task extends React.Component<Props, State> {
 
     return (
       <OverlayTrigger
-        ref={overlayTrigger => {
+        ref={(overlayTrigger) => {
           this.overlayTrigger = overlayTrigger;
         }}
         trigger="click"
@@ -214,9 +214,9 @@ class Task extends React.Component<Props, State> {
   renderContent() {
     const { task } = this.props;
 
-    const assignedUserIds = (task.assignedUsers || []).map(user => user._id);
+    const assignedUserIds = (task.assignedUsers || []).map((user) => user._id);
 
-    const onAssignedUserSelect = usrs => {
+    const onAssignedUserSelect = (usrs) => {
       this.saveItem('assignedUserIds', usrs);
     };
 
@@ -225,7 +225,7 @@ class Task extends React.Component<Props, State> {
         <FlexContent>
           <FlexBody>
             <Row>
-              <ControlLabel>Assigned to</ControlLabel>
+              <ControlLabel>Přiřazen</ControlLabel>
               <SelectTeamMembers
                 label={__('Choose team member')}
                 name="assignedUserIds"
@@ -236,7 +236,7 @@ class Task extends React.Component<Props, State> {
           </FlexBody>
 
           <FlexBody>
-            <ControlLabel>Due date</ControlLabel>
+            <ControlLabel>Datum splatnosti</ControlLabel>
             <FlexContent>{this.renderCloseDate()}</FlexContent>
           </FlexBody>
         </FlexContent>
@@ -269,7 +269,7 @@ class Task extends React.Component<Props, State> {
           </FlexBody>
           <Link to={`/task/board?_id=${boardId}&itemId=${_id}`} target="_blank">
             <JumpTo>
-              Jump to task
+              Přejít na úkol
               <Icon icon="corner-down-right-alt" />
             </JumpTo>
           </Link>

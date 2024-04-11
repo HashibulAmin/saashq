@@ -64,7 +64,7 @@ export default function List({
 
   const renderGroup = (items, groupType: string) => {
     if (!items || items.length === 0) {
-      return <EmptyState icon="ban" text="No cards" size="small" />;
+      return <EmptyState icon="ban" text="Žádné karty" size="small" />;
     }
 
     return (items || []).map((item, index) => {

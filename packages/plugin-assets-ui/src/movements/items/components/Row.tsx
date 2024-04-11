@@ -1,4 +1,10 @@
-import { Button, Icon, ModalTrigger, renderFullName, Tip } from '@saashq/ui/src';
+import {
+  Button,
+  Icon,
+  ModalTrigger,
+  renderFullName,
+  Tip,
+} from '@saashq/ui/src';
 import moment from 'moment';
 import React from 'react';
 import { IMovementItem } from '../../../common/types';
@@ -18,7 +24,7 @@ class Row extends React.Component<Props> {
     assetId,
     movementId,
     trigger,
-    modaltText
+    modaltText,
   }: {
     assetId?: string;
     movementId?: string;
@@ -26,12 +32,12 @@ class Row extends React.Component<Props> {
     item?: IMovementItem;
     trigger: React.ReactNode;
   }) {
-    const content = props => {
+    const content = (props) => {
       const updatedProps = {
         ...props,
         assetId,
         movementId,
-        queryParams: this.props.queryParams || {}
+        queryParams: this.props.queryParams || {},
       };
       return <Form {...updatedProps} />;
     };
@@ -39,7 +45,7 @@ class Row extends React.Component<Props> {
     return (
       <ModalTrigger
         content={content}
-        title={`${modaltText} Movement`}
+        title={`${modaltText} Hnutí`}
         trigger={trigger}
         size="xl"
       />
@@ -58,12 +64,12 @@ class Row extends React.Component<Props> {
       teamMember,
       company,
       customer,
-      createdAt
+      createdAt,
     } = item;
 
     const editTrigger = (
       <Button btnStyle="link" style={{ padding: 0 }}>
-        <Tip text="See detail of movement" placement="bottom">
+        <Tip text="Viz detail pohybu" placement="bottom">
           <Icon icon="file-edit-alt" />
         </Tip>
       </Button>
@@ -80,10 +86,10 @@ class Row extends React.Component<Props> {
         <td>{moment(createdAt || '').format('YYYY-MM-DD HH:mm')}</td>
         <td style={{ width: 60 }}>
           {this.renderForm({
-            modaltText: 'Edit',
+            modaltText: 'Upravit',
             assetId,
             movementId,
-            trigger: editTrigger
+            trigger: editTrigger,
           })}
         </td>
       </tr>

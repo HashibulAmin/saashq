@@ -6,7 +6,7 @@ import {
   ModalTrigger,
   SidebarList,
   Tip,
-  __
+  __,
 } from '@saashq/ui/src';
 import React from 'react';
 import { IAssetCategoryTypes } from '../../../common/types';
@@ -32,23 +32,23 @@ function CategoryFilter({
   remove,
   refetchAssetCategories,
   queryParams,
-  history
+  history,
 }: Props) {
-  const renderEditAction = category => {
+  const renderEditAction = (category) => {
     const trigger = (
       <Button btnStyle="link">
-        <Tip text="Edit">
+        <Tip text="Upravit">
           <Icon icon="edit" />
         </Tip>
       </Button>
     );
 
-    const content = props => {
+    const content = (props) => {
       const updatedProps = {
         ...props,
         refetchAssetCategories,
         category,
-        categories: assetCategories
+        categories: assetCategories,
       };
 
       return <CategoryForm {...updatedProps} />;
@@ -57,24 +57,24 @@ function CategoryFilter({
     return (
       <ModalTrigger
         isAnimate={true}
-        title="Edit Asset Category"
+        title="Upravit kategorii aktiv"
         content={content}
         trigger={trigger}
       />
     );
   };
 
-  const renderRemoveAction = object => {
+  const renderRemoveAction = (object) => {
     return (
       <Button btnStyle="link" onClick={() => remove(object._id)}>
-        <Tip text="remove" placement="bottom">
+        <Tip text="odstranit" placement="bottom">
           <Icon icon="cancel-1" />
         </Tip>
       </Button>
     );
   };
 
-  const handleClick = categoryId => {
+  const handleClick = (categoryId) => {
     router.setParams(history, { assetCategoryId: categoryId });
     router.removeParams(history, 'page');
   };
@@ -98,12 +98,12 @@ function CategoryFilter({
   };
 
   const parentCount = assetCategories.filter(
-    category => !category.parentId || category.parentId === ''
+    (category) => !category.parentId || category.parentId === '',
   ).length;
 
   return (
     <Box
-      title="Filter by Category"
+      title="Filtrovat podle kategorie"
       name="assetCategory"
       isOpen={true}
       collapsible={parentCount > 6}

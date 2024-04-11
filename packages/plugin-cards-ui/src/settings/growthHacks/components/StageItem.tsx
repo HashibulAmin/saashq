@@ -23,7 +23,7 @@ class StageItem extends React.Component<Props, {}> {
     const onChangeName = (stageId, e) =>
       onChange(stageId, e.target.name, e.target.value);
 
-    const onBuildClick = e => {
+    const onBuildClick = (e) => {
       onClick(stage);
     };
 
@@ -38,7 +38,7 @@ class StageItem extends React.Component<Props, {}> {
           name="name"
           onChange={onChangeName.bind(this, stage._id)}
         />
-        <Tip text="Build a form">
+        <Tip text="Vytvořte formulář">
           <Button btnStyle="link" onClick={onBuildClick}>
             <Icon
               icon={stage.formId ? 'file-edit-alt' : 'file-plus-alt'}

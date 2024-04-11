@@ -31,10 +31,10 @@ const BasicInfoContainer = (props: FinalProps) => {
   const remove = () => {
     assetsRemove({ variables: { assetIds: [_id] } })
       .then(() => {
-        Alert.success('You successfully deleted a asset');
+        Alert.success('Úspěšně jste smazali dílo');
         history.push('/settings/asset-service');
       })
-      .catch(e => {
+      .catch((e) => {
         Alert.error(e.message);
       });
   };
@@ -43,13 +43,13 @@ const BasicInfoContainer = (props: FinalProps) => {
     const { assetsAssignKbArticles } = props;
 
     assetsAssignKbArticles({
-      variables: { ids, ...data }
+      variables: { ids, ...data },
     })
       .then(() => {
-        Alert.success('Articles assigned successfully');
+        Alert.success('Články byly úspěšně přiřazeny');
         callback();
       })
-      .catch(e => {
+      .catch((e) => {
         Alert.error(e.message);
         callback();
       });
@@ -58,7 +58,7 @@ const BasicInfoContainer = (props: FinalProps) => {
   const updatedProps = {
     ...props,
     remove,
-    assignKbArticles
+    assignKbArticles,
   };
 
   return <BasicInfo {...updatedProps} />;
@@ -69,8 +69,8 @@ const generateOptions = () => ({
     'assets',
     'assetCategories',
     'assetsTotalCount',
-    'assetDetail'
-  ]
+    'assetDetail',
+  ],
 });
 
 export default withProps<Props>(
@@ -79,12 +79,12 @@ export default withProps<Props>(
       gql(mutations.assetsRemove),
       {
         name: 'assetsRemove',
-        options: generateOptions
-      }
+        options: generateOptions,
+      },
     ),
     graphql(gql(mutations.assetsAssignKbArticles), {
       name: 'assetsAssignKbArticles',
-      options: () => generateOptions()
-    })
-  )(withRouter<FinalProps>(BasicInfoContainer))
+      options: () => generateOptions(),
+    }),
+  )(withRouter<FinalProps, any>(BasicInfoContainer)),
 );

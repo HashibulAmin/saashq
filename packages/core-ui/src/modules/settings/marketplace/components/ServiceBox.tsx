@@ -45,9 +45,9 @@ class ServiceBox extends React.Component<Props, { showMore: boolean }> {
             ${prices ? prices.oneTime || prices.monthly : 0}
             <span>
               {prices && prices.oneTime
-                ? '/ One Time'
+                ? '/ Jednou'
                 : prices && prices.monthly
-                  ? '/ Monthly'
+                  ? '/ Měsíční'
                   : ''}
             </span>
           </Price>
@@ -59,7 +59,7 @@ class ServiceBox extends React.Component<Props, { showMore: boolean }> {
             />
             {showmore && (
               <Tip
-                text={this.state.showMore ? 'Show less' : 'Show more'}
+                text={this.state.showMore ? 'Ukaž méně' : 'Zobrazit více'}
                 placement="top"
               >
                 <span

@@ -32,7 +32,7 @@ function GeneralSettings() {
 
   const content = (
     <>
-      <EmptyState text="Coming Soon" image="/images/actions/20.svg" />
+      <EmptyState text="Již brzy" image="/images/actions/20.svg" />
     </>
   );
 

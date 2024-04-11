@@ -22,7 +22,7 @@ class HistoryRow extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      isShowDetail: false
+      isShowDetail: false,
     };
   }
 
@@ -33,9 +33,9 @@ class HistoryRow extends React.Component<Props, State> {
       {
         target,
         triggerType,
-        componentType: 'historyName'
+        componentType: 'historyName',
       },
-      triggerType
+      triggerType,
     );
 
     if (Component) {
@@ -47,7 +47,7 @@ class HistoryRow extends React.Component<Props, State> {
 
   generateActionResult = (action: IAutomationHistoryAction) => {
     if (!action.result) {
-      return 'Result has not been recorded yet';
+      return 'Výsledek zatím nebyl zaznamenán';
     }
 
     const { result } = action;
@@ -57,15 +57,15 @@ class HistoryRow extends React.Component<Props, State> {
     }
 
     if (action.actionType === 'setProperty') {
-      return `Update for ${(result.result || []).length} ${
+      return `Aktualizace pro ${(result.result || []).length} ${
         result.module
       }: ${result.fields || ''}, (${result.result.map(
-        r => (r.error && r.error) || ''
+        (r) => (r.error && r.error) || '',
       )})`;
     }
 
     if (action.actionType === 'if') {
-      return `Condition: ${result.condition}`;
+      return `Stav: ${result.condition}`;
     }
 
     if (action.actionType === 'sendEmail') {
@@ -76,9 +76,9 @@ class HistoryRow extends React.Component<Props, State> {
       {
         action,
         result: action.result,
-        componentType: 'historyActionResult'
+        componentType: 'historyActionResult',
       },
-      action.actionType
+      action.actionType,
     );
 
     if (Component) {
@@ -102,7 +102,7 @@ class HistoryRow extends React.Component<Props, State> {
       return (
         <tr key={Math.random()}>
           <td colSpan={5}>
-            <EmptyState icon="book" text="Item has not been created yet" />
+            <EmptyState icon="book" text="Položka ještě nebyla vytvořena" />
           </td>
         </tr>
       );
@@ -117,7 +117,7 @@ class HistoryRow extends React.Component<Props, State> {
           <td colSpan={2}>{__('Results')}</td>
         </tr>
 
-        {actions.map(action => (
+        {actions.map((action) => (
           <tr key={action.actionId}>
             <td>{}</td>
             <td>{dayjs(action.createdAt).format('lll')}</td>

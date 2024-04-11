@@ -14,39 +14,34 @@ type Props = {
   isChecked: boolean;
   toggleBulk: (
     clientPortalUser: IClientPortalUser,
-    isChecked?: boolean
+    isChecked?: boolean,
   ) => void;
 };
 
 class Row extends React.Component<Props> {
   render() {
-    const {
-      clientPortalUser,
-      history,
-      toggleBulk,
-      isChecked,
-      index
-    } = this.props;
+    const { clientPortalUser, history, toggleBulk, isChecked, index } =
+      this.props;
 
-    const onChange = e => {
+    const onChange = (e) => {
       if (toggleBulk) {
         toggleBulk(clientPortalUser, e.target.checked);
       }
     };
 
-    const onClick = e => {
+    const onClick = (e) => {
       e.stopPropagation();
     };
 
     const onTrClick = () => {
       if (clientPortalUser.type === 'customer') {
         return history.push(
-          `/settings/client-portal/users/details/${clientPortalUser._id}`
+          `/settings/client-portal/users/details/${clientPortalUser._id}`,
         );
       }
       if (clientPortalUser.type === 'company') {
         return history.push(
-          `/settings/client-portal/companies/details/${clientPortalUser._id}`
+          `/settings/client-portal/companies/details/${clientPortalUser._id}`,
         );
       }
     };
@@ -54,7 +49,7 @@ class Row extends React.Component<Props> {
     const renderStatus = (verified: boolean) => {
       return (
         <Tip
-          text={`Status: ${verified ? 'verified' : 'not verified'}`}
+          text={`Postavení: ${verified ? 'verified' : 'not verified'}`}
           placement="top"
         >
           <Icon
@@ -75,11 +70,11 @@ class Row extends React.Component<Props> {
       code,
       companyName,
       clientPortal,
-      type
+      type,
     } = clientPortalUser;
 
     const verificationRequest = clientPortalUser.verificationRequest || {
-      status: 'notVerified'
+      status: 'notVerified',
     };
 
     let verificationStatus = 'notVerified';

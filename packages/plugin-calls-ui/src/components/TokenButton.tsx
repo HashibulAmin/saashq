@@ -17,12 +17,12 @@ const TokenButton = (props: Props) => {
       btnStyle="link"
       onClick={() => {
         if (!props.integration.data || !props.integration.data.token) {
-          return Alert.error('No token found');
+          return Alert.error('Nebyl nalezen žádný token');
         }
 
         navigator.clipboard.writeText(props.integration.data.token);
 
-        Alert.success('Token copied to clipboard');
+        Alert.success('Token zkopírován do schránky');
       }}
     >
       <Tip text={__('Copy token')} placement="top">

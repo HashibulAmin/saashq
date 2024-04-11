@@ -17,12 +17,12 @@ class Histories extends React.Component<Props> {
     const { histories, triggersConst, actionsConst } = this.props;
 
     const triggersByType = {};
-    triggersConst.forEach(t => {
+    triggersConst.forEach((t) => {
       triggersByType[t.type] = `${t.label} based`;
     });
 
     const actionsByType = {};
-    actionsConst.forEach(a => {
+    actionsConst.forEach((a) => {
       actionsByType[a.type] = a.label;
     });
 
@@ -30,7 +30,7 @@ class Histories extends React.Component<Props> {
       return (
         <EmptyState
           image="/images/actions/5.svg"
-          text="History has not yet been created"
+          text="Historie ještě nebyla vytvořena"
         />
       );
     }
@@ -48,7 +48,7 @@ class Histories extends React.Component<Props> {
             </tr>
           </thead>
           <tbody id="automationHistories">
-            {histories.map(history => (
+            {histories.map((history) => (
               <Row
                 key={history._id}
                 history={history}

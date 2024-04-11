@@ -124,7 +124,7 @@ class PlanOverview extends React.Component<Props> {
         <InfoBox>
           <span>
             <Icon icon="info-circle" />
-            <strong>Choose</strong> a plan that fits your needs
+            <strong>Vybrat</strong> plán, který vyhovuje vašim potřebám
           </span>
           <a
             target="_blank"
@@ -132,7 +132,7 @@ class PlanOverview extends React.Component<Props> {
             rel="noopener noreferrer"
           >
             <Button btnStyle="primary" icon="clipboard-notes" uppercase={false}>
-              Manage plan
+              Spravovat plán
             </Button>
           </a>
         </InfoBox>

@@ -26,14 +26,14 @@ class CustomerCreateLog extends React.Component<IActivityLogItemProps> {
 
       return (
         <span>
-          <strong>{userName}</strong> created&nbsp; this company
+          <strong>{userName}</strong> vytvořené&nbsp; tato společnost
         </span>
       );
     }
 
     return (
       <span>
-        This customer <b>registered</b> to SaasHQ
+        Tento zákazník se <b>zaregistroval</b> do SaasHQ
       </span>
     );
   };

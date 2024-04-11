@@ -35,7 +35,7 @@ function BlockItem({
   renderForm,
   level,
   history,
-  location
+  location,
 }: FinalProps) {
   const trigger = (
     <Button btnStyle="link">
@@ -48,12 +48,12 @@ function BlockItem({
   const editButton = (
     <ModalTrigger
       content={({ closeModal }) => renderForm({ closeModal })}
-      title={`Edit a ${title}`}
+      title={`Upravit a ${title}`}
       trigger={trigger}
     />
   );
 
-  const onClick = _id => {
+  const onClick = (_id) => {
     routerUtils.removeParams(history, 'page');
 
     routerUtils.setParams(history, { [queryParamName]: _id });
@@ -73,7 +73,7 @@ function BlockItem({
       </span>
       <ActionButtons>
         {editButton}
-        <Tip text="Delete" placement="bottom">
+        <Tip text="Vymazat" placement="bottom">
           <Button
             btnStyle="link"
             onClick={() => deleteItem(item._id, refetch)}
@@ -85,4 +85,4 @@ function BlockItem({
   );
 }
 
-export default withRouter<FinalProps>(BlockItem);
+export default withRouter<FinalProps, any>(BlockItem);

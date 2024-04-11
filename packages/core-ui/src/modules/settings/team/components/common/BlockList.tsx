@@ -25,10 +25,10 @@ export default function BlockList(props: Props) {
   const { allDatas, title, queryParams, queryType, removeItem } = props;
   const history = useHistory();
 
-  const renderRemoveAction = item => {
+  const renderRemoveAction = (item) => {
     return (
       <Button btnStyle="link" onClick={() => removeItem(item._id)}>
-        <Tip text={'Remove'} placement="bottom">
+        <Tip text={'Odstranit'} placement="bottom">
           <Icon icon="cancel-1" />
         </Tip>
       </Button>
@@ -37,7 +37,7 @@ export default function BlockList(props: Props) {
 
   const renderForm = ({
     closeModal,
-    item
+    item,
   }: {
     closeModal: () => void;
     item?: any;
@@ -47,7 +47,7 @@ export default function BlockList(props: Props) {
     );
   };
 
-  const renderEditAction = item => (
+  const renderEditAction = (item) => (
     <ModalTrigger
       content={({ closeModal }) => renderForm({ closeModal, item })}
       title={`Edit ${title}`}
@@ -83,7 +83,7 @@ export default function BlockList(props: Props) {
 
   const editTrigger = (
     <Button btnStyle="link">
-      <Tip text={'Edit'} placement="bottom">
+      <Tip text={'Upravit'} placement="bottom">
         <Icon icon="edit" />
       </Tip>
     </Button>

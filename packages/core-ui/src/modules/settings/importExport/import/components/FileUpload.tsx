@@ -2,7 +2,7 @@ import {
   FileUploadBox,
   FullContent,
   ImportHeader,
-  UploadText
+  UploadText,
 } from '../../styles';
 import { FlexItem, FlexPad } from 'modules/common/components/step/styles';
 import { __, loadDynamicComponent } from 'modules/common/utils';
@@ -23,8 +23,8 @@ class FileUpload extends React.Component<Props, {}> {
   rendertContent = () => {
     const { contentTypes, onChangeAttachment } = this.props;
 
-    return contentTypes.map(contentType => {
-      const onChange = attachmentsAtt =>
+    return contentTypes.map((contentType) => {
+      const onChange = (attachmentsAtt) =>
         onChangeAttachment(attachmentsAtt, contentType.contentType);
 
       return (
@@ -32,15 +32,15 @@ class FileUpload extends React.Component<Props, {}> {
           <UploadText>
             <p>{renderText(contentType.contentType)}</p>
             {loadDynamicComponent('importExportUploadForm', {
-              contentType: contentType.contentType
+              contentType: contentType.contentType,
             })}
           </UploadText>
 
           <Uploader
-            text={`Choose a file to upload your ${renderText(
-              contentType.contentType
+            text={`Vyberte soubor, který chcete nahrát ${renderText(
+              contentType.contentType,
             )}.`}
-            warningText={'Only .csv file is supported.'}
+            warningText={'Podporován je pouze soubor .csv.'}
             icon={contentType.icon || 'users-alt'}
             accept=".csv"
             single={true}
@@ -59,7 +59,7 @@ class FileUpload extends React.Component<Props, {}> {
           <ImportHeader>{__(`Upload your file`)}</ImportHeader>
           <ImportHeader fontSize="small">
             {__(
-              'Before you upload your files below, make sure your file is ready to be imported.'
+              'Before you upload your files below, make sure your file is ready to be imported.',
             )}
           </ImportHeader>
           <FullContent center={true}>

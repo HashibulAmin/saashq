@@ -38,7 +38,7 @@ const FILTER_PARAMS = [
   'hackStage',
   'priority',
   'userIds',
-  'assignedToMe'
+  'assignedToMe',
 ];
 
 const GrowthHackMainActionBar = (props: IProps) => {
@@ -124,7 +124,7 @@ const GrowthHackMainActionBar = (props: IProps) => {
     );
   };
 
-  const onChangeSort = value => {
+  const onChangeSort = (value) => {
     let field: string = '';
     let direction: string = '';
 
@@ -136,7 +136,7 @@ const GrowthHackMainActionBar = (props: IProps) => {
 
       router.setParams(props.history, {
         sortField: field,
-        sortDirection: direction
+        sortDirection: direction,
       });
     } else {
       router.removeParams(props.history, 'sortField', 'sortDirection');
@@ -145,13 +145,13 @@ const GrowthHackMainActionBar = (props: IProps) => {
 
   const onChangeHackStage = (ops: IOption[]) => {
     props.onSelect(
-      ops.map(option => option.value),
-      'hackStage'
+      ops.map((option) => option.value),
+      'hackStage',
     );
   };
 
   const { hackScoringType } = props.currentPipeline || {
-    hackScoringType: 'ice'
+    hackScoringType: 'ice',
   };
 
   const effort = hackScoringType === 'rice' ? 'effort' : 'ease';
@@ -160,7 +160,7 @@ const GrowthHackMainActionBar = (props: IProps) => {
     { value: 'impact,1', label: 'Low impact' },
     { value: 'impact,-1', label: 'High impact' },
     { value: 'ease,1', label: `Low ${effort}` },
-    { value: 'ease,-1', label: `High ${effort}` }
+    { value: 'ease,-1', label: `High ${effort}` },
   ];
 
   const { sortField, sortDirection } = props.queryParams;
@@ -168,9 +168,9 @@ const GrowthHackMainActionBar = (props: IProps) => {
   const growthHackFilter = (
     <>
       <Select
-        placeholder="Choose a growth funnel"
+        placeholder="Vyberte růstový trychtýř"
         value={props.queryParams.hackStage || []}
-        options={HACKSTAGES.map(hs => ({ value: hs, label: hs }))}
+        options={HACKSTAGES.map((hs) => ({ value: hs, label: hs }))}
         name="hackStage"
         onChange={onChangeHackStage}
         multi={true}
@@ -184,7 +184,7 @@ const GrowthHackMainActionBar = (props: IProps) => {
       {growthHackFilter}
       <Select
         value={`${sortField},${sortDirection}`}
-        placeholder="Sort"
+        placeholder="Seřadit"
         onChange={onChangeSort}
         options={sortOptions}
       />
@@ -194,15 +194,15 @@ const GrowthHackMainActionBar = (props: IProps) => {
   const extendedProps = {
     ...props,
     options,
-    boardText: 'Campaign',
-    pipelineText: 'Project',
+    boardText: 'Kampaň',
+    pipelineText: 'Projekt',
     isFiltered,
     extraFilter: currentUrl.includes('board') ? growthHackFilter : extraFilter,
     link: `/growthHack/${getCurrentType()}`,
-    rightContent: viewChooser
+    rightContent: viewChooser,
   };
 
   return <MainActionBar {...extendedProps} />;
 };
 
-export default withRouter<IProps>(GrowthHackMainActionBar);
+export default withRouter<IProps, any>(GrowthHackMainActionBar);

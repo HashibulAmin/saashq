@@ -31,7 +31,7 @@ const CompanyDetailsContainer = (props: FinalProps) => {
     id,
     companyDetailQuery,
     currentUser,
-    fieldsGroupsQuery = {} as SystemFieldsGroupsQueryResponse
+    fieldsGroupsQuery = {} as SystemFieldsGroupsQueryResponse,
   } = props;
 
   if (companyDetailQuery.loading) {
@@ -40,7 +40,7 @@ const CompanyDetailsContainer = (props: FinalProps) => {
 
   if (!companyDetailQuery.companyDetail) {
     return (
-      <EmptyState text="Company not found" image="/images/actions/24.svg" />
+      <EmptyState text="Společnost nenalezena" image="/images/actions/24.svg" />
     );
   }
 
@@ -55,8 +55,8 @@ const CompanyDetailsContainer = (props: FinalProps) => {
   const taggerRefetchQueries = [
     {
       query: gql(queries.companyDetail),
-      variables: { _id: id }
-    }
+      variables: { _id: id },
+    },
   ];
 
   const updatedProps = {
@@ -65,7 +65,7 @@ const CompanyDetailsContainer = (props: FinalProps) => {
     company: companyDetail,
     taggerRefetchQueries,
     currentUser,
-    fields
+    fields,
   };
 
   return <CompanyDetails {...updatedProps} />;
@@ -79,10 +79,10 @@ export default withProps<Props>(
         name: 'companyDetailQuery',
         options: ({ id }) => ({
           variables: {
-            _id: id
-          }
-        })
-      }
+            _id: id,
+          },
+        }),
+      },
     ),
     graphql<Props, SystemFieldsGroupsQueryResponse>(
       gql(fieldQueries.getSystemFieldsGroup),
@@ -90,11 +90,11 @@ export default withProps<Props>(
         name: 'fieldsGroupsQuery',
         options: () => ({
           variables: {
-            contentType: FIELDS_GROUPS_CONTENT_TYPES.COMPANY
-          }
+            contentType: FIELDS_GROUPS_CONTENT_TYPES.COMPANY,
+          },
         }),
-        skip: !isEnabled('forms')
-      }
-    )
-  )(CompanyDetailsContainer)
+        skip: !isEnabled('forms'),
+      },
+    ),
+  )(CompanyDetailsContainer),
 );

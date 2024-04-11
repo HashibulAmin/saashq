@@ -4,7 +4,7 @@ import { IAsset } from '../../../../common/types';
 import {
   KbArticlesContainer,
   KbCategories,
-  KbCategoriesContainer
+  KbCategoriesContainer,
 } from '../../../../style';
 import { ControlLabel, EmptyState, FormControl } from '@saashq/ui/src';
 import { ContainerBox } from '../../../../style';
@@ -24,31 +24,27 @@ type Props = {
 };
 
 function Category(props: Props) {
-  const {
-    loadedArticles,
-    selectedArticles,
-    setSelectedArticles,
-    category
-  } = props;
+  const { loadedArticles, selectedArticles, setSelectedArticles, category } =
+    props;
 
   const [categoriesToShow, setCategoriesToShow] = React.useState<string[]>([]);
 
   const articleIds = loadedArticles
-    .filter(article => article.categoryId === category._id)
-    .map(article => article._id);
+    .filter((article) => article.categoryId === category._id)
+    .map((article) => article._id);
 
   const checked =
     !!articleIds?.length &&
-    articleIds.every(articleId => selectedArticles.includes(articleId));
+    articleIds.every((articleId) => selectedArticles.includes(articleId));
 
   const countArticles =
-    articleIds.filter(articleId => selectedArticles.includes(articleId))
+    articleIds.filter((articleId) => selectedArticles.includes(articleId))
       ?.length || 0;
 
   const handleCategorySelect = () => {
     if (categoriesToShow.includes(category._id)) {
       const updateCategoryIds = categoriesToShow.filter(
-        id => id !== category._id
+        (id) => id !== category._id,
       );
       return setCategoriesToShow(updateCategoryIds);
     }
@@ -57,9 +53,9 @@ function Category(props: Props) {
   };
 
   const handleAllArticlesSelect = () => {
-    if (articleIds.every(articleId => selectedArticles.includes(articleId))) {
+    if (articleIds.every((articleId) => selectedArticles.includes(articleId))) {
       const updatedSelectedArticleIds = selectedArticles.filter(
-        articleId => !articleIds.includes(articleId)
+        (articleId) => !articleIds.includes(articleId),
       );
       return setSelectedArticles(updatedSelectedArticleIds);
     }
@@ -68,13 +64,13 @@ function Category(props: Props) {
 
   const renderArticles = () => {
     const articles = loadedArticles.filter(
-      article => article.categoryId === category._id
+      (article) => article.categoryId === category._id,
     );
 
     if (!articles?.length) {
       return (
         <EmptyState
-          text="There has no article in this knowledgebase category"
+          text="V této kategorii znalostní báze není žádný článek"
           icon="list-ul"
         />
       );
@@ -82,10 +78,10 @@ function Category(props: Props) {
 
     return (
       <KbArticlesContainer>
-        {articles.map(article => {
+        {articles.map((article) => {
           const updatedProps = {
             ...props,
-            article
+            article,
           };
           return <Article key={article._id} {...updatedProps} />;
         })}

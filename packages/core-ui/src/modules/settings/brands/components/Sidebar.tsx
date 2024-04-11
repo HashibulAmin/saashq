@@ -18,7 +18,7 @@ type Props = {
 };
 
 class Sidebar extends React.Component<Props, {}> {
-  renderEditAction = brand => {
+  renderEditAction = (brand) => {
     const { renderButton } = this.props;
 
     const editTrigger = (
@@ -29,7 +29,7 @@ class Sidebar extends React.Component<Props, {}> {
       </Button>
     );
 
-    const content = props => (
+    const content = (props) => (
       <BrandForm
         {...props}
         brand={brand}
@@ -41,14 +41,14 @@ class Sidebar extends React.Component<Props, {}> {
     return (
       <ModalTrigger
         size="lg"
-        title="Edit"
+        title="Upravit"
         trigger={editTrigger}
         content={content}
       />
     );
   };
 
-  remove = brand => {
+  remove = (brand) => {
     const { remove } = this.props;
 
     remove(brand._id);
@@ -57,7 +57,7 @@ class Sidebar extends React.Component<Props, {}> {
   render() {
     const { brands } = this.props;
 
-    return brands.map(brand => (
+    return brands.map((brand) => (
       <tr key={brand._id}>
         <td>{brand.name}</td>
         <td>

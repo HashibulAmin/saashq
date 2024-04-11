@@ -4,7 +4,7 @@ import {
   FieldStyle,
   SectionBodyItem,
   SidebarCounter,
-  SidebarList
+  SidebarList,
 } from '@saashq/ui/src/layout/styles';
 import { renderFullName } from '@saashq/ui/src/utils/core';
 import React from 'react';
@@ -23,7 +23,7 @@ export type Props = {
 export default function Component({ users, kind }: Props) {
   const renderBody = () => {
     if (!users || !users.length) {
-      return <EmptyState icon="user-6" text="No data" />;
+      return <EmptyState icon="user-6" text="Žádná data" />;
     }
 
     return (

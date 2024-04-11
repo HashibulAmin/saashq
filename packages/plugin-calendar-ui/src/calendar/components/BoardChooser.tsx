@@ -1,7 +1,7 @@
 import { Controls, FlexRow } from '../styles';
 import {
   HeaderButton,
-  HeaderLink
+  HeaderLink,
 } from '@saashq/ui-cards/src/boards/styles/header';
 import Button from '@saashq/ui/src/components/Button';
 import DropdownToggle from '@saashq/ui/src/components/DropdownToggle';
@@ -25,14 +25,14 @@ const calendarLink = '/calendar';
 class BoardChooser extends React.Component<Props> {
   static defaultProps = {
     viewType: 'board',
-    boardText: 'Board',
-    groupText: 'Group'
+    boardText: 'Deska',
+    groupText: 'Skupina',
   };
 
   renderBoards() {
     const { currentBoard, boards } = this.props;
 
-    return boards.map(board => {
+    return boards.map((board) => {
       let link = `${calendarLink}?id=${board._id}`;
 
       const { groups = [] } = board;
@@ -44,9 +44,9 @@ class BoardChooser extends React.Component<Props> {
       return (
         <li
           key={board._id}
-          className={`${currentBoard &&
-            board._id === currentBoard._id &&
-            'active'}`}
+          className={`${
+            currentBoard && board._id === currentBoard._id && 'active'
+          }`}
         >
           <Link to={link}>{board.name}</Link>
         </li>
@@ -63,7 +63,7 @@ class BoardChooser extends React.Component<Props> {
       return (
         <EmptyState
           icon="web-grid-alt"
-          text="Create Calendar group first"
+          text="Nejprve vytvořte skupinu kalendáře"
           size="small"
           extra={
             <Button btnStyle="warning" size="small">
@@ -80,13 +80,13 @@ class BoardChooser extends React.Component<Props> {
       );
     }
 
-    return groups.map(group => {
+    return groups.map((group) => {
       return (
         <li
           key={group._id}
-          className={`${currentGroup &&
-            group._id === currentGroup._id &&
-            'active'}`}
+          className={`${
+            currentGroup && group._id === currentGroup._id && 'active'
+          }`}
         >
           <Link
             to={`${calendarLink}?id=${currentBoard._id}&groupId=${group._id}`}

@@ -32,13 +32,13 @@ class BoardRow extends React.Component<Props, {}> {
 
     const editTrigger = (
       <Button btnStyle="link">
-        <Tip text="Edit" placement="bottom">
+        <Tip text="Upravit" placement="bottom">
           <Icon icon="edit" />
         </Tip>
       </Button>
     );
 
-    const content = props => (
+    const content = (props) => (
       <BoardForm
         {...props}
         board={board}
@@ -50,7 +50,7 @@ class BoardRow extends React.Component<Props, {}> {
     return (
       <ModalTrigger
         size={this.size}
-        title="Edit"
+        title="Upravit"
         trigger={editTrigger}
         content={content}
       />
@@ -65,7 +65,7 @@ class BoardRow extends React.Component<Props, {}> {
         <Link to={`?boardId=${board._id}`}>{board.name}</Link>
         <ActionButtons>
           {this.renderEditAction()}
-          <Tip text="Delete" placement="bottom">
+          <Tip text="Vymazat" placement="bottom">
             <Button btnStyle="link" onClick={this.remove} icon="cancel-1" />
           </Tip>
         </ActionButtons>

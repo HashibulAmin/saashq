@@ -2,7 +2,7 @@ import Button from '@saashq/ui/src/components/Button';
 import {
   ControlLabel,
   FormControl,
-  FormGroup
+  FormGroup,
 } from '@saashq/ui/src/components/form';
 import Icon from '@saashq/ui/src/components/Icon';
 import { FlexItem, LeftItem } from '@saashq/ui/src/components/step/styles';
@@ -64,7 +64,7 @@ class CustomFields extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      additionalFields: [emptyField]
+      additionalFields: [emptyField],
     };
   }
 
@@ -75,7 +75,7 @@ class CustomFields extends React.Component<Props, State> {
   onChangeInput = (
     i: number,
     type: 'label' | 'type' | 'required',
-    e: React.FormEvent
+    e: React.FormEvent,
   ) => {
     const element = e.target as HTMLInputElement;
     const value = type === 'required' ? element.checked : element.value;
@@ -89,7 +89,7 @@ class CustomFields extends React.Component<Props, State> {
     }
 
     this.setState({ additionalFields: entries }, () =>
-      this.updateFieldValues()
+      this.updateFieldValues(),
     );
   };
 
@@ -97,10 +97,10 @@ class CustomFields extends React.Component<Props, State> {
     this.setState(
       {
         additionalFields: this.state.additionalFields.filter(
-          (item, index) => index !== i
-        )
+          (item, index) => index !== i,
+        ),
       },
-      () => this.updateFieldValues()
+      () => this.updateFieldValues(),
     );
   };
 
@@ -116,7 +116,7 @@ class CustomFields extends React.Component<Props, State> {
 
   onAddMoreInput = () => {
     this.setState({
-      additionalFields: [...this.state.additionalFields, emptyField]
+      additionalFields: [...this.state.additionalFields, emptyField],
     });
   };
 
@@ -148,7 +148,7 @@ class CustomFields extends React.Component<Props, State> {
             <FormGroup key={index}>
               <WebsiteItem>
                 <FormGroup>
-                  <ControlLabel required={true}>Label</ControlLabel>
+                  <ControlLabel required={true}>Označení</ControlLabel>
                   <FormControl
                     name="label"
                     onChange={this.onChangeInput.bind(null, index, 'label')}
@@ -157,7 +157,7 @@ class CustomFields extends React.Component<Props, State> {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <ControlLabel required={true}>Type</ControlLabel>
+                  <ControlLabel required={true}>Typ</ControlLabel>
 
                   <FormControl
                     value={field.type}
@@ -166,16 +166,16 @@ class CustomFields extends React.Component<Props, State> {
                     componentClass="select"
                   >
                     <option value="text">text</option>
-                    <option value="multi-line text">multi-line text</option>
-                    <option value="email">email</option>
-                    <option value="phone">phone</option>
-                    <option value="number">number</option>
-                    <option value="dropdown">dropdown</option>
-                    <option value="checkbox">checkbox</option>
+                    <option value="multi-line text">víceřádkový text</option>
+                    <option value="email">e-mailem</option>
+                    <option value="phone">telefon</option>
+                    <option value="number">číslo</option>
+                    <option value="dropdown">rozevírací seznam</option>
+                    <option value="checkbox">zaškrtávací políčko</option>
                   </FormControl>
                 </FormGroup>
                 <FormGroup>
-                  <ControlLabel>Required</ControlLabel>
+                  <ControlLabel>Požadované</ControlLabel>
                   <FormControl
                     name="required"
                     defaultChecked={field.required}
@@ -192,7 +192,7 @@ class CustomFields extends React.Component<Props, State> {
             icon="plus-circle"
             btnStyle="primary"
           >
-            Add a field
+            Přidejte pole
           </Button>
         </LeftItem>
       </FlexItem>

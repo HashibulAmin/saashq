@@ -8,7 +8,7 @@ import {
   router,
   Sidebar,
   Tip,
-  Wrapper
+  Wrapper,
 } from '@saashq/ui/src';
 import { isEnabled } from '@saashq/ui/src/utils/core';
 import React from 'react';
@@ -34,7 +34,7 @@ interface IProps {
 
 class List extends React.Component<IProps> {
   renderFormTrigger(trigger: React.ReactNode, category?: ICarCategory) {
-    const content = props => (
+    const content = (props) => (
       <CategoryForm
         {...props}
         category={category}
@@ -43,7 +43,11 @@ class List extends React.Component<IProps> {
     );
 
     return (
-      <ModalTrigger title="Add category" trigger={trigger} content={content} />
+      <ModalTrigger
+        title="Přidat kategorii"
+        trigger={trigger}
+        content={content}
+      />
     );
   }
 
@@ -119,7 +123,7 @@ class List extends React.Component<IProps> {
             {this.renderEditAction(category)}
             {this.renderRemoveAction(category)}
           </ActionButtons>
-        </SidebarListItem>
+        </SidebarListItem>,
       );
     }
 
@@ -134,7 +138,7 @@ class List extends React.Component<IProps> {
         icon="plus-circle"
         block={true}
       >
-        Add category
+        Přidat kategorii
       </Button>
     );
 

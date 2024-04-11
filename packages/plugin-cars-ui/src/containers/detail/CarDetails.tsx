@@ -27,7 +27,7 @@ const CarDetailsContainer = (props: FinalProps) => {
   }
 
   if (!carDetailQuery.carDetail) {
-    return <EmptyState text="Car not found" image="/images/actions/24.svg" />;
+    return <EmptyState text="Auto nenalezeno" image="/images/actions/24.svg" />;
   }
 
   const carDetail = carDetailQuery.carDetail;
@@ -37,7 +37,7 @@ const CarDetailsContainer = (props: FinalProps) => {
     loading: carDetailQuery.loading,
     car: carDetail,
     currentUser,
-    fieldsGroups: fieldsGroupsQuery ? fieldsGroupsQuery.fieldsGroups : []
+    fieldsGroups: fieldsGroupsQuery ? fieldsGroupsQuery.fieldsGroups : [],
   };
 
   return <CarDetails {...updatedProps} />;
@@ -51,10 +51,10 @@ export default withProps<Props>(
         name: 'carDetailQuery',
         options: ({ id }) => ({
           variables: {
-            _id: id
-          }
-        })
-      }
+            _id: id,
+          },
+        }),
+      },
     ),
     graphql<Props, FieldsGroupsQueryResponse, { contentType: string }>(
       gql(fieldQueries.fieldsGroups),
@@ -63,10 +63,10 @@ export default withProps<Props>(
         options: () => ({
           variables: {
             contentType: 'cars:car',
-            isDefinedBySaasHQ: false
-          }
-        })
-      }
-    )
-  )(CarDetailsContainer)
+            isDefinedBySaasHQ: false,
+          },
+        }),
+      },
+    ),
+  )(CarDetailsContainer),
 );

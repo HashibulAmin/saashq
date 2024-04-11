@@ -47,7 +47,7 @@ class SettingsSideBarContainer extends React.Component<FinalProps> {
       positionListQuery.error
     ) {
       return (
-        <EmptyState image="/images/actions/5.svg" text="Something went wrong" />
+        <EmptyState image="/images/actions/5.svg" text="Něco se pokazilo" />
       );
     }
 

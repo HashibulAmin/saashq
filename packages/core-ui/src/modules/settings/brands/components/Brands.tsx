@@ -27,7 +27,7 @@ class Brands extends React.Component<Props, {}> {
     const { currentBrand, queryParams, renderButton } = this.props;
 
     if (!currentBrand._id) {
-      return <EmptyState image="/images/actions/20.svg" text="No brand." />;
+      return <EmptyState image="/images/actions/20.svg" text="Žádná značka." />;
     }
 
     return (
@@ -59,7 +59,7 @@ class Brands extends React.Component<Props, {}> {
     const breadcrumb = [
       { title: __('Settings'), link: '/settings' },
       { title: __('Brands'), link: '/settings/brands' },
-      { title: `${currentBrand.name || ''}` }
+      { title: `${currentBrand.name || ''}` },
     ];
 
     const addBrand = (
@@ -73,7 +73,7 @@ class Brands extends React.Component<Props, {}> {
       </Button>
     );
 
-    const content = props => (
+    const content = (props) => (
       <BrandForm
         {...props}
         extended={true}
@@ -106,7 +106,7 @@ class Brands extends React.Component<Props, {}> {
             icon="/images/actions/32.svg"
             title={'Brands'}
             description={__(
-              'Add unlimited Brands with unlimited support to further your growth and accelerate your business'
+              'Add unlimited Brands with unlimited support to further your growth and accelerate your business',
             )}
           />
         }

@@ -27,7 +27,7 @@ class BasicInfoSection extends React.Component<Props> {
     const { clientPortalUser } = this.props;
     const { phone, email } = clientPortalUser;
 
-    const smsForm = props => <SmsForm {...props} phone={phone} />;
+    const smsForm = (props) => <SmsForm {...props} phone={phone} />;
 
     return (
       <>
@@ -43,14 +43,14 @@ class BasicInfoSection extends React.Component<Props> {
         )}
         <ModalTrigger
           dialogClassName="middle"
-          title={`Send SMS to (${phone})`}
+          title={`Poslat SMS na (${phone})`}
           trigger={
             <Button
               disabled={phone ? false : true}
               size="small"
               btnStyle={phone ? 'primary' : 'simple'}
             >
-              <Tip text="Send SMS" placement="top-end">
+              <Tip text="Pošli SMS" placement="top-end">
                 <Icon icon="message" />
               </Tip>
             </Button>
@@ -63,7 +63,7 @@ class BasicInfoSection extends React.Component<Props> {
           btnStyle={phone ? 'primary' : 'simple'}
           disabled={phone ? false : true}
         >
-          <Tip text="Call" placement="top-end">
+          <Tip text="Volání" placement="top-end">
             <Icon icon="phone" />
           </Tip>
         </Button>
@@ -90,7 +90,7 @@ class BasicInfoSection extends React.Component<Props> {
   renderEditButton() {
     const { clientPortalUser } = this.props;
 
-    const customerForm = props => {
+    const customerForm = (props) => {
       return (
         <ClientPortalUserForm
           {...props}
@@ -103,7 +103,7 @@ class BasicInfoSection extends React.Component<Props> {
     return (
       <li>
         <ModalTrigger
-          title="Edit basic info"
+          title="Upravit základní informace"
           trigger={<a href="#edit">{__('Edit')}</a>}
           size="lg"
           content={customerForm}
@@ -118,11 +118,11 @@ class BasicInfoSection extends React.Component<Props> {
     const onClick = () =>
       confirm()
         .then(() => remove())
-        .catch(error => {
+        .catch((error) => {
           Alert.error(error.message);
         });
 
-    const extendSubscription = props => {
+    const extendSubscription = (props) => {
       if (!isEnabled('forum')) {
         return null;
       }
@@ -142,7 +142,7 @@ class BasicInfoSection extends React.Component<Props> {
           {this.renderEditButton()}
           {isEnabled('forum') && (
             <ModalTrigger
-              title="Extend Subscription"
+              title="Prodloužit předplatné"
               trigger={
                 <li>
                   <a href="#extend-subscription">{__('Extend Subscription')}</a>
@@ -170,7 +170,7 @@ class BasicInfoSection extends React.Component<Props> {
         {loadDynamicComponent(
           'clientPortalUserDetailAction',
           { clientPortalUser },
-          true
+          true,
         )}
         <Actions>
           {this.renderActions()}

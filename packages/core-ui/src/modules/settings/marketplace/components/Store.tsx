@@ -111,7 +111,7 @@ class Store extends React.Component<Props, State> {
       return (
         <EmptyContent>
           <EmptyState
-            text={__(`Sorry, We don't have any suitable plugins at the moment`)}
+            text={__(`Litujeme, momentálně nemáme žádné vhodné pluginy`)}
             image={`/images/actions/30.svg`}
           />
         </EmptyContent>
@@ -145,9 +145,7 @@ class Store extends React.Component<Props, State> {
       return (
         <EmptyContent>
           <EmptyState
-            text={__(
-              `Sorry, We don't have any suitable services at the moment`,
-            )}
+            text={__(`Litujeme, v tuto chvíli nemáme žádné vhodné služby`)}
             image={`/images/actions/25.svg`}
           />
         </EmptyContent>

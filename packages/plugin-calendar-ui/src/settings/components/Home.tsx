@@ -18,7 +18,7 @@ class Home extends React.Component<Props, {}> {
 
     const breadcrumb = [
       { title: __('Settings'), link: '/settings' },
-      { title: __('Calendar'), link: `/settings/calendars` }
+      { title: __('Calendar'), link: `/settings/calendars` },
     ];
 
     return (
@@ -31,9 +31,9 @@ class Home extends React.Component<Props, {}> {
             icon="/images/actions/34.svg"
             title={__(`Group & Calendar`)}
             description={`${__(
-              `Manage your boards and calendars so that its easy to manage incoming pop ups or requests that is adaptable to your team's needs`
+              `Manage your boards and calendars so that its easy to manage incoming pop ups or requests that is adaptable to your team's needs`,
             )}.${__(
-              `Add in or delete boards and calendars to keep business development on track and in check`
+              `Add in or delete boards and calendars to keep business development on track and in check`,
             )}`}
           />
         }
@@ -47,7 +47,7 @@ class Home extends React.Component<Props, {}> {
             />
           ) : (
             <EmptyState
-              text={`Get started on your board`}
+              text={`Začněte na své desce`}
               image="/images/actions/16.svg"
             />
           )

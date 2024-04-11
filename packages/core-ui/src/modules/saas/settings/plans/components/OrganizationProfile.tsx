@@ -212,7 +212,7 @@ class OrganizationProfile extends React.Component<Props, State> {
   renderSaveButton() {
     return (
       <Button btnStyle="success" uppercase={false} onClick={this.save}>
-        Save Organization Detail
+        Uložit podrobnosti organizace
       </Button>
     );
   }
@@ -237,7 +237,7 @@ class OrganizationProfile extends React.Component<Props, State> {
     return (
       <FormGroup>
         <ControlLabel>Favicon</ControlLabel>
-        <p>16x16px transparent PNG.</p>
+        <p>16x16px průhledný PNG.</p>
         <AvatarUpload
           avatar={favicon}
           onAvatarUpload={handleAvatarUploader}
@@ -257,8 +257,10 @@ class OrganizationProfile extends React.Component<Props, State> {
 
     return (
       <FormGroup>
-        <ControlLabel>Login page Logo</ControlLabel>
-        <p>Transparent PNG, around 3:1 aspect ratio. Max width: 600px.</p>
+        <ControlLabel>Logo přihlašovací stránky</ControlLabel>
+        <p>
+          Průhledný PNG, poměr stran přibližně 3:1. Maximální šířka: 600 pixelů.
+        </p>
         <AvatarUpload
           avatar={logo}
           onAvatarUpload={handleAvatarUploader}
@@ -284,7 +286,7 @@ class OrganizationProfile extends React.Component<Props, State> {
             type: configsMap.COMPANY_EMAIL_TEMPLATE_TYPE,
             template: configsMap.COMPANY_EMAIL_TEMPLATE,
           }}
-          emailText="Set an email address you wish to send your internal transactional emails from. For example, task notifications, team member mentions, etc."
+          emailText="Nastavte e-mailovou adresu, ze které chcete zasílat své interní transakční e-maily. Například upozornění na úkoly, zmínky o členech týmu atd."
           setEmailConfig={this.onChangeEmailConfig}
           isSaved={this.state.isSaved}
         />
@@ -329,8 +331,8 @@ class OrganizationProfile extends React.Component<Props, State> {
     return (
       <>
         <FormGroup>
-          <ControlLabel>Text color</ControlLabel>
-          <p>Used on the login page text</p>
+          <ControlLabel>Barva textu</ControlLabel>
+          <p>Používá se v textu přihlašovací stránky</p>
           <ColorPickerWrapper>
             <OverlayTrigger
               trigger="click"
@@ -364,13 +366,13 @@ class OrganizationProfile extends React.Component<Props, State> {
         </div>
 
         <FormGroup>
-          <ControlLabel>Background</ControlLabel>
+          <ControlLabel>Pozadí</ControlLabel>
           <Tip text={__('Clear background')} placement="top">
             <ClearButton>
               <Icon icon="history" onClick={this.clearBackground} />
             </ClearButton>
           </Tip>
-          <p>Used on the login background</p>
+          <p>Používá se na přihlašovacím pozadí</p>
           <ColorPickerWrapper>
             <OverlayTrigger
               trigger="click"
@@ -396,7 +398,7 @@ class OrganizationProfile extends React.Component<Props, State> {
     return (
       <>
         <FormGroup>
-          <ControlLabel>Login Page Description</ControlLabel>
+          <ControlLabel>Popis přihlašovací stránky</ControlLabel>
           <FormControl
             value={description || ''}
             type="text"
@@ -430,7 +432,7 @@ class OrganizationProfile extends React.Component<Props, State> {
         <StatusTitle>{__('Custom Domain')}</StatusTitle>
         <FlexRow>
           <FormGroup>
-            <ControlLabel>Custom domain</ControlLabel>
+            <ControlLabel>Vlastní doména</ControlLabel>
             <Domain>
               <FormControl
                 name="domain"
@@ -442,27 +444,27 @@ class OrganizationProfile extends React.Component<Props, State> {
             </Domain>
           </FormGroup>
           <FormGroup>
-            <ControlLabel>DNS Record</ControlLabel>
+            <ControlLabel>DNS záznam</ControlLabel>
             <Alert variant="info">
               <Alert.Heading>
-                Add the records below to your DNS settings for {subdomain}
+                Přidejte níže uvedené záznamy do nastavení DNS pro {subdomain}
                 .app.saashq.org
               </Alert.Heading>
               <p>
-                You need to add both records below. The second record will only
-                be available once the first has been set and its status is
-                ACTIVE. Please allow up to 24 hours for that to happen, unless
-                you can force a DNS refresh with your hosting provider. If you
-                are using Cloudflare, make sure you set the records to "DNS
-                only" (grey cloud). Unsure of how to change DNS records for your
-                domain? Get in touch and we can talk you through it. For
-                provider-specific information, please refer to{' '}
+                Níže je třeba přidat oba záznamy. Druhý záznam bude pouze být k
+                dispozici, jakmile bude první nastaven a jeho stav je AKTIVNÍ.
+                Počkejte prosím až 24 hodin, než se tak stane, pokud můžete si
+                vynutit obnovení DNS u svého poskytovatele hostingu. jestli ty
+                používáte Cloudflare, ujistěte se, že jste nastavili záznamy na
+                „DNS pouze" (šedý cloud). Nejste si jisti, jak změnit záznamy
+                DNS pro váš doména? Kontaktujte nás a můžeme si s vámi
+                promluvit. Pro informace specifické pro poskytovatele, viz{' '}
                 <a
                   rel="noopener noreferrer"
                   href="https://help.saashq.org/help/knowledge-base/article/detail?catId=ogZPWFSy78Anc5Ras&_id=dfggSKv8ZCKdkwK26"
                   target="_blank"
                 >
-                  this guide
+                  tohoto průvodce
                 </a>
                 .
               </p>
@@ -474,23 +476,23 @@ class OrganizationProfile extends React.Component<Props, State> {
             <Table striped={true} condensed={true} bordered={true}>
               <thead>
                 <tr>
-                  <th>Type</th>
-                  <th>Name</th>
-                  <th>Value</th>
-                  <th>Status</th>
+                  <th>Typ</th>
+                  <th>Název</th>
+                  <th>Hodnota</th>
+                  <th>Postavení</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>CNAME</td>
-                  <td>{domain || 'Your domain'}</td>
+                  <td>{domain || 'Vaše doména'}</td>
                   <td>{subdomain}.app.saashq.org</td>
                   <td>
                     <b>{(dnsStatus || 'Undefined').toUpperCase()}</b>
                   </td>
                 </tr>
                 <tr>
-                  <td>Certificate validation TXT</td>
+                  <td>Ověření certifikátu TXT</td>
                   <td>{sslVerification.txt_name}</td>
                   <td>{sslVerification.txt_value}</td>
                   <td>
@@ -498,7 +500,7 @@ class OrganizationProfile extends React.Component<Props, State> {
                   </td>
                 </tr>
                 <tr>
-                  <td>Hostname pre-validation TXT</td>
+                  <td>TXT před ověřením názvu hostitele</td>
                   <td>{ownershipVerification.name}</td>
                   <td>{ownershipVerification.value}</td>
                   <td>
@@ -516,14 +518,14 @@ class OrganizationProfile extends React.Component<Props, State> {
               uppercase={false}
               onClick={() => this.editDomain('refresh')}
             >
-              Refresh
+              Obnovit
             </Button>
             <Button
               btnStyle="danger"
               uppercase={false}
               onClick={() => this.editDomain('reset')}
             >
-              Reset Domain
+              Resetovat doménu
             </Button>
           </>
         ) : (
@@ -532,7 +534,7 @@ class OrganizationProfile extends React.Component<Props, State> {
             uppercase={false}
             onClick={() => this.editDomain('save')}
           >
-            Save
+            Uložit
           </Button>
         )}
       </StatusBox>
@@ -556,7 +558,7 @@ class OrganizationProfile extends React.Component<Props, State> {
         <FlexRow>
           <FormGroup>
             <FormGroup>
-              <ControlLabel>Organization Name</ControlLabel>
+              <ControlLabel>Název organizace</ControlLabel>
 
               <FormControl
                 value={name}
@@ -581,8 +583,10 @@ class OrganizationProfile extends React.Component<Props, State> {
             </FormGroup>
           </FormGroup>
           <FormGroup>
-            <ControlLabel>Main icon</ControlLabel>
-            <p>Square transparent PNG, recommended around 150px wide.</p>
+            <ControlLabel>Hlavní ikona</ControlLabel>
+            <p>
+              Čtvercový průhledný PNG, doporučená šířka přibližně 150 pixelů.
+            </p>
             <AvatarUpload
               avatar={icon}
               onAvatarUpload={handleAvatarUploader}

@@ -2,11 +2,11 @@ import {
   ActivityDate,
   ActivityIcon,
   ActivityRow,
-  FlexCenterContent
+  FlexCenterContent,
 } from '@saashq/ui-log/src/activityLogs/styles';
 import {
   formatText,
-  getIconAndColor
+  getIconAndColor,
 } from '@saashq/ui-log/src/activityLogs/utils';
 import Icon from '@saashq/ui/src/components/Icon';
 import Tip from '@saashq/ui/src/components/Tip';
@@ -30,7 +30,7 @@ class ActivityItem extends React.Component<Props> {
     return (
       <ActivityRow key={Math.random()}>
         <Tip
-          text={`${formatText(type || contentType)} Based Automation`}
+          text={`${formatText(type || contentType)} Založená automatizace`}
           placement="top"
         >
           <ActivityIcon color={iconAndColor.color}>
@@ -45,7 +45,7 @@ class ActivityItem extends React.Component<Props> {
   renderSendEmail(doc: any, createdAt) {
     const { automationId, result } = doc;
 
-    const getLabelColor = item => {
+    const getLabelColor = (item) => {
       if (item?.error) {
         return 'danger';
       }
@@ -61,10 +61,10 @@ class ActivityItem extends React.Component<Props> {
       <FlexCenterContent>
         <span>
           <Link to={`/automations/details/${automationId}`}>
-            <a>{'this '}</a>
+            <a>{'tento '}</a>
           </Link>
-          {`automation sent email to `}
-          {(result || []).map(item => (
+          {`automatizace odeslaná e-mailem na `}
+          {(result || []).map((item) => (
             <Label lblStyle={getLabelColor(item)}>{item?.toEmail || ''}</Label>
           ))}
         </span>
@@ -89,7 +89,7 @@ class ActivityItem extends React.Component<Props> {
         return this.renderDetail(
           'task',
           this.renderSendEmail(contentDetail, createdAt),
-          'email'
+          'email',
         );
 
       default:

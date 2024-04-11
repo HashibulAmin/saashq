@@ -29,13 +29,11 @@ const MainList = (props: FinalProps) => {
   }
 
   if (listQuery.error) {
-    return (
-      <EmptyState image="/images/actions/5.svg" text="Something went wrong" />
-    );
+    return <EmptyState image="/images/actions/5.svg" text="Něco se pokazilo" />;
   }
 
   const deletePositions = (ids: string[], callback: () => void) => {
-    confirm('This will permanently delete are you absolutely sure?', {
+    confirm('Toto bude trvale smazáno, jste si naprosto jisti?', {
       hasDeleteConfirm: true,
     }).then(() => {
       client
@@ -46,7 +44,7 @@ const MainList = (props: FinalProps) => {
         })
         .then(() => {
           callback();
-          Alert.success('Successfully deleted');
+          Alert.success('Úspěšně smazáno');
         })
         .catch((e) => {
           Alert.error(e.message);
