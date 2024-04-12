@@ -17,23 +17,23 @@ export const PRODUCT_INFO = {
   taxCode: 'Tax code',
 
   ALL: [
-    { field: 'code', label: 'Code' },
-    { field: 'name', label: 'Name' },
+    { field: 'code', label: 'Kód' },
+    { field: 'name', label: 'Název' },
     { field: 'shortName', label: 'Short name' },
     { field: 'type', label: 'Type' },
-    { field: 'category', label: 'Category' },
-    { field: 'vendor', label: 'Vendor' },
-    { field: 'description', label: 'Description' },
+    { field: 'category', label: 'Kategorie' },
+    { field: 'vendor', label: 'Prodejce' },
+    { field: 'description', label: 'Popis' },
     { field: 'barcodes', label: 'Barcodes' },
     { field: 'barcodeDescription', label: 'Barcode description' },
-    { field: 'unitPrice', label: 'Unit price' },
+    { field: 'unitPrice', label: 'Jednotková cena' },
     { field: 'tags', label: 'Tags' },
-    { field: 'status', label: 'Status' },
+    { field: 'status', label: 'Postavení' },
     { field: 'uom', label: 'Unit of measurement' },
     { field: 'subUoms', label: 'Sub unit of measurements' },
     { field: 'taxType', label: 'Tax type' },
-    { field: 'taxCode', label: 'Tax code' }
-  ]
+    { field: 'taxCode', label: 'Tax code' },
+  ],
 };
 
 export const EXTEND_FIELDS = [
@@ -41,18 +41,18 @@ export const EXTEND_FIELDS = [
     _id: Math.random(),
     name: 'categoryName',
     label: 'Category Name',
-    type: 'string'
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'tag',
     label: 'Tag',
-    type: 'string'
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'barcodes',
     label: 'Barcodes',
-    type: 'string'
-  }
+    type: 'string',
+  },
 ];

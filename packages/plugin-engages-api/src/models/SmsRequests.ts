@@ -27,13 +27,13 @@ export interface ISmsRequestModel extends Model<ISmsRequestDocument> {
 const statusSchema = new Schema(
   {
     date: { type: Date, label: 'Status update date' },
-    status: { type: String, label: 'Sms delivery status' }
+    status: { type: String, label: 'Sms delivery status' },
   },
-  { _id: false }
+  { _id: false },
 );
 
 const schema = new Schema({
-  createdAt: { type: Date, default: new Date(), label: 'Created at' },
+  createdAt: { type: Date, default: new Date(), label: 'Vytvořeno v' },
   engageMessageId: { type: String, label: 'Engage message id' },
   to: { type: String, label: 'Receiver phone number' },
   requestData: { type: String, label: 'Stringified request JSON' },
@@ -42,7 +42,7 @@ const schema = new Schema({
   responseData: { type: String, label: 'Stringified response JSON' },
   telnyxId: { type: String, label: 'Telnyx message record id' },
   statusUpdates: { type: [statusSchema], label: 'Sms status updates' },
-  errorMessages: { type: [String], label: 'Error messages' }
+  errorMessages: { type: [String], label: 'Error messages' },
 });
 
 export const loadSmsRequestClass = (models: IModels, subdomain: string) => {

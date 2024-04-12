@@ -32,13 +32,13 @@ export const exportHistorySchema = new Schema({
   status: field({
     type: String,
     default: 'inProcess',
-    label: 'Status'
+    label: 'Postavení',
   }),
   percentage: field({ type: Number, default: 0, label: 'Percentage' }),
   errorMsg: field({
     type: String,
-    label: 'Error Msgs'
+    label: 'Error Msgs',
   }),
   total: field({ type: Number, label: 'Total attempts' }),
-  name: field({ type: String, label: 'Export name' })
+  name: field({ type: String, label: 'Export name' }),
 });

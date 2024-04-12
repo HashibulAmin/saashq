@@ -43,7 +43,7 @@ export const checklistSchema = new Schema({
   }),
   title: field({ type: String, label: 'Title' }),
   createdUserId: field({ type: String, label: 'Created by' }),
-  createdDate: field({ type: Date, label: 'Created at' }),
+  createdDate: field({ type: Date, label: 'Vytvořeno v' }),
 });
 
 export const checklistItemSchema = new Schema({
@@ -52,6 +52,6 @@ export const checklistItemSchema = new Schema({
   content: field({ type: String, label: 'Content' }),
   isChecked: field({ type: Boolean, label: 'Is checked' }),
   createdUserId: field({ type: String, label: 'Created by' }),
-  createdDate: field({ type: Date, label: 'Created at' }),
+  createdDate: field({ type: Date, label: 'Vytvořeno v' }),
   order: field({ type: Number }),
 });

@@ -17,10 +17,10 @@ let Tasks;
 let Deals;
 
 const command = async () => {
-  console.log(`starting ... ${MONGO_URL}`);
+  console.log(`začínající ... ${MONGO_URL}`);
 
   await client.connect();
-  console.log('db connected ...');
+  console.log('db připojeno ...');
 
   db = client.db();
 
@@ -44,7 +44,7 @@ const command = async () => {
     }
   ];
   try {
-    console.log('starting fetch asset ids');
+    console.log('počáteční načítání ID aktiv');
 
     const assets = await Assets.find().toArray();
     const assetIds = assets.map(asset => asset._id);
@@ -52,13 +52,13 @@ const command = async () => {
     console.log(`fetched ${assetIds?.length || 0} assets`);
 
     for (let models of modelsMap) {
-      console.log(`${models.type} starting...`);
+      console.log(`${models.type} začínající...`);
 
       let itemsWithAssets = await models.collection
         .find({ 'customFieldsData.value': { $in: assetIds } })
         .toArray();
 
-      console.log(`Found ${itemsWithAssets?.length || 0} items`);
+      console.log(`Nalezeno ${itemsWithAssets?.length || 0} položky`);
 
       let bulkOps = itemsWithAssets.map(item => {
         const field = (item?.customFieldsData || []).find(customFieldData =>
@@ -75,18 +75,18 @@ const command = async () => {
         };
       });
 
-      console.log(`${bulkOps?.length || 0} item will be updated`);
+      console.log(`${bulkOps?.length || 0} položky budou aktualizovány`);
 
       if (bulkOps?.length > 0) {
         try {
           await models.collection.bulkWrite(bulkOps);
-          console.log(`${bulkOps?.length || 0} items updated successfully`);
+          console.log(`${bulkOps?.length || 0} položky byly úspěšně aktualizovány`);
         } catch (e) {
           console.log('Vyskytla se chyba:', e.message);
         }
       }
 
-      console.log(`${models.type} done.......`);
+      console.log(`${models.type} hotovo.......`);
     }
   } catch (error) {
     console.log('Vyskytla se chyba:', error.message);

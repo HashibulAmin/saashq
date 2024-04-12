@@ -24,9 +24,9 @@ export interface IEntryDocument extends IEntry, Document {
 export const valueSchema = new Schema(
   {
     fieldCode: field({ type: String, label: 'Field code' }),
-    value: field({ type: 'Mixed', label: 'Value' })
+    value: field({ type: 'Mixed', label: 'Value' }),
   },
-  { _id: false }
+  { _id: false },
 );
 
 export const entrySchema = new Schema({
@@ -36,6 +36,6 @@ export const entrySchema = new Schema({
   createdBy: field({ type: String, optional: true, label: 'Created by' }),
   modifiedBy: field({ type: String, optional: true, label: 'Modified by' }),
 
-  createdAt: field({ type: Date, label: 'Created at', esType: 'date' }),
-  modifiedAt: field({ type: Date, label: 'Modified at', esType: 'date' })
+  createdAt: field({ type: Date, label: 'Vytvořeno v', esType: 'date' }),
+  modifiedAt: field({ type: Date, label: 'Upraveno v', esType: 'date' }),
 });

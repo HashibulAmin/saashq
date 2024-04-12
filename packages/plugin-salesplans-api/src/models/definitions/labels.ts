@@ -28,9 +28,9 @@ export const labelRuleSchema = new Schema(
   {
     id: { type: String, required: true },
     productCategoryId: field({ type: String }),
-    multiplier: field({ type: Number, default: 1, label: 'Multiplier' })
+    multiplier: field({ type: Number, default: 1, label: 'Multiplier' }),
   },
-  { _id: false }
+  { _id: false },
 );
 
 export const labelSchema = schemaWrapper(
@@ -39,21 +39,21 @@ export const labelSchema = schemaWrapper(
     title: field({ type: String, label: 'Title' }),
     color: field({ type: String, default: '#BFBFBF', label: 'Color' }),
     effect: field({ type: String, optional: true, label: 'Effect' }),
-    description: field({ type: String, optional: true, label: 'Description' }),
+    description: field({ type: String, optional: true, label: 'Popis' }),
     rules: field({ type: [labelRuleSchema], label: 'Rules' }),
     status: field({
       type: String,
       enum: STATUS.ALL,
       default: 'active',
-      label: 'Status'
+      label: 'Postavení',
     }),
-    createdAt: field({ type: Date, default: new Date(), label: 'Created at' }),
+    createdAt: field({ type: Date, default: new Date(), label: 'Vytvořeno v' }),
     createdBy: field({ type: String, label: 'Created by' }),
     modifiedAt: field({
       type: Date,
       default: new Date(),
-      label: 'Modified at'
+      label: 'Upraveno v',
     }),
-    modifiedBy: field({ type: String, label: 'Modified by' })
-  })
+    modifiedBy: field({ type: String, label: 'Modified by' }),
+  }),
 );

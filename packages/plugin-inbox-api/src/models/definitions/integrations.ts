@@ -488,9 +488,9 @@ export const integrationSchema = schemaHooksWrapper(
       type: String,
       label: 'Kind',
     }),
-    createdAt: field({ type: 'Date', label: 'Created at' }),
+    createdAt: field({ type: 'Date', label: 'Vytvořeno v' }),
 
-    name: field({ type: String, label: 'Name' }),
+    name: field({ type: String, label: 'Název' }),
     brandId: field({ type: String, label: 'Brand' }),
 
     visibility: field({ type: String, label: 'Visibility' }),

@@ -148,9 +148,9 @@ const commonFieldsSchema = {
   createdAt: field({
     type: Date,
     default: new Date(),
-    label: 'Created at',
+    label: 'Vytvořeno v',
   }),
-  order: field({ type: Number, label: 'Order' }),
+  order: field({ type: Number, label: 'Objednat' }),
   type: field({
     type: String,
     enum: BOARD_TYPES.ALL,
@@ -185,9 +185,9 @@ export const commonItemFieldsSchema = {
   _id: field({ pkey: true }),
   parentId: field({ type: String, optional: true, label: 'Parent Id' }),
   userId: field({ type: String, optional: true, esType: 'keyword' }),
-  createdAt: field({ type: Date, label: 'Created at', esType: 'date' }),
+  createdAt: field({ type: Date, label: 'Vytvořeno v', esType: 'date' }),
   order: field({ type: Number, index: true }),
-  name: field({ type: String, label: 'Name' }),
+  name: field({ type: String, label: 'Název' }),
   startDate: field({ type: Date, label: 'Start date', esType: 'date' }),
   closeDate: field({ type: Date, label: 'Close date', esType: 'date' }),
   stageChangedDate: field({
@@ -202,7 +202,7 @@ export const commonItemFieldsSchema = {
     label: 'Is complete',
     esType: 'boolean',
   }),
-  description: field({ type: String, optional: true, label: 'Description' }),
+  description: field({ type: String, optional: true, label: 'Popis' }),
   assignedUserIds: field({ type: [String], esType: 'keyword' }),
   watchedUserIds: field({ type: [String], esType: 'keyword' }),
   labelIds: field({ type: [String], esType: 'keyword' }),
@@ -215,7 +215,7 @@ export const commonItemFieldsSchema = {
   modifiedAt: field({
     type: Date,
     default: new Date(),
-    label: 'Modified at',
+    label: 'Upraveno v',
     esType: 'date',
   }),
   modifiedBy: field({ type: String, esType: 'keyword' }),
@@ -231,14 +231,14 @@ export const commonItemFieldsSchema = {
     type: String,
     enum: BOARD_STATUSES.ALL,
     default: BOARD_STATUSES.ACTIVE,
-    label: 'Status',
+    label: 'Postavení',
     selectOptions: BOARD_STATUSES_OPTIONS,
     index: true,
   }),
   customFieldsData: field({
     type: [customFieldSchema],
     optional: true,
-    label: 'Custom fields data',
+    label: 'Data vlastních polí',
   }),
   score: field({
     type: Number,
@@ -280,14 +280,14 @@ export const commonItemFieldsSchema = {
 export const boardSchema = schemaWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    name: field({ type: String, label: 'Name' }),
+    name: field({ type: String, label: 'Název' }),
     ...commonFieldsSchema,
   }),
 );
 
 export const pipelineSchema = new Schema({
   _id: field({ pkey: true }),
-  name: field({ type: String, label: 'Name' }),
+  name: field({ type: String, label: 'Název' }),
   boardId: field({ type: String, label: 'Board' }),
   tagId: field({
     type: String,
@@ -298,7 +298,7 @@ export const pipelineSchema = new Schema({
     type: String,
     enum: BOARD_STATUSES.ALL,
     default: BOARD_STATUSES.ACTIVE,
-    label: 'Status',
+    label: 'Postavení',
   }),
   visibility: field({
     type: String,
@@ -356,7 +356,7 @@ export const pipelineSchema = new Schema({
 
 export const stageSchema = new Schema({
   _id: field({ pkey: true }),
-  name: field({ type: String, label: 'Name' }),
+  name: field({ type: String, label: 'Název' }),
   probability: field({
     type: String,
     enum: PROBABILITY.ALL,
@@ -377,7 +377,7 @@ export const stageSchema = new Schema({
   }),
   code: field({
     type: String,
-    label: 'Code',
+    label: 'Kód',
     optional: true,
   }),
   age: field({ type: Number, optional: true, label: 'Age' }),

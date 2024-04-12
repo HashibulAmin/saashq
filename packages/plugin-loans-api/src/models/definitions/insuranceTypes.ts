@@ -24,9 +24,9 @@ export interface IInsuranceTypeDocument extends IInsuranceType, Document {
 export const insuranceTypeSchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    code: field({ type: String, label: 'Code', unique: true }),
-    name: field({ type: String, label: 'Name' }),
-    description: field({ type: String, optional: true, label: 'Description' }),
+    code: field({ type: String, label: 'Kód', unique: true }),
+    name: field({ type: String, label: 'Název' }),
+    description: field({ type: String, optional: true, label: 'Popis' }),
     companyId: field({ type: String, label: 'Company' }),
     percent: field({ type: Number, label: 'Percent' }),
     yearPercents: field({ type: [Number], label: 'percent of years' }),
@@ -34,8 +34,8 @@ export const insuranceTypeSchema = schemaHooksWrapper(
     createdAt: field({
       type: Date,
       default: () => new Date(),
-      label: 'Created at'
-    })
+      label: 'Vytvořeno v',
+    }),
   }),
-  'saashq_insuranceTypeSchema'
+  'saashq_insuranceTypeSchema',
 );

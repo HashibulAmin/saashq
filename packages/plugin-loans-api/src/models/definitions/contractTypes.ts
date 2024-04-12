@@ -79,39 +79,39 @@ export interface IContractTypeDocument extends IContractType, Document {
 export const contractTypeSchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    code: field({ type: String, label: 'Code', unique: true }),
-    name: field({ type: String, label: 'Name' }),
-    description: field({ type: String, optional: true, label: 'Description' }),
-    status: field({ type: String, default: 'active', label: 'Status' }),
+    code: field({ type: String, label: 'Kód', unique: true }),
+    name: field({ type: String, label: 'Název' }),
+    description: field({ type: String, optional: true, label: 'Popis' }),
+    status: field({ type: String, default: 'active', label: 'Postavení' }),
     number: field({ type: String, label: 'Number' }),
     vacancy: field({
       type: Number,
       min: 1,
       max: 10,
       label: 'Vacancy',
-      required: true
+      required: true,
     }),
     unduePercent: field({
       type: Number,
       min: 0,
       max: 100,
       label: 'Undue Percent',
-      optional: true
+      optional: true,
     }),
     undueCalcType: field({
       type: String,
       label: 'Undue Calc Type',
-      optional: true
+      optional: true,
     }),
     useDebt: field({
       type: Boolean,
       label: 'Use debt',
-      optional: true
+      optional: true,
     }),
     useMargin: field({
       type: Boolean,
       label: 'Use margin',
-      optional: true
+      optional: true,
     }),
     useSkipInterest: field({ type: Boolean, label: 'use skip interest' }),
     useManualNumbering: field({ type: Boolean, label: 'use manual numbering' }),
@@ -121,52 +121,52 @@ export const contractTypeSchema = schemaHooksWrapper(
       enum: LEASE_TYPES.ALL,
       label: 'Lease Type',
       required: true,
-      default: LEASE_TYPES.FINANCE
+      default: LEASE_TYPES.FINANCE,
     }),
     commitmentInterest: field({
       type: Number,
       label: 'Commitment Interest',
-      default: 0
+      default: 0,
     }),
     createdAt: field({
       type: Date,
       default: () => new Date(),
-      label: 'Created at'
+      label: 'Vytvořeno v',
     }),
     productCategoryIds: field({
       type: [String],
-      label: 'Allow Product Categories'
+      label: 'Allow Product Categories',
     }),
     config: field({ type: Object }),
     currency: field({
       type: String,
       default: 'MNT',
-      label: 'contract type currency of lease'
+      label: 'contract type currency of lease',
     }),
     productType: field({
       type: String,
       default: 'private',
-      label: 'product Type'
+      label: 'product Type',
     }),
     savingPlusLoanInterest: field({
       type: Number,
       default: 0,
-      label: 'Saving loan plus interest'
+      label: 'Saving loan plus interest',
     }),
     savingUpperPercent: field({
       type: Number,
       default: 0,
-      label: 'Saving loan upper percent'
+      label: 'Saving loan upper percent',
     }),
     usePrePayment: field({
       type: Boolean,
       default: false,
-      label: 'use pre payment'
+      label: 'use pre payment',
     }),
     invoiceDay: field({
       type: String,
-      label: 'invoiceDay'
-    })
+      label: 'invoiceDay',
+    }),
   }),
-  'saashq_contractTypeSchema'
+  'saashq_contractTypeSchema',
 );

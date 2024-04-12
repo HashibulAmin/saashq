@@ -34,13 +34,13 @@ export const reserveRemSchema = schemaWrapper(
     productId: field({ type: String, label: 'product' }),
     uom: field({ type: String, label: 'Uom' }),
     remainder: field({ type: Number, label: 'Remainder' }),
-    createdAt: field({ type: Date, default: new Date(), label: 'Created at' }),
+    createdAt: field({ type: Date, default: new Date(), label: 'Vytvořeno v' }),
     createdBy: field({ type: String, label: 'Created by' }),
     modifiedAt: field({
       type: Date,
       default: new Date(),
-      label: 'Modified at'
+      label: 'Upraveno v',
     }),
-    modifiedBy: field({ type: String, label: 'Modified by' })
-  })
+    modifiedBy: field({ type: String, label: 'Modified by' }),
+  }),
 );

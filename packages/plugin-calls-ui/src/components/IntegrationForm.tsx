@@ -38,15 +38,15 @@ class IntegrationForm extends React.Component<Props, State> {
       data: {
         phone: values.phone,
         wsServer: values.wsServer,
-        operators: this.state.operators
-      }
+        operators: this.state.operators,
+      },
     };
   };
 
   renderField = ({
     label,
     fieldName,
-    formProps
+    formProps,
   }: {
     label: string;
     fieldName: string;
@@ -78,7 +78,7 @@ class IntegrationForm extends React.Component<Props, State> {
     const onChangeOperatorDetails = (
       name: string,
       value: string,
-      index: number
+      index: number,
     ) => {
       const currentOperator = operators.find((l, i) => i === index);
 
@@ -104,18 +104,18 @@ class IntegrationForm extends React.Component<Props, State> {
 
     return (
       <>
-        {this.renderField({ label: 'Name', fieldName: 'name', formProps })}
+        {this.renderField({ label: 'Název', fieldName: 'name', formProps })}
 
         {this.renderField({
           label: 'Phone number',
           fieldName: 'phone',
-          formProps
+          formProps,
         })}
 
         {this.renderField({
           label: 'Web socket server',
           fieldName: 'wsServer',
-          formProps
+          formProps,
         })}
 
         <>
@@ -168,7 +168,7 @@ class IntegrationForm extends React.Component<Props, State> {
           {renderButton({
             values: this.generateDoc(values),
             isSubmitted,
-            callback
+            callback,
           })}
         </ModalFooter>
       </>

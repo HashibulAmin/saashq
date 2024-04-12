@@ -17,11 +17,11 @@ export interface IPosSlotDocument extends IPosSlot, Document {
 export const posSlotSchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    name: field({ type: String, label: 'Name' }),
-    code: field({ type: String, label: 'Code' }),
+    name: field({ type: String, label: 'Název' }),
+    code: field({ type: String, label: 'Kód' }),
     posId: field({ type: String, label: 'Pos' }),
     posToken: field({ type: String, label: 'Pos Token' }),
-    option: field({ type: Object, lable: 'Option' })
+    option: field({ type: Object, lable: 'Option' }),
   }),
-  'saashq_pos_slot'
+  'saashq_pos_slot',
 );

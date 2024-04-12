@@ -65,7 +65,7 @@ export const contractSchema = schemaHooksWrapper(
     }),
     status: field({
       type: String,
-      label: 'Status',
+      label: 'Postavení',
       enum: CONTRACT_STATUS.ALL,
       required: true,
       default: CONTRACT_STATUS.NORMAL,
@@ -73,18 +73,18 @@ export const contractSchema = schemaHooksWrapper(
     branchId: field({
       type: String,
       optional: true,
-      label: 'Branch Id',
+      label: 'ID Pobočky',
     }),
     description: field({
       type: String,
       optional: true,
-      label: 'Description',
+      label: 'Popis',
     }),
     createdBy: field({ type: String, label: 'Created By' }),
     createdAt: field({
       type: Date,
       default: () => new Date(),
-      label: 'Created at',
+      label: 'Vytvořeno v',
     }),
     savingAmount: field({
       type: Number,
@@ -182,7 +182,7 @@ export const contractSchema = schemaHooksWrapper(
     customFieldsData: field({
       type: [customFieldSchema],
       optional: true,
-      label: 'Custom fields data',
+      label: 'Data vlastních polí',
     }),
   }),
   'saashq_contractSchema',

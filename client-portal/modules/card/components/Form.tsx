@@ -211,7 +211,7 @@ export default function Form({
           })}
           {renderControl({
             name: 'description',
-            label: 'Description',
+            label: 'Popis',
             value: item.description,
             placeholder: 'Enter a description'
           })}

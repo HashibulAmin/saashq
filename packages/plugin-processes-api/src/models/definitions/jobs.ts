@@ -108,42 +108,42 @@ export const productsDataSchema = new Schema({
   proportion: field({ type: Number, optional: true }),
   branchId: field({ type: String, optional: true, label: 'Branch' }),
   departmentId: field({ type: String, optional: true, label: 'Department' }),
-  series: field({ type: [String], optional: true, label: 'Series' })
+  series: field({ type: [String], optional: true, label: 'Series' }),
 });
 
 export const jobReferSchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    categoryId: field({ type: String, label: 'Category', index: true }),
-    code: field({ type: String, label: 'Code', index: true }),
-    name: field({ type: String, label: 'Name' }),
+    categoryId: field({ type: String, label: 'Kategorie', index: true }),
+    code: field({ type: String, label: 'Kód', index: true }),
+    name: field({ type: String, label: 'Název' }),
     attachment: field({ type: attachmentSchema }),
     type: field({
       type: String,
       enum: JOB_TYPES.ALL,
-      label: 'Type'
+      label: 'Type',
     }),
-    status: field({ type: String, label: 'Status' }),
-    createdAt: field({ type: Date, label: 'Created at' }),
+    status: field({ type: String, label: 'Postavení' }),
+    createdAt: field({ type: Date, label: 'Vytvořeno v' }),
     duration: field({ type: Number, label: 'Duration value' }),
     durationType: field({
       type: String,
       enum: DURATION_TYPES.ALL,
       default: DURATION_TYPES.HOUR,
-      label: 'Duration value'
+      label: 'Duration value',
     }),
     needProducts: field({
       type: [productsDataSchema],
       optional: true,
-      label: 'Need products'
+      label: 'Need products',
     }),
     resultProducts: field({
       type: [productsDataSchema],
       optional: true,
-      label: 'Result products'
-    })
+      label: 'Result products',
+    }),
   }),
-  'saashq_jobRefers'
+  'saashq_jobRefers',
 );
 
 // for tags query. increases search speed, avoids in-memory sorting

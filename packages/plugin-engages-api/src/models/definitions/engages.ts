@@ -195,7 +195,7 @@ export const engageMessageSchema = schemaWrapper(
     createdAt: field({
       type: Date,
       default: Date.now,
-      label: 'Created at',
+      label: 'Vytvořeno v',
       index: true,
     }),
     tagIds: field({

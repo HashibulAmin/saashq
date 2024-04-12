@@ -1,7 +1,7 @@
 module.exports = {
   products: {
     name: 'assets',
-    description: 'Assets',
+    description: 'Aktiva',
     actions: [
       {
         name: 'assetsAll',
@@ -10,20 +10,20 @@ module.exports = {
       },
       {
         name: 'manageAssets',
-        description: 'Manage assets',
+        description: 'Spravovat majetek',
         use: ['showAssets']
       },
       {
         name: 'showAssets',
-        description: 'Show assets'
+        description: 'Zobrazit aktiva'
       },
       {
         name: 'assetsMerge',
-        description: 'Merge assets'
+        description: 'Sloučit aktiva'
       },
       {
         name: 'assetsAssignKbArticles',
-        description: 'Assign knowledgebase articles'
+        description: 'Přiřaďte články znalostní báze'
       }
     ]
   }

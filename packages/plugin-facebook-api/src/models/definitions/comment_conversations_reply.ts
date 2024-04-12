@@ -34,7 +34,7 @@ export const commentConversationReplySchema = new Schema({
   content: String,
   customerId: { type: String, optional: true },
   userId: { type: String, optional: true },
-  createdAt: { type: Date, default: Date.now, label: 'Created At' },
+  createdAt: { type: Date, default: Date.now, label: 'Vytvořeno v' },
   updatedAt: field({ type: Date, index: true, label: 'Updated At' }),
   attachments: [attachmentSchema],
   isResolved: { type: Boolean, default: false },

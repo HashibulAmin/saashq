@@ -5,7 +5,7 @@ export const LEAD_CHOICES = [
   { label: 'Contacted', value: 'attemptedToContact' },
   { label: 'Working', value: 'inProgress' },
   { label: 'Bad timing', value: 'badTiming' },
-  { label: 'Unqualified', value: 'unqualified' }
+  { label: 'Unqualified', value: 'unqualified' },
 ];
 
 export const CUSTOMER_BASIC_INFO = {
@@ -30,9 +30,9 @@ export const CUSTOMER_BASIC_INFO = {
     { field: 'position', label: 'Position' },
     { field: 'department', label: 'Department' },
     { field: 'hasAuthority', label: 'Has Authority' },
-    { field: 'description', label: 'Description' },
-    { field: 'isSubscribed', label: 'Subscribed' }
-  ]
+    { field: 'description', label: 'Popis' },
+    { field: 'isSubscribed', label: 'Subscribed' },
+  ],
 };
 
 export const CUSTOMER_DATAS = {
@@ -43,8 +43,8 @@ export const CUSTOMER_DATAS = {
   ALL: [
     { field: 'visitorContactInfo', label: 'Visitor contact info' },
     { field: 'owner', label: 'Owner' },
-    { field: 'links', label: 'Links' }
-  ]
+    { field: 'links', label: 'Links' },
+  ],
 };
 
 export const CUSTOMER_LINKS = {
@@ -63,8 +63,8 @@ export const CUSTOMER_LINKS = {
     { field: 'instagram', label: 'Instagram' },
     { field: 'youtube', label: 'Youtube' },
     { field: 'github', label: 'Github' },
-    { field: 'website', label: 'Website' }
-  ]
+    { field: 'website', label: 'Website' },
+  ],
 };
 
 export const LEAD_STATUS_TYPES = {
@@ -72,7 +72,7 @@ export const LEAD_STATUS_TYPES = {
   attemptedToContact: 'Contacted',
   inProgress: 'Working',
   badTiming: 'Bad Timing',
-  unqualified: 'Unqualified'
+  unqualified: 'Unqualified',
 };
 
 export const GENDER_TYPES = () => getConstantFromStore('sex_choices', true);
@@ -86,7 +86,7 @@ export const EMAIL_VALIDATION_STATUSES = [
   { label: 'Catchall', value: 'catchall' },
   { label: 'Bad syntax', value: 'badsyntax' },
   { label: 'Unverifiable', value: 'unverifiable' },
-  { label: 'Not checked', value: 'Not checked' }
+  { label: 'Not checked', value: 'Not checked' },
 ];
 
 export const PHONE_VALIDATION_STATUSES = [
@@ -94,10 +94,10 @@ export const PHONE_VALIDATION_STATUSES = [
   { label: 'Invalid', value: 'invalid' },
   { label: 'Unknown', value: 'unknown' },
   { label: 'Unverifiable', value: 'unverifiable' },
-  { label: 'Mobile phone', value: 'receives_sms' }
+  { label: 'Mobile phone', value: 'receives_sms' },
 ];
 
 export const CUSTOMER_STATE_OPTIONS = [
   { label: 'Customer', value: 'customer' },
-  { label: 'Lead', value: 'lead' }
+  { label: 'Lead', value: 'lead' },
 ];

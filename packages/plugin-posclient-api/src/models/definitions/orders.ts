@@ -224,7 +224,7 @@ export const orderSchema = schemaHooksWrapper(
     }),
     description: field({
       type: String,
-      label: 'Description',
+      label: 'Popis',
       optional: true,
     }),
     isPre: field({

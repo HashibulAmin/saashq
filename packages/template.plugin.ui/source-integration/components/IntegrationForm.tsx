@@ -75,7 +75,7 @@ class IntegrationForm extends React.Component<Props, State> {
     return (
       <>
 
-        {this.renderField({ label: 'Name', fieldName: 'name', formProps })}
+        {this.renderField({ label: 'Název', fieldName: 'name', formProps })}
 
         <SelectBrand
           isRequired={true}

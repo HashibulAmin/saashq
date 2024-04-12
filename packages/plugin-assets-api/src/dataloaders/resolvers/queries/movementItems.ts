@@ -45,7 +45,7 @@ const movementItemQueries = {
     if (!item) {
       const asset = await models.Assets.findOne({ _id: assetId });
       if (!asset) {
-        throw new Error(`Could not find asset with this id ${assetId}`);
+        throw new Error(`Dílo s tímto ID se nepodařilo najít ${assetId}`);
       }
       return {
         assetId,

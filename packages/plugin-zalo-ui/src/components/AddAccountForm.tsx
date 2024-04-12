@@ -27,7 +27,7 @@ const AddAccountForm = (props: Props) => {
   const connectURL = useMemo(
     () =>
       `https://oauth.zaloapp.com/v4/oa/permission?app_id=${appID}&redirect_uri=http%3A%2F%2Flocalhost%2F`,
-    [appID]
+    [appID],
   );
 
   const renderField = ({
@@ -37,7 +37,7 @@ const AddAccountForm = (props: Props) => {
     formProps,
     required = true,
     defaultValue = '',
-    onChange
+    onChange,
   }: {
     label: string;
     name: string;
@@ -66,28 +66,28 @@ const AddAccountForm = (props: Props) => {
   const renderContent = (formProps: IFormProps) => {
     return (
       <>
-        {renderField({ label: 'Name', name: 'name', formProps })}
+        {renderField({ label: 'Název', name: 'name', formProps })}
         {renderField({
           label: 'Zalo App ID',
           name: 'app_id',
           description: 'ID Ứng dụng',
           formProps,
-          onChange: event => {
+          onChange: (event) => {
             setAppID(event.target.value);
-          }
+          },
         })}
         {renderField({
           label: 'Zalo Secret key',
           name: 'secret_key',
           description: 'Khóa bí mật của ứng dụng',
-          formProps
+          formProps,
         })}
         {renderField({
           label: 'Official Account Callback Url',
           name: 'callback_url',
           defaultValue: 'http://localhost/',
           description: '',
-          formProps: { ...formProps, disabled: true }
+          formProps: { ...formProps, disabled: true },
         })}
         {/* {connectURL} */}
         <Button

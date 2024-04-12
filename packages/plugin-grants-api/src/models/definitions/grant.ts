@@ -45,7 +45,7 @@ export const grantSchema = new Schema({
   _id: field({ pkey: true }),
   contentTypeId: field({
     type: String,
-    label: 'content type id'
+    label: 'content type id',
   }),
   contentType: field({ type: String, label: 'content type' }),
   scope: field({ type: String, label: 'Service scope' }),
@@ -57,16 +57,16 @@ export const grantSchema = new Schema({
     type: String,
     label: 'Active status',
     enum: ['active', 'archived'],
-    default: 'active'
+    default: 'active',
   }),
   status: field({
     type: String,
     label: 'request status',
     enum: ['waiting', 'approved', 'declined'],
-    default: 'waiting'
+    default: 'waiting',
   }),
-  createdAt: field({ type: Date, label: 'Created At', default: Date.now }),
-  resolvedAt: field({ type: Date, label: 'Resolved At', optional: true })
+  createdAt: field({ type: Date, label: 'Vytvořeno v', default: Date.now }),
+  resolvedAt: field({ type: Date, label: 'Resolved At', optional: true }),
 });
 
 export const grantResponsesSchema = new Schema({
@@ -76,23 +76,23 @@ export const grantResponsesSchema = new Schema({
   response: field({
     type: String,
     enum: ['approved', 'declined'],
-    label: 'Grant status'
+    label: 'Grant status',
   }),
   description: field({
     type: String,
     label: 'Grant description',
-    optional: true
+    optional: true,
   }),
-  createdAt: field({ type: Date, label: 'Created at', default: Date.now })
+  createdAt: field({ type: Date, label: 'Vytvořeno v', default: Date.now }),
 });
 
 export const grantConfigsSchema = new Schema({
   _id: field({ pkey: true }),
-  name: field({ type: String, label: 'Name' }),
+  name: field({ type: String, label: 'Název' }),
   scope: field({ type: String, label: 'Scope' }),
   action: field({ type: String, label: 'Request Action' }),
   config: field({ type: String, label: 'Config' }),
   params: field({ type: String, label: 'params' }),
-  createdAt: field({ type: Date, label: 'Created at', default: Date.now }),
-  modifiedAt: field({ type: Date, label: 'Modified at', default: Date.now })
+  createdAt: field({ type: Date, label: 'Vytvořeno v', default: Date.now }),
+  modifiedAt: field({ type: Date, label: 'Upraveno v', default: Date.now }),
 });

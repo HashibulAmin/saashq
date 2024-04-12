@@ -69,9 +69,9 @@ export const attachmentSchema = new Schema(
     url: field({ type: String }),
     type: field({ type: String }),
     size: field({ type: Number, optional: true }),
-    duration: field({ type: Number, optional: true })
+    duration: field({ type: Number, optional: true }),
   },
-  { _id: false }
+  { _id: false },
 );
 
 export interface ICommonFields {
@@ -91,33 +91,33 @@ export interface ICommonDocument {
 export const commonCampaignSchema = {
   _id: field({ pkey: true }),
 
-  createdAt: field({ type: Date, label: 'Created at' }),
+  createdAt: field({ type: Date, label: 'Vytvořeno v' }),
   createdBy: field({ type: String, label: 'Created by' }),
-  modifiedAt: field({ type: Date, label: 'Modified at' }),
+  modifiedAt: field({ type: Date, label: 'Upraveno v' }),
   modifiedBy: field({ type: String, label: 'Modified by' }),
 
   title: field({ type: String, label: 'Title' }),
-  description: field({ type: String, label: 'Description' }),
+  description: field({ type: String, label: 'Popis' }),
   startDate: field({ type: Date, label: 'Start Date' }),
   endDate: field({ type: Date, label: 'End Date' }),
   finishDateOfUse: field({ type: Date, label: 'Use Finsh Date' }),
   attachment: field({ type: attachmentSchema }),
 
-  status: field({ type: String, enum: CAMPAIGN_STATUS.ALL, default: 'active' })
+  status: field({ type: String, enum: CAMPAIGN_STATUS.ALL, default: 'active' }),
 };
 
 export const commonSchema = {
   _id: field({ pkey: true }),
   campaignId: field({ type: String }),
-  createdAt: field({ type: Date, label: 'Created at' }),
-  modifiedAt: field({ type: Date, label: 'Modified at' }),
+  createdAt: field({ type: Date, label: 'Vytvořeno v' }),
+  modifiedAt: field({ type: Date, label: 'Upraveno v' }),
   usedAt: field({ type: Date, label: 'Used date', optional: true }),
   userId: field({ type: String, label: 'Modified User', optional: true }),
 
   ownerType: field({
     type: String,
     label: 'Owner Type',
-    enum: OWNER_TYPES.ALL
+    enum: OWNER_TYPES.ALL,
   }),
-  ownerId: field({ type: String })
+  ownerId: field({ type: String }),
 };

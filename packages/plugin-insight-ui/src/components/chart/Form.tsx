@@ -34,7 +34,7 @@ const DIMENSION_OPTIONS = [
   { label: 'Tags', value: 'tag' },
   { label: 'Labels', value: 'label' },
   { label: 'Frequency (day, week, month)', value: 'frequency' },
-  { label: 'Status', value: 'status' },
+  { label: 'Postavení', value: 'status' },
 ];
 
 type Props = {

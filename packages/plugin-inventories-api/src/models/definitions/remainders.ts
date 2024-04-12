@@ -53,7 +53,7 @@ export const remainderSchema = schemaHooksWrapper(
     branchId: field({ type: String, default: '', label: 'Branch' }),
     departmentId: field({ type: String, default: '', label: 'Department' }),
 
-    status: field({ type: String, label: 'Status' }),
+    status: field({ type: String, label: 'Postavení' }),
     productId: field({ type: String, index: true }),
     count: field({ type: Number, label: 'Count' }),
     soonIn: field({ type: Number, optional: true, label: 'Soon In' }),
@@ -62,11 +62,11 @@ export const remainderSchema = schemaHooksWrapper(
     modifiedAt: field({
       type: Date,
       default: new Date(),
-      label: 'Modified date'
+      label: 'Modified date',
     }),
-    shortLogs: field({ type: [Object] })
+    shortLogs: field({ type: [Object] }),
   }),
-  'saashq_remainders'
+  'saashq_remainders',
 );
 
 // for remainderSchema query. increases search speed, avoids in-memory sorting
@@ -74,5 +74,5 @@ remainderSchema.index({
   isDebit: 1,
   productId: 1,
   branchId: 1,
-  departmentId: 1
+  departmentId: 1,
 });

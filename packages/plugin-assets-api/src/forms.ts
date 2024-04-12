@@ -2,14 +2,14 @@ import { generateFieldsFromSchema } from '@saashq/api-utils/src';
 import {
   ASSET_INFO,
   ASSETS_MOVEMENT_EXTEND_FIELDS,
-  ASSET_EXTEND_FIELDS
+  ASSET_EXTEND_FIELDS,
 } from './common/constant/asset';
 import { generateModels } from './connectionResolver';
 
 export default {
   types: [
-    { description: 'Assets', type: 'asset' },
-    { description: 'Assets-Movements', type: 'assets-movements' }
+    { description: 'Aktiva', type: 'asset' },
+    { description: 'Aktiva-Pohyby', type: 'assets-movements' },
   ],
   fields: async ({ subdomain, data }) => {
     const models = await generateModels(subdomain);
@@ -55,7 +55,7 @@ export default {
         if (path.schema) {
           fields = [
             ...fields,
-            ...(await generateFieldsFromSchema(path.schema, `${name}.`))
+            ...(await generateFieldsFromSchema(path.schema, `${name}.`)),
           ];
         }
       }
@@ -65,22 +65,22 @@ export default {
   },
 
   systemFields: ({ data: { categoryId } }) =>
-    ASSET_INFO.ALL.map(e => ({
+    ASSET_INFO.ALL.map((e) => ({
       text: e.label,
       type: e.field,
       categoryId,
       contentType: `assets:asset`,
       canHide: false,
-      isDefinedBySaasHQ: true
+      isDefinedBySaasHQ: true,
     })),
   extraFieldTypes: [
     {
       value: 'asset',
-      label: 'Asset'
+      label: 'Aktivum',
     },
     {
       value: 'asset-movement',
-      label: 'Asset-Movement'
-    }
-  ]
+      label: 'Aktiva-Pohyby',
+    },
+  ],
 };

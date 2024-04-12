@@ -2,13 +2,13 @@ export const ASSET_CATEGORY_STATUSES = {
   ACTIVE: 'active',
   DISABLED: 'disabled',
   ARCHIVED: 'archived',
-  ALL: ['active', 'disabled', 'archived']
+  ALL: ['active', 'disabled', 'archived'],
 };
 
 export const ASSET_STATUSES = {
   ACTIVE: 'active',
   DELETED: 'deleted',
-  ALL: ['active', 'deleted']
+  ALL: ['active', 'deleted'],
 };
 
 export const ASSET_INFO = {
@@ -21,96 +21,96 @@ export const ASSET_INFO = {
   productCount: 'Product count',
 
   ALL: [
-    { field: 'code', label: 'Code' },
-    { field: 'name', label: 'Name' },
-    { field: 'category', label: 'Category' },
-    { field: 'parent', label: 'Parent' },
-    { field: 'vendor', label: 'Vendor' },
-    { field: 'description', label: 'Description' },
-    { field: 'productCount', label: 'Product count' }
-  ]
+    { field: 'code', label: 'Kód' },
+    { field: 'name', label: 'Název' },
+    { field: 'category', label: 'Kategorie' },
+    { field: 'parent', label: 'Rodič' },
+    { field: 'vendor', label: 'Prodejce' },
+    { field: 'description', label: 'Popis' },
+    { field: 'productCount', label: 'Počet produktů' },
+  ],
 };
 
 export const ASSET_EXTEND_FIELDS = [
   {
     _id: Math.random(),
     name: 'categoryName',
-    label: 'Category Name',
-    type: 'string'
+    label: 'Název Kategorie',
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'parentName',
-    label: 'Parent Name',
-    type: 'string'
+    label: 'Jméno rodiče',
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'parentCode',
-    label: 'Parent Code',
-    type: 'string'
+    label: 'Rodičovský kód',
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'tag',
-    label: 'Tag',
-    type: 'string'
-  }
+    label: 'Štítek',
+    type: 'string',
+  },
 ];
 
 export const ASSETS_MOVEMENT_EXTEND_FIELDS = [
   {
     _id: Math.random(),
     name: 'assetName',
-    label: 'Asset Name',
-    type: 'string'
+    label: 'Název Díla',
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'assetCode',
-    label: 'Asset Code',
-    type: 'string'
+    label: 'Kód Aktiv',
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'branchName',
-    label: 'Branch Name',
-    type: 'string'
+    label: 'Jméno Pobočky',
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'branchCode',
-    label: 'Branch Code',
-    type: 'string'
+    label: 'Kód Pobočky',
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'departmentName',
-    label: 'Department Name',
-    type: 'string'
+    label: 'Název Oddělení',
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'departmentCode',
-    label: 'Department Code',
-    type: 'string'
+    label: 'Kód Oddělení',
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'customerEmail',
-    label: 'Customer Email',
-    type: 'string'
+    label: 'E-mail Zákazníka',
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'companyEmail',
-    label: 'Company Email',
-    type: 'string'
+    label: 'E-mailSspolečnosti',
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'teamMemberEmail',
-    label: 'Team Member Email',
-    type: 'string'
-  }
+    label: 'E-mail člena Týmu',
+    type: 'string',
+  },
 ];

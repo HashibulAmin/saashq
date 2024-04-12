@@ -27,8 +27,8 @@ export const syncLogSchema = schemaWrapper(
     createdAt: field({
       type: Date,
       default: new Date(),
-      label: 'Created at',
-      index: true
+      label: 'Vytvořeno v',
+      index: true,
     }),
     createdBy: field({ type: String, optional: true, label: 'Created by' }),
     consumeData: field({ type: Object }),
@@ -37,6 +37,6 @@ export const syncLogSchema = schemaWrapper(
     sendStr: field({ type: String, optional: true }),
     responseData: field({ type: Object, optional: true }),
     responseStr: field({ type: String, optional: true }),
-    error: field({ type: String, optional: true })
-  })
+    error: field({ type: String, optional: true }),
+  }),
 );

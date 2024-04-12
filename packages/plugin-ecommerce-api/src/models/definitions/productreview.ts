@@ -20,7 +20,7 @@ export const productreviewSchema = new Schema({
   productId: field({ type: String, label: 'Product' }),
   customerId: field({ type: String, label: 'Customer' }),
   review: field({ type: Number, label: 'Review' }),
-  description: field({ type: String, label: 'Description' }),
+  description: field({ type: String, label: 'Popis' }),
   info: field({ type: Object, label: 'Info' }),
   createdAt: field({ type: Date, label: 'Created Date' }),
   modifiedAt: field({ type: Date, label: 'Modified Date' }),

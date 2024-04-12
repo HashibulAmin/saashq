@@ -11,6 +11,6 @@ export interface ITemplateDocument extends ITemplate, Document {
 }
 
 export const templateSchema = new Schema({
-  name: field({ type: String, label: 'Name' }),
-  html: field({ type: String, label: 'Html' })
+  name: field({ type: String, label: 'Název' }),
+  html: field({ type: String, label: 'Html' }),
 });

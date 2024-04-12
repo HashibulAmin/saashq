@@ -66,9 +66,9 @@ export interface ITopicDocument extends ICommonFields, ITopic, Document {
 // Schema for common fields
 const commonFields = {
   createdBy: field({ type: String, label: 'Created by' }),
-  createdDate: field({ type: Date, label: 'Created at' }),
+  createdDate: field({ type: Date, label: 'Vytvořeno v' }),
   modifiedBy: field({ type: String, label: 'Modified by' }),
-  modifiedDate: field({ type: Date, label: 'Modified at' }),
+  modifiedDate: field({ type: Date, label: 'Upraveno v' }),
   title: field({ type: String, label: 'Title' }),
 };
 
@@ -88,7 +88,7 @@ export const articleSchema = new Schema({
     type: String,
     enum: PUBLISH_STATUSES.ALL,
     default: PUBLISH_STATUSES.DRAFT,
-    label: 'Status',
+    label: 'Postavení',
   }),
   isPrivate: field({
     type: Boolean,
@@ -110,7 +110,7 @@ export const articleSchema = new Schema({
   attachments: field({ type: [attachmentSchema], label: 'Attachments' }),
   reactionCounts: field({ type: Object, label: 'Reaction counts' }),
   topicId: field({ type: String, optional: true, label: 'Topic' }),
-  categoryId: field({ type: String, optional: true, label: 'Category' }),
+  categoryId: field({ type: String, optional: true, label: 'Kategorie' }),
 
   forms: field({ type: [formcodesSchema], label: 'Forms' }),
   ...commonFields,
@@ -118,7 +118,7 @@ export const articleSchema = new Schema({
 
 export const categorySchema = new Schema({
   _id: field({ pkey: true }),
-  description: field({ type: String, optional: true, label: 'Description' }),
+  description: field({ type: String, optional: true, label: 'Popis' }),
   articleIds: field({ type: [String], label: 'Articles' }),
   icon: field({ type: String, optional: true, label: 'Icon' }),
   parentCategoryId: field({
@@ -133,7 +133,7 @@ export const categorySchema = new Schema({
 export const topicSchema = schemaWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    description: field({ type: String, optional: true, label: 'Description' }),
+    description: field({ type: String, optional: true, label: 'Popis' }),
     brandId: field({ type: String, optional: true, label: 'Brand' }),
 
     categoryIds: field({

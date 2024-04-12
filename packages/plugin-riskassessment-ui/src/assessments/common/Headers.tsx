@@ -5,7 +5,7 @@ import {
   FormGroup,
   SortHandler,
   Tip,
-  __
+  __,
 } from '@saashq/ui/src';
 import { DateContainer } from '@saashq/ui/src/styles/main';
 import SelectBranches from '@saashq/ui/src/team/containers/SelectBranches';
@@ -16,14 +16,14 @@ import { statusColorConstant } from '../../common/constants';
 import {
   SelectIndicatorGroups,
   SelectIndicators,
-  SelectOperations
+  SelectOperations,
 } from '../../common/utils';
 import {
   ColorBox,
   FormContainer as Container,
   CustomRangeContainer,
   EndDateContainer,
-  Box as StatusBox
+  Box as StatusBox,
 } from '../../styles';
 
 export const headers = (queryParams, history) => {
@@ -32,23 +32,23 @@ export const headers = (queryParams, history) => {
     setParams(history, { [name]: [...values] });
   };
 
-  const selectStatus = color => {
+  const selectStatus = (color) => {
     removeParams(history, 'page');
     setParams(history, { status: color });
   };
 
-  const generateQueryParamsDate = params => {
+  const generateQueryParamsDate = (params) => {
     return params ? new Date(params) : '';
   };
 
   const dateOrder = (value, name) => {
     removeParams(history, 'page');
     setParams(history, {
-      [name]: value
+      [name]: value,
     });
   };
 
-  const clearParams = field => {
+  const clearParams = (field) => {
     if (Array.isArray(field)) {
       for (const f of field) {
         removeParams(history, f);
@@ -58,7 +58,7 @@ export const headers = (queryParams, history) => {
     removeParams(history, field);
   };
 
-  const clearButton = field => (
+  const clearButton = (field) => (
     <Button
       icon="cancel-1"
       btnStyle="link"
@@ -76,8 +76,8 @@ export const headers = (queryParams, history) => {
       fields: ['riskIndicatorIds', 'groupIds'],
       filter: {
         actionBar:
-          Object.keys(queryParams || {}).some(key =>
-            ['riskIndicatorIds', 'groupIds'].includes(key)
+          Object.keys(queryParams || {}).some((key) =>
+            ['riskIndicatorIds', 'groupIds'].includes(key),
           ) && clearButton(['riskIndicatorIds', 'groupIds']),
         main: (
           <>
@@ -102,8 +102,8 @@ export const headers = (queryParams, history) => {
               />
             </FormGroup>
           </>
-        )
-      }
+        ),
+      },
     },
     {
       label: 'Branches',
@@ -123,8 +123,8 @@ export const headers = (queryParams, history) => {
               multi={true}
             />
           </FormGroup>
-        )
-      }
+        ),
+      },
     },
     {
       label: 'Departments',
@@ -144,8 +144,8 @@ export const headers = (queryParams, history) => {
               multi={true}
             />
           </FormGroup>
-        )
-      }
+        ),
+      },
     },
     {
       label: 'Operations',
@@ -165,11 +165,11 @@ export const headers = (queryParams, history) => {
               multi={true}
             />
           </FormGroup>
-        )
-      }
+        ),
+      },
     },
     {
-      label: 'Status',
+      label: 'Postavení',
       name: 'status',
       filter: {
         actionBar:
@@ -177,7 +177,7 @@ export const headers = (queryParams, history) => {
           clearButton('status'),
         main: (
           <Container row>
-            {statusColorConstant.map(status => (
+            {statusColorConstant.map((status) => (
               <StatusBox
                 selected={queryParams.Status === status.name}
                 onClick={() => selectStatus(status.name)}
@@ -191,22 +191,22 @@ export const headers = (queryParams, history) => {
               </StatusBox>
             ))}
           </Container>
-        )
-      }
+        ),
+      },
     },
     {
       label: 'Result Score',
-      name: 'resultScore'
+      name: 'resultScore',
     },
     {
-      label: 'Created At',
+      label: 'Vytvořeno v',
       name: 'createdAt',
       sort: <SortHandler sortField="createdAt" />,
       filter: {
         actionBar:
           Object.entries(queryParams || {}).some(
             ([key, value]) =>
-              ['createdAtFrom', 'createdAtTo'].includes(key) && value
+              ['createdAtFrom', 'createdAtTo'].includes(key) && value,
           ) && clearButton(['createdAtFrom', 'createdAtTo']),
         main: (
           <FormGroup>
@@ -217,7 +217,7 @@ export const headers = (queryParams, history) => {
                   name="createdAtFrom"
                   value={generateQueryParamsDate(queryParams?.createdAtFrom)}
                   placeholder="select from date "
-                  onChange={e => dateOrder(e, 'createdAtFrom')}
+                  onChange={(e) => dateOrder(e, 'createdAtFrom')}
                 />
               </DateContainer>
               <EndDateContainer>
@@ -226,14 +226,14 @@ export const headers = (queryParams, history) => {
                     name="createdAtTo"
                     value={generateQueryParamsDate(queryParams?.createdAtTo)}
                     placeholder="select to date "
-                    onChange={e => dateOrder(e, 'createdAtTo')}
+                    onChange={(e) => dateOrder(e, 'createdAtTo')}
                   />
                 </DateContainer>
               </EndDateContainer>
             </CustomRangeContainer>
           </FormGroup>
-        )
-      }
+        ),
+      },
     },
     {
       label: 'Closed At',
@@ -243,7 +243,7 @@ export const headers = (queryParams, history) => {
         actionBar:
           Object.entries(queryParams || {}).some(
             ([key, value]) =>
-              ['closedAtFrom', 'closedAtFrom'].includes(key) && value
+              ['closedAtFrom', 'closedAtFrom'].includes(key) && value,
           ) && clearButton(['closedAtFrom', 'closedAtFrom']),
         main: (
           <FormGroup>
@@ -254,7 +254,7 @@ export const headers = (queryParams, history) => {
                   name="closedAtFrom"
                   value={generateQueryParamsDate(queryParams?.closedAtFrom)}
                   placeholder="select from date "
-                  onChange={e => dateOrder(e, 'closedAtFrom')}
+                  onChange={(e) => dateOrder(e, 'closedAtFrom')}
                 />
               </DateContainer>
               <EndDateContainer>
@@ -263,14 +263,14 @@ export const headers = (queryParams, history) => {
                     name="closedAtTo"
                     value={generateQueryParamsDate(queryParams?.closedAtTo)}
                     placeholder="select to date "
-                    onChange={e => dateOrder(e, 'closedAtTo')}
+                    onChange={(e) => dateOrder(e, 'closedAtTo')}
                   />
                 </DateContainer>
               </EndDateContainer>
             </CustomRangeContainer>
           </FormGroup>
-        )
-      }
-    }
+        ),
+      },
+    },
   ];
 };

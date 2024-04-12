@@ -82,41 +82,41 @@ export const transactionSchema = schemaHooksWrapper(
     number: field({
       type: String,
       label: 'Number',
-      index: true
+      index: true,
     }),
     transactionType: field({
       type: String,
-      label: 'Transaction Type'
+      label: 'Transaction Type',
     }),
     contractId: field({
       type: String,
       optional: true,
       label: 'Contract',
-      index: true
+      index: true,
     }),
     customerId: field({
       type: String,
       optional: true,
       label: 'Customer',
-      index: true
+      index: true,
     }),
     companyId: field({
       type: String,
       optional: true,
       label: 'Company',
-      index: true
+      index: true,
     }),
     invoiceId: field({
       type: String,
       optional: true,
       label: 'Invoice',
-      index: true
+      index: true,
     }),
-    description: field({ type: String, optional: true, label: 'Description' }),
+    description: field({ type: String, optional: true, label: 'Popis' }),
     payDate: field({
       type: Date,
       default: new Date(),
-      label: 'Created at'
+      label: 'Vytvořeno v',
     }),
     give: field({ type: Number, min: 0, optional: true, label: 'give' }),
     payment: field({ type: Number, min: 0, optional: true, label: 'payment' }),
@@ -124,20 +124,20 @@ export const transactionSchema = schemaHooksWrapper(
       type: Number,
       min: 0,
       optional: true,
-      label: 'interest eve month'
+      label: 'interest eve month',
     }),
     interestNonce: field({
       type: Number,
       min: 0,
       optional: true,
-      label: 'interest nonce month'
+      label: 'interest nonce month',
     }),
     undue: field({ type: Number, min: 0, optional: true, label: 'undue' }),
     insurance: field({
       type: Number,
       min: 0,
       optional: true,
-      label: 'insurance'
+      label: 'insurance',
     }),
     debt: field({ type: Number, min: 0, optional: true, label: 'debt' }),
     surplus: field({ type: Number, min: 0, optional: true, label: 'surplus' }),
@@ -145,7 +145,7 @@ export const transactionSchema = schemaHooksWrapper(
     createdAt: field({
       type: Date,
       default: () => new Date(),
-      label: 'Created at'
+      label: 'Vytvořeno v',
     }),
     createdBy: { type: String, optional: true, label: 'created member' },
     calcedInfo: field({
@@ -160,10 +160,10 @@ export const transactionSchema = schemaHooksWrapper(
         commitmentInterest: Number,
         debt: Number,
         total: Number,
-        surplus: Number
+        surplus: Number,
       },
       optional: true,
-      label: 'default calced info'
+      label: 'default calced info',
     }),
     pendings: field({ type: [Object], label: 'Pending Schedules reaction' }),
     reactions: field({ type: [Object], label: 'Pending Schedules reaction' }),
@@ -172,44 +172,44 @@ export const transactionSchema = schemaHooksWrapper(
       type: Number,
       min: 0,
       optional: true,
-      label: 'future Debt'
+      label: 'future Debt',
     }),
     debtTenor: field({
       type: Number,
       min: 0,
       optional: true,
-      label: 'debt Tenor'
+      label: 'debt Tenor',
     }),
     currency: field({
       type: String,
       default: 'MNT',
-      label: 'transaction currency of lease'
+      label: 'transaction currency of lease',
     }),
     ebarimt: field({
       type: Schema.Types.Mixed,
       optional: true,
-      label: 'ebarimt'
+      label: 'ebarimt',
     }),
     isManual: field({
       type: Boolean,
       optional: true,
-      label: 'ebarimt'
+      label: 'ebarimt',
     }),
     storedInterest: field({
       type: Number,
       optional: true,
-      label: 'Stored Interest'
+      label: 'Stored Interest',
     }),
     calcInterest: field({
       type: Number,
       optional: true,
-      label: 'calc Interest'
+      label: 'calc Interest',
     }),
     commitmentInterest: field({
       type: Number,
       optional: true,
-      label: 'commitment Interest'
-    })
+      label: 'commitment Interest',
+    }),
   }),
-  'saashq_transactionSchema'
+  'saashq_transactionSchema',
 );

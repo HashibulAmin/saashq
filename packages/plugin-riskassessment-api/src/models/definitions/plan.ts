@@ -38,57 +38,57 @@ export interface IPlansDocument extends Document, IPlan {
 export const schedulesSchema = new Schema({
   _id: field({ pkey: true }),
   planId: field({ type: String, label: 'planId' }),
-  name: field({ type: String, label: 'Name' }),
+  name: field({ type: String, label: 'Název' }),
   indicatorId: field({
     type: String,
     label: 'IndicatorId',
-    optional: true
+    optional: true,
   }),
   groupId: field({ type: String, label: 'groupId', optional: true }),
   structureTypeId: field({
     type: String,
     label: 'Structure Type Id',
-    required: true
+    required: true,
   }),
   assignedUserIds: field({
     type: [String],
     label: 'AssignUserIds',
-    optional: true
+    optional: true,
   }),
   status: field({
     type: String,
-    label: 'Status',
+    label: 'Postavení',
     enum: ['Waiting', 'Done'],
-    default: 'Waiting'
+    default: 'Waiting',
   }),
   customFieldsData: field({
     type: Schema.Types.Mixed,
     label: 'CustomFieldsData',
-    optional: true
+    optional: true,
   }),
-  createdAt: field({ type: Date, label: 'Created At', default: Date.now })
+  createdAt: field({ type: Date, label: 'Vytvořeno v', default: Date.now }),
 });
 
 const configSchema = new Schema({
   cardType: field({ type: String, label: 'cardType', required: true }),
   boardId: field({ type: String, label: 'IndicatorId', required: true }),
   pipelineId: field({ type: String, label: 'groupId', required: true }),
-  stageId: field({ type: String, label: 'StageId', required: true })
+  stageId: field({ type: String, label: 'StageId', required: true }),
 });
 
 export const plansSchema = new Schema({
   _id: field({ pkey: true }),
-  name: field({ type: String, label: 'Name', required: true }),
+  name: field({ type: String, label: 'Název', required: true }),
   plannerId: field({ type: String, label: 'Planner Id', required: true }),
   structureType: field({
     type: String,
     label: 'Structure Type',
-    required: true
+    required: true,
   }),
   structureTypeId: field({
     type: String,
     label: 'General Structure Id',
-    required: true
+    required: true,
   }),
   configs: field({ type: configSchema, label: 'configs' }),
   createdAt: field({ type: Date, label: 'createdAt', default: Date.now }),
@@ -100,8 +100,8 @@ export const plansSchema = new Schema({
   tagId: field({ type: String, label: 'General Tag Id', optional: true }),
   status: field({
     type: String,
-    label: 'Status',
+    label: 'Postavení',
     enum: ['active', 'archived', 'draft'],
-    default: 'draft'
-  })
+    default: 'draft',
+  }),
 });

@@ -1,14 +1,14 @@
 export const CARD_FILTER_ATTRIBUTES = [
   {
     name: 'cardBranchIds',
-    label: 'Branches'
+    label: 'Branches',
   },
   {
     name: 'cardDepartmentIds',
-    label: 'Departments'
+    label: 'Departments',
   },
   {
     name: 'cardName',
-    label: 'Name'
-  }
+    label: 'Název',
+  },
 ];

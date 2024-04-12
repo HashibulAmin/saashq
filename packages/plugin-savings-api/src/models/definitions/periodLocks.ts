@@ -19,13 +19,13 @@ export const periodLockSchema = schemaHooksWrapper(
     createdAt: field({
       type: Date,
       default: () => new Date(),
-      label: 'Created at'
+      label: 'Vytvořeno v',
     }),
     date: field({ type: Date, label: 'Lock Date' }),
     excludeContracts: field({
       type: [String],
-      label: 'Exclude contracts from Lock'
-    })
+      label: 'Exclude contracts from Lock',
+    }),
   }),
-  'saashq_periodLockSchema'
+  'saashq_periodLockSchema',
 );

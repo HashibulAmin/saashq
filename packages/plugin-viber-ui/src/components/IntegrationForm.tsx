@@ -28,15 +28,15 @@ class IntegrationForm extends React.Component<Props> {
       brandId: values.brandId,
       kind: 'viber',
       data: {
-        token: values.token
-      }
+        token: values.token,
+      },
     };
   };
 
   renderField = ({
     label,
     fieldName,
-    formProps
+    formProps,
   }: {
     label: string;
     fieldName: string;
@@ -63,7 +63,7 @@ class IntegrationForm extends React.Component<Props> {
       <>
         <p>Please enter your Viber app info</p>
 
-        {this.renderField({ label: 'Name', fieldName: 'name', formProps })}
+        {this.renderField({ label: 'Název', fieldName: 'name', formProps })}
 
         {this.renderField({ label: 'Token', fieldName: 'token', formProps })}
 
@@ -99,7 +99,7 @@ class IntegrationForm extends React.Component<Props> {
           {renderButton({
             values: this.generateDoc(values),
             isSubmitted,
-            callback
+            callback,
           })}
         </ModalFooter>
       </>

@@ -5,7 +5,7 @@ import {
   MODULE_NAMES,
   putCreateLog,
   putDeleteLog,
-  putUpdateLog
+  putUpdateLog,
 } from '../../../logUtils';
 import { generateCommonAssetFilter } from '../queries/asset';
 
@@ -17,7 +17,7 @@ const assetMutations = {
   async assetsAdd(
     _root,
     doc: IAsset,
-    { user, docModifier, models, subdomain }: IContext
+    { user, docModifier, models, subdomain }: IContext,
   ) {
     const asset = await models.Assets.createAsset(docModifier(doc));
 
@@ -29,11 +29,11 @@ const assetMutations = {
         newData: {
           ...doc,
           categoryId: asset.categoryId,
-          customFieldsData: asset.customFieldsData
+          customFieldsData: asset.customFieldsData,
         },
-        object: asset
+        object: asset,
       },
-      user
+      user,
     );
 
     return asset;
@@ -47,7 +47,7 @@ const assetMutations = {
   async assetsEdit(
     _root,
     { _id, ...doc }: IAssetsEdit,
-    { user, models, subdomain }: IContext
+    { user, models, subdomain }: IContext,
   ) {
     const asset = await models.Assets.getAssets({ _id });
     const updated = await models.Assets.updateAsset(_id, doc);
@@ -59,9 +59,9 @@ const assetMutations = {
         type: MODULE_NAMES.ASSET,
         object: asset,
         newData: { ...doc, customFieldsData: updated.customFieldsData },
-        updatedDocument: updated
+        updatedDocument: updated,
       },
-      user
+      user,
     );
 
     return updated;
@@ -69,10 +69,10 @@ const assetMutations = {
   async assetsRemove(
     _root,
     { assetIds }: { assetIds: string[] },
-    { user, models, subdomain }: IContext
+    { user, models, subdomain }: IContext,
   ) {
     const assets: IAssetDocument[] = await models.Assets.find({
-      _id: { $in: assetIds }
+      _id: { $in: assetIds },
     }).lean();
 
     const response = await models.Assets.removeAssets(assetIds);
@@ -82,7 +82,7 @@ const assetMutations = {
         models,
         subdomain,
         { type: MODULE_NAMES.ASSET, object: asset },
-        user
+        user,
       );
     }
 
@@ -92,7 +92,7 @@ const assetMutations = {
   async assetsMerge(
     _root,
     { assetIds, assetFields }: { assetIds: string[]; assetFields: IAsset },
-    { models }: IContext
+    { models }: IContext,
   ) {
     return await models.Assets.mergeAssets(assetIds, { ...assetFields });
   },
@@ -101,22 +101,22 @@ const assetMutations = {
     const { ids, articleIds, action } = args;
 
     if (!ids?.length) {
-      throw new Error('Please provide some IDs to assign articles');
+      throw new Error('Uveďte prosím nějaká ID pro přiřazení článků');
     }
 
     if (action === 'add') {
       return await models.Assets.updateMany(
         { _id: { $in: ids } },
         {
-          $addToSet: { kbArticleIds: articleIds }
-        }
+          $addToSet: { kbArticleIds: articleIds },
+        },
       );
     }
     return await models.Assets.updateMany(
       { _id: { $in: ids } },
-      { $pull: { kbArticleIds: { $in: articleIds } } }
+      { $pull: { kbArticleIds: { $in: articleIds } } },
     );
-  }
+  },
 };
 
 checkPermission(assetMutations, 'assetsAdd', 'manageAssets');
@@ -126,7 +126,7 @@ checkPermission(assetMutations, 'assetsMerge', 'assetsMerge');
 checkPermission(
   assetMutations,
   'assetsAssignKbArticles',
-  'assetsAssignKbArticles'
+  'assetsAssignKbArticles',
 );
 
 export default assetMutations;

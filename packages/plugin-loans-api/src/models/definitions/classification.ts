@@ -26,11 +26,11 @@ export const classificationSchema = schemaHooksWrapper(
       label: 'Number',
       index: true,
     }),
-    description: field({ type: String, optional: true, label: 'Description' }),
+    description: field({ type: String, optional: true, label: 'Popis' }),
     invDate: field({
       type: Date,
       default: new Date(),
-      label: 'Created at',
+      label: 'Vytvořeno v',
     }),
     total: field({ type: Number, min: 0, label: 'total' }),
     classification: field({ type: String, label: 'classification' }),
@@ -38,7 +38,7 @@ export const classificationSchema = schemaHooksWrapper(
     createdAt: field({
       type: Date,
       default: () => new Date(),
-      label: 'Created at',
+      label: 'Vytvořeno v',
     }),
     createdBy: field({ type: String, optional: true, label: 'created member' }),
     contractId: field({

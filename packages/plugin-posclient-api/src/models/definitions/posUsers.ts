@@ -38,18 +38,18 @@ const detailSchema = new Schema(
     workStartedDate: field({
       type: Date,
       optional: true,
-      label: 'Date to joined to work'
+      label: 'Date to joined to work',
     }),
     position: field({ type: String, optional: true, label: 'Position' }),
     location: field({ type: String, optional: true, label: 'Location' }),
-    description: field({ type: String, optional: true, label: 'Description' }),
+    description: field({ type: String, optional: true, label: 'Popis' }),
     operatorPhone: field({
       type: String,
       optional: true,
-      label: 'Operator phone'
-    })
+      label: 'Operator phone',
+    }),
   },
-  { _id: false }
+  { _id: false },
 );
 
 // User schema
@@ -64,11 +64,11 @@ export const posUserSchema = new Schema({
     unique: true,
     match: [
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,10})+$/,
-      'Please fill a valid email address'
+      'Please fill a valid email address',
     ],
-    label: 'Email'
+    label: 'Email',
   }),
   isActive: field({ type: Boolean, default: true, label: 'Is active' }),
   details: field({ type: detailSchema, default: {}, label: 'Details' }),
-  tokens: field({ type: [String] })
+  tokens: field({ type: [String] }),
 });

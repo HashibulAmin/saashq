@@ -1,59 +1,63 @@
 import {
   attachmentSchema,
-  customFieldSchema
+  customFieldSchema,
 } from '@saashq/api-utils/src/types';
 import { Schema } from 'mongoose';
 import {
   ASSET_CATEGORY_STATUSES,
-  ASSET_STATUSES
+  ASSET_STATUSES,
 } from '../../common/constant/asset';
 import { field, schemaWrapper } from './utils';
 
 export const assetCategoriesSchema = schemaWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    name: field({ type: String, label: 'Name' }),
-    code: field({ type: String, unique: true, label: 'Code' }),
-    order: field({ type: String, label: 'Order' }),
-    parentId: field({ type: String, optional: true, label: 'Parent' }),
-    description: field({ type: String, optional: true, label: 'Description' }),
+    name: field({ type: String, label: 'Název' }),
+    code: field({ type: String, unique: true, label: 'Kód' }),
+    order: field({ type: String, label: 'Objednat' }),
+    parentId: field({ type: String, optional: true, label: 'Rodič' }),
+    description: field({ type: String, optional: true, label: 'Popis' }),
     attachment: field({ type: attachmentSchema }),
     status: field({
       type: String,
       enum: ASSET_CATEGORY_STATUSES.ALL,
       optional: true,
-      label: 'Status',
+      label: 'Postavení',
       default: 'active',
       esType: 'keyword',
-      index: true
+      index: true,
     }),
     createdAt: field({
       type: Date,
       default: new Date(),
-      label: 'Created at'
-    })
-  })
+      label: 'Vytvořeno v',
+    }),
+  }),
 );
 
 export const assetSchema = schemaWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    name: field({ type: String, label: 'Name' }),
-    code: field({ type: String, unique: true, label: 'Code' }),
-    order: field({ type: String, label: 'Order' }),
-    categoryId: field({ type: String, optional: true, label: 'Category' }),
-    parentId: field({ type: String, optional: true, label: 'Parent' }),
-    description: field({ type: String, optional: true, label: 'Description' }),
-    unitPrice: field({ type: Number, optional: true, label: 'Unit price' }),
+    name: field({ type: String, label: 'Název' }),
+    code: field({ type: String, unique: true, label: 'Kód' }),
+    order: field({ type: String, label: 'Objednat' }),
+    categoryId: field({ type: String, optional: true, label: 'Kategorie' }),
+    parentId: field({ type: String, optional: true, label: 'Rodič' }),
+    description: field({ type: String, optional: true, label: 'Popis' }),
+    unitPrice: field({
+      type: Number,
+      optional: true,
+      label: 'Jednotková cena',
+    }),
     customFieldsData: field({
       type: [customFieldSchema],
       optional: true,
-      label: 'Custom fields data'
+      label: 'Data vlastních polí',
     }),
     createdAt: field({
       type: Date,
       default: new Date(),
-      label: 'Created at'
+      label: 'Vytvořeno v',
     }),
     attachment: field({ type: attachmentSchema }),
     attachmentMore: field({ type: [attachmentSchema] }),
@@ -61,13 +65,13 @@ export const assetSchema = schemaWrapper(
       type: String,
       enum: ASSET_STATUSES.ALL,
       optional: true,
-      label: 'Status',
+      label: 'Postavení',
       default: 'active',
       esType: 'keyword',
-      index: true
+      index: true,
     }),
-    vendorId: field({ type: String, optional: true, label: 'Vendor' }),
+    vendorId: field({ type: String, optional: true, label: 'Prodejce' }),
     mergedIds: field({ type: [String], optional: true }),
-    kbArticleIds: field({ type: [String], optional: true })
-  })
+    kbArticleIds: field({ type: [String], optional: true }),
+  }),
 );

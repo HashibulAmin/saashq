@@ -69,7 +69,7 @@ export const calculateMethodsSchema = new Schema({
   value: field({ type: Number, label: 'Logic Value' }),
   value2: field({ type: Number, label: 'Logic Value When Between Logic' }),
   logic: field({ type: String, label: 'Logic Logic' }),
-  color: field({ type: String, label: 'Logic Status Color' })
+  color: field({ type: String, label: 'Logic Status Color' }),
 });
 
 const riskIndicatorFormsSchema = new Schema({
@@ -79,17 +79,17 @@ const riskIndicatorFormsSchema = new Schema({
   calculateLogics: field({
     type: [calculateMethodsSchema],
     label: 'calculate logic',
-    optional: true
+    optional: true,
   }),
-  percentWeight: field({ type: Number, label: 'Percent Weight' })
+  percentWeight: field({ type: Number, label: 'Percent Weight' }),
 });
 
 export const riskIndicatorSchema = new Schema({
   _id: field({ pkey: true }),
-  name: field({ type: String, label: 'Name' }),
-  description: field({ type: String, label: 'Description' }),
-  createdAt: field({ type: Date, default: Date.now, label: 'Created At' }),
-  modifiedAt: field({ type: Date, default: Date.now, label: 'Modified At' }),
+  name: field({ type: String, label: 'Název' }),
+  description: field({ type: String, label: 'Popis' }),
+  createdAt: field({ type: Date, default: Date.now, label: 'Vytvořeno v' }),
+  modifiedAt: field({ type: Date, default: Date.now, label: 'Upraveno v' }),
   tagIds: field({ type: [String], label: 'Tag Ids' }),
   operationIds: field({ type: [String], label: 'OperationIDs' }),
   branchIds: field({ type: [String], label: ' BranchIDs' }),
@@ -97,18 +97,18 @@ export const riskIndicatorSchema = new Schema({
   calculateMethod: field({
     type: String,
     optional: true,
-    label: 'Calculate Method'
+    label: 'Calculate Method',
   }),
   calculateLogics: field({
     type: [calculateMethodsSchema],
     optinal: true,
-    label: 'Calculate Logics'
+    label: 'Calculate Logics',
   }),
   forms: field({
     type: [riskIndicatorFormsSchema],
-    label: 'Risk Assessment Forms'
+    label: 'Risk Assessment Forms',
   }),
-  isWithDescription: field({ type: Boolean, label: 'Is With Description' })
+  isWithDescription: field({ type: Boolean, label: 'Is With Description' }),
 });
 
 const riskIndicatorConfigsFieldsSchema = new Schema({
@@ -117,13 +117,13 @@ const riskIndicatorConfigsFieldsSchema = new Schema({
   label: field({ type: String, label: 'Field Label' }),
   indicatorId: field({
     type: String,
-    label: 'Field Config Risk indicator Id'
+    label: 'Field Config Risk indicator Id',
   }),
   indicatorIds: field({ type: [String], label: 'Indicator Ids' }),
   groupId: field({
     type: String,
-    label: 'Field Config Risk Indicators Group Id'
-  })
+    label: 'Field Config Risk Indicators Group Id',
+  }),
 });
 
 export const riskAssessmentsConfigsSchema = new Schema({
@@ -135,55 +135,55 @@ export const riskAssessmentsConfigsSchema = new Schema({
   indicatorId: field({
     type: String,
     optional: true,
-    label: 'indicator id'
+    label: 'indicator id',
   }),
   indicatorIds: field({
     type: [String],
     label: 'Indicator Ids',
-    optional: true
+    optional: true,
   }),
   groupId: field({
     type: String,
     optional: true,
-    label: 'indicators group id'
+    label: 'indicators group id',
   }),
   customFieldId: field({ type: String, label: 'Custom Field Id' }),
   configs: field({
     type: [riskIndicatorConfigsFieldsSchema],
-    label: 'Custom Field Config'
+    label: 'Custom Field Config',
   }),
-  createdAt: field({ type: Date, label: 'Created At', default: new Date() }),
-  modifiedAt: field({ type: Date, label: 'Modified At', default: new Date() })
+  createdAt: field({ type: Date, label: 'Vytvořeno v', default: new Date() }),
+  modifiedAt: field({ type: Date, label: 'Upraveno v', default: new Date() }),
 });
 
 const indicatorGroupsSchema = new Schema({
   _id: field({ pkey: true }),
-  name: field({ type: String, label: 'Name' }),
+  name: field({ type: String, label: 'Název' }),
   indicatorIds: field({ type: [String], label: 'IndicatorIds' }),
   percentWeight: field({
     type: Number,
     label: 'Percent Weight',
-    optional: true
+    optional: true,
   }),
   calculateMethod: field({ type: String, labels: 'Calculate Method' }),
   calculateLogics: field({
     type: [calculateMethodsSchema],
-    labels: 'indicator groups calculate methods'
-  })
+    labels: 'indicator groups calculate methods',
+  }),
 });
 
 export const riskIndicatorGroupSchema = new Schema({
   _id: field({ pkey: true }),
-  name: field({ type: String, label: 'Name' }),
-  description: field({ type: String, label: 'Description' }),
+  name: field({ type: String, label: 'Název' }),
+  description: field({ type: String, label: 'Popis' }),
   tagIds: field({ type: [String], label: 'Tag Ids' }),
   calculateMethod: field({ type: String, label: 'Calculate Method' }),
   calculateLogics: field({
     type: [calculateMethodsSchema],
-    label: 'Calculate Logics'
+    label: 'Calculate Logics',
   }),
   groups: field({ type: [indicatorGroupsSchema], label: 'indicators groups' }),
-  createdAt: field({ type: Date, label: 'Created At', default: Date.now }),
-  modifiedAt: field({ type: Date, label: 'Modified At', default: Date.now }),
-  ignoreZeros: field({ type: Boolean, label: 'Ignore Zeros', optional: true })
+  createdAt: field({ type: Date, label: 'Vytvořeno v', default: Date.now }),
+  modifiedAt: field({ type: Date, label: 'Upraveno v', default: Date.now }),
+  ignoreZeros: field({ type: Boolean, label: 'Ignore Zeros', optional: true }),
 });

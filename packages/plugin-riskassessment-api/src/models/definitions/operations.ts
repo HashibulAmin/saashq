@@ -16,12 +16,12 @@ export interface IOperationsDocument extends IOperations {
 
 export const operationSchema = new Schema({
   _id: field({ pkey: true }),
-  name: field({ type: String, label: 'Name' }),
-  description: field({ type: String, label: 'Description' }),
+  name: field({ type: String, label: 'Název' }),
+  description: field({ type: String, label: 'Popis' }),
   parentId: field({ type: String, label: 'Parent Id', optional: true }),
-  code: field({ type: String, label: 'Code' }),
-  order: field({ type: String, label: 'Order' }),
-  createdAt: field({ type: Date, label: 'Created At', default: Date.now }),
-  modifiedAt: field({ type: Date, label: 'Modified At', default: Date.now }),
-  teamMemberIds: field({ type: [String], label: 'User Id' })
+  code: field({ type: String, label: 'Kód' }),
+  order: field({ type: String, label: 'Objednat' }),
+  createdAt: field({ type: Date, label: 'Vytvořeno v', default: Date.now }),
+  modifiedAt: field({ type: Date, label: 'Upraveno v', default: Date.now }),
+  teamMemberIds: field({ type: [String], label: 'User Id' }),
 });

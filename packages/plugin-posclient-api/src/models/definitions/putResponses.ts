@@ -44,7 +44,7 @@ export const putResponseSchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
     createdAt: getDateFieldDefinition('Created at'),
-    modifiedAt: field({ type: Date, label: 'Modified at' }),
+    modifiedAt: field({ type: Date, label: 'Upraveno v' }),
     number: field({ type: String, label: 'Inner bill number' }),
     contentType: field({ type: String, label: 'Content Type' }),
     contentId: field({ type: String, label: 'Pos order id' }),
@@ -73,7 +73,7 @@ export const putResponseSchema = schemaHooksWrapper(
     // талаар мэдээлэл өгөх утга
     lotteryWarningMsg: field({
       type: String,
-      label: 'Lottery warning message'
+      label: 'Lottery warning message',
     }),
 
     // Хэрэв алдаа илэрсэн бол уг алдааны код
@@ -109,9 +109,9 @@ export const putResponseSchema = schemaHooksWrapper(
     customerNo: field({ type: String }),
     customerName: field({ type: String }),
     status: field({ type: String, optional: true }),
-    synced: field({ type: Boolean, default: false, label: 'synced on saashq' })
+    synced: field({ type: Boolean, default: false, label: 'synced on saashq' }),
   }),
-  'saashq_putResponse'
+  'saashq_putResponse',
 );
 
 putResponseSchema.index({ contentType: 1, contentId: 1, status: 1 });

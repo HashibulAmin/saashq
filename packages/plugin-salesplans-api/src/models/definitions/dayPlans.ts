@@ -47,7 +47,7 @@ export interface IDayPlanDocument extends IDayPlan, Document {
 const valueSchema = new Schema({
   _id: field({ pkey: true }),
   timeId: field({ type: String, label: 'time frame' }),
-  count: field({ type: Number, label: 'count' })
+  count: field({ type: Number, label: 'count' }),
 });
 
 export const dayPlanSchema = schemaWrapper(
@@ -64,15 +64,15 @@ export const dayPlanSchema = schemaWrapper(
       type: String,
       enum: DAYPLAN_STATUS.ALL,
       default: DAYPLAN_STATUS.NEW,
-      label: 'Status'
+      label: 'Postavení',
     }),
-    createdAt: field({ type: Date, default: new Date(), label: 'Created at' }),
+    createdAt: field({ type: Date, default: new Date(), label: 'Vytvořeno v' }),
     createdBy: field({ type: String, label: 'Created by' }),
     modifiedAt: field({
       type: Date,
       default: new Date(),
-      label: 'Modified at'
+      label: 'Upraveno v',
     }),
-    modifiedBy: field({ type: String, label: 'Modified by' })
-  })
+    modifiedBy: field({ type: String, label: 'Modified by' }),
+  }),
 );

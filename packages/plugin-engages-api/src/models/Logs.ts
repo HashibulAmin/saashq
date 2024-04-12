@@ -16,15 +16,15 @@ export interface ILogModel extends Model<ILogDocument> {
   createLog(
     engageMessageId: string,
     type: MessageType,
-    message: string
+    message: string,
   ): Promise<ILogDocument>;
 }
 
 export const logSchema = new Schema({
-  createdAt: { type: Date, default: new Date(), label: 'Created at' },
+  createdAt: { type: Date, default: new Date(), label: 'Vytvořeno v' },
   engageMessageId: { type: String, label: 'Engage message id', index: true },
   message: { type: String, label: 'Message' },
-  type: { type: String, label: 'Message type', enum: LOG_MESSAGE_TYPES }
+  type: { type: String, label: 'Message type', enum: LOG_MESSAGE_TYPES },
 });
 
 export const loadLogClass = (models: IModels, subdomain: string) => {
@@ -32,7 +32,7 @@ export const loadLogClass = (models: IModels, subdomain: string) => {
     public static async createLog(
       engageMessageId: string,
       type: MessageType,
-      message: string
+      message: string,
     ) {
       return models.Logs.create({ engageMessageId, message, type });
     }

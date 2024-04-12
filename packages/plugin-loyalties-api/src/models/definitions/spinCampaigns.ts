@@ -3,7 +3,7 @@ import { field } from './utils';
 import {
   commonCampaignSchema,
   ICommonCampaignFields,
-  ICommonCampaignDocument
+  ICommonCampaignDocument,
 } from './common';
 
 export interface ISpinAward extends Document {
@@ -28,11 +28,16 @@ export interface ISpinCampaignDocument
 export const spinAwardSchema = new Schema(
   {
     _id: field({ type: String }),
-    name: field({ type: String, label: 'Name' }),
+    name: field({ type: String, label: 'Název' }),
     voucherCampaignId: field({ type: String, label: 'Voucher campaign' }),
-    probability: field({ type: Number, label: 'Probability', max: 100, min: 0 })
+    probability: field({
+      type: Number,
+      label: 'Probability',
+      max: 100,
+      min: 0,
+    }),
   },
-  { _id: false }
+  { _id: false },
 );
 
 export const spinCampaignSchema = new Schema({
@@ -40,5 +45,5 @@ export const spinCampaignSchema = new Schema({
 
   buyScore: field({ type: Number }),
 
-  awards: field({ type: [spinAwardSchema], label: 'Awards' })
+  awards: field({ type: [spinAwardSchema], label: 'Awards' }),
 });

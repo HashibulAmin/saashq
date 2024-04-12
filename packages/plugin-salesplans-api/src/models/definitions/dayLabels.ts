@@ -31,13 +31,13 @@ export const dayLabelSchema = schemaWrapper(
     departmentId: field({ type: String, label: 'Department' }),
     branchId: field({ type: String, label: 'Branch' }),
     labelIds: field({ type: [String], label: '' }),
-    createdAt: field({ type: Date, default: new Date(), label: 'Created at' }),
+    createdAt: field({ type: Date, default: new Date(), label: 'Vytvořeno v' }),
     createdBy: field({ type: String, label: 'Created by' }),
     modifiedAt: field({
       type: Date,
       default: new Date(),
-      label: 'Modified at'
+      label: 'Upraveno v',
     }),
-    modifiedBy: field({ type: String, label: 'Modified by' })
-  })
+    modifiedBy: field({ type: String, label: 'Modified by' }),
+  }),
 );

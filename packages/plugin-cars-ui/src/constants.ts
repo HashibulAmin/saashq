@@ -13,7 +13,7 @@ export const COLORS = [
   '#63D2D6',
   '#F7CE53',
   '#ff0000',
-  '#000000'
+  '#000000',
 ];
 
 export const CAR_INFO = {
@@ -39,9 +39,9 @@ export const CAR_INFO = {
     { field: 'gearBox', label: 'Gear box' },
     { field: 'vintageYear', label: 'Vintage year' },
     { field: 'importYear', label: 'Import year' },
-    { field: 'description', label: 'Description' },
-    { field: 'attachment', label: 'Attachment' }
-  ]
+    { field: 'description', label: 'Popis' },
+    { field: 'attachment', label: 'Attachment' },
+  ],
 };
 
 export const CAR_DATAS = {
@@ -50,8 +50,8 @@ export const CAR_DATAS = {
 
   ALL: [
     { field: 'owner', label: 'Owner' },
-    { field: 'category', label: 'Category' }
-  ]
+    { field: 'category', label: 'Kategorie' },
+  ],
 };
 
 export const CAR_BODY_TYPES = [
@@ -64,7 +64,7 @@ export const CAR_BODY_TYPES = [
   { label: 'Van', value: 'Van' },
   { label: 'Hatchback', value: 'Hatchback' },
   { label: 'Pickup', value: 'Pickup' },
-  { label: 'Sport Coupe', value: 'SportCoupe' }
+  { label: 'Sport Coupe', value: 'SportCoupe' },
 ];
 
 export const CAR_FUEL_TYPES = [
@@ -73,7 +73,7 @@ export const CAR_FUEL_TYPES = [
   { label: 'Petrol', value: 'Petrol' },
   { label: 'Diesel', value: 'Diesel' },
   { label: 'FlexiFuel', value: 'FlexiFuel' },
-  { label: 'Electric', value: 'Electric' }
+  { label: 'Electric', value: 'Electric' },
 ];
 
 export const CAR_GEAR_BOXS = [
@@ -81,5 +81,5 @@ export const CAR_GEAR_BOXS = [
   { label: 'Automatic', value: 'Automatic' },
   { label: 'Manual', value: 'Manual' },
   { label: 'CVT', value: 'CVT' },
-  { label: 'Semi automatic', value: 'SemiAutomatic' }
+  { label: 'Semi automatic', value: 'SemiAutomatic' },
 ];

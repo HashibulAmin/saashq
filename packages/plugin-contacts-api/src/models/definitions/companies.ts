@@ -62,12 +62,12 @@ export const companySchema = schemaWrapper(
   new Schema({
     _id: field({ pkey: true }),
 
-    createdAt: field({ type: Date, label: 'Created at', esType: 'date' }),
-    modifiedAt: field({ type: Date, label: 'Modified at', esType: 'date' }),
+    createdAt: field({ type: Date, label: 'Vytvořeno v', esType: 'date' }),
+    modifiedAt: field({ type: Date, label: 'Upraveno v', esType: 'date' }),
 
     primaryName: field({
       type: String,
-      label: 'Name',
+      label: 'Název',
       optional: true,
       esType: 'keyword',
     }),
@@ -145,7 +145,7 @@ export const companySchema = schemaWrapper(
       enum: getEnum('STATUSES'),
       default: 'Active',
       optional: true,
-      label: 'Status',
+      label: 'Postavení',
       esType: 'keyword',
       selectOptions: COMPANY_SELECT_OPTIONS.STATUSES,
       index: true,
@@ -160,7 +160,7 @@ export const companySchema = schemaWrapper(
       selectOptions: COMPANY_SELECT_OPTIONS.BUSINESS_TYPES,
     }),
 
-    description: field({ type: String, optional: true, label: 'Description' }),
+    description: field({ type: String, optional: true, label: 'Popis' }),
     employees: field({ type: Number, optional: true, label: 'Employees' }),
     doNotDisturb: field({
       type: String,
@@ -197,7 +197,7 @@ export const companySchema = schemaWrapper(
     customFieldsData: field({
       type: [customFieldSchema],
       optional: true,
-      label: 'Custom fields data',
+      label: 'Data vlastních polí',
     }),
 
     trackedData: field({
@@ -206,7 +206,7 @@ export const companySchema = schemaWrapper(
       label: 'Tracked Data',
     }),
     searchText: field({ type: String, optional: true, index: true }),
-    code: field({ type: String, label: 'Code', optional: true }),
+    code: field({ type: String, label: 'Kód', optional: true }),
     location: field({ type: String, optional: true, label: 'Location' }),
     score: field({
       type: Number,

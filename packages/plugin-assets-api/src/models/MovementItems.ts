@@ -8,22 +8,22 @@ export interface IMovementItemModel extends Model<IMovementItemDocument> {
   movementItemsAdd(assets: any): Promise<IMovementItemDocument[]>;
   movementItemsEdit(
     movementId: string,
-    items: any[]
+    items: any[],
   ): Promise<IMovementItemDocument[]>;
   movementItemsCurrentLocations(
-    assetIds: string[]
+    assetIds: string[],
   ): Promise<IMovementItemDocument[]>;
 }
 
-const checkValidation = doc => {
+const checkValidation = (doc) => {
   const checker = [
     doc.customerId,
     doc.companyId,
     doc.branchId,
     doc.departmentId,
-    doc.teamMemberId
+    doc.teamMemberId,
   ];
-  return checker.find(i => i);
+  return checker.find((i) => i);
 };
 
 export const loadMovementItemClass = (models: IModels) => {
@@ -32,12 +32,12 @@ export const loadMovementItemClass = (models: IModels) => {
       for (const asset of assets) {
         if (!checkValidation(asset)) {
           throw new Error(
-            `You should provide at least one field on ${asset.assetName}`
+            `Měli byste zadat alespoň jedno pole na ${asset.assetName}`,
           );
         }
 
         const sourceLocations = await models.MovementItems.findOne({
-          assetId: asset.assetId
+          assetId: asset.assetId,
         })
           .sort({ createdAt: -1 })
           .limit(1);
@@ -54,7 +54,7 @@ export const loadMovementItemClass = (models: IModels) => {
       for (const item of items) {
         if (!checkValidation(item)) {
           throw new Error(
-            `You should provide at least one field on ${item.assetName}`
+            `Měli byste zadat alespoň jedno pole na ${item.assetName}`,
           );
         }
 
@@ -64,14 +64,14 @@ export const loadMovementItemClass = (models: IModels) => {
           {
             upsert: true,
             new: true,
-            setDefaultsOnInsert: true
-          }
+            setDefaultsOnInsert: true,
+          },
         );
         itemIds.push(movementItem._id);
       }
       await models.MovementItems.deleteMany({
         _id: { $nin: itemIds },
-        movementId
+        movementId,
       });
     }
 

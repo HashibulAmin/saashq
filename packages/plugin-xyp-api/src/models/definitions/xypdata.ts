@@ -22,10 +22,10 @@ export const xypServiceData = new Schema(
     data: field({
       type: Schema.Types.Mixed,
       optional: true,
-      label: 'Xyp Data'
-    })
+      label: 'Xyp Data',
+    }),
   },
-  { _id: false }
+  { _id: false },
 );
 
 export const xypDataSchema = new Schema({
@@ -35,10 +35,10 @@ export const xypDataSchema = new Schema({
   data: field({
     type: [xypServiceData],
     optional: true,
-    label: 'Xyp Data'
+    label: 'Xyp Data',
   }),
   createdBy: field({ type: String, label: 'Created by' }),
-  createdAt: field({ type: Date, label: 'Created at' }),
+  createdAt: field({ type: Date, label: 'Vytvořeno v' }),
   updatedBy: field({ type: String, label: 'Updated by' }),
-  updatedAt: field({ type: Date, label: 'Updated at' })
+  updatedAt: field({ type: Date, label: 'Updated at' }),
 });

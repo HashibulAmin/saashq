@@ -2,7 +2,7 @@ import { Schema, Document } from 'mongoose';
 import { field } from './utils';
 
 const CONTENT_TYPES = {
-  ALL: ['shqFeed', 'knowledgebase']
+  ALL: ['shqFeed', 'knowledgebase'],
 };
 
 export interface IComment {
@@ -36,15 +36,15 @@ export const commentSchema = new Schema({
   contentType: field({
     type: String,
     enum: CONTENT_TYPES.ALL,
-    label: 'Connected content type'
+    label: 'Connected content type',
   }),
   contentId: field({ type: String, label: 'Connected content id' }),
   parentId: field({ type: String }),
   comment: field({ type: String, label: 'Comment' }),
   createdBy: field({ type: String, label: 'Created by' }),
-  createdAt: field({ type: Date, label: 'Created at' }),
+  createdAt: field({ type: Date, label: 'Vytvořeno v' }),
   updatedBy: field({ type: String, label: 'Updated by' }),
-  updatedAt: field({ type: Date, label: 'Updated at' })
+  updatedAt: field({ type: Date, label: 'Updated at' }),
 });
 
 export const emojiSchema = new Schema({
@@ -53,11 +53,11 @@ export const emojiSchema = new Schema({
   contentType: field({
     type: String,
     enum: CONTENT_TYPES.ALL,
-    label: 'Connected content type'
+    label: 'Connected content type',
   }),
   contentId: field({ type: String, label: 'Connected content id' }),
   userId: field({ type: String }),
-  createdAt: field({ type: Date, label: 'Created at' }),
+  createdAt: field({ type: Date, label: 'Vytvořeno v' }),
   updatedBy: field({ type: String, label: 'Updated by' }),
-  updatedAt: field({ type: Date, label: 'Updated at' })
+  updatedAt: field({ type: Date, label: 'Updated at' }),
 });

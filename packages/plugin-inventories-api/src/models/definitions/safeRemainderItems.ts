@@ -32,17 +32,17 @@ export const safeRemainderItemSchema = schemaHooksWrapper(
     preCount: field({ type: Number, label: 'Pre count' }),
     count: field({ type: Number, label: 'Remainder count' }),
 
-    status: field({ type: String, label: 'Status' }),
+    status: field({ type: String, label: 'Postavení' }),
     uom: field({ type: String, label: 'UOM' }),
     modifiedAt: field({
       type: Date,
       default: new Date(),
-      label: 'Modified date'
+      label: 'Modified date',
     }),
     modifiedBy: { type: String, label: 'Modified User' },
-    order: field({ type: Number, index: true })
+    order: field({ type: Number, index: true }),
   }),
-  'saashq_safe_remainder_items'
+  'saashq_safe_remainder_items',
 );
 
 // for safeRemainderItemSchema query. increases search speed, avoids in-memory sorting
@@ -50,5 +50,5 @@ safeRemainderItemSchema.index({
   remainderId: 1,
   productId: 1,
   branchId: 1,
-  departmentId: 1
+  departmentId: 1,
 });

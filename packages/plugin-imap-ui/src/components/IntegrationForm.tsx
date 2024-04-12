@@ -39,8 +39,8 @@ class IntegrationForm extends React.Component<Props> {
         smtpPort: values.smtpPort,
         mainUser: values.mainUser,
         user: values.user,
-        password: values.password
-      }
+        password: values.password,
+      },
     };
   };
 
@@ -48,7 +48,7 @@ class IntegrationForm extends React.Component<Props> {
     label,
     name,
     formProps,
-    required = true
+    required = true,
   }: {
     label: string;
     name: string;
@@ -93,7 +93,7 @@ class IntegrationForm extends React.Component<Props> {
           <br />
         </div>
 
-        {this.renderField({ label: 'Name', name: 'name', formProps })}
+        {this.renderField({ label: 'Název', name: 'name', formProps })}
         {this.renderField({ label: 'Host', name: 'host', formProps })}
         {this.renderField({ label: 'Smpt host', name: 'smtpHost', formProps })}
         {this.renderField({ label: 'Smpt port', name: 'smtpPort', formProps })}
@@ -101,12 +101,12 @@ class IntegrationForm extends React.Component<Props> {
           label: 'Main user (for a mail with aliases)',
           name: 'mainUser',
           required: false,
-          formProps
+          formProps,
         })}
         {this.renderField({
           label: 'User',
           name: 'user',
-          formProps
+          formProps,
         })}
         {this.renderField({ label: 'Password', name: 'password', formProps })}
 
@@ -114,7 +114,7 @@ class IntegrationForm extends React.Component<Props> {
           isRequired={true}
           formProps={formProps}
           description={__(
-            'Which specific Brand does this integration belong to?'
+            'Which specific Brand does this integration belong to?',
           )}
         />
 
@@ -136,7 +136,7 @@ class IntegrationForm extends React.Component<Props> {
           {renderButton({
             values: this.generateDoc(values),
             isSubmitted,
-            callback
+            callback,
           })}
         </ModalFooter>
       </>

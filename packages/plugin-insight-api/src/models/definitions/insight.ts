@@ -94,7 +94,7 @@ export interface IChartDocument extends IChart, Document {
 export const dashboardSchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    name: field({ type: String, label: 'Name' }),
+    name: field({ type: String, label: 'Název' }),
     sectionId: field({ type: String, label: 'Section id' }),
     visibility: field({
       type: String,
@@ -110,7 +110,7 @@ export const dashboardSchema = schemaHooksWrapper(
     createdAt: field({
       default: Date.now(),
       type: Date,
-      label: 'Created at',
+      label: 'Vytvořeno v',
       index: true,
     }),
     createdBy: field({
@@ -133,12 +133,12 @@ export const dashboardSchema = schemaHooksWrapper(
 export const sectionSchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    name: field({ type: String, label: 'Name' }),
+    name: field({ type: String, label: 'Název' }),
     type: field({ type: String, label: 'Type' }),
     createdAt: field({
       default: Date.now(),
       type: Date,
-      label: 'Created at',
+      label: 'Vytvořeno v',
       index: true,
     }),
     createdBy: field({

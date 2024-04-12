@@ -50,7 +50,7 @@ export const schema = new Schema({
   unicode: field({ type: String, label: 'Performer username' }),
   description: field({
     type: String,
-    label: 'Description',
+    label: 'Popis',
     index: true,
     optional: true,
     default: '',

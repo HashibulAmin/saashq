@@ -104,7 +104,7 @@ export const deliveryReportsSchema = new Schema({
   },
   createdAt: {
     type: Date,
-    label: 'Created at',
+    label: 'Vytvořeno v',
     default: new Date(),
     index: true,
   },

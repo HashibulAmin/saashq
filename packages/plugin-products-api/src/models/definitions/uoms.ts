@@ -15,12 +15,12 @@ export interface IUomDocument extends IUom, Document {
 export const uomSchema = schemaWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    name: field({ type: String, label: 'Name' }),
-    code: field({ type: String, unique: true, label: 'Code' }),
+    name: field({ type: String, label: 'Název' }),
+    code: field({ type: String, unique: true, label: 'Kód' }),
     createdAt: field({
       type: Date,
       default: new Date(),
-      label: 'Created at'
-    })
-  })
+      label: 'Vytvořeno v',
+    }),
+  }),
 );

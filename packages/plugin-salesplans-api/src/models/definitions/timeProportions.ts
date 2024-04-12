@@ -33,7 +33,7 @@ export interface ITimeProportionDocument extends ITimeProportion, Document {
 const percentSchema = new Schema({
   _id: field({ pkey: true }),
   timeId: field({ type: String, label: 'time frame' }),
-  percent: field({ type: Number, label: 'percent' })
+  percent: field({ type: Number, label: 'percent' }),
 });
 
 export const timeProportionSchema = schemaWrapper(
@@ -43,13 +43,13 @@ export const timeProportionSchema = schemaWrapper(
     branchId: field({ type: String, label: 'Branch' }),
     productCategoryId: field({ type: String, label: 'Product Category' }),
     percents: field({ type: [percentSchema], label: '' }),
-    createdAt: field({ type: Date, default: new Date(), label: 'Created at' }),
+    createdAt: field({ type: Date, default: new Date(), label: 'Vytvořeno v' }),
     createdBy: field({ type: String, label: 'Created by' }),
     modifiedAt: field({
       type: Date,
       default: new Date(),
-      label: 'Modified at'
+      label: 'Upraveno v',
     }),
-    modifiedBy: field({ type: String, label: 'Modified by' })
-  })
+    modifiedBy: field({ type: String, label: 'Modified by' }),
+  }),
 );

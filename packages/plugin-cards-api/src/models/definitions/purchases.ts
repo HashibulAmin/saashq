@@ -60,7 +60,7 @@ export const purchaseproductDataSchema = new Schema(
     currency: field({ type: String, esType: 'keyword' }), // Currency
     quantity: field({ type: Number, label: 'Quantity' }), // Quantity
     maxQuantity: field({ type: Number, label: 'Max' }), // Max quantity when selected bonus voucher
-    unitPrice: field({ type: Number, label: 'Unit price' }), // Unit price
+    unitPrice: field({ type: Number, label: 'Jednotková cena' }), // Unit price
     globalUnitPrice: field({ type: Number, label: 'Global unit price' }), // Global unit price
     unitPricePercent: field({ type: Number, label: 'Unit price percent' }), // Unit price percent
     taxPercent: field({ type: Number, label: 'Tax percent' }), // Tax percent
@@ -77,17 +77,17 @@ export const purchaseproductDataSchema = new Schema(
     expenseAmount: field({
       type: Number,
       optional: true,
-      label: 'Expense amount'
-    }) // Expense Amount
+      label: 'Expense amount',
+    }), // Expense Amount
   },
-  { _id: false }
+  { _id: false },
 );
 
 export const expensDataSchema = new Schema({
   _id: field({ pkey: true }),
   name: field({ type: String, esType: 'keyword', label: 'name' }),
   value: field({ type: Number, label: 'Expense value' }),
-  type: field({ type: String, enum: EXPENSE_DIVIDE_TYPES.ALL, label: 'Type' })
+  type: field({ type: String, enum: EXPENSE_DIVIDE_TYPES.ALL, label: 'Type' }),
 });
 
 export const purchaseSchema = new Schema({
@@ -97,6 +97,6 @@ export const purchaseSchema = new Schema({
   expensesData: field({
     type: [expensDataSchema],
     optianal: true,
-    label: 'Expenses'
-  })
+    label: 'Expenses',
+  }),
 });

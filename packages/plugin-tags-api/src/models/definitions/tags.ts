@@ -19,29 +19,29 @@ export interface ITagDocument extends ITag, Document {
 export const tagSchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    name: field({ type: String, label: 'Name' }),
+    name: field({ type: String, label: 'Název' }),
     type: field({
       type: String,
       label: 'Type',
-      index: true
+      index: true,
     }),
     colorCode: field({ type: String, label: 'Color code' }),
-    createdAt: field({ type: Date, label: 'Created at' }),
+    createdAt: field({ type: Date, label: 'Vytvořeno v' }),
     objectCount: field({ type: Number, label: 'Object count' }),
-    order: field({ type: String, label: 'Order', index: true }),
+    order: field({ type: String, label: 'Objednat', index: true }),
     parentId: field({
       type: String,
       optional: true,
       index: true,
-      label: 'Parent'
+      label: 'Rodič',
     }),
     relatedIds: field({
       type: [String],
       optional: true,
-      label: 'Children tag ids'
-    })
+      label: 'Children tag ids',
+    }),
   }),
-  'saashq_tags'
+  'saashq_tags',
 );
 
 // for tags query. increases search speed, avoids in-memory sorting

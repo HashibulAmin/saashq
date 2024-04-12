@@ -67,11 +67,11 @@ export const transactionSchema = schemaHooksWrapper(
       optional: true,
       label: 'Transaction type',
     }),
-    description: field({ type: String, optional: true, label: 'Description' }),
+    description: field({ type: String, optional: true, label: 'Popis' }),
     payDate: field({
       type: Date,
       default: new Date(),
-      label: 'Created at',
+      label: 'Vytvořeno v',
     }),
     payment: field({
       type: Number,

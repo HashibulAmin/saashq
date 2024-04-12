@@ -28,7 +28,7 @@ export default {
         if (path.schema) {
           fields = [
             ...fields,
-            ...(await generateFieldsFromSchema(path.schema, `${name}.`))
+            ...(await generateFieldsFromSchema(path.schema, `${name}.`)),
           ];
         }
       }
@@ -40,9 +40,9 @@ export default {
   systemFields: ({ data: { groupId } }) =>
     [
       { field: 'number', label: 'Number' },
-      { field: 'status', label: 'Status' },
+      { field: 'status', label: 'Postavení' },
       { field: 'classification', label: 'Classification' },
-      { field: 'description', label: 'Description' },
+      { field: 'description', label: 'Popis' },
       { field: 'marginAmount', label: 'MarginAmount' },
       { field: 'leaseAmount', label: 'LeaseAmount' },
       { field: 'tenor', label: 'Tenor' },
@@ -50,13 +50,13 @@ export default {
       { field: 'unduePercent', label: 'Undue percent' },
       { field: 'repayment', label: 'Repayment' },
       { field: 'startDate', label: 'Start date' },
-      { field: 'scheduleDays', label: 'Schedule days' }
-    ].map(e => ({
+      { field: 'scheduleDays', label: 'Schedule days' },
+    ].map((e) => ({
       text: e.label,
       type: e.field,
       groupId,
       contentType: `loans:contract`,
       canHide: false,
-      isDefinedBySaasHQ: true
-    }))
+      isDefinedBySaasHQ: true,
+    })),
 };

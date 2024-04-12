@@ -12,7 +12,7 @@ export const COMPANY_BUSINESS_TYPES = [
   'Press',
   'Prospect',
   'Reseller',
-  'Other'
+  'Other',
 ];
 
 export const COUNTRIES = [
@@ -254,7 +254,7 @@ export const COUNTRIES = [
   'Yemen',
   'Yugoslavia',
   'Zambia',
-  'Zimbabwe'
+  'Zimbabwe',
 ];
 
 export const COMPANY_DATAS = {
@@ -265,8 +265,8 @@ export const COMPANY_DATAS = {
   ALL: [
     { field: 'owner', label: 'Owner' },
     { field: 'parentCompany', label: 'Parent Company' },
-    { field: 'links', label: 'Links' }
-  ]
+    { field: 'links', label: 'Links' },
+  ],
 };
 
 export const COMPANY_INFO = {
@@ -291,10 +291,10 @@ export const COMPANY_INFO = {
     { field: 'primaryEmail', label: 'Primary Email' },
     { field: 'primaryPhone', label: 'Primary Phone' },
     { field: 'businessType', label: 'Business Type' },
-    { field: 'description', label: 'Description' },
+    { field: 'description', label: 'Popis' },
     { field: 'isSubscribed', label: 'Subscribed' },
-    { field: 'location', label: 'Headquarters Country' }
-  ]
+    { field: 'location', label: 'Headquarters Country' },
+  ],
 };
 
 export const COMPANY_LINKS = {
@@ -313,6 +313,6 @@ export const COMPANY_LINKS = {
     { field: 'instagram', label: 'Instagram' },
     { field: 'youtube', label: 'Youtube' },
     { field: 'github', label: 'Github' },
-    { field: 'website', label: 'Website' }
-  ]
+    { field: 'website', label: 'Website' },
+  ],
 };

@@ -45,11 +45,11 @@ const scoringConfigSchema = new Schema(
 
 export const shqSchema = new Schema({
   _id: field({ pkey: true }),
-  name: { type: String, label: 'Name' },
+  name: { type: String, label: 'Název' },
   webName: { type: String, label: 'Web Name' },
   webDescription: { type: String, label: 'Web Description' },
   url: { type: String, label: 'Url' },
-  description: { type: String, label: 'Description' },
+  description: { type: String, label: 'Popis' },
   features: { type: [featureSchema] },
   logo: { type: Object },
   favicon: { type: Object },
@@ -63,7 +63,7 @@ export const shqSchema = new Schema({
   appearance: { type: appearanceSchema },
   scoringConfig: { type: [scoringConfigSchema] },
   createdBy: { type: String, label: 'Created by' },
-  createdAt: { type: Date, label: 'Created at' },
+  createdAt: { type: Date, label: 'Vytvořeno v' },
 });
 
 export interface IShqModel extends Model<IShqDocument> {

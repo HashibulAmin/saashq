@@ -3,7 +3,7 @@ import { PACKAGE_SELECT_OPTIONS } from './constants';
 import { field } from './utils';
 
 const getEnum = (fieldName: string): string[] => {
-  return PACKAGE_SELECT_OPTIONS[fieldName].map(option => option.value);
+  return PACKAGE_SELECT_OPTIONS[fieldName].map((option) => option.value);
 };
 
 export interface IPackage {
@@ -26,11 +26,11 @@ export interface IPackageDocument extends IPackage, Document {
 
 export const packageSchema = new Schema({
   _id: field({ pkey: true }),
-  name: field({ type: String, label: 'Name' }),
+  name: field({ type: String, label: 'Název' }),
   description: field({
     type: String,
     optional: true,
-    label: 'Description'
+    label: 'Popis',
   }),
   wpId: field({ type: String, optional: true, label: 'WP Id' }),
   level: field({
@@ -40,17 +40,17 @@ export const packageSchema = new Schema({
     optional: true,
     label: 'Level',
     esType: 'keyword',
-    selectOptions: PACKAGE_SELECT_OPTIONS.LEVEL
+    selectOptions: PACKAGE_SELECT_OPTIONS.LEVEL,
   }),
   projectWpId: field({
     type: String,
     optional: true,
-    label: 'Project WP Id'
+    label: 'Project WP Id',
   }),
   projectId: field({
     type: String,
     optional: true,
-    label: 'Project Id'
+    label: 'Project Id',
   }),
   price: field({ type: Number, optional: true, label: 'Price' }),
   profit: field({ type: Number, optional: true, label: 'Profit' }),
@@ -58,7 +58,7 @@ export const packageSchema = new Schema({
   createdAt: field({
     type: Date,
     default: Date.now,
-    label: 'Created at'
+    label: 'Vytvořeno v',
   }),
-  modifiedAt: field({ type: Date, label: 'Modified at' })
+  modifiedAt: field({ type: Date, label: 'Upraveno v' }),
 });

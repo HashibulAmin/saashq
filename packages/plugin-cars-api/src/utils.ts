@@ -174,7 +174,7 @@ export const generateFields = async ({ subdomain }) => {
     {
       _id: Math.random(),
       name: 'parentCarCategoryId',
-      label: 'Category',
+      label: 'Kategorie',
       type: 'String',
       selectOptions: parentCategories.map((category) => ({
         value: category._id,

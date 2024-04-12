@@ -18,15 +18,15 @@ export const loadMovementClass = (models: IModels) => {
 
     public static async movementAdd(doc: any, userId: string) {
       if (!doc.items) {
-        throw new Error('No assets in  movement ');
+        throw new Error('Žádný majetek v pohybu ');
       }
 
       if (!doc.description) {
-        throw new Error('No description in movement ');
+        throw new Error('Žádný popis v pohybu ');
       }
 
       if (!doc.movedAt) {
-        throw new Error('No moved date in movement ');
+        throw new Error('Žádné posunuté datum v pohybu ');
       }
 
       const addedAssets = await models.MovementItems.movementItemsAdd(
@@ -53,12 +53,12 @@ export const loadMovementClass = (models: IModels) => {
 
     public static async movementEdit(_id: string, doc: any) {
       if (!_id) {
-        throw new Error('You must provide a id');
+        throw new Error('Musíte poskytnout ID');
       }
       const movement = await models.Movements.findOne({ _id });
 
       if (!movement) {
-        throw new Error('Movement not found');
+        throw new Error('Pohyb nenalezen');
       }
 
       await models.MovementItems.movementItemsEdit(_id, doc.items);
@@ -77,13 +77,13 @@ export const loadMovementClass = (models: IModels) => {
 
     public static async movementRemove(ids: string[]) {
       if (!ids) {
-        throw new Error('You must specify a valid id');
+        throw new Error('Musíte zadat platné ID');
       }
       try {
         const movements = await models.Movements.find({ _id: { $in: ids } });
 
         if (movements.length === 0) {
-          throw new Error('Something went wrong');
+          throw new Error('Něco se pokazilo');
         }
 
         await models.MovementItems.deleteMany({ movementId: { $in: ids } });

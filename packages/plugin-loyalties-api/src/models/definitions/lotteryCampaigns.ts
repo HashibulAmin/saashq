@@ -3,7 +3,7 @@ import { field } from './utils';
 import {
   commonCampaignSchema,
   ICommonCampaignFields,
-  ICommonCampaignDocument
+  ICommonCampaignDocument,
 } from './common';
 
 export interface ILotteryAward extends Document {
@@ -31,16 +31,16 @@ export interface ILotteryCampaignDocument
 export const lotteryAwardSchema = new Schema(
   {
     _id: field({ pkey: true }),
-    name: field({ type: String, label: 'Name' }),
+    name: field({ type: String, label: 'Název' }),
     voucherCampaignId: field({ type: String, label: 'Voucher campaign' }),
     count: field({ type: Number, label: 'Count', min: 0 }),
     wonLotteryIds: field({
       type: [String],
       label: 'Won lottery ids',
-      optional: true
-    })
+      optional: true,
+    }),
   },
-  { _id: false }
+  { _id: false },
 );
 
 export const lotteryCampaignSchema = new Schema({
@@ -49,5 +49,5 @@ export const lotteryCampaignSchema = new Schema({
   numberFormat: field({ type: String, label: 'Number format type' }),
   buyScore: field({ type: Number }),
 
-  awards: field({ type: [lotteryAwardSchema], label: 'Awards' })
+  awards: field({ type: [lotteryAwardSchema], label: 'Awards' }),
 });

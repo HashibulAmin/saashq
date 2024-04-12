@@ -49,8 +49,8 @@ export interface IPutResponseDocument extends Document, IPutResponse {
 export const putResponseSchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    createdAt: field({ type: Date, label: 'Created at', index: true }),
-    modifiedAt: field({ type: Date, label: 'Modified at' }),
+    createdAt: field({ type: Date, label: 'Vytvořeno v', index: true }),
+    modifiedAt: field({ type: Date, label: 'Upraveno v' }),
     number: field({ type: String, label: 'Inner bill number', index: true }),
 
     // Холбогдох обьект
@@ -113,10 +113,10 @@ export const putResponseSchema = schemaHooksWrapper(
     customerNo: field({ type: String, label: '' }),
     customerName: field({ type: String, label: '' }),
     status: field({ type: String, optional: true }),
-    posToken: field({ type: String, optional: true })
+    posToken: field({ type: String, optional: true }),
   }),
 
-  'saashq_ebarimt'
+  'saashq_ebarimt',
 );
 
 putResponseSchema.index({ contentType: 1, contentId: 1, status: 1 });

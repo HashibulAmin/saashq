@@ -21,24 +21,24 @@ export interface IJobCategoryDocument extends IJobCategory, Document {
 export const jobCategorySchema = schemaWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    name: field({ type: String, label: 'Name' }),
-    code: field({ type: String, unique: true, label: 'Code' }),
-    order: field({ type: String, label: 'Order' }),
-    parentId: field({ type: String, optional: true, label: 'Parent' }),
-    description: field({ type: String, optional: true, label: 'Description' }),
+    name: field({ type: String, label: 'Název' }),
+    code: field({ type: String, unique: true, label: 'Kód' }),
+    order: field({ type: String, label: 'Objednat' }),
+    parentId: field({ type: String, optional: true, label: 'Rodič' }),
+    description: field({ type: String, optional: true, label: 'Popis' }),
     status: field({
       type: String,
       enum: JOB_CATEGORY_STATUSES.ALL,
       optional: true,
-      label: 'Status',
+      label: 'Postavení',
       default: 'active',
       esType: 'keyword',
-      index: true
+      index: true,
     }),
     createdAt: field({
       type: Date,
       default: new Date(),
-      label: 'Created at'
-    })
-  })
+      label: 'Vytvořeno v',
+    }),
+  }),
 );

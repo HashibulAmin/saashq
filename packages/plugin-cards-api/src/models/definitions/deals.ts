@@ -51,7 +51,7 @@ export const productDataSchema = new Schema(
     currency: field({ type: String, esType: 'keyword' }), // Currency
     quantity: field({ type: Number, label: 'Quantity' }), // Quantity
     maxQuantity: field({ type: Number, label: 'Max' }), // Max quantity when selected bonus voucher
-    unitPrice: field({ type: Number, label: 'Unit price' }), // Unit price
+    unitPrice: field({ type: Number, label: 'Jednotková cena' }), // Unit price
     globalUnitPrice: field({ type: Number, label: 'Global unit price' }), // Global unit price
     unitPricePercent: field({ type: Number, label: 'Unit price percent' }), // Unit price percent
     taxPercent: field({ type: Number, label: 'Tax percent' }), // Tax percent

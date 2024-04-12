@@ -38,14 +38,14 @@ export const conversationMessageSchema = new Schema({
   visitorId: field({
     type: String,
     index: true,
-    label: 'unique visitor id on logger database'
+    label: 'unique visitor id on logger database',
   }),
   fromBot: field({ type: Boolean }),
   userId: field({ type: String, index: true }),
-  createdAt: field({ type: Date, index: true, label: 'Created At' }),
+  createdAt: field({ type: Date, index: true, label: 'Vytvořeno v' }),
   updatedAt: field({ type: Date, index: true, label: 'Updated At' }),
   isCustomerRead: field({ type: Boolean, label: 'Is Customer Read' }),
   internal: field({ type: Boolean, label: 'Internal' }),
   botId: field({ type: String, label: 'Bot', optional: true }),
-  botData: field({ type: Object, optional: true })
+  botData: field({ type: Object, optional: true }),
 });

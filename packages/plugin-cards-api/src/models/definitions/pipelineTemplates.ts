@@ -26,16 +26,16 @@ export const stageSchema = new Schema(
     _id: field({ type: String }),
     name: field({ type: String, label: 'Stage name' }),
     formId: field({ type: String, optional: true, label: 'Form' }),
-    order: field({ type: Number, label: 'Order' }),
+    order: field({ type: Number, label: 'Objednat' }),
   },
   { _id: false },
 );
 
 export const pipelineTemplateSchema = new Schema({
   _id: field({ pkey: true }),
-  name: field({ type: String, label: 'Name' }),
+  name: field({ type: String, label: 'Název' }),
   type: field({ type: String, label: 'Type' }),
-  description: field({ type: String, optional: true, label: 'Description' }),
+  description: field({ type: String, optional: true, label: 'Popis' }),
   stages: field({ type: [stageSchema], default: [], label: 'Stages' }),
   isDefinedBySaasHQ: field({
     type: Boolean,
@@ -46,6 +46,6 @@ export const pipelineTemplateSchema = new Schema({
   createdAt: field({
     type: Date,
     default: new Date(),
-    label: 'Created at',
+    label: 'Vytvořeno v',
   }),
 });

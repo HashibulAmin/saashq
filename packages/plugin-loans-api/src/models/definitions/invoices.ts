@@ -34,34 +34,34 @@ export const invoiceSchema = schemaHooksWrapper(
       type: String,
       optional: true,
       label: 'Customer',
-      index: true
+      index: true,
     }),
     companyId: field({
       type: String,
       optional: true,
       label: 'Company',
-      index: true
+      index: true,
     }),
     number: field({ type: String, label: 'Invoice number', index: true }),
     status: field({
       type: String,
-      label: 'Status',
+      label: 'Postavení',
       enum: INVOICE_STATUS.ALL,
       required: true,
-      default: INVOICE_STATUS.PENDING
+      default: INVOICE_STATUS.PENDING,
     }),
     payDate: field({
       type: Date,
       default: new Date(),
-      label: 'Created at',
-      index: true
+      label: 'Vytvořeno v',
+      index: true,
     }),
     calcInterest: field({ type: Number, min: 0, label: 'calcInterest' }),
     storedInterest: field({ type: Number, min: 0, label: 'storedInterest' }),
     commitmentInterest: field({
       type: Number,
       min: 0,
-      label: 'commitmentInterest'
+      label: 'commitmentInterest',
     }),
     payment: field({ type: Number, min: 0, label: 'payment' }),
     interestEve: field({ type: Number, min: 0, label: 'interest eve' }),
@@ -73,9 +73,9 @@ export const invoiceSchema = schemaHooksWrapper(
     createdAt: field({
       type: Date,
       default: () => new Date(),
-      label: 'Created at'
+      label: 'Vytvořeno v',
     }),
-    createdBy: field({ type: String, optional: true, label: 'created member' })
+    createdBy: field({ type: String, optional: true, label: 'created member' }),
   }),
-  'saashq_invoiceSchema'
+  'saashq_invoiceSchema',
 );

@@ -4,7 +4,7 @@ export const ASSET_CATEGORY_STATUSES = [
   { label: 'Choose Status', value: '' },
   { label: 'Active', value: 'active' },
   { label: 'Disabled', value: 'disabled' },
-  { label: 'Archived', value: 'archived' }
+  { label: 'Archived', value: 'archived' },
 ];
 
 export const ASSET_INFO = {
@@ -18,41 +18,41 @@ export const ASSET_INFO = {
   vendor: 'Vendor',
 
   ALL: [
-    { field: 'name', label: 'Name' },
+    { field: 'name', label: 'Název' },
     { field: 'type', label: 'Type' },
-    { field: 'category', label: 'Category' },
-    { field: 'parent', label: 'Parent' },
-    { field: 'code', label: 'Code' },
-    { field: 'description', label: 'Description' },
+    { field: 'category', label: 'Kategorie' },
+    { field: 'parent', label: 'Rodič' },
+    { field: 'code', label: 'Kód' },
+    { field: 'description', label: 'Popis' },
     { field: 'unitPrice', label: 'UnitPrice' },
-    { field: 'vendor', label: 'Vendor' }
-  ]
+    { field: 'vendor', label: 'Prodejce' },
+  ],
 };
 
 export const ASSET_CATEGORY_STATUS_FILTER = {
   disabled: 'Disabled',
-  archived: 'Archived'
+  archived: 'Archived',
 };
 
 export const breadcrumb = [
   { title: __('Settings'), link: '/settings' },
-  { title: __('Assets') }
+  { title: __('Assets') },
 ];
 
 export const menuMovements = [
   { title: 'Movements', link: '/asset-movements' },
-  { title: 'Assets', link: '/asset-movement-items' }
+  { title: 'Assets', link: '/asset-movement-items' },
 ];
 
 export const checkKnowledge = [
   {
     title: 'Assigned',
     label: 'Assigned Knowledgebase',
-    icon: 'file-bookmark-alt'
+    icon: 'file-bookmark-alt',
   },
   {
     title: 'Designated',
     label: 'Designated Knowledgebase',
-    icon: 'file-times'
-  }
+    icon: 'file-times',
+  },
 ];

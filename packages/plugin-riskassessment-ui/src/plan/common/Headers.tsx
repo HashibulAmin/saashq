@@ -6,7 +6,7 @@ import {
   SelectTeamMembers,
   SortHandler,
   Tip,
-  __
+  __,
 } from '@saashq/ui/src';
 import { DateContainer } from '@saashq/ui/src/styles/main';
 import { removeParams, setParams } from '@saashq/ui/src/utils/router';
@@ -15,7 +15,7 @@ import {
   FormContainer as Container,
   CustomRangeContainer,
   EndDateContainer,
-  Box as StatusBox
+  Box as StatusBox,
 } from '../../styles';
 
 export const headers = (queryParams, history) => {
@@ -24,32 +24,32 @@ export const headers = (queryParams, history) => {
     setParams(history, { [name]: [...values] });
   };
 
-  const selectStatus = color => {
+  const selectStatus = (color) => {
     removeParams(history, 'page');
     setParams(history, { status: color });
   };
 
-  const generateQueryParamsDate = params => {
+  const generateQueryParamsDate = (params) => {
     return !!params ? new Date(params) : '';
   };
 
   const dateOrder = (value, name) => {
     removeParams(history, 'page');
     setParams(history, {
-      [name]: value
+      [name]: value,
     });
   };
 
-  const clearParams = field => {
+  const clearParams = (field) => {
     if (Array.isArray(field)) {
-      field.forEach(name => {
+      field.forEach((name) => {
         return removeParams(history, name);
       });
     }
     removeParams(history, field);
   };
 
-  const clearButton = field => (
+  const clearButton = (field) => (
     <Button
       icon="cancel-1"
       btnStyle="link"
@@ -80,11 +80,11 @@ export const headers = (queryParams, history) => {
               multi={true}
             />
           </FormGroup>
-        )
-      }
+        ),
+      },
     },
     {
-      label: 'Status',
+      label: 'Postavení',
       name: 'status',
       filter: {
         actionBar:
@@ -92,7 +92,7 @@ export const headers = (queryParams, history) => {
           clearButton('status'),
         main: !queryParams?.isArchived && (
           <Container row>
-            {['draft', 'active'].map(status => (
+            {['draft', 'active'].map((status) => (
               <StatusBox
                 selected={queryParams.status === status}
                 onClick={() => selectStatus(status)}
@@ -106,18 +106,18 @@ export const headers = (queryParams, history) => {
               </StatusBox>
             ))}
           </Container>
-        )
-      }
+        ),
+      },
     },
     {
-      label: 'Created At',
+      label: 'Vytvořeno v',
       name: 'createdAt',
       sort: <SortHandler sortField="createdAt" />,
       filter: {
         actionBar:
           Object.entries(queryParams || {}).some(
             ([key, value]) =>
-              ['createdAtFrom', 'createdAtTo'].includes(key) && value
+              ['createdAtFrom', 'createdAtTo'].includes(key) && value,
           ) && clearButton(['createdAtFrom', 'createdAtTo']),
         main: (
           <FormGroup>
@@ -128,7 +128,7 @@ export const headers = (queryParams, history) => {
                   name="createdAtFrom"
                   value={generateQueryParamsDate(queryParams?.createdAtFrom)}
                   placeholder="select from date "
-                  onChange={e => dateOrder(e, 'createdAtFrom')}
+                  onChange={(e) => dateOrder(e, 'createdAtFrom')}
                 />
               </DateContainer>
               <EndDateContainer>
@@ -137,24 +137,24 @@ export const headers = (queryParams, history) => {
                     name="createdAtTo"
                     value={generateQueryParamsDate(queryParams?.createdAtTo)}
                     placeholder="select to date "
-                    onChange={e => dateOrder(e, 'createdAtTo')}
+                    onChange={(e) => dateOrder(e, 'createdAtTo')}
                   />
                 </DateContainer>
               </EndDateContainer>
             </CustomRangeContainer>
           </FormGroup>
-        )
-      }
+        ),
+      },
     },
     {
-      label: 'Modified At',
+      label: 'Upraveno v',
       name: 'modifiedAt',
       sort: <SortHandler sortField="modifiedAt" />,
       filter: {
         actionBar:
           Object.entries(queryParams || {}).some(
             ([key, value]) =>
-              ['modifiedAtFrom', 'modifiedAtTo'].includes(key) && value
+              ['modifiedAtFrom', 'modifiedAtTo'].includes(key) && value,
           ) && clearButton(['modifiedAtFrom', 'modifiedAtTo']),
         main: (
           <FormGroup>
@@ -165,7 +165,7 @@ export const headers = (queryParams, history) => {
                   name="modifiedAtFrom"
                   value={generateQueryParamsDate(queryParams?.modifiedAtFrom)}
                   placeholder="select from date "
-                  onChange={e => dateOrder(e, 'modifiedAtFrom')}
+                  onChange={(e) => dateOrder(e, 'modifiedAtFrom')}
                 />
               </DateContainer>
               <EndDateContainer>
@@ -174,14 +174,14 @@ export const headers = (queryParams, history) => {
                     name="modifiedAtTo"
                     value={generateQueryParamsDate(queryParams?.modifiedAtTo)}
                     placeholder="select to date "
-                    onChange={e => dateOrder(e, 'modifiedAtTo')}
+                    onChange={(e) => dateOrder(e, 'modifiedAtTo')}
                   />
                 </DateContainer>
               </EndDateContainer>
             </CustomRangeContainer>
           </FormGroup>
-        )
-      }
-    }
+        ),
+      },
+    },
   ];
 };

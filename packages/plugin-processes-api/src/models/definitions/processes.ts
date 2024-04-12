@@ -33,7 +33,7 @@ export const processSchema = schemaHooksWrapper(
     date: field({ type: Date, label: 'date' }),
     productId: field({ type: String, label: 'Product', index: true }),
     uom: field({ type: String, label: 'Product', index: true }),
-    status: field({ type: String, label: 'Status' }),
+    status: field({ type: String, label: 'Postavení' }),
     isSub: field({ type: Boolean, optional: true, label: 'Is Sub Process' }),
     createdAt: { type: Date, default: new Date(), label: 'Created date' },
     createdBy: { type: String },
@@ -42,9 +42,9 @@ export const processSchema = schemaHooksWrapper(
     referInfos: field({ type: Object, optional: true, label: 'Jobs' }),
     branchId: { type: String, label: 'Branch' },
     departmentId: { type: String, label: 'Department' },
-    origin: field({ type: String, label: 'Origin' })
+    origin: field({ type: String, label: 'Origin' }),
   }),
-  'saashq_processes'
+  'saashq_processes',
 );
 
 // for tags query. increases search speed, avoids in-memory sorting

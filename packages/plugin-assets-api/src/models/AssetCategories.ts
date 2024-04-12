@@ -23,7 +23,7 @@ export const loadAssetCategoriesClass = (models: IModels) => {
       const assetCategories = await models.AssetCategories.findOne(selector);
 
       if (!assetCategories) {
-        throw new Error('Asset Category not found');
+        throw new Error('Kategorie aktiv nebyla nalezena');
       }
 
       return assetCategories;
@@ -62,7 +62,7 @@ export const loadAssetCategoriesClass = (models: IModels) => {
       }).lean();
 
       if (parentCategory && parentCategory.parentId === _id) {
-        throw new Error('Cannot change category');
+        throw new Error('Nelze změnit kategorii');
       }
 
       // Generatingg  order
@@ -109,7 +109,7 @@ export const loadAssetCategoriesClass = (models: IModels) => {
       count += await models.AssetCategories.countDocuments({ parentId: _id });
 
       if (count > 0) {
-        throw new Error("Can't remove a asset category");
+        throw new Error('Kategorii díla nelze odstranit');
       }
 
       return models.AssetCategories.deleteOne({ _id });
@@ -117,7 +117,7 @@ export const loadAssetCategoriesClass = (models: IModels) => {
 
     static async checkCodeDuplication(code: string) {
       if (code.includes('/')) {
-        throw new Error('The "/" character is not allowed in the code');
+        throw new Error('Znak "/" není v kódu povolen');
       }
 
       const category = await models.AssetCategories.findOne({
@@ -125,7 +125,7 @@ export const loadAssetCategoriesClass = (models: IModels) => {
       });
 
       if (category) {
-        throw new Error('Code must be unique');
+        throw new Error('Kód musí být jedinečný');
       }
     }
     public static async generateOrder(

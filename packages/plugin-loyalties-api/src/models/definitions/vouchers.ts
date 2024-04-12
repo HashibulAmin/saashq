@@ -21,10 +21,10 @@ export const voucherSchema = schemaHooksWrapper(
       type: String,
       enum: VOUCHER_STATUS.ALL,
       default: 'new',
-      label: 'Status'
+      label: 'Postavení',
     }),
     // etc: bonus-> usedCount
-    bonusInfo: field({ type: Object, optional: true, label: 'Bonus log' })
+    bonusInfo: field({ type: Object, optional: true, label: 'Bonus log' }),
   }),
-  'saashq_loyalty_vouchers'
+  'saashq_loyalty_vouchers',
 );

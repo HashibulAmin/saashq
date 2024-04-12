@@ -111,7 +111,7 @@ export const feedSchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
     title: field({ type: String, label: 'Title' }),
-    description: field({ type: String, label: 'Description' }),
+    description: field({ type: String, label: 'Popis' }),
     images: field({ type: [attachmentSchema], label: 'Images' }),
     attachments: field({
       type: [attachmentSchema],
@@ -123,19 +123,19 @@ export const feedSchema = schemaHooksWrapper(
     customFieldsData: field({
       type: [customFieldSchema],
       optional: true,
-      label: 'Custom fields data',
+      label: 'Data vlastních polí',
     }),
     departmentIds: field({ type: [String], label: 'Department Ids' }),
     department: field({ type: String, label: 'Department' }),
     branchIds: field({ type: [String], label: 'Branch Ids' }),
     unitId: field({ type: String, label: 'Unit', optional: true }),
-    category: field({ type: String, label: 'Category', optional: true }),
+    category: field({ type: String, label: 'Kategorie', optional: true }),
     ceremonyData: field({ type: ceremonyDataSchema }),
     eventData: field({ type: eventDataSchema }),
     startDate: field({ type: Date }),
     endDate: field({ type: Date }),
     createdBy: field({ type: String, label: 'Created by' }),
-    createdAt: field({ type: Date, label: 'Created at' }),
+    createdAt: field({ type: Date, label: 'Vytvořeno v' }),
     updatedBy: field({ type: String, label: 'Updated by' }),
     updatedAt: field({ type: Date, label: 'Updated at' }),
     background: field({
@@ -149,10 +149,10 @@ export const feedSchema = schemaHooksWrapper(
 export const thankSchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    description: field({ type: String, label: 'Description' }),
+    description: field({ type: String, label: 'Popis' }),
     recipientIds: field({ type: [String] }),
     createdBy: field({ type: String, label: 'Created by' }),
-    createdAt: field({ type: Date, label: 'Created at' }),
+    createdAt: field({ type: Date, label: 'Vytvořeno v' }),
     updatedBy: field({ type: String, label: 'Updated by' }),
     updatedAt: field({ type: Date, label: 'Updated at' }),
   }),

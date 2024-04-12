@@ -32,7 +32,7 @@ export const commentConversationSchema = new Schema({
   content: String,
   saashqApiId: String,
   customerId: { type: String, optional: true },
-  createdAt: { type: Date, default: Date.now, label: 'Created At' },
+  createdAt: { type: Date, default: Date.now, label: 'Vytvořeno v' },
   updatedAt: field({ type: Date, index: true, label: 'Updated At' }),
   attachments: [attachmentSchema],
 });

@@ -42,33 +42,33 @@ const coverSummarySchema = new Schema(
     kind: field({ type: String, label: 'Kind' }),
     kindOfVal: field({ type: Number, label: 'Kind of value' }),
     value: field({ type: Number, label: 'Value' }),
-    amount: field({ type: Number, label: 'Amount' })
+    amount: field({ type: Number, label: 'Amount' }),
   },
-  { _id: false }
+  { _id: false },
 );
 
 const coverDetailSchema = new Schema({
   _id: field({ pkey: true }),
   paidType: field({ type: String, label: 'Paid type' }),
   paidSummary: field({ type: [coverSummarySchema], label: 'Summary' }),
-  paidDetail: field({ type: Object, label: 'Detail' })
+  paidDetail: field({ type: Object, label: 'Detail' }),
 });
 
 export const coverSchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
     posToken: field({ type: String, label: 'Pos' }),
-    status: field({ type: String, default: 'new', label: 'Status' }),
+    status: field({ type: String, default: 'new', label: 'Postavení' }),
     beginDate: field({ type: Date, label: 'Begin date' }),
     endDate: field({ type: Date, label: 'End date' }),
-    description: field({ type: String, label: 'Description' }),
+    description: field({ type: String, label: 'Popis' }),
     userId: field({ type: String, label: 'Assegnee' }),
     details: field({ type: [coverDetailSchema], label: 'Details' }),
     createdAt: field({ type: Date, label: 'Created' }),
     createdBy: field({ type: String, label: 'Created user' }),
     modifiedAt: field({ type: Date, label: 'Modified' }),
     modifiedBy: field({ type: String, label: 'Modified user' }),
-    note: field({ type: String, label: 'Note' })
+    note: field({ type: String, label: 'Note' }),
   }),
-  'saashq_pos_slot'
+  'saashq_pos_slot',
 );

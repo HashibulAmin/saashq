@@ -4,7 +4,7 @@ import {
   BlockRowTitle,
   Features,
   IconWrap,
-  ToggleWrap
+  ToggleWrap,
 } from '../../styles';
 import { IBoard, IPipeline } from '@saashq/ui-cards/src/boards/types';
 import React, { useState } from 'react';
@@ -91,7 +91,7 @@ function General({
   purchaseToggle,
   ticketToggle,
   vendorParentProductCategoryId,
-  kind
+  kind,
 }: Props) {
   const [show, setShow] = useState<boolean>(false);
 
@@ -110,9 +110,9 @@ function General({
       return [];
     }
 
-    return options.map(option => ({
+    return options.map((option) => ({
       value: option[valueKey],
-      label: option[labelKey]
+      label: option[labelKey],
     }));
   }
 
@@ -120,17 +120,17 @@ function General({
     type,
     stageId,
     boardId,
-    pipelineId
+    pipelineId,
   }: {
     type: string;
     stageId?: string;
     boardId?: string;
     pipelineId?: string;
   }) {
-    const onChangeStage = stgId => handleFormChange(`${type}StageId`, stgId);
-    const onChangePipeline = plId =>
+    const onChangeStage = (stgId) => handleFormChange(`${type}StageId`, stgId);
+    const onChangePipeline = (plId) =>
       handleFormChange(`${type}PipelineId`, plId);
-    const onChangeBoard = brId => handleFormChange(`${type}BoardId`, brId);
+    const onChangeBoard = (brId) => handleFormChange(`${type}BoardId`, brId);
 
     return isEnabled('cards') ? (
       <BoardSelect
@@ -159,7 +159,7 @@ function General({
     stageId,
     pipelineId,
     boardId,
-    className
+    className,
   }: ControlItem) {
     const handleChange = (e: React.FormEvent) => {
       const value = (e.target as HTMLInputElement).value;
@@ -188,7 +188,7 @@ function General({
                   type: boardType,
                   stageId,
                   boardId,
-                  pipelineId
+                  pipelineId,
                 })}
                 rootClose={true}
               >
@@ -207,7 +207,7 @@ function General({
     const renderSelect = (
       options: IBoard[] | IPipeline[],
       handleSelect: (args: ISelectedOption) => void,
-      value?: string
+      value?: string,
     ) => {
       return (
         <Select
@@ -241,7 +241,7 @@ function General({
           subtitle: 'Shown name on menu',
           formValueName: 'taskPublicLabel',
           formValue: taskPublicLabel,
-          placeholder: 'Please enter a label for Public Task'
+          placeholder: 'Please enter a label for Public Task',
         })}
         <div>
           <FormGroup>
@@ -271,23 +271,23 @@ function General({
             formValueName: 'name',
             formValue: name,
             formProps: {
-              autoFocus: true
-            }
+              autoFocus: true,
+            },
           })}
 
           {renderControl({
-            label: 'Description',
+            label: 'Popis',
             subtitle: 'Displayed in the header area',
             className: 'description',
             formValueName: 'description',
-            formValue: description
+            formValue: description,
           })}
 
           {renderControl({
             label: 'Website',
             subtitle: 'Redirect URL to the main website',
             formValueName: 'url',
-            formValue: url
+            formValue: url,
           })}
         </BlockRow>
       </Block>
@@ -298,7 +298,7 @@ function General({
     title: string,
     childrens: any,
     toggleName: string,
-    toggle: boolean
+    toggle: boolean,
   ) => {
     return (
       <BlockRow>
@@ -312,7 +312,7 @@ function General({
               onChange={() => onChangeToggle(toggleName, !toggle)}
               icons={{
                 checked: <span>Yes</span>,
-                unchecked: <span>No</span>
+                unchecked: <span>No</span>,
               }}
             />
           </FormGroup>
@@ -332,7 +332,7 @@ function General({
     );
 
     const renderTrigger = () => {
-      const content = props => <CategoryForm {...props} categories={[]} />;
+      const content = (props) => <CategoryForm {...props} categories={[]} />;
       return (
         <ModalTrigger
           title="Manage category"
@@ -351,10 +351,10 @@ function General({
             label="Choose product category"
             name="productCategoryId"
             initialValue={vendorParentProductCategoryId || ''}
-            onSelect={categoryId =>
+            onSelect={(categoryId) =>
               handleFormChange(
                 'vendorParentProductCategoryId',
-                categoryId as string
+                categoryId as string,
               )
             }
             multi={false}
@@ -386,7 +386,7 @@ function General({
                 subtitle: 'Shown name on menu',
                 formValueName: 'knowledgeBaseLabel',
                 formValue: knowledgeBaseLabel,
-                placeholder: 'Please enter a label for Knowledge base'
+                placeholder: 'Please enter a label for Knowledge base',
               })}
               <FormGroup>
                 <ControlLabel required={true}>
@@ -402,14 +402,14 @@ function General({
               </FormGroup>
             </>,
             'kbToggle',
-            kbToggle || false
+            kbToggle || false,
           )}
         {isEnabled('cards') &&
           renderFeatureBlock(
             'publicTask',
             renderTaskPipelines(),
             'publicTaskToggle',
-            publicTaskToggle || false
+            publicTaskToggle || false,
           )}
 
         {isEnabled('cards') &&
@@ -421,17 +421,17 @@ function General({
                 subtitle: 'Shown name on menu',
                 formValueName: 'ticketLabel',
                 formValue: ticketLabel,
-                placeholder: 'Please enter a label for Ticket'
+                placeholder: 'Please enter a label for Ticket',
               })}
               {renderBoardSelect({
                 type: 'ticket',
                 stageId: ticketStageId,
                 pipelineId: ticketPipelineId,
-                boardId: ticketBoardId
+                boardId: ticketBoardId,
               })}
             </>,
             'ticketToggle',
-            ticketToggle || false
+            ticketToggle || false,
           )}
 
         {isEnabled('cards') &&
@@ -443,17 +443,17 @@ function General({
                 subtitle: 'Shown name on menu',
                 formValueName: 'dealLabel',
                 formValue: dealLabel,
-                placeholder: 'Please enter a label for Deal'
+                placeholder: 'Please enter a label for Deal',
               })}
               {renderBoardSelect({
                 type: 'deal',
                 stageId: dealStageId,
                 pipelineId: dealPipelineId,
-                boardId: dealBoardId
+                boardId: dealBoardId,
               })}
             </>,
             'dealToggle',
-            dealToggle || false
+            dealToggle || false,
           )}
 
         {isEnabled('cards') &&
@@ -465,17 +465,17 @@ function General({
                 subtitle: 'Shown name on menu',
                 formValueName: 'purchaseLabel',
                 formValue: purchaseLabel,
-                placeholder: 'Please enter a label for Purchase'
+                placeholder: 'Please enter a label for Purchase',
               })}
               {renderBoardSelect({
                 type: 'purchase',
                 stageId: purchaseStageId,
                 pipelineId: purchasePipelineId,
-                boardId: purchaseBoardId
+                boardId: purchaseBoardId,
               })}
             </>,
             'purchaseToggle',
-            purchaseToggle || false
+            purchaseToggle || false,
           )}
 
         {isEnabled('cards') &&
@@ -487,24 +487,24 @@ function General({
                 subtitle: 'Shown name on menu',
                 formValueName: 'taskLabel',
                 formValue: taskLabel,
-                placeholder: 'Please enter a label for Task'
+                placeholder: 'Please enter a label for Task',
               })}
               {renderBoardSelect({
                 type: 'task',
                 stageId: taskStageId,
                 pipelineId: taskPipelineId,
-                boardId: taskBoardId
+                boardId: taskBoardId,
               })}
             </>,
             'taskToggle',
-            taskToggle || false
+            taskToggle || false,
           )}
         {isEnabled('inbox') &&
           renderControl({
             label: 'Messenger brand code',
             subtitle: 'Brand code in messenger install script',
             formValueName: 'messengerBrandCode',
-            formValue: messengerBrandCode
+            formValue: messengerBrandCode,
           })}
 
         {isEnabled('products') && kind === 'vendor' && renderSelectCategory()}

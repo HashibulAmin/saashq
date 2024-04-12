@@ -20,7 +20,7 @@ export interface ICommentDocument extends IComment, Document {
 export const USER_TYPES = {
   TEAM: 'team',
   CLIENT: 'client',
-  ALL: ['team', 'client']
+  ALL: ['team', 'client'],
 };
 
 export const commentSchema = new Schema({
@@ -33,5 +33,5 @@ export const commentSchema = new Schema({
   userId: field({ type: String, label: 'User Id' }),
   userType: field({ type: String, enum: USER_TYPES.ALL, label: 'User Type' }),
 
-  createdAt: field({ type: Date, label: 'Created at' })
+  createdAt: field({ type: Date, label: 'Vytvořeno v' }),
 });

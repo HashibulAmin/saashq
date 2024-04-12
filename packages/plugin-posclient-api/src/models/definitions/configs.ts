@@ -133,8 +133,8 @@ const ebarimtConfigSchema = new Schema(
 
 export const configSchema = new Schema({
   _id: field({ pkey: true }),
-  name: field({ type: String, unique: true, label: 'Name' }),
-  description: field({ type: String, optional: true, label: 'Description' }),
+  name: field({ type: String, unique: true, label: 'Název' }),
+  description: field({ type: String, optional: true, label: 'Popis' }),
   orderPassword: field({
     type: String,
     optional: true,

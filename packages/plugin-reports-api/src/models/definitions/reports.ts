@@ -97,7 +97,7 @@ export const reportSchema = new Schema({
   createdAt: field({
     default: Date.now(),
     type: Date,
-    label: 'Created at',
+    label: 'Vytvořeno v',
     index: true,
   }),
   serviceName: field({ type: String, label: 'Service name' }),

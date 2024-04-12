@@ -14,6 +14,6 @@ export interface IConfigDocument extends IConfig, Document {
 
 export const configSchema = new Schema({
   _id: field({ pkey: true }),
-  code: field({ type: String, unique: true, label: 'Code' }),
-  value: field({ type: Object, label: 'Value' })
+  code: field({ type: String, unique: true, label: 'Kód' }),
+  value: field({ type: Object, label: 'Value' }),
 });

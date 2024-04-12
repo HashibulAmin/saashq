@@ -256,7 +256,7 @@ export const clientPortalSchema = new Schema({
   createdAt: field({
     type: Date,
     default: new Date(),
-    label: 'Created at',
+    label: 'Vytvořeno v',
   }),
 
   passwordVerificationConfig: field({

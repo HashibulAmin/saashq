@@ -23,34 +23,34 @@ export const storedInterestSchema = schemaHooksWrapper(
     number: field({
       type: String,
       label: 'Number',
-      index: true
+      index: true,
     }),
-    description: field({ type: String, optional: true, label: 'Description' }),
-    type: field({ type: String, optional: true, label: 'Description' }),
+    description: field({ type: String, optional: true, label: 'Popis' }),
+    type: field({ type: String, optional: true, label: 'Popis' }),
     invDate: field({
       type: Date,
       default: new Date(),
-      label: 'invoice date'
+      label: 'invoice date',
     }),
     prevStoredDate: field({
       type: Date,
       default: new Date(),
-      label: 'Prev stored date'
+      label: 'Prev stored date',
     }),
     contractId: field({ type: String, min: 0, label: 'contractId' }),
     amount: field({ type: Number, min: 0, label: 'amount' }),
     commitmentInterest: field({
       type: Number,
       min: 0,
-      label: 'commitmentInterest'
+      label: 'commitmentInterest',
     }),
     periodLockId: field({ type: String, min: 0, label: 'periodLockId' }),
     createdAt: field({
       type: Date,
       default: () => new Date(),
-      label: 'Created at'
+      label: 'Vytvořeno v',
     }),
-    createdBy: { type: String, optional: true, label: 'created member' }
+    createdBy: { type: String, optional: true, label: 'created member' },
   }),
-  'saashq_StoredInterestSchema'
+  'saashq_StoredInterestSchema',
 );

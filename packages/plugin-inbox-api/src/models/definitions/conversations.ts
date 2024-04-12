@@ -1,12 +1,12 @@
 import { Document, Schema } from 'mongoose';
 import {
   customFieldSchema,
-  ICustomField
+  ICustomField,
 } from '@saashq/api-utils/src/definitions/common';
 import {
   CONVERSATION_OPERATOR_STATUS,
   CONVERSATION_SELECT_OPTIONS,
-  CONVERSATION_STATUSES
+  CONVERSATION_STATUSES,
 } from './constants';
 import { field } from './utils';
 
@@ -58,39 +58,39 @@ export const conversationSchemaOptions = {
     enum: CONVERSATION_OPERATOR_STATUS.ALL,
     label: 'Operator Status',
     selectOptions: CONVERSATION_SELECT_OPTIONS.OPERATOR_STATUS,
-    optional: true
+    optional: true,
   }),
   content: field({ type: 'String', label: 'Content', optional: true }),
   integrationId: field({ type: 'String', index: true }),
   customerId: field({ type: 'String', index: true }),
   visitorId: field({
-    type: 'String'
+    type: 'String',
   }),
   userId: field({ type: 'String' }),
   assignedUserId: field({ type: 'String' }),
   participatedUserIds: field({ type: ['String'] }),
   userRelevance: field({ type: 'String' }),
   readUserIds: field({ type: ['String'] }),
-  createdAt: field({ type: 'Date', label: 'Created at' }),
+  createdAt: field({ type: 'Date', label: 'Vytvořeno v' }),
   updatedAt: field({ type: 'Date', label: 'Updated at', index: true }),
 
   closedAt: field({
     type: 'Date',
     label: 'Closed at',
-    optional: true
+    optional: true,
   }),
 
   closedUserId: field({
     type: 'String',
-    optional: true
+    optional: true,
   }),
 
   status: field({
     type: 'String',
     enum: CONVERSATION_STATUSES.ALL,
     selectOptions: CONVERSATION_SELECT_OPTIONS.STATUS,
-    label: 'Status',
-    index: true
+    label: 'Postavení',
+    index: true,
   }),
   messageCount: field({ type: 'Number', label: 'Message count' }),
   tagIds: field({ type: ['String'], index: true }),
@@ -103,10 +103,10 @@ export const conversationSchemaOptions = {
 
   isCustomerRespondedLast: field({
     type: 'Boolean',
-    label: 'Last responder is customer'
+    label: 'Last responder is customer',
   }),
 
-  bookingProductId: field({ type: 'String' })
+  bookingProductId: field({ type: 'String' }),
 };
 
 export const conversationSchema = new Schema({
@@ -114,20 +114,20 @@ export const conversationSchema = new Schema({
   customFieldsData: field({
     type: [customFieldSchema],
     optional: true,
-    label: 'Custom fields data'
+    label: 'Data vlastních polí',
   }),
-  ...conversationSchemaOptions
+  ...conversationSchemaOptions,
 });
 
 conversationSchema.index(
   { visitorId: 1 },
-  { partialFilterExpression: { visitorId: { $exists: true } } }
+  { partialFilterExpression: { visitorId: { $exists: true } } },
 );
 conversationSchema.index(
   { userId: 1 },
-  { partialFilterExpression: { userId: { $exists: true } } }
+  { partialFilterExpression: { userId: { $exists: true } } },
 );
 conversationSchema.index(
   { userRelevance: 1 },
-  { partialFilterExpression: { userRelevance: { $exists: true } } }
+  { partialFilterExpression: { userRelevance: { $exists: true } } },
 );

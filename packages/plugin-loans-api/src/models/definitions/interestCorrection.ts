@@ -25,13 +25,13 @@ export const InterestCorrectionSchema = schemaHooksWrapper(
     number: field({
       type: String,
       label: 'Number',
-      index: true
+      index: true,
     }),
-    description: field({ type: String, optional: true, label: 'Description' }),
+    description: field({ type: String, optional: true, label: 'Popis' }),
     invDate: field({
       type: Date,
       default: new Date(),
-      label: 'Created at'
+      label: 'Vytvořeno v',
     }),
     interestAmount: field({ type: Number, min: 0, label: 'Interest Amount' }),
     lossAmount: field({ type: Number, min: 0, label: 'Loss Amount' }),
@@ -41,9 +41,9 @@ export const InterestCorrectionSchema = schemaHooksWrapper(
     createdAt: field({
       type: Date,
       default: () => new Date(),
-      label: 'Created at'
+      label: 'Vytvořeno v',
     }),
-    createdBy: { type: String, optional: true, label: 'created member' }
+    createdBy: { type: String, optional: true, label: 'created member' },
   }),
-  'saashq_interestCorrectionSchema'
+  'saashq_interestCorrectionSchema',
 );

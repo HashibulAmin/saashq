@@ -30,46 +30,46 @@ export interface IContractTypeDocument extends IContractType, Document {
 export const contractTypeSchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    code: field({ type: String, label: 'Code', unique: true }),
-    name: field({ type: String, label: 'Name' }),
-    description: field({ type: String, optional: true, label: 'Description' }),
-    status: field({ type: String, default: 'active', label: 'Status' }),
+    code: field({ type: String, label: 'Kód', unique: true }),
+    name: field({ type: String, label: 'Název' }),
+    description: field({ type: String, optional: true, label: 'Popis' }),
+    status: field({ type: String, default: 'active', label: 'Postavení' }),
     number: field({ type: String, label: 'Number' }),
     vacancy: field({
       type: Number,
       min: 1,
       max: 10,
       label: 'Vacancy',
-      required: true
+      required: true,
     }),
 
     config: field({ type: Object }),
     currency: field({
       type: String,
       default: 'MNT',
-      label: 'Currency'
+      label: 'Currency',
     }),
     interestCalcType: field({ type: String, label: 'Interest calculate type' }),
     storeInterestInterval: field({
       type: String,
-      label: 'Interest store interval'
+      label: 'Interest store interval',
     }),
     interestRate: field({
       type: Number,
       min: 0,
       max: 100,
-      label: 'Saving Interest Rate'
+      label: 'Saving Interest Rate',
     }),
     closeInterestRate: field({
       type: Number,
       min: 0,
       max: 100,
-      label: 'Saving Close Interest Rate'
+      label: 'Saving Close Interest Rate',
     }),
-    branchId: field({ type: String, label: 'Branch Id' }),
+    branchId: field({ type: String, label: 'ID Pobočky' }),
     isAllowIncome: field({ type: Boolean, label: 'Is Allow income' }),
     isAllowOutcome: field({ type: Boolean, label: 'Is Allow outcome' }),
-    isDeposit: field({ type: Boolean, label: 'Is Deposit' })
+    isDeposit: field({ type: Boolean, label: 'Is Deposit' }),
   }),
-  'saashq_contractTypeSchema'
+  'saashq_contractTypeSchema',
 );

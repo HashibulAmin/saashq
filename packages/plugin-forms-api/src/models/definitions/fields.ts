@@ -141,7 +141,7 @@ export const fieldSchema = schemaWrapper(
     description: field({
       type: String,
       optional: true,
-      label: 'Description',
+      label: 'Popis',
     }),
     code: field({
       type: String,
@@ -169,7 +169,7 @@ export const fieldSchema = schemaWrapper(
     }),
     isRequired: field({ type: Boolean, label: 'Is required' }),
     isDefinedBySaasHQ: field({ type: Boolean, label: 'Is defined by SaasHQ' }),
-    order: field({ type: Number, label: 'Order' }),
+    order: field({ type: Number, label: 'Objednat' }),
     groupId: field({ type: String, label: 'Field group' }),
     isVisible: field({ type: Boolean, default: true, label: 'Is visible' }),
     isVisibleInDetail: field({
@@ -243,19 +243,19 @@ export const fieldSchema = schemaWrapper(
 export const fieldGroupSchema = schemaWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    name: field({ type: String, label: 'Name' }),
+    name: field({ type: String, label: 'Název' }),
     // customer, company
     contentType: field({
       type: String,
       label: 'Content type',
     }),
-    order: field({ type: Number, label: 'Order' }),
+    order: field({ type: Number, label: 'Objednat' }),
     isDefinedBySaasHQ: field({
       type: Boolean,
       default: false,
       label: 'Is defined by SaasHQ',
     }),
-    description: field({ type: String, label: 'Description' }),
+    description: field({ type: String, label: 'Popis' }),
     parentId: field({ type: String, label: 'Parent Group ID', optional: true }),
     code: field({
       type: String,

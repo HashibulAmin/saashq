@@ -87,14 +87,14 @@ export interface ICarCategoryDocument extends ICarCategory, Document {
 export const carCategorySchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    name: field({ type: String, label: 'Name' }),
-    code: field({ type: String, unique: true, label: 'Code' }),
-    order: field({ type: String, label: 'Order' }),
-    parentId: field({ type: String, optional: true, label: 'Parent' }),
+    name: field({ type: String, label: 'Název' }),
+    code: field({ type: String, unique: true, label: 'Kód' }),
+    order: field({ type: String, label: 'Objednat' }),
+    parentId: field({ type: String, optional: true, label: 'Rodič' }),
     description: field({
       type: String,
       optional: true,
-      label: 'Description',
+      label: 'Popis',
     }),
     image: field({ type: attachmentSchema }),
     secondaryImages: field({ type: [attachmentSchema] }),
@@ -106,7 +106,7 @@ export const carCategorySchema = schemaHooksWrapper(
     createdAt: field({
       type: Date,
       default: new Date(),
-      label: 'Created at',
+      label: 'Vytvořeno v',
     }),
   }),
   'saashq_carCategory',
@@ -116,9 +116,9 @@ export const carSchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
 
-    createdAt: field({ type: Date, label: 'Created at' }),
+    createdAt: field({ type: Date, label: 'Vytvořeno v' }),
 
-    modifiedAt: field({ type: Date, label: 'Modified at' }),
+    modifiedAt: field({ type: Date, label: 'Upraveno v' }),
 
     ownerId: field({ type: String, optional: true, label: 'Owner' }),
 
@@ -138,7 +138,7 @@ export const carSchema = schemaHooksWrapper(
 
     colorCode: field({ type: String, label: 'Color code', optional: true }),
 
-    categoryId: field({ type: String, label: 'Category', index: true }),
+    categoryId: field({ type: String, label: 'Kategorie', index: true }),
 
     bodyType: field({
       type: String,
@@ -187,13 +187,13 @@ export const carSchema = schemaHooksWrapper(
       enum: getEnum('STATUSES'),
       default: 'Active',
       optional: true,
-      label: 'Status',
+      label: 'Postavení',
       esType: 'keyword',
       selectOptions: CAR_SELECT_OPTIONS.STATUSES,
       index: true,
     }),
 
-    description: field({ type: String, optional: true, label: 'Description' }),
+    description: field({ type: String, optional: true, label: 'Popis' }),
 
     tagIds: field({
       type: [String],
@@ -215,7 +215,7 @@ export const carSchema = schemaHooksWrapper(
     customFieldsData: field({
       type: [customFieldSchema],
       optional: true,
-      label: 'Custom fields data',
+      label: 'Data vlastních polí',
     }),
   }),
   'saashq_cars',

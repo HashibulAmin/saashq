@@ -27,7 +27,7 @@ export const syncLogSchema = schemaWrapper(
     createdAt: field({
       type: Date,
       default: new Date(),
-      label: 'Created at',
+      label: 'Vytvořeno v',
       index: true,
     }),
     createdBy: field({ type: String, optional: true, label: 'Created by' }),

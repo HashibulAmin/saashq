@@ -19,12 +19,12 @@ export interface IChannelDocument extends IChannel, Document {
 export const channelSchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    createdAt: field({ type: Date, label: 'Created at' }),
-    name: field({ type: String, label: 'Name' }),
+    createdAt: field({ type: Date, label: 'Vytvořeno v' }),
+    name: field({ type: String, label: 'Název' }),
     description: field({
       type: String,
       optional: true,
-      label: 'Description'
+      label: 'Popis',
     }),
     integrationIds: field({ type: [String], label: 'Integrations' }),
     memberIds: field({ type: [String], label: 'Members' }),
@@ -32,13 +32,13 @@ export const channelSchema = schemaHooksWrapper(
     conversationCount: field({
       type: Number,
       default: 0,
-      label: 'Conversation count'
+      label: 'Conversation count',
     }),
     openConversationCount: field({
       type: Number,
       default: 0,
-      label: 'Open conversation count'
-    })
+      label: 'Open conversation count',
+    }),
   }),
-  'saashq_channels'
+  'saashq_channels',
 );

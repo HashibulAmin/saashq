@@ -32,13 +32,13 @@ export const importHistorySchema = new Schema({
   contentTypes: field({ type: [Object], label: 'Content type' }),
   userId: field({ type: String, label: 'Created by' }),
   date: field({ type: Date, label: 'Date of import' }),
-  status: field({ type: String, default: 'In Progress', label: 'Status' }),
-  name: field({ type: String, label: 'Name' }),
+  status: field({ type: String, default: 'In Progress', label: 'Postavení' }),
+  name: field({ type: String, label: 'Název' }),
   percentage: field({ type: Number, default: 0, label: 'Percentage' }),
   errorMsgs: field({ type: [Object] }),
   removed: field({ type: [String] }),
   ids: field({ type: [String] }),
 
   attachments: field({ type: Object, label: 'Attachments' }),
-  error: field({ type: String })
+  error: field({ type: String }),
 });

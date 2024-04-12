@@ -43,22 +43,22 @@ export interface IRiskAssessmentIndicatorsDocument
 
 export const commonAssessmentSchema = {
   _id: field({ pkey: true }),
-  status: field({ type: String, label: 'Status', default: 'In Progress' }),
+  status: field({ type: String, label: 'Postavení', default: 'In Progress' }),
   statusColor: field({
     type: String,
     label: 'Status Status Color',
-    default: '#3B85F4'
+    default: '#3B85F4',
   }),
   resultScore: field({ type: Number, label: 'Result Score', default: 0 }),
   totalScore: field({ type: Number, label: 'Total Score', default: 0 }),
-  createdAt: field({ type: Date, label: 'Created At', default: Date.now }),
-  closedAt: field({ type: Date, optional: true, label: 'Closed At' })
+  createdAt: field({ type: Date, label: 'Vytvořeno v', default: Date.now }),
+  closedAt: field({ type: Date, optional: true, label: 'Closed At' }),
 };
 
 export const riskAssessmentIndicatorsSchema = new Schema({
   assessmentId: field({ type: String, label: 'Risk assessment Id' }),
   indicatorId: field({ type: String, label: 'Risk indicator Id' }),
-  ...commonAssessmentSchema
+  ...commonAssessmentSchema,
 });
 
 export const riskAssessmentIndicatorsGroupsSchema = new Schema({
@@ -67,9 +67,9 @@ export const riskAssessmentIndicatorsGroupsSchema = new Schema({
   assignedUserIds: field({
     type: [String],
     label: 'Assigned User Id',
-    optional: true
+    optional: true,
   }),
-  ...commonAssessmentSchema
+  ...commonAssessmentSchema,
 });
 
 export const riskAssessmentsSchema = new Schema({
@@ -77,18 +77,18 @@ export const riskAssessmentsSchema = new Schema({
   cardType: field({ type: String, label: 'Card Type' }),
   indicatorId: field({
     type: String,
-    label: 'Risk indicator Id'
+    label: 'Risk indicator Id',
   }),
   permittedUserIds: field({
     type: [String],
     label: 'Permitted User Ids',
     optional: true,
-    default: undefined
+    default: undefined,
   }),
   groupId: field({ type: String, label: 'Indicator Group Id' }),
   isSplittedUsers: field({ type: Boolean, label: 'Is Splitted Team Members' }),
   branchId: field({ type: String, label: 'branchId', optional: true }),
   departmentId: field({ type: String, label: 'departmentId', optional: true }),
   operationId: field({ type: String, label: 'operationId', optional: true }),
-  ...commonAssessmentSchema
+  ...commonAssessmentSchema,
 });

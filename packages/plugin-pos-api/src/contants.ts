@@ -34,8 +34,8 @@ export const POS_ORDER_INFO = {
   taxinfo: 'Tax info',
   convertDealId: 'Convert deal id',
   ALL: [
-    { field: 'createdAt', label: 'Created At' },
-    { field: 'modifiedAt', label: 'Modified At' },
+    { field: 'createdAt', label: 'Vytvořeno v' },
+    { field: 'modifiedAt', label: 'Upraveno v' },
     { field: 'status', label: 'Status of the order' },
     { field: 'paidDate', label: 'Paid date' },
     { field: 'dueDate', label: 'Due date' },
@@ -62,13 +62,13 @@ export const POS_ORDER_INFO = {
     { field: 'posToken', label: 'Pos token' },
     { field: 'subToken', label: 'Sub token' },
     { field: 'deliveryInfo', label: 'Delivery info' },
-    { field: 'description', label: 'Description' },
+    { field: 'description', label: 'Popis' },
     { field: 'isPre', label: 'is-Pre' },
     { field: 'origin', label: 'Origin' },
     { field: 'slotCode', label: 'Slot code' },
     { field: 'taxinfo', label: 'Tax info' },
-    { field: 'convertDealId', label: 'Convert deal id' }
-  ]
+    { field: 'convertDealId', label: 'Convert deal id' },
+  ],
 };
 
 export const USER_FIELDS = {
@@ -79,7 +79,7 @@ export const USER_FIELDS = {
   isOwner: 1,
   email: 1,
   isActive: 1,
-  details: 1
+  details: 1,
 };
 
 export const EXTEND_FIELDS = [
@@ -87,48 +87,48 @@ export const EXTEND_FIELDS = [
     _id: Math.random(),
     name: 'items.productCategoryCode',
     label: 'product Category Code',
-    type: 'string'
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'items.productCategoryName',
     label: 'product Category Name',
-    type: 'string'
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'items.amount',
     label: 'Amount',
-    type: 'number'
+    type: 'number',
   },
   {
     _id: Math.random(),
     name: 'items.productCode',
     label: 'Product code',
-    type: 'string'
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'items.productName',
     label: 'Product name',
-    type: 'string'
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'items.barcode',
     label: 'Barcode',
-    type: 'string'
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'paymentType',
     label: 'Payment type',
-    type: 'string'
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'pos',
     label: 'POS',
-    type: 'string'
-  }
+    type: 'string',
+  },
 ];

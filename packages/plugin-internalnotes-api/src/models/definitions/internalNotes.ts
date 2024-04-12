@@ -20,10 +20,10 @@ export const internalNoteSchema = new Schema({
   contentType: field({
     type: String,
     label: 'Content type',
-    index: true
+    index: true,
   }),
   contentTypeId: field({ type: String, label: 'Content item', index: true }),
   content: field({ type: String, label: 'Content' }),
   createdUserId: field({ type: String, label: 'Created by' }),
-  createdAt: field({ type: Date, label: 'Created at' })
+  createdAt: field({ type: Date, label: 'Vytvořeno v' }),
 });

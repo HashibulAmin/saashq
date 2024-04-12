@@ -60,11 +60,11 @@ export const scheduleSchema = schemaHooksWrapper(
     createdAt: field({
       type: Date,
       default: () => new Date(),
-      label: 'Created at',
+      label: 'Vytvořeno v',
     }),
     status: field({
       type: String,
-      label: 'Status',
+      label: 'Postavení',
       enum: SCHEDULE_STATUS.ALL,
       default: SCHEDULE_STATUS.PENDING,
       required: true,
@@ -72,7 +72,7 @@ export const scheduleSchema = schemaHooksWrapper(
     payDate: field({
       type: Date,
       default: new Date(),
-      label: 'Created at',
+      label: 'Vytvořeno v',
     }),
 
     balance: field({ type: Number, min: 0, label: 'Loan Balance' }),

@@ -18,14 +18,14 @@ export interface IEmailTemplateDocument extends IEmailTemplate, Document {
 export const emailTemplateSchema = schemaWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    name: field({ type: String, label: 'Name' }),
-    status: field({ type: String, label: 'Status' }),
+    name: field({ type: String, label: 'Název' }),
+    status: field({ type: String, label: 'Postavení' }),
     content: field({ type: String, optional: true, label: 'Content' }),
     createdAt: field({
       type: Date,
-      label: 'Created at'
+      label: 'Vytvořeno v',
     }),
     createdBy: field({ type: String, label: 'Created by' }),
-    modifiedAt: field({ type: Date, label: 'Modified at' })
-  })
+    modifiedAt: field({ type: Date, label: 'Upraveno v' }),
+  }),
 );

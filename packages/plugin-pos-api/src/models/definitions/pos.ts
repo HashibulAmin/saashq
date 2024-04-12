@@ -76,8 +76,8 @@ export interface IPosSlotDocument extends IPosSlot, Document {
 export const posSchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    name: field({ type: String, label: 'Name' }),
-    description: field({ type: String, label: 'Description', optional: true }),
+    name: field({ type: String, label: 'Název' }),
+    description: field({ type: String, label: 'Popis', optional: true }),
     orderPassword: field({
       type: String,
       label: 'OrderPassword',
@@ -85,7 +85,7 @@ export const posSchema = schemaHooksWrapper(
     }),
     pdomain: field({ type: String, optional: true, label: 'Domain' }),
     userId: field({ type: String, optional: true, label: 'Created by' }),
-    createdAt: field({ type: Date, label: 'Created at' }),
+    createdAt: field({ type: Date, label: 'Vytvořeno v' }),
     productDetails: field({ type: [String], label: 'Product fields' }),
     adminIds: field({ type: [String], label: 'Admin user ids' }),
     cashierIds: field({ type: [String], label: 'Cashier ids' }),
@@ -155,7 +155,7 @@ export const posSchema = schemaHooksWrapper(
       label: 'Check Exclude Categories',
     }),
     banFractions: field({ type: Boolean, label: 'has Float count' }),
-    status: field({ type: String, label: 'Status', optional: true }),
+    status: field({ type: String, label: 'Postavení', optional: true }),
   }),
   'saashq_pos',
 );
@@ -163,8 +163,8 @@ export const posSchema = schemaHooksWrapper(
 export const productGroupSchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    name: field({ type: String, label: 'Name' }),
-    description: field({ type: String, label: 'Description', optional: true }),
+    name: field({ type: String, label: 'Název' }),
+    description: field({ type: String, label: 'Popis', optional: true }),
     posId: field({ type: String, label: 'Pos id' }),
     categoryIds: field({
       type: [String],
@@ -190,8 +190,8 @@ export const productGroupSchema = schemaHooksWrapper(
 export const posSlotSchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    name: field({ type: String, label: 'Name' }),
-    code: field({ type: String, label: 'Code' }),
+    name: field({ type: String, label: 'Název' }),
+    code: field({ type: String, label: 'Kód' }),
     posId: field({ type: String, label: 'Pos' }),
     option: field({ type: Object, label: 'Option' }),
   }),
@@ -201,7 +201,7 @@ export const posSlotSchema = schemaHooksWrapper(
 export const posCoverKindValueSchema = schemaHooksWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    code: field({ type: String, label: 'Code' }),
+    code: field({ type: String, label: 'Kód' }),
   }),
   'saashq_pos_slot',
 );

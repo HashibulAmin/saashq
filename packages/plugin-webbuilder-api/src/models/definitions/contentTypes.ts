@@ -30,20 +30,20 @@ export const fieldSchema = new Schema(
     code: field({ type: String }),
     text: field({ type: String }),
     type: field({ type: String }),
-    show: field({ type: Boolean })
+    show: field({ type: Boolean }),
   },
-  { _id: false }
+  { _id: false },
 );
 
 export const contentTypeSchema = new Schema({
   siteId: field({ type: String, optional: true, label: 'Site Id' }),
-  code: field({ type: String, label: 'Name' }),
-  displayName: field({ type: String, label: 'Description' }),
+  code: field({ type: String, label: 'Název' }),
+  displayName: field({ type: String, label: 'Popis' }),
   fields: field({ type: [fieldSchema] }),
 
   createdBy: field({ type: String, optional: true, label: 'Created by' }),
   modifiedBy: field({ type: String, optional: true, label: 'Modified by' }),
 
-  createdAt: field({ type: Date, label: 'Created at', esType: 'date' }),
-  modifiedAt: field({ type: Date, label: 'Modified at', esType: 'date' })
+  createdAt: field({ type: Date, label: 'Vytvořeno v', esType: 'date' }),
+  modifiedAt: field({ type: Date, label: 'Upraveno v', esType: 'date' }),
 });

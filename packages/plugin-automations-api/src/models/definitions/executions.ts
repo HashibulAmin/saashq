@@ -64,7 +64,7 @@ export const executionSchema = new Schema({
     type: String,
     enum: EXECUTION_STATUS.ALL,
     default: EXECUTION_STATUS.ACTIVE,
-    label: 'Status',
+    label: 'Postavení',
     index: true,
   },
   description: { type: String, required: true },

@@ -55,9 +55,9 @@ export const jobSchema = new Schema(
     style: { type: Object },
     icon: { type: String, optional: true },
     label: { type: String, optional: true },
-    description: { type: String, optional: true }
+    description: { type: String, optional: true },
   },
-  { _id: false }
+  { _id: false },
 );
 
 export const flowSchema = schemaHooksWrapper(
@@ -66,22 +66,22 @@ export const flowSchema = schemaHooksWrapper(
     name: { type: String, required: true },
     categoryId: field({
       type: String,
-      label: 'Category',
+      label: 'Kategorie',
       optional: true,
-      index: true
+      index: true,
     }),
     productId: field({
       type: String,
       label: 'Product',
       optional: true,
-      index: true
+      index: true,
     }),
-    status: field({ type: String, label: 'Status' }),
+    status: field({ type: String, label: 'Postavení' }),
     isSub: field({ type: Boolean, optional: true, label: 'Is Sub Flow' }),
     flowValidation: field({
       type: String,
       optional: true,
-      label: 'FlowJob status'
+      label: 'FlowJob status',
     }),
     createdAt: { type: Date, default: new Date(), label: 'Created date' },
     createdBy: { type: String },
@@ -94,18 +94,18 @@ export const flowSchema = schemaHooksWrapper(
       type: {
         type: [productsDataSchema],
         optional: true,
-        label: 'Result products'
-      }
+        label: 'Result products',
+      },
     },
     latestNeedProducts: {
       type: {
         type: [productsDataSchema],
         optional: true,
-        label: 'Need products'
-      }
-    }
+        label: 'Need products',
+      },
+    },
   }),
-  'saashq_flows'
+  'saashq_flows',
 );
 
 // for tags query. increases search speed, avoids in-memory sorting

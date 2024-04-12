@@ -22,24 +22,24 @@ export const formSubmissionSchema = new Schema({
   contentType: field({
     type: String,
     label: 'content Type of submission',
-    default: 'form'
+    default: 'form',
   }),
   formId: field({ type: String, label: 'Form ID' }),
   indicatorId: field({ type: String, label: 'risk indicator ID' }),
   assessmentId: field({ type: String, label: 'risk assessment ID' }),
   fieldId: field({ type: String, label: 'Form Field Id' }),
   value: field({ type: String, lablel: 'Form Field Value' }),
-  description: field({ type: String, label: 'Description', optional: true }),
+  description: field({ type: String, label: 'Popis', optional: true }),
   isFlagged: field({
     type: Boolean,
     label: 'is field flagged',
-    optional: true
+    optional: true,
   }),
   attachments: field({
     type: [attachmentSchema],
     label: 'Attachments',
-    optional: true
-  })
+    optional: true,
+  }),
 });
 
 export interface IAssessmentConformitiesDocument extends Document {

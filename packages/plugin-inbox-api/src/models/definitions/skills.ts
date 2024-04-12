@@ -13,9 +13,9 @@ export interface ISkillTypeDocument extends ISkillType, Document {
 export const skillTypeSchema = schemaWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    name: field({ type: String, label: 'Name' }),
-    createdAt: field({ type: Date })
-  })
+    name: field({ type: String, label: 'Název' }),
+    createdAt: field({ type: Date }),
+  }),
 );
 
 export interface ISkill {
@@ -32,9 +32,9 @@ export interface ISkillDocument extends ISkill, Document {
 export const skillSchema = schemaWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    name: field({ type: String, label: 'Name' }),
+    name: field({ type: String, label: 'Název' }),
     typeId: field({ type: String }),
     memberIds: field({ type: [String] }),
-    createdAt: field({ type: Date })
-  })
+    createdAt: field({ type: Date }),
+  }),
 );

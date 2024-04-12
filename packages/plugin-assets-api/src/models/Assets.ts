@@ -23,22 +23,22 @@ export const loadAssetClass = (models: IModels, subdomain: string) => {
       const asset = await models.Assets.findOne(selector);
 
       if (!asset) {
-        throw new Error('Asset not found');
+        throw new Error('Dílo nenalezeno');
       }
 
       return asset;
     }
     public static async createAsset(doc: IAsset) {
       if (doc.code.includes('/')) {
-        throw new Error('The "/" character is not allowed in the code');
+        throw new Error('Znak "/" není v kódu povolen');
       }
 
       if (await models.Assets.findOne({ code: doc.code })) {
-        throw new Error('Code must be unique');
+        throw new Error('Kód musí být jedinečný');
       }
 
       if (!doc.parentId && !doc.categoryId) {
-        throw new Error('You must choose  category or  parent');
+        throw new Error('Musíte vybrat kategorii nebo rodiče');
       }
 
       const parentAsset = await models.Assets.findOne({
@@ -87,11 +87,11 @@ export const loadAssetClass = (models: IModels, subdomain: string) => {
 
       if (asset.code !== doc.code) {
         if (doc.code.includes('/')) {
-          throw new Error('The "/" character is not allowed in the code');
+          throw new Error('Znak "/" není v kódu povolen');
         }
 
         if (await models.Assets.findOne({ code: doc.code })) {
-          throw new Error('Code must be unique');
+          throw new Error('Kód musí být jedinečný');
         }
       }
 
@@ -178,13 +178,15 @@ export const loadAssetClass = (models: IModels, subdomain: string) => {
 
       for (const field of fields) {
         if (!assetFields[field]) {
-          throw new Error(`Can not merge assets. Must choose ${field} field.`);
+          throw new Error(
+            `Nelze sloučit aktiva. Musí se vybrat ${field} pole.`,
+          );
         }
       }
 
       if (!checkParent.find((i) => i)) {
         throw new Error(
-          `Can not merge assets. Must choose Parent or Category field`,
+          `Nelze sloučit aktiva. Musíte vybrat pole Nadřazené nebo Kategorie`,
         );
       }
 

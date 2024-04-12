@@ -31,18 +31,18 @@ export const safeRemainderSchema = schemaHooksWrapper(
     productCategoryId: field({
       type: String,
       optional: true,
-      label: 'Product Category'
+      label: 'Product Category',
     }),
     attachment: field({ type: attachmentSchema, optional: true }),
     filterField: field({ type: String, optional: true }),
     date: field({ type: Date, label: 'Date' }),
-    description: field({ type: String, label: 'Description' }),
-    status: field({ type: String, label: 'Status' }),
+    description: field({ type: String, label: 'Popis' }),
+    status: field({ type: String, label: 'Postavení' }),
 
     createdAt: { type: Date, default: new Date(), label: 'Created date' },
     createdBy: { type: String, label: 'Created User' },
     modifiedAt: { type: Date, default: new Date(), label: 'Modified date' },
-    modifiedBy: { type: String, label: 'Modified User' }
+    modifiedBy: { type: String, label: 'Modified User' },
   }),
-  'saashq_safe_remainders'
+  'saashq_safe_remainders',
 );
