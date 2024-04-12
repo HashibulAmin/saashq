@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'paymentsAll',
-        description: 'All',
+        description: 'Všechno',
         use: [
           'paymentAdd',
           'paymentEdit',
@@ -37,7 +37,7 @@ module.exports = {
     actions: [
       {
         name: 'invoicesAll',
-        description: 'All',
+        description: 'Všechno',
         use: [
           'showInvoices',
           'createInvoice'

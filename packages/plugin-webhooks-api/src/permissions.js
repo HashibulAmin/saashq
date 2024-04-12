@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'webhooksAll',
-        description: 'All',
+        description: 'Všechno',
         use: ['showWebhooks', 'manageWebhooks']
       },
       {

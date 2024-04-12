@@ -5,10 +5,10 @@ export default {
         type: 'core:user',
         img: 'automation4.svg',
         icon: 'users',
-        label: 'Team member',
+        label: 'Člen týmu',
         description:
-          'Start with a blank workflow that enralls and is triggered off team members'
-      }
-    ]
-  }
+          'Začněte s prázdným pracovním postupem, který se zaregistruje a spustí u členů týmu',
+      },
+    ],
+  },
 };

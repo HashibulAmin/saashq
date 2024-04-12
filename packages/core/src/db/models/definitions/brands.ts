@@ -27,33 +27,33 @@ export const brandEmailConfigSchema = new Schema(
     type: field({
       type: String,
       enum: ['simple', 'custom'],
-      label: 'Type'
+      label: 'Typ',
     }),
     template: field({ type: String, label: 'Template', optional: true }),
     email: field({
       type: String,
-      label: 'Email',
-      optional: true
-    })
+      label: 'E-mailem',
+      optional: true,
+    }),
   },
-  { _id: false }
+  { _id: false },
 );
 
 export const brandSchema = schemaWrapper(
   new Schema({
     _id: field({ pkey: true }),
-    code: field({ type: String, label: 'Code' }),
-    name: field({ type: String, label: 'Name' }),
+    code: field({ type: String, label: 'Kód' }),
+    name: field({ type: String, label: 'Název' }),
     description: field({
       type: String,
       optional: true,
-      label: 'Description'
+      label: 'Popis',
     }),
-    userId: field({ type: String, label: 'Created by' }),
-    createdAt: field({ type: Date, label: 'Created at' }),
+    userId: field({ type: String, label: 'Vytvořil' }),
+    createdAt: field({ type: Date, label: 'Vytvořeno v' }),
     emailConfig: field({
       type: brandEmailConfigSchema,
-      label: 'Email config'
-    })
-  })
+      label: 'Konfigurace e-mailu',
+    }),
+  }),
 );

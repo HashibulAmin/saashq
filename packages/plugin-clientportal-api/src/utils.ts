@@ -386,7 +386,7 @@ export const sendNotification = async (
           await transporter.sendMulticast(multicastMessage);
         } catch (e) {
           debugError(
-            `Error occurred during Firebase multicast send: ${e.message}`,
+            `Vyskytla se chyba during Firebase multicast send: ${e.message}`,
           );
           expiredTokens.push(...tokensChunk);
         }
@@ -400,7 +400,7 @@ export const sendNotification = async (
             data: eventData || {},
           });
         } catch (e) {
-          debugError(`Error occurred during firebase send: ${e.message}`);
+          debugError(`Vyskytla se chyba during firebase send: ${e.message}`);
           expiredTokens.push(token);
         }
       }

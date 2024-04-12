@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'chatsAll',
-        description: 'All',
+        description: 'Všechno',
         use: ['showChats', 'manageChats'],
       },
       {

@@ -203,11 +203,13 @@ export const fixPermissions = async (
               _id: perm.groupId,
             });
 
-            message = group ? `user group "${group.name}"` : perm.groupId;
+            message = group
+              ? `uživatelská skupina "${group.name}"`
+              : perm.groupId;
           }
 
           result.push(
-            `Permission "${allAction.name}" of module "${mod}" has been fixed for ${message}`,
+            `Povolení "${allAction.name}" modulu "${mod}" byl opraven pro ${message}`,
           );
         }
       } // end allAction checking

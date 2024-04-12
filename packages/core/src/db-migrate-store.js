@@ -6,7 +6,7 @@ dotenv.config();
 class dbStore {
   constructor() {
     if(!process.env.MONGO_URL) {
-      throw new Error(`MONGO_URL environment variable is "${process.env.MONGO_URL}"`)
+      throw new Error(`Proměnná prostředí MONGO_URL je "${process.env.MONGO_URL}"`)
     }
 
     this.url = process.env.MONGO_URL
@@ -36,7 +36,7 @@ class dbStore {
             store.lastRun = null
           } else {
             if (store.pos > store.migrations.length)
-              return fn(new Error('Store file contains invalid pos property'))
+              return fn(new Error('Soubor úložiště obsahuje neplatnou vlastnost pos'))
 
             store.lastRun = store.migrations[store.pos - 1].title
           }
@@ -50,7 +50,7 @@ class dbStore {
 
         // Check if does not have required properties
         if (!Object.prototype.hasOwnProperty.call(store, 'lastRun') || !Object.prototype.hasOwnProperty.call(store, 'migrations'))
-          return fn(new Error('Invalid store file'))
+          return fn(new Error('Neplatný soubor úložiště'))
 
         return fn(null, store)
       })

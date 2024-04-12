@@ -1100,7 +1100,7 @@ const widgetMutations = {
     } catch (e) {
       /* istanbul ignore next */
       debugError(
-        `Error occurred during widgets save browser info ${e.message}`,
+        `Vyskytla se chyba during widgets save browser info ${e.message}`,
       );
     }
 

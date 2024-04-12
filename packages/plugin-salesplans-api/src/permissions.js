@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'salesplansAll',
-        description: 'All',
+        description: 'Všechno',
         use: ['showSalesPlans', 'manageSalesPlans']
       },
       {

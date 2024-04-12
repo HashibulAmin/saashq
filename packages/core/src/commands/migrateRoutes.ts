@@ -6,7 +6,7 @@ dotenv.config();
 const { MONGO_URL } = process.env;
 
 if (!MONGO_URL) {
-  throw new Error(`Environment variable MONGO_URL not set.`);
+  throw new Error(`Proměnná prostředí MONGO_URL není nastavena.`);
 }
 
 const client = new MongoClient(MONGO_URL);
@@ -28,15 +28,15 @@ const command = async () => {
   for (const route of routes) {
     const placesIds = await (
       await Directions.find({ _id: { $in: route.directionIds } }).toArray()
-    ).flatMap(direction => direction.placeIds);
+    ).flatMap((direction) => direction.placeIds);
     const set = new Set(placesIds);
     await Routes.updateOne(
       { _id: route._id },
-      { $set: { placeIds: [...set] } }
+      { $set: { placeIds: [...set] } },
     );
   }
 
-  console.log(`Process finished at: ${new Date()}`);
+  console.log(`Proces ukončen v: ${new Date()}`);
 
   process.exit();
 };

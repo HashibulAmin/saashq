@@ -2,9 +2,9 @@ export default {
   contentTypes: [
     {
       type: 'user',
-      description: 'Team member',
-      esIndex: 'users'
-    }
+      description: 'Člen týmu',
+      esIndex: 'users',
+    },
   ],
 
   esTypesMap: async () => {
@@ -14,10 +14,10 @@ export default {
   initialSelector: async () => {
     const negative = {
       term: {
-        status: 'deleted'
-      }
+        status: 'deleted',
+      },
     };
 
     return { data: { negative }, status: 'success' };
-  }
+  },
 };

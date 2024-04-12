@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'clientPortalAll',
-        description: 'All',
+        description: 'Všechno',
         use: ['manageClientPortal', 'removeClientPortal', 'updateUser']
       },
       {

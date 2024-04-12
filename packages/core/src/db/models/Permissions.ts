@@ -115,7 +115,7 @@ export const loadPermissionClass = (models: IModels) => {
       }).countDocuments();
 
       if (count !== ids.length) {
-        throw new Error('Permission not found');
+        throw new Error('Oprávnění nenalezeno');
       }
 
       return models.Permissions.deleteMany({ _id: { $in: ids } });
@@ -125,7 +125,7 @@ export const loadPermissionClass = (models: IModels) => {
       const permission = await models.Permissions.findOne({ _id: id });
 
       if (!permission) {
-        throw new Error('Permission not found');
+        throw new Error('Oprávnění nenalezeno');
       }
 
       return permission;
@@ -143,7 +143,7 @@ export const loadUserGroupClass = (models: IModels) => {
       const userGroup = await models.UsersGroups.findOne({ _id });
 
       if (!userGroup) {
-        throw new Error('User group not found');
+        throw new Error('Uživatelská skupina nenalezena');
       }
 
       return userGroup;
@@ -197,7 +197,7 @@ export const loadUserGroupClass = (models: IModels) => {
       const groupObj = await models.UsersGroups.findOne({ _id });
 
       if (!groupObj) {
-        throw new Error(`Group not found with id ${_id}`);
+        throw new Error(`Skupina nebyla nalezena s ID ${_id}`);
       }
 
       await models.Users.updateMany(

@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'documentsAll',
-        description: 'All',
+        description: 'Všechno',
         use: ['manageDocuments', 'removeDocuments', 'showDocuments']
       },
       {

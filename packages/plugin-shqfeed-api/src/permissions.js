@@ -10,7 +10,7 @@ module.exports = {
       },
       {
         name: 'shqActivityFeedAll',
-        description: 'All',
+        description: 'Všechno',
         use: ['showShqActivityFeed', 'manageShqActivityFeed'],
       },
     ],

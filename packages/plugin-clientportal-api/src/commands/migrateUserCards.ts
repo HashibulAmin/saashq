@@ -6,7 +6,7 @@ const MONGO_URL = process.argv[2] || 'mongodb://localhost:27017/saashq';
 console.log('MONGO_URL', MONGO_URL);
 
 if (!MONGO_URL) {
-  throw new Error(`Environment variable MONGO_URL not set.`);
+  throw new Error(`Proměnná prostředí MONGO_URL není nastavena.`);
 }
 
 const client = new MongoClient(MONGO_URL);
@@ -28,7 +28,7 @@ const command = async () => {
     // update client portal kind if not set
     await ClientPortals.updateMany(
       { kind: { $exists: false } },
-      { $set: { kind: 'client' } }
+      { $set: { kind: 'client' } },
     );
 
     const cards = await Cards.find({}).toArray();
@@ -41,7 +41,7 @@ const command = async () => {
             contentType: card.type,
             contentTypeId: card.cardId,
             createdAt: card.createdAt,
-            cpUserId: userId
+            cpUserId: userId,
           };
           await Cards.insertOne(doc);
         }
@@ -53,7 +53,7 @@ const command = async () => {
     console.error('eeeeeeee ', e);
   }
 
-  console.log(`Process finished at: ${new Date()}`);
+  console.log(`Proces ukončen v: ${new Date()}`);
 
   process.exit();
 };

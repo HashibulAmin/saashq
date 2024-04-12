@@ -185,7 +185,7 @@ export const sendEmail = async (
       from:
         fromEmail ||
         (hasCompanyFromEmail
-          ? `Noreply <${COMPANY_EMAIL_FROM}>`
+          ? `Bez odpovědi <${COMPANY_EMAIL_FROM}>`
           : 'noreply@saashq.io'),
       to: toEmail,
       subject: title,
@@ -194,7 +194,7 @@ export const sendEmail = async (
     };
 
     if (!mailOptions.from) {
-      throw new Error(`"From" email address is missing: ${mailOptions.from}`);
+      throw new Error(`"Z" chybí e-mailová adresa: ${mailOptions.from}`);
     }
 
     let headers: { [key: string]: string } = {};
@@ -232,7 +232,7 @@ export const sendEmail = async (
       }
 
       return transporter.sendMail(mailOptions, (error, info) => {
-        debugError(`Error sending email: ${error}`);
+        debugError(`Chyba při odesílání e-mailu: ${error}`);
       });
     } catch (e) {
       debugError(e);
@@ -332,14 +332,14 @@ export const initFirebase = async (
  */
 export const checkFile = async (models: IModels, file, source?: string) => {
   if (!file) {
-    throw new Error('Invalid file');
+    throw new Error('Neplatný soubor');
   }
 
   const { size } = file;
 
   // 20mb
   if (size > 20 * 1024 * 1024) {
-    return 'Too large file';
+    return 'Příliš velký soubor';
   }
 
   // read file
@@ -368,7 +368,7 @@ export const checkFile = async (models: IModels, file, source?: string) => {
   }
 
   if (!ft) {
-    return 'Invalid file type';
+    return 'Neplatný typ souboru';
   }
 
   const { mime } = ft;
@@ -397,7 +397,7 @@ export const checkFile = async (models: IModels, file, source?: string) => {
 
   if (!(UPLOAD_FILE_TYPES && UPLOAD_FILE_TYPES.split(',')).includes(mime)) {
     if (!defaultMimeTypes.includes(mime)) {
-      return 'Invalid configured file type';
+      return 'Neplatný nakonfigurovaný typ souboru';
     }
   }
 
@@ -427,7 +427,7 @@ export const createAWS = async (models?: IModels) => {
   );
 
   if (!AWS_ACCESS_KEY_ID || !AWS_SECRET_ACCESS_KEY || !AWS_BUCKET) {
-    throw new Error('AWS credentials are not configured');
+    throw new Error('Přihlašovací údaje AWS nejsou nakonfigurovány');
   }
 
   const options: {
@@ -465,7 +465,9 @@ const createGCS = async (models?: IModels) => {
   const BUCKET = await getConfig('GOOGLE_CLOUD_STORAGE_BUCKET', '', models);
 
   if (!GOOGLE_PROJECT_ID || !GOOGLE_APPLICATION_CREDENTIALS || !BUCKET) {
-    throw new Error('Google Cloud Storage credentials are not configured');
+    throw new Error(
+      'Přihlašovací údaje služby Google Cloud Storage nejsou nakonfigurovány',
+    );
   }
 
   const Storage = require('@google-cloud/storage').Storage;
@@ -499,7 +501,7 @@ const createCFR2 = async (models?: IModels) => {
   const CLOUDFLARE_ENDPOINT = `https://${CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com`;
 
   if (!CLOUDFLARE_ACCESS_KEY_ID || !CLOUDFLARE_SECRET_ACCESS_KEY) {
-    throw new Error('Cloudflare Credentials are not configured');
+    throw new Error('Přihlašovací údaje Cloudflare nejsou nakonfigurovány');
   }
 
   const options: {
@@ -574,11 +576,11 @@ const uploadToCFImages = async (
   const data = await response.json();
 
   if (!data.success) {
-    throw new Error('Error uploading file to Cloudflare Images');
+    throw new Error('Chyba při nahrávání souboru do Cloudflare Images');
   }
 
   if (data.result.variants.length === 0) {
-    throw new Error('Error uploading file to Cloudflare Images');
+    throw new Error('Chyba při nahrávání souboru do Cloudflare Images');
   }
 
   if (!IS_PUBLIC || IS_PUBLIC === 'false') {
@@ -624,7 +626,7 @@ const uploadToCFStream = async (file: any, models?: IModels) => {
   const data = await response.json();
 
   if (!data.success) {
-    throw new Error('Error uploading file to Cloudflare Stream');
+    throw new Error('Chyba při nahrávání souboru do Cloudflare Stream');
   }
 
   return data.result.playback.hls;
@@ -954,7 +956,7 @@ const readFromCFImages = async (
   }
 
   if (!CLOUDFLARE_ACCOUNT_HASH) {
-    throw new Error('Cloudflare Account Hash is not configured');
+    throw new Error('Cloudflare Account Hash není nakonfigurován');
   }
 
   let url = `https://imagedelivery.net/${CLOUDFLARE_ACCOUNT_HASH}/${fileName}/public`;
@@ -999,7 +1001,7 @@ const readFromCR2 = async (key: string, models?: IModels) => {
             error.code === 'NoSuchKey' &&
             error.message.includes('key does not exist')
           ) {
-            console.log('file does not exist with key: ', key);
+            console.log('soubor s klíčem neexistuje: ', key);
 
             return resolve(null);
           }
@@ -1085,7 +1087,7 @@ export const readFileRequest = async ({
               error.message.includes('key does not exist')
             ) {
               debugBase(
-                `Error occurred when fetching s3 file with key: "${key}"`,
+                `Vyskytla se chyba when fetching s3 file with key: "${key}"`,
               );
             }
 
@@ -1414,7 +1416,7 @@ export const sendMobileNotification = async (
           data: data || {},
         });
       } catch (e) {
-        debugError(`Error occurred during firebase send: ${e.message}`);
+        debugError(`Vyskytla se chyba during firebase send: ${e.message}`);
 
         await models.Users.updateOne(
           { deviceTokens: token },
@@ -1539,7 +1541,7 @@ export const resizeImage = async (
     let image = await jimp.read(`${file.path}`);
 
     if (!image) {
-      throw new Error('Error reading image');
+      throw new Error('Chyba při čtení obrázku');
     }
 
     if (maxWidth && image.getWidth() > maxWidth) {

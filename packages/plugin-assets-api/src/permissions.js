@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'assetsAll',
-        description: 'All',
+        description: 'Všechno',
         use: ['showAssets', 'manageAssets', 'assetsMerge']
       },
       {

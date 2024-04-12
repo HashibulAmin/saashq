@@ -132,6 +132,6 @@ function log {
 errorCode=$?
 
 if [ $errorCode -ne 0 ]; then
-  log "Error occurred while setting up GCP - Gmail"
+  log "Vyskytla se chyba while setting up GCP - Gmail"
   exit $errorCode
 fi

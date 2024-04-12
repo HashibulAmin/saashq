@@ -22,7 +22,7 @@ export const loadAppClass = (models: IModels) => {
       const app = await models.Apps.findOne({ _id });
 
       if (!app) {
-        throw new Error('App not found');
+        throw new Error('Aplikace nebyla nalezena');
       }
 
       return app;
@@ -43,24 +43,24 @@ export const loadAppClass = (models: IModels) => {
         tokenOptions.expiresIn = Math.round(date.getTime() / 1000);
 
         refreshOptions.expiresIn = Math.round(
-          new Date(date.getTime() + 30 * oneDay).getTime() / 1000
+          new Date(date.getTime() + 30 * oneDay).getTime() / 1000,
         );
       }
 
       const accessToken = await jwt.sign(
         { app },
         JWT_TOKEN_SECRET,
-        tokenOptions
+        tokenOptions,
       );
       const refreshToken = await jwt.sign(
         { app },
         JWT_TOKEN_SECRET,
-        refreshOptions
+        refreshOptions,
       );
 
       await models.Apps.updateOne(
         { _id: app._id },
-        { $set: { accessToken, refreshToken } }
+        { $set: { accessToken, refreshToken } },
       );
 
       return models.Apps.findOne({ _id: app._id });
@@ -78,7 +78,7 @@ export const loadAppClass = (models: IModels) => {
       const app = await models.Apps.getApp(_id);
 
       if (app.isEnabled) {
-        throw new Error('Can not remove an enabled app');
+        throw new Error('Aktivovanou aplikaci nelze odebrat');
       }
 
       return models.Apps.deleteOne({ _id });

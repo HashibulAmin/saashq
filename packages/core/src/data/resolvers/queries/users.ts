@@ -392,7 +392,7 @@ const userQueries = {
   async currentUser(_root, _args, { user, models, subdomain }: IContext) {
     // this check is important for preventing injection attacks
     if (typeof user?._id !== 'string') {
-      throw new Error(`User _id is not a string. It is ${user?._id} instead.`);
+      throw new Error(`ID uživatele není řetězec. to je ${user?._id} namísto.`);
     }
     const result = user
       ? await models.Users.findOne({ _id: user._id, isActive: { $ne: false } })

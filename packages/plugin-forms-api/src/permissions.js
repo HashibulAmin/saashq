@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'formsAll',
-        description: 'All',
+        description: 'Všechno',
         use: ['showForms', 'manageForms']
       },
       {

@@ -6,7 +6,7 @@ import { Collection, Db, MongoClient } from 'mongodb';
 const { MONGO_URL } = process.env;
 
 // if (!MONGO_URL) {
-//   throw new Error(`Environment variable MONGO_URL not set.`);
+//   throw new Error(`Proměnná prostředí MONGO_URL není nastavena.`);
 // }
 
 const client = new MongoClient(MONGO_URL || 'mongodb://localhost/saashq');
@@ -33,7 +33,7 @@ const command = async () => {
 
   await client.connect();
 
-  console.log('connected...');
+  console.log('připojeno...');
   db = client.db() as Db;
 
   Positions = db.collection('positions');
@@ -66,12 +66,12 @@ const command = async () => {
 
     await Positions.insertMany(docs);
 
-    console.log(`Successfully inserted ${docs.length} positions`);
+    console.log(`Úspěšně vloženo ${docs.length} pozice`);
   } catch (e) {
-    console.log(`Error occurred: ${e.message}`);
+    console.log(`Vyskytla se chyba: ${e.message}`);
   }
 
-  console.log(`Process finished at: ${new Date()}`);
+  console.log(`Proces ukončen v: ${new Date()}`);
 
   process.exit();
 };

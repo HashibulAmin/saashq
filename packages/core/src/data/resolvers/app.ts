@@ -5,6 +5,6 @@ export default {
   async userGroupName(app: IAppDocument, _args, { models }: IContext) {
     const group = await models.UsersGroups.findOne({ _id: app.userGroupId });
 
-    return group ? group.name : 'Allowed for all users';
-  }
+    return group ? group.name : 'Povoleno pro všechny uživatele';
+  },
 };

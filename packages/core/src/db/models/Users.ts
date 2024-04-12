@@ -133,7 +133,7 @@ export const loadUserClass = (models: IModels) => {
       const user = await models.Users.findOne({ _id });
 
       if (!user) {
-        throw new Error('User not found');
+        throw new Error('Uživatel nenalezen');
       }
 
       return user;
@@ -142,7 +142,7 @@ export const loadUserClass = (models: IModels) => {
     public static checkPassword(password: string) {
       if (!password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/)) {
         throw new Error(
-          'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters',
+          'Musí obsahovat alespoň jedno číslo a jedno velké a malé písmeno a alespoň 8 nebo více znaků',
         );
       }
     }
@@ -174,7 +174,7 @@ export const loadUserClass = (models: IModels) => {
 
         // Checking if duplicated
         if (previousEntry.length > 0) {
-          throw new Error('Duplicated email');
+          throw new Error('Duplicitní email');
         }
       }
 
@@ -184,7 +184,7 @@ export const loadUserClass = (models: IModels) => {
 
         // Checking if duplicated
         if (previousEntry) {
-          throw new Error('Duplicated Employee Id');
+          throw new Error('Duplicitní ID zaměstnance');
         }
       }
 
@@ -194,7 +194,7 @@ export const loadUserClass = (models: IModels) => {
 
         // Checking if duplicated
         if (previousEntry) {
-          throw new Error('Duplicated User Name Id');
+          throw new Error('Duplicitní ID uživatelského jména');
         }
       }
     }
@@ -218,7 +218,7 @@ export const loadUserClass = (models: IModels) => {
     }: IUser) {
       // empty string password validation
       if (password === '') {
-        throw new Error('Password can not be empty');
+        throw new Error('Heslo nesmí být prázdné');
       }
 
       // Checking duplicated email
@@ -318,7 +318,7 @@ export const loadUserClass = (models: IModels) => {
       await models.Users.checkDuplication({ email });
 
       if (!(await models.UsersGroups.findOne({ _id: groupId }))) {
-        throw new Error('Invalid group');
+        throw new Error('Neplatná skupina');
       }
 
       const { token, expires } = await User.generateToken();
@@ -347,11 +347,11 @@ export const loadUserClass = (models: IModels) => {
       const user = await models.Users.findOne({ email });
 
       if (!user) {
-        throw new Error('User not found');
+        throw new Error('Uživatel nenalezen');
       }
 
       if (!user.registrationToken) {
-        throw new Error('Invalid request');
+        throw new Error('Neplatná žádost');
       }
 
       const { token, expires } = await models.Users.generateToken();
@@ -391,15 +391,15 @@ export const loadUserClass = (models: IModels) => {
       });
 
       if (!user || !token) {
-        throw new Error('Token is invalid or has expired');
+        throw new Error('Token je neplatný nebo jeho platnost vypršela');
       }
 
       if (password === '') {
-        throw new Error('Password can not be empty');
+        throw new Error('Heslo nesmí být prázdné');
       }
 
       if (password !== passwordConfirmation) {
-        throw new Error('Password does not match');
+        throw new Error('Heslo neodpovídá');
       }
 
       this.checkPassword(password);
@@ -487,7 +487,7 @@ export const loadUserClass = (models: IModels) => {
       const user = await models.Users.findOne({ _id });
 
       if (!user) {
-        throw new Error('User not found');
+        throw new Error('Uživatel nenalezen');
       }
 
       if (user.isActive === false) {
@@ -497,7 +497,7 @@ export const loadUserClass = (models: IModels) => {
       }
 
       if (user.isOwner) {
-        throw new Error('Can not deactivate owner');
+        throw new Error('Vlastníka nelze deaktivovat');
       }
 
       await models.Users.updateOne({ _id }, { $set: { isActive: false } });
@@ -542,11 +542,13 @@ export const loadUserClass = (models: IModels) => {
       });
 
       if (!user) {
-        throw new Error('Password reset token is invalid or has expired.');
+        throw new Error(
+          'Token pro resetování hesla je neplatný nebo jeho platnost vypršela.',
+        );
       }
 
       if (!newPassword) {
-        throw new Error('Password is required.');
+        throw new Error('Je vyžadováno heslo.');
       }
 
       this.checkPassword(newPassword);
@@ -577,7 +579,7 @@ export const loadUserClass = (models: IModels) => {
       const user = await models.Users.getUser(_id);
 
       if (!newPassword) {
-        throw new Error('Password is required.');
+        throw new Error('Je vyžadováno heslo.');
       }
 
       this.checkPassword(newPassword);
@@ -604,7 +606,7 @@ export const loadUserClass = (models: IModels) => {
     }) {
       // Password can not be empty string
       if (newPassword === '') {
-        throw new Error('Password can not be empty');
+        throw new Error('Heslo nesmí být prázdné');
       }
 
       this.checkPassword(newPassword);
@@ -615,7 +617,7 @@ export const loadUserClass = (models: IModels) => {
       const valid = await this.comparePassword(currentPassword, user.password);
 
       if (!valid) {
-        throw new Error('Incorrect current password');
+        throw new Error('Nesprávné aktuální heslo');
       }
 
       // set new password
@@ -639,7 +641,7 @@ export const loadUserClass = (models: IModels) => {
       });
 
       if (!user) {
-        throw new Error('Invalid email');
+        throw new Error('Neplatný e-mail');
       }
 
       // create the random token
@@ -743,14 +745,14 @@ export const loadUserClass = (models: IModels) => {
 
       if (!user || !user.password) {
         // user with provided email not found
-        throw new Error('Invalid login');
+        throw new Error('Neplatné přihlášení');
       }
 
       const valid = await this.comparePassword(password, user.password);
 
       if (!valid) {
         // bad password
-        throw new Error('Invalid login');
+        throw new Error('Neplatné přihlášení');
       }
 
       // create tokens
@@ -817,7 +819,7 @@ export const loadUserClass = (models: IModels) => {
         return 'loggedout';
       }
 
-      return 'token not found';
+      return 'token nenalezen';
     }
 
     public static async generateUserCodeField() {
@@ -920,14 +922,14 @@ export const loadUserClass = (models: IModels) => {
 
       if (!user || !user.password) {
         // user with provided email not found
-        throw new Error('Invalid login');
+        throw new Error('Neplatné přihlášení');
       }
 
       const valid = await this.comparePassword(password, user.password);
 
       if (!valid) {
         // bad password
-        throw new Error('Invalid login');
+        throw new Error('Neplatné přihlášení');
       }
 
       return user;

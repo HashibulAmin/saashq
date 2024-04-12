@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'webbuilderAll',
-        description: 'All',
+        description: 'Všechno',
         use: ['showWebbuilder', 'manageWebbuilder']
       },
       {

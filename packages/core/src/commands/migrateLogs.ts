@@ -7,7 +7,7 @@ import { Collection, Db, MongoClient } from 'mongodb';
 const { LOGS_MONGO_URL } = process.env;
 
 if (!LOGS_MONGO_URL) {
-  throw new Error(`Environment variable LOGS_MONGO_URL not set.`);
+  throw new Error(`Proměnná prostředí LOGS_MONGO_URL není nastavena.`);
 }
 
 const client = new MongoClient(LOGS_MONGO_URL);
@@ -17,7 +17,7 @@ let db: Db;
 let Logs: Collection<any>;
 let ActivityLogs: Collection<any>;
 
-const changeType = type => {
+const changeType = (type) => {
   let prefix = '';
 
   switch (type) {
@@ -114,10 +114,7 @@ const command = async () => {
   let bulkOps: any[] = [];
 
   for (let skip = 0; skip <= logsSummary; skip = skip + limit) {
-    const logs = await Logs.find({})
-      .skip(skip)
-      .limit(limit)
-      .toArray();
+    const logs = await Logs.find({}).skip(skip).limit(limit).toArray();
     for (const log of logs) {
       const contentType = changeType(log.contentType);
       if (contentType === log.contentType) {
@@ -127,8 +124,8 @@ const command = async () => {
       bulkOps.push({
         updateOne: {
           filter: { _id: log._id },
-          update: { $set: { contentType } }
-        }
+          update: { $set: { contentType } },
+        },
       });
     }
 
@@ -141,17 +138,14 @@ const command = async () => {
     await Logs.bulkWrite(bulkOps);
   }
 
-  console.log(`Logs migrated ....`);
+  console.log(`Protokoly migrovaly ....`);
 
   bulkOps = [];
 
   const activitySummary = await ActivityLogs.find({}).count();
 
   for (let skip = 0; skip <= activitySummary; skip = skip + limit) {
-    const logs = await ActivityLogs.find({})
-      .skip(skip)
-      .limit(limit)
-      .toArray();
+    const logs = await ActivityLogs.find({}).skip(skip).limit(limit).toArray();
     for (const log of logs) {
       const contentType = changeType(log.contentType);
       if (contentType === log.contentType) {
@@ -161,8 +155,8 @@ const command = async () => {
       bulkOps.push({
         updateOne: {
           filter: { _id: log._id },
-          update: { $set: { contentType } }
-        }
+          update: { $set: { contentType } },
+        },
       });
     }
 
@@ -171,7 +165,7 @@ const command = async () => {
     }
   }
 
-  console.log(`Process finished at: ${new Date()}`);
+  console.log(`Proces ukončen v: ${new Date()}`);
 
   process.exit();
 };

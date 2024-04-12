@@ -305,7 +305,7 @@ export const receiveImportRemove = async (
     return models.ImportHistory.updateOne(
       { _id: importHistoryId },
       {
-        error: `Error occurred during remove${e.message}`,
+        error: `Vyskytla se chyba during remove${e.message}`,
       },
     );
   }
@@ -374,7 +374,7 @@ export const receiveImportCreate = async (
       return models.ImportHistory.updateOne(
         { _id: importHistoryId },
         {
-          error: `Error occurred during creating import check your fields ${e.message}`,
+          error: `Vyskytla se chyba during creating import check your fields ${e.message}`,
         },
       );
     }
@@ -457,7 +457,7 @@ export const receiveImportCreate = async (
     } catch (e) {
       return models.ImportHistory.updateOne(
         { _id: importHistoryId },
-        { error: `Error occurred during creating import ${e.message}` },
+        { error: `Vyskytla se chyba during creating import ${e.message}` },
       );
     }
   };
@@ -476,7 +476,7 @@ export const receiveImportCreate = async (
   } catch (e) {
     return models.ImportHistory.updateOne(
       { _id: importHistoryId },
-      { error: `Error occurred during creating import ${e.message}` },
+      { error: `Vyskytla se chyba during creating import ${e.message}` },
     );
   }
 

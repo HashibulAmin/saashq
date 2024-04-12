@@ -1,282 +1,282 @@
 export const moduleObjects = {
   brands: {
     name: 'brands',
-    description: 'Brands',
+    description: 'Značky',
     actions: [
       {
         name: 'brandsAll',
-        description: 'All',
-        use: ['showBrands', 'manageBrands', 'exportBrands', 'removeBrands']
+        description: 'Všechno',
+        use: ['showBrands', 'manageBrands', 'exportBrands', 'removeBrands'],
       },
       {
         name: 'manageBrands',
-        description: 'Manage brands'
+        description: 'Správa značek',
       },
       {
         name: 'showBrands',
-        description: 'Show brands'
+        description: 'Zobrazit značky',
       },
       {
         name: 'exportBrands',
-        description: 'Export brands'
+        description: 'Exportní značky',
       },
       {
         name: 'removeBrands',
-        description: 'Remove brands'
-      }
-    ]
+        description: 'Odstraňte značky',
+      },
+    ],
   },
   permissions: {
     name: 'permissions',
-    description: 'Permissions config',
+    description: 'Konfigurace oprávnění',
     actions: [
       {
         name: 'permissionsAll',
-        description: 'All',
+        description: 'Všechno',
         use: [
           'managePermissions',
           'showPermissions',
           'showPermissionModules',
           'showPermissionActions',
-          'exportPermissions'
-        ]
+          'exportPermissions',
+        ],
       },
       {
         name: 'managePermissions',
-        description: 'Manage permissions'
+        description: 'Spravovat oprávnění',
       },
       {
         name: 'showPermissions',
-        description: 'Show permissions'
+        description: 'Zobrazit oprávnění',
       },
       {
         name: 'showPermissionModules',
-        description: 'Show permissions modules'
+        description: 'Zobrazit moduly oprávnění',
       },
       {
         name: 'showPermissionActions',
-        description: 'Show permissions actions'
+        description: 'Zobrazit akce oprávnění',
       },
       {
         name: 'exportPermissions',
-        description: 'Export permissions'
-      }
-    ]
+        description: 'Exportní oprávnění',
+      },
+    ],
   },
   usersGroups: {
     name: 'usersGroups',
-    description: 'Users Groups',
+    description: 'Skupiny uživatelů',
     actions: [
       {
         name: 'usersGroupsAll',
-        description: 'All',
-        use: ['showUsersGroups', 'manageUsersGroups']
+        description: 'Všechno',
+        use: ['showUsersGroups', 'manageUsersGroups'],
       },
       {
         name: 'manageUsersGroups',
-        description: 'Manage users groups'
+        description: 'Správa skupin uživatelů',
       },
       {
         name: 'showUsersGroups',
-        description: 'Show users groups'
-      }
-    ]
+        description: 'Zobrazit skupiny uživatelů',
+      },
+    ],
   },
   users: {
     name: 'users',
-    description: 'Team members',
+    description: 'Členové týmu',
     actions: [
       {
         name: 'usersAll',
-        description: 'All',
+        description: 'Všechno',
         use: [
           'showUsers',
           'usersEdit',
           'usersInvite',
           'usersSetActiveStatus',
-          'exportUsers'
-        ]
+          'exportUsers',
+        ],
       },
       {
         name: 'showUsers',
-        description: 'Show team members'
+        description: 'Zobrazit členy týmu',
       },
       {
         name: 'usersSetActiveStatus',
-        description: 'Set active/deactive team member'
+        description: 'Nastavit aktivního/deaktivního člena týmu',
       },
       {
         name: 'usersEdit',
-        description: 'Update team member'
+        description: 'Aktualizujte člena týmu',
       },
       {
         name: 'usersInvite',
-        description: 'Invite team member'
+        description: 'Pozvat člena týmu',
       },
       {
         name: 'exportUsers',
-        description: 'Export team members'
-      }
-    ]
+        description: 'Export členů týmu',
+      },
+    ],
   },
   importHistories: {
     name: 'importHistories',
-    description: 'Import histories',
+    description: 'Historie importu',
     actions: [
       {
         name: 'importHistoriesAll',
-        description: 'All',
-        use: ['importHistories', 'removeImportHistories', 'importXlsFile']
+        description: 'Všechno',
+        use: ['importHistories', 'removeImportHistories', 'importXlsFile'],
       },
       {
         name: 'importXlsFile',
-        description: 'Import xls files'
+        description: 'Import souborů xls',
       },
       {
         name: 'removeImportHistories',
-        description: 'Remove import histories'
+        description: 'Odebrat historii importu',
       },
       {
         name: 'importHistories',
-        description: 'Show import histories'
-      }
-    ]
+        description: 'Zobrazit historii importu',
+      },
+    ],
   },
   generalSettings: {
     name: 'generalSettings',
-    description: 'General settings',
+    description: 'Obecné nastavení',
     actions: [
       {
         name: 'generalSettingsAll',
-        description: 'All',
-        use: ['manageGeneralSettings', 'showGeneralSettings']
+        description: 'Všechno',
+        use: ['manageGeneralSettings', 'showGeneralSettings'],
       },
       {
         name: 'showGeneralSettings',
-        description: 'Show general settings'
+        description: 'Zobrazit obecná nastavení',
       },
       {
         name: 'manageGeneralSettings',
-        description: 'Manage general settings'
-      }
-    ]
+        description: 'Spravujte obecná nastavení',
+      },
+    ],
   },
   structures: {
     name: 'structures',
-    description: 'Structure',
+    description: 'Struktura',
     actions: [
       {
         name: 'structuresAll',
-        description: 'All',
+        description: 'Všechno',
         use: [
           'showStructure',
           'addStructure',
           'editStructure',
-          'removeStructure'
-        ]
+          'removeStructure',
+        ],
       },
       {
         name: 'showStructure',
-        description: 'Show a structure'
+        description: 'Ukažte strukturu',
       },
       {
         name: 'addStructure',
-        description: 'Create a structure'
+        description: 'Vytvořte strukturu',
       },
       {
         name: 'editStructure',
-        description: 'Edit a structure'
+        description: 'Upravit strukturu',
       },
       {
         name: 'removeStructure',
-        description: 'Remove a structure'
-      }
-    ]
+        description: 'Odstraňte strukturu',
+      },
+    ],
   },
   departments: {
     name: 'departments',
-    description: 'Department',
+    description: 'Oddělení',
     actions: [
       {
         name: 'departmentsAll',
-        description: 'All',
+        description: 'Všechno',
         use: [
           'addDepartment',
           'showDepartment',
           'editDepartment',
-          'removeDepartment'
-        ]
+          'removeDepartment',
+        ],
       },
       {
         name: 'showDepartment',
-        description: 'Show a department'
+        description: 'Ukaž oddělení',
       },
       {
         name: 'addDepartment',
-        description: 'Create a department'
+        description: 'Vytvořte oddělení',
       },
       {
         name: 'editDepartment',
-        description: 'Edit a department'
+        description: 'Upravit oddělení',
       },
       {
         name: 'removeDepartment',
-        description: 'Remove a department'
-      }
-    ]
+        description: 'Odebrat oddělení',
+      },
+    ],
   },
   units: {
     name: 'units',
-    description: 'Unit',
+    description: 'Jednotka',
     actions: [
       {
         name: 'unitsAll',
-        description: 'All',
-        use: ['showUnit', 'addUnit', 'editUnit', 'removeUnit']
+        description: 'Všechno',
+        use: ['showUnit', 'addUnit', 'editUnit', 'removeUnit'],
       },
       {
         name: 'showUnit',
-        description: 'Show a unit'
+        description: 'Zobrazit jednotku',
       },
       {
         name: 'addUnit',
-        description: 'Create a unit'
+        description: 'Vytvořte jednotku',
       },
       {
         name: 'editUnit',
-        description: 'Edit a unit'
+        description: 'Upravit jednotku',
       },
       {
         name: 'removeUnit',
-        description: 'Remove a unit'
-      }
-    ]
+        description: 'Odstraňte jednotku',
+      },
+    ],
   },
   branches: {
     name: 'branches',
-    description: 'Branch',
+    description: 'Větev',
     actions: [
       {
         name: 'branchesAll',
-        description: 'All',
-        use: ['showBranch', 'addBranch', 'editBranch', 'removeBranch']
+        description: 'Všechno',
+        use: ['showBranch', 'addBranch', 'editBranch', 'removeBranch'],
       },
       {
         name: 'showBranch',
-        description: 'Show a branch'
+        description: 'Ukaž větev',
       },
       {
         name: 'addBranch',
-        description: 'Create a branch'
+        description: 'Vytvořte větev',
       },
       {
         name: 'editBranch',
-        description: 'Edit a branch'
+        description: 'Upravit větev',
       },
       {
         name: 'removeBranch',
-        description: 'Remove a branch'
-      }
-    ]
-  }
+        description: 'Odstraňte větev',
+      },
+    ],
+  },
 };

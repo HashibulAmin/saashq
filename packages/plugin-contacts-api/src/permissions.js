@@ -5,7 +5,7 @@ module.exports = {
       actions: [
         {
           name: 'companiesAll',
-          description: 'All',
+          description: 'Všechno',
           use: [
             'companiesAdd',
             'companiesEdit',
@@ -52,7 +52,7 @@ module.exports = {
       actions: [
         {
           name: 'customersAll',
-          description: 'All',
+          description: 'Všechno',
           use: [
             'showCustomers',
             'customersAdd',

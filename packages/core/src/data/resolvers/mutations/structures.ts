@@ -38,7 +38,9 @@ const structuresMutations = {
 
   async departmentsRemove(_root, { ids }, { models }: IContext) {
     if (!ids.length) {
-      throw new Error('You must specify at least one department id to remove');
+      throw new Error(
+        'Musíte zadat alespoň jedno ID oddělení, které chcete odebrat',
+      );
     }
     const deleteResponse = models.Departments.removeDepartments(ids);
     return deleteResponse;
@@ -58,7 +60,9 @@ const structuresMutations = {
 
   async unitsRemove(_root, { ids }, { models }: IContext) {
     if (!ids.length) {
-      throw new Error('You must specify at least one department id to remove');
+      throw new Error(
+        'Musíte zadat alespoň jedno ID oddělení, které chcete odebrat',
+      );
     }
     const deleteResponse = await models.Units.removeUnits(ids);
 
@@ -79,7 +83,9 @@ const structuresMutations = {
 
   async branchesRemove(_root, { ids }, { models }: IContext) {
     if (!ids.length) {
-      throw new Error('You must specify at least one branch id to remove');
+      throw new Error(
+        'Musíte zadat alespoň jedno ID větve, kterou chcete odebrat',
+      );
     }
     const deleteResponse = await models.Branches.removeBranches(ids);
     return deleteResponse;
@@ -98,7 +104,9 @@ const structuresMutations = {
 
   async positionsRemove(_root, { ids }, { models }: IContext) {
     if (!ids.length) {
-      throw new Error('You must specify at least one position id to remove');
+      throw new Error(
+        'Musíte zadat alespoň jedno ID pozice, kterou chcete odebrat',
+      );
     }
 
     const branch = await models.Positions.removePositions(ids);

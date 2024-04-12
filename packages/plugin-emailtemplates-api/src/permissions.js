@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'emailTemplateAll',
-        description: 'All',
+        description: 'Všechno',
         use: ['showEmailTemplates', 'manageEmailTemplate', 'removeEmailTemplate']
       },
       {

@@ -10,7 +10,7 @@ const organizationsQueries = {
     let experience = {} as any;
 
     if (!organization) {
-      throw new Error('Organization not found');
+      throw new Error('Organizace nenalezena');
     }
 
     if (organization.experienceId) {

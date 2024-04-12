@@ -3,7 +3,7 @@ import { generateModels } from './connectionResolver';
 import {
   USER_EXPORT_EXTENDED_FIELDS,
   USER_EXTENDED_FIELDS,
-  USER_PROPERTIES_INFO
+  USER_PROPERTIES_INFO,
 } from './constants';
 
 const generateFields = async ({ subdomain, data }) => {
@@ -45,7 +45,7 @@ const generateFields = async ({ subdomain, data }) => {
       if (path.schema) {
         fields = [
           ...fields,
-          ...(await generateFieldsFromSchema(path.schema, `${name}.`))
+          ...(await generateFieldsFromSchema(path.schema, `${name}.`)),
         ];
       }
     }
@@ -57,18 +57,18 @@ const generateFields = async ({ subdomain, data }) => {
 export default {
   types: [
     {
-      description: 'Team member',
-      type: 'user'
-    }
+      description: 'Člen týmu',
+      type: 'user',
+    },
   ],
   fields: generateFields,
   systemFields: ({ data: { groupId } }) =>
-    USER_PROPERTIES_INFO.ALL.map(e => ({
+    USER_PROPERTIES_INFO.ALL.map((e) => ({
       text: e.label,
       type: e.field,
       groupId,
       contentType: `core:user`,
-      isDefinedBySaasHQ: true
+      isDefinedBySaasHQ: true,
     })),
-  systemFieldsAvailable: true
+  systemFieldsAvailable: true,
 };

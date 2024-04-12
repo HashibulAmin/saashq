@@ -45,7 +45,7 @@ export const setupMessageConsumers = async () => {
     try {
       await receivePutLogCommand(models, data);
     } catch (e) {
-      throw new Error(`Error occurred when receiving putLog message: ${e}`);
+      throw new Error(`Vyskytla se chyba when receiving putLog message: ${e}`);
     }
   });
 

@@ -11,7 +11,7 @@ const DOMAIN = getEnv({ name: 'DOMAIN' });
 
 export const uploader = async (req: any, res, next) => {
   const subdomain = getSubdomain(req);
-  const domain = DOMAIN.replace('<subdomain>', subdomain);
+  const domain = DOMAIN.replace('<subdoména>', subdomain);
   const models = await generateModels(subdomain);
 
   const maxHeight = Number(req.query.maxHeight);
@@ -27,7 +27,7 @@ export const uploader = async (req: any, res, next) => {
     const mimetype = file.type || file.mime;
 
     if (!mimetype) {
-      return res.status(500).send('File type is not recognized');
+      return res.status(500).send('Typ souboru nebyl rozpoznán');
     }
 
     if (isImage(mimetype) && maxHeight && maxWidth) {

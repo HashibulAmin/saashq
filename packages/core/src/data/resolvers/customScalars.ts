@@ -32,7 +32,7 @@ function jSONparseLiteral(ast: any) {
 export default {
   Date: new GraphQLScalarType({
     name: 'Date',
-    description: 'Date custom scalar type',
+    description: 'Datum vlastního skalárního typu',
     parseValue(value: any) {
       return new Date(value); // value from the client
     },
@@ -54,17 +54,17 @@ export default {
         return parseInt(ast.value, 10); // ast value is always in string format
       }
       return null;
-    }
+    },
   }),
 
   JSON: new GraphQLScalarType({
     name: 'JSON',
     description:
-      'The `jSON` scalar type represents jSON values as specified by ' +
+      'Skalární typ `jSON` představuje hodnoty jSON, jak je specifikováno v ' +
       '[ECMA-404](http://www.ecma-international.org/' +
       'publications/files/ECMA-ST/ECMA-404.pdf).',
     serialize: jSONidentity,
     parseValue: jSONidentity,
-    parseLiteral: jSONparseLiteral
-  })
+    parseLiteral: jSONparseLiteral,
+  }),
 };

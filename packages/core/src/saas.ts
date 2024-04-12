@@ -119,7 +119,7 @@ export const ssocallback = async (req: any, res) => {
     });
 
     if (!profile) {
-      throw new Error('Google profile not found');
+      throw new Error('Profil Google nebyl nalezen');
     }
 
     const { email = '' } = profile;
@@ -143,7 +143,7 @@ export const ssocallback = async (req: any, res) => {
 
     return res.redirect(FRONT_DOMAIN);
   } catch (e) {
-    debugError(`Error occurred when logging in via google: "${e.message}"`);
+    debugError(`Vyskytla se chyba when logging in via google: "${e.message}"`);
     throw new Error(e);
   }
 };

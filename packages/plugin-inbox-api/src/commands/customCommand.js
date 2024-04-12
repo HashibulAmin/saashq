@@ -195,7 +195,7 @@ const command = async () => {
       }
     }
 
-    console.log(`Process finished at: ${new Date()}`);
+    console.log(`Proces ukončen v: ${new Date()}`);
 
     fbClient.close();
     integrationsClient.close();

@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'inventoriesAll',
-        description: 'All',
+        description: 'Všechno',
         use: ['manageRemainders']
       },
       {

@@ -69,7 +69,7 @@ export const start = async (
       await models.Logs.createLog(
         engageMessageId,
         'failure',
-        `Error occurred while sending email to ${customer.primaryEmail}: ${e.message}`,
+        `Vyskytla se chyba while sending email to ${customer.primaryEmail}: ${e.message}`,
       );
     }
   };
@@ -298,7 +298,7 @@ export const sendEmail = async (models: IModels, data: any) => {
     debugInfo(`Sent email to: ${customer?.primaryEmail}`);
   } catch (e) {
     debugError(
-      `Error occurred while sending email to ${customer?.primaryEmail}: ${e.message}`,
+      `Vyskytla se chyba while sending email to ${customer?.primaryEmail}: ${e.message}`,
     );
   }
 };

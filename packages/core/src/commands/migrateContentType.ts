@@ -7,7 +7,7 @@ import { Collection, Db, MongoClient } from 'mongodb';
 const { MONGO_URL } = process.env;
 
 if (!MONGO_URL) {
-  throw new Error(`Environment variable MONGO_URL not set.`);
+  throw new Error(`Proměnná prostředí MONGO_URL není nastavena.`);
 }
 
 const client = new MongoClient(MONGO_URL);
@@ -21,7 +21,7 @@ let Tags: Collection<any>;
 let InternalNotes: Collection<any>;
 let Webhooks: Collection<any>;
 
-const switchContentType = contentType => {
+const switchContentType = (contentType) => {
   let changedContentType = contentType;
 
   switch (contentType) {
@@ -118,7 +118,7 @@ const command = async () => {
   Webhooks = db.collection('webhooks');
 
   try {
-    await Segments.find({}).forEach(doc => {
+    await Segments.find({}).forEach((doc) => {
       const contentType = switchContentType(doc.contentType);
 
       Segments.updateOne({ _id: doc._id }, { $set: { contentType } });
@@ -135,35 +135,35 @@ const command = async () => {
 
       Segments.updateOne(
         { _id: doc._id },
-        { $set: { conditions: updatedConditions } }
+        { $set: { conditions: updatedConditions } },
       );
     });
 
-    await FieldGroups.find({}).forEach(doc => {
+    await FieldGroups.find({}).forEach((doc) => {
       const contentType = switchContentType(doc.contentType);
 
       FieldGroups.updateOne({ _id: doc._id }, { $set: { contentType } });
     });
 
-    await Fields.find({}).forEach(doc => {
+    await Fields.find({}).forEach((doc) => {
       const contentType = switchContentType(doc.contentType);
 
       Fields.updateOne({ _id: doc._id }, { $set: { contentType } });
     });
 
-    await Tags.find({}).forEach(doc => {
+    await Tags.find({}).forEach((doc) => {
       const contentType = switchContentType(doc.type);
 
       Tags.updateOne({ _id: doc._id }, { $set: { type: contentType } });
     });
 
-    await InternalNotes.find({}).forEach(doc => {
+    await InternalNotes.find({}).forEach((doc) => {
       const contentType = switchContentType(doc.contentType);
 
       InternalNotes.updateOne({ _id: doc._id }, { $set: { contentType } });
     });
 
-    await Webhooks.find({}).forEach(webhook => {
+    await Webhooks.find({}).forEach((webhook) => {
       const actions = webhook.actions || [];
       const fixedActions = [] as any;
 
@@ -172,7 +172,7 @@ const command = async () => {
 
         fixedActions.push({
           ...action,
-          type
+          type,
         });
       }
 
@@ -180,16 +180,16 @@ const command = async () => {
         { _id: webhook._id },
         {
           $set: {
-            actions: fixedActions
-          }
-        }
+            actions: fixedActions,
+          },
+        },
       );
     });
   } catch (e) {
-    console.log(`Error occurred: ${e.message}`);
+    console.log(`Vyskytla se chyba: ${e.message}`);
   }
 
-  console.log(`Process finished at: ${new Date()}`);
+  console.log(`Proces ukončen v: ${new Date()}`);
 
   process.exit();
 };

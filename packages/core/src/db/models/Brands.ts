@@ -21,7 +21,7 @@ export const loadBrandClass = (models: IModels) => {
       const brand = await models.Brands.findOne(doc).lean();
 
       if (!brand) {
-        throw new Error('Brand not found');
+        throw new Error('Značka nenalezena');
       }
 
       return brand;
@@ -65,7 +65,7 @@ export const loadBrandClass = (models: IModels) => {
       const brandObj = await models.Brands.findOne({ _id });
 
       if (!brandObj) {
-        throw new Error(`Brand not found with id ${_id}`);
+        throw new Error(`Značka nebyla nalezena s id ${_id}`);
       }
 
       return brandObj.deleteOne();

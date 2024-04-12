@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'inboxAll',
-        description: 'All',
+        description: 'Všechno',
         use: [
           'showConversations',
           'changeConversationStatus',
@@ -42,7 +42,7 @@ module.exports = {
     actions: [
       {
         name: 'integrationsAll',
-        description: 'All',
+        description: 'Všechno',
         use: [
           'showIntegrations',
           'integrationsCreateMessengerIntegration',
@@ -114,7 +114,7 @@ module.exports = {
     actions: [
       {
         name: 'skillTypesAll',
-        description: 'All',
+        description: 'Všechno',
         use: [
           'getSkillTypes',
           'createSkillType',
@@ -147,7 +147,7 @@ module.exports = {
     actions: [
       {
         name: 'skillsAll',
-        description: 'All',
+        description: 'Všechno',
         use: [
           'getSkill',
           'getSkills',
@@ -184,7 +184,7 @@ module.exports = {
     actions: [
       {
         name: 'responseTemplatesAll',
-        description: 'All',
+        description: 'Všechno',
         use: ['manageResponseTemplate', 'showResponseTemplates']
       },
       {
@@ -203,7 +203,7 @@ module.exports = {
     actions: [
       {
         name: 'channelsAll',
-        description: 'All',
+        description: 'Všechno',
         use: ['showChannels', 'manageChannels', 'exportChannels', 'removeChannels']
       },
       {
@@ -230,7 +230,7 @@ module.exports = {
     actions: [
       {
         name: 'scriptsAll',
-        description: 'All',
+        description: 'Všechno',
         use: ['showScripts', 'manageScripts']
       },
       {

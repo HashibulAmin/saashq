@@ -2,59 +2,59 @@ export const USER_PROPERTIES_INFO = {
   email: 'Primary email',
   username: 'User name',
   ALL: [
-    { field: 'email', label: 'Primary email', canHide: false },
-    { field: 'username', label: 'User name' }
-  ]
+    { field: 'email', label: 'Primární email', canHide: false },
+    { field: 'username', label: 'Uživatelské jméno' },
+  ],
 };
 
 export const STRUCTURE_STATUSES = {
   ACTIVE: 'active',
-  DELETED: 'deleted'
+  DELETED: 'deleted',
 };
 
 export const USER_MOVEMENT_STATUSES = {
   CREATED: 'created',
-  REMOVED: 'removed'
+  REMOVED: 'removed',
 };
 
 export const USER_EXTENDED_FIELDS = [
   {
     _id: Math.random(),
     name: 'departments',
-    label: 'Departments',
-    type: 'string'
+    label: 'Oddělení',
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'branches',
-    label: 'Branches',
-    type: 'string'
+    label: 'Větve',
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'password',
-    label: 'password',
-    type: 'string'
-  }
+    label: 'Heslo',
+    type: 'string',
+  },
 ];
 
 export const USER_EXPORT_EXTENDED_FIELDS = [
   {
     _id: Math.random(),
     name: 'departments',
-    label: 'Departments',
-    type: 'string'
+    label: 'Oddělení',
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'branches',
-    label: 'Branches',
-    type: 'string'
+    label: 'Větve',
+    type: 'string',
   },
   {
     _id: Math.random(),
     name: 'employeeId',
-    label: 'Employee Id',
-    type: 'string'
-  }
+    label: 'ID zaměstnance',
+    type: 'string',
+  },
 ];

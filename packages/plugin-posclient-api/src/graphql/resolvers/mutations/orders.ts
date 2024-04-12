@@ -258,7 +258,7 @@ const ordersAdd = async (
     return order;
   } catch (e) {
     debugError(
-      `Error occurred when creating order: ${JSON.stringify(orderDoc)}`,
+      `Vyskytla se chyba when creating order: ${JSON.stringify(orderDoc)}`,
     );
 
     return e;
@@ -492,7 +492,9 @@ const orderMutations = {
           },
         });
       } catch (e) {
-        debugError(`Error occurred while sending data to SaasHQ: ${e.message}`);
+        debugError(
+          `Vyskytla se chyba while sending data to SaasHQ: ${e.message}`,
+        );
       }
     }
   },
@@ -610,7 +612,9 @@ const orderMutations = {
           },
         });
       } catch (e) {
-        debugError(`Error occurred while sending data to SaasHQ: ${e.message}`);
+        debugError(
+          `Vyskytla se chyba while sending data to SaasHQ: ${e.message}`,
+        );
       }
 
       return ebarimtResponses;
@@ -680,7 +684,9 @@ const orderMutations = {
           },
         });
       } catch (e) {
-        debugError(`Error occurred while sending data to SaasHQ: ${e.message}`);
+        debugError(
+          `Vyskytla se chyba while sending data to SaasHQ: ${e.message}`,
+        );
       }
     }
 
@@ -981,7 +987,9 @@ const orderMutations = {
           },
         });
       } catch (e) {
-        debugError(`Error occurred while sending data to SaasHQ: ${e.message}`);
+        debugError(
+          `Vyskytla se chyba while sending data to SaasHQ: ${e.message}`,
+        );
       }
 
       return order;
@@ -1109,7 +1117,9 @@ const orderMutations = {
         },
       });
     } catch (e) {
-      debugError(`Error occurred while sending data to SaasHQ: ${e.message}`);
+      debugError(
+        `Vyskytla se chyba while sending data to SaasHQ: ${e.message}`,
+      );
     }
 
     return models.Orders.findOne({ _id: order._id });

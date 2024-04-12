@@ -7,7 +7,7 @@ const { Db, MongoClient } = require("mongodb");
 const { MONGO_URL } = process.env;
 
 if (!MONGO_URL) {
-  throw new Error(`Environment variable MONGO_URL not set.`);
+  throw new Error(`Proměnná prostředí MONGO_URL není nastavena.`);
 }
 
 const client = new MongoClient(MONGO_URL, {});

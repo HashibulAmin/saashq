@@ -6,7 +6,7 @@ import { Collection, Db, MongoClient } from 'mongodb';
 const { MONGO_URL } = process.env;
 
 if (!MONGO_URL) {
-  throw new Error(`Environment variable MONGO_URL not set.`);
+  throw new Error(`Proměnná prostředí MONGO_URL není nastavena.`);
 }
 
 const client = new MongoClient(MONGO_URL);
@@ -44,7 +44,7 @@ const generateOrder = async (models, items: any[], parent?: any) => {
           filter: {
             contentType: models.type,
             contentTypeId: _id,
-            userId: userId
+            userId: userId,
           },
           update: {
             $set: {
@@ -53,18 +53,18 @@ const generateOrder = async (models, items: any[], parent?: any) => {
               userId: userId,
               createdAt,
               createdBy,
-              isActive: true
-            }
+              isActive: true,
+            },
           },
-          upsert: true
-        }
+          upsert: true,
+        },
       });
     }
     if (!!newUserMovemment.length) {
       UserMovements.bulkWrite(newUserMovemment);
       Users.updateMany(
         { _id: { $in: userIds || [] } },
-        { $addToSet: { [`${models.type}Ids`]: _id } }
+        { $addToSet: { [`${models.type}Ids`]: _id } },
       );
     }
 
@@ -81,9 +81,9 @@ const generateOrder = async (models, items: any[], parent?: any) => {
           ...item,
           code,
           order: `${parentOrder}${code}/`,
-          status: 'active'
-        }
-      }
+          status: 'active',
+        },
+      },
     );
 
     const newItem = await models.collection.findOne({ _id: item._id });
@@ -100,7 +100,7 @@ const command = async () => {
 
   await client.connect();
 
-  console.log('connected...');
+  console.log('připojeno...');
   db = client.db() as Db;
 
   Branches = db.collection('branches');
@@ -111,12 +111,12 @@ const command = async () => {
   const modelsMap = [
     {
       type: 'branch',
-      collection: Branches
+      collection: Branches,
     },
     {
       type: 'department',
-      collection: Departments
-    }
+      collection: Departments,
+    },
   ];
 
   try {
@@ -125,36 +125,36 @@ const command = async () => {
       try {
         const allHasParents = await models.collection
           .find({
-            parentId: { $nin: ['', null, undefined] }
+            parentId: { $nin: ['', null, undefined] },
           })
           .toArray();
 
-        const allParentIds = allHasParents.map(item => item.parentId);
+        const allParentIds = allHasParents.map((item) => item.parentId);
         const allItems = await models.collection.find().toArray();
-        const allIds = allItems.map(item => item._id);
+        const allIds = allItems.map((item) => item._id);
         const wrongParentIds = allParentIds.filter(
-          parentId => !allIds.includes(parentId)
+          (parentId) => !allIds.includes(parentId),
         );
         await models.collection.updateMany(
           { parentId: { $in: wrongParentIds } },
-          { $set: { parentId: '' } }
+          { $set: { parentId: '' } },
         );
 
         const roots = await models.collection
           .find({
-            parentId: { $in: ['', null, undefined] }
+            parentId: { $in: ['', null, undefined] },
           })
           .toArray();
         await generateOrder(models, roots);
       } catch (e) {
-        console.log(`Error occurred: ${e.message}`);
+        console.log(`Vyskytla se chyba: ${e.message}`);
       }
     }
   } catch (e) {
-    console.log(`Error occurred: ${e.message}`);
+    console.log(`Vyskytla se chyba: ${e.message}`);
   }
 
-  console.log(`Process finished at: ${new Date()}`);
+  console.log(`Proces ukončen v: ${new Date()}`);
 
   process.exit();
 };

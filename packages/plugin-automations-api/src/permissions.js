@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'automationAll',
-        description: 'All',
+        description: 'Všechno',
         use: [
           'showAutomations',
           'automationsAdd',

@@ -7,7 +7,7 @@ import { Collection, Db, MongoClient } from 'mongodb';
 const { MONGO_URL } = process.env;
 
 if (!MONGO_URL) {
-  throw new Error(`Environment variable MONGO_URL not set.`);
+  throw new Error(`Proměnná prostředí MONGO_URL není nastavena.`);
 }
 
 const client = new MongoClient(MONGO_URL);
@@ -53,15 +53,15 @@ const command = async () => {
 
       if (!response.ok || body.routes.length === 0) {
         console.log(
-          `${placeA.name} - ${placeB.name} path not found: ${response.status}`,
+          `${placeA.name} - ${placeB.name} cesta nenalezena: ${response.status}`,
         );
         return null;
       }
 
-      console.log(`Path found for ${placeA.name} - ${placeB.name}`);
+      console.log(`Cesta nalezena pro ${placeA.name} - ${placeB.name}`);
       return body.routes[0].overview_polyline.points;
     } catch {
-      console.log(`Error while getting path from google api`);
+      console.log(`Chyba při získávání cesty z google api`);
       return null;
     }
   };
@@ -83,7 +83,7 @@ const command = async () => {
     }
   }
 
-  console.log(`Process finished at: ${new Date()}`);
+  console.log(`Proces ukončen v: ${new Date()}`);
 
   process.exit();
 };

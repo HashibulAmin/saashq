@@ -51,7 +51,9 @@ export const getPostDetails = async (
   try {
     pageAccessToken = getPageAccessTokenFromMap(pageId, pageTokens);
   } catch (e) {
-    debugError(`Error occurred while getting page access token: ${e.message}`);
+    debugError(
+      `Vyskytla se chyba while getting page access token: ${e.message}`,
+    );
     throw new Error();
   }
 
@@ -60,7 +62,7 @@ export const getPostDetails = async (
 
     return response;
   } catch (e) {
-    debugError(`Error occurred while getting facebook post: ${e.message}`);
+    debugError(`Vyskytla se chyba while getting facebook post: ${e.message}`);
     return null;
   }
 };
@@ -153,7 +155,9 @@ export const getPostLink = async (
   try {
     pageAccessToken = getPageAccessTokenFromMap(pageId, pageTokens);
   } catch (e) {
-    debugError(`Error occurred while getting page access token: ${e.message}`);
+    debugError(
+      `Vyskytla se chyba while getting page access token: ${e.message}`,
+    );
     throw new Error();
   }
 
@@ -164,7 +168,7 @@ export const getPostLink = async (
     );
     return response.permalink_url ? response.permalink_url : '';
   } catch (e) {
-    debugError(`Error occurred while getting facebook post: ${e.message}`);
+    debugError(`Vyskytla se chyba while getting facebook post: ${e.message}`);
     return null;
   }
 };
@@ -193,7 +197,9 @@ export const getFacebookUser = async (
   try {
     pageAccessToken = getPageAccessTokenFromMap(pageId, pageTokens);
   } catch (e) {
-    debugError(`Error occurred while getting page access token: ${e.message}`);
+    debugError(
+      `Vyskytla se chyba while getting page access token: ${e.message}`,
+    );
     return null;
   }
 
@@ -264,7 +270,7 @@ export const uploadMedia = async (subdomain: string, url: any, video) => {
     });
   } catch (e) {
     debugError(
-      `Error occurred while getting facebook user profile pic: ${e.message}`,
+      `Vyskytla se chyba while getting facebook user profile pic: ${e.message}`,
     );
 
     return null;
@@ -282,7 +288,9 @@ export const getFacebookUserProfilePic = async (
   try {
     pageAccessToken = getPageAccessTokenFromMap(pageId, pageTokens);
   } catch (e) {
-    debugError(`Error occurred while getting page access token: ${e.message}`);
+    debugError(
+      `Vyskytla se chyba while getting page access token: ${e.message}`,
+    );
     throw new Error();
   }
 
@@ -307,7 +315,7 @@ export const getFacebookUserProfilePic = async (
     return null;
   } catch (e) {
     debugError(
-      `Error occurred while getting facebook user profile pic: ${e.message}`,
+      `Vyskytla se chyba while getting facebook user profile pic: ${e.message}`,
     );
     return null;
   }

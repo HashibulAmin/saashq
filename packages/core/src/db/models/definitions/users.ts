@@ -5,7 +5,7 @@ import {
   IEmailSignatureDocument,
   IUser,
   IUserDocument,
-  userSchema
+  userSchema,
 } from '@saashq/api-utils/src/definitions/users';
 import { Document, Schema } from 'mongoose';
 import { USER_MOVEMENT_STATUSES } from '../../../constants';
@@ -24,17 +24,17 @@ interface IUserMovementDocument extends Document {
 
 const userMovemmentSchema = new Schema({
   _id: field({ pkey: true }),
-  contentType: field({ type: String, label: 'Content Type' }),
-  contentTypeId: field({ type: String, label: 'Content Type Id' }),
-  userId: field({ type: String, label: 'User Id' }),
-  createdBy: field({ type: String, label: 'Created By' }),
-  isActive: field({ type: Boolean, label: 'Is Active' }),
+  contentType: field({ type: String, label: 'Typ obsahu' }),
+  contentTypeId: field({ type: String, label: 'ID typu obsahu' }),
+  userId: field({ type: String, label: 'Uživatelské ID' }),
+  createdBy: field({ type: String, label: 'Vytvořil' }),
+  isActive: field({ type: Boolean, label: 'Je aktivní' }),
   status: field({
     type: String,
-    label: 'User Movement Status',
-    default: USER_MOVEMENT_STATUSES.CREATED
+    label: 'Stav pohybu uživatele',
+    default: USER_MOVEMENT_STATUSES.CREATED,
   }),
-  createdAt: field({ type: Date, label: 'Created At', default: Date.now })
+  createdAt: field({ type: Date, label: 'Vytvořeno v', default: Date.now }),
 });
 
 export {
@@ -46,5 +46,5 @@ export {
   IUserDocument,
   userSchema,
   IUserMovementDocument,
-  userMovemmentSchema
+  userMovemmentSchema,
 };

@@ -26,7 +26,7 @@ const { MongoClient } = require('mongodb');
 const { API_MONGO_URL = 'mongodb://localhost/saashq' } = process.env;
 
 if (!API_MONGO_URL) {
-  throw new Error(`Environment variable MONGO_URL not set.`);
+  throw new Error(`Proměnná prostředí MONGO_URL není nastavena.`);
 }
 
 const client = new MongoClient(API_MONGO_URL);
@@ -250,10 +250,10 @@ const command = async () => {
       console.log(`${bulkDocs.length} customers successfully updated`);
       console.log(`loop ${i} done.`);
     } catch (e) {
-      console.log(`Error occurred: ${e.message}`);
+      console.log(`Vyskytla se chyba: ${e.message}`);
     }
   }
-  console.log(`Process finished at: ${new Date()}`);
+  console.log(`Proces ukončen v: ${new Date()}`);
 
   process.exit();
 };

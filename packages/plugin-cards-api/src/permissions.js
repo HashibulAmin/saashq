@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'dealsAll',
-        description: 'All',
+        description: 'Všechno',
         use: [
           'showDeals',
           'dealBoardsAdd',
@@ -128,7 +128,7 @@ module.exports = {
     actions: [
       {
         name: 'purchasesAll',
-        description: 'All',
+        description: 'Všechno',
         use: [
           'showPurchases',
           'purchaseBoardsAdd',
@@ -251,7 +251,7 @@ module.exports = {
     actions: [
       {
         name: 'ticketsAll',
-        description: 'All',
+        description: 'Všechno',
         use: [
           'showTickets',
           'ticketBoardsAdd',
@@ -378,7 +378,7 @@ module.exports = {
     actions: [
       {
         name: 'growthHacksAll',
-        description: 'All',
+        description: 'Všechno',
         use: [
           'showGrowthHacks',
           'growthHackBoardsAdd',
@@ -516,7 +516,7 @@ module.exports = {
     actions: [
       {
         name: 'tasksAll',
-        description: 'All',
+        description: 'Všechno',
         use: [
           'showTasks',
           'taskBoardsAdd',

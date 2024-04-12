@@ -5,7 +5,7 @@ const { MongoClient } = require('mongodb');
 const { MONGO_URL } = process.env;
 
 if (!MONGO_URL) {
-  throw new Error(`Environment variable MONGO_URL not set.`);
+  throw new Error(`Proměnná prostředí MONGO_URL není nastavena.`);
 }
 
 const client = new MongoClient(MONGO_URL);
@@ -28,12 +28,12 @@ const command = async () => {
   const modelsMap = [
     {
       type: 'tickets',
-      collection: Tickets
+      collection: Tickets,
     },
     {
       type: 'tasks',
-      collection: Tasks
-    }
+      collection: Tasks,
+    },
   ];
 
   for (const models of modelsMap) {
@@ -41,7 +41,7 @@ const command = async () => {
 
     const items = await models.collection.find({
       'customFieldsData.extraValue': 'riskAssessmentVisitors',
-      'customFieldData.stringValue': { $exists: false }
+      'customFieldData.stringValue': { $exists: false },
     });
 
     console.log(`${items.length} ${models.type} found from db...`);
@@ -59,12 +59,12 @@ const command = async () => {
             updateOne: {
               filter: {
                 _id: item._id,
-                'customFieldsData.field': customFieldData.field
+                'customFieldsData.field': customFieldData.field,
               },
               update: {
-                $set: { 'customFieldsData.$.stringValue': stringValue }
-              }
-            }
+                $set: { 'customFieldsData.$.stringValue': stringValue },
+              },
+            },
           });
         }
       }
@@ -77,7 +77,7 @@ const command = async () => {
         await models.collection.bulkWrite(bulkOps);
         console.log(`${bulkOps?.length || 0} items updated successfully`);
       } catch (e) {
-        console.log('Error occurred:', e.message);
+        console.log('Vyskytla se chyba:', e.message);
       }
     }
     console.log(`${models.type} done.......`);
@@ -85,10 +85,10 @@ const command = async () => {
 
   try {
   } catch (error) {
-    console.log('Error occurred:', error.message);
+    console.log('Vyskytla se chyba:', error.message);
   }
 
-  console.log(`Process finished at: ${new Date()}`);
+  console.log(`Proces ukončen v: ${new Date()}`);
 
   process.exit();
 };

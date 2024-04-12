@@ -23,11 +23,11 @@ const contactInfoSchema = {
   phoneNumber: field({ type: String, optional: true }),
   email: field({ type: String, optional: true }),
   address: field({ type: String, optional: true }),
-  links: field({ type: Object, default: {}, label: 'Links' }),
+  links: field({ type: Object, default: {}, label: 'Odkazy' }),
   coordinate: field({
     type: CoordinateSchame,
     optional: true,
-    label: 'Longitude and latitude',
+    label: 'Zeměpisná délka a šířka',
   }),
   image: field({ type: attachmentSchema, optional: true }),
 };
@@ -74,7 +74,7 @@ export const departmentSchema = schemaWrapper(
     order: field({ type: String, unique: true }),
     status: field({
       type: String,
-      label: 'Status',
+      label: 'StavPostavení',
       default: STRUCTURE_STATUSES.ACTIVE,
     }),
     ...commonSchemaFields,
@@ -96,7 +96,7 @@ export const unitSchema = schemaWrapper(
     description: field({ type: String, optional: true }),
     departmentId: field({ type: String, optional: true }),
     supervisorId: field({ type: String, optional: true }),
-    userIds: field({ type: [String], label: 'Related users' }),
+    userIds: field({ type: [String], label: 'Související uživatelé' }),
     ...commonSchemaFields,
   }),
 );
@@ -130,11 +130,11 @@ export const branchSchema = schemaWrapper(
     order: field({ type: String, unique: true }),
     status: field({
       type: String,
-      label: 'Status',
+      label: 'Postavení',
       default: STRUCTURE_STATUSES.ACTIVE,
     }),
     supervisorId: field({ type: String, optional: true }),
-    radius: field({ type: Number, label: 'Coordinate radius /M/' }),
+    radius: field({ type: Number, label: 'Poloměr souřadnic /M/' }),
   }),
 );
 
@@ -143,10 +143,10 @@ export const positionSchema = schemaWrapper(
     ...commonSchemaFields,
     parentId: field({ type: String, optional: true }),
     order: field({ type: String, unique: true }),
-    userIds: field({ type: [String], label: 'Related users' }),
+    userIds: field({ type: [String], label: 'Související uživatelé' }),
     status: field({
       type: String,
-      label: 'Status',
+      label: 'Postavení',
       default: STRUCTURE_STATUSES.ACTIVE,
     }),
   }),

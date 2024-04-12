@@ -5,7 +5,7 @@ module.exports = {
         actions: [
             {
                 name: 'khanbankConfigsAll',
-                description: 'All',
+                description: 'Všechno',
                 use: [
                     'khanbankConfigsAdd',
                     'khanbankConfigsEdit',
@@ -37,7 +37,7 @@ module.exports = {
         actions: [
             {
                 name: 'khanbankAccountsAll',
-                description: 'All',
+                description: 'Všechno',
                 use: [
                     'khanbankAccountDetail',
                     'khanbankAccounts',
@@ -57,7 +57,7 @@ module.exports = {
         actions: [
             {
                 name: 'khanbankTransactionsAll',
-                description: 'All',
+                description: 'Všechno',
                 use: [
                     'khanbankTransactionsShow',
                     'khanbankTransfer',

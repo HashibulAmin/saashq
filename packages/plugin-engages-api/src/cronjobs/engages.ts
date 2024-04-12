@@ -35,7 +35,7 @@ const runJobs = async (
       );
     } catch (e) {
       debugError(
-        `Error occurred when sending campaign "${message.title}" with id ${message._id}`,
+        `Vyskytla se chyba when sending campaign "${message.title}" with id ${message._id}`,
       );
     }
   }

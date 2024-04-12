@@ -41,7 +41,7 @@ const importer = async (
   } catch (e) {
     return models.ImportHistory.updateOne(
       { _id: 'importHistoryId' },
-      { error: `Error occurred during creating import ${e.message}` },
+      { error: `Vyskytla se chyba during creating import ${e.message}` },
     );
   }
 };

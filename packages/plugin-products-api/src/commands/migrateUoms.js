@@ -7,7 +7,7 @@ dotenv.config();
 const { MONGO_URL } = process.env;
 
 if (!MONGO_URL) {
-  throw new Error(`Environment variable MONGO_URL not set.`);
+  throw new Error(`Proměnná prostředí MONGO_URL není nastavena.`);
 }
 
 const client = new MongoClient(MONGO_URL);
@@ -139,10 +139,10 @@ const command = async () => {
       await Configs.updateOne({ code: 'defaultUOM' }, { $set: { value: defaultUom } })
     }
   } catch (e) {
-    console.log(`Error occurred: ${e.message}`);
+    console.log(`Vyskytla se chyba: ${e.message}`);
   }
 
-  console.log(`Process finished at: ${new Date()}`);
+  console.log(`Proces ukončen v: ${new Date()}`);
 
   process.exit();
 };

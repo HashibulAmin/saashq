@@ -66,7 +66,7 @@ const {
 } = process.env;
 
 if (!JWT_TOKEN_SECRET) {
-  throw new Error('Please configure JWT_TOKEN_SECRET environment variable.');
+  throw new Error('Nakonfigurujte proměnnou prostředí JWT_TOKEN_SECRET.');
 }
 
 // don't move it above telnyx controllers
@@ -324,10 +324,10 @@ httpServer.listen(PORT, async () => {
       telemetry.trackCli('server_started');
       telemetry.startBackgroundUpdate();
 
-      debugBase('Startup successfully started');
+      debugBase('Spouštění bylo úspěšně zahájeno');
     })
     .catch((e) => {
-      debugError(`Error occured while starting init: ${e.message}`);
+      debugError(`Při spouštění init došlo k chybě: ${e.message}`);
     });
 
   await join({
@@ -346,7 +346,7 @@ httpServer.listen(PORT, async () => {
     },
   });
 
-  debugInit(`GraphQL Server is now running on ${PORT}`);
+  debugInit(`GraphQL Server nyní běží ${PORT}`);
 });
 
 // GRACEFULL SHUTDOWN
@@ -355,7 +355,7 @@ process.stdin.resume(); // so the program will not close instantly
 async function closeMongooose() {
   try {
     await mongoose.connection.close();
-    console.log('Mongoose connection disconnected ');
+    console.log('Připojení Mongoose odpojeno ');
   } catch (e) {
     console.error(e);
   }
@@ -364,7 +364,7 @@ async function closeMongooose() {
 async function leaveServiceDiscovery() {
   try {
     await leave('core', PORT);
-    console.log('Left from service discovery');
+    console.log('Opuštěno z hledání služby');
   } catch (e) {
     console.error(e);
   }

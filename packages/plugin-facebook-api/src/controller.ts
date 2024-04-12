@@ -123,7 +123,7 @@ const init = async (app) => {
               );
             } catch (e) {
               debugFacebook(
-                `Error occurred while getting page access token: ${e.message}`,
+                `Vyskytla se chyba while getting page access token: ${e.message}`,
               );
               return next();
             }
@@ -137,7 +137,7 @@ const init = async (app) => {
 
           .catch((e) => {
             debugFacebook(
-              `Error occurred while processing activity: ${e.message}`,
+              `Vyskytla se chyba while processing activity: ${e.message}`,
             );
             return res.end('success');
           });

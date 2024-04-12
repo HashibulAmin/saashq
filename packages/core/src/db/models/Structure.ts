@@ -37,7 +37,7 @@ export const loadStructureClass = (models: IModels) => {
       const structure = await models.Structures.findOne(doc);
 
       if (!structure) {
-        throw new Error('Structure not found');
+        throw new Error('Struktura nenalezena');
       }
 
       return structure;
@@ -119,7 +119,7 @@ export const loadDepartmentClass = (models: IModels) => {
       const department = await models.Departments.findOne(doc);
 
       if (!department) {
-        throw new Error('Department not found');
+        throw new Error('Oddělení nenalezeno');
       }
 
       return department;
@@ -171,7 +171,7 @@ export const loadDepartmentClass = (models: IModels) => {
       });
 
       if (parent && parent?.parentId === _id) {
-        throw new Error('Cannot change a department');
+        throw new Error('Nelze změnit oddělení');
       }
 
       doc.order = parent ? `${parent.order}${doc.code}/` : `${doc.code}/`;
@@ -267,7 +267,7 @@ export const loadUnitClass = (models: IModels) => {
       const unit = await models.Units.findOne(doc);
 
       if (!unit) {
-        throw new Error('Unit not found');
+        throw new Error('Jednotka nenalezena');
       }
 
       return unit;
@@ -335,7 +335,7 @@ export const loadBranchClass = (models: IModels) => {
       const branch = await models.Branches.findOne(doc);
 
       if (!branch) {
-        throw new Error('Branch not found');
+        throw new Error('Pobočka nenalezena');
       }
 
       return branch;
@@ -386,7 +386,7 @@ export const loadBranchClass = (models: IModels) => {
       const parent = await models.Branches.findOne({ _id: doc.parentId });
 
       if (parent && parent?.parentId === _id) {
-        throw new Error('Cannot change a branch');
+        throw new Error('Nelze změnit větev');
       }
 
       doc.order = parent ? `${parent.order}${doc.code}/` : `${doc.code}/`;
@@ -479,7 +479,7 @@ export const loadPositionClass = (models: IModels) => {
       const position = await models.Positions.findOne(doc);
 
       if (!position) {
-        throw new Error('Position not found');
+        throw new Error('Pozice nenalezena');
       }
 
       return position;
@@ -532,7 +532,7 @@ export const loadPositionClass = (models: IModels) => {
       const parent = await models.Positions.findOne({ _id: doc.parentId });
 
       if (parent && parent?.parentId === _id) {
-        throw new Error('Cannot change a position');
+        throw new Error('Nelze změnit polohu');
       }
 
       doc.order = parent ? `${parent.order}${doc.code}/` : `${doc.code}/`;

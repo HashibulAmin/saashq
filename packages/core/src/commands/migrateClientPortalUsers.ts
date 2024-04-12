@@ -7,7 +7,7 @@ import { Collection, Db, MongoClient } from 'mongodb';
 const { MONGO_URL } = process.env;
 
 if (!MONGO_URL) {
-  throw new Error(`Environment variable MONGO_URL not set.`);
+  throw new Error(`Proměnná prostředí MONGO_URL není nastavena.`);
 }
 
 const client = new MongoClient(MONGO_URL);
@@ -28,7 +28,7 @@ const command = async () => {
     'email_1',
     'username_1',
     'phone_1',
-    'createdAt_1_userName_1_email_1_phone_1'
+    'createdAt_1_userName_1_email_1_phone_1',
   ];
 
   for (const index of indexes) {
@@ -37,7 +37,7 @@ const command = async () => {
     }
   }
 
-  console.log(`Process finished at: ${new Date()}`);
+  console.log(`Proces ukončen v: ${new Date()}`);
 
   process.exit();
 };

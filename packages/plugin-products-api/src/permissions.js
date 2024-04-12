@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'productsAll',
-        description: 'All',
+        description: 'Všechno',
         use: ['showProducts', 'manageProducts', 'productsMerge', 'removeProducts']
       },
       {

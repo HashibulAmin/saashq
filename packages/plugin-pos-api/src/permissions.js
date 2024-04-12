@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'posAll',
-        description: 'All',
+        description: 'Všechno',
         use: [
           'managePos',
           'showPos',

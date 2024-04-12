@@ -18,7 +18,7 @@ const createLogWhenImportedFromMssql = async (
   const { MONGO_URL } = process.env;
 
   if (!MONGO_URL) {
-    throw new Error(`Environment variable MONGO_URL not set.`);
+    throw new Error(`Proměnná prostředí MONGO_URL není nastavena.`);
   }
 
   const client = new MongoClient(MONGO_URL);
@@ -101,7 +101,7 @@ const checkTimeclocksAndUpdate = async (subdomain: any) => {
   const models = await generateModels(subdomain);
 
   if (!MONGO_URL) {
-    throw new Error(`Environment variable MONGO_URL not set.`);
+    throw new Error(`Proměnná prostředí MONGO_URL není nastavena.`);
   }
 
   const client = new MongoClient(MONGO_URL);
@@ -230,7 +230,7 @@ const updateTimeclocks = async (subdomain: any) => {
   const { MONGO_URL } = process.env;
 
   if (!MONGO_URL) {
-    throw new Error(`Environment variable MONGO_URL not set.`);
+    throw new Error(`Proměnná prostředí MONGO_URL není nastavena.`);
   }
 
   const client = new MongoClient(MONGO_URL);

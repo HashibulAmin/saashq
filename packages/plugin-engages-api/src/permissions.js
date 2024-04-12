@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'engagesAll',
-        description: 'All',
+        description: 'Všechno',
         use: [
           'engageMessageSetLiveManual',
           'engageMessageSetPause',

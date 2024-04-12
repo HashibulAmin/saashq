@@ -4,7 +4,7 @@ import * as faker from 'faker';
 export const getUniqueValue = async (
   collection: any,
   fieldName: string = 'code',
-  defaultValue?: string
+  defaultValue?: string,
 ) => {
   const getRandomValue = (type: string) =>
     type === 'email'
@@ -26,14 +26,14 @@ export const getUniqueValue = async (
 
 export const checkCodeDuplication = async (collection, code: string) => {
   if (code.includes('/')) {
-    throw new Error('The "/" character is not allowed in the code');
+    throw new Error('Znak "/" není v kódu povolen');
   }
 
   const category = await collection.findOne({
-    code
+    code,
   });
 
   if (category) {
-    throw new Error('Code must be unique');
+    throw new Error('Kód musí být jedinečný');
   }
 };

@@ -45,7 +45,7 @@ const writeUserLog = async (
           type: MODULE_NAMES.USER,
           object: { _id: oldUser._id, groupIds: oldUser.groupIds },
           newData: { groupIds },
-          description: `User "${oldUser.email}" has been removed from group "${group.name}"`,
+          description: `Uživatel "${oldUser.email}" byl odebrán ze skupiny "${group.name}"`,
           updatedDocument: { groupIds },
         },
         currentUser,
@@ -75,7 +75,7 @@ const writeUserLog = async (
             type: MODULE_NAMES.USER,
             object: { _id: memberId, groupIds },
             newData: { groupIds: addedUser.groupIds },
-            description: `User "${addedUser.email}" has been added to group ${group.name}`,
+            description: `Uživatel "${addedUser.email}" byl přidán do skupiny ${group.name}`,
             updatedDocument: { groupIds: addedUser.groupIds },
           },
           currentUser,
@@ -173,7 +173,7 @@ const usersGroupMutations = {
         type: MODULE_NAMES.USER_GROUP,
         object: group,
         newData: doc,
-        description: `"${group.name}" has been created`,
+        description: `"${group.name}" byl vytvořen`,
       },
       user,
     );
@@ -190,7 +190,7 @@ const usersGroupMutations = {
           type: MODULE_NAMES.USER,
           object: oldUser,
           newData: updatedDocument,
-          description: `User "${oldUser.email}" has been added to group ${group.name}`,
+          description: `Uživatel "${oldUser.email}" byl přidán do skupiny ${group.name}`,
           updatedDocument,
         },
         user,
@@ -234,7 +234,7 @@ const usersGroupMutations = {
           type: MODULE_NAMES.USER_GROUP,
           object: group,
           newData: doc,
-          description: `"${group.name}" has been edited`,
+          description: `"${group.name}" byl upraven`,
         },
         user,
       );
@@ -276,7 +276,7 @@ const usersGroupMutations = {
       {
         type: MODULE_NAMES.USER_GROUP,
         object: group,
-        description: `"${group.name}" has been removed`,
+        description: `"${group.name}" byla odstraněna`,
       },
       user,
     );
@@ -294,7 +294,7 @@ const usersGroupMutations = {
           object: { _id: member._id, groupIds: member.groupIds },
           newData: { groupIds },
           updatedDocument: { groupIds },
-          description: `User ${member.email} has been removed from group ${group.name}`,
+          description: `Uživatel ${member.email} byl odebrán ze skupiny ${group.name}`,
         },
         user,
       );
@@ -321,7 +321,7 @@ const usersGroupMutations = {
         type: MODULE_NAMES.USER_GROUP,
         object: clone,
         newData: { name: clone.name, description: clone.description },
-        description: `"${group.name}" has been copied`,
+        description: `"${group.name}" byl zkopírován`,
       },
       user,
     );

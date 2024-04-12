@@ -137,7 +137,7 @@ const configMutations = {
     });
 
     if (prevAction) {
-      throw new Error('Installer is busy. Please wait ...');
+      throw new Error('Instalátor je zaneprázdněn. Prosím, čekejte ...');
     }
 
     await sendCommonMessage({

@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'tagsAll',
-        description: 'All',
+        description: 'Všechno',
         use: ['showTags', 'manageTags']
       },
       {

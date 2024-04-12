@@ -15,7 +15,7 @@ export default {
 
       return app;
     } catch (e) {
-      debugError(`Error occurred when creating an app: ${e.message}`);
+      debugError(`Vyskytla se chyba when creating an app: ${e.message}`);
 
       throw new Error(e);
     }
@@ -23,7 +23,7 @@ export default {
   appsEdit(
     _root,
     { _id, name, userGroupId }: IEditParams,
-    { models }: IContext
+    { models }: IContext,
   ) {
     return models.Apps.updateApp(_id, { name, userGroupId });
   },
@@ -33,5 +33,5 @@ export default {
     await models.Users.deleteOne({ appId: app._id });
 
     return models.Apps.removeApp(_id);
-  }
+  },
 };

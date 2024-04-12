@@ -1,4 +1,3 @@
-
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -8,7 +7,7 @@ import { Collection, Db, MongoClient } from 'mongodb';
 const { MONGO_URL } = process.env;
 
 if (!MONGO_URL) {
-  throw new Error(`Environment variable MONGO_URL not set.`);
+  throw new Error(`Proměnná prostředí MONGO_URL není nastavena.`);
 }
 
 const client = new MongoClient(MONGO_URL);
@@ -16,7 +15,6 @@ const client = new MongoClient(MONGO_URL);
 let db: Db;
 
 let FieldGroups: Collection<any>;
-
 
 const command = async () => {
   await client.connect();
@@ -34,14 +32,14 @@ const command = async () => {
           config: {
             boardsPipelines: group.boardsPipelines,
             pipelineIds: group.pipelineIds,
-            boardIds: group.boardIds
-          }
-        }
-      }
+            boardIds: group.boardIds,
+          },
+        },
+      },
     );
   }
 
-  console.log(`Process finished at: ${new Date()}`);
+  console.log(`Proces ukončen v: ${new Date()}`);
 
   process.exit();
 };

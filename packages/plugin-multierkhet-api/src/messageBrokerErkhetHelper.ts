@@ -11,7 +11,7 @@ const checkQueueName = async (queueName, isSend = false) => {
 
   if (!serviceName) {
     throw new Error(
-      `Invalid queue name. ${queueName}. Queue name must include :`
+      `Invalid queue name. ${queueName}. Queue name must include :`,
     );
   }
 
@@ -19,7 +19,7 @@ const checkQueueName = async (queueName, isSend = false) => {
     if (isSend) {
       const isMember = await redisClient.sismember(
         `service:queuenames:${serviceName}`,
-        action
+        action,
       );
 
       if (isMember === 0) {
@@ -45,24 +45,24 @@ export const consumeQueue = async (queueName, callback) => {
   try {
     channel.consume(
       queueName,
-      async msg => {
+      async (msg) => {
         if (msg !== null) {
           try {
             await callback(JSON.parse(msg.content.toString()), msg);
           } catch (e) {
             debugError(
-              `Error occurred during callback ${queueName} ${e.message}`
+              `Vyskytla se chyba during callback ${queueName} ${e.message}`,
             );
           }
 
           channel.ack(msg);
         }
       },
-      { noAck: false }
+      { noAck: false },
     );
   } catch (e) {
     debugError(
-      `Error occurred during consumeq queue ${queueName} ${e.message}`
+      `Vyskytla se chyba during consumeq queue ${queueName} ${e.message}`,
     );
   }
 };
@@ -80,7 +80,7 @@ export const consumeRPCQueue = async (queueName, callback) => {
     // TODO: learn more about this
     // await channel.prefetch(10);
 
-    channel.consume(queueName, async msg => {
+    channel.consume(queueName, async (msg) => {
       if (msg !== null) {
         debugInfo(`Received rpc queue message ${msg.content.toString()}`);
 
@@ -90,12 +90,12 @@ export const consumeRPCQueue = async (queueName, callback) => {
           response = await callback(JSON.parse(msg.content.toString()));
         } catch (e) {
           debugError(
-            `Error occurred during callback ${queueName} ${e.message}`
+            `Vyskytla se chyba during callback ${queueName} ${e.message}`,
           );
 
           response = {
             status: 'error',
-            errorMessage: e.message
+            errorMessage: e.message,
           };
         }
 
@@ -103,8 +103,8 @@ export const consumeRPCQueue = async (queueName, callback) => {
           msg.properties.replyTo,
           Buffer.from(JSON.stringify(response)),
           {
-            correlationId: msg.properties.correlationId
-          }
+            correlationId: msg.properties.correlationId,
+          },
         );
 
         channel.ack(msg);
@@ -112,25 +112,25 @@ export const consumeRPCQueue = async (queueName, callback) => {
     });
   } catch (e) {
     debugError(
-      `Error occurred during consume rpc queue ${queueName} ${e.message}`
+      `Vyskytla se chyba during consume rpc queue ${queueName} ${e.message}`,
     );
   }
 };
 
 export const sendRPCMessage = async (
   queueName: string,
-  message: any
+  message: any,
 ): Promise<any> => {
   queueName = queueName.concat(queuePrefix);
 
   debugInfo(
-    `Sending rpc message ${JSON.stringify(message)} to queue ${queueName}`
+    `Sending rpc message ${JSON.stringify(message)} to queue ${queueName}`,
   );
 
   const response = await new Promise((resolve, reject) => {
     const correlationId = uuid();
 
-    return channel.assertQueue('', { exclusive: true }).then(q => {
+    return channel.assertQueue('', { exclusive: true }).then((q) => {
       const timeoutMs = message.timeout || process.env.RPC_TIMEOUT || 590000;
       var interval = setInterval(() => {
         channel.deleteQueue(q.queue);
@@ -144,7 +144,7 @@ export const sendRPCMessage = async (
 
       channel.consume(
         q.queue,
-        msg => {
+        (msg) => {
           clearInterval(interval);
 
           if (!msg) {
@@ -158,13 +158,13 @@ export const sendRPCMessage = async (
             if (res.status === 'success') {
               debugInfo(
                 `RPC success response for queue ${queueName} ${JSON.stringify(
-                  res
-                )}`
+                  res,
+                )}`,
               );
               resolve(res.data);
             } else {
               debugInfo(
-                `RPC error response for queue ${queueName} ${res.errorMessage})}`
+                `RPC error response for queue ${queueName} ${res.errorMessage})}`,
               );
               reject(new Error(res.errorMessage));
             }
@@ -172,13 +172,13 @@ export const sendRPCMessage = async (
             channel.deleteQueue(q.queue);
           }
         },
-        { noAck: true }
+        { noAck: true },
       );
 
       channel.sendToQueue(queueName, Buffer.from(JSON.stringify(message)), {
         correlationId,
         replyTo: q.queue,
-        expiration: timeoutMs
+        expiration: timeoutMs,
       });
     });
   });
@@ -188,20 +188,20 @@ export const sendRPCMessage = async (
 
 function RabbitListener() {}
 
-RabbitListener.prototype.connect = function(RABBITMQ_HOST) {
+RabbitListener.prototype.connect = function (RABBITMQ_HOST) {
   const me = this;
 
-  return new Promise(function(resolve) {
+  return new Promise(function (resolve) {
     amqplib
       .connect(RABBITMQ_HOST, { noDelay: true })
       .then(
-        function(conn) {
+        function (conn) {
           console.log(`Connected to rabbitmq server ${RABBITMQ_HOST}`);
 
           conn.on('error', me.reconnect.bind(me, RABBITMQ_HOST));
           conn.on('close', me.reconnect.bind(me, RABBITMQ_HOST));
 
-          return conn.createChannel().then(function(chan) {
+          return conn.createChannel().then(function (chan) {
             channel = chan;
             resolve(chan);
           });
@@ -209,15 +209,15 @@ RabbitListener.prototype.connect = function(RABBITMQ_HOST) {
         function connectionFailed(err) {
           console.log('Failed to connect to rabbitmq server', err);
           me.reconnect(RABBITMQ_HOST);
-        }
+        },
       )
-      .catch(function(error) {
+      .catch(function (error) {
         console.log('RabbitMQ: ', error);
       });
   });
 };
 
-RabbitListener.prototype.reconnect = function(RABBITMQ_HOST) {
+RabbitListener.prototype.reconnect = function (RABBITMQ_HOST) {
   const reconnectTimeout = 1000 * 60;
 
   const me = this;
@@ -226,7 +226,7 @@ RabbitListener.prototype.reconnect = function(RABBITMQ_HOST) {
 
   debugInfo(`Scheduling reconnect to rabbitmq in ${reconnectTimeout / 1000}s`);
 
-  setTimeout(function() {
+  setTimeout(function () {
     debugInfo(`Now attempting reconnect to rabbitmq ...`);
     me.connect(RABBITMQ_HOST);
   }, reconnectTimeout);
@@ -243,6 +243,6 @@ export const init = async ({ RABBITMQ_HOST, MESSAGE_BROKER_PREFIX, redis }) => {
   return {
     consumeQueue,
     consumeRPCQueue,
-    sendRPCMessage
+    sendRPCMessage,
   };
 };

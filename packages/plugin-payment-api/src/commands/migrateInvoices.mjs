@@ -8,7 +8,7 @@ const MongoClient = mongoDb.MongoClient;
 const MONGO_URL = process.argv[2];
 
 if (!MONGO_URL) {
-  throw new Error(`Environment variable MONGO_URL not set.`);
+  throw new Error(`Proměnná prostředí MONGO_URL není nastavena.`);
 }
 
 const client = new MongoClient(MONGO_URL);
@@ -43,7 +43,7 @@ const command = async () => {
     }
   }
 
-  console.log(`Process finished at: ${new Date()}`);
+  console.log(`Proces ukončen v: ${new Date()}`);
 
   process.exit();
 };

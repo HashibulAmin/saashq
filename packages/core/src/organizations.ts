@@ -125,7 +125,9 @@ export const checkCNAME = (subdomain: string, hostname?: string) => {
   return new Promise((resolve, reject) => {
     return dns.resolveCname(hostname, (error, address) => {
       if (error) {
-        return reject('custom hostname does not CNAME to this organization');
+        return reject(
+          'vlastní název hostitele neprovádí CNAME do této organizace',
+        );
       }
 
       return resolve(address.includes(subdomain));
@@ -141,7 +143,7 @@ export const updateOrganizationDomain = async ({
   const organization = await coreModelOrganizations.findOne({ subdomain });
 
   if (!organization) {
-    throw new Error('Organization not found');
+    throw new Error('Organizace nenalezena');
   }
 
   const customDomain = url.parse(domain);
@@ -235,13 +237,13 @@ export const updateOrganizationInfo = async (
   cookies,
 ) => {
   if (!name || !subdomain || name === '' || subdomain === '') {
-    throw new Error('Name or subdomain can not be empty');
+    throw new Error('Název nebo subdoména nesmí být prázdná');
   }
 
   const organization = await coreModelOrganizations.findOne({ subdomain });
 
   if (!organization) {
-    throw new Error('Organization not found');
+    throw new Error('Organizace nenalezena');
   }
 
   const domain = link
@@ -259,7 +261,7 @@ export const updateOrganizationInfo = async (
   });
 
   if (duplicatedOrg) {
-    throw new Error('Your chosen link is already taken');
+    throw new Error('Vámi vybraný odkaz je již obsazen');
   }
 
   const doc: { [key: string]: string | null | undefined } = {
@@ -341,21 +343,21 @@ export const usePromoCode = async ({ subdomain, code, models }) => {
   const promoCode = await coreModelPromoCodes.findOne({ code });
 
   if (!promoCode) {
-    throw new Error('Promo code not found');
+    throw new Error('Propagační kód nebyl nalezen');
   }
 
   if (
     promoCode.status === PROMOCODE_STATUS.REDEEMED ||
     promoCode.status === PROMOCODE_STATUS.REVOKED
   ) {
-    throw new Error('This promo code has been already used');
+    throw new Error('Tento propagační kód již byl použit');
   }
 
   const currentOrg = await getOrganizationDetail({ subdomain, models });
   const promoCodes = currentOrg.promoCodes || [];
 
   if (promoCodes.length === 5) {
-    throw new Error('You have already used 5 promo codes');
+    throw new Error('Už jste použili 5 promo kódů');
   }
 
   await coreModelPromoCodes.update(

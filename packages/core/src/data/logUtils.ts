@@ -81,7 +81,7 @@ const gatherDescriptions = async (
   switch (type) {
     case MODULE_NAMES.BRAND:
       {
-        description = `"${obj.name}" has been ${action}d`;
+        description = `"${obj.name}" byl ${action}d`;
 
         if (obj.userId) {
           const user = await models.Users.findOne({ _id: obj.userId });
@@ -96,12 +96,12 @@ const gatherDescriptions = async (
       }
       break;
     case MODULE_NAMES.PERMISSION:
-      description = `Permission of module "${obj.module}", action "${obj.action}" assigned to `;
+      description = `Povolení modulu "${obj.module}", akce "${obj.action}" přiřazen `;
 
       if (obj.groupId) {
         const group = await models.UsersGroups.getGroup(obj.groupId);
 
-        description = `${description} user group "${group.name}" `;
+        description = `${description} uživatelská skupina "${group.name}" `;
 
         extraDesc.push({ groupId: obj.groupId, name: group.name });
       }
@@ -109,7 +109,7 @@ const gatherDescriptions = async (
       if (obj.userId) {
         const permUser = await models.Users.getUser(obj.userId);
 
-        description = `${description} user "${permUser.email}" has been ${action}d`;
+        description = `${description} uživatel "${permUser.email}" byl ${action}d`;
 
         extraDesc.push({
           userId: obj.userId,
@@ -119,7 +119,7 @@ const gatherDescriptions = async (
 
       break;
     case MODULE_NAMES.USER:
-      description = `"${obj.username || obj.email}" has been ${action}d`;
+      description = `"${obj.username || obj.email}" byl ${action}d`;
 
       extraDesc = await gatherUserFieldNames(models, obj);
 

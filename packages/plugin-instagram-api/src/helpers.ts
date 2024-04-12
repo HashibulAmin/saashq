@@ -294,13 +294,13 @@ export const instagramCreateIntegration = async (
         debugInstagram(`Successfully subscribed page ${pageId}`);
       } catch (e) {
         debugError(
-          `Error occurred while trying to subscribe page ${e.message || e}`,
+          `Vyskytla se chyba while trying to subscribe page ${e.message || e}`,
         );
         throw e;
       }
     } catch (e) {
       debugError(
-        `Error occurred while trying to get page access token with ${
+        `Vyskytla se chyba while trying to get page access token with ${
           e.message || e
         }`,
       );

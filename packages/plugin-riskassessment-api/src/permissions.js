@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'riskAssessmentAll',
-        description: 'All',
+        description: 'Všechno',
         use: ['showRiskAssessment', 'manageRiskAssessment']
       },
       {

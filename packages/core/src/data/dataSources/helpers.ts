@@ -24,7 +24,7 @@ export default class HelpersApi extends RESTDataSource {
     const { body } = response || { body: e.message };
 
     if (e.code === 'ECONNREFUSED' || e.code === 'ENOTFOUND') {
-      throw new Error('Helper is not running is not running');
+      throw new Error('Pomocník neběží neběží');
     }
 
     throw new Error(body);

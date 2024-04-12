@@ -65,7 +65,7 @@ const sendInvitationEmail = (
     subdomain,
     {
       toEmails: [email],
-      title: 'Team member invitation',
+      title: 'Pozvánka člena týmu',
       template: {
         name: 'userInvitation',
         data: {
@@ -101,7 +101,7 @@ const userMutations = {
     const userCount = await models.Users.countDocuments();
 
     if (userCount > 0) {
-      throw new Error('Access denied');
+      throw new Error('Přístup odepřen');
     }
 
     const doc: IUser = {
@@ -207,7 +207,7 @@ const userMutations = {
       subdomain,
       {
         toEmails: [email],
-        title: 'Reset password',
+        title: 'Obnovit heslo',
         template: {
           name: 'resetPassword',
           data: {
@@ -310,7 +310,7 @@ const userMutations = {
       subdomain,
       {
         type: 'user',
-        description: 'edit profile',
+        description: 'upravit profil',
         object: userOnDb,
         newData: updatedDoc,
         updatedDocument: updatedUser,
@@ -361,7 +361,7 @@ const userMutations = {
       subdomain,
       {
         type: 'user',
-        description: 'edit profile',
+        description: 'upravit profil',
         object: userOnDb,
         newData: doc,
         updatedDocument: updatedUser,
@@ -381,7 +381,7 @@ const userMutations = {
     { user, models, subdomain }: IContext,
   ) {
     if (user._id === _id) {
-      throw new Error('You can not delete yourself');
+      throw new Error('Nemůžete se smazat');
     }
 
     const updatedUser = await models.Users.setUserActiveOrInactive(_id);
@@ -390,7 +390,7 @@ const userMutations = {
       subdomain,
       {
         type: 'user',
-        description: 'changed status',
+        description: 'změnil stav',
         object: updatedUser,
         updatedDocument: updatedUser,
       },
@@ -473,7 +473,7 @@ const userMutations = {
         subdomain,
         {
           type: 'user',
-          description: 'invited user',
+          description: 'pozvaný uživatel',
           object: createdUser,
           newData: createdUser || {},
         },
@@ -540,7 +540,7 @@ const userMutations = {
       subdomain,
       {
         type: 'user',
-        description: 'confirm invitation',
+        description: 'potvrdit pozvánku',
         object: user,
         updatedDocument: user,
       },
@@ -573,7 +573,7 @@ const userMutations = {
     const getUser = await models.Users.getUser(_id);
 
     if (!getUser) {
-      throw new Error('User not found');
+      throw new Error('Uživatel nenalezen');
     }
 
     return await models.Users.updateUser(_id, { chatStatus: status });
@@ -726,7 +726,7 @@ const userMutations = {
           subdomain,
           {
             toEmails: [email],
-            title: 'Login to SaasHQ',
+            title: 'Přihlaste se do SaasHQ',
             template: {
               name: 'magicLogin',
               data: { loginUrl: session.link, email },
@@ -747,7 +747,7 @@ const userMutations = {
       return 'Invalid login';
     } catch (e) {
       debugError(
-        `Error occurred when sending magic link: ${JSON.stringify(e)}`,
+        `Vyskytla se chyba when sending magic link: ${JSON.stringify(e)}`,
       );
 
       throw new Error(e.message);

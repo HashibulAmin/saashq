@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'processesAll',
-        description: 'All',
+        description: 'Všechno',
         use: [
           'showJobs',
           'manageJobs',

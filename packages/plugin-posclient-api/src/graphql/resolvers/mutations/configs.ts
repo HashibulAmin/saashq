@@ -62,7 +62,9 @@ const configMutations = {
       await connectToMessageBroker(setupMessageConsumers);
       console.log('Message broker has started.');
     } catch (e) {
-      console.log(`Error occurred when starting message broker: ${e.message}`);
+      console.log(
+        `Vyskytla se chyba when starting message broker: ${e.message}`,
+      );
     }
 
     return config;

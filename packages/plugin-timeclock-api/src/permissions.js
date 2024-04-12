@@ -5,7 +5,7 @@ module.exports = {
     actions: [
       {
         name: 'timeclocksAll',
-        description: 'All',
+        description: 'Všechno',
         use: ['showTimeclocks', 'manageTimeclocks']
       },
       {

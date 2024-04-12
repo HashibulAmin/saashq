@@ -288,7 +288,7 @@ connect()
         total: totalCount,
         status: 'failed',
         uploadType: UPLOAD_SERVICE_TYPE,
-        errorMsg: `Error occurred during uploading ${UPLOAD_SERVICE_TYPE} "${result.error}"`,
+        errorMsg: `Vyskytla se chyba during uploading ${UPLOAD_SERVICE_TYPE} "${result.error}"`,
         percentage: 100,
       };
     }
