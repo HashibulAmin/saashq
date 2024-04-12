@@ -144,7 +144,7 @@ function buildNonPayloadSelections(
 ): { selections: string; resolveInfo: ResolveTree | FieldsByTypeName } {
   const resolveInfo = parseResolveInfo(info);
   if (!resolveInfo) {
-    throw new Error('Cannot parse graphql resolve info');
+    throw new Error('Nelze analyzovat informace o rozlišení graphql');
   }
 
   const payloadFieldPaths = fieldPathsAsStrings(
@@ -193,11 +193,11 @@ function buildNonPayloadSelections(
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.map((graphqlError) =>
-      console.error(`[GraphQL error]: ${graphqlError.message}`),
+      console.error(`[GraphQL Chyba]: ${graphqlError.message}`),
     );
   }
   if (networkError) {
-    console.log(`[Network Error]: ${networkError}`);
+    console.log(`[Network Chyba]: ${networkError}`);
   }
 });
 
@@ -264,7 +264,7 @@ export default class SubscriptionResolver {
       }
     } catch (error) {
       console.error(
-        '----------------- subscription resolver request error ---------------------------',
+        '----------------- chyba požadavku překladače předplatného ---------------------------',
       );
       console.error('query', query);
       console.error('payload', payload);
@@ -272,7 +272,7 @@ export default class SubscriptionResolver {
       console.error('resolveInfo?.name', resolveInfo?.name);
       console.error('error', error);
       console.error(
-        '---------------------------------------------------------------------------------',
+        '-------------------------------------------------------------------------------------',
       );
     }
   }

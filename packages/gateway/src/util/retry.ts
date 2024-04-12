@@ -1,5 +1,5 @@
 async function sleep(ms: number) {
-  return new Promise<void>(resolve => setTimeout(resolve, ms));
+  return new Promise<void>((resolve) => setTimeout(resolve, ms));
 }
 
 export type RetryInput<T> = {
@@ -15,9 +15,9 @@ async function retry<T>({
   fn,
   intervalMs = 1000,
   maxTries = Number.MAX_SAFE_INTEGER,
-  retryExhaustedLog = 'Retry exhausted',
+  retryExhaustedLog = 'Opakujte vyčerpání',
   retryLog,
-  successLog
+  successLog,
 }: RetryInput<T>): Promise<T> {
   let error = new Error(retryExhaustedLog);
 

@@ -21,7 +21,9 @@ async function getProxyTarget(name: string): Promise<SaasHQProxyTarget> {
   const service = await getService(name);
 
   if (!service.address) {
-    throw new Error(`Plugin ${name} has no address value in service discovery`);
+    throw new Error(
+      `Zapojit ${name} nemá žádnou hodnotu adresy při zjišťování služby`,
+    );
   }
   return {
     name,
@@ -36,9 +38,9 @@ async function retryGetProxyTarget(name: string): Promise<SaasHQProxyTarget> {
     fn: () => getProxyTarget(name),
     intervalMs: intervalSeconds * 1000,
     maxTries: maxPluginRetry,
-    retryExhaustedLog: `Plugin ${name} still hasn't joined the service discovery after checking for ${maxPluginRetry} time(s) with ${intervalSeconds} second(s) interval. Retry exhausted.`,
+    retryExhaustedLog: `Zapojit ${name} po kontrole se stále nepřipojil k vyhledávání služby ${maxPluginRetry} čas(y) s ${intervalSeconds} sekundový (sekundový) interval. Opakujte vyčerpání.`,
     retryLog: `Waiting for plugin ${name} to join service discovery`,
-    successLog: `Plugin ${name} joined service discovery.`,
+    successLog: `Zapojit ${name} připojil objev služby.`,
   });
 }
 
@@ -48,7 +50,7 @@ async function ensureGraphqlEndpointIsUp({
 }: SaasHQProxyTarget): Promise<void> {
   if (!address) return;
 
-  const endponit = `${address}/graphql`;
+  const endpoint = `${address}/graphql`;
 
   /*
     query: 'query SubgraphIntrospectQuery {\n' +
@@ -59,7 +61,7 @@ async function ensureGraphqlEndpointIsUp({
       '}',
   */
 
-  const res = await fetch(endponit, {
+  const res = await fetch(endpoint, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -81,7 +83,7 @@ async function ensureGraphqlEndpointIsUp({
   }
 
   throw new Error(
-    `Plugin ${name}'s graphql endpoint ${endponit} is not ready yet`,
+    `Zapojit ${name}'s koncový bod graphql ${endpoint} ještě není připraven`,
   );
 }
 
@@ -93,9 +95,9 @@ async function retryEnsureGraphqlEndpointIsUp(target: SaasHQProxyTarget) {
     fn: () => ensureGraphqlEndpointIsUp(target),
     intervalMs: intervalSeconds * 1000,
     maxTries: maxPluginRetry,
-    retryExhaustedLog: `Plugin ${name}'s graphql endpoint ${endpoint} is still not ready after checking for ${maxPluginRetry} times with ${intervalSeconds} second(s) interval. Retry exhausted.`,
-    retryLog: `Waiting for service ${name}'s graphql endpoint ${endpoint} to be up.`,
-    successLog: `Plugin ${name}'s graphql endpoint ${endpoint} is up.`,
+    retryExhaustedLog: `Zapojit ${name}'s koncový bod graphql ${endpoint} po kontrole stále není připraven ${maxPluginRetry} časy s ${intervalSeconds} sekundový (sekundový) interval. Opakujte vyčerpání.`,
+    retryLog: `Waiting for service ${name}'s koncový bod graphql ${endpoint} být vzhůru.`,
+    successLog: `Zapojit ${name}'s koncový bod graphql ${endpoint} je nahoře.`,
   });
 }
 

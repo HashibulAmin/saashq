@@ -18,15 +18,15 @@ const forbid = (_req, res) => {
 
 export async function applyProxiesCoreless(
   app: Express,
-  targets: SaasHQProxyTarget[]
+  targets: SaasHQProxyTarget[],
 ) {
   app.use(
     '^/graphql',
     createProxyMiddleware({
       pathRewrite: { '^/graphql': '/' },
       target: `http://127.0.0.1:${apolloRouterPort}`,
-      onProxyReq
-    })
+      onProxyReq,
+    }),
   );
 
   for (const target of targets) {
@@ -39,18 +39,18 @@ export async function applyProxiesCoreless(
       createProxyMiddleware({
         pathRewrite: { [path]: '/' },
         target: target.address,
-        onProxyReq
-      })
+        onProxyReq,
+      }),
     );
   }
 }
 
 // this has to be applied last, just like 404 route handlers are applied last
 export function applyProxyToCore(app: Express, targets: SaasHQProxyTarget[]) {
-  const core = targets.find(t => t.name === 'core');
+  const core = targets.find((t) => t.name === 'core');
 
   if (!core) {
-    throw new Error('core service not found');
+    throw new Error('základní služba nebyla nalezena');
   }
   app.use('/rpc', forbid);
   app.use(
@@ -58,7 +58,7 @@ export function applyProxyToCore(app: Express, targets: SaasHQProxyTarget[]) {
     createProxyMiddleware({
       target:
         NODE_ENV === 'production' ? core.address : 'http://localhost:3300',
-      onProxyReq
-    })
+      onProxyReq,
+    }),
   );
 }

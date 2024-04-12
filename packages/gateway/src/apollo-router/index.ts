@@ -10,7 +10,7 @@ import {
   dirTempPath,
   routerConfigPath,
   routerPath,
-  supergraphPath
+  supergraphPath,
 } from './paths';
 import supergraphCompose from './supergraph-compose';
 
@@ -23,7 +23,7 @@ const {
   APOLLO_ROUTER_PORT,
   INTROSPECTION,
   OTEL_EXPORTER_OTLP_ENDPOINT,
-  OTEL_EXPORTER_OTLP_PROTOCOL
+  OTEL_EXPORTER_OTLP_PROTOCOL,
 } = process.env;
 
 let routerProcess: ChildProcess | undefined = undefined;
@@ -56,7 +56,7 @@ const downloadRouter = async () => {
     execSync(`cd ${dirTempPath} && ${downloadCommand}`);
   } catch (e) {
     console.error(
-      `Could not download apollo router. Run \`${downloadCommand}\` inside ${dirTempPath} manually`
+      `Nelze stáhnout směrovač apollo. Run \`${downloadCommand}\` inside ${dirTempPath} manually`,
     );
     throw e;
   }
@@ -73,23 +73,23 @@ const createRouterConfig = async () => {
     (INTROSPECTION || '').trim().toLowerCase() === 'true'
   ) {
     console.warn(
-      '----------------------------------------------------------------------------------------------'
+      '----------------------------------------------------------------------------------------------',
     );
     console.warn(
-      "Graphql introspection is enabled in production environment. Disable it, if it isn't required for front-end development. Hint: Check gateway config in configs.json"
+      'V produkčním prostředí je povolena introspekce Graphql. Deaktivujte ji, pokud to není vyžadováno pro vývoj front-endu. Tip: Zkontrolujte konfiguraci brány v souboru configs.json',
     );
     console.warn(
-      '----------------------------------------------------------------------------------------------'
+      '----------------------------------------------------------------------------------------------',
     );
   }
 
   const config: any = {
     include_subgraph_errors: {
-      all: true
+      all: true,
     },
     rhai: {
       scripts: path.resolve(__dirname, 'rhai'),
-      main: 'main.rhai'
+      main: 'main.rhai',
     },
     cors: {
       allow_credentials: true,
@@ -97,27 +97,27 @@ const createRouterConfig = async () => {
         DOMAIN ? DOMAIN : 'http://localhost:3000',
         WIDGETS_DOMAIN ? WIDGETS_DOMAIN : 'http://localhost:3200',
         ...(CLIENT_PORTAL_DOMAINS || '').split(','),
-        'https://studio.apollographql.com'
-      ].filter(x => typeof x === 'string'),
-      match_origins: (ALLOWED_ORIGINS || '').split(',').filter(Boolean)
+        'https://studio.apollographql.com',
+      ].filter((x) => typeof x === 'string'),
+      match_origins: (ALLOWED_ORIGINS || '').split(',').filter(Boolean),
     },
     headers: {
       all: {
         request: [
           {
             propagate: {
-              matching: '.*'
-            }
-          }
-        ]
-      }
+              matching: '.*',
+            },
+          },
+        ],
+      },
     },
     supergraph: {
       listen: `127.0.0.1:${apolloRouterPort}`,
       introspection:
         NODE_ENV === 'development' ||
-        (INTROSPECTION || '').trim().toLowerCase() === 'true'
-    }
+        (INTROSPECTION || '').trim().toLowerCase() === 'true',
+    },
   };
 
   if (OTEL_EXPORTER_OTLP_ENDPOINT) {
@@ -125,22 +125,22 @@ const createRouterConfig = async () => {
       instrumentation: {
         spans: {
           default_attribute_requirement_level: 'required',
-          mode: 'spec_compliant'
-        }
+          mode: 'spec_compliant',
+        },
       },
       exporters: {
         tracing: {
           common: {
             service_name: 'router',
-            service_namespace: 'apollo'
+            service_namespace: 'apollo',
           },
           otlp: {
             enabled: true,
             endpoint: OTEL_EXPORTER_OTLP_ENDPOINT,
-            protocol: OTEL_EXPORTER_OTLP_PROTOCOL
-          }
-        }
-      }
+            protocol: OTEL_EXPORTER_OTLP_PROTOCOL,
+          },
+        },
+      },
     };
   }
 
@@ -163,8 +163,8 @@ export const startRouter = async (proxyTargets: SaasHQProxyTarget[]) => {
       `--supergraph`,
       supergraphPath,
       `--config`,
-      routerConfigPath
+      routerConfigPath,
     ],
-    { stdio: 'inherit' }
+    { stdio: 'inherit' },
   );
 };

@@ -31,39 +31,41 @@ const sendMessage = async (
 
 initBroker()
   .then(async () => {
-    console.log('Crons is running ....');
+    console.log('Crons běží ....');
 
     const services = await getServices();
     const subdomain = 'os';
 
     // every minute at 1sec
     schedule.scheduleJob('1 * * * * *', async () => {
-      console.log('every minute ....', services);
+      console.log('každou minutu ....', services);
 
       await sendMessage(subdomain, 'handleMinutelyJob', services);
     });
 
     // every 10 minute at 1sec
     schedule.scheduleJob('*/10 * * * *', async () => {
-      console.log('every 10 minute ....', services);
+      console.log('každých 10 minut ....', services);
 
       await sendMessage(subdomain, 'handle10MinutelyJob', services);
     });
 
     // every hour at 10min:10sec
     schedule.scheduleJob('10 10 * * * *', async () => {
-      console.log('every hour ....', services);
+      console.log('každou hodinu ....', services);
 
       await sendMessage(subdomain, 'handleHourlyJob', services);
     });
 
     // every day at 04hour:20min:20sec (UTC)
     schedule.scheduleJob('20 20 20 * * *', async () => {
-      console.log('every day ....', services);
+      console.log('každý den ....', services);
 
       await sendMessage(subdomain, 'handleDailyJob', services);
     });
   })
   .catch((e) =>
-    console.log(`Error ocurred during message broker init ${e.message}`),
+    console.log(
+      `Při inicializaci zprostředkovatele zpráv došlo k chybě ${e.message}`,
+    ),
   );

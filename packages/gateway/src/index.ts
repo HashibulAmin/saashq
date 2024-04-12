@@ -37,7 +37,7 @@ const {
 } = process.env;
 
 if (!MONGO_URL) {
-  throw new Error('MONGO_URL is not defined');
+  throw new Error('MONGO_URL není definováno');
 }
 
 (async () => {
@@ -80,7 +80,7 @@ if (!MONGO_URL) {
     try {
       pubsub.close();
     } catch (e) {
-      console.log('PubSub client disconnected');
+      console.log('PubSub klient odpojen');
     }
   });
 
@@ -99,12 +99,12 @@ if (!MONGO_URL) {
   // this has to be applied last, just like 404 route handlers are applied last
   applyProxyToCore(app, targets);
 
-  console.log(`SaasHQ gateway ready at http://localhost:${port}/graphql`);
+  console.log(`SaasHQ brána připravena na http://localhost:${port}/graphql`);
 })();
 
 (['SIGINT', 'SIGTERM'] as NodeJS.Signals[]).forEach((sig) => {
   process.on(sig, async () => {
-    console.log(`Exiting on signal ${sig}`);
+    console.log(`Odchod na signál ${sig}`);
     await stopSubscriptionServer();
     await stopRouter(sig);
     process.exit(0);

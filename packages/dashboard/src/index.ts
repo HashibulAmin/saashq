@@ -44,9 +44,9 @@ server
       });
     });
 
-    console.log(`🚀 Cube.js server is listening on ${port} dbname ${DB_NAME}`);
+    console.log(`🚀 Cube.js server naslouchá ${port} dbname ${DB_NAME}`);
   })
   .catch((e) => {
-    console.error('Fatal error during server start: ');
+    console.error('Závažná chyba při spuštění serveru: ');
     console.error(e.stack || e);
   });

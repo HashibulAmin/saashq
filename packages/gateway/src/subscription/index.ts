@@ -36,7 +36,7 @@ export async function stopSubscriptionServer() {
 export function makeSubscriptionSchema({ typeDefs, resolvers }: any) {
   if (!typeDefs || !resolvers) {
     throw new Error(
-      'Both `typeDefs` and `resolvers` are required to make the executable subscriptions schema.',
+      'K vytvoření spustitelného schématu předplatného jsou vyžadovány jak `typeDefs`, tak `resolvery`.',
     );
   }
   const supergraph = fs.readFileSync(supergraphPath).toString();
@@ -100,13 +100,13 @@ export async function startSubscriptionServer(httpServer: http.Server) {
 
         // Stops the subscription and sends an error message
         if (!operationAST) {
-          return [new GraphQLError('Unable to identify operation')];
+          return [new GraphQLError('Nelze identifikovat operaci')];
         }
 
         // Handle mutation and query requests
         if (operationAST.operation !== 'subscription') {
           return [
-            new GraphQLError('Only subscription operations are supported'),
+            new GraphQLError('Podporovány jsou pouze operace předplatného'),
           ];
         }
 

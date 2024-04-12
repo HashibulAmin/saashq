@@ -27,7 +27,9 @@ export default async function userMiddleware(
   const saashqCoreToken = req.headers['saashq-core-token'];
 
   if (Array.isArray(saashqCoreToken)) {
-    return res.status(400).json({ error: `Multiple saashq-core-tokens found` });
+    return res
+      .status(400)
+      .json({ error: `Bylo nalezeno několik saashq-core-tokenů` });
   }
 
   if (saashqCoreToken && url) {

@@ -19,11 +19,11 @@ function Empty({ queryParams, currentUser }: Props) {
     <>
       <Link to="/settings/channels">
         <Button btnStyle="simple" icon="sitemap-1">
-          {__('Manage Channels')}
+          {__('Správa Kanálů')}
         </Button>
       </Link>
       <Link to="/tutorial#usingStage?open=teamInbox">
-        <Button icon="laptop-1">{__('Watch Tutorial')}</Button>
+        <Button icon="laptop-1">{__('Podívejte se na Tutoriál')}</Button>
       </Link>
     </>
   );

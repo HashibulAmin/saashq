@@ -1,6 +1,9 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import { getService, getServices } from '@saashq/api-utils/src/serviceDiscovery';
+import {
+  getService,
+  getServices,
+} from '@saashq/api-utils/src/serviceDiscovery';
 import fetch from 'node-fetch';
 import { pipeline } from 'node:stream/promises';
 
@@ -38,11 +41,11 @@ export default async function downloadPlugins(): Promise<void> {
       try {
         await downloadFile(url, target);
         console.log(
-          `${service.name} subscription plugin downloaded from ${url} to ${target}.`,
+          `${service.name} předplatitelský plugin stažen z ${url} na ${target}.`,
         );
       } catch (e) {
         console.error(
-          `${service.name} subscription plugin download from ${url} to ${target} failed. ${e.message}`,
+          `${service.name} předplatitelský plugin ke stažení z ${url} na ${target} nepodařilo. ${e.message}`,
           e,
         );
       }

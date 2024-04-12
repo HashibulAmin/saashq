@@ -5,7 +5,7 @@ import { IncomingMessage } from 'http';
 export const getSubdomain = (req: IncomingMessage): string => {
   let hostname = req.headers['nginx-hostname'] || getHostnameZeroTrust(req);
   if (!hostname) {
-    throw new Error('Hostname not found');
+    throw new Error('Název hostitele nebyl nalezen');
   }
   if (Array.isArray(hostname)) {
     hostname = hostname[0];
