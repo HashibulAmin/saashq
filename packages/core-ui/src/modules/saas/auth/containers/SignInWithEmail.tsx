@@ -50,10 +50,10 @@ const SignInWithEmailContainer = (props: FinalProps) => {
         btnStyle="default"
         block={true}
         icon="none"
-        successMessage="We have sent an email containing the magic link to sign in."
+        successMessage="Odeslali jsme e-mail obsahující magický odkaz pro přihlášení."
         style={{ background: `${currentOrganization.backgroundColor}` }}
       >
-        {__('Send magic link')}
+        {__('Pošlete magický odkaz')}
       </ButtonMutate>
     );
   };
@@ -71,4 +71,8 @@ export default compose(
   graphql(gql(mutations.loginWithGoogle), {
     name: 'loginWithGoogle',
   }),
-)(withRouter<FinalProps>(withCurrentOrganization(SignInWithEmailContainer)));
+)(
+  withRouter<FinalProps, any>(
+    withCurrentOrganization(SignInWithEmailContainer),
+  ),
+);

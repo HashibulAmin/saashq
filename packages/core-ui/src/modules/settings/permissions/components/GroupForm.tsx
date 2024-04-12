@@ -26,7 +26,7 @@ class GroupForm extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      selectedMembers: (props.object && props.object.memberIds) || []
+      selectedMembers: (props.object && props.object.memberIds) || [],
     };
   }
 
@@ -44,7 +44,7 @@ class GroupForm extends React.Component<Props, State> {
 
     return {
       ...finalValues,
-      memberIds: this.state.selectedMembers
+      memberIds: this.state.selectedMembers,
     };
   };
 
@@ -57,14 +57,14 @@ class GroupForm extends React.Component<Props, State> {
       values._id = object._id;
     }
 
-    const onChange = selectedMembers => {
+    const onChange = (selectedMembers) => {
       self.setState({ selectedMembers });
     };
 
     return (
       <>
         <FormGroup>
-          <ControlLabel required={true}>Name</ControlLabel>
+          <ControlLabel required={true}>Název</ControlLabel>
           <FormControl
             {...formProps}
             name="name"
@@ -75,7 +75,7 @@ class GroupForm extends React.Component<Props, State> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel required={true}>Description</ControlLabel>
+          <ControlLabel required={true}>Popis</ControlLabel>
           <FormControl
             {...formProps}
             componentClass="textarea"
@@ -86,10 +86,10 @@ class GroupForm extends React.Component<Props, State> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>Members</ControlLabel>
+          <ControlLabel>členové</ControlLabel>
 
           <SelectTeamMembers
-            label="Choose members"
+            label="Vyberte členy"
             name="selectedMembers"
             initialValue={self.state.selectedMembers}
             onSelect={onChange}
@@ -103,7 +103,7 @@ class GroupForm extends React.Component<Props, State> {
             onClick={this.props.closeModal}
             icon="cancel-1"
           >
-            Cancel
+            Zrušení
           </Button>
 
           {this.props.renderButton({
@@ -111,7 +111,7 @@ class GroupForm extends React.Component<Props, State> {
             values: this.generateDoc(values),
             isSubmitted,
             callback: this.props.closeModal,
-            object: this.props.object
+            object: this.props.object,
           })}
         </ModalFooter>
       </>

@@ -56,10 +56,10 @@ class FileUpload extends React.Component<Props, {}> {
     return (
       <FlexItem>
         <FlexPad direction="column" overflow="auto">
-          <ImportHeader>{__(`Upload your file`)}</ImportHeader>
+          <ImportHeader>{__(`Nahrajte svůj soubor`)}</ImportHeader>
           <ImportHeader fontSize="small">
             {__(
-              'Before you upload your files below, make sure your file is ready to be imported.',
+              'Před nahráním souborů níže se ujistěte, že je soubor připraven k importu.',
             )}
           </ImportHeader>
           <FullContent center={true}>

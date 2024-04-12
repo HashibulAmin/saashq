@@ -18,7 +18,7 @@ type Props = {
 
 class MapColumn extends React.Component<Props, {}> {
   // fix this function after
-  renderText = value => {
+  renderText = (value) => {
     switch (value) {
       case 'customer':
         return 'Customers';
@@ -45,9 +45,7 @@ class MapColumn extends React.Component<Props, {}> {
     if (isBoardKind(contentType)) {
       return (
         <Info>
-          {__(
-            'To complete your import, you have to choose Board, Pipeline, Stage.'
-          )}
+          {__('Pro dokončení importu musíte vybrat Deska, Potrubí, Etapa.')}
         </Info>
       );
     }
@@ -62,14 +60,14 @@ class MapColumn extends React.Component<Props, {}> {
       <ColumnTable>
         <thead>
           <tr>
-            <th>Match</th>
-            <th>Column header</th>
-            <th>Preview data</th>
-            <th>Property</th>
+            <th>Zápas</th>
+            <th>Záhlaví sloupce</th>
+            <th>Náhled dat</th>
+            <th>Vlastnictví</th>
           </tr>
         </thead>
         <tbody className={'expand'}>
-          {Object.keys(columns).map(column => (
+          {Object.keys(columns).map((column) => (
             <Row
               contentType={contentType}
               key={Math.random()}
@@ -89,15 +87,15 @@ class MapColumn extends React.Component<Props, {}> {
         <FlexItem>
           <FlexPad type="stepper" direction="column">
             <SubHeading>
-              {__(`${this.renderText(contentType)} mapping`)}
+              {__(`${this.renderText(contentType)} mapování`)}
             </SubHeading>
-            <Description>Map columns in your file to properties</Description>
+            <Description>Mapujte sloupce v souboru na vlastnosti</Description>
 
             {this.renderInfo()}
             <DataWithLoader
               data={content}
               loading={false}
-              emptyText="Upload your file"
+              emptyText="Nahrajte svůj soubor"
               emptyImage="/images/actions/18.svg"
             />
           </FlexPad>

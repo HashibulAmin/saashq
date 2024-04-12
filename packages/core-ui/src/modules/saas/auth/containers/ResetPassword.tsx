@@ -55,5 +55,9 @@ export default withProps<Props>(
     >(gql(mutations.resetPassword), {
       name: 'resetPasswordMutation',
     }),
-  )(withRouter<FinalProps>(withCurrentOrganization(ResetPasswordContainer))),
+  )(
+    withRouter<FinalProps, any>(
+      withCurrentOrganization(ResetPasswordContainer),
+    ),
+  ),
 );

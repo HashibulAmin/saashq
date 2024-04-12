@@ -1,56 +1,56 @@
 export const OS_SERVICES = [
   {
-    name: 'Support service',
+    name: 'Podpora',
     description:
-      'Get email and in-app chat technical support on setting up and using saashq',
+      'Získejte technickou podporu prostřednictvím e-mailu a chatu v aplikaci pro nastavení a používání SaasHQ',
     type: 'supportService',
     price: '20',
-    logo: '/static/images/plan-icons/support-service.png'
+    logo: '/static/images/plan-icons/support-service.png',
   },
   {
-    name: 'Customer success consulting',
+    name: 'Poradenství pro úspěch zákazníků',
     description:
-      'Monthly sessions with a customer success consultant for guidance on your saashq',
+      'Měsíční sezení s konzultantem pro úspěch zákazníků, který vám poskytne rady ohledně vašeho SaasHQ',
     type: 'supportService2',
     price: '40',
-    logo: '/static/images/plan-icons/customer-success.png'
+    logo: '/static/images/plan-icons/customer-success.png',
   },
   {
-    name: 'Setup service',
-    description: 'Get technical support on setting up and using saashq',
+    name: 'Instalační služba',
+    description:
+      'Získejte technickou podporu pro nastavení a používání SsaasHQ',
     type: 'setupService',
     price: '50',
-    logo: '/static/images/plan-icons/setupService.svg'
+    logo: '/static/images/plan-icons/setupService.svg',
   },
   {
-    name: 'Company Branding',
-    description:
-      'Set yourself apart by using your company branding and custom domain',
+    name: 'Značka společnosti',
+    description: 'Odlište se pomocí značky vaší společnosti a vlastní domény',
     type: 'whiteLabel',
     price: '5',
-    logo: '/static/images/plan-icons/rgb.svg'
-  }
+    logo: '/static/images/plan-icons/rgb.svg',
+  },
 ];
 
 export const CATEGORIES = [
   { value: 'marketing', label: 'Marketing' },
-  { value: 'sales', label: 'Sales' },
-  { value: 'services', label: 'Services' },
-  { value: 'operations', label: 'Operations' },
-  { value: 'communications', label: 'Communications' },
-  { value: 'productivity', label: 'Productivity' },
-  { value: 'website', label: 'Website' },
-  { value: 'e-commerce', label: 'E-Commerce' },
-  { value: 'document', label: 'Document management' },
-  { value: 'hr', label: 'Human resource' },
+  { value: 'sales', label: 'Odbyt' },
+  { value: 'services', label: 'Služby' },
+  { value: 'operations', label: 'Operace' },
+  { value: 'communications', label: 'Komunikace' },
+  { value: 'productivity', label: 'Produktivita' },
+  { value: 'website', label: 'Webová stránka' },
+  { value: 'e-commerce', label: 'Elektronický obchod' },
+  { value: 'document', label: 'Správa dokumentů' },
+  { value: 'hr', label: 'Lidské zdroje' },
   { value: 'finance', label: 'Finance' },
-  { value: 'inventory', label: 'Inventory' },
-  { value: 'analytics', label: 'Analytics' },
-  { value: 'reporting', label: 'Reporting' }
+  { value: 'inventory', label: 'Inventář' },
+  { value: 'analytics', label: 'Analytiky' },
+  { value: 'reporting', label: 'Hlášení' },
 ];
 
 export const STATUS_TYPES = [
   { value: 'All' },
   { value: 'Free' },
-  { value: 'Paid' }
+  { value: 'Paid' },
 ];

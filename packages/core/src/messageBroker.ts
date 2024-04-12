@@ -73,7 +73,7 @@ export const setupMessageConsumers = async (): Promise<void> => {
   );
 
   consumeQueue('core:runCrons', async () => {
-    console.log('Running crons ........');
+    console.log('Běžící crony ........');
   });
 
   consumeRPCQueue('core:permissions.find', async ({ subdomain, data }) => {

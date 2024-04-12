@@ -45,7 +45,7 @@ type Props = {
     text: string,
     onClick,
     icon: string,
-    disabled?: boolean
+    disabled?: boolean,
   ) => React.ReactNode;
   currentUserName: string;
   changeStep: () => void;
@@ -54,14 +54,14 @@ type Props = {
 function Welcome({ renderButton, currentUserName, changeStep }: Props) {
   return (
     <WelcomeContent>
-      <img alt="welcome" src="/images/actions/welcome.svg" />
+      <img alt="vítejte" src="/images/actions/welcome.svg" />
       <div>
         <h3>
-          {__('Welcome')}, <b>{currentUserName}</b>
+          {__('Vítejte')}, <b>{currentUserName}</b>
         </h3>
         <p>
           {__(
-            "We're thrilled to have you on board and can't wait to see you set up your business here already"
+            'Jsme nadšeni, že jste na palubě, a nemůžeme se dočkat, až zde již založíte svou firmu',
           )}
           .
         </p>

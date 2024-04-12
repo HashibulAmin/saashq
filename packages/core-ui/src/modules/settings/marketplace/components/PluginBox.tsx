@@ -24,13 +24,13 @@ type Props = {
 class PluginBox extends React.Component<Props, {}> {
   renderPrice(prices) {
     if (!prices || this.props.isOpenSource) {
-      return <b>{__('Free')}</b>;
+      return <b>{__('Volný')}</b>;
     }
 
     return (
       <PerPrice>
         <h2>${prices.monthly || 20}</h2>
-        <span>{__('per month')}</span>
+        <span>{__('za měsíc')}</span>
       </PerPrice>
     );
   }
@@ -59,7 +59,7 @@ class PluginBox extends React.Component<Props, {}> {
     if (plugin.mainType === 'power-up') {
       return (
         <AddOns>
-          <span>{__('Works with')}</span>
+          <span>{__('Pracovat s')}</span>
           {this.renderAddon()}
         </AddOns>
       );
@@ -73,7 +73,7 @@ class PluginBox extends React.Component<Props, {}> {
         </FooterItem>
         <FooterItem>
           <Icon icon="chart-bar" size={14} />
-          <span>1,000+ active installations</span>
+          <span>1,000+ aktivní instalace</span>
         </FooterItem>
       </>
     );

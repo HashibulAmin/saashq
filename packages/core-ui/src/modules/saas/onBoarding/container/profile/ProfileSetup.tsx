@@ -37,7 +37,7 @@ function ProfileContainer(props: FinalProps) {
 
   const userEdit = (_id: string, doc: IUserDoc) => {
     if (!doc.details?.firstName || !doc.details?.lastName) {
-      Alert.error('FirstName and LastName can not be empty');
+      Alert.error('Jméno a Příjmení nesmí být prázdné');
     }
 
     if (doc.details?.firstName && doc.details?.lastName) {

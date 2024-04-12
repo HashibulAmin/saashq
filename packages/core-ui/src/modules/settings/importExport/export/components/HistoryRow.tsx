@@ -35,14 +35,14 @@ class HistoryRow extends React.Component<Props> {
     if (uploadType === 'local') {
       return (
         <Button btnStyle="simple" size="small" onClick={onClick}>
-          {__(`Download result`)}
+          {__(`Stáhnout výsledek`)}
         </Button>
       );
     }
 
     return (
       <Button btnStyle="simple" size="small" onClick={onClick}>
-        {__(`Download result`)}
+        {__(`Stáhnout výsledekt`)}
       </Button>
     );
   };

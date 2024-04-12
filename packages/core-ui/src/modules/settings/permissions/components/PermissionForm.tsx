@@ -19,7 +19,7 @@ import {
   filterActions,
   generatedList,
   generateListParams,
-  generateModuleParams
+  generateModuleParams,
 } from './utils';
 
 type Props = {
@@ -46,29 +46,27 @@ class PermissionForm extends React.Component<Props, State> {
     selectedUserIds: [],
     selectedGroups: [],
     valueChanged: false,
-    isSubmitted: false
+    isSubmitted: false,
   };
 
   save = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const {
-      selectedModule,
-      selectedActions,
-      selectedUserIds,
-      selectedGroups
-    } = this.state;
+    const { selectedModule, selectedActions, selectedUserIds, selectedGroups } =
+      this.state;
 
     if (!selectedModule) {
-      return Alert.error('Please select the module!');
+      return Alert.error('Vyberte modul!');
     }
 
     if (!this.hasItems(selectedActions)) {
-      return Alert.error('Please select at least one action!');
+      return Alert.error('Vyberte prosím alespoň jednu akci!');
     }
 
     if (!this.hasItems(selectedGroups) && !this.hasItems(selectedUserIds)) {
-      return Alert.error('Please select at least one group or user!');
+      return Alert.error(
+        'Vyberte prosím alespoň jednu skupinu nebo uživatele!',
+      );
     }
 
     return this.setState({ isSubmitted: true });
@@ -80,7 +78,7 @@ class PermissionForm extends React.Component<Props, State> {
       selectedActions,
       selectedUserIds,
       selectedGroups,
-      valueChanged
+      valueChanged,
     } = this.state;
 
     return {
@@ -88,7 +86,7 @@ class PermissionForm extends React.Component<Props, State> {
       actions: this.collectValues(selectedActions),
       userIds: selectedUserIds,
       groupIds: this.collectValues(selectedGroups),
-      allowed: valueChanged
+      allowed: valueChanged,
     };
   };
 
@@ -117,12 +115,12 @@ class PermissionForm extends React.Component<Props, State> {
 
     this.setState({
       selectedModule,
-      selectedActions: []
+      selectedActions: [],
     });
   };
 
   collectValues = (items: generatedList[]) => {
-    return items.map(item => item.value);
+    return items.map((item) => item.value);
   };
 
   renderContent() {
@@ -132,31 +130,31 @@ class PermissionForm extends React.Component<Props, State> {
       selectedActions,
       selectedUserIds,
       selectedGroups,
-      valueChanged
+      valueChanged,
     } = this.state;
 
-    const usersOnChange = users => this.select('selectedUserIds', users);
+    const usersOnChange = (users) => this.select('selectedUserIds', users);
 
     return (
       <>
         <Info>
-          <strong>User vs. Group Permissions</strong>
+          <strong>Uživatelská vs. Skupinová Oprávnění</strong>
           <br />
           <span>
-            When a team member is part of two or more User Groups with different
-            levels of permissions,
+            Když je člen týmu součástí dvou nebo více skupin uživatelů s různými
+            úrovně oprávnění,
           </span>
           <TextInfo textStyle="danger">
-            the negative permission will overrule.
+            negativní povolení bude mít přednost.
           </TextInfo>
           <br />
           <span>
-            For example, if you're part of the "Admin Group" with all
-            permissions allowed, but you've included yourself in the "Support
-            Group" with fewer permissions,
+            Pokud jste například součástí "Skupiny Administrátorů" se všemi
+            povolena, ale zahrnuli jste se do "Podpora Skupina" s menším počtem
+            oprávnění,
           </span>
           <TextInfo textStyle="danger">
-            you might not be able to do certain actions.
+            možná nebudete moci provádět určité akce.
           </TextInfo>
         </Info>
         <StepItem>
@@ -164,23 +162,23 @@ class PermissionForm extends React.Component<Props, State> {
             number="1"
             isDone={this.isModuleSelected() && this.hasItems(selectedActions)}
           >
-            {__('What action can do')}
+            {__('Co může udělat akce')}
           </StepHeader>
           <StepBody>
             <FormGroup>
-              <ControlLabel required={true}>Choose the module</ControlLabel>
+              <ControlLabel required={true}>Vyberte modul</ControlLabel>
               <Select
-                placeholder={__('Choose module')}
+                placeholder={__('Vyberte modul')}
                 options={generateModuleParams(modules)}
                 value={selectedModule}
                 onChange={this.changeModule}
               />
             </FormGroup>
-            <Divider>{__('Then')}</Divider>
+            <Divider>{__('Pak')}</Divider>
             <FormGroup>
-              <ControlLabel required={true}>Choose the actions</ControlLabel>
+              <ControlLabel required={true}>Vyberte akce</ControlLabel>
               <Select
-                placeholder={__('Choose actions')}
+                placeholder={__('Vyberte akce')}
                 options={filterActions(actions, selectedModule)}
                 value={selectedActions}
                 disabled={!this.isModuleSelected()}
@@ -198,25 +196,25 @@ class PermissionForm extends React.Component<Props, State> {
               this.hasItems(selectedGroups) || this.hasItems(selectedUserIds)
             }
           >
-            {__('Who can')}
+            {__('Kdo může')}
           </StepHeader>
           <StepBody>
             <FormGroup>
-              <ControlLabel required={true}>Choose the groups</ControlLabel>
+              <ControlLabel required={true}>Vyberte skupiny</ControlLabel>
               <Select
-                placeholder={__('Choose groups')}
+                placeholder={__('Vyberte skupiny')}
                 options={generateListParams(groups)}
                 value={selectedGroups}
                 onChange={this.select.bind(this, 'selectedGroups')}
                 multi={true}
               />
             </FormGroup>
-            <Divider>{__('Or')}</Divider>
+            <Divider>{__('Nebo')}</Divider>
             <FormGroup>
-              <ControlLabel required={true}>Choose the users</ControlLabel>
+              <ControlLabel required={true}>Vyberte uživatele</ControlLabel>
 
               <SelectTeamMembers
-                label="Choose users"
+                label="Vyberte uživatele"
                 name="selectedUserIds"
                 initialValue={selectedUserIds}
                 onSelect={usersOnChange}
@@ -227,11 +225,11 @@ class PermissionForm extends React.Component<Props, State> {
 
         <StepItem>
           <StepHeader number="3" isDone={valueChanged}>
-            {__('Grant permission')}
+            {__('Udělte povolení')}
           </StepHeader>
           <StepBody>
             <FormGroup>
-              <ControlLabel>Allow</ControlLabel>
+              <ControlLabel>Dovolit</ControlLabel>
 
               <FormControl
                 componentClass="checkbox"
@@ -239,7 +237,7 @@ class PermissionForm extends React.Component<Props, State> {
                 id="allowed"
                 onChange={this.onChange}
               />
-              <p>{__('Check if permission is allowed')}</p>
+              <p>{__('Zkontrolujte, zda je povoleno povolení')}</p>
             </FormGroup>
           </StepBody>
         </StepItem>
@@ -260,7 +258,7 @@ class PermissionForm extends React.Component<Props, State> {
             onClick={closeModal}
             icon="cancel-1"
           >
-            Cancel
+            Zrušení
           </Button>
 
           <ButtonMutate
@@ -270,7 +268,7 @@ class PermissionForm extends React.Component<Props, State> {
             refetchQueries={refetchQueries}
             isSubmitted={this.state.isSubmitted}
             type="submit"
-            successMessage={__(`You successfully added a permission`) + '.'}
+            successMessage={__(`Úspěšně jste přidali oprávnění`) + '.'}
           />
         </ModalFooter>
       </form>

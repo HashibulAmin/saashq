@@ -1,9 +1,9 @@
-import React from "react";
-import Uploader from "@saashq/ui/src/components/Uploader";
-import { FormControl, FormGroup } from "@saashq/ui/src/components/form";
-import ControlLabel from "@saashq/ui/src/components/form/Label";
-import { __ } from "modules/common/utils";
-import { IAttachment } from "@saashq/ui/src/types";
+import React from 'react';
+import Uploader from '@saashq/ui/src/components/Uploader';
+import { FormControl, FormGroup } from '@saashq/ui/src/components/form';
+import ControlLabel from '@saashq/ui/src/components/form/Label';
+import { __ } from 'modules/common/utils';
+import { IAttachment } from '@saashq/ui/src/types';
 
 type Props = {
   object: any;
@@ -51,7 +51,7 @@ export default function ContactInfoForm(props: Props) {
   return (
     <>
       <FormGroup>
-        <ControlLabel>{__("Phone number")}</ControlLabel>
+        <ControlLabel>{__('Telefonní číslo')}</ControlLabel>
         <FormControl
           {...formProps}
           name="phoneNumber"
@@ -59,11 +59,11 @@ export default function ContactInfoForm(props: Props) {
         />
       </FormGroup>
       <FormGroup>
-        <ControlLabel>{__("Email")}</ControlLabel>
+        <ControlLabel>{__('E-mailem')}</ControlLabel>
         <FormControl {...formProps} name="email" defaultValue={object.email} />
       </FormGroup>
       <FormGroup>
-        <ControlLabel>{__("Longitude")}</ControlLabel>
+        <ControlLabel>{__('Zeměpisná délka')}</ControlLabel>
         <FormControl
           name="longitude"
           onChange={onChangeCoordinate}
@@ -71,7 +71,7 @@ export default function ContactInfoForm(props: Props) {
         />
       </FormGroup>
       <FormGroup>
-        <ControlLabel>{__("Latitude")}</ControlLabel>
+        <ControlLabel>{__('Zeměpisná šířka')}</ControlLabel>
         <FormControl
           name="latitude"
           onChange={onChangeCoordinate}
@@ -79,7 +79,7 @@ export default function ContactInfoForm(props: Props) {
         />
       </FormGroup>
       <FormGroup>
-        <ControlLabel>{__("Website")}</ControlLabel>
+        <ControlLabel>{__('Webová stránka')}</ControlLabel>
         <FormControl
           name="website"
           placeholder="https://example.com"
@@ -88,7 +88,7 @@ export default function ContactInfoForm(props: Props) {
         />
       </FormGroup>
       <FormGroup>
-        <ControlLabel>{__("Facebook")}</ControlLabel>
+        <ControlLabel>{__('Facebook')}</ControlLabel>
         <FormControl
           name="facebook"
           placeholder="https://facebook.com"
@@ -97,7 +97,7 @@ export default function ContactInfoForm(props: Props) {
         />
       </FormGroup>
       <FormGroup>
-        <ControlLabel>{__("Twitter")}</ControlLabel>
+        <ControlLabel>{__('Twitter')}</ControlLabel>
         <FormControl
           name="twitter"
           defaultValue={links.twitter}
@@ -106,7 +106,7 @@ export default function ContactInfoForm(props: Props) {
         />
       </FormGroup>
       <FormGroup>
-        <ControlLabel>{__("Youtube")}</ControlLabel>
+        <ControlLabel>{__('Youtube')}</ControlLabel>
         <FormControl
           name="youtube"
           defaultValue={links.youtube}
@@ -115,7 +115,7 @@ export default function ContactInfoForm(props: Props) {
         />
       </FormGroup>
       <FormGroup>
-        <ControlLabel>{__("Image")}</ControlLabel>
+        <ControlLabel>{__('Obraz')}</ControlLabel>
         <Uploader
           defaultFileList={image ? [image] : []}
           onChange={onChangeImage}

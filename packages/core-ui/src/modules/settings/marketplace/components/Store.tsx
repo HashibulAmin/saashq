@@ -188,7 +188,7 @@ class Store extends React.Component<Props, State> {
                 <Icon icon="search" />
               </SearchIcon>
               <SearchInput
-                placeholder={__('Type to search for an results') + '...'}
+                placeholder={__('Zadejte a vyhledejte výsledky') + '...'}
                 type="text"
                 onChange={this.onSearch}
               />
@@ -205,18 +205,18 @@ class Store extends React.Component<Props, State> {
         </FlexRow>
 
         <StoreBlock>
-          <h4>{__('Services')}</h4>
+          <h4>{__('Služby')}</h4>
           <p>
             {__(
-              'Upgrade your plan with these premium services for expert help and guidance',
+              'Upgradujte svůj plán pomocí těchto prémiových služeb a získáte odbornou pomoc a vedení',
             )}
           </p>
           <Services>{this.renderServices()}</Services>
         </StoreBlock>
 
         <StoreBlock>
-          <h4>{__('Plugins')}</h4>
-          <p>{__('Customize and enhance your plugins limits')}</p>
+          <h4>{__('Pluginy')}</h4>
+          <p>{__('Přizpůsobte a vylepšete limity svých pluginů')}</p>
           <FlexWrapContainer>{this.renderPlugins()}</FlexWrapContainer>
         </StoreBlock>
       </Container>

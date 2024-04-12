@@ -8,7 +8,7 @@ import {
   DetailMainContainer,
   DetailStyle,
   Hashtag,
-  PluginTitle
+  PluginTitle,
 } from '../../styles';
 import { Attachment, TabTitle, Tabs } from '@saashq/ui/src/components';
 
@@ -48,14 +48,14 @@ class PluginDetails extends React.Component<Props, State> {
       tabType: 'Description',
       lastLogMessage: '',
       plugin,
-      loading: {}
+      loading: {},
     };
 
     client
       .query({
         query: gql(queries.getInstallationStatus),
         fetchPolicy: 'network-only',
-        variables: { name: plugin.osName }
+        variables: { name: plugin.osName },
       })
       .then(({ data: { configsGetInstallationStatus } }) => {
         plugin.status = configsGetInstallationStatus.status;
@@ -68,12 +68,12 @@ class PluginDetails extends React.Component<Props, State> {
         query: gql(queries.getInstallationStatus),
         fetchPolicy: 'network-only',
         pollInterval: 3000,
-        variables: { name: plugin.osName }
+        variables: { name: plugin.osName },
       })
       .subscribe({
         next: ({ data: { configsGetInstallationStatus } }) => {
           const installationType = localStorage.getItem(
-            'currentInstallationType'
+            'currentInstallationType',
           );
 
           const { status, lastLogMessage } = configsGetInstallationStatus;
@@ -88,13 +88,13 @@ class PluginDetails extends React.Component<Props, State> {
           ) {
             querySubscription.unsubscribe();
             localStorage.setItem('currentInstallationType', '');
-            Alert.success('Success');
+            Alert.success('Úspěch');
             window.location.reload();
           }
         },
-        error: e => {
+        error: (e) => {
           Alert.error(e.message);
-        }
+        },
       });
   }
 
@@ -108,7 +108,7 @@ class PluginDetails extends React.Component<Props, State> {
           <Detail>
             <ListHeader>
               <ColorHeader>
-                <b>📝 DESCRIPTION</b>
+                <b>📝 POPIS</b>
               </ColorHeader>
             </ListHeader>
             <p dangerouslySetInnerHTML={{ __html: plugin.description }} />
@@ -116,7 +116,7 @@ class PluginDetails extends React.Component<Props, State> {
           <Detail>
             <ListHeader>
               <ColorHeader>
-                <b>✨ BENEFITS</b>
+                <b>✨ VÝHODY</b>
               </ColorHeader>
             </ListHeader>
             <AdditionalDesc
@@ -165,7 +165,7 @@ class PluginDetails extends React.Component<Props, State> {
       const attachment = {
         name: item,
         type: 'image',
-        url: item
+        url: item,
       };
 
       return <Attachment key={index} simple={true} attachment={attachment} />;
@@ -177,8 +177,8 @@ class PluginDetails extends React.Component<Props, State> {
     const { loading, plugin, lastLogMessage, tabType } = this.state;
 
     const breadcrumb = [
-      { title: __('Marketplace'), link: '/marketplace' },
-      { title: plugin.title || '' }
+      { title: __('Tržiště'), link: '/marketplace' },
+      { title: plugin.title || '' },
     ];
 
     const manageInstall = (type: string, name: string) => {
@@ -188,16 +188,16 @@ class PluginDetails extends React.Component<Props, State> {
 
       this.props
         .manageInstall({
-          variables: { type, name }
+          variables: { type, name },
         })
-        .catch(error => {
+        .catch((error) => {
           Alert.error(error.message);
           this.setState({ loading: { [name]: false } });
           localStorage.setItem('currentInstallationType', '');
         });
     };
 
-    const handleSelect = tab => {
+    const handleSelect = (tab) => {
       this.setState({ tabType: tab });
     };
 
@@ -231,8 +231,8 @@ class PluginDetails extends React.Component<Props, State> {
           className="install"
         >
           {loading[plugin.osName] || plugin.status === 'installing'
-            ? `Installing ... ${lastLogMessage ? `(${lastLogMessage})` : ''}`
-            : 'Install'}
+            ? `Instalace ... ${lastLogMessage ? `(${lastLogMessage})` : ''}`
+            : 'Nainstalujte'}
         </button>
       );
     };
@@ -260,13 +260,13 @@ class PluginDetails extends React.Component<Props, State> {
               onClick={() => handleSelect('Description')}
               className={tabType === 'Description' ? 'active' : ''}
             >
-              Description
+              Popis
             </TabTitle>
             <TabTitle
               onClick={() => handleSelect('Guide')}
               className={tabType === 'Guide' ? 'active' : ''}
             >
-              Guide
+              Průvodce
             </TabTitle>
           </Tabs>
 

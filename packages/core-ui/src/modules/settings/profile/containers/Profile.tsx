@@ -20,12 +20,12 @@ const Profile = (
   const { currentUser, usersEditProfile, queryParams } = props;
 
   const save = (variables: IUserDoc, callback: () => void) => {
-    confirm('This will permanently update are you absolutely sure?', {
+    confirm('Toto se trvale aktualizuje, jste si naprosto jisti?', {
       hasUpdateConfirm: true,
     }).then(() => {
       usersEditProfile({ variables })
         .then(() => {
-          Alert.success(`You've successfully updated this profile`);
+          Alert.success(`Úspěšně jste aktualizovali tento profil`);
           callback();
         })
         .catch((error) => {

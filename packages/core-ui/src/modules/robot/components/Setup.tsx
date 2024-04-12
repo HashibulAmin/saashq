@@ -5,7 +5,7 @@ import {
   RestartButton,
   SetupList,
   SubContent,
-  Text
+  Text,
 } from './styles';
 import { IFeature, IRoleValue } from 'modules/robot/types';
 
@@ -46,7 +46,7 @@ class Setup extends React.Component<Props, State> {
     this.state = {
       selectedOption: {} as IFeature,
       showComplete: false,
-      collapseKey: ''
+      collapseKey: '',
     };
   }
 
@@ -54,10 +54,10 @@ class Setup extends React.Component<Props, State> {
     const { currentUser } = this.props;
     const percentage = this.getPercentage();
 
-    let text = "Let's set up your workplace for success";
+    let text = 'Pojďme nastavit vaše pracoviště pro úspěch';
 
     if (percentage === 100) {
-      text = 'Congratulations! You have finished setting up';
+      text = 'Gratulujeme! Dokončili jste nastavení';
     }
 
     return (
@@ -103,18 +103,18 @@ class Setup extends React.Component<Props, State> {
   renderProgress = () => {
     const percentage = this.getPercentage();
 
-    let text = __('keep going!');
+    let text = __('pokračuj!');
 
     if (percentage < 75 && percentage > 50) {
-      text = __("you're halfway through, keep going!");
+      text = __('jsi v polovině, pokračuj!');
     }
 
     if (percentage > 75 && percentage < 100) {
-      text = __('almost done, just a little more!');
+      text = __('skoro hotovo, jen trochu víc!');
     }
 
     if (percentage === 100) {
-      text = __('awesome!');
+      text = __('skvělý!');
     }
 
     return (
@@ -139,7 +139,7 @@ class Setup extends React.Component<Props, State> {
   checkCondition(title: string) {
     const { availableFeatures } = this.props;
 
-    availableFeatures.map(availabeFeature => {
+    availableFeatures.map((availabeFeature) => {
       if (availabeFeature.name === title) {
         this.renderFeature(availabeFeature);
       }
@@ -154,17 +154,17 @@ class Setup extends React.Component<Props, State> {
     const onRoleClick = (title: string, gkey: string) => {
       this.setState(
         {
-          collapseKey: gkey
+          collapseKey: gkey,
         },
         () => {
           this.checkCondition(title);
-        }
+        },
       );
     };
 
     return (
       <SetupList>
-        {ROLE_SETUP.map(group => (
+        {ROLE_SETUP.map((group) => (
           <CollapseContent
             key={group.key}
             id={group.key}
@@ -221,12 +221,12 @@ class Setup extends React.Component<Props, State> {
     const { availableFeatures } = this.props;
 
     const completedCount = availableFeatures.filter(
-      feature => feature.isComplete
+      (feature) => feature.isComplete,
     ).length;
 
     return calculatePercentage(
       availableFeatures.length + 1,
-      completedCount + 1
+      completedCount + 1,
     );
   }
 
@@ -236,7 +236,7 @@ class Setup extends React.Component<Props, State> {
 
     if (currentRoute === 'setupDetail') {
       return this.withHeader(
-        selectedOption && <SetupDetail feature={selectedOption} />
+        selectedOption && <SetupDetail feature={selectedOption} />,
       );
     }
 

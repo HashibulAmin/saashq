@@ -11,36 +11,36 @@ type Props = {
 };
 
 const ChangePasswordContainer = (
-  props: Props & ChangePasswordMutationResponse
+  props: Props & ChangePasswordMutationResponse,
 ) => {
   const { changePasswordMutation } = props;
 
   const save = ({ currentPassword, newPassword, confirmation }) => {
     if (newPassword !== confirmation) {
-      return Alert.error("Password didn't match");
+      return Alert.error('Heslo se neshodovalo');
     }
 
     if (!currentPassword || currentPassword === 0) {
-      return Alert.error('Please enter a current password');
+      return Alert.error('Zadejte prosím aktuální heslo');
     }
 
     if (!newPassword || newPassword === 0) {
-      return Alert.error('Please enter a new password');
+      return Alert.error('Zadejte prosím nové heslo');
     }
 
     changePasswordMutation({ variables: { currentPassword, newPassword } })
       .then(() => {
-        Alert.success('Your password has been changed and updated');
+        Alert.success('Vaše heslo bylo změněno a aktualizováno');
         props.closeModal();
       })
-      .catch(error => {
+      .catch((error) => {
         Alert.error(error.message);
       });
   };
 
   const updatedProps = {
     ...props,
-    save
+    save,
   };
 
   return <ChangePassword {...updatedProps} />;
@@ -63,8 +63,8 @@ export default withProps<Props>(
         }
       `,
       {
-        name: 'changePasswordMutation'
-      }
-    )
-  )(ChangePasswordContainer)
+        name: 'changePasswordMutation',
+      },
+    ),
+  )(ChangePasswordContainer),
 );

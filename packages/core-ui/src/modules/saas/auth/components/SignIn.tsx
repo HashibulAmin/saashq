@@ -17,7 +17,7 @@ class SignIn extends React.Component<Props> {
   renderContent = (formProps) => {
     const { values, isSubmitted } = formProps;
     const url = window.location.href;
-    const demoUrl = url.includes('xosdemo.saashq.org');
+    const demoUrl = url.includes('shq.saashq.org');
 
     return (
       <>
@@ -25,7 +25,9 @@ class SignIn extends React.Component<Props> {
           <FormControl
             {...formProps}
             name="email"
-            placeholder={demoUrl ? 'guest@saashq.org' : __('Enter your email')}
+            placeholder={
+              demoUrl ? 'guest@saashq.org' : __('Vložte svůj e-mail')
+            }
             required={true}
           />
         </FormGroup>
@@ -35,7 +37,7 @@ class SignIn extends React.Component<Props> {
             {...formProps}
             name="password"
             type="password"
-            placeholder={demoUrl ? 'Demo@123' : __('Enter your password')}
+            placeholder={demoUrl ? 'Demo@123' : __('Vložte svůj e-mail')}
             required={true}
           />
         </FormGroup>
@@ -54,17 +56,17 @@ class SignIn extends React.Component<Props> {
     return (
       <AuthBox backgroundColor={backgroundColor}>
         <img src={readFile(logo) || '/images/logo-dark.png'} alt="saashq" />
-        <h2>{__('Welcome!')}</h2>
+        <h2>{__('Vítejte!')}</h2>
         <p>{__('Chcete-li pokračovat, přihlaste se ke svému účtu')}</p>
 
         <AuthButton className="google">
           <Link to="/sign-in-with-email">
-            {__('Sign in without password using magic link')}
+            {__('Přihlaste se bez hesla pomocí magického odkazu')}
           </Link>
         </AuthButton>
         <Seperator>or</Seperator>
         <Form renderContent={this.renderContent} />
-        <Link to="/forgot-password">{__('Forgot password?')}</Link>
+        <Link to="/forgot-password">{__('Zapomenuté heslo?')}</Link>
       </AuthBox>
     );
   }

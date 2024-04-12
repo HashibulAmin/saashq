@@ -132,7 +132,7 @@ class Row extends React.Component<Props, {}> {
         <td>
           <FlexRow>
             <Select
-              placeholder={__('Choose')}
+              placeholder={__('Vybrat')}
               options={renderOptions()}
               onChange={this.onChange}
               clearable={false}

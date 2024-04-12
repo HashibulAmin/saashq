@@ -43,7 +43,7 @@ class ExportHistories extends React.Component<Props & IRouterProps> {
           </tr>
         </thead>
         <tbody>
-          {histories.map(history => {
+          {histories.map((history) => {
             return <HistoryRow key={history._id} history={history} />;
           })}
         </tbody>
@@ -79,9 +79,9 @@ class ExportHistories extends React.Component<Props & IRouterProps> {
     const { histories, loading, totalCount, history, currentType } = this.props;
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Import & Export'), link: '/settings/selectMenu' },
-      { title: __('Exports') }
+      { title: __('Exports') },
     ];
 
     const headerDescription = (
@@ -89,9 +89,9 @@ class ExportHistories extends React.Component<Props & IRouterProps> {
         icon="/images/actions/27.svg"
         title={__('Export')}
         description={`${__(
-          'Here you can find data of all your previous imports of companies and customers'
-        )}.${__('Find out when they joined and their current status')}.${__(
-          'Nothing goes missing around here'
+          'Zde naleznete údaje o všech vašich předchozích importech firem a zákazníků',
+        )}.${__('Zjistěte, kdy se připojili, a jejich aktuální stav')}.${__(
+          'Tady kolem nic nechybí',
         )}`}
       />
     );

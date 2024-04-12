@@ -239,7 +239,7 @@ function Welcome({ currentUser, branchesLength, departmentLength }: Props) {
               <span>{description}</span>
             </div>
             <VideoLink onClick={() => handleClick(title)}>
-              {__('Watch video')}
+              {__('Sledovat video')}
               <Icon icon="play-1" size={15} color="#fff" />
             </VideoLink>
           </LinkedButton>

@@ -6,7 +6,7 @@ import { SubHeading } from '@saashq/ui-settings/src/styles';
 import {
   ControlLabel,
   FormControl,
-  FormGroup
+  FormGroup,
 } from '@saashq/ui/src/components/form';
 import { __ } from 'modules/common/utils';
 
@@ -19,33 +19,33 @@ type Props = {
 
 class AccociateForm extends React.Component<Props, {}> {
   render() {
-    const onChangeHeader = e =>
+    const onChangeHeader = (e) =>
       this.props.onChangeAssociateHeader((e.target as HTMLInputElement).value);
 
-    const onChangeContentType = e =>
+    const onChangeContentType = (e) =>
       this.props.onChangeAssociateContentType(
-        (e.target as HTMLInputElement).value
+        (e.target as HTMLInputElement).value,
       );
 
     return (
       <FlexItem>
         <FlexPad direction="column" overflow="auto">
-          <SubHeading>{__('Choose how to associate your data')}</SubHeading>
+          <SubHeading>{__('Vyberte, jak svá data přidružit')}</SubHeading>
 
           <div>
             <FormGroup>
               <ControlLabel>
-                {__('Common column headers found in your file')}
+                {__('Běžná záhlaví sloupců nalezená ve vašem souboru')}
               </ControlLabel>
               <p>
                 {__(
-                  'Choose which common column you want to use to associate your data.'
+                  'Vyberte společný sloupec, který chcete použít k přiřazení dat.',
                 )}
                 .
               </p>
               <FormControl componentClass="select" onChange={onChangeHeader}>
                 <option />
-                {this.props.duplicatedHeaders.map(header => (
+                {this.props.duplicatedHeaders.map((header) => (
                   <option key={header} value={header}>
                     {header}
                   </option>
@@ -54,11 +54,11 @@ class AccociateForm extends React.Component<Props, {}> {
             </FormGroup>
             <FormGroup>
               <ControlLabel>
-                {__('Which object is the unique key for')}
+                {__('Pro který objekt je jedinečný klíč')}
               </ControlLabel>
               <p>
                 {__(
-                  'The common column between your files should also be the unique key for one of your objects. This unique key is used to associate objects based on individual data but only belongs to one object.'
+                  'Společný sloupec mezi vašimi soubory by měl být také jedinečným klíčem pro jeden z vašich objektů. Tento jedinečný klíč se používá k přiřazení objektů na základě jednotlivých dat, ale patří pouze k jednomu objektu.',
                 )}
                 .
               </p>
@@ -67,7 +67,7 @@ class AccociateForm extends React.Component<Props, {}> {
                 onChange={onChangeContentType}
               >
                 <option />
-                {this.props.contentTypes.map(contentType => (
+                {this.props.contentTypes.map((contentType) => (
                   <option
                     key={contentType.contentType}
                     value={contentType.contentType}

@@ -20,7 +20,7 @@ function OnBoardingDoneContainer(props: FinalProps) {
       variables: {},
     })
       .then(() => {
-        Alert.success('First step is done');
+        Alert.success('První krok je hotový');
         window.location.href = '/';
       })
       .catch((error) => {

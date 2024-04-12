@@ -197,7 +197,7 @@ class Form extends React.Component<Props, State> {
       }
 
       return (
-        <Step title="Accociate">
+        <Step title="Spolupracovník">
           <AccociateForm
             attachmentNames={attachmentNames}
             contentTypes={contentTypes}
@@ -221,7 +221,7 @@ class Form extends React.Component<Props, State> {
         const attachment = attachments[contentType.contentType];
 
         result.push(
-          <Step title={`Mapping  `} key={Math.random()}>
+          <Step title={`Mapování  `} key={Math.random()}>
             <MapColumn
               contentType={contentType.contentType}
               attachments={attachment}
@@ -243,7 +243,7 @@ class Form extends React.Component<Props, State> {
     const title = __('Import');
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Import & Export'), link: '/settings/importHistories' },
       { title },
     ];
@@ -260,7 +260,7 @@ class Form extends React.Component<Props, State> {
                 contentTypes={contentTypes}
               />
             </Step>
-            <Step title="Upload">
+            <Step title="Nahrát">
               <FileUpload
                 onChangeAttachment={this.onChangeAttachment}
                 contentTypes={contentTypes}

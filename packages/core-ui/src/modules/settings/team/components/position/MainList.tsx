@@ -88,7 +88,7 @@ const MainList = (props: Props) => {
 
     const trigger = (
       <Button btnStyle="link">
-        <Tip text={__('Edit')} placement="top">
+        <Tip text={__('Upravit')} placement="top">
           <Icon icon="edit-3" />
         </Tip>
       </Button>
@@ -111,7 +111,7 @@ const MainList = (props: Props) => {
           <ActionButtons>
             <ModalTrigger
               key={position._id}
-              title="Edit position"
+              title="Upravit pozici"
               content={({ closeModal }) => (
                 <Form
                   item={position}
@@ -122,7 +122,7 @@ const MainList = (props: Props) => {
               )}
               trigger={trigger}
             />
-            <Tip text={__('Delete')} placement="top">
+            <Tip text={__('Vymazat')} placement="top">
               <Button
                 btnStyle="link"
                 onClick={() => remove(position._id)}
@@ -179,7 +179,7 @@ const MainList = (props: Props) => {
   const renderForm = () => {
     const trigger = (
       <Button btnStyle="success" icon="plus-circle">
-        {__('Add Position')}
+        {__('Přidat Pozici')}
       </Button>
     );
 
@@ -228,7 +228,7 @@ const MainList = (props: Props) => {
           <Icon icon="search-1" size={20} />
           <FormControl
             type="text"
-            placeholder={__('Type to search')}
+            placeholder={__('Zadejte a vyhledejte')}
             onChange={search}
             value={searchValue}
             autoFocus={true}
@@ -252,7 +252,7 @@ const MainList = (props: Props) => {
       icon="times-circle"
       onClick={() => remove()}
     >
-      Remove
+      Odstranit
     </Button>
   );
 
@@ -262,8 +262,8 @@ const MainList = (props: Props) => {
         <Wrapper.Header
           title="Pozice"
           breadcrumb={[
-            { title: __('Settings'), link: '/settings' },
-            { title: __('Positions') },
+            { title: __('Nastavení'), link: '/settings' },
+            { title: __('Pozice') },
           ]}
         />
       }
@@ -272,7 +272,7 @@ const MainList = (props: Props) => {
           left={
             <LeftActionBar>
               <Title capitalize={true}>
-                {__('Positions')}&nbsp;
+                {__('Pozice')}&nbsp;
                 {`(${totalCount || 0})`}
               </Title>
               {leftActionBar}

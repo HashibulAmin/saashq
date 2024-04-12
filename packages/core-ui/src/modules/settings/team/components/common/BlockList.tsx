@@ -50,7 +50,7 @@ export default function BlockList(props: Props) {
   const renderEditAction = (item) => (
     <ModalTrigger
       content={({ closeModal }) => renderForm({ closeModal, item })}
-      title={`Edit ${title}`}
+      title={`Upravit ${title}`}
       trigger={editTrigger}
     />
   );

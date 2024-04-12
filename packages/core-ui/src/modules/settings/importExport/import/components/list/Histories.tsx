@@ -115,9 +115,9 @@ class Histories extends React.Component<Props & IRouterProps> {
         icon="/images/actions/27.svg"
         title={__('Import')}
         description={`${__(
-          'Here you can find data of all your previous imports of companies and customers',
-        )}.${__('Find out when they joined and their current status')}.${__(
-          'Nothing goes missing around here',
+          'Zde naleznete údaje o všech vašich předchozích importech firem a zákazníků',
+        )}.${__('Zjistěte, kdy se připojili, a jejich aktuální stav')}.${__(
+          'Tady kolem nic nechybí',
         )}`}
       />
     );

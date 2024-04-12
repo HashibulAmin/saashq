@@ -22,7 +22,7 @@ function OnBoardingDone(props: Props) {
       <SidebarContent />
       <ButtonContainer>
         <Button onClick={onSubmit} block={true}>
-          Go to my organization &nbsp; <Icon icon="rightarrow" size={12} />
+          Přejděte do mé organizace &nbsp; <Icon icon="rightarrow" size={12} />
         </Button>
       </ButtonContainer>
     </>

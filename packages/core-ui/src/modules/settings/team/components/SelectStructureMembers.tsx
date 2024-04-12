@@ -26,21 +26,21 @@ export default function SelectStructureMembers({
   excludeUserIds,
   name,
   isAllUsers,
-  placeholder
+  placeholder,
 }: Props) {
   const queryName = isAllUsers ? 'allUsers' : 'noDepartmentUsers';
   const variables = isAllUsers ? { isActive: true } : { excludeId: objectId };
 
   const { loading, data } = useQuery(gql(queries[queryName]), {
     variables,
-    fetchPolicy: 'network-only'
+    fetchPolicy: 'network-only',
   });
   const [users, setUsers] = useState([] as IUser[]);
 
   useEffect(() => {
     if (!loading) {
       const filteredUsers = data[queryName].filter(
-        u => !excludeUserIds.includes(u._id)
+        (u) => !excludeUserIds.includes(u._id),
       );
 
       setUsers(filteredUsers);
@@ -52,15 +52,15 @@ export default function SelectStructureMembers({
       name={name}
       multi={multi}
       placeholder={placeholder}
-      label={__('Choose team members')}
+      label={__('Vyberte členy týmu')}
       value={value}
       onChange={onSelect}
-      options={users.map(user => ({
+      options={users.map((user) => ({
         value: user._id,
         label: user.details
           ? user.details.fullName || user.details.firstName || user.email
           : user.username || user.email,
-        avatar: user.details ? user.details.avatar : ''
+        avatar: user.details ? user.details.avatar : '',
       }))}
     />
   );

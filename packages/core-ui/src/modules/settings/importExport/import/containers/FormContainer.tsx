@@ -24,12 +24,12 @@ class FormContainer extends React.Component<FinalProps, State> {
       const { contentTypes } = doc;
 
       if (!columnAllSelected) {
-        Alert.error('You must chose all column');
+        Alert.error('Musíte vybrat všechny sloupce');
       }
 
       if (columnAllSelected) {
         importHistoriesCreate({
-          variables: doc
+          variables: doc,
         }).then(() => {
           window.location.href = `/settings/importHistories?type=${contentTypes[0].contentType}`;
         });
@@ -48,7 +48,7 @@ class FormContainer extends React.Component<FinalProps, State> {
 export default withProps<Props>(
   compose(
     graphql<Props>(gql(mutations.importHistoriesCreate), {
-      name: 'importHistoriesCreate'
-    })
-  )(FormContainer)
+      name: 'importHistoriesCreate',
+    }),
+  )(FormContainer),
 );

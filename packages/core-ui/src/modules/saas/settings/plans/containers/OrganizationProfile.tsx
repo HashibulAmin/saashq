@@ -72,11 +72,11 @@ const OrganizationProfileContainer = (
   ) => {
     if (domain && domain.length > 1) {
       if (!isValidURL(domain)) {
-        return Alert.error('Please enter a valid domain');
+        return Alert.error('Zadejte prosím platnou doménu');
       }
     }
 
-    confirm('Are you sure???').then(() => {
+    confirm('Jsi si jistá???').then(() => {
       updateConfigs({
         variables: { configsMap: map },
       });
@@ -129,11 +129,11 @@ const OrganizationProfileContainer = (
   }) => {
     if (domain && domain.length > 1) {
       if (!isValidURL(domain)) {
-        return Alert.error('Please enter a valid domain');
+        return Alert.error('Zadejte prosím platnou doménu');
       }
     }
 
-    confirm('Are you sure???').then(() => {
+    confirm('Jsi si jistá???').then(() => {
       editOrganizationDomainMutation({
         variables: {
           type,

@@ -10,7 +10,7 @@ import ExportHistories from '../components/Histories';
 import { queries } from '../graphql';
 import {
   ExportHistoriesQueryResponse,
-  RemoveMutationResponse
+  RemoveMutationResponse,
 } from '../../types';
 import { IRouterProps } from '@saashq/ui/src/types';
 import Spinner from '@saashq/ui/src/components/Spinner';
@@ -37,7 +37,7 @@ class HistoriesContainer extends React.Component<FinalProps, State> {
     super(props);
 
     this.state = {
-      loading: false
+      loading: false,
     };
   }
 
@@ -66,7 +66,7 @@ class HistoriesContainer extends React.Component<FinalProps, State> {
       histories: histories.list || [],
       loading: historiesQuery.loading || this.state.loading,
       totalCount: histories.count || 0,
-      currentType
+      currentType,
     };
 
     return (
@@ -77,9 +77,9 @@ class HistoriesContainer extends React.Component<FinalProps, State> {
   }
 }
 
-const historiesListParams = queryParams => ({
+const historiesListParams = (queryParams) => ({
   ...generatePaginationParams(queryParams),
-  type: queryParams.type || 'customer'
+  type: queryParams.type || 'customer',
 });
 
 const HistoriesWithProps = withProps<Props>(
@@ -91,14 +91,14 @@ const HistoriesWithProps = withProps<Props>(
         options: ({ queryParams }) => ({
           fetchPolicy: 'network-only',
           variables: historiesListParams(queryParams),
-          pollInterval: 3000
-        })
-      }
-    )
-  )(withRouter<FinalProps>(HistoriesContainer))
+          pollInterval: 3000,
+        }),
+      },
+    ),
+  )(withRouter<FinalProps, any>(HistoriesContainer)),
 );
 
-const WithConsumer = props => {
+const WithConsumer = (props) => {
   return (
     <AppConsumer>
       {({ showLoadingBar, closeLoadingBar }) => (

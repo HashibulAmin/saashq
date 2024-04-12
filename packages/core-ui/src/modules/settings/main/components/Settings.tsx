@@ -78,8 +78,8 @@ class Settings extends React.PureComponent {
         <Divider />
         <Row>
           <RowTitle>
-            {__('Plugin Settings')}
-            <span>{__('Set up your additional plugin settings')}</span>
+            {__('Nastavení Pluginu')}
+            <span>{__('Nastavte další nastavení pluginu')}</span>
           </RowTitle>
           <div id={'PluginSettings'}>{plugins}</div>
         </Row>
@@ -93,14 +93,14 @@ class Settings extends React.PureComponent {
       <MenusContainer id={'SettingsMain'}>
         <Row>
           <RowTitle>
-            {__('General Settings')}
-            <span>{__('Set up your basic settings')}</span>
+            {__('Obecné nastavení')}
+            <span>{__('Proveďte základní nastavení')}</span>
           </RowTitle>
           <div id={'SettingsGeneralSettings'}>
             {VERSION && VERSION === 'saas' ? (
               <>
                 {this.renderBox(
-                  'Organization settings',
+                  'Nastavení organizace',
                   '/images/icons/saashq-35.png',
                   '/settings/organizations',
                   'editOrganizationInfo',
@@ -113,44 +113,44 @@ class Settings extends React.PureComponent {
                   >
                     <img
                       src="/images/icons/saashq-24.svg"
-                      alt="Global Account"
+                      alt="Globální účet"
                     />
-                    <BoxName>{__('Global Account Profile')}</BoxName>
+                    <BoxName>{__('Globální profil účtu')}</BoxName>
                   </a>
                 </Box>
               </>
             ) : null}
 
             {this.renderBox(
-              'System Configuration',
+              'Konfigurace Systému',
               '/images/icons/saashq-16.svg',
               '/settings/general',
               'generalSettingsAll',
               ['manageGeneralSettings', 'showGeneralSettings'],
             )}
             {this.renderBox(
-              'Permissions',
+              'Oprávnění',
               '/images/icons/saashq-02.svg',
               '/settings/permissions',
               'permissionsAll',
               permissionActions,
             )}
             {this.renderBox(
-              'Team Members',
+              'Členové týmu',
               '/images/icons/saashq-23.svg',
               '/settings/team',
               'usersAll',
               teamPermissions,
             )}
             {this.renderBox(
-              'Brands',
+              'Značky',
               '/images/icons/saashq-03.svg',
               '/settings/brands',
               'brandsAll',
               ['showBrands', 'manageBrands'],
             )}
             {/* {this.renderBox(
-              "Properties",
+              "Vlastnosti",
               "/images/icons/saashq-01.svg",
               "/settings/properties",
               ""
@@ -163,14 +163,14 @@ class Settings extends React.PureComponent {
               ['importHistories', 'removeImportHistories', 'importXlsFile'],
             )}
             {this.renderBox(
-              'Apps',
+              'Aplikace',
               '/images/icons/saashq-20.svg',
               '/settings/apps',
               '',
               [],
             )}
             {this.renderBox(
-              'Structure',
+              'Struktura',
               '/images/icons/saashq-15.svg',
               '/settings/structure',
               'usersAll',
@@ -185,7 +185,7 @@ class Settings extends React.PureComponent {
     return (
       <Wrapper
         header={
-          <Wrapper.Header title={__('Settings')} breadcrumb={breadcrumb} />
+          <Wrapper.Header title={__('Nastavení')} breadcrumb={breadcrumb} />
         }
         content={content}
         transparent={true}

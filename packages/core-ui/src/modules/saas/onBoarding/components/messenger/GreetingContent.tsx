@@ -19,7 +19,7 @@ function GreetingContent(props: Props) {
   return (
     <SaasHQContent isTabbed={true}>
       <ContentBox>
-        <h4>{__('Recent conversations')}</h4>
+        <h4>{__('Nedávné rozhovory')}</h4>
         <ul>
           <li>
             <LeftSide>
@@ -28,9 +28,9 @@ function GreetingContent(props: Props) {
               </span>
             </LeftSide>
             <RightSide>
-              <span>{__('Start new conversation')}</span>
-              <p>Our usual response time</p>
-              <p> {'A few minutes'}</p>
+              <span>{__('Začněte novou konverzaci')}</span>
+              <p>Naše obvyklá doba odezvy</p>
+              <p> {'Pár minut'}</p>
             </RightSide>
           </li>
           <li>
@@ -39,27 +39,27 @@ function GreetingContent(props: Props) {
             </LeftSide>
             <RightSide>
               <div>{dayjs(new Date()).format('LT')}</div>
-              <span>{__('User')}</span>
-              <p>{__('We need your help!')}</p>
+              <span>{__('Uživatel')}</span>
+              <p>{__('Potřebujeme tvou pomoc!')}</p>
             </RightSide>
           </li>
         </ul>
       </ContentBox>
 
       <ContentBox>
-        <h4>{__('Do you want to learn more?')}</h4>
+        <h4>{__('Chcete se dozvědět více??')}</h4>
 
         <Form.Group>
           <Form.Control
             name="firstName"
-            placeholder="Enter your email adress:"
+            placeholder="Zadejte svou e-mailovou adresu:"
             disabled={true}
           />
         </Form.Group>
       </ContentBox>
 
       <TextContainer>
-        <h3>Powered by saashq</h3>
+        <h3>Powered by SaasHQ</h3>
       </TextContainer>
     </SaasHQContent>
   );

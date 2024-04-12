@@ -30,20 +30,16 @@ export default class SettingsSideBar extends React.Component<Props> {
     return (
       <SidebarList>
         {ListItem('/settings/structure', 'Structure')}
-        {ListItem(
-          '/settings/branches',
-          'Branches',
-          this.props.branchTotalCount,
-        )}
+        {ListItem('/settings/branches', 'Větve', this.props.branchTotalCount)}
         {ListItem(
           '/settings/departments',
-          'Departments',
+          'Oddělení',
           this.props.departmentTotalCount,
         )}
-        {ListItem('/settings/units', 'Units', this.props.unitTotalCount)}
+        {ListItem('/settings/units', 'Jednotky', this.props.unitTotalCount)}
         {ListItem(
           '/settings/positions',
-          'Positions',
+          'Pozice',
           this.props.positionTotalCount,
         )}
       </SidebarList>

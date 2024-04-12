@@ -14,7 +14,7 @@ const Title = (props: Props) => {
         <b>{`${name} (${promoCodes.length})`}</b>
       ) : (
         <>
-          Plan: <b>{plan === 'free' ? 'Free' : 'Growth'}</b>
+          Plán: <b>{plan === 'free' ? 'Volný' : 'Růst'}</b>
         </>
       )}
     </>

@@ -15,7 +15,7 @@ class Sidebar extends React.Component<Props> {
 
     return (
       <div>
-        <Header uppercase={true}>{__('Filter by content type')}</Header>
+        <Header uppercase={true}>{__('Filtrujte podle typu obsahu')}</Header>
       </div>
     );
   };
@@ -42,7 +42,7 @@ class Sidebar extends React.Component<Props> {
     if (services && services.length !== 0) {
       return (
         <List id={'ImportExportSidebar'}>
-          {services.map(service => this.renderListItem(service))}
+          {services.map((service) => this.renderListItem(service))}
         </List>
       );
     }
@@ -50,7 +50,7 @@ class Sidebar extends React.Component<Props> {
     return (
       <List id={'ImportExportSidebar'}>
         <li>
-          <Link to="#">{__('No content type found!')}</Link>
+          <Link to="#">{__('Nebyl nalezen žádný typ obsahu!')}</Link>
         </li>
       </List>
     );

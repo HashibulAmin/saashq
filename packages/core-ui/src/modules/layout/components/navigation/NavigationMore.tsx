@@ -7,7 +7,7 @@ import {
   MoreMenus,
   MoreMenuWrapper,
   MoreTitle,
-  MoreSearch
+  MoreSearch,
 } from '../../styles';
 
 import Icon from 'modules/common/components/Icon';
@@ -41,7 +41,7 @@ export default class NavigationMore extends React.Component<Props, State> {
 
     this.state = {
       searchText: '',
-      searchedPlugins: []
+      searchedPlugins: [],
     };
     this.wrapperRef = React.createRef();
   }
@@ -67,7 +67,7 @@ export default class NavigationMore extends React.Component<Props, State> {
   handleSearch = (event: any): void => {
     const otherPlugins: Plugin[] = filterPlugins(
       pluginNavigations(),
-      this.props.pinnedPlugins
+      this.props.pinnedPlugins,
     );
     const searchedPlugins = otherPlugins.filter((plugin: Plugin) => {
       if (event.target.value !== '')
@@ -79,7 +79,7 @@ export default class NavigationMore extends React.Component<Props, State> {
 
     this.setState({
       searchText: event.target.value,
-      searchedPlugins: searchedPlugins
+      searchedPlugins: searchedPlugins,
     });
   };
 
@@ -91,8 +91,8 @@ export default class NavigationMore extends React.Component<Props, State> {
   handleUnpin = (plugin: Plugin): void => {
     this.props.updatePinnedPlugins(
       this.props.pinnedPlugins.filter(
-        (item: Plugin) => item.text !== plugin.text
-      )
+        (item: Plugin) => item.text !== plugin.text,
+      ),
     );
   };
 
@@ -103,19 +103,19 @@ export default class NavigationMore extends React.Component<Props, State> {
       clickedMenu,
       countOfPinnedPlugins,
       pinnedPlugins,
-      toggleMenu
+      toggleMenu,
     } = this.props;
 
     const { searchText, searchedPlugins } = this.state;
 
-    const text = navCollapse === 3 ? 'More plugins' : 'More';
+    const text = navCollapse === 3 ? 'Další pluginy' : 'Více';
 
     const otherPlugins =
       searchText !== ''
         ? searchedPlugins
         : pinnedPlugins.length === 0
-        ? pluginNavigations().slice(countOfPinnedPlugins)
-        : filterPlugins(pluginNavigations(), pinnedPlugins);
+          ? pluginNavigations().slice(countOfPinnedPlugins)
+          : filterPlugins(pluginNavigations(), pinnedPlugins);
 
     const PinnedPluginsElement = () => (
       <React.Fragment>
@@ -155,7 +155,7 @@ export default class NavigationMore extends React.Component<Props, State> {
               <Icon icon="search-1" size={15} />
               <FormControl
                 type="text"
-                placeholder="Find plugins"
+                placeholder="Najděte pluginy"
                 value={searchText}
                 onChange={this.handleSearch}
               />
@@ -163,7 +163,7 @@ export default class NavigationMore extends React.Component<Props, State> {
             {pinnedPlugins.length !== 0 && searchText === '' && (
               <PinnedPluginsElement />
             )}
-            <MoreTitle>Other added plugins</MoreTitle>
+            <MoreTitle>Další přidané pluginy</MoreTitle>
             <MoreMenus>
               {otherPlugins.map((plugin: Plugin, index: number) => {
                 return (

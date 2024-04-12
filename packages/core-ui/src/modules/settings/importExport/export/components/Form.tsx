@@ -38,7 +38,7 @@ class Form extends React.Component<Props, State> {
       disclaimer: false,
       name: '',
       columns: [],
-      skipFilter: false
+      skipFilter: false,
     };
   }
 
@@ -55,15 +55,15 @@ class Form extends React.Component<Props, State> {
     this.setState({ skipFilter });
   };
 
-  onClickField = columns => {
+  onClickField = (columns) => {
     this.setState({ columns });
   };
 
-  onChangeExportName = value => {
+  onChangeExportName = (value) => {
     this.setState({ name: value });
   };
 
-  onChangeDisclaimer = value => {
+  onChangeDisclaimer = (value) => {
     this.setState({ disclaimer: value });
   };
 
@@ -74,9 +74,9 @@ class Form extends React.Component<Props, State> {
   onSubmit = () => {
     const { contentType, columns, segmentData, name } = this.state;
 
-    let columnsConfig = columns.filter(conf => conf.checked) as any;
+    let columnsConfig = columns.filter((conf) => conf.checked) as any;
 
-    columnsConfig = columnsConfig.map(conf => {
+    columnsConfig = columnsConfig.map((conf) => {
       return conf.name;
     });
 
@@ -84,7 +84,7 @@ class Form extends React.Component<Props, State> {
       contentType,
       columnsConfig,
       segmentData,
-      name
+      name,
     };
 
     return this.props.saveExport(doc);
@@ -109,18 +109,18 @@ class Form extends React.Component<Props, State> {
         onClick={() => {
           const data = {
             ...values,
-            conditions: values.conditionSegments[0].conditions
+            conditions: values.conditionSegments[0].conditions,
           };
 
           delete data.conditionSegments;
 
           this.setState({ segmentData: data });
 
-          Alert.success('Success');
+          Alert.success('Úspěch');
         }}
         icon="filter"
       >
-        {'Apply Filter'}
+        {'Použít Filtr'}
       </Button>
     );
   };
@@ -131,9 +131,9 @@ class Form extends React.Component<Props, State> {
     const title = __('Export');
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Import & Export'), link: '/settings/importHistories' },
-      { title }
+      { title },
     ];
 
     const content = (
@@ -146,17 +146,17 @@ class Form extends React.Component<Props, State> {
                 contentType={contentType}
               />
             </Step>
-            <Step title="Content">
+            <Step title="Obsah">
               <FlexPad
                 direction="column"
                 overflow="auto"
                 thinner={true}
                 vh={70}
               >
-                <ImportHeader>{__(`Choose your content type`)}</ImportHeader>
+                <ImportHeader>{__(`Vyberte typ obsahu`)}</ImportHeader>
                 <ImportHeader fontSize="small">
                   {__(
-                    'Before you choose content fields, make sure your content type is ready to be selected.'
+                    'Než vyberete pole obsahu, ujistěte se, že je váš typ obsahu připraven k výběru.',
                   )}
                 </ImportHeader>
                 <ConfigsForm
@@ -167,29 +167,34 @@ class Form extends React.Component<Props, State> {
             </Step>
 
             {!skipFilter && (
-              <Step title="Filter">
+              <Step title="Filtr">
                 <FlexPad
                   direction="column"
                   overflow="auto"
                   thinner={true}
                   vh={70}
                 >
-                  <SubHeading>{__('Filter')}</SubHeading>
+                  <SubHeading>{__('Filtr')}</SubHeading>
                   <Description>
-                    {__('Skip this step if you wish to export all items')}
+                    {__(
+                      'Přeskočte tento krok, pokud chcete exportovat všechny položky',
+                    )}
                   </Description>
                   {loadDynamicComponent('importExportFilterForm', {
                     ...this.props,
                     contentType,
                     closeModal: this.segmentCloseModal,
                     filterContent: this.filterContent,
-                    hideDetailForm: true
+                    hideDetailForm: true,
                   })}
                 </FlexPad>
               </Step>
             )}
 
-            <Step title="Detail" additionalButton={this.renderExportButton()}>
+            <Step
+              title="Podrobnost"
+              additionalButton={this.renderExportButton()}
+            >
               <Details
                 type="stepper"
                 disclaimer={disclaimer}

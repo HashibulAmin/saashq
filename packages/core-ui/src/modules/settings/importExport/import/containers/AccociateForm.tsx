@@ -28,7 +28,7 @@ class AccociateFormContainer extends React.Component<FinalProps, State> {
     const { importHistoryGetDuplicatedHeaders } = this.props;
 
     if (!importHistoryGetDuplicatedHeaders) {
-      return <Info>{__('You must choose two objects')}</Info>;
+      return <Info>{__('Musíte si vybrat dva objekty')}</Info>;
     }
 
     if (importHistoryGetDuplicatedHeaders.loading) {
@@ -52,10 +52,10 @@ export default withProps<Props>(
       options: ({ attachmentNames }) => {
         return {
           variables: {
-            attachmentNames
-          }
+            attachmentNames,
+          },
         };
-      }
-    })
-  )(AccociateFormContainer)
+      },
+    }),
+  )(AccociateFormContainer),
 );

@@ -26,11 +26,11 @@ class ConfigsForm extends React.Component<Props, State> {
 
     this.state = {
       columns: props.columns || [],
-      searchValue: ''
+      searchValue: '',
     };
   }
 
-  groupByType = results => {
+  groupByType = (results) => {
     return results.reduce((acc, field) => {
       const value = field.name;
       let key;
@@ -56,8 +56,8 @@ class ConfigsForm extends React.Component<Props, State> {
     }, {});
   };
 
-  renderFields = fields => {
-    const onClickField = field => {
+  renderFields = (fields) => {
+    const onClickField = (field) => {
       const { columns } = this.state;
 
       for (const column of columns) {
@@ -71,7 +71,7 @@ class ConfigsForm extends React.Component<Props, State> {
       this.props.onClickField(columns);
     };
 
-    return fields.map(field => {
+    return fields.map((field) => {
       return (
         <FormControl
           key={Math.random()}
@@ -87,10 +87,10 @@ class ConfigsForm extends React.Component<Props, State> {
     });
   };
 
-  renderOperators = results => {
+  renderOperators = (results) => {
     const objects = this.groupByType(results);
 
-    return Object.keys(objects).map(key => {
+    return Object.keys(objects).map((key) => {
       return (
         <FormColumn key={Math.random()}>
           <OperatorList>
@@ -104,7 +104,7 @@ class ConfigsForm extends React.Component<Props, State> {
     });
   };
 
-  onSearch = e => {
+  onSearch = (e) => {
     const value = e.target.value;
 
     this.setState({ searchValue: value });
@@ -115,7 +115,7 @@ class ConfigsForm extends React.Component<Props, State> {
 
     const condition = new RegExp(searchValue, 'i');
 
-    const results = columns.filter(field => {
+    const results = columns.filter((field) => {
       return condition.test(field.label);
     });
 
@@ -123,9 +123,12 @@ class ConfigsForm extends React.Component<Props, State> {
       <FlexItem>
         <FlexPad direction="column" overflow="auto">
           <FormGroup>
-            <SubHeading>{__('Properties to export')}</SubHeading>
+            <SubHeading>{__('Vlastnosti k exportu')}</SubHeading>
 
-            <FormControl placeholder={__('Search')} onChange={this.onSearch} />
+            <FormControl
+              placeholder={__('Vyhledávání')}
+              onChange={this.onSearch}
+            />
           </FormGroup>
 
           <FormWrapper>{this.renderOperators(results)}</FormWrapper>

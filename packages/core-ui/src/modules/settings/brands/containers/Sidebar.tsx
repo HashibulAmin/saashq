@@ -33,14 +33,14 @@ const SidebarContainer = (props: ChildProps<FinalProps>) => {
 
   // remove action
   const remove = (brandId) => {
-    confirm('This will permanently delete a brand. Are you absolutely sure?', {
+    confirm('Tím značku trvale smažete. jsi si naprosto jistý?', {
       hasDeleteConfirm: true,
     }).then(() => {
       removeMutation({
         variables: { _id: brandId },
       })
         .then(() => {
-          Alert.success('You successfully deleted a brand.');
+          Alert.success('Úspěšně jste smazali značku.');
           history.push('/settings/brands');
         })
         .catch((error) => {
@@ -106,5 +106,5 @@ export default withProps<Props>(
         }),
       },
     ),
-  )(withRouter<FinalProps>(SidebarContainer)),
+  )(withRouter<FinalProps, any>(SidebarContainer)),
 );

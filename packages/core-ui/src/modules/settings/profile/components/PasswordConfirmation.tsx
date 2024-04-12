@@ -14,16 +14,16 @@ type Props = {
 };
 
 class PasswordConfirmation extends React.Component<Props> {
-  submit = values => {
+  submit = (values) => {
     this.props.onSuccess(values.password, this.props.formProps.values);
     this.props.closeModal();
   };
 
-  renderContent = formProps => {
+  renderContent = (formProps) => {
     return (
       <>
         <FormGroup>
-          <ControlLabel>Enter your password to Confirm</ControlLabel>
+          <ControlLabel>Pro potvrzení zadejte své heslo</ControlLabel>
           <FormControl
             autoFocus={true}
             type="password"
@@ -38,10 +38,10 @@ class PasswordConfirmation extends React.Component<Props> {
             icon="times-circle"
             onClick={this.props.closeModal}
           >
-            Cancel
+            Zrušení
           </Button>
           <Button type="submit" btnStyle="success" icon="check-circle">
-            Save
+            Uložit
           </Button>
         </ModalFooter>
       </>

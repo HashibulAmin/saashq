@@ -86,7 +86,7 @@ export const options = ({ queryParams }: { queryParams: any }): any => {
 
 export default commonListComposer<{ queryParams: any; history: any }>({
   text: 'člen týmu',
-  label: 'users',
+  label: 'uživatelů',
   stringAddMutation: mutations.usersInvite,
   stringEditMutation: mutations.usersEdit,
   confirmProps: { options: { hasDeleteConfirm: true } },

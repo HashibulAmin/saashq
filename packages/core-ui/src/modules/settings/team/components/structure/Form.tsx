@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@saashq/ui/src/components/form';
 import {
   IAttachment,
   IButtonMutateProps,
-  IFormProps
+  IFormProps,
 } from '@saashq/ui/src/types';
 import Form from '@saashq/ui/src/components/form/Form';
 import ControlLabel from '@saashq/ui/src/components/form/Label';
@@ -36,19 +36,19 @@ export default function StructureForm(props: Props) {
           name: dbImage.name,
           type: dbImage.type,
           url: dbImage.url,
-          size: dbImage.size
+          size: dbImage.size,
         } as IAttachment)
-      : null
+      : null,
   );
 
   const coordinateObj = object.coordinate || {};
 
   const [coordinate, setCoordinate] = useState({
     longitude: coordinateObj.longitude || '',
-    latitude: coordinateObj.latitude || ''
+    latitude: coordinateObj.latitude || '',
   });
 
-  const generateDoc = values => {
+  const generateDoc = (values) => {
     const finalValues = values;
 
     if (object) {
@@ -60,7 +60,7 @@ export default function StructureForm(props: Props) {
       links,
       coordinate,
       image,
-      ...finalValues
+      ...finalValues,
     };
   };
 
@@ -70,7 +70,7 @@ export default function StructureForm(props: Props) {
     return (
       <div style={{ padding: '20px' }}>
         <FormGroup>
-          <ControlLabel required={true}>{__('Name')}</ControlLabel>
+          <ControlLabel required={true}>{__('Název')}</ControlLabel>
           <FormControl
             {...formProps}
             name="title"
@@ -80,7 +80,7 @@ export default function StructureForm(props: Props) {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Description')}</ControlLabel>
+          <ControlLabel>{__('Popis')}</ControlLabel>
           <FormControl
             {...formProps}
             name="description"
@@ -89,18 +89,18 @@ export default function StructureForm(props: Props) {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Code')}</ControlLabel>
+          <ControlLabel>{__('Kód')}</ControlLabel>
           <FormControl {...formProps} name="code" defaultValue={object.code} />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Supervisor')}</ControlLabel>
+          <ControlLabel>{__('Dozorce')}</ControlLabel>
 
           <SelectTeamMembers
-            label="Choose supervisor"
+            label="Vyberte supervizora"
             name="supervisorId"
             multi={false}
             initialValue={supervisorId}
-            onSelect={value => setSupervisorId(value.toString())}
+            onSelect={(value) => setSupervisorId(value.toString())}
           />
         </FormGroup>
 
@@ -123,13 +123,13 @@ export default function StructureForm(props: Props) {
             onClick={showView}
             icon="arrow-left"
           >
-            {__('Back')}
+            {__('Zadní')}
           </Button>
           {renderButton({
             name: values.title,
             values: generateDoc(values),
             isSubmitted,
-            object
+            object,
           })}
         </ModalFooter>
       </div>
@@ -140,7 +140,7 @@ export default function StructureForm(props: Props) {
     <>
       <Wrapper.ActionBar
         background="bgWhite"
-        left={<Title capitalize={true}>{__('Structure')}</Title>}
+        left={<Title capitalize={true}>{__('Struktura')}</Title>}
         wideSpacing={true}
       />
       <Form renderContent={renderContent} />

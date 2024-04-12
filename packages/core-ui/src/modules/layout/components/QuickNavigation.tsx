@@ -220,7 +220,7 @@ const QuickNavigation = ({
             <Dropdown.Item onClick={logout}>{__('Sign out')}</Dropdown.Item>
             {release ? (
               <Version>
-                <span>version</span> <span>{release}</span>
+                <span>verze</span> <span>{release}</span>
               </Version>
             ) : null}
           </Dropdown.Menu>

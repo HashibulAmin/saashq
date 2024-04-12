@@ -41,10 +41,10 @@ function AccountSuspended() {
       <WarningSign>
         <img src="/images/warningSign.png" />
       </WarningSign>
-      <h3>Account Suspended</h3>
-      <p>You've reached the maximum limit of your Contacts.</p>
+      <h3>Účet Pozastaven</h3>
+      <p>Dosáhli jste maximálního limitu svých kontaktů.</p>
       <Button href="https://shq.saashq.org/marketplace-global">
-        Go to Marketplace
+        Přejděte na Marketplace
       </Button>
     </AccountSuspendedMessage>
   );

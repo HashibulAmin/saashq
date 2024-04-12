@@ -24,12 +24,12 @@ export default function DepartmentForm(props: Props) {
   const object = item || ({} as IUnit);
 
   const [userIds, setUserIds] = useState(
-    (object.users || []).map(user => user._id)
+    (object.users || []).map((user) => user._id),
   );
   const [departmentId, setDepartmentId] = useState(object.departmentId);
   const [supervisorId, setSupervisorId] = useState(object.supervisorId);
 
-  const generateDoc = values => {
+  const generateDoc = (values) => {
     const finalValues = values;
 
     if (object) {
@@ -40,7 +40,7 @@ export default function DepartmentForm(props: Props) {
       userIds,
       departmentId,
       supervisorId,
-      ...finalValues
+      ...finalValues,
     };
   };
 
@@ -48,11 +48,11 @@ export default function DepartmentForm(props: Props) {
     setDepartmentId(parent.value);
   };
 
-  const onSelectUsers = options => {
-    setUserIds(options.map(option => option.value));
+  const onSelectUsers = (options) => {
+    setUserIds(options.map((option) => option.value));
   };
 
-  const onSelectSupervisor = option => {
+  const onSelectSupervisor = (option) => {
     if (option) {
       setSupervisorId(option.value);
     } else {
@@ -66,7 +66,7 @@ export default function DepartmentForm(props: Props) {
     return (
       <>
         <FormGroup>
-          <ControlLabel required={true}>{__('Title')}</ControlLabel>
+          <ControlLabel required={true}>{__('Titul')}</ControlLabel>
           <FormControl
             {...formProps}
             name="title"
@@ -76,7 +76,7 @@ export default function DepartmentForm(props: Props) {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Description')}</ControlLabel>
+          <ControlLabel>{__('Popis')}</ControlLabel>
           <FormControl
             {...formProps}
             name="description"
@@ -85,7 +85,7 @@ export default function DepartmentForm(props: Props) {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel required={true}>{__('Code')}</ControlLabel>
+          <ControlLabel required={true}>{__('Kód')}</ControlLabel>
           <FormControl
             required={true}
             {...formProps}
@@ -94,7 +94,7 @@ export default function DepartmentForm(props: Props) {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Supervisor')}</ControlLabel>
+          <ControlLabel>{__('Dozorce')}</ControlLabel>
 
           <SelectStructureMembers
             name="supervisorId"
@@ -107,16 +107,16 @@ export default function DepartmentForm(props: Props) {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Department')}</ControlLabel>
+          <ControlLabel>{__('Oddělení')}</ControlLabel>
           <Select
-            placeholder={__('Choose department')}
+            placeholder={__('Vyberte oddělení')}
             value={departmentId}
             onChange={onChangeDepartment}
             options={generateUserOptions(departments)}
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Team Members')}</ControlLabel>
+          <ControlLabel>{__('Členové Týmu')}</ControlLabel>
 
           <SelectStructureMembers
             objectId={object._id}
@@ -143,7 +143,7 @@ export default function DepartmentForm(props: Props) {
             values: generateDoc(values),
             isSubmitted,
             callback: closeModal,
-            object
+            object,
           })}
         </ModalFooter>
       </>

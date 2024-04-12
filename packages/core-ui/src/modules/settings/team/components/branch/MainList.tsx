@@ -77,7 +77,7 @@ class MainList extends React.Component<Props, State> {
   renderForm() {
     const trigger = (
       <Button btnStyle="success" icon="plus-circle">
-        {__('Add Branch')}
+        {__('Přidat Větev')}
       </Button>
     );
 
@@ -124,7 +124,7 @@ class MainList extends React.Component<Props, State> {
           <Icon icon="search-1" size={20} />
           <FormControl
             type="text"
-            placeholder={__('Type to search')}
+            placeholder={__('Zadejte a vyhledejte')}
             onChange={search}
             value={this.state.searchValue}
             autoFocus={true}
@@ -154,7 +154,7 @@ class MainList extends React.Component<Props, State> {
 
     const trigger = (
       <Button btnStyle="link">
-        <Tip text={__('Edit')} placement="top">
+        <Tip text={__('Upravit')} placement="top">
           <Icon icon="edit-3" />
         </Tip>
       </Button>
@@ -189,7 +189,7 @@ class MainList extends React.Component<Props, State> {
               )}
               trigger={trigger}
             />
-            <Tip text={__('Delete')} placement="top">
+            <Tip text={__('Vymazat')} placement="top">
               <Button
                 btnStyle="link"
                 onClick={() => this.remove(branch._id)}
@@ -268,7 +268,7 @@ class MainList extends React.Component<Props, State> {
         icon="times-circle"
         onClick={() => this.remove()}
       >
-        Remove
+        Odstranit
       </Button>
     );
 
@@ -278,8 +278,8 @@ class MainList extends React.Component<Props, State> {
           <Wrapper.Header
             title="Větve"
             breadcrumb={[
-              { title: __('Settings'), link: '/settings' },
-              { title: __('Branches') },
+              { title: __('Nastavení'), link: '/settings' },
+              { title: __('Větve') },
             ]}
           />
         }
@@ -288,7 +288,7 @@ class MainList extends React.Component<Props, State> {
             left={
               <LeftActionBar>
                 <Title capitalize={true}>
-                  {__('Branches')}&nbsp;
+                  {__('Větve')}&nbsp;
                   {`(${totalCount || 0})`}
                 </Title>
                 {leftActionBar}

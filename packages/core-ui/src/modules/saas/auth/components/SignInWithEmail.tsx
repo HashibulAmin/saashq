@@ -25,7 +25,7 @@ class SignInWithEmail extends React.Component<Props> {
           <FormControl
             {...formProps}
             name="email"
-            placeholder={__('Enter your work email')}
+            placeholder={__('Zadejte svůj pracovní e-mail')}
             required={true}
           />
         </FormGroup>
@@ -43,24 +43,24 @@ class SignInWithEmail extends React.Component<Props> {
 
     return (
       <AuthBox backgroundColor={backgroundColor}>
-        <img src={readFile(logo) || '/images/logo-dark.png'} alt="saashq" />
-        <h2>{__('Welcome!')}</h2>
+        <img src={readFile(logo) || '/images/logo-dark.png'} alt="SaasHQ" />
+        <h2>{__('Vítejte!')}</h2>
         <p>{__('Chcete-li pokračovat, přihlaste se ke svému účtu')}</p>
         <AuthButton
           onClick={() => this.props.loginViaGoogle()}
           className="google"
         >
           <img src="/images/google.svg" alt="google" />
-          Sign in with Google
+          Přihlaste se pomocí Google
         </AuthButton>
         <br />
         <AuthButton className="google">
-          <Link to="/sign-in">{__('Sign in with email and password')}</Link>
+          <Link to="/sign-in">{__('Přihlaste se pomocí e-mailu a hesla')}</Link>
         </AuthButton>
-        <Seperator>or</Seperator>
+        <Seperator>nebo</Seperator>
         <span>
-          We use magic link so you don't have to remember or type in yet another
-          long password
+          Používáme magický odkaz, takže si nemusíte pamatovat nebo zadávat
+          další dlouhé heslo
         </span>
         <Form renderContent={this.renderContent} />
       </AuthBox>

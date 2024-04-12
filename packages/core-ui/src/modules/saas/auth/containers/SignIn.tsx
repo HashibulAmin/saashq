@@ -42,7 +42,7 @@ const SignInContainer = (props: FinalProps) => {
         icon="none"
         style={{ background: `${currentOrganization.backgroundColor}` }}
       >
-        {__('Sign in')}
+        {__('Přihlásit se')}
       </ButtonMutate>
     );
   };
@@ -55,6 +55,6 @@ const SignInContainer = (props: FinalProps) => {
   return <SignIn {...updatedProps} />;
 };
 
-export default withRouter<IRouterProps>(
+export default withRouter<IRouterProps, any>(
   withCurrentOrganization(SignInContainer),
 );

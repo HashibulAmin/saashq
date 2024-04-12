@@ -23,7 +23,7 @@ export default function BranchForm(props: Props) {
   const object = item || ({} as IBranch);
 
   const [userIds, setUserIds] = useState(
-    (object.users || []).map(user => user._id)
+    (object.users || []).map((user) => user._id),
   );
   const [parentId, setParentId] = useState(object.parentId || null);
   const [links, setLinks] = useState(object.links || {});
@@ -34,10 +34,10 @@ export default function BranchForm(props: Props) {
 
   const [coordinate, setCoordinate] = useState({
     longitude: coordinateObj.longitude || '',
-    latitude: coordinateObj.latitude || ''
+    latitude: coordinateObj.latitude || '',
   });
 
-  const generateDoc = values => {
+  const generateDoc = (values) => {
     const finalValues = values;
 
     if (object) {
@@ -52,7 +52,7 @@ export default function BranchForm(props: Props) {
       supervisorId,
       image,
       ...finalValues,
-      radius: Number(finalValues.radius)
+      radius: Number(finalValues.radius),
     };
   };
 
@@ -68,7 +68,7 @@ export default function BranchForm(props: Props) {
     setUserIds(ids);
   };
 
-  const onSelectSupervisor = value => {
+  const onSelectSupervisor = (value) => {
     setSupervisorId(value);
   };
 
@@ -76,7 +76,7 @@ export default function BranchForm(props: Props) {
     const { values, isSubmitted } = formProps;
 
     const generateOptions = () => {
-      return items.map(branch => (
+      return items.map((branch) => (
         <option key={branch._id} value={branch._id}>
           {branch.title}
         </option>
@@ -86,7 +86,7 @@ export default function BranchForm(props: Props) {
     return (
       <>
         <FormGroup>
-          <ControlLabel required={true}>{__('Title')}</ControlLabel>
+          <ControlLabel required={true}>{__('Titul')}</ControlLabel>
           <FormControl
             {...formProps}
             name="title"
@@ -96,7 +96,7 @@ export default function BranchForm(props: Props) {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel required={true}>{__('Address')}</ControlLabel>
+          <ControlLabel required={true}>{__('Adresa')}</ControlLabel>
           <FormControl
             {...formProps}
             required={true}
@@ -106,7 +106,7 @@ export default function BranchForm(props: Props) {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel required={true}>{__('Code')}</ControlLabel>
+          <ControlLabel required={true}>{__('Kód')}</ControlLabel>
           <FormControl
             {...formProps}
             required={true}
@@ -115,10 +115,10 @@ export default function BranchForm(props: Props) {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Supervisor')}</ControlLabel>
+          <ControlLabel>{__('Dozorce')}</ControlLabel>
 
           <SelectTeamMembers
-            label="Choose supervisor"
+            label="Vyberte supervizora"
             name="supervisorId"
             initialValue={supervisorId}
             onSelect={onSelectSupervisor}
@@ -127,7 +127,7 @@ export default function BranchForm(props: Props) {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>{__('Parent')}</ControlLabel>
+          <ControlLabel>{__('Rodič')}</ControlLabel>
           <FormControl
             {...formProps}
             name="parentId"
@@ -140,10 +140,10 @@ export default function BranchForm(props: Props) {
           </FormControl>
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Team Members')}</ControlLabel>
+          <ControlLabel>{__('Členové Týmu')}</ControlLabel>
 
           <SelectTeamMembers
-            label="Choose team members"
+            label="Vyberte členy týmu"
             name="userIds"
             initialValue={userIds}
             onSelect={onSelectTeamMembers}
@@ -161,7 +161,7 @@ export default function BranchForm(props: Props) {
           image={image}
         />
         <FormGroup>
-          <ControlLabel>{__('Radius')}</ControlLabel>
+          <ControlLabel>{__('Poloměr')}</ControlLabel>
           <FormControl
             {...formProps}
             name="radius"
@@ -175,7 +175,7 @@ export default function BranchForm(props: Props) {
             icon="times-circle"
             onClick={closeModal}
           >
-            Cancel
+            Zrušení
           </Button>
 
           {renderButton({
@@ -183,7 +183,7 @@ export default function BranchForm(props: Props) {
             values: generateDoc(values),
             isSubmitted,
             callback: closeModal,
-            object
+            object,
           })}
         </ModalFooter>
       </>

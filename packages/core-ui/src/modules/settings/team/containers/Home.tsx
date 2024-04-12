@@ -46,9 +46,9 @@ function HomeContainer(props: Props) {
         isSubmitted={isSubmitted}
         type="submit"
         beforeSubmit={beforeSubmit}
-        successMessage={`You successfully ${
-          object ? 'updated' : 'added'
-        } a ${name}`}
+        successMessage={`Ty úspěšně ${
+          object ? 'aktualizováno' : 'přidal'
+        } A ${name}`}
       />
     );
   };

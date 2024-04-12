@@ -69,7 +69,7 @@ class Brands extends React.Component<Props, {}> {
         block={true}
         icon="plus-circle"
       >
-        Add New Brand
+        Přidat Novou Značku
       </Button>
     );
 
@@ -104,9 +104,9 @@ class Brands extends React.Component<Props, {}> {
         mainHead={
           <HeaderDescription
             icon="/images/actions/32.svg"
-            title={'Brands'}
+            title={'Značky'}
             description={__(
-              'Add unlimited Brands with unlimited support to further your growth and accelerate your business',
+              'Přidejte neomezené množství značek s neomezenou podporou, abyste podpořili svůj růst a urychlili své podnikání',
             )}
           />
         }
@@ -118,7 +118,7 @@ class Brands extends React.Component<Props, {}> {
             data={this.renderContent()}
             loading={loading}
             count={brandsTotalCount}
-            emptyText="There is no brand."
+            emptyText="Neexistuje žádná značka."
             emptyImage="/images/actions/20.svg"
           />
         }

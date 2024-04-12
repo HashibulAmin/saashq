@@ -122,14 +122,14 @@ const Sidebar = (props: Props) => {
     if (activeStep === totalStep) {
       return (
         <>
-          <h2>Successfull 🎉</h2>
+          <h2>Úspěšný 🎉</h2>
           <p>
-            Congratulations on successfully creating your organization! Welcome
-            to our platform. We are excited to have you on board and look
-            forward to supporting you on your journey.
+            Gratulujeme k úspěšnému vytvoření vaší organizace! Vítejte na naši
+            platformu. Jsme rádi, že vás máme na palubě a díváme se těšíme se na
+            vaši podporu na vaší cestě.
             <br />
             <br />
-            Enjoy your time with us!
+            Užijte si čas s námi!
           </p>
         </>
       );
@@ -140,8 +140,8 @@ const Sidebar = (props: Props) => {
         if (activeStep === 1) {
           return (
             <>
-              <h2>Profile Setup</h2>
-              <p>Fill out the form below to start your account setup.</p>
+              <h2>Nastavení profilu</h2>
+              <p>Chcete-li zahájit nastavení účtu, vyplňte formulář níže.</p>
             </>
           );
         }
@@ -151,11 +151,12 @@ const Sidebar = (props: Props) => {
         if (activeStep === 2) {
           return (
             <>
-              <h2>Customize messenger</h2>
+              <h2>Přizpůsobte messenger</h2>
               <p>
-                Integrating saashq messenger into your website enables seamless
-                real-time communication with customers. Personalize your
-                messenger to align perfectly with your branding.
+                Integrace SaasHQ messenger do vašich webových stránek umožňuje
+                bezproblémové komunikace se zákazníky v reálném čase.
+                Přizpůsobte si svůj messenger, aby dokonale ladil s vaší
+                značkou.
               </p>
             </>
           );
@@ -165,14 +166,13 @@ const Sidebar = (props: Props) => {
           return (
             <>
               <h2>
-                Connect customer source <br /> to access your org
+                Připojte zdroj zákazníka <br /> pro přístup k vaší org
               </h2>
               <p>
-                The reference customer source will be the unique source that
-                automatically creates your contacts and accounts records in
-                saashq. Then you will be able to connect additional integrations
-                to add more data to your customers like support tickets, task,
-                CRM and more.
+                Referenční zákaznický zdroj bude jedinečným zdrojem, který
+                automaticky vytvoří záznamy o vašich kontaktech a účtech saashq.
+                Poté budete moci připojit další integrace přidat svým zákazníkům
+                další data, jako jsou lístky podpory, úkol, CRM a další.
               </p>
             </>
           );

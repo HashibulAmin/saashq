@@ -11,10 +11,10 @@ export default function Structure() {
     <Wrapper
       header={
         <Wrapper.Header
-          title="Structure"
+          title="Struktura"
           breadcrumb={[
-            { title: __('Settings'), link: '/settings' },
-            { title: __('Structure') }
+            { title: __('Nastavení'), link: '/settings' },
+            { title: __('Struktura') },
           ]}
         />
       }

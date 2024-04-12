@@ -34,12 +34,12 @@ class ResetPassword extends React.Component<Props, { newPassword: string }> {
 
     return (
       <AuthBox backgroundColor={backgroundColor}>
-        <h2>{__('Set your new password')}</h2>
+        <h2>{__('Nastavte si nové heslo')}</h2>
         <form onSubmit={this.handleSubmit}>
           <FormGroup>
             <FormControl
               type="password"
-              placeholder={__('new password')}
+              placeholder={__('nové heslo')}
               required={true}
               onChange={this.handlePasswordChange}
             />
@@ -50,7 +50,7 @@ class ResetPassword extends React.Component<Props, { newPassword: string }> {
             block={true}
             style={{ background: `${backgroundColor}` }}
           >
-            Change password
+            Změnit heslo
           </Button>
         </form>
       </AuthBox>

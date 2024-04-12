@@ -70,9 +70,9 @@ const FormContainer = ({
         isSubmitted={isSubmitted}
         type="submit"
         callback={callback}
-        successMessage={`You successfully ${
-          object._id ? 'updated' : 'added'
-        } a ${name}`}
+        successMessage={`Ty úspěšně ${
+          object._id ? 'aktualizováno' : 'přidal'
+        } A ${name}`}
       />
     );
   };

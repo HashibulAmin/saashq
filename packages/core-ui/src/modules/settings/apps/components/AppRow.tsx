@@ -40,7 +40,7 @@ export default class AppRow extends React.Component<Props> {
     const onClickToken = () => {
       copy(app.accessToken);
 
-      Alert.success(__('Token has been copied to clipboard'));
+      Alert.success(__('Token byl zkopírován do schránky'));
     };
 
     const dateFormat = 'YYYY-MM-DD HH:mm:ss';

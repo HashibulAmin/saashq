@@ -37,7 +37,7 @@ function MessengerContainer(props: FinalProps) {
 
   const integrationSave = (doc: any, _id?: string) => {
     if (!doc.brandName) {
-      Alert.error('BrandName can not be empty');
+      Alert.error('Název značky nemůže být prázdný');
     }
 
     if (_id) {

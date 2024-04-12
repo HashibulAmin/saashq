@@ -37,17 +37,17 @@ function GeneralInformation(props: Props) {
         </SaasHQStaffProfile>
 
         <Form.Group controlId="firstName">
-          <Form.Label>First Name</Form.Label>
+          <Form.Label>Jméno</Form.Label>
           <Form.Control value={firstName} name="firstName" />
         </Form.Group>
 
         <Form.Group controlId="lastName">
-          <Form.Label>Last Name</Form.Label>
+          <Form.Label>Příjmení</Form.Label>
           <Form.Control value={lastName} name="lastName" />
         </Form.Group>
 
         <Form.Group controlId="email">
-          <Form.Label>Email</Form.Label>
+          <Form.Label>E-mailem</Form.Label>
           <Form.Control value={email} name="name" />
         </Form.Group>
       </GeneralInformationForm>

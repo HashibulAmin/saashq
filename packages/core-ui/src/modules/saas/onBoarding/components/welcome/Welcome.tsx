@@ -17,11 +17,11 @@ const Welcome = ({ history }: Props) => {
       <img className="logo" src="/images/logo-dark.png" />
       <h1>
         <b>
-          What you can do with <br />
-          XM for SaaS
+          S čím můžete dělat <br />
+          HQ pro SaaS
         </b>
       </h1>
-      <Button onClick={onChangeStep}>Let's start</Button>
+      <Button onClick={onChangeStep}>Začněme</Button>
     </WelcomeContainer>
   );
 };

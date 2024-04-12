@@ -28,7 +28,7 @@ class FormContainer extends React.Component<FinalProps, State> {
     this.state = {
       loading: false,
       count: '',
-      name: ''
+      name: '',
     };
   }
 
@@ -36,16 +36,16 @@ class FormContainer extends React.Component<FinalProps, State> {
     const { exportHistoriesCreate } = this.props;
     const { count, loading } = this.state;
 
-    const saveExport = doc => {
+    const saveExport = (doc) => {
       exportHistoriesCreate({
-        variables: doc
+        variables: doc,
       })
         .then(() => {
-          Alert.success('You successfully exported');
+          Alert.success('Úspěšně jste exportovali');
 
           window.location.href = `/settings/exportHistories?type=${doc.contentType}`;
         })
-        .catch(error => {
+        .catch((error) => {
           Alert.error(error.message);
         });
     };
@@ -64,7 +64,7 @@ class FormContainer extends React.Component<FinalProps, State> {
 export default withProps<Props>(
   compose(
     graphql<Props>(gql(mutations.exportHistoriesCreate), {
-      name: 'exportHistoriesCreate'
-    })
-  )(FormContainer)
+      name: 'exportHistoriesCreate',
+    }),
+  )(FormContainer),
 );

@@ -1,7 +1,10 @@
 import { IUser } from '@saashq/ui/src/auth/types';
 import React from 'react';
 import { __ } from 'modules/common/utils';
-import { SaasHQMiddleTitle, SaasHQTopbar } from 'modules/saas/onBoarding/styles';
+import {
+  SaasHQMiddleTitle,
+  SaasHQTopbar,
+} from 'modules/saas/onBoarding/styles';
 
 type Props = {
   color: string;
@@ -16,7 +19,7 @@ class TopBar extends React.Component<Props> {
     return (
       <>
         <SaasHQMiddleTitle>
-          <h3>General Information</h3>
+          <h3>Obecná Informace</h3>
         </SaasHQMiddleTitle>
       </>
     );

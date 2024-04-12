@@ -429,7 +429,7 @@ class OrganizationProfile extends React.Component<Props, State> {
 
     return (
       <StatusBox>
-        <StatusTitle>{__('Custom Domain')}</StatusTitle>
+        <StatusTitle>{__('Vlastní Doména')}</StatusTitle>
         <FlexRow>
           <FormGroup>
             <ControlLabel>Vlastní doména</ControlLabel>
@@ -599,7 +599,7 @@ class OrganizationProfile extends React.Component<Props, State> {
         </FlexRow>
         {isWhiteLabel && (
           <>
-            <StatusTitle>{__('Company Branding')}</StatusTitle>
+            <StatusTitle>{__('Značka Společnosti')}</StatusTitle>
             <FlexRow>
               {this.renderMainLogo()}
               {this.renderFavicon()}

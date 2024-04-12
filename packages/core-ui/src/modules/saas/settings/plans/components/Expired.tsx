@@ -43,7 +43,7 @@ class Expired extends React.Component<Props> {
               <div style={{ textAlign: 'center' }}>
                 <StatusBox largePadding={true}>
                   <StatusTitle>
-                    Your current plan has expired
+                    Platnost vašeho aktuálního plánu vypršela
                     <br />
                     <br />
                     <em>{dayjs(expiryDate).format('YYYY/MM/DD')}</em>
@@ -58,7 +58,7 @@ class Expired extends React.Component<Props> {
                       icon="clipboard-notes"
                       uppercase={false}
                     >
-                      Manage plan
+                      Spravovat plán
                     </Button>
                   </a>
                   <Link to="/settings/importHistories/">

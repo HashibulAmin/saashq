@@ -117,12 +117,12 @@ const useDynamicScript = (args) => {
     setFailed(false);
 
     element.onload = () => {
-      console.log(`Dynamic Script Loaded: ${args.url}`);
+      console.log(`Dynamický skript načten: ${args.url}`);
       setReady(true);
     };
 
     element.onerror = () => {
-      console.error(`Dynamic Script Error: ${args.url}`, args);
+      console.error(`Chyba dynamického skriptu: ${args.url}`, args);
       setReady(false);
       setFailed(true);
     };
@@ -130,7 +130,7 @@ const useDynamicScript = (args) => {
     document.head.appendChild(element);
 
     return () => {
-      console.log(`Dynamic Script Removed: ${args.url}`);
+      console.log(`Dynamický skript odstraněn: ${args.url}`);
       document.head.removeChild(element);
     };
   }, [args.url]);

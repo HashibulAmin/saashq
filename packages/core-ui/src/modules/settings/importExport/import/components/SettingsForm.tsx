@@ -31,11 +31,11 @@ class SettingsForm extends React.Component<Props> {
     return (
       <FlexItem>
         <FlexPad direction="column">
-          <SubHeading>{__('Select type')}</SubHeading>
+          <SubHeading>{__('Vyberte typ')}</SubHeading>
           <Description>
-            You can upload one file or multiple files at a time. You'll be able
-            to choose how many objects you're importing later. You can upload
-            one file or multiple files at a time.
+            Můžete nahrát jeden soubor nebo více souborů najednou. Budeš moci a
+            vyberte, kolik objektů později importujete. Můžete nahrát jeden
+            soubor nebo více souborů najednou.
           </Description>
 
           <FullContent center={true}>

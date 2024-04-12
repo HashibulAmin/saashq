@@ -55,7 +55,7 @@ class TopBar extends React.Component<Props> {
       return <h3>{message}</h3>;
     }
 
-    return <h3>{__('Hello, we are ') + `${brandName!}`}</h3>;
+    return <h3>{__('Dobrý den, jsme ') + `${brandName!}`}</h3>;
   }
 
   renderGreetingMessage(message) {
@@ -66,7 +66,7 @@ class TopBar extends React.Component<Props> {
     return (
       <p>
         {__(
-          'We are available between 9.00 am and 6.00 pm (GMT +8). Please leave us a message if you are connecting outside the above hours. We will get back to you as soon as possible.',
+          'Jsme k dispozici mezi 9:00 a 18:00 (GMT +8). Pokud se připojujete mimo výše uvedenou dobu, zanechte nám prosím zprávu. Ozveme se vám co nejdříve.',
         )}{' '}
       </p>
     );
@@ -87,7 +87,7 @@ class TopBar extends React.Component<Props> {
     return (
       <TopBarTab>
         <div style={{ backgroundColor: this.props.color }} />
-        <span>{__('Support')}</span>
+        <span>{__('Podpěra')}</span>
         <span>{__('Faq')}</span>
       </TopBarTab>
     );

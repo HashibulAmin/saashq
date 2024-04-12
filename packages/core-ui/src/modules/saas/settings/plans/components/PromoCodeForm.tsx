@@ -26,9 +26,9 @@ function PromoCodeForm(props: Props) {
   return (
     <StatusBox largePadding={true} largeMargin={true}>
       <FormGroup>
-        <StatusTitle>{__('Promo Code')}</StatusTitle>
+        <StatusTitle>{__('Promo kód')}</StatusTitle>
         <ControlLabel>
-          {__('Type in any redeemable promo codes below')}.
+          {__('Níže zadejte případné uplatnitelné propagační kódy')}.
         </ControlLabel>
 
         <Row>
@@ -39,7 +39,7 @@ function PromoCodeForm(props: Props) {
             icon="check-circle"
             onClick={usePromoCode}
           >
-            Apply
+            Aplikovat
           </Button>
         </Row>
       </FormGroup>

@@ -49,9 +49,9 @@ class Brands extends React.Component<FinalProps> {
           refetchQueries={getRefetchQueries(queryParams, currentBrandId)}
           isSubmitted={isSubmitted}
           type="submit"
-          successMessage={`You successfully ${
-            object ? 'updated' : 'added'
-          } a ${name}`}
+          successMessage={`Ty úspěšně ${
+            object ? 'aktualizováno' : 'přidal'
+          } A ${name}`}
         />
       );
     };
@@ -182,4 +182,4 @@ const WithQueryParams = (props: IRouterProps) => {
   return <WithLastBrand {...extendedProps} />;
 };
 
-export default withRouter<IRouterProps>(WithQueryParams);
+export default withRouter<IRouterProps, any>(WithQueryParams);

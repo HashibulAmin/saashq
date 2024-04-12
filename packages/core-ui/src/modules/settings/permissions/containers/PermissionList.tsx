@@ -40,14 +40,14 @@ const List = (props: FinalProps) => {
 
   // remove action
   const remove = (id: string) => {
-    confirm('This will permanently delete are you absolutely sure?', {
+    confirm('Toto bude trvale smazáno, jste si naprosto jisti?', {
       hasDeleteConfirm: true,
     }).then(() => {
       removeMutation({
         variables: { ids: [id] },
       })
         .then(() => {
-          Alert.success('You successfully deleted a permission.');
+          Alert.success('Úspěšně jste smazali oprávnění.');
         })
         .catch((error) => {
           Alert.error(error.message);

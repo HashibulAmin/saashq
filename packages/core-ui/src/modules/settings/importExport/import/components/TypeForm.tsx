@@ -52,10 +52,10 @@ class TypeForm extends React.Component<Props> {
     const { type } = this.props;
 
     if (type === 'single') {
-      return 'Select an object you would like to import';
+      return 'Vyberte objekt, který chcete importovat';
     }
 
-    return 'Select an two  objects you would like to import';
+    return 'Vyberte dva objekty, které chcete importovat';
   };
 
   renderOptions = () => {

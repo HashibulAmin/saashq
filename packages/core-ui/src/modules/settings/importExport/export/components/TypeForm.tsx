@@ -13,7 +13,7 @@ type Props = {
 class TypeForm extends React.Component<Props> {
   componentDidMount() {
     const { contentType, typeOptions, onChangeContentType } = this.props;
-    const type = typeOptions.find(t => t.contentType === contentType);
+    const type = typeOptions.find((t) => t.contentType === contentType);
 
     if (type) {
       onChangeContentType(contentType, type.skipFilter);
@@ -24,7 +24,7 @@ class TypeForm extends React.Component<Props> {
     name: string,
     icon: string,
     contentType: string,
-    skipFilter: boolean
+    skipFilter: boolean,
   ) {
     return (
       <Box
@@ -41,12 +41,12 @@ class TypeForm extends React.Component<Props> {
   renderOptions = () => {
     const { typeOptions } = this.props;
 
-    return typeOptions.map(option => {
+    return typeOptions.map((option) => {
       return this.renderBox(
         option.text,
         option.icon,
         option.contentType,
-        option.skipFilter
+        option.skipFilter,
       );
     });
   };
@@ -55,7 +55,7 @@ class TypeForm extends React.Component<Props> {
     return (
       <FlexPad type="stepper" direction="column">
         <ImportHeader>
-          {__('Select an object you would like to export')}
+          {__('Vyberte objekt, který chcete exportovat')}
         </ImportHeader>
 
         <TypeContent center={true}>{this.renderOptions()}</TypeContent>

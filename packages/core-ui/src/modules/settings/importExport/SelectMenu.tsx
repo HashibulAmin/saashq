@@ -62,8 +62,8 @@ class SelectMenu extends React.Component<Props> {
 
   render() {
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
-      { title: __('Import & Export'), link: '/settings/selectMenu' }
+      { title: __('Nastavení'), link: '/settings' },
+      { title: __('Import & Export'), link: '/settings/selectMenu' },
     ];
     return (
       <>

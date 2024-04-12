@@ -5,11 +5,11 @@ export function DescriptionContentRow({ label, totalCount, teamMembersCount }) {
   return (
     <FlexRow>
       <DescriptionContent>
-        {__(`Total ${label} count`)}
+        {__(`Celkový ${label} počet`)}
         <h4>{totalCount || 0}</h4>
       </DescriptionContent>
       <DescriptionContent>
-        {__('Total team members count')}
+        {__('Celkový počet členů týmu')}
         <h4>{teamMembersCount || 0}</h4>
       </DescriptionContent>
     </FlexRow>

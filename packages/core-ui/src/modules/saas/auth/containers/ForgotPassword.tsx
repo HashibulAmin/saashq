@@ -23,9 +23,7 @@ const ForgotPasswordContainer = (props: FinalProps) => {
   const forgotPassword = (variables) => {
     forgotPasswordMutation({ variables })
       .then(() => {
-        Alert.success(
-          'Further instructions have been sent to your e-mail address.',
-        );
+        Alert.success('Další pokyny byly zaslány na vaši e-mailovou adresu.');
       })
       .catch((error) => {
         Alert.error(error.message);

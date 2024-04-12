@@ -39,7 +39,7 @@ class SettingsContainer extends React.Component<FinalProps> {
         .then(() => {
           configsQuery.refetch();
 
-          Alert.success('You successfully updated general settings');
+          Alert.success('Úspěšně jste aktualizovali obecná nastavení');
         })
         .catch((error) => {
           Alert.error(error.message);

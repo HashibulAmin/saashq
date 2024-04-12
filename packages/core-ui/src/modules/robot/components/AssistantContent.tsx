@@ -31,8 +31,8 @@ class AssistantContent extends React.Component<Props, State> {
 
     this.state = {
       welcomeStep: 0,
-      roleValue: { value: 'sales', label: 'Sales' } as IRoleValue,
-      answerOf: {} as IRoleValue
+      roleValue: { value: 'sales', label: 'Odbyt' } as IRoleValue,
+      answerOf: {} as IRoleValue,
     };
   }
 
@@ -40,7 +40,7 @@ class AssistantContent extends React.Component<Props, State> {
     this.setState({
       welcomeStep: 1,
       roleValue,
-      answerOf
+      answerOf,
     });
     this.props.changeRoute('initial');
   };
@@ -52,13 +52,13 @@ class AssistantContent extends React.Component<Props, State> {
       currentUser,
       forceComplete,
       savedFeatures,
-      toggleContent
+      toggleContent,
     } = this.props;
 
     const commonProps = {
       forceComplete,
       toggleContent,
-      currentUserName: getCurrentUserName(currentUser)
+      currentUserName: getCurrentUserName(currentUser),
     };
 
     const onClick = () => {

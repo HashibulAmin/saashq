@@ -85,7 +85,7 @@ class UserList extends React.Component<FinalProps, States> {
 
     if (user._id === currentUser._id) {
       return (
-        <Tip text={__('View Profile')} placement="top">
+        <Tip text={__('Prohlédnout profil')} placement="top">
           <Link to="/profile">
             <Icon icon="user-6" size={15} />
           </Link>
@@ -95,7 +95,7 @@ class UserList extends React.Component<FinalProps, States> {
 
     const editTrigger = (
       <Button btnStyle="link">
-        <Tip text={__('Edit')} placement="top">
+        <Tip text={__('Upravit')} placement="top">
           <Icon icon="pen-1" size={15} />
         </Tip>
       </Button>
@@ -112,7 +112,7 @@ class UserList extends React.Component<FinalProps, States> {
     return (
       <ModalTrigger
         size="lg"
-        title="Edit"
+        title="Upravit"
         onExit={onModalExit}
         trigger={editTrigger}
         content={content}
@@ -127,7 +127,7 @@ class UserList extends React.Component<FinalProps, States> {
   renderResetPassword = (user: IUser) => {
     const editTrigger = (
       <Button btnStyle="link">
-        <Tip text={__('Reset Member Password')} placement="top">
+        <Tip text={__('Obnovit heslo člena')} placement="top">
           <Icon icon="lock-alt" size={15} />
         </Tip>
       </Button>
@@ -139,7 +139,7 @@ class UserList extends React.Component<FinalProps, States> {
 
     return (
       <ModalTrigger
-        title="Reset member password"
+        title="Obnovit heslo člena"
         trigger={editTrigger}
         content={content}
       />
@@ -157,7 +157,7 @@ class UserList extends React.Component<FinalProps, States> {
 
     return (
       <Button btnStyle="link" onClick={onClick}>
-        <Tip text={__('Resend')} placement="top">
+        <Tip text={__('Přeposlat')} placement="top">
           <Icon icon="redo" size={15} />
         </Tip>
       </Button>
@@ -212,22 +212,22 @@ class UserList extends React.Component<FinalProps, States> {
           <thead>
             <tr>
               <th>
-                <ControlLabel>{__('Full name')}</ControlLabel>
+                <ControlLabel>{__('Celé jméno')}</ControlLabel>
               </th>
               <th>
-                <ControlLabel>{__('Invitation status')}</ControlLabel>
+                <ControlLabel>{__('Stav pozvánky')}</ControlLabel>
               </th>
               <th>
-                <ControlLabel>{__('Email')}</ControlLabel>
+                <ControlLabel>{__('E-mailem')}</ControlLabel>
               </th>
               <th>
-                <ControlLabel>{__('Employee Id')}</ControlLabel>
+                <ControlLabel>{__('ID Zaměstnance')}</ControlLabel>
               </th>
               <th>
-                <ControlLabel>{__('Status')}</ControlLabel>
+                <ControlLabel>{__('Postavení')}</ControlLabel>
               </th>
               <th>
-                <ControlLabel>{__('Actions')}</ControlLabel>
+                <ControlLabel>{__('Akce')}</ControlLabel>
               </th>
             </tr>
           </thead>

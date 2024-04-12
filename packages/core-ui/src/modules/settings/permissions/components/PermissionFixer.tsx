@@ -19,7 +19,7 @@ export default class PermissionFixer extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      messages: []
+      messages: [],
     };
   }
 
@@ -29,7 +29,7 @@ export default class PermissionFixer extends React.Component<Props, State> {
     if (messages.length > 0) {
       return (
         <ul>
-          {messages.map(m => (
+          {messages.map((m) => (
             <li key={m}>{m}</li>
           ))}
         </ul>
@@ -49,10 +49,11 @@ export default class PermissionFixer extends React.Component<Props, State> {
             data && data.permissionsFix ? data.permissionsFix : [];
 
           this.setState({
-            messages: messages.length > 0 ? messages : ['Everything was fine']
+            messages:
+              messages.length > 0 ? messages : ['Všechno bylo v pořádku'],
           });
         })
-        .catch(e => {
+        .catch((e) => {
           Alert.error(e.message);
         });
     };
@@ -60,9 +61,9 @@ export default class PermissionFixer extends React.Component<Props, State> {
     return (
       <>
         <Info>
-          When a team member has all permissions of a specific module &
-          <TextInfo> can't perform some actions</TextInfo>, then this command
-          comes to the rescue.
+          Když má člen týmu všechna oprávnění konkrétního modulu a
+          <TextInfo> nemůže provádět některé akce</TextInfo>, pak tento příkaz
+          přichází na pomoc.
         </Info>
         {this.renderMessages()}
         <ModalFooter>
@@ -72,10 +73,10 @@ export default class PermissionFixer extends React.Component<Props, State> {
             onClick={closeModal}
             icon="cancel-1"
           >
-            Cancel
+            Zrušení
           </Button>
           <Button btnStyle="success" type="button" onClick={fix} icon="wrench">
-            Fix
+            Opravit
           </Button>
         </ModalFooter>
       </>

@@ -34,8 +34,8 @@ class Organizations extends React.PureComponent<Props> {
     if (organizations.length === 0) {
       return (
         <Add href="https://shq.saashq.org/create" target="_blank">
-          {__('Create a new organization')}
-          <span>{__('No organizations')}</span>
+          {__('Vytvořte novou organizaci')}
+          <span>{__('Žádné organizace')}</span>
         </Add>
       );
     }
@@ -61,7 +61,7 @@ class Organizations extends React.PureComponent<Props> {
           <Dropdown.Divider />
           <li>
             <a href="https://shq.saashq.org/create">
-              {__('Create a new organization')}
+              {__('Vytvořte novou organizaci')}
             </a>
           </li>
         </List>

@@ -35,7 +35,7 @@ export default function Suggestion({
   onResumeClick,
   currentUserName,
   forceComplete,
-  toggleContent
+  toggleContent,
 }: Props) {
   const onHide = () => {
     toggleContent(false);
@@ -52,12 +52,10 @@ export default function Suggestion({
         </span>
         <div>
           <h3>
-            {__('Hello')}, <b>{currentUserName}</b>
+            {__('Ahoj')}, <b>{currentUserName}</b>
           </h3>
           <p>
-            {`${__('You have not fully configured')}.${__(
-              'Would you like to configure'
-            )}`}
+            {`${__('Nemáte úplnou konfiguraci')}.${__('Chcete konfigurovat')}`}
           </p>
 
           <Button
@@ -66,7 +64,7 @@ export default function Suggestion({
             onClick={onResumeClick}
             uppercase={true}
           >
-            {__('Resume')}
+            {__('Životopis')}
           </Button>
           <Button
             btnStyle="link"
@@ -74,7 +72,7 @@ export default function Suggestion({
             onClick={forceComplete}
             uppercase={true}
           >
-            {__('Never see again')}
+            {__('Už nikdy nevidět')}
           </Button>
         </div>
       </Wrapper>

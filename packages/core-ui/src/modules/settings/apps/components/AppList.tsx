@@ -85,7 +85,7 @@ export default class AppList extends React.Component<Props> {
     if (errorMessage.indexOf('Permission required') !== -1) {
       return (
         <EmptyState
-          text={__('Permission denied')}
+          text={__('Přístup odepřen')}
           image="/images/actions/21.svg"
         />
       );
@@ -115,7 +115,7 @@ export default class AppList extends React.Component<Props> {
     const righActionBar = (
       <ModalTrigger
         size="lg"
-        title="New App"
+        title="Nová aplikace"
         autoOpenKey="showAppAddModal"
         trigger={trigger}
         content={content}
@@ -124,11 +124,13 @@ export default class AppList extends React.Component<Props> {
 
     return (
       <Wrapper
-        header={<Wrapper.Header title={__('Apps')} breadcrumb={breadcrumb} />}
+        header={
+          <Wrapper.Header title={__('Aplikace')} breadcrumb={breadcrumb} />
+        }
         footer={<Pagination count={count} />}
         actionBar={
           <Wrapper.ActionBar
-            left={<Title>{__('Apps')}</Title>}
+            left={<Title>{__('Aplikace')}</Title>}
             right={righActionBar}
           />
         }
@@ -137,7 +139,7 @@ export default class AppList extends React.Component<Props> {
             data={this.renderContent()}
             loading={isLoading}
             count={count}
-            emptyText={__('There are no apps')}
+            emptyText={__('Nejsou žádné aplikace')}
             emptyImage="/images/actions/21.svg"
           />
         }

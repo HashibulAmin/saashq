@@ -121,7 +121,7 @@ class GeneralSettings extends React.Component<Props, State> {
       label: `${item.label} (${item.extension})`,
     }));
     const mimeTypeDesc =
-      'Comma-separated list of media types. Leave it blank for accepting all media types';
+      'Seznam typů médií oddělených čárkami. Chcete-li přijímat všechny typy médií, nechte pole prázdné';
 
     return (
       <FormGroup>
@@ -244,7 +244,9 @@ class GeneralSettings extends React.Component<Props, State> {
       <CollapseContent
         transparent={true}
         title={__('Cloudflare')}
-        description={__('Cloudflare R2 Bucket, Images & Stream CDN configs')}
+        description={__(
+          'Konfigurace Cloudflare R2 Bucket, Obrázky a Stream CDN',
+        )}
         beforeTitle={<Icon icon="comment-upload" />}
       >
         <FlexRow alignItems="flex-start" justifyContent="space-between">
@@ -261,7 +263,7 @@ class GeneralSettings extends React.Component<Props, State> {
         </FlexRow>
         <FormGroup>
           <ControlLabel>{KEY_LABELS.CLOUDFLARE_USE_CDN}</ControlLabel>
-          <p>{__('Upload images/videos to Cloudflare cdn')}</p>
+          <p>{__('Nahrajte obrázky/videa na Cloudflare cdn')}</p>
           <FormControl
             componentClass={'checkbox'}
             checked={configsMap.CLOUDFLARE_USE_CDN}
@@ -278,8 +280,8 @@ class GeneralSettings extends React.Component<Props, State> {
     const { configsMap, language } = this.state;
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
-      { title: __('General system config') },
+      { title: __('Nastavení'), link: '/settings' },
+      { title: __('Obecná konfigurace systému') },
     ];
 
     const actionButtons = (
@@ -289,7 +291,7 @@ class GeneralSettings extends React.Component<Props, State> {
         onClick={this.save}
         icon="check-circle"
       >
-        Save
+        Uložit
       </Button>
     );
 
@@ -297,23 +299,23 @@ class GeneralSettings extends React.Component<Props, State> {
       <ContentBox id={'GeneralSettingsMenu'}>
         <CollapseContent
           transparent={true}
-          title={__('General settings')}
+          title={__('Obecné nastavení')}
           beforeTitle={<Icon icon="settings" />}
         >
           <FormGroup>
-            <ControlLabel>Language</ControlLabel>
+            <ControlLabel>Jazyk</ControlLabel>
             <Select
               options={LANGUAGES}
               value={language}
               onChange={this.onLanguageChange}
               searchable={false}
               clearable={false}
-              placeholder={__('Select')}
+              placeholder={__('Vybrat')}
             />
           </FormGroup>
 
           <FormGroup>
-            <ControlLabel>Currency</ControlLabel>
+            <ControlLabel>Měna</ControlLabel>
             <Select
               options={CURRENCIES}
               value={configsMap.dealCurrency}
@@ -323,7 +325,7 @@ class GeneralSettings extends React.Component<Props, State> {
           </FormGroup>
 
           <FormGroup>
-            <ControlLabel>{__('with team member restrictions')}</ControlLabel>
+            <ControlLabel>{__('s omezením členů týmu')}</ControlLabel>
             <FormControl
               componentClass="checkbox"
               checked={configsMap.CHECK_TEAM_MEMBER_SHOWN}
@@ -340,22 +342,22 @@ class GeneralSettings extends React.Component<Props, State> {
             <>
               <FormGroup>
                 <ControlLabel>
-                  {__('Team members who can access every branches')}
+                  {__('Členové týmu, kteří mají přístup ke všem pobočkám')}
                 </ControlLabel>
                 <SelectTeamMembers
                   name="BRANCHES_MASTER_TEAM_MEMBERS_IDS"
                   initialValue={configsMap.BRANCHES_MASTER_TEAM_MEMBERS_IDS}
-                  label="Select team members"
+                  label="Vyberte členy týmu"
                   onSelect={(values, name) => this.onChangeConfig(name, values)}
                 />
               </FormGroup>
               <FormGroup>
                 <ControlLabel>
-                  {__('Team members who can access every departments')}
+                  {__('Členové týmu, kteří mají přístup ke všem oddělením')}
                 </ControlLabel>
                 <SelectTeamMembers
                   name="DEPARTMENTS_MASTER_TEAM_MEMBERS_IDS"
-                  label="Select team members"
+                  label="Vyberte členy týmu"
                   initialValue={configsMap.DEPARTMENTS_MASTER_TEAM_MEMBERS_IDS}
                   onSelect={(values, name) => this.onChangeConfig(name, values)}
                 />
@@ -366,7 +368,7 @@ class GeneralSettings extends React.Component<Props, State> {
 
         <CollapseContent
           transparent={true}
-          title={__('File upload')}
+          title={__('Nahrání souboru')}
           beforeTitle={<Icon icon="file-upload-alt" />}
         >
           <Info>
@@ -375,7 +377,7 @@ class GeneralSettings extends React.Component<Props, State> {
               href="https://docs.saashq.org/conversations"
               rel="noopener noreferrer"
             >
-              {__('Learn how to set file uploading') + '.'}
+              {__('Přečtěte si, jak nastavit nahrávání souborů') + '.'}
             </a>
           </Info>
           {this.renderItem('UPLOAD_FILE_TYPES')}
@@ -385,7 +387,7 @@ class GeneralSettings extends React.Component<Props, State> {
 
         <CollapseContent
           transparent={true}
-          title={__('Constants')}
+          title={__('Konstanty')}
           beforeTitle={<Icon icon="link-1" />}
         >
           {this.renderConstant('sex_choices')}
@@ -399,23 +401,23 @@ class GeneralSettings extends React.Component<Props, State> {
       <Wrapper
         header={
           <Wrapper.Header
-            title={__('System Configuration')}
+            title={__('Konfigurace systému')}
             breadcrumb={breadcrumb}
           />
         }
         mainHead={
           <Header
-            title="System configuration"
+            title="Konfigurace systému"
             description={
               __(
-                'Set up your initial account settings so that things run smoothly in unison',
+                'Nastavte počáteční nastavení účtu tak, aby vše běželo hladce a jednotně',
               ) + '.'
             }
           />
         }
         actionBar={
           <Wrapper.ActionBar
-            left={<Title>{__('System Configuration')}</Title>}
+            left={<Title>{__('Konfigurace Systému')}</Title>}
             right={actionButtons}
           />
         }

@@ -149,7 +149,7 @@ class UserInvitationForm extends React.Component<Props, State> {
     ).value;
 
     if (!values) {
-      return Alert.warning('No email address found!');
+      return Alert.warning('Nebyla nalezena žádná e-mailová adresa!');
     }
 
     const emails = values.split(',');
@@ -170,7 +170,7 @@ class UserInvitationForm extends React.Component<Props, State> {
 
     for (const entry of entries) {
       if (!entry.email || !entry.groupId) {
-        return Alert.warning('Please fill all required fields');
+        return Alert.warning('Vyplňte prosím všechna povinná pole');
       }
     }
   };
@@ -196,10 +196,10 @@ class UserInvitationForm extends React.Component<Props, State> {
       <>
         <FormGroup>
           <ControlLabel required={true}>
-            Enter multiple email addresses
+            Zadejte více e-mailových adres
           </ControlLabel>
           <Description>
-            {__('Please separate each email address with comma.')}
+            {__('Oddělte prosím každou e-mailovou adresu čárkou.')}
           </Description>
           <FormControl
             id="multipleEmailValue"
@@ -210,7 +210,7 @@ class UserInvitationForm extends React.Component<Props, State> {
         </FormGroup>
         <ModalFooter>
           <Button btnStyle="simple" onClick={onCancel} icon="times-circle">
-            Cancel
+            Zrušení
           </Button>
 
           <Button
@@ -218,7 +218,7 @@ class UserInvitationForm extends React.Component<Props, State> {
             icon="check-circle"
             onClick={this.addInvitees}
           >
-            Add Invites
+            Přidat Pozvánky
           </Button>
         </ModalFooter>
       </>
@@ -258,25 +258,25 @@ class UserInvitationForm extends React.Component<Props, State> {
           <thead>
             <tr>
               <th>
-                <ControlLabel required={true}>Email address</ControlLabel>
+                <ControlLabel required={true}>Emailová adresa</ControlLabel>
               </th>
               <th>
-                <ControlLabel required={true}>Password</ControlLabel>
+                <ControlLabel required={true}>Heslo</ControlLabel>
               </th>
               <th>
-                <ControlLabel required={true}>Permission</ControlLabel>
+                <ControlLabel required={true}>Povolení</ControlLabel>
               </th>
               <th>
-                <ControlLabel>Channels</ControlLabel>
+                <ControlLabel>Kanály</ControlLabel>
               </th>
               <th>
-                <ControlLabel>Unit</ControlLabel>
+                <ControlLabel>Jednotka</ControlLabel>
               </th>
               <th>
-                <ControlLabel>Department</ControlLabel>
+                <ControlLabel>Oddělení</ControlLabel>
               </th>
               <th>
-                <ControlLabel>Branch</ControlLabel>
+                <ControlLabel>Větev</ControlLabel>
               </th>
               <th />
             </tr>
@@ -304,7 +304,7 @@ class UserInvitationForm extends React.Component<Props, State> {
                     {...formProps}
                     name="password"
                     type="password"
-                    placeholder="Password"
+                    placeholder="Heslo"
                     value={input.password}
                     onChange={this.onChange.bind(this, i, 'password')}
                     required={true}
@@ -318,7 +318,7 @@ class UserInvitationForm extends React.Component<Props, State> {
                     name="groupId"
                     componentClass="select"
                     options={[
-                      { value: '', label: 'Choose group ...' },
+                      { value: '', label: 'Vyberte skupinu ...' },
                       ...this.generateGroupsChoices(),
                     ]}
                     onChange={this.onChange.bind(this, i, 'groupId')}
@@ -331,7 +331,7 @@ class UserInvitationForm extends React.Component<Props, State> {
                     value={entries[i].channelIds}
                     options={this.generateChannelOptions(this.props.channels)}
                     onChange={this.onChange.bind(this, i, 'channelIds')}
-                    placeholder={__('Choose channels ...')}
+                    placeholder={__('Vyberte kanály ...')}
                     multi={true}
                   />
                 </td>
@@ -341,7 +341,7 @@ class UserInvitationForm extends React.Component<Props, State> {
                     value={entries[i].unitId}
                     options={this.generateChannelOptions(this.props.units)}
                     onChange={this.onChange.bind(this, i, 'unitId')}
-                    placeholder={__('Choose unit ...')}
+                    placeholder={__('Vyberte jednotku ...')}
                   />
                 </td>
 
@@ -357,7 +357,7 @@ class UserInvitationForm extends React.Component<Props, State> {
                       }),
                     )}
                     onChange={this.onChange.bind(this, i, 'departmentId')}
-                    placeholder={__('Choose department ...')}
+                    placeholder={__('Vyberte oddělení ...')}
                   />
                 </td>
 
@@ -366,7 +366,7 @@ class UserInvitationForm extends React.Component<Props, State> {
                     value={entries[i].branchId}
                     options={generetaOption(this.props.branches)}
                     onChange={this.onChange.bind(this, i, 'branchId')}
-                    placeholder={__('Choose branch ...')}
+                    placeholder={__('Vyberte pobočku ...')}
                   />
                 </td>
 
@@ -378,11 +378,11 @@ class UserInvitationForm extends React.Component<Props, State> {
 
         <InviteOption>
           <LinkButton onClick={this.onAddMoreInput}>
-            <Icon icon="add" /> {__('Add another')}
+            <Icon icon="add" /> {__('Přidej další')}
           </LinkButton>{' '}
-          {__('or')}{' '}
+          {__('nebo')}{' '}
           <LinkButton onClick={this.onAddManyEmail}>
-            {__('add many at once')}{' '}
+            {__('přidat mnoho najednou')}{' '}
           </LinkButton>
         </InviteOption>
 
@@ -392,7 +392,7 @@ class UserInvitationForm extends React.Component<Props, State> {
           </Button>
 
           {renderButton({
-            name: 'team member invitation',
+            name: 'pozvánka člena týmu',
             values: this.generateDoc(),
             isSubmitted,
             beforeSubmit: this.beforeSubmit,
@@ -406,9 +406,7 @@ class UserInvitationForm extends React.Component<Props, State> {
   render() {
     return (
       <>
-        <Info>
-          {__("Send an email and notify members that they've been invited!")}
-        </Info>
+        <Info>{__('Pošlete e-mail a upozorněte členy, že byli pozváni!')}</Info>
 
         <Form autoComplete="off" renderContent={this.renderContent} />
       </>

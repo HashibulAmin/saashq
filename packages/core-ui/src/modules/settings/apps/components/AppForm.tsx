@@ -35,10 +35,8 @@ export default class AppForm extends React.Component<Props, State> {
       app = {
         userGroupId: '',
         name: '',
-        expireDate: dayjs()
-          .add(30, 'day')
-          .toDate()
-      }
+        expireDate: dayjs().add(30, 'day').toDate(),
+      },
     } = props;
 
     this.state = {
@@ -46,30 +44,26 @@ export default class AppForm extends React.Component<Props, State> {
       name: app.name,
       expireDate: app.expireDate,
       noExpire: false,
-      allowAllPermission: false
+      allowAllPermission: false,
     };
   }
 
   render() {
     const { app, userGroups = [], closeModal, addApp, editApp } = this.props;
-    const {
-      userGroupId,
-      expireDate,
-      allowAllPermission,
-      noExpire
-    } = this.state;
+    const { userGroupId, expireDate, allowAllPermission, noExpire } =
+      this.state;
 
-    const onGroupChange = option => {
+    const onGroupChange = (option) => {
       const value = option ? option.value : '';
 
       this.setState({ userGroupId: value });
     };
 
-    const onDateChange = val => {
+    const onDateChange = (val) => {
       this.setState({ expireDate: val });
     };
 
-    const options = userGroups.map(g => ({ value: g._id, label: g.name }));
+    const options = userGroups.map((g) => ({ value: g._id, label: g.name }));
 
     const onSubmit = (e: React.FormEvent) => {
       e.preventDefault();
@@ -77,11 +71,11 @@ export default class AppForm extends React.Component<Props, State> {
       const el = document.getElementById('app-name') as HTMLInputElement;
 
       if (!(el && el.value)) {
-        return Alert.warning(__('App name must not be empty'));
+        return Alert.warning(__('Název aplikace nesmí být prázdný'));
       }
       if (!userGroupId && !allowAllPermission) {
         return Alert.warning(
-          __('User group or allow all permission must be chosen')
+          __('Musí být vybrána uživatelská skupina nebo povolení všech'),
         );
       }
 
@@ -90,7 +84,7 @@ export default class AppForm extends React.Component<Props, State> {
         userGroupId,
         expireDate,
         allowAllPermission,
-        noExpire
+        noExpire,
       };
 
       if (app) {
@@ -105,22 +99,22 @@ export default class AppForm extends React.Component<Props, State> {
     return (
       <form onSubmit={onSubmit}>
         <FormGroup>
-          <ControlLabel required={true}>{__('Name')}</ControlLabel>
+          <ControlLabel required={true}>{__('Název')}</ControlLabel>
           <FormControl defaultValue={app && app.name} id="app-name" />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('User group')}</ControlLabel>
+          <ControlLabel>{__('Uživatelská skupina')}</ControlLabel>
           <Select
-            placeholder={__('Choose user group')}
+            placeholder={__('Vyberte skupinu uživatelů')}
             options={options}
             value={this.state.userGroupId}
-            onChange={opt => onGroupChange(opt)}
+            onChange={(opt) => onGroupChange(opt)}
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Expire date')}</ControlLabel>
+          <ControlLabel>{__('Datum spotřeby')}</ControlLabel>
           <Datetime
-            inputProps={{ placeholder: __('Click to select a date') }}
+            inputProps={{ placeholder: __('Kliknutím vyberte datum') }}
             dateFormat="YYYY/MM/DD"
             timeFormat={false}
             value={expireDate}
@@ -131,7 +125,7 @@ export default class AppForm extends React.Component<Props, State> {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('No expire')}</ControlLabel>
+          <ControlLabel>{__('Žádné vypršení platnosti')}</ControlLabel>
           <FormControl
             checked={this.state.noExpire}
             componentClass="checkbox"
@@ -139,13 +133,13 @@ export default class AppForm extends React.Component<Props, State> {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Allow all permission')}</ControlLabel>
+          <ControlLabel>{__('Povolit všechna oprávnění')}</ControlLabel>
           <FormControl
             checked={this.state.allowAllPermission}
             componentClass="checkbox"
             onChange={() =>
               this.setState({
-                allowAllPermission: !this.state.allowAllPermission
+                allowAllPermission: !this.state.allowAllPermission,
               })
             }
           />
@@ -157,10 +151,10 @@ export default class AppForm extends React.Component<Props, State> {
             onClick={closeModal}
             icon="cancel-1"
           >
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
           <Button btnStyle="success" type="submit" icon="checked-1">
-            {__(app ? 'Edit' : 'Add')}
+            {__(app ? 'Upravit' : 'Přidat')}
           </Button>
         </ModalFooter>
       </form>

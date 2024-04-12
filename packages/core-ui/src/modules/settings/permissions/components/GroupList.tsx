@@ -40,7 +40,7 @@ class GroupList extends React.Component<IProps> {
 
     return (
       <ModalTrigger
-        title="New Group"
+        title="Nová Skupina"
         autoOpenKey={object ? 'newUserGroup' : 'showUserGroupAddModal'}
         trigger={trigger}
         content={content}
@@ -66,7 +66,7 @@ class GroupList extends React.Component<IProps> {
   renderEditAction(object: IUserGroupDocument) {
     const trigger = (
       <Button btnStyle="link">
-        <Tip text={__('Edit')} placement="bottom">
+        <Tip text={__('Upravit')} placement="bottom">
           <Icon icon="edit" />
         </Tip>
       </Button>
@@ -80,7 +80,7 @@ class GroupList extends React.Component<IProps> {
 
     return (
       <Button btnStyle="link" onClick={remove.bind(null, object._id)}>
-        <Tip text={__('Remove')} placement="bottom">
+        <Tip text={__('Odstranit')} placement="bottom">
           <Icon icon="cancel-1" />
         </Tip>
       </Button>
@@ -91,7 +91,8 @@ class GroupList extends React.Component<IProps> {
     const onCopy = () =>
       this.props.copyItem(object._id, 'memberIds', object.memberIds || []);
 
-    const tipText = 'Copies user group along with the permissions & users';
+    const tipText =
+      'Zkopíruje skupinu uživatelů spolu s oprávněními a uživateli';
 
     return (
       <Button btnStyle="link" onClick={onCopy}>
@@ -141,14 +142,14 @@ class GroupList extends React.Component<IProps> {
         icon="plus-circle"
         block={true}
       >
-        Create user group
+        Vytvořit skupinu uživatelů
       </Button>
     );
 
     return (
       <>
         <Header>{this.renderFormTrigger(trigger)}</Header>
-        <Section.Title>{__('User groups')}</Section.Title>
+        <Section.Title>{__('Skupiny uživatelů')}</Section.Title>
       </>
     );
   }

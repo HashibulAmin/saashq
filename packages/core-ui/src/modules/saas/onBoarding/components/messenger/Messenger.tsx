@@ -58,7 +58,7 @@ function Messenger(props: Props) {
     <>
       <SidebarContent>
         <Form.Group className={active ? 'active' : ''} controlId="messenger">
-          <Form.Label>Brand name</Form.Label>
+          <Form.Label>Jméno značky</Form.Label>
           <Form.Control
             defaultValue={brandName}
             name="name"
@@ -69,7 +69,7 @@ function Messenger(props: Props) {
         </Form.Group>
 
         <Form.Group className="color-accent">
-          <Form.Label>Color accent:</Form.Label>
+          <Form.Label>Barevný akcent:</Form.Label>
           <ColorChooserWrapper>
             <TwitterPicker
               color={color}
@@ -82,10 +82,10 @@ function Messenger(props: Props) {
 
       <ButtonContainer>
         <Button btnStyle="simple" onClick={onChangeStep} block={true}>
-          <Icon icon="leftarrow" size={12} /> &nbsp; Back
+          <Icon icon="leftarrow" size={12} /> &nbsp; Zadní
         </Button>
         <Button onClick={onSubmit} block={true}>
-          Next &nbsp; <Icon icon="rightarrow" size={12} />
+          Další &nbsp; <Icon icon="rightarrow" size={12} />
         </Button>
       </ButtonContainer>
     </>

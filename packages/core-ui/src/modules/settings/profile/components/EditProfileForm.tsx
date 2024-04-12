@@ -65,6 +65,9 @@ class EditProfile extends React.Component<Props, State> {
         },
         links,
         employeeId: values.employeeId,
+        branchIds: [],
+        departmentIds: [],
+        positionIds: [],
       },
       this.closeAllModals,
     );

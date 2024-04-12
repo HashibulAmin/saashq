@@ -2,7 +2,7 @@ import { ControlLabel, FormControl } from '@saashq/ui/src/components/form';
 import {
   FilterContainer,
   InputBar,
-  Title
+  Title,
 } from '@saashq/ui-settings/src/styles';
 import { FlexItem, FlexRow } from '@saashq/ui-settings/src/styles';
 import React, { useState } from 'react';
@@ -26,7 +26,7 @@ import styled from 'styled-components';
 import styledTS from 'styled-components-ts';
 
 const ActiveColor = styledTS<{ active: boolean }>(styled.div)`
-  background: ${props =>
+  background: ${(props) =>
     props.active === true ? colors.colorCoreGreen : colors.colorCoreYellow};
   border-radius: 50%;
   height: 10px;
@@ -50,12 +50,12 @@ export default function Home(props: Props) {
     history,
     loading,
     configsEnvQuery = {},
-    totalCount
+    totalCount,
   } = props;
   const [searchValue, setSearchValue] = useState('');
   const [active, setActive] = useState(true);
 
-  const search = e => {
+  const search = (e) => {
     if (timer) {
       clearTimeout(timer);
     }
@@ -69,7 +69,7 @@ export default function Home(props: Props) {
     }, 500);
   };
 
-  const moveCursorAtTheEnd = e => {
+  const moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -87,15 +87,15 @@ export default function Home(props: Props) {
       return null;
     }
 
-    const onSelect = brandIds => {
+    const onSelect = (brandIds) => {
       router.setParams(history, { brandIds });
     };
 
     return (
       <FlexItem>
-        <ControlLabel>{__('Brand')}</ControlLabel>
+        <ControlLabel>{__('Značka')}</ControlLabel>
         <SelectBrands
-          label={__('Choose brands')}
+          label={__('Vyberte si značky')}
           onSelect={onSelect}
           initialValue={queryParams.brandIds}
           name="selectedBrands"
@@ -106,12 +106,12 @@ export default function Home(props: Props) {
 
   const title = (
     <Title capitalize={true}>
-      {__('Team Members')}&nbsp;
+      {__('Členové Týmu')}&nbsp;
       {`(${totalCount || 0})`}
     </Title>
   );
 
-  const renderInvitationForm = formProps => {
+  const renderInvitationForm = (formProps) => {
     const { usersGroups, renderButton } = props;
 
     return (
@@ -150,19 +150,19 @@ export default function Home(props: Props) {
           <ActiveColor active={active} />
           <FlexItem>
             <Select
-              placeholder={__('Choose status')}
+              placeholder={__('Vyberte stav')}
               value={queryParams.isActive || true}
               onChange={onStatusChange}
               clearable={false}
               options={[
                 {
                   value: true,
-                  label: __('Active')
+                  label: __('Aktivní'),
                 },
                 {
                   value: false,
-                  label: __('Deactivated')
-                }
+                  label: __('Deaktivováno'),
+                },
               ]}
             />
           </FlexItem>
@@ -170,7 +170,7 @@ export default function Home(props: Props) {
         <ModalTrigger
           content={renderInvitationForm}
           size="xl"
-          title="Invite team members"
+          title="Pozvěte členy týmu"
           autoOpenKey="showMemberInviteModal"
           trigger={trigger}
         />
@@ -191,9 +191,9 @@ export default function Home(props: Props) {
     <Wrapper
       header={
         <Wrapper.Header
-          title={__('Team members')}
+          title={__('Členové týmu')}
           queryParams={queryParams}
-          breadcrumb={[{ title: 'Team members' }]}
+          breadcrumb={[{ title: 'Členové týmu' }]}
         />
       }
       leftSidebar={

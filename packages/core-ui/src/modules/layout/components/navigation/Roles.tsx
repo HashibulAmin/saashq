@@ -108,7 +108,7 @@ class Roles extends React.Component<Props, State> {
           />
         </SelectUp>
         {renderButton(
-          'Next',
+          'Další',
           () => changeRoute('setupList'),
           'arrow-circle-right',
           !selectedRole || !selectedAnswer ? true : false,

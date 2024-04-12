@@ -17,7 +17,7 @@ export default function FormContainer({ refetch, showView, structure }: Props) {
     values,
     isSubmitted,
     object,
-    callback
+    callback,
   }: IButtonMutateProps) => {
     const callbackResponse = () => {
       refetch().then(() => {
@@ -38,9 +38,9 @@ export default function FormContainer({ refetch, showView, structure }: Props) {
         isSubmitted={isSubmitted}
         type="submit"
         callback={callbackResponse}
-        successMessage={`You successfully ${
-          object._id ? 'updated' : 'added'
-        } a ${name}`}
+        successMessage={`Ty úspěšně ${
+          object._id ? 'aktualizováno' : 'přidal'
+        } A ${name}`}
       />
     );
   };

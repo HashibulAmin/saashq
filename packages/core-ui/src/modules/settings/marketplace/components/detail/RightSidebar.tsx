@@ -29,7 +29,7 @@ export default class RightSidebar extends React.Component<Props> {
 
     return (
       <SidebarBox>
-        <ColorHeader>{__('Creater')}</ColorHeader>
+        <ColorHeader>{__('Tvůrce')}</ColorHeader>
         <DetailCard>
           <MemberPic>
             <img src={logo ? logo : '/images/glyph_dark.png'} alt="creator" />
@@ -38,15 +38,14 @@ export default class RightSidebar extends React.Component<Props> {
             <b>{name || 'SaasHQ Inc'}</b>
             <div dangerouslySetInnerHTML={{ __html: description }} />
             <SmallText withMargin={true}>
-              <b>{__('Address')}:</b>{' '}
-              {address ||
-                '6525 Woodman Avenue, Los Angeles California, USA, 91401'}
+              <b>{__('Adresa')}:</b>{' '}
+              {address || '1931 Norris Ave., Fort Erie, ON, Canada, L2A5M4'}
             </SmallText>
             <SmallText withMargin={true}>
-              <b>{__('Tel')}</b>: {phone || '+1 617 506 9010'}
+              <b>{__('Tel')}</b>: {phone || '+1 289 303 7651'}
             </SmallText>
             <SmallText>
-              <b>{__('Email')}</b>: {email || 'info@saashq.org'}
+              <b>{__('E-mailem')}</b>: {email || 'info@saashq.org'}
             </SmallText>
           </CardInformation>
         </DetailCard>

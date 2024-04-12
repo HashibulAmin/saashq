@@ -10,7 +10,7 @@ type Props = {
   save: ({
     currentPassword,
     newPassword,
-    confirmation
+    confirmation,
   }: {
     currentPassword: string;
     newPassword: string;
@@ -22,18 +22,18 @@ type Props = {
 class ChangePassword extends React.Component<Props> {
   generateDoc = () => {
     return {
-      currentPassword: (document.getElementById(
-        'current-password'
-      ) as HTMLInputElement).value,
+      currentPassword: (
+        document.getElementById('current-password') as HTMLInputElement
+      ).value,
       newPassword: (document.getElementById('new-password') as HTMLInputElement)
         .value,
-      confirmation: (document.getElementById(
-        'new-password-confirmation'
-      ) as HTMLInputElement).value
+      confirmation: (
+        document.getElementById('new-password-confirmation') as HTMLInputElement
+      ).value,
     };
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
 
     this.props.save(this.generateDoc());
@@ -43,10 +43,10 @@ class ChangePassword extends React.Component<Props> {
     return (
       <form onSubmit={this.handleSubmit}>
         <FormGroup>
-          <ControlLabel>Current Password</ControlLabel>
+          <ControlLabel>Aktuální Heslo</ControlLabel>
           <FormControl
             type="password"
-            placeholder={__('Current password')}
+            placeholder={__('Aktuální heslo')}
             id="current-password"
           />
         </FormGroup>
@@ -54,19 +54,19 @@ class ChangePassword extends React.Component<Props> {
         <br />
 
         <FormGroup>
-          <ControlLabel>New Password</ControlLabel>
+          <ControlLabel>Nové Heslo</ControlLabel>
           <FormControl
             type="password"
-            placeholder={__('Enter new password')}
+            placeholder={__('Zadejte nové heslo')}
             id="new-password"
           />
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>Re-type Password to confirm</ControlLabel>
+          <ControlLabel>Pro potvrzení zadejte heslo znovu</ControlLabel>
           <FormControl
             type="password"
-            placeholder={__('Re-type password')}
+            placeholder={__('Zadejte heslo znovu')}
             id="new-password-confirmation"
           />
         </FormGroup>
@@ -76,11 +76,11 @@ class ChangePassword extends React.Component<Props> {
             onClick={this.props.closeModal}
             icon="times-circle"
           >
-            Close
+            Zavřít
           </Button>
 
           <Button btnStyle="success" type="submit" icon="check-circle">
-            Save
+            Uložit
           </Button>
         </ModalFooter>
       </form>

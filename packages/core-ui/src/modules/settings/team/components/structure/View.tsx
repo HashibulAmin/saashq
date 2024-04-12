@@ -43,20 +43,20 @@ export default function View({ structure, showEdit }: Props) {
     <>
       <Wrapper.ActionBar
         background="bgWhite"
-        left={<Title capitalize={true}>{__('Structure')}</Title>}
+        left={<Title capitalize={true}>{__('Struktura')}</Title>}
         right={edit}
         wideSpacing={true}
       />
       <StructureList className="no-link">
-        {renderRow('Name', title)}
-        {renderRow('Description', description, true)}
-        {renderRow('Supervisor', supervisorName)}
-        {renderRow('Code', code)}
-        {renderRow('Phone number', phoneNumber)}
-        {renderRow('Email', email)}
-        {renderRow('Longitude', coordinate.longitude)}
-        {renderRow('Latitude', coordinate.latitude)}
-        {renderRow('Website', links.website)}
+        {renderRow('Název', title)}
+        {renderRow('Popis', description, true)}
+        {renderRow('Dozorce', supervisorName)}
+        {renderRow('Kód', code)}
+        {renderRow('Telefonní číslo', phoneNumber)}
+        {renderRow('E-mailem', email)}
+        {renderRow('Zeměpisná délka', coordinate.longitude)}
+        {renderRow('Zeměpisná šířka', coordinate.latitude)}
+        {renderRow('Webová stránka', links.website)}
         {renderRow('Facebook', links.facebook)}
         {renderRow('Twitter', links.twitter)}
         {renderRow('Youtube', links.youtube)}

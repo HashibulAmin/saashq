@@ -266,9 +266,9 @@ export default class NavigationGoto extends React.Component<Props, State> {
     if (filteredPlugins.length === 0 && searchValue.length !== 0) {
       return (
         <>
-          <GotoCategory>Search results</GotoCategory>
+          <GotoCategory>Výsledky vyhledávání</GotoCategory>
           <GotoItem>
-            <i>No result</i>
+            <i>Žádný výsledek</i>
           </GotoItem>
         </>
       );
@@ -277,7 +277,7 @@ export default class NavigationGoto extends React.Component<Props, State> {
     if (filteredPlugins.length !== 0 && searchValue.length !== 0) {
       return (
         <>
-          <GotoCategory>Search results</GotoCategory>
+          <GotoCategory>Výsledky vyhledávání</GotoCategory>
           {filteredPlugins.map((plugin: any, index: number) => {
             const { permission, permissions, icon, text, name, to, url } =
               plugin;

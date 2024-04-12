@@ -73,7 +73,7 @@ class Robot extends React.Component<Props, State> {
           <Bot onClick={this.changeContent}>
             <BotWrapper>
               <span>
-                <img src="/images/saashq-bot.svg" alt="assistant robot" />
+                <img src="/images/saashq-bot.svg" alt="pomocný robot" />
               </span>
             </BotWrapper>
           </Bot>

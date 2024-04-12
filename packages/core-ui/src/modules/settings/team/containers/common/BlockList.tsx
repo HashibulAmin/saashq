@@ -21,7 +21,7 @@ export default function BlockListContainer(props: Props) {
   const { queryType, title, queryParams } = props;
 
   const listQuery = useQuery(gql(queries[queryType]), {
-    variables: queryType === 'units' ? undefined : { withoutUserFilter: true }
+    variables: queryType === 'units' ? undefined : { withoutUserFilter: true },
   });
 
   const [deleteMutation] = useMutation(gql(mutations[queryType + 'Remove']));
@@ -32,9 +32,9 @@ export default function BlockListContainer(props: Props) {
         .then(() => {
           listQuery.refetch();
 
-          Alert.success('Successfully deleted');
+          Alert.success('Úspěšně smazáno');
         })
-        .catch(e => {
+        .catch((e) => {
           Alert.error(e.message);
         });
     });

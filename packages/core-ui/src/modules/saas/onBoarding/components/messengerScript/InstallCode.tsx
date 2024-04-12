@@ -212,21 +212,21 @@ class InstallCode extends React.PureComponent<Props, State> {
     switch (currentTab) {
       case 'basic':
         description = __(
-          'Paste the following code before the body tag on every page you want saashq widget to appear',
+          'Vložte následující kód před značku body na každé stránce, na které chcete, aby se zobrazil widget SaasHQ',
         );
         script = basicCode;
         action = copied;
         break;
       case 'single':
         description = __(
-          'For web apps built with asynchronous JavaScript. Paste the code below in main layout you want saashq chat to appear',
+          'Pro webové aplikace vytvořené pomocí asynchronního JavaScriptu. Vložte níže uvedený kód do hlavního rozvržení, kde chcete, aby se objevil chat SaasHQ',
         );
         script = singlePageCode;
         action = singleCopied;
         break;
       case 'googletag':
         description = __(
-          'To connect Google Tag Manager to saashq, you must have an active Google Tag Manager account with a published container',
+          'Chcete-li Správce značek Google propojit se saashq, musíte mít aktivní účet Správce značek Google s publikovaným kontejnerem',
         );
         extraContent = true;
         script = basicCode;
@@ -251,11 +251,11 @@ class InstallCode extends React.PureComponent<Props, State> {
     return (
       <>
         <FlexStartHeader>
-          <h2>Install SaasHQ Messenger</h2>
+          <h2>Nainstalujte SaasHQ Messenger</h2>
           <p>
-            Use the script code to activate saashq messenger, simply copy the
-            code below and paste it into your website's code just before closing
-            the body tag. 
+            Pomocí kódu skriptu aktivujte SaasHQ messenger, jednoduše zkopírujte
+            níže a vložte jej do kódu svého webu těsně před uzavřením značka
+            těla. 
           </p>
         </FlexStartHeader>
         <ScriptWrapper>
@@ -264,19 +264,19 @@ class InstallCode extends React.PureComponent<Props, State> {
               className={currentTab === 'basic' ? 'active' : ''}
               onClick={this.onTabClick.bind(this, 'basic')}
             >
-              {__('Basic JavaScript')}
+              {__('Základní JavaScript')}
             </TabTitle>
             <TabTitle
               className={currentTab === 'single' ? 'active' : ''}
               onClick={this.onTabClick.bind(this, 'single')}
             >
-              {__('Single page apps')}
+              {__('Jednostránkové aplikace')}
             </TabTitle>
             <TabTitle
               className={currentTab === 'googletag' ? 'active' : ''}
               onClick={this.onTabClick.bind(this, 'googletag')}
             >
-              {__('Google tag manager')}
+              {__('Správce značek Google')}
             </TabTitle>
           </Tabs>
 

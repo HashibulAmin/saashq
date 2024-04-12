@@ -78,7 +78,7 @@ function Profile(props: Props) {
           className={activeFirst ? 'active' : ''}
           controlId="firstName"
         >
-          <Form.Label>First Name</Form.Label>
+          <Form.Label>Jméno</Form.Label>
           <Form.Control
             defaultValue={firstName}
             name="firstName"
@@ -89,7 +89,7 @@ function Profile(props: Props) {
         </Form.Group>
 
         <Form.Group className={activeLast ? 'active' : ''} controlId="lastName">
-          <Form.Label>Last Name</Form.Label>
+          <Form.Label>Příjmení</Form.Label>
           <Form.Control
             defaultValue={lastName}
             name="lastName"
@@ -103,7 +103,7 @@ function Profile(props: Props) {
           className={`disabled ${activeEmail ? 'active' : ''}`}
           controlId="email"
         >
-          <Form.Label>Email</Form.Label>
+          <Form.Label>E-mailem</Form.Label>
           <Form.Control
             defaultValue={email}
             name="name"
@@ -117,10 +117,10 @@ function Profile(props: Props) {
 
       <ButtonContainer>
         <Button btnStyle="simple" onClick={onChangeStep} block={true}>
-          <Icon icon="leftarrow" size={12} /> &nbsp; Back
+          <Icon icon="leftarrow" size={12} /> &nbsp; Zadní
         </Button>
         <Button onClick={onSubmit} block={true}>
-          Next &nbsp; <Icon icon="rightarrow" size={12} />
+          Další &nbsp; <Icon icon="rightarrow" size={12} />
         </Button>
       </ButtonContainer>
     </>

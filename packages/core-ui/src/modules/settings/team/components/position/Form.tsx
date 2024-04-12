@@ -86,7 +86,7 @@ export default function BranchForm(props: Props) {
     return (
       <>
         <FormGroup>
-          <ControlLabel required={true}>{__('Title')}</ControlLabel>
+          <ControlLabel required={true}>{__('Titul')}</ControlLabel>
           <FormControl
             {...formProps}
             name="title"
@@ -96,7 +96,7 @@ export default function BranchForm(props: Props) {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel required={true}>{__('Code')}</ControlLabel>
+          <ControlLabel required={true}>{__('Kód')}</ControlLabel>
           <FormControl
             {...formProps}
             required={true}
@@ -106,7 +106,7 @@ export default function BranchForm(props: Props) {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>{__('Parent')}</ControlLabel>
+          <ControlLabel>{__('Rodič')}</ControlLabel>
           <FormControl
             {...formProps}
             name="parentId"
@@ -119,10 +119,10 @@ export default function BranchForm(props: Props) {
           </FormControl>
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Team Members')}</ControlLabel>
+          <ControlLabel>{__('Členové týmu')}</ControlLabel>
 
           <SelectTeamMembers
-            label="Choose team members"
+            label="Vyberte členy týmu"
             name="userIds"
             initialValue={userIds}
             onSelect={onSelectTeamMembers}
@@ -136,7 +136,7 @@ export default function BranchForm(props: Props) {
             icon="times-circle"
             onClick={closeModal}
           >
-            Cancel
+            Zrušení
           </Button>
 
           {renderButton({

@@ -10,7 +10,7 @@ import Histories from '../../components/list/Histories';
 import { mutations, queries } from '../../graphql';
 import {
   ImportHistoriesQueryResponse,
-  RemoveMutationResponse
+  RemoveMutationResponse,
 } from '../../../types';
 import { IRouterProps } from '@saashq/ui/src/types';
 import Spinner from '@saashq/ui/src/components/Spinner';
@@ -37,7 +37,7 @@ class HistoriesContainer extends React.Component<FinalProps, State> {
     super(props);
 
     this.state = {
-      loading: false
+      loading: false,
     };
   }
 
@@ -63,15 +63,15 @@ class HistoriesContainer extends React.Component<FinalProps, State> {
 
     const removeHistory = (historyId: string, contentType: string) => {
       importHistoriesRemove({
-        variables: { _id: historyId, contentType }
+        variables: { _id: historyId, contentType },
       })
         .then(() => {
           if (historiesQuery) {
             historiesQuery.refetch();
-            Alert.success('success');
+            Alert.success('úspěch');
           }
         })
-        .catch(e => {
+        .catch((e) => {
           Alert.error(e.message);
         });
     };
@@ -82,16 +82,16 @@ class HistoriesContainer extends React.Component<FinalProps, State> {
       loading: historiesQuery.loading || this.state.loading,
       totalCount: histories.count || 0,
       removeHistory,
-      currentType
+      currentType,
     };
 
     return <Histories {...updatedProps} />;
   }
 }
 
-const historiesListParams = queryParams => ({
+const historiesListParams = (queryParams) => ({
   ...generatePaginationParams(queryParams),
-  type: queryParams.type || 'customer'
+  type: queryParams.type || 'customer',
 });
 
 const HistoriesWithProps = withProps<Props>(
@@ -103,21 +103,21 @@ const HistoriesWithProps = withProps<Props>(
         options: ({ queryParams }) => ({
           fetchPolicy: 'network-only',
           variables: historiesListParams(queryParams),
-          pollInterval: 3000
-        })
-      }
+          pollInterval: 3000,
+        }),
+      },
     ),
     graphql<
       Props,
       RemoveMutationResponse,
       { _id: string; contentType: string }
     >(gql(mutations.importHistoriesRemove), {
-      name: 'importHistoriesRemove'
-    })
-  )(withRouter<FinalProps>(HistoriesContainer))
+      name: 'importHistoriesRemove',
+    }),
+  )(withRouter<FinalProps, any>(HistoriesContainer)),
 );
 
-const WithConsumer = props => {
+const WithConsumer = (props) => {
   return (
     <AppConsumer>
       {({ showLoadingBar, closeLoadingBar }) => (

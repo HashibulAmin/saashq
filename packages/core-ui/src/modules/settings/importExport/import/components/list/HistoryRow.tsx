@@ -10,7 +10,7 @@ import queryString from 'query-string';
 
 import {
   ImportTitle,
-  ImportHistoryActions
+  ImportHistoryActions,
 } from 'modules/settings/importExport/styles';
 import { renderText } from 'modules/settings/importExport/utils';
 import Icon from 'modules/common/components/Icon';
@@ -35,15 +35,15 @@ class HistoryRow extends React.Component<Props> {
         <Dropdown className="dropdown-btn" alignRight={true}>
           <Dropdown.Toggle as={DropdownToggle} id="dropdown-customize">
             <Button btnStyle="simple" size="small">
-              {__('View')} <Icon icon="angle-down" />
+              {__('Pohled')} <Icon icon="angle-down" />
             </Button>
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            {contentTypes.map(value => {
+            {contentTypes.map((value) => {
               return (
                 <li key={Math.random()}>
                   <Link to={`/contacts/${value.contentType}`}>
-                    {__(`View ${renderText(value.contentType)}`)}
+                    {__(`Pohled ${renderText(value.contentType)}`)}
                   </Link>
                 </li>
               );
@@ -56,7 +56,7 @@ class HistoryRow extends React.Component<Props> {
     return (
       <Button btnStyle="simple" size="small">
         <Link to={`/contacts/${contentTypes[0]}`} style={{ color: '#888' }}>
-          {__(`View ${renderText(contentTypes[0])}`)}
+          {__(`Pohled ${renderText(contentTypes[0])}`)}
         </Link>
       </Button>
     );
@@ -67,7 +67,7 @@ class HistoryRow extends React.Component<Props> {
     const { attachments, contentTypes } = history;
 
     const renderDownloadFile = () => {
-      return contentTypes.map(value => {
+      return contentTypes.map((value) => {
         if (!attachments) {
           return null;
         }
@@ -81,7 +81,7 @@ class HistoryRow extends React.Component<Props> {
               href={readFile(attachment.url)}
               target="_blank"
             >
-              {__(`Download ${renderText(value.contentType)} file`)}
+              {__(`Stažení ${renderText(value.contentType)} soubor`)}
             </a>
           </li>
         );
@@ -89,10 +89,10 @@ class HistoryRow extends React.Component<Props> {
     };
 
     const renderDownloadErrorFile = () => {
-      return contentTypes.map(value => {
+      return contentTypes.map((value) => {
         const stringified = queryString.stringify({
           importHistoryId: history._id,
-          contentType: value.contentType
+          contentType: value.contentType,
         });
 
         const reqUrl = `${REACT_APP_API_URL}/pl:workers/download-import-error?${stringified}`;
@@ -100,7 +100,7 @@ class HistoryRow extends React.Component<Props> {
         return (
           <li key={Math.random()}>
             <a rel="noopener noreferrer" href={reqUrl} target="_blank">
-              {__(`Download ${renderText(value.contentType)} errors`)}
+              {__(`Stažení ${renderText(value.contentType)} chyby`)}
             </a>
           </li>
         );
@@ -110,7 +110,7 @@ class HistoryRow extends React.Component<Props> {
     const renderDelete = () => {
       const { removeHistory } = this.props;
 
-      return contentTypes.map(value => {
+      return contentTypes.map((value) => {
         const onClick = () => {
           removeHistory(history._id, value.contentType);
         };
@@ -118,7 +118,7 @@ class HistoryRow extends React.Component<Props> {
         return (
           <li key={Math.random()}>
             <a onClick={onClick} href="# ">
-              {__(`Delete ${renderText(value.contentType)}`)}
+              {__(`Vymazat ${renderText(value.contentType)}`)}
             </a>
           </li>
         );
@@ -129,7 +129,7 @@ class HistoryRow extends React.Component<Props> {
       <Dropdown className="dropdown-btn" alignRight={true}>
         <Dropdown.Toggle as={DropdownToggle} id="dropdown-customize">
           <Button btnStyle="simple" size="small">
-            {__('Actions')} <Icon icon="angle-down" />
+            {__('Akce')} <Icon icon="angle-down" />
           </Button>
         </Dropdown.Toggle>
         <Dropdown.Menu>
@@ -141,13 +141,13 @@ class HistoryRow extends React.Component<Props> {
     );
   };
 
-  renderStatus = history => {
+  renderStatus = (history) => {
     if (history.status === 'Done' || history.percentage === 100) {
-      return history.contentTypes.map(value => {
+      return history.contentTypes.map((value) => {
         const { removed = [] } = history;
 
         const isRemoved = removed.find(
-          removedItem => removedItem === value.contentType
+          (removedItem) => removedItem === value.contentType,
         );
 
         if (isRemoved) {
@@ -181,7 +181,7 @@ class HistoryRow extends React.Component<Props> {
     const { user = {} } = history;
     const { details = {} } = user || {};
 
-    const renderValue = value => {
+    const renderValue = (value) => {
       if (!value || value === 0) {
         return '-';
       }

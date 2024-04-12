@@ -79,7 +79,7 @@ class MainList extends React.Component<Props, State> {
   renderForm() {
     const trigger = (
       <Button btnStyle="success" icon="plus-circle">
-        {__('Add Department')}
+        {__('Přidat Oddělení')}
       </Button>
     );
 
@@ -93,7 +93,7 @@ class MainList extends React.Component<Props, State> {
 
     return (
       <ModalTrigger
-        title="Přidat oddělení"
+        title="Přidat Oddělení"
         content={content}
         trigger={trigger}
       />
@@ -130,7 +130,7 @@ class MainList extends React.Component<Props, State> {
           <Icon icon="search-1" size={20} />
           <FormControl
             type="text"
-            placeholder={__('Type to search')}
+            placeholder={__('Zadejte a vyhledejte')}
             onChange={search}
             value={this.state.searchValue}
             autoFocus={true}
@@ -160,7 +160,7 @@ class MainList extends React.Component<Props, State> {
 
     const trigger = (
       <Button btnStyle="link">
-        <Tip text={__('Edit')} placement="top">
+        <Tip text={__('Upravit')} placement="top">
           <Icon icon="edit-3" />
         </Tip>
       </Button>
@@ -194,7 +194,7 @@ class MainList extends React.Component<Props, State> {
               )}
               trigger={trigger}
             />
-            <Tip text={__('Delete')} placement="top">
+            <Tip text={__('Vymazat')} placement="top">
               <Button
                 btnStyle="link"
                 onClick={() => this.remove(department._id)}
@@ -280,10 +280,10 @@ class MainList extends React.Component<Props, State> {
       <Wrapper
         header={
           <Wrapper.Header
-            title="Departments"
+            title="Oddělení"
             breadcrumb={[
-              { title: __('Settings'), link: '/settings' },
-              { title: __('Departments') },
+              { title: __('Nastavení'), link: '/settings' },
+              { title: __('Oddělení') },
             ]}
           />
         }
@@ -293,7 +293,7 @@ class MainList extends React.Component<Props, State> {
             left={
               <LeftActionBar>
                 <Title capitalize={true}>
-                  {__('Departments')}&nbsp;
+                  {__('Oddělení')}&nbsp;
                   {`(${totalCount || 0})`}
                 </Title>
                 {leftActionBar}
@@ -307,7 +307,7 @@ class MainList extends React.Component<Props, State> {
             count={totalCount || 0}
             data={this.renderContent()}
             emptyImage="/images/actions/5.svg"
-            emptyText="No Branches"
+            emptyText="Žádné Pobočky"
           />
         }
         leftSidebar={

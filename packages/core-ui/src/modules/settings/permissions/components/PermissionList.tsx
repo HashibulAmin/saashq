@@ -14,7 +14,7 @@ import GroupList from '../containers/GroupList';
 import {
   NotWrappable,
   FilterItem,
-  FilterWrapper
+  FilterWrapper,
 } from '@saashq/ui-settings/src/permissions/styles';
 import { IActions, IModule, IPermissionDocument } from '../types';
 import { IUserGroup } from '@saashq/ui-settings/src/permissions/types';
@@ -25,7 +25,7 @@ import {
   correctValue,
   filterActions,
   generatedList,
-  generateModuleParams
+  generateModuleParams,
 } from './utils';
 import { Title } from '@saashq/ui-settings/src/styles';
 
@@ -54,21 +54,15 @@ class PermissionList extends React.Component<Props> {
     router.setParams(history, {
       [name]: isObject(item) ? correctValue(item) : item,
       page: null,
-      perPage: null
+      perPage: null,
     });
   };
 
   renderObjects() {
-    const {
-      groups,
-      modules,
-      permissions,
-      actions,
-      refetchQueries,
-      remove
-    } = this.props;
+    const { groups, modules, permissions, actions, refetchQueries, remove } =
+      this.props;
 
-    return permissions.map(object => {
+    return permissions.map((object) => {
       return (
         <PermissionRow
           key={object._id}
@@ -86,22 +80,22 @@ class PermissionList extends React.Component<Props> {
   renderFilter() {
     const { queryParams, modules, actions } = this.props;
 
-    const usersOnChange = users => {
+    const usersOnChange = (users) => {
       this.setFilter('userId', users);
     };
 
-    const allowedOnChange = e => {
+    const allowedOnChange = (e) => {
       this.setFilter('allowed', {
-        value: e.target.checked ? 'allowed' : 'notAllowed'
+        value: e.target.checked ? 'allowed' : 'notAllowed',
       });
     };
 
     return (
       <FilterWrapper>
-        <strong>{__('Filters')}:</strong>
+        <strong>{__('Filtry')}:</strong>
         <FilterItem id="permission-choose-module">
           <Select
-            placeholder={__('Choose module')}
+            placeholder={__('Vyberte modul')}
             value={queryParams.module}
             options={generateModuleParams(modules)}
             onChange={this.setFilter.bind(this, 'module')}
@@ -110,7 +104,7 @@ class PermissionList extends React.Component<Props> {
 
         <FilterItem id="permission-choose-action">
           <Select
-            placeholder={__('Choose action')}
+            placeholder={__('Vyberte akci')}
             value={queryParams.action}
             options={filterActions(actions, queryParams.module)}
             onChange={this.setFilter.bind(this, 'action')}
@@ -118,7 +112,7 @@ class PermissionList extends React.Component<Props> {
         </FilterItem>
         <FilterItem id="permission-choose-users">
           <SelectTeamMembers
-            label={__('Choose users')}
+            label={__('Vyberte uživatele')}
             name="userId"
             initialValue={queryParams.userId}
             onSelect={usersOnChange}
@@ -127,7 +121,7 @@ class PermissionList extends React.Component<Props> {
         </FilterItem>
 
         <div>
-          <strong>{__('Granted')}:</strong>
+          <strong>{__('Přiznáno')}:</strong>
           <FormControl
             componentClass="checkbox"
             defaultChecked={queryParams.allowed !== 'notAllowed'}
@@ -157,7 +151,7 @@ class PermissionList extends React.Component<Props> {
     );
   }
 
-  renderForm = props => {
+  renderForm = (props) => {
     const { modules, actions, groups, refetchQueries } = this.props;
 
     const extendedProps = {
@@ -165,16 +159,16 @@ class PermissionList extends React.Component<Props> {
       modules,
       actions,
       groups,
-      refetchQueries
+      refetchQueries,
     };
 
     return <PermissionForm {...extendedProps} />;
   };
 
-  renderPermissionFixer = props => {
+  renderPermissionFixer = (props) => {
     const updatedProps = {
       ...props,
-      fixPermissions: this.props.fixPermissions
+      fixPermissions: this.props.fixPermissions,
     };
 
     return <PermissionFixer {...updatedProps} />;
@@ -187,13 +181,13 @@ class PermissionList extends React.Component<Props> {
         btnStyle="success"
         icon="plus-circle"
       >
-        New permission
+        Nové povolení
       </Button>
     );
 
     const fixTrigger = (
       <Button id="fix-permissions" btnStyle="simple" icon="wrench">
-        Fix permissions
+        Upravit povolení
       </Button>
     );
 
@@ -204,12 +198,12 @@ class PermissionList extends React.Component<Props> {
     const actionBarRight = (
       <NotWrappable>
         <ModalTrigger
-          title="Fix permissions"
+          title="Upravit povolení"
           trigger={fixTrigger}
           content={this.renderPermissionFixer}
         />
         <ModalTrigger
-          title="New permission"
+          title="Nové povolení"
           size="lg"
           trigger={trigger}
           content={this.renderForm}
@@ -236,7 +230,7 @@ class PermissionList extends React.Component<Props> {
           data={this.renderData()}
           loading={isLoading}
           count={totalCount}
-          emptyText={__('There is no permissions in this group')}
+          emptyText={__('V této skupině nejsou žádná oprávnění')}
           emptyImage="/images/actions/11.svg"
         />
       </>
@@ -247,15 +241,15 @@ class PermissionList extends React.Component<Props> {
     const { totalCount, queryParams } = this.props;
 
     const breadcrumb = [
-      { title: 'Settings', link: '/settings' },
-      { title: __('Permissions') }
+      { title: 'Nastavení', link: '/settings' },
+      { title: __('Oprávnění') },
     ];
 
     return (
       <Wrapper
         header={
           <Wrapper.Header
-            title={__('Permissions')}
+            title={__('Oprávnění')}
             queryParams={queryParams}
             breadcrumb={breadcrumb}
             filterTitle={this.props.currentGroupName}
