@@ -22,16 +22,16 @@ const TerminateSessionForm = (props: IProps) => {
       'config:call_integrations',
       JSON.stringify({
         ...JSON.parse(localStorage.getItem('config:call_integrations')),
-        isAvailable: true
-      })
+        isAvailable: true,
+      }),
     );
 
     localStorage.setItem(
       'callInfo',
       JSON.stringify({
         isRegistered: true,
-        isLogin: true
-      })
+        isLogin: true,
+      }),
     );
     // tslint:disable-next-line:no-unused-expression
 
@@ -43,8 +43,8 @@ const TerminateSessionForm = (props: IProps) => {
     localStorage.setItem(
       'callInfo',
       JSON.stringify({
-        isUnRegistered: true
-      })
+        isUnRegistered: true,
+      }),
     );
 
     setCallInfo({ isUnRegistered: true });
@@ -56,13 +56,12 @@ const TerminateSessionForm = (props: IProps) => {
     return (
       <>
         <ControlLabel>
-          Already established the call connection. Disconnect the created
-          connection?
+          Spojení hovoru již bylo navázáno. Odpojte vytvořené spojení?
         </ControlLabel>
 
         <ModalFooter>
           <Button type="button" onClick={onCancel} icon="times-circle">
-            No
+            Ne
           </Button>
           <Button
             type="submit"
@@ -70,7 +69,7 @@ const TerminateSessionForm = (props: IProps) => {
             icon="check-circle"
             onClick={onOk}
           >
-            {__('Yes')}
+            {__('Ano')}
           </Button>
         </ModalFooter>
       </>

@@ -31,7 +31,7 @@ const IntegrationEditForm = (props: IProps) => {
   const onChangeOperatorDetails = (
     name: string,
     value: string,
-    index: number
+    index: number,
   ) => {
     const currentOperator = operators.find((l, i) => i === index);
 
@@ -81,9 +81,9 @@ const IntegrationEditForm = (props: IProps) => {
 
   return (
     <>
-      {renderInput('phone', 'Phone number', details.phone)}
+      {renderInput('phone', 'Telefonní číslo', details.phone)}
 
-      {renderInput('wsServer', 'Web socket server', details.wsServer)}
+      {renderInput('wsServer', 'Webový soketový server', details.wsServer)}
 
       <>
         {operators.map((operator, index) => (
@@ -104,7 +104,7 @@ const IntegrationEditForm = (props: IProps) => {
               size="medium"
               onClick={handleAddOperation}
             >
-              {__('Add Operator')}
+              {__('Přidat Operátora')}
             </Button>
           </div>
         </FormGroup>

@@ -58,7 +58,7 @@ class Contact extends React.Component<Props, State> {
                   key="call"
                   onClick={() => this.onCall(customer?.primaryPhone)}
                 >
-                  <Icon icon="outgoing-call" /> {__('Call')}
+                  <Icon icon="outgoing-call" /> {__('Volání')}
                 </li>
               </Dropdown.Menu>
             </Dropdown>

@@ -44,7 +44,7 @@ const IncomingCallContainer = (props: IProps, context) => {
         setHasMicrophone(true);
       })
       .catch((error) => {
-        console.error('Error accessing microphone:', error);
+        console.error('Chyba při přístupu k mikrofonu:', error);
         const errorMessage = error
           ?.toString()
           .replace('DOMException:', '')
@@ -82,7 +82,7 @@ const IncomingCallContainer = (props: IProps, context) => {
       },
     })
       .then(() => {
-        Alert.success('Successfully added note');
+        Alert.success('Poznámka byla úspěšně přidána');
       })
       .catch((e) => {
         Alert.error(e.message);

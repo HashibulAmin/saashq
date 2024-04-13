@@ -22,14 +22,14 @@ const OperatorForm = (props: Props) => {
     onChange,
     onChangeDetails,
     removeOperator,
-    index
+    index,
   } = props;
 
   const onChangeDetail = (e: any) => {
     onChangeDetails(e.target.name, e.target.value, index);
   };
 
-  const onSelectUser = value => {
+  const onSelectUser = (value) => {
     onChange(index, { ...operator, userId: value });
   };
 
@@ -43,7 +43,7 @@ const OperatorForm = (props: Props) => {
         <div style={{ display: 'flex' }}>
           <div style={{ width: '90%' }}>
             <SelectTeamMembers
-              label={`Choose operator ${index + 1}`}
+              label={`Vyberte operátora ${index + 1}`}
               name="selectedMembers"
               multi={false}
               initialValue={(operator && operator.userId) || ''}
@@ -60,7 +60,7 @@ const OperatorForm = (props: Props) => {
       </FormGroup>
       <FormGroup>
         <ControlLabel required={true}>
-          {__('GrandStream username')}
+          {__('Uživatelské jméno GrandStream')}
         </ControlLabel>
 
         <FormControl
@@ -72,9 +72,7 @@ const OperatorForm = (props: Props) => {
         />
       </FormGroup>
       <FormGroup>
-        <ControlLabel required={true}>
-          {__('GrandStream password')}
-        </ControlLabel>
+        <ControlLabel required={true}>{__('heslo GrandStream')}</ControlLabel>
 
         <FormControl
           {...formProps}

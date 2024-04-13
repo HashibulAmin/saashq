@@ -114,7 +114,7 @@ const IncomingCall = (props: Props, context) => {
       audioRef.current.src = '';
     }
     if (!hasMicrophone) {
-      return Alert.error('Check your microphone');
+      return Alert.error('Zkontrolujte mikrofon');
     }
 
     setStatus('accepted');
@@ -162,7 +162,7 @@ const IncomingCall = (props: Props, context) => {
 
     return (
       <NameCardContainer>
-        <h5>{__('Call')}</h5>
+        <h5>{__('Volání')}</h5>
         <Avatar user={customer} size={inCall ? 72 : 30} />
         <h4>{renderFullName(customer || '', true)}</h4>
         {primaryPhone && (
@@ -170,7 +170,7 @@ const IncomingCall = (props: Props, context) => {
             {primaryPhone}
             {hasChannel && (
               <span>
-                {__('is calling to')} {channelName}
+                {__('volá do')} {channelName}
               </span>
             )}
             <h5>{caller.place}</h5>
@@ -193,13 +193,13 @@ const IncomingCall = (props: Props, context) => {
                   <IncomingActionButton onClick={onAcceptCall} type="accepted">
                     <Icon icon="phone-alt" size={20} />
                   </IncomingActionButton>
-                  <b>{__('Accept')}</b>
+                  <b>{__('Akceptovat')}</b>
                 </div>
                 <div>
                   <IncomingActionButton onClick={onDeclineCall} type="decline">
                     <Icon icon="phone-slash" size={20} />
                   </IncomingActionButton>
-                  <b>{__('Decline')}</b>
+                  <b>{__('Pokles')}</b>
                 </div>
               </IncomingButtonContainer>
             </IncomingContent>
@@ -221,7 +221,7 @@ const IncomingCall = (props: Props, context) => {
             <IncomingContent>
               {renderUserInfo('incall')}
               <p>
-                {__('Call duration:')} <b>{getSpentTime(timeSpent)}</b>
+                {__('Délka hovoru:')} <b>{getSpentTime(timeSpent)}</b>
               </p>
               {callActions(
                 isMuted,

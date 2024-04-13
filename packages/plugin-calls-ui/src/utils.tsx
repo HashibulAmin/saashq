@@ -88,25 +88,25 @@ export const callActions = (
           >
             <Icon size={20} icon={'phone-times'} />
           </CallAction>
-          {isMuted() ? __('UnMute') : __('Mute')}
+          {isMuted() ? __('Zrušit ztlumení') : __('Ztlumit')}
         </div>
         <div>
           <CallAction
-            key={isHold ? 'UnHold' : 'Hold'}
+            key={isHold ? 'UnHold' : 'Držet'}
             active={isHold ? true : false}
             onClick={handleHold}
             disabled={true}
           >
             <Icon size={20} icon={'pause-1'} />
           </CallAction>
-          {isHold ? __('UnHold') : __('Hold')}
+          {isHold ? __('UnHold') : __('Držet')}
         </div>
         <div>
           <CallAction disabled={true}>
             <Icon size={20} icon={'phone-volume'} />
           </CallAction>
-          {__('Transfer')}
-          <span className="coming-soon">coming soon</span>
+          {__('Převod')}
+          <span className="coming-soon">již brzy</span>
         </div>
         <CallAction onClick={endCall} isDecline={true}>
           <Icon size={20} icon="phone-slash" />

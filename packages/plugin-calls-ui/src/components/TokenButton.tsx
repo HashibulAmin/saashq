@@ -25,7 +25,7 @@ const TokenButton = (props: Props) => {
         Alert.success('Token zkopírován do schránky');
       }}
     >
-      <Tip text={__('Copy token')} placement="top">
+      <Tip text={__('Kopírovat token')} placement="top">
         <Icon icon="copy" />
       </Tip>
     </Button>

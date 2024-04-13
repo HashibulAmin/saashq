@@ -76,7 +76,7 @@ export default class UpdateConfigs extends React.Component<Props, State> {
       <CollapseContent
         beforeTitle={<Icon icon="phone" />}
         transparent={true}
-        title="Call"
+        title="Volání"
       >
         <Info>
           <a
@@ -84,7 +84,7 @@ export default class UpdateConfigs extends React.Component<Props, State> {
             href="https://docs.saashq.org/"
             rel="noopener noreferrer"
           >
-            {__('Learn how to set Call Integration Variables')}
+            {__('Přečtěte si, jak nastavit proměnné integrace hovorů')}
           </a>
         </Info>
         {this.renderItem('STUN_SERVER_URL')}

@@ -35,7 +35,7 @@ const ConfigsContainer = (props: FinalProps) => {
   const updateConfigs = (value: IConfigsMap) => {
     updateConfigsMutation({ variables: { configsMap: value } })
       .then(() => {
-        Alert.success('Successfully updated configs');
+        Alert.success('Konfigurace úspěšně aktualizovány');
         getConfigsQuery.refetch();
       })
       .catch((e) => Alert.error(e.message));

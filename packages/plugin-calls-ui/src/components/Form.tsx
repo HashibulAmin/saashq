@@ -109,7 +109,7 @@ const CallIntegrationForm = (props: IProps) => {
             {...formProps}
             name="phone"
             componentClass="select"
-            placeholder={__('Select phone')}
+            placeholder={__('Vyberte telefon')}
             defaultValue={integration?.phone}
             onChange={onChange}
             required={true}
@@ -123,7 +123,7 @@ const CallIntegrationForm = (props: IProps) => {
         </FormGroup>
         {renderInput(
           'wsServer',
-          'Web socket server',
+          'Webový soketový server',
           integration?.wsServer,
           formProps,
         )}
@@ -131,17 +131,22 @@ const CallIntegrationForm = (props: IProps) => {
         {integration?.operators.map((operator: any, index: number) => {
           return (
             <div key={index}>
-              <ControlLabel>Operator {index + 1}</ControlLabel>
-              {renderInput('userId', 'user id', operator.userId, formProps)}
+              <ControlLabel>Operátor {index + 1}</ControlLabel>
+              {renderInput(
+                'userId',
+                'uživatelské ID',
+                operator.userId,
+                formProps,
+              )}
               {renderInput(
                 'gsUsername',
-                'grandstream username',
+                'uživatelské jméno grandstream',
                 operator.gsUsername,
                 formProps,
               )}
               {renderInput(
                 'gsPassword',
-                'grandstream password',
+                'heslo grandstream',
                 operator.gsPassword,
                 formProps,
               )}
@@ -156,7 +161,7 @@ const CallIntegrationForm = (props: IProps) => {
             onClick={closeModal}
             icon="times-circle"
           >
-            Cancel
+            Zrušení
           </Button>
 
           <Button
@@ -165,7 +170,7 @@ const CallIntegrationForm = (props: IProps) => {
             onClick={skipCallConnection}
             icon="times-circle"
           >
-            Skip connection
+            Přeskočit připojení
           </Button>
           <Button
             type="submit"

@@ -155,7 +155,11 @@ const SipProviderContainer = (props) => {
 
   if (!config || !config.inboxId) {
     return (
-      <ModalTrigger title="Call Config Modal" content={content} isOpen={true} />
+      <ModalTrigger
+        title="Modální Volání Konfigurace"
+        content={content}
+        isOpen={true}
+      />
     );
   }
 

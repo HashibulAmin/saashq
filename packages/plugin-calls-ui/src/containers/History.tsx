@@ -34,7 +34,7 @@ const HistoryContainer = (props: Props) => {
         },
       })
         .then(() => {
-          Alert.success('Successfully removed');
+          Alert.success('Úspěšně odstraněno');
         })
         .catch((e) => {
           Alert.error(e.message);

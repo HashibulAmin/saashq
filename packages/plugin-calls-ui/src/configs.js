@@ -31,7 +31,7 @@ module.exports = {
   inboxIntegrations: [
     {
       name: 'Grand stream',
-      description: 'Configure Grand stream device',
+      description: 'Nakonfigurujte zařízení Grand stream',
       isAvailable: true,
       kind: 'calls',
       logo: '/images/integrations/grandstream.png',

@@ -145,7 +145,7 @@ const KeyPad = (props: Props, context) => {
   }, [call?.status]);
   const handleCall = () => {
     if (!hasMicrophone) {
-      return Alert.error('Check your microphone');
+      return Alert.error('Zkontrolujte mikrofon');
     }
 
     if (Sip.sip?.status !== SIP_STATUS_REGISTERED) {
@@ -349,7 +349,7 @@ const KeyPad = (props: Props, context) => {
             <NameCardContainer>
               <h5>
                 <Icon icon="calling" size={16} />
-                {__('Calling')}
+                {__('Povolání')}
               </h5>
               <PhoneNumber>{number}</PhoneNumber>
             </NameCardContainer>
@@ -371,11 +371,11 @@ const KeyPad = (props: Props, context) => {
         <IncomingContainer>
           <IncomingContent>
             <NameCardContainer>
-              <h5>{__('In Call')}</h5>
+              <h5>{__('Ve výzvě')}</h5>
               {renderCallerInfo()}
             </NameCardContainer>
             <p>
-              {__('Call duration:')} <b>{getSpentTime(timeSpent)}</b>
+              {__('Délka hovoru:')} <b>{getSpentTime(timeSpent)}</b>
             </p>
             {callActions(
               isMuted,
@@ -409,12 +409,12 @@ const KeyPad = (props: Props, context) => {
               size={13}
               icon={isConnected ? 'power-button' : 'pause-1'}
             />
-            {isConnected ? __('Turn on') : __('Turn off')}
+            {isConnected ? __('Zapnout') : __('Vypnout')}
           </HeaderItem>
         </KeypadHeader>
         <InputBar type="keypad">
           <input
-            placeholder={__('Enter Phone Number')}
+            placeholder={__('Vložte telefonní číslo')}
             name="searchValue"
             value={number}
             onKeyDown={handleKeyDown}
@@ -424,9 +424,9 @@ const KeyPad = (props: Props, context) => {
           />
         </InputBar>
         {renderKeyPad(handNumPad)}
-        <p>{__('Calling from your own phone number')}</p>
+        <p>{__('Volání z vlastního telefonního čísla')}</p>
         <Select
-          placeholder={__('Choose phone number')}
+          placeholder={__('Vyberte telefonní číslo')}
           value={callFrom}
           onChange={onStatusChange}
           clearable={false}

@@ -107,13 +107,13 @@ class IntegrationForm extends React.Component<Props, State> {
         {this.renderField({ label: 'Název', fieldName: 'name', formProps })}
 
         {this.renderField({
-          label: 'Phone number',
+          label: 'Telefonní číslo',
           fieldName: 'phone',
           formProps,
         })}
 
         {this.renderField({
-          label: 'Web socket server',
+          label: 'Webový soketový server',
           fieldName: 'wsServer',
           formProps,
         })}
@@ -138,7 +138,7 @@ class IntegrationForm extends React.Component<Props, State> {
                 size="medium"
                 onClick={handleAddOperation}
               >
-                {__('Add Operator')}
+                {__('Přidat Operátora')}
               </Button>
             </div>
           </FormGroup>
@@ -147,7 +147,7 @@ class IntegrationForm extends React.Component<Props, State> {
         <SelectBrand
           isRequired={true}
           formProps={formProps}
-          description={'Which specific Brand does this integration belong to?'}
+          description={'Ke které konkrétní značce tato integrace patří?'}
         />
 
         <SelectChannels

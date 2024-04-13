@@ -196,9 +196,9 @@ export default class SipProvider extends React.Component<
     }
     if (window.document.getElementById('sip-provider-audio')) {
       throw new Error(
-        `Creating two SipProviders in one application is forbidden. If that's not the case ` +
-          `then check if you're using "sip-provider-audio" as id attribute for any existing ` +
-          `element`,
+        `Vytvoření dvou SipProviderů v jedné aplikaci je zakázáno. Pokud tomu tak není ` +
+          `pak zkontrolujte, zda používáte "sip-provider-audio" jako atribut id pro všechny existující ` +
+          `živel`,
       );
     }
 
@@ -267,12 +267,12 @@ export default class SipProvider extends React.Component<
   public registerSip = () => {
     if (this.props.autoRegister) {
       throw new Error(
-        'Calling registerSip is not allowed when autoRegister === true',
+        'Volání registerSip není povoleno, když autoRegister === skutečný',
       );
     }
     if (this.state.sipStatus !== SIP_STATUS_CONNECTED) {
       throw new Error(
-        `Calling registerSip is not allowed when sip status is ${this.state.sipStatus} (expected ${SIP_STATUS_CONNECTED})`,
+        `Volání registerSip není povoleno, když je stav sip ${this.state.sipStatus} (očekávaný ${SIP_STATUS_CONNECTED})`,
       );
     }
     return this.ua.register();
@@ -281,12 +281,12 @@ export default class SipProvider extends React.Component<
   public unregisterSip = () => {
     if (this.props.autoRegister) {
       throw new Error(
-        'Calling registerSip is not allowed when autoRegister === true',
+        'Volání registerSip není povoleno, když autoRegister === skutečný',
       );
     }
     if (this.state.sipStatus !== SIP_STATUS_REGISTERED) {
       throw new Error(
-        `Calling unregisterSip is not allowed when sip status is ${this.state.sipStatus} (expected ${SIP_STATUS_CONNECTED})`,
+        `Volání zrušit registraciSip není povoleno, když je stav sip ${this.state.sipStatus} (očekávaný ${SIP_STATUS_CONNECTED})`,
       );
     }
     return this.ua.unregister();
@@ -298,7 +298,7 @@ export default class SipProvider extends React.Component<
       this.state.callDirection !== CALL_DIRECTION_INCOMING
     ) {
       throw new Error(
-        `Calling answerCall() is not allowed when call status is ${this.state.callStatus} and call direction is ${this.state.callDirection}  (expected ${CALL_STATUS_STARTING} and ${CALL_DIRECTION_INCOMING})`,
+        `Volání answerCall() není povoleno, když je stav volání ${this.state.callStatus} a směr hovoru je ${this.state.callDirection}  (očekávaný ${CALL_STATUS_STARTING} a ${CALL_DIRECTION_INCOMING})`,
       );
     }
 
@@ -346,20 +346,20 @@ export default class SipProvider extends React.Component<
 
   public startCall = (destination) => {
     if (!destination) {
-      throw new Error(`Destination must be defined (${destination} given)`);
+      throw new Error(`Cíl musí být definován (${destination} daný)`);
     }
     if (
       this.state.sipStatus !== SIP_STATUS_CONNECTED &&
       this.state.sipStatus !== SIP_STATUS_REGISTERED
     ) {
       throw new Error(
-        `Calling startCall() is not allowed when sip status is ${this.state.sipStatus} (expected ${SIP_STATUS_CONNECTED} or ${SIP_STATUS_REGISTERED})`,
+        `Volání startCall() není povoleno, když je stav sip ${this.state.sipStatus} (očekávaný ${SIP_STATUS_CONNECTED} nebo ${SIP_STATUS_REGISTERED})`,
       );
     }
 
     if (this.state.callStatus !== CALL_STATUS_IDLE) {
       throw new Error(
-        `Calling startCall() is not allowed when call status is ${this.state.callStatus} (expected ${CALL_STATUS_IDLE})`,
+        `Volání startCall() není povoleno, když je stav volání ${this.state.callStatus} (očekávaný ${CALL_STATUS_IDLE})`,
       );
     }
 
@@ -427,7 +427,7 @@ export default class SipProvider extends React.Component<
 
       this.ua = new JsSIP.UA(options);
     } catch (error) {
-      this.logger.debug('Error', error.message, error);
+      this.logger.debug('Chyba', error.message, error);
       this.setState({
         sipStatus: SIP_STATUS_ERROR,
         sipErrorType: SIP_ERROR_TYPE_CONFIGURATION,
@@ -439,7 +439,7 @@ export default class SipProvider extends React.Component<
     const { ua } = this;
 
     ua.on('connecting', () => {
-      this.logger?.debug('UA "connecting" event');
+      this.logger?.debug('UA "spojující" událost');
       setLocalStorage(false, true);
 
       if (this.ua !== ua) {
@@ -453,7 +453,7 @@ export default class SipProvider extends React.Component<
     });
 
     ua.on('connected', () => {
-      this.logger?.debug('UA "connected" event');
+      this.logger?.debug('UA "spojující" událost');
 
       setLocalStorage(false, true);
 
@@ -468,7 +468,7 @@ export default class SipProvider extends React.Component<
     });
 
     ua.on('disconnected', () => {
-      this.logger.debug('UA "disconnected" event');
+      this.logger.debug('UA "odpojeno" událost');
       if (this.ua !== ua) {
         return;
       }
@@ -482,7 +482,7 @@ export default class SipProvider extends React.Component<
     });
 
     ua.on('registered', (data) => {
-      this.logger.debug('UA "registered" event', data);
+      this.logger.debug('UA "registrovaná" událost', data);
       if (this.ua !== ua) {
         return;
       }
@@ -499,7 +499,7 @@ export default class SipProvider extends React.Component<
     });
 
     ua.on('unregistered', () => {
-      this.logger.debug('UA "unregistered" event');
+      this.logger.debug('UA "neregistrovaná" akce');
       if (this.ua !== ua) {
         return;
       }
@@ -519,7 +519,7 @@ export default class SipProvider extends React.Component<
     });
 
     ua.on('registrationFailed', (data) => {
-      this.logger.debug('UA "registrationFailed" event');
+      this.logger.debug('UA událost „registrace se nezdařila“');
 
       if (this.ua !== ua) {
         return;
@@ -565,7 +565,7 @@ export default class SipProvider extends React.Component<
 
         // Avoid if busy or other incoming
         if (rtcSessionInState) {
-          this.logger.debug('incoming call replied with 486 "Busy Here"');
+          this.logger.debug('příchozí hovor odpověděl 486 "Zaneprázdněn zde"');
           rtcSession.terminate({
             status_code: 486,
             reason_phrase: 'Busy Here',
@@ -577,11 +577,11 @@ export default class SipProvider extends React.Component<
           if (data.originator === 'remote') data.response.body = null;
         });
         rtcSession.on('failed', (e) => {
-          this.logger.debug('UA failed event');
+          this.logger.debug('UA neúspěšná událost');
           if (this.ua !== ua) {
             return;
           }
-          console.log('failed:', e);
+          console.log('nepodařilo:', e);
           const { updateHistory } = this.props;
           const { rtcSession: session } = this.state;
 
@@ -613,7 +613,7 @@ export default class SipProvider extends React.Component<
           if (this.ua !== ua) {
             return;
           }
-          console.log('ended:', data);
+          console.log('skončilo:', data);
           const { updateHistory } = this.props;
           const { rtcSession: session } = this.state;
 
@@ -707,15 +707,15 @@ export default class SipProvider extends React.Component<
           this.state.callDirection === CALL_DIRECTION_INCOMING &&
           this.props.autoAnswer
         ) {
-          this.logger.log('Answer auto ON');
+          this.logger.log('Odpovědět auto ON');
           this.answerCall();
         } else if (
           this.state.callDirection === CALL_DIRECTION_INCOMING &&
           !this.props.autoAnswer
         ) {
-          this.logger.log('Answer auto OFF');
+          this.logger.log('Automatické vypnutí odpovědi');
         } else if (this.state.callDirection === CALL_DIRECTION_OUTGOING) {
-          this.logger.log('OUTGOING call');
+          this.logger.log('Odchozí hovor');
 
           setTimeout(() => {
             this.remoteAudio.play();

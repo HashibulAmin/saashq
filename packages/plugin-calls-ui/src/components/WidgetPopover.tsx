@@ -72,21 +72,21 @@ const WidgetPopover = (
           onClick={historyOnClick}
         >
           <Icon icon="history" size={20} />
-          {__('History')}
+          {__('Dějiny')}
         </Tab>
         <Tab
           className={currentTab === 'Keyboard' ? 'active' : ''}
           onClick={keyboardOnClick}
         >
           <Icon icon="keyboard-alt" size={20} />
-          {__('Keyboard')}
+          {__('Klávesnice')}
         </Tab>
         <Tab
           className={currentTab === 'Contact' ? 'active' : ''}
           onClick={contactsOnClick}
         >
           <Icon icon="book" size={18} />
-          {__('Contact')}
+          {__('Kontakt')}
         </Tab>
       </TabsContainer>
     </>

@@ -53,7 +53,7 @@ const KeyPadContainer = (props: IProps) => {
       },
     })
       .then(() => {
-        Alert.success('Successfully added note');
+        Alert.success('Poznámka byla úspěšně přidána');
       })
       .catch((e) => {
         Alert.error(e.message);
