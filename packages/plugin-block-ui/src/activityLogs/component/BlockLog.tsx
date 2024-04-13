@@ -18,7 +18,7 @@ class TaggedLog extends React.Component<any> {
 
     return (
       <span>
-        investoval {amount} na {found.package.name}
+        Investoval {amount} na {found.package.name}
       </span>
     );
   };

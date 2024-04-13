@@ -20,16 +20,19 @@ const blockMutations = {
     const packageDetail = await models.Packages.findOne({ _id: packageId });
 
     if (!packageDetail) {
-      throw new Error('Багц олдсонгүй');
+      throw new Error('Balíček nenalezen');
     }
 
     if (amount > balance) {
-      throw new Error('Үлдэгдэл хүрэлцэхгүй байна');
+      throw new Error('Nedostatečná rovnováha');
     }
 
     const newBalance = balance - amount;
 
-    await models.Blocks.updateOne({ saashqCustomerId }, { balance: newBalance });
+    await models.Blocks.updateOne(
+      { saashqCustomerId },
+      { balance: newBalance },
+    );
 
     await putActivityLog(subdomain, {
       action: 'add',
@@ -53,7 +56,7 @@ const blockMutations = {
 
     const numberAmount = numberWithCommas(amount);
 
-    const body = `UB GROUP: Tanii ${numberAmount} tugrugiin hurungu oruulalt amjilttai batalgaajlaa. 72228888`;
+    const body = `UB GROUP: Odesláno ${numberAmount} testovací zprávy. Odesílání testovacích SMS zpráv na 72228888`;
 
     await sendSms(subdomain, customer.primaryPhone, body);
 
@@ -93,7 +96,7 @@ const blockMutations = {
 
     const numberAmount = numberWithCommas(amount);
 
-    const body = `UB GROUP: Tanii dans ${numberAmount} tugruguur tseneglegdlee. Ta gereeteigee saitar taniltsan hurungu oruulaltaa hiine uu.72228888`;
+    const body = `UB GROUP: Odesláno ${numberAmount} testovací zprávy. Odesílání testovacích SMS zpráv na 72228888`;
 
     await sendSms(subdomain, customer.primaryPhone, body);
 
@@ -124,7 +127,7 @@ const blockMutations = {
         isRPC: true,
       });
 
-      const body = `UB GROUP: Tanii medeelel amjilttai batalgaajlaa. Ta dansaa tseneglen hurungu oruulaltaa hiine uu 72228888`;
+      const body = `UB GROUP: Odesláno testovací zprávy. Odesílání testovacích SMS zpráv na 72228888`;
 
       await sendSms(subdomain, customer.primaryPhone, body);
     }

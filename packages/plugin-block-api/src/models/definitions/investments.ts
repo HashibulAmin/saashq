@@ -17,15 +17,15 @@ export const investmentSchema = new Schema({
   _id: field({ pkey: true }),
   saashqCustomerId: field({
     type: String,
-    label: 'Customer',
+    label: 'Zákazník',
   }),
   amount: field({
     type: Number,
-    label: 'Amount',
+    label: 'Množství',
   }),
   packageId: field({
     type: String,
-    label: 'Package',
+    label: 'Balík',
   }),
   createdAt: field({
     type: Date,

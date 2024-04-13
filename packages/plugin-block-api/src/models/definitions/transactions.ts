@@ -24,7 +24,7 @@ export const transactionSchema = new Schema({
   _id: field({ pkey: true }),
   saashqCustomerId: field({
     type: String,
-    label: 'Customer',
+    label: 'Zákazník',
     optional: true,
   }),
   type: field({
@@ -32,7 +32,7 @@ export const transactionSchema = new Schema({
     enum: getEnum('TYPE'),
     default: '',
     optional: true,
-    label: 'Type',
+    label: 'Typ',
     esType: 'keyword',
     selectOptions: TRANSACTION_SELECT_OPTIONS.TYPE,
   }),
@@ -44,7 +44,7 @@ export const transactionSchema = new Schema({
   }),
   bankStatus: field({
     type: String,
-    label: 'Bank Status',
+    label: 'Stav Banky',
     optional: true,
   }),
   body: field({

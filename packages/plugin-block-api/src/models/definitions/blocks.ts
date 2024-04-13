@@ -15,8 +15,8 @@ export const blockSchema = new Schema({
   _id: field({ pkey: true }),
   saashqCustomerId: field({
     type: String,
-    label: 'Customer'
+    label: 'Zákazník',
   }),
-  balance: field({ type: Number, label: 'Balance', optional: true }),
-  isVerified: field({ type: String, label: 'Verified', optional: true })
+  balance: field({ type: Number, label: 'Zůstatek', optional: true }),
+  isVerified: field({ type: String, label: 'Ověřeno', optional: true }),
 });
