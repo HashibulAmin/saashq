@@ -1,7 +1,7 @@
 import { checkPermission } from '@saashq/api-utils/src/permissions';
 import {
   IAutomation,
-  IAutomationDoc
+  IAutomationDoc,
 } from '../../../models/definitions/automaions';
 import { INote } from '../../../models/definitions/notes';
 import { putCreateLog, putDeleteLog, putUpdateLog } from '../../../logUtils';
@@ -24,13 +24,13 @@ const automationMutations = {
   async automationsAdd(
     _root,
     doc: IAutomation,
-    { user, docModifier, models, subdomain }: IContext
+    { user, docModifier, models, subdomain }: IContext,
   ) {
     const automation = await models.Automations.create({
       ...docModifier({ ...doc }),
       createdAt: new Date(),
       createdBy: user._id,
-      updatedBy: user._id
+      updatedBy: user._id,
     });
 
     await putCreateLog(
@@ -38,9 +38,9 @@ const automationMutations = {
       {
         type: 'automation',
         newData: doc,
-        object: automation
+        object: automation,
       },
-      user
+      user,
     );
 
     return models.Automations.getAutomation(automation._id);
@@ -52,13 +52,13 @@ const automationMutations = {
   async automationsEdit(
     _root,
     { _id, ...doc }: IAutomationsEdit,
-    { user, models, subdomain }: IContext
+    { user, models, subdomain }: IContext,
   ) {
     const automation = await models.Automations.getAutomation(_id);
 
     const updated = await models.Automations.updateOne(
       { _id },
-      { $set: { ...doc, updatedAt: new Date(), updatedBy: user._id } }
+      { $set: { ...doc, updatedAt: new Date(), updatedBy: user._id } },
     );
 
     await putUpdateLog(
@@ -67,9 +67,9 @@ const automationMutations = {
         type: 'automation',
         object: automation,
         newData: doc,
-        updatedDocument: updated
+        updatedDocument: updated,
       },
-      user
+      user,
     );
 
     return models.Automations.getAutomation(_id);
@@ -82,11 +82,11 @@ const automationMutations = {
   async archiveAutomations(
     _root,
     { automationIds, isRestore },
-    { models }: IContext
+    { models }: IContext,
   ) {
     await models.Automations.updateMany(
       { _id: { $in: automationIds } },
-      { $set: { status: isRestore ? STATUSES.DRAFT : STATUSES.ARCHIVED } }
+      { $set: { status: isRestore ? STATUSES.DRAFT : STATUSES.ARCHIVED } },
     );
     return automationIds;
   },
@@ -99,9 +99,9 @@ const automationMutations = {
     {
       _id,
       name,
-      duplicate
+      duplicate,
     }: { _id: string; name?: string; duplicate?: boolean },
-    { user, models, subdomain }: IContext
+    { user, models, subdomain }: IContext,
   ) {
     const automation = await models.Automations.getAutomation(_id);
 
@@ -109,7 +109,7 @@ const automationMutations = {
       ...automation,
       createdAt: new Date(),
       createdBy: user._id,
-      updatedBy: user._id
+      updatedBy: user._id,
     };
 
     if (name) {
@@ -125,7 +125,7 @@ const automationMutations = {
     delete automationDoc._id;
 
     const created = await models.Automations.create({
-      ...automationDoc
+      ...automationDoc,
     });
 
     await putUpdateLog(
@@ -133,9 +133,9 @@ const automationMutations = {
       {
         type: 'automation',
         object: created,
-        newData: automation
+        newData: automation,
       },
-      user
+      user,
     );
 
     return await models.Automations.getAutomation(created._id);
@@ -147,27 +147,27 @@ const automationMutations = {
   async automationsCreateFromTemplate(
     _root,
     { _id }: { _id: string },
-    { user, models, subdomain }: IContext
+    { user, models, subdomain }: IContext,
   ) {
     const automation = await models.Automations.getAutomation(_id);
 
     if (automation.status !== 'template') {
-      throw new Error('Not template');
+      throw new Error('Ne šablona');
     }
 
     const automationDoc: IAutomationDoc = {
       ...automation,
       status: 'template',
-      name: automation.name += ' from template',
+      name: (automation.name += ' ze šablony'),
       createdAt: new Date(),
       createdBy: user._id,
-      updatedBy: user._id
+      updatedBy: user._id,
     };
 
     delete automationDoc._id;
 
     const created = await models.Automations.create({
-      ...automationDoc
+      ...automationDoc,
     });
 
     await putCreateLog(
@@ -175,9 +175,9 @@ const automationMutations = {
       {
         type: 'automation',
         newData: automation,
-        object: created
+        object: created,
       },
-      user
+      user,
     );
 
     return await models.Automations.getAutomation(created._id);
@@ -189,10 +189,10 @@ const automationMutations = {
   async automationsRemove(
     _root,
     { automationIds }: { automationIds: string[] },
-    { models }: IContext
+    { models }: IContext,
   ) {
     const automations = await models.Automations.find({
-      _id: { $in: automationIds }
+      _id: { $in: automationIds },
     });
 
     let segmentIds: string[] = [];
@@ -200,11 +200,11 @@ const automationMutations = {
     for (const automation of automations) {
       const { triggers, actions } = automation;
 
-      const triggerIds = triggers.map(trigger => {
+      const triggerIds = triggers.map((trigger) => {
         return trigger.config.contentId;
       });
 
-      const actionIds = actions.map(action => {
+      const actionIds = actions.map((action) => {
         return action.config.contentId;
       });
 
@@ -218,7 +218,7 @@ const automationMutations = {
       sendSegmentsMessage({
         subdomain: '',
         action: 'removeSegment',
-        data: { segmentId }
+        data: { segmentId },
       });
     }
 
@@ -231,7 +231,7 @@ const automationMutations = {
   async automationsAddNote(
     _root,
     doc: INote,
-    { user, docModifier, models, subdomain }: IContext
+    { user, docModifier, models, subdomain }: IContext,
   ) {
     const noteDoc = { ...doc, createdBy: user._id };
 
@@ -242,9 +242,9 @@ const automationMutations = {
       {
         type: 'automation',
         object: note,
-        newData: noteDoc
+        newData: noteDoc,
       },
-      user
+      user,
     );
 
     return note;
@@ -256,12 +256,12 @@ const automationMutations = {
   async automationsEditNote(
     _root,
     { _id, ...doc }: IAutomationNoteEdit,
-    { user, docModifier, dataSources, models, subdomain }: IContext
+    { user, docModifier, dataSources, models, subdomain }: IContext,
   ) {
     const note = await dataSources.AutomationsAPI.getAutomationNote({ _id });
 
     if (!note) {
-      throw new Error('Note not found');
+      throw new Error('Poznámka nenalezena');
     }
 
     const noteDoc = { ...doc, updatedBy: user._id };
@@ -274,9 +274,9 @@ const automationMutations = {
         type: 'automation',
         object: note,
         newData: noteDoc,
-        updatedDocument: updated
+        updatedDocument: updated,
       },
-      user
+      user,
     );
 
     return updated;
@@ -288,7 +288,7 @@ const automationMutations = {
   async automationsRemoveNote(
     _root,
     { _id }: { _id: string },
-    { user, models, subdomain }: IContext
+    { user, models, subdomain }: IContext,
   ) {
     const note = await models.Notes.getNote(_id);
 
@@ -298,13 +298,13 @@ const automationMutations = {
       subdomain,
       {
         type: 'automation',
-        object: note
+        object: note,
       },
-      user
+      user,
     );
 
     return note;
-  }
+  },
 };
 
 checkPermission(automationMutations, 'automationsAdd', 'automationsAdd');

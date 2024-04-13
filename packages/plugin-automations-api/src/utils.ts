@@ -33,7 +33,7 @@ export const getEnv = ({
   }
 
   if (!value) {
-    debugError(`Missing environment variable configuration for ${name}`);
+    debugError(`Chybí konfigurace proměnné prostředí pro ${name}`);
   }
 
   return value || '';
@@ -196,7 +196,7 @@ export const executeActions = async (
     execAction.result = { error: e.message, result: e.result };
     execution.actions = [...(execution.actions || []), execAction];
     execution.status = EXECUTION_STATUS.ERROR;
-    execution.description = `An error occurred while working action: ${action.type}`;
+    execution.description = `Při pracovní akci došlo k chybě: ${action.type}`;
     await execution.save();
     return;
   }
@@ -301,7 +301,7 @@ export const calculateExecution = async ({
       targetId: target._id,
       target,
       status: EXECUTION_STATUS.ERROR,
-      description: `An error occurred while checking the is in segment: "${e.message}"`,
+      description: `Při kontrole je v segmentu došlo k chybě: "${e.message}"`,
     });
     return;
   }
@@ -345,7 +345,7 @@ export const calculateExecution = async ({
     targetId: target._id,
     target,
     status: EXECUTION_STATUS.ACTIVE,
-    description: `Met enrollement criteria`,
+    description: `Splnila kritéria pro zápis`,
   });
 };
 

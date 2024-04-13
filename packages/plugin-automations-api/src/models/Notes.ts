@@ -13,8 +13,8 @@ export const loadClass = (models: IModels) => {
     public static async getNote(_id: string) {
       const note = models.Notes.findOne({ _id }).lean();
 
-      if(!note) {
-        throw new Error('Note not found')
+      if (!note) {
+        throw new Error('Poznámka nenalezena');
       }
       return note;
     }
@@ -26,7 +26,7 @@ export const loadClass = (models: IModels) => {
     public static async updateNote(_id: string, doc: INote) {
       await models.Notes.updateOne(
         { _id },
-        { $set: { ...doc, updatedAt: new Date() } }
+        { $set: { ...doc, updatedAt: new Date() } },
       );
 
       return models.Notes.findOne({ _id }).lean();

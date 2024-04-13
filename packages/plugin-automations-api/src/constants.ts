@@ -2,76 +2,76 @@ export const ACTIONS = {
   WAIT: 'delay',
   IF: 'if',
   SET_PROPERTY: 'setProperty',
-  SEND_EMAIL: 'sendEmail'
+  SEND_EMAIL: 'sendEmail',
 };
 
 export const EMAIL_RECIPIENTS_TYPES = [
   {
     type: 'customMail',
     name: 'customMails',
-    label: 'Custom Mails'
+    label: 'Vlastní Maily',
   },
   {
     type: 'attributionMail',
     name: 'attributionMails',
-    label: 'Attribution Mails'
+    label: 'Atribuční Maily',
   },
   {
     type: 'segmentBased',
     name: 'segmentBased',
-    label: 'Trigger Segment Based Mails'
+    label: 'Spustit E-maily Založené na Segmentech',
   },
   {
     type: 'teamMember',
     name: 'teamMemberIds',
-    label: 'Team Members'
-  }
+    label: 'Členové Týmu',
+  },
 ];
 
 export const UI_ACTIONS = [
   {
     type: 'if',
     icon: 'sitemap-1',
-    label: 'Branches',
-    description: 'Create simple or if/then branches',
-    isAvailable: true
+    label: 'Větve',
+    description: 'Vytvořte jednoduché větve nebo pokud/pak',
+    isAvailable: true,
   },
   {
     type: 'setProperty',
     icon: 'flask',
-    label: 'Manage properties',
+    label: 'Správa vlastností',
     description:
-      'Update existing default or custom properties for Contacts, Companies, Cards, Conversations',
-    isAvailable: true
+      'Aktualizujte stávající výchozí nebo vlastní vlastnosti pro kontakty, společnosti, karty, konverzace',
+    isAvailable: true,
   },
   {
     type: 'delay',
     icon: 'hourglass',
-    label: 'Delay',
+    label: 'Zpoždění',
     description:
-      'Delay the next action with a timeframe, a specific event or activity',
-    isAvailable: true
+      'Odložte další akci pomocí časového rámce, konkrétní události nebo aktivity',
+    isAvailable: true,
   },
   {
     type: 'workflow',
     icon: 'glass-martini-alt',
-    label: 'Workflow',
+    label: 'Pracovní postup',
     description:
-      'Enroll in another workflow,  trigger outgoing webhook or write custom code',
-    isAvailable: false
+      'Zaregistrujte se do jiného pracovního postupu, spusťte odchozí webhook nebo napište vlastní kód',
+    isAvailable: false,
   },
   {
     type: 'sendEmail',
     icon: 'fast-mail',
-    label: 'Send Email',
+    label: 'Poslat E-mailem',
     description: 'Send Email',
     emailRecipientsConst: EMAIL_RECIPIENTS_TYPES,
-    isAvailable: true
-  }
+    isAvailable: true,
+  },
 ];
 
 export const STATUSES = {
   DRAFT: 'draft',
   ACTIVE: 'active',
-  ARCHIVED: 'archived'
+  ARCHIVED: 'archived',
 };

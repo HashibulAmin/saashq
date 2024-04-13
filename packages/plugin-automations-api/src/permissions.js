@@ -1,7 +1,7 @@
 module.exports = {
   automations: {
     name: 'automations',
-    description: 'Automations',
+    description: 'Automatizace',
     actions: [
       {
         name: 'automationAll',
@@ -15,19 +15,19 @@ module.exports = {
       },
       {
         name: 'showAutomations',
-        description: 'Show automations'
+        description: 'Zobrazit automatizace'
       },
       {
         name: 'automationsAdd',
-        description: 'Add automations'
+        description: 'Přidejte automatizace'
       },
       {
         name: 'automationsEdit',
-        description: 'Edit automations'
+        description: 'Upravit automatizaci'
       },
       {
         name: 'automationsRemove',
-        description: 'Remove automations'
+        description: 'Odstraňte automatizaci'
       }
     ]
   }
