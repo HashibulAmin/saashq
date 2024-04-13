@@ -51,8 +51,8 @@ class Base extends React.Component<Props> {
 
     const breadcrumb = [
       { title: __('Nastavení'), link: '/settings' },
-      { title: __('Calendar'), link: `/settings/calendars` },
-      { title: __('Schedule'), link: '' },
+      { title: __('Kalendář'), link: `/settings/calendars` },
+      { title: __('Plán'), link: '' },
     ];
 
     let calendarName = '';
@@ -74,7 +74,7 @@ class Base extends React.Component<Props> {
           <Table>
             <thead>
               <tr>
-                <th>{__('Your Scheduling Pages')}</th>
+                <th>{__('Vaše Stránky Plánování')}</th>
                 <th> {__('Akce')}</th>
               </tr>
             </thead>
@@ -100,9 +100,7 @@ class Base extends React.Component<Props> {
 
     return (
       <Wrapper
-        header={
-          <Wrapper.Header title={__('Schedule')} breadcrumb={breadcrumb} />
-        }
+        header={<Wrapper.Header title={__('Plán')} breadcrumb={breadcrumb} />}
         leftSidebar={
           calendars.length > 1 && (
             <Sidebar accountId={accountId} calendars={calendars} />
@@ -111,11 +109,11 @@ class Base extends React.Component<Props> {
         mainHead={
           <HeaderDescription
             icon="/images/actions/34.svg"
-            title={`Calendar & Schedule`}
+            title={`Kalendář a Rozvrh`}
             description={`${__(
-              "Manage your boards and calendars so that its easy to manage incoming pop ups or requests that is adaptable to your team's needs",
+              'Spravujte své nástěnky a kalendáře tak, aby bylo snadné spravovat příchozí vyskakovací okna nebo požadavky, které lze přizpůsobit potřebám vašeho týmu',
             )}.${__(
-              `Add in or delete boards and calendars to keep business development on track and in check`,
+              `Přidejte nebo odstraňte nástěnky a kalendáře, abyste udrželi rozvoj podnikání na správné cestě a pod kontrolou`,
             )}`}
           />
         }

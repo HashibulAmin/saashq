@@ -16,17 +16,19 @@ class BookingFlow extends React.Component<Props> {
   };
 
   render() {
-    const onChange = e =>
+    const onChange = (e) =>
       this.onChangeFunction(
         'confirmationMethod',
-        (e.currentTarget as HTMLInputElement).value
+        (e.currentTarget as HTMLInputElement).value,
       );
 
     return (
       <FlexItem>
         <LeftItem>
           <FormGroup>
-            <ControlLabel>How should new bookings be handled?</ControlLabel>
+            <ControlLabel>
+              Jak by se mělo nakládat s novými rezervacemi?
+            </ControlLabel>
 
             <br />
             <br />
@@ -36,10 +38,10 @@ class BookingFlow extends React.Component<Props> {
               checked={this.props.confirmationMethod === 'automatic'}
               onChange={onChange}
             >
-              Automatic
+              Automatický
               <br />
-              Bookings are auto-confirmed when they are submitted (instant
-              booking)
+              Rezervace jsou automaticky potvrzeny při odeslání (okamžitě
+              rezervace)
             </FormControl>
 
             <br />
@@ -50,9 +52,9 @@ class BookingFlow extends React.Component<Props> {
               checked={this.props.confirmationMethod === 'manual'}
               onChange={onChange}
             >
-              Manual
+              Manuál
               <br />
-              You'll be notified and can confirm or decline bookings manually
+              Budete upozorněni a můžete ručně potvrdit nebo odmítnout rezervace
             </FormControl>
           </FormGroup>
         </LeftItem>

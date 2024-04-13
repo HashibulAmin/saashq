@@ -50,7 +50,7 @@ const LastBoard = (props: LastBoardProps) => {
 
   const extendedProps = {
     ...props,
-    boardId: lastBoard._id
+    boardId: lastBoard._id,
   };
 
   return <HomeContainer {...extendedProps} />;
@@ -63,10 +63,10 @@ const LastBoardContainer = withProps<MainProps>(
     graphql<MainProps, BoardGetLastQueryResponse, {}>(
       gql(queries.boardGetLast),
       {
-        name: 'boardGetLastQuery'
-      }
-    )
-  )(LastBoard)
+        name: 'boardGetLastQuery',
+      },
+    ),
+  )(LastBoard),
 );
 
 // Main home component
@@ -83,4 +83,4 @@ const MainContainer = (props: HomerProps) => {
   return <LastBoardContainer {...props} />;
 };
 
-export default withRouter<HomerProps>(MainContainer);
+export default withRouter<HomerProps, any>(MainContainer);

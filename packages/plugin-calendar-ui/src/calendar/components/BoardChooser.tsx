@@ -72,7 +72,7 @@ class BoardChooser extends React.Component<Props> {
                   currentBoard ? currentBoard._id : ''
                 }`}
               >
-                Create Group
+                Vytvořit Skupinu
               </Link>
             </Button>
           }
@@ -117,13 +117,16 @@ class BoardChooser extends React.Component<Props> {
             <Dropdown.Toggle as={DropdownToggle} id="dropdown-group">
               <HeaderButton hasBackground={true}>
                 <Icon icon="window-grid" />
-                {(currentGroup && currentGroup.name) || __('Choose group')}
+                {(currentGroup && currentGroup.name) || __('Vyberte skupinu')}
               </HeaderButton>
             </Dropdown.Toggle>
             <Dropdown.Menu>{this.renderGroups()}</Dropdown.Menu>
           </Dropdown>
           <HeaderLink>
-            <Tip text={__('Manage Board & Group')} placement="bottom">
+            <Tip
+              text={__('Správa Představenstva a Skupiny')}
+              placement="bottom"
+            >
               <Link
                 to={`/settings/calendars?boardId=${
                   currentBoard ? currentBoard._id : ''

@@ -87,7 +87,7 @@ class CreateSchedulePage extends React.Component<FinalProps, State> {
       duration: event.duration || 45,
 
       calendarId: calendar._id,
-      timezone: config.timezone || 'Asia/Ulaanbaatar',
+      timezone: config.timezone || 'Europe/Prague',
 
       confirmationMethod: booking.confirmationMethod || 'automatic',
       cancellationPolicy: booking.cancellationPolicy || '',
@@ -121,11 +121,11 @@ class CreateSchedulePage extends React.Component<FinalProps, State> {
     let slug = this.state.slug;
 
     if (!title) {
-      return Alert.error('Write title');
+      return Alert.error('Napište název');
     }
 
     if (!location) {
-      return Alert.error('Write location');
+      return Alert.error('Napište umístění');
     }
 
     if (!slug) {
@@ -223,8 +223,8 @@ class CreateSchedulePage extends React.Component<FinalProps, State> {
 
     const breadcrumb = [
       { title: __('Nastavení'), link: '/settings' },
-      { title: __('Calendar'), link: '/settings/calendars' },
-      { title: __('Schedule'), link: `/settings/schedule` },
+      { title: __('Kalendář'), link: '/settings/calendars' },
+      { title: __('Plán'), link: `/settings/schedule` },
     ];
 
     const onChangeCalendar = (item) =>
@@ -232,11 +232,14 @@ class CreateSchedulePage extends React.Component<FinalProps, State> {
 
     return (
       <StepWrapper>
-        <Wrapper.Header title={__('Schedule')} breadcrumb={breadcrumb} />
+        <Wrapper.Header title={__('Plán')} breadcrumb={breadcrumb} />
         <Content>
           <LeftContent>
             <Steps>
-              <Step img="/images/icons/saashq-07.svg" title="Event Info">
+              <Step
+                img="/images/icons/saashq-07.svg"
+                title="Informace o Události"
+              >
                 <Event
                   onChange={this.onChange}
                   title={title}
@@ -250,12 +253,12 @@ class CreateSchedulePage extends React.Component<FinalProps, State> {
                   <LeftItem>
                     <FormGroup>
                       <ControlLabel>
-                        Which calendar should be used for availability and
-                        booking?
+                        Který kalendář by měl být použit pro dostupnost a
+                        rezervace?
                       </ControlLabel>
 
                       <Select
-                        placeholder={__('Choose a calendar')}
+                        placeholder={__('Vyberte kalendář')}
                         value={calendarId}
                         options={this.renderOptions(calendars)}
                         onChange={onChangeCalendar}
@@ -266,25 +269,25 @@ class CreateSchedulePage extends React.Component<FinalProps, State> {
                 </FlexItem>
               </Step>
 
-              <Step img="/images/icons/saashq-20.svg" title="Opening Hours">
+              <Step img="/images/icons/saashq-20.svg" title="Otevírací Doba">
                 <OpeningHours onChange={this.onChange} timezone={timezone} />
               </Step>
 
-              <Step img="/images/icons/saashq-16.svg" title="Booking flow">
+              <Step img="/images/icons/saashq-16.svg" title="Rezervační Tok">
                 <BookingFlow
                   onChange={this.onChange}
                   confirmationMethod={confirmationMethod}
                 />
               </Step>
 
-              <Step img="/images/icons/saashq-18.svg" title="Custom fields">
+              <Step img="/images/icons/saashq-18.svg" title="Vlastní pole">
                 <CustomFields
                   onChange={this.onChange}
                   additionalFields={additionalFields}
                 />
               </Step>
 
-              <Step img="/images/icons/saashq-12.svg" title="Page Styles">
+              <Step img="/images/icons/saashq-12.svg" title="Styly Stránek">
                 <PageStyles
                   onChange={this.onChange}
                   companyName={companyName}
@@ -297,8 +300,8 @@ class CreateSchedulePage extends React.Component<FinalProps, State> {
             </Steps>
             <ControlWrapper>
               <Indicator>
-                {__('You are')} {this.props.page ? 'editing' : 'creating'}{' '}
-                <strong /> {__('page')}
+                {__('Ty jsi')} {this.props.page ? 'editace' : 'vytváření'}{' '}
+                <strong /> {__('strana')}
               </Indicator>
               {this.renderButtons()}
             </ControlWrapper>

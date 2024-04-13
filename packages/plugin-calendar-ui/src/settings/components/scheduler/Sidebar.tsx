@@ -15,7 +15,7 @@ class Calendars extends React.Component<Props, {}> {
   renderItems = () => {
     const { calendars, accountId } = this.props;
 
-    return calendars.map(calendar => (
+    return calendars.map((calendar) => (
       <BoardItem key={calendar._id} isActive={calendar.accountId === accountId}>
         <Link to={`?accountId=${calendar.accountId}`}>{calendar.name}</Link>
       </BoardItem>
@@ -24,7 +24,7 @@ class Calendars extends React.Component<Props, {}> {
 
   render() {
     return (
-      <Sidebar wide={true} header={<Header>Calendars</Header>} full={true}>
+      <Sidebar wide={true} header={<Header>Kalendáře</Header>} full={true}>
         <List>{this.renderItems()}</List>
       </Sidebar>
     );

@@ -10,7 +10,7 @@ import { __ } from 'coreui/utils';
 type Props = {
   onChange: (
     name: 'title' | 'location' | 'duration' | 'cancellationPolicy',
-    value: string | number
+    value: string | number,
   ) => void;
   title?: string;
   location?: string;
@@ -34,13 +34,13 @@ class Event extends React.Component<Props, State> {
     this.state = {
       title: '',
       location: '',
-      duration: duration || 45
+      duration: duration || 45,
     };
   }
 
   onChangeInput = (
     name: 'title' | 'location' | 'duration' | 'cancellationPolicy',
-    e: React.FormEvent
+    e: React.FormEvent,
   ) => {
     const val = (e.target as HTMLInputElement).value;
     const value = name === 'duration' ? parseInt(val, 10) : val;
@@ -55,10 +55,10 @@ class Event extends React.Component<Props, State> {
       <FlexItem>
         <LeftItem>
           <FormGroup>
-            <ControlLabel>Event title</ControlLabel>
+            <ControlLabel>Název události</ControlLabel>
 
             <FormControl
-              placeholder={__('Write here Event title') + '.'}
+              placeholder={__('Sem napište název akce') + '.'}
               rows={3}
               value={title}
               onChange={this.onChangeInput.bind(null, 'title')}
@@ -66,10 +66,10 @@ class Event extends React.Component<Props, State> {
           </FormGroup>
 
           <FormGroup>
-            <ControlLabel>Event location</ControlLabel>
+            <ControlLabel>Místo akce</ControlLabel>
 
             <FormControl
-              placeholder={__('Write here Event location') + '.'}
+              placeholder={__('Zde napište místo konání akce') + '.'}
               rows={3}
               value={location}
               onChange={this.onChangeInput.bind(null, 'location')}
@@ -100,7 +100,7 @@ class Event extends React.Component<Props, State> {
           </FlexRow>
 
           <FormGroup>
-            <ControlLabel>Cancellation Policy</ControlLabel>
+            <ControlLabel>Storno Podmínky</ControlLabel>
 
             <FormControl
               componentClass="textarea"

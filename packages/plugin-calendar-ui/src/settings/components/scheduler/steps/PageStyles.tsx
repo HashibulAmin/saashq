@@ -79,7 +79,7 @@ class PageStyles extends React.Component<Props, State> {
           {this.renderField('companyName', 'Company name')}
 
           <SubItem>
-            <ControlLabel>{__('Choose a background color')}</ControlLabel>
+            <ControlLabel>{__('Vyberte barvu pozadí')}</ControlLabel>
             <OverlayTrigger
               trigger="click"
               rootClose={true}
@@ -92,9 +92,9 @@ class PageStyles extends React.Component<Props, State> {
             </OverlayTrigger>
           </SubItem>
 
-          {this.renderField('slug', 'Custom page slug')}
-          {this.renderField('submitText', 'Submit button label')}
-          {this.renderField('thankYouText', 'Thank you message')}
+          {this.renderField('slug', 'Vlastní stránka slimák')}
+          {this.renderField('submitText', 'Štítek tlačítka Odeslat')}
+          {this.renderField('thankYouText', 'Děkovná zpráva')}
         </LeftItem>
       </FlexItem>
     );

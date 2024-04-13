@@ -13,14 +13,14 @@ module.exports = {
   },
   menus: [
     {
-      text: "Calendar",
+      text: "Kalendář",
       url: "/calendar",
       icon: "icon-calendar-alt",
       location: "mainNavigation",
       permission: "showCalendars",
     },
     {
-      text: "Calendar settings",
+      text: "Nastavení kalendáře",
       to: "/settings/calendars",
       image: "/images/icons/saashq-21.svg",
       location: "settings",

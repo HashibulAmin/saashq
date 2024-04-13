@@ -44,14 +44,14 @@ class EditForm extends React.Component<FinalProps, State> {
 
     if (!account && currentUser) {
       account =
-        accounts.find(cal => {
+        accounts.find((cal) => {
           return cal.isPrimary && cal.userId === currentUser._id;
         }) || accounts[0];
     }
 
     this.state = {
       accountId: account && account.accountId,
-      calendar: account && account.calendars[0]
+      calendar: account && account.calendars[0],
     };
 
     this.hideModal = this.hideModal.bind(this);
@@ -65,7 +65,7 @@ class EditForm extends React.Component<FinalProps, State> {
 
       if (!account && currentUser) {
         account =
-          accounts.find(cal => {
+          accounts.find((cal) => {
             return cal.isPrimary && cal.userId === currentUser._id;
           }) || accounts[0];
       }
@@ -76,8 +76,8 @@ class EditForm extends React.Component<FinalProps, State> {
           calendar: !event
             ? account.calendars[0]
             : account.calendars.find(
-                cal => cal.providerCalendarId === event.providerCalendarId
-              )
+                (cal) => cal.providerCalendarId === event.providerCalendarId,
+              ),
         });
       }
     }
@@ -108,7 +108,7 @@ class EditForm extends React.Component<FinalProps, State> {
     return (
       <Modal.Header closeButton={true}>
         <Modal.Title>
-          {__(`${this.props.event ? 'Edit' : 'Create'}  Event`)}
+          {__(`${this.props.event ? 'Upravit' : 'Vytvořit'}  Událost`)}
         </Modal.Title>
       </Modal.Header>
     );
@@ -123,30 +123,30 @@ class EditForm extends React.Component<FinalProps, State> {
       return (
         <Dropdown>
           <Dropdown.Toggle as={DropdownToggle} id="dropdown-board">
-            {calendar ? calendar.name : 'Select calendar'}
+            {calendar ? calendar.name : 'Vyberte kalendář'}
             <Icon icon="angle-down" />
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <ul>
-              {accounts.map(acc => {
+              {accounts.map((acc) => {
                 return (
                   <li key={acc._id}>
                     {acc.name}
                     <ul>
-                      {acc.calendars.map(cal => {
+                      {acc.calendars.map((cal) => {
                         return (
                           <li
                             key={cal._id}
                             onClick={this.onChangeCalendar.bind(
                               this,
                               cal,
-                              acc.accountId
+                              acc.accountId,
                             )}
                           >
                             <Icon
                               icon={'circle'}
                               style={{
-                                color: cal.color || (acc && acc.color)
+                                color: cal.color || (acc && acc.color),
                               }}
                             />{' '}
                             &nbsp;
@@ -169,7 +169,7 @@ class EditForm extends React.Component<FinalProps, State> {
         {renderAccounts()}
 
         <FormGroup>
-          <ControlLabel required={true}>Title</ControlLabel>
+          <ControlLabel required={true}>Titul</ControlLabel>
 
           <FormControl
             {...formProps}
@@ -181,7 +181,7 @@ class EditForm extends React.Component<FinalProps, State> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>Description</ControlLabel>
+          <ControlLabel>Popis</ControlLabel>
 
           <FormControl
             {...formProps}
@@ -193,7 +193,7 @@ class EditForm extends React.Component<FinalProps, State> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>Start Date</ControlLabel>
+          <ControlLabel>Datum Zahájení</ControlLabel>
 
           <FormControl
             {...formProps}
@@ -204,7 +204,7 @@ class EditForm extends React.Component<FinalProps, State> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>End Date</ControlLabel>
+          <ControlLabel>Datum Ukončení</ControlLabel>
 
           <FormControl
             {...formProps}
@@ -219,10 +219,10 @@ class EditForm extends React.Component<FinalProps, State> {
             values: {
               ...values,
               accountId: this.state.accountId,
-              calendarId: calendar.providerCalendarId
+              calendarId: calendar.providerCalendarId,
             },
             isSubmitted,
-            callback: this.hideModal
+            callback: this.hideModal,
           })}
         </ModalFooter>
       </CalendarForm>

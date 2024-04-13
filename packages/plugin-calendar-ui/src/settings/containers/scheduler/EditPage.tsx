@@ -3,7 +3,7 @@ import * as compose from 'lodash.flowright';
 import { Alert, withProps } from '@saashq/ui/src/utils';
 import {
   EditSchedulePageMutationResponse,
-  SchedulePageMutationVariables
+  SchedulePageMutationVariables,
 } from '../../types';
 
 import PageForm from '../../components/scheduler/PageForm';
@@ -35,7 +35,7 @@ class EditPageContainer extends React.Component<FinalProps, {}> {
       accountId,
       editMutation,
       history,
-      pageId
+      pageId,
     } = this.props;
 
     if (fetchCalendarQuery.loading || fetchPageQuery.loading) {
@@ -43,21 +43,19 @@ class EditPageContainer extends React.Component<FinalProps, {}> {
     }
 
     if (fetchCalendarQuery.error || fetchPageQuery.error) {
-      return (
-        <span style={{ color: 'red' }}>Integrations api is not running</span>
-      );
+      return <span style={{ color: 'red' }}>Integrations api neběží</span>;
     }
 
     const save = (doc: SchedulePageMutationVariables) => {
       editMutation({
-        variables: { _id: pageId, ...doc }
+        variables: { _id: pageId, ...doc },
       })
         .then(() => {
-          Alert.success('You successfully updated a page');
+          Alert.success('Úspěšně jste aktualizovali stránku');
 
           history.push('/settings/schedule');
         })
-        .catch(error => {
+        .catch((error) => {
           Alert.error(error.message);
         });
     };
@@ -66,7 +64,7 @@ class EditPageContainer extends React.Component<FinalProps, {}> {
       save,
       accountId,
       calendars: fetchCalendarQuery.integrationsNylasGetCalendars || [],
-      page: fetchPageQuery.integrationsNylasGetSchedulePage
+      page: fetchPageQuery.integrationsNylasGetSchedulePage,
     };
 
     return <PageForm {...updatedProps} />;
@@ -82,28 +80,28 @@ export default withProps<Props>(
         options: ({ pageId }) => {
           return {
             variables: {
-              pageId
-            }
+              pageId,
+            },
           };
-        }
-      }
+        },
+      },
     ),
     graphql<Props, any>(gql(queries.integrationsNylasGetCalendars), {
       name: 'fetchCalendarQuery',
       options: ({ accountId }) => {
         return {
           variables: {
-            accountId
-          }
+            accountId,
+          },
         };
-      }
+      },
     }),
     graphql<
       Props,
       SchedulePageMutationVariables,
       EditSchedulePageMutationResponse
     >(gql(mutations.editSchedulePage), {
-      name: 'editMutation'
-    })
-  )(EditPageContainer)
+      name: 'editMutation',
+    }),
+  )(EditPageContainer),
 );

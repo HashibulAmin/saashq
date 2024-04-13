@@ -38,20 +38,20 @@ class BoardsContainer extends React.Component<FinalProps> {
     };
 
     // remove action
-    const remove = boardId => {
-      confirm(getWarningMessage('Board'), { hasDeleteConfirm: true }).then(
+    const remove = (boardId) => {
+      confirm(getWarningMessage('Deska'), { hasDeleteConfirm: true }).then(
         () => {
           removeMutation({
             variables: { _id: boardId },
-            refetchQueries: getRefetchQueries()
+            refetchQueries: getRefetchQueries(),
           })
             .then(() => {
-              Alert.success('You successfully deleted a board');
+              Alert.success('Úspěšně jste smazali nástěnku');
             })
-            .catch(error => {
+            .catch((error) => {
               Alert.error(error.message);
             });
-        }
+        },
       );
     };
 
@@ -60,7 +60,7 @@ class BoardsContainer extends React.Component<FinalProps> {
       values,
       isSubmitted,
       callback,
-      object
+      object,
     }: IButtonMutateProps) => {
       return (
         <ButtonMutate
@@ -71,9 +71,9 @@ class BoardsContainer extends React.Component<FinalProps> {
           isSubmitted={isSubmitted}
           type="submit"
           beforeSubmit={removeHash}
-          successMessage={`You successfully ${
-            object ? 'updated' : 'added'
-          } a ${name}`}
+          successMessage={`Ty úspěšně ${
+            object ? 'aktualizováno' : 'přidal'
+          } A ${name}`}
         />
       );
     };
@@ -84,7 +84,7 @@ class BoardsContainer extends React.Component<FinalProps> {
       renderButton,
       remove,
       removeHash,
-      loading: boardsQuery.loading
+      loading: boardsQuery.loading,
     };
 
     return <Boards {...extendedProps} />;
@@ -96,7 +96,7 @@ const getRefetchQueries = () => {
 };
 
 const generateOptions = () => ({
-  refetchQueries: getRefetchQueries()
+  refetchQueries: getRefetchQueries(),
 });
 
 export default withProps<Props>(
@@ -104,15 +104,15 @@ export default withProps<Props>(
     graphql<Props, BoardsQueryResponse, {}>(gql(queries.boards), {
       name: 'boardsQuery',
       options: () => ({
-        variables: {}
-      })
+        variables: {},
+      }),
     }),
     graphql<Props, RemoveBoardMutationResponse, {}>(
       gql(mutations.boardRemove),
       {
         name: 'removeMutation',
-        options: generateOptions()
-      }
-    )
-  )(withRouter<FinalProps>(BoardsContainer))
+        options: generateOptions(),
+      },
+    ),
+  )(withRouter<FinalProps, any>(BoardsContainer)),
 );

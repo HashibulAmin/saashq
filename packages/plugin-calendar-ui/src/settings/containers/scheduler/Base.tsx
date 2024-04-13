@@ -3,7 +3,7 @@ import * as compose from 'lodash.flowright';
 import { Alert, confirm, withProps } from '@saashq/ui/src/utils';
 import {
   CalendarsQueryResponse,
-  RemoveSchedulePageMutationResponse
+  RemoveSchedulePageMutationResponse,
 } from '../../types';
 import { mutations, queries } from '../../graphql';
 
@@ -34,7 +34,7 @@ class BaseContainer extends React.Component<FinalProps> {
       queryParams,
       history,
       calendarsQuery,
-      removeMutation
+      removeMutation,
     } = this.props;
 
     if (
@@ -45,22 +45,20 @@ class BaseContainer extends React.Component<FinalProps> {
     }
 
     if (fetchPagesQuery && fetchPagesQuery.error) {
-      return (
-        <span style={{ color: 'red' }}>Integrations api is not running</span>
-      );
+      return <span style={{ color: 'red' }}>Integration API neběží</span>;
     }
 
     const remove = (_id: string) => {
       confirm().then(() => {
         removeMutation({
-          variables: { pageId: _id }
+          variables: { pageId: _id },
         })
           .then(() => {
             fetchPagesQuery.refetch();
 
-            Alert.success('You successfully deleted a page');
+            Alert.success('Úspěšně jste smazali stránku');
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
       });
@@ -75,7 +73,7 @@ class BaseContainer extends React.Component<FinalProps> {
       pages,
       queryParams,
       history,
-      remove
+      remove,
     };
 
     return <Base {...updatedProps} />;
@@ -88,31 +86,31 @@ const WithProps = withProps<Props>(
       gql(integrationQueries.integrationsNylasGetSchedulePages),
       {
         name: 'fetchPagesQuery',
-        skip: props => !props.queryParams.accountId,
+        skip: (props) => !props.queryParams.accountId,
         options: ({ queryParams }) => {
           return {
             variables: {
-              accountId: queryParams.accountId
-            }
+              accountId: queryParams.accountId,
+            },
           };
-        }
-      }
+        },
+      },
     ),
     graphql<Props, CalendarsQueryResponse>(gql(queries.calendars), {
       name: 'calendarsQuery',
-      skip: props => !props.currentUser,
+      skip: (props) => !props.currentUser,
       options: ({ currentUser }) => ({
         variables: { userId: currentUser && currentUser._id },
-        fetchPolicy: 'network-only'
-      })
+        fetchPolicy: 'network-only',
+      }),
     }),
     graphql<Props, RemoveSchedulePageMutationResponse, { pageId: string }>(
       gql(mutations.deleteSchedulePage),
       {
-        name: 'removeMutation'
-      }
-    )
-  )(BaseContainer)
+        name: 'removeMutation',
+      },
+    ),
+  )(BaseContainer),
 );
 
 export default (props: Props) => (

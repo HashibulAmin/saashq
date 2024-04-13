@@ -35,7 +35,7 @@ class BoardForm extends React.Component<Props> {
     return (
       <>
         <FormGroup>
-          <ControlLabel required={true}>Name</ControlLabel>
+          <ControlLabel required={true}>Název</ControlLabel>
 
           <FormControl
             {...formProps}
@@ -53,7 +53,7 @@ class BoardForm extends React.Component<Props> {
             icon="cancel-1"
             onClick={closeModal}
           >
-            Cancel
+            Zrušení
           </Button>
 
           {renderButton({
@@ -61,7 +61,7 @@ class BoardForm extends React.Component<Props> {
             values: this.generateDoc(values),
             isSubmitted,
             callback: closeModal,
-            object: board
+            object: board,
           })}
         </ModalFooter>
       </>

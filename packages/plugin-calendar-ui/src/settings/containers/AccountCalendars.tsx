@@ -3,7 +3,7 @@ import * as compose from 'lodash.flowright';
 import { Alert, __, withProps } from 'coreui/utils';
 import {
   EditAccountCalendarMutationResponse,
-  EditAccountCalendarMutationVariables
+  EditAccountCalendarMutationVariables,
 } from '../types';
 
 import CalendarAccounts from '../components/AccountCalendars';
@@ -42,23 +42,23 @@ class EventContainer extends React.Component<FinalProps, {}> {
     const editCalendar = (doc: EditAccountCalendarMutationVariables) => {
       editMutation({
         variables: doc,
-        refetchQueries: getRefetchQueries(groupId)
+        refetchQueries: getRefetchQueries(groupId),
       })
         .then(() => {
           fetchCalendarQuery.refetch();
 
-          const msg = `${__(`You successfully edited a`)} ${__('calendar')}.`;
+          const msg = `${__(`Úspěšně jste upravili a`)} ${__('kalendář')}.`;
 
           Alert.success(msg);
         })
-        .catch(error => {
+        .catch((error) => {
           Alert.error(error.message);
         });
     };
 
     const updatedProps = {
       calendars: fetchCalendarQuery.integrationsNylasGetCalendars || [],
-      editCalendar
+      editCalendar,
     };
 
     return <CalendarAccounts {...updatedProps} />;
@@ -69,8 +69,8 @@ const getRefetchQueries = (groupId: string) => {
   return [
     {
       query: gql(calendarQueries.calendars),
-      variables: { groupId }
-    }
+      variables: { groupId },
+    },
   ];
 };
 
@@ -81,17 +81,17 @@ export default withProps<Props>(
       options: ({ accountId }) => {
         return {
           variables: {
-            accountId
-          }
+            accountId,
+          },
         };
-      }
+      },
     }),
     graphql<
       Props,
       EditAccountCalendarMutationResponse,
       EditAccountCalendarMutationVariables
     >(gql(mutations.editAccountCalendar), {
-      name: 'editMutation'
-    })
-  )(EventContainer)
+      name: 'editMutation',
+    }),
+  )(EventContainer),
 );

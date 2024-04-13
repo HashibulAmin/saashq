@@ -34,15 +34,15 @@ class GroupForm extends React.Component<Props, State> {
     this.state = {
       boardId: group.boardId || '',
       isPrivate: group.isPrivate || false,
-      selectedMemberIds: group ? group.memberIds || [] : []
+      selectedMemberIds: group ? group.memberIds || [] : [],
     };
   }
 
-  onChangeMembers = items => {
+  onChangeMembers = (items) => {
     this.setState({ selectedMemberIds: items });
   };
 
-  onChangeIsPrivate = e => {
+  onChangeIsPrivate = (e) => {
     const isChecked = (e.currentTarget as HTMLInputElement).checked;
     this.setState({ isPrivate: isChecked });
   };
@@ -64,27 +64,27 @@ class GroupForm extends React.Component<Props, State> {
       ...finalValues,
       memberIds: selectedMemberIds,
       isPrivate,
-      boardId
+      boardId,
     };
   };
 
-  renderOptions = array => {
-    return array.map(obj => ({
+  renderOptions = (array) => {
+    return array.map((obj) => ({
       value: obj._id,
-      label: obj.name
+      label: obj.name,
     }));
   };
 
   renderBoards() {
     const { boards } = this.props;
 
-    const onChange = item => this.setState({ boardId: item.value });
+    const onChange = (item) => this.setState({ boardId: item.value });
 
     return (
       <FormGroup>
-        <ControlLabel required={true}>Board</ControlLabel>
+        <ControlLabel required={true}>Deska</ControlLabel>
         <Select
-          placeholder={__('Choose a board')}
+          placeholder={__('Vyberte desku')}
           value={this.state.boardId}
           options={this.renderOptions(boards)}
           onChange={onChange}
@@ -103,10 +103,10 @@ class GroupForm extends React.Component<Props, State> {
 
     return (
       <FormGroup>
-        <ControlLabel>Members</ControlLabel>
+        <ControlLabel>členové</ControlLabel>
 
         <SelectTeamMembers
-          label="Choose members"
+          label="Vyberte členy"
           name="selectedMemberIds"
           initialValue={selectedMemberIds}
           onSelect={this.onChangeMembers}
@@ -125,13 +125,13 @@ class GroupForm extends React.Component<Props, State> {
       <div id="manage-group-modal">
         <Modal.Header closeButton={true}>
           <Modal.Title>
-            {group ? `Edit ${groupName}` : `Add ${groupName}`}
+            {group ? `Upravit ${groupName}` : `Přidat ${groupName}`}
           </Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
           <FormGroup>
-            <ControlLabel required={true}>Name</ControlLabel>
+            <ControlLabel required={true}>Název</ControlLabel>
             <FormControl
               {...formProps}
               name="name"
@@ -144,7 +144,7 @@ class GroupForm extends React.Component<Props, State> {
           {this.renderBoards()}
 
           <FormGroup>
-            <ControlLabel>Is private</ControlLabel>
+            <ControlLabel>Je soukromý</ControlLabel>
 
             <FormControl
               {...formProps}
@@ -164,7 +164,7 @@ class GroupForm extends React.Component<Props, State> {
               icon="times-circle"
               onClick={closeModal}
             >
-              Cancel
+              Zrušení
             </Button>
 
             {renderButton({
@@ -173,7 +173,7 @@ class GroupForm extends React.Component<Props, State> {
               isSubmitted,
               callback: closeModal,
               object: group,
-              confirmationUpdate: true
+              confirmationUpdate: true,
             })}
           </Modal.Footer>
         </Modal.Body>

@@ -23,7 +23,7 @@ class Boards extends React.Component<Props, {}> {
   renderItems = () => {
     const { boards, remove, renderButton, currentBoardId } = this.props;
 
-    return boards.map(board => (
+    return boards.map((board) => (
       <BoardRow
         key={board._id}
         isActive={currentBoardId === board._id}
@@ -43,18 +43,18 @@ class Boards extends React.Component<Props, {}> {
 
     const addBoard = (
       <Button btnStyle="success" icon="plus-circle" block={true}>
-        Add New Board
+        Přidat Novou Nástěnku
       </Button>
     );
 
-    const content = props => {
+    const content = (props) => {
       return this.renderBoardForm({ ...props, renderButton });
     };
 
     return (
       <Header>
         <ModalTrigger
-          title={__('New Board')}
+          title={__('Nová Deska')}
           trigger={addBoard}
           autoOpenKey="showBoardModal"
           content={content}
@@ -72,7 +72,7 @@ class Boards extends React.Component<Props, {}> {
           data={<List>{this.renderItems()}</List>}
           loading={loading}
           count={boards.length}
-          emptyText={__('There is no board')}
+          emptyText={__('Neexistuje žádná deska')}
           emptyImage="/images/actions/18.svg"
           objective={true}
         />

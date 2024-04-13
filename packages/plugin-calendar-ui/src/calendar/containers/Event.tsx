@@ -37,7 +37,7 @@ class EventContainer extends React.Component<FinalProps, {}> {
       document: gql(subscriptions.calendarEventUpdated),
       updateQuery: () => {
         this.props.integrationsGetNylasEventsQuery.refetch();
-      }
+      },
     });
   }
 
@@ -55,7 +55,7 @@ class EventContainer extends React.Component<FinalProps, {}> {
       removeEventMutation,
       startTime,
       endTime,
-      queryParams
+      queryParams,
     } = this.props;
 
     if (integrationsGetNylasEventsQuery.loading) {
@@ -68,36 +68,36 @@ class EventContainer extends React.Component<FinalProps, {}> {
 
     // remove action
     const remove = (_id: string, accountId: string) => {
-      confirm(getWarningMessage('Event'), { hasDeleteConfirm: true }).then(
+      confirm(getWarningMessage('Událost'), { hasDeleteConfirm: true }).then(
         () => {
           removeEventMutation({
             variables: {
               _id,
-              accountId
-            }
+              accountId,
+            },
           })
             .then(() => {
               integrationsGetNylasEventsQuery.refetch({
                 startTime,
                 endTime,
-                queryParams
+                queryParams,
               });
 
-              const msg = `${__(`You successfully deleted a`)} ${__('event')}.`;
+              const msg = `${__(`Úspěšně jste smazali an`)} ${__('událost')}.`;
 
               Alert.success(msg);
             })
-            .catch(error => {
+            .catch((error) => {
               Alert.error(error.message);
             });
-        }
+        },
       );
     };
 
     const updatedProps = {
       ...this.props,
       remove,
-      events: integrationsGetNylasEventsQuery.integrationsGetNylasEvents || []
+      events: integrationsGetNylasEventsQuery.integrationsGetNylasEvents || [],
     };
 
     return <Event {...updatedProps} />;
@@ -113,16 +113,16 @@ export default withProps<Props>(
           variables: {
             calendarIds,
             startTime,
-            endTime
-          }
+            endTime,
+          },
         };
-      }
+      },
     }),
     graphql<Props, any, { _id: string; accountId: string }>(
       gql(mutations.deleteEvent),
       {
-        name: 'removeEventMutation'
-      }
-    )
-  )(EventContainer)
+        name: 'removeEventMutation',
+      },
+    ),
+  )(EventContainer),
 );

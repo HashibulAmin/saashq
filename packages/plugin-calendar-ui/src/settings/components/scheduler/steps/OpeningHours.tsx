@@ -43,16 +43,13 @@ class OpeningHours extends React.Component<Props, State> {
 
     const defaultTime = (time: number) => {
       return new Date(
-        dayjs()
-          .startOf('day')
-          .add(time, 'hour')
-          .format('YYYY-MM-DD HH:mm')
+        dayjs().startOf('day').add(time, 'hour').format('YYYY-MM-DD HH:mm'),
       );
     };
     this.state = {
       days: ['M', 'T', 'W', 'R', 'F'],
       startDate: defaultTime(9),
-      endDate: defaultTime(17)
+      endDate: defaultTime(17),
     };
   }
 
@@ -69,8 +66,8 @@ class OpeningHours extends React.Component<Props, State> {
       {
         days,
         start: dayjs(startDate).format('HH:mm'),
-        end: dayjs(endDate).format('HH:mm')
-      }
+        end: dayjs(endDate).format('HH:mm'),
+      },
     ];
   };
 
@@ -92,11 +89,11 @@ class OpeningHours extends React.Component<Props, State> {
     this.setState({ days }, () => this.updateOpeningHours());
   };
 
-  onChangeStartDate = time => {
+  onChangeStartDate = (time) => {
     this.setState({ startDate: time }, () => this.updateOpeningHours());
   };
 
-  onChangeEndDate = time => {
+  onChangeEndDate = (time) => {
     this.setState({ endDate: time }, () => this.updateOpeningHours());
   };
 
@@ -110,9 +107,9 @@ class OpeningHours extends React.Component<Props, State> {
       <FlexItem>
         <LeftItem>
           <FormGroup>
-            <ControlLabel>What is the event time zone?</ControlLabel>
-            Time zone for opening hours and new events. Your invitees will see
-            your availability in their local time zone.
+            <ControlLabel>Jaké je časové pásmo události?</ControlLabel>
+            Časové pásmo pro otevírací dobu a nové události. Vaši pozvaní uvidí
+            vaši dostupnost v jejich místním časovém pásmu.
             <br />
             <FormControl
               componentClass="select"

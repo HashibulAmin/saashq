@@ -172,7 +172,7 @@ class LeftSidebar extends React.Component<Props, State> {
             }`}
           >
             <Button block={true} btnStyle="success" icon="cog">
-              Connect account
+              Připojit účet
             </Button>
           </Link>
         </MenuFooter>
@@ -248,7 +248,7 @@ class LeftSidebar extends React.Component<Props, State> {
             extra={
               <Link to="/settings/calendars">
                 <Button btnStyle="success" icon="cog">
-                  Create Board & Group
+                  Vytvořit Radu a Skupinu
                 </Button>
               </Link>
             }
@@ -261,7 +261,7 @@ class LeftSidebar extends React.Component<Props, State> {
       <Sidebar full={true} header={this.renderSidebarHeader()}>
         <FormGroup>
           <Datetime
-            inputProps={{ placeholder: 'Click to select a date' }}
+            inputProps={{ placeholder: 'Kliknutím vyberte datum' }}
             dateFormat="YYYY/MM/DD"
             timeFormat="HH:mm"
             closeOnSelect={true}

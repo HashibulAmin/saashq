@@ -139,9 +139,11 @@ class CustomFields extends React.Component<Props, State> {
       <FlexItem>
         <LeftItem>
           <FormGroup>
-            <ControlLabel>What info should guests provide?</ControlLabel>
-            {this.renderRequiredField('Name')}
-            {this.renderRequiredField('Email')}
+            <ControlLabel>
+              Jaké informace by měli hosté poskytnout?
+            </ControlLabel>
+            {this.renderRequiredField('Název')}
+            {this.renderRequiredField('E-mailem')}
           </FormGroup>
 
           {additionalFields.map((field, index) => (

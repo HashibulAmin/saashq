@@ -133,7 +133,7 @@ class Groups extends React.Component<Props, State> {
     return (
       <>
         <Count>
-          {groups.length} {__('group')}
+          {groups.length} {__('skupina')}
           {groups.length > 1 && 's'}
         </Count>
         <Table>
@@ -154,7 +154,7 @@ class Groups extends React.Component<Props, State> {
       <Dropdown className="dropdown-btn" alignRight={true}>
         <Dropdown.Toggle as={DropdownToggle} id="dropdown-customize">
           <Button btnStyle="simple">
-            {__('Add calendar')} <Icon icon="angle-down" />
+            {__('Přidat kalendář')} <Icon icon="angle-down" />
           </Button>
         </Dropdown.Toggle>
         <Dropdown.Menu>
@@ -184,7 +184,7 @@ class Groups extends React.Component<Props, State> {
       <>
         {this.addButton()}
         <Button btnStyle="success" icon="plus-circle" onClick={this.addGroup}>
-          Add group
+          Přidat skupinu
         </Button>
       </>
     );

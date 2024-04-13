@@ -43,7 +43,7 @@ class CalendarForm extends React.Component<FinalProps, State> {
     this.state = {
       backgroundColor: colors.colorPrimaryDark,
       groupId: '',
-      isPrimary: false
+      isPrimary: false,
     };
   }
 
@@ -54,17 +54,17 @@ class CalendarForm extends React.Component<FinalProps, State> {
       this.setState({
         backgroundColor: calendar.color,
         groupId: calendar.groupId,
-        isPrimary: calendar.isPrimary || false
+        isPrimary: calendar.isPrimary || false,
       });
     }
   }
 
-  onChangeIsPrimary = e => {
+  onChangeIsPrimary = (e) => {
     const isChecked = (e.currentTarget as HTMLInputElement).checked;
     this.setState({ isPrimary: isChecked });
   };
 
-  onColorChange = e => {
+  onColorChange = (e) => {
     this.setState({ backgroundColor: e.hex });
   };
 
@@ -81,27 +81,27 @@ class CalendarForm extends React.Component<FinalProps, State> {
       ...finalValues,
       groupId,
       isPrimary,
-      color: backgroundColor
+      color: backgroundColor,
     };
   };
 
-  renderOptions = array => {
-    return array.map(obj => ({
+  renderOptions = (array) => {
+    return array.map((obj) => ({
       value: obj._id,
-      label: obj.name
+      label: obj.name,
     }));
   };
 
   renderGroups() {
     const { groups, calendar } = this.props;
 
-    const onChange = item => this.setState({ groupId: item.value });
+    const onChange = (item) => this.setState({ groupId: item.value });
 
     return (
       <FormGroup>
-        <ControlLabel required={true}>Group</ControlLabel>
+        <ControlLabel required={true}>Skupina</ControlLabel>
         <Select
-          placeholder={__('Choose a group')}
+          placeholder={__('Vyberte skupinu')}
           value={this.state.groupId || (calendar && calendar.groupId)}
           options={this.renderOptions(groups)}
           onChange={onChange}
@@ -114,7 +114,7 @@ class CalendarForm extends React.Component<FinalProps, State> {
   renderContent = (formProps: IFormProps) => {
     const { calendar, renderButton, closeModal, currentUserId } = this.props;
     const { values, isSubmitted } = formProps;
-    const calendarName = 'calendar';
+    const calendarName = 'kalendář';
     const showPrimary =
       !calendar || (calendar && currentUserId === calendar.userId);
 
@@ -134,14 +134,14 @@ class CalendarForm extends React.Component<FinalProps, State> {
       <div id="manage-calendar-modal">
         <Modal.Header closeButton={true}>
           <Modal.Title>
-            {calendar ? `Edit ${calendarName}` : `Add ${calendarName}`}
+            {calendar ? `Upravit ${calendarName}` : `Přidat ${calendarName}`}
           </Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
           <Flex>
             <FormGroup>
-              <ControlLabel>Background</ControlLabel>
+              <ControlLabel>Pozadí</ControlLabel>
               <div>
                 <OverlayTrigger
                   trigger="click"
@@ -163,7 +163,7 @@ class CalendarForm extends React.Component<FinalProps, State> {
 
           {showPrimary && (
             <FormGroup>
-              <ControlLabel>Is primary</ControlLabel>
+              <ControlLabel>Je primární</ControlLabel>
 
               <FormControl
                 {...formProps}
@@ -182,7 +182,7 @@ class CalendarForm extends React.Component<FinalProps, State> {
               icon="times-circle"
               onClick={closeModal}
             >
-              Cancel
+              Zrušení
             </Button>
 
             {renderButton({
@@ -191,7 +191,7 @@ class CalendarForm extends React.Component<FinalProps, State> {
               isSubmitted,
               callback: closeModal,
               object: calendar,
-              confirmationUpdate: true
+              confirmationUpdate: true,
             })}
           </Modal.Footer>
         </Modal.Body>

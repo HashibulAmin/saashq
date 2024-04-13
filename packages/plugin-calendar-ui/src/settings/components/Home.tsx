@@ -18,22 +18,22 @@ class Home extends React.Component<Props, {}> {
 
     const breadcrumb = [
       { title: __('Nastavení'), link: '/settings' },
-      { title: __('Calendar'), link: `/settings/calendars` },
+      { title: __('Kalendář'), link: `/settings/calendars` },
     ];
 
     return (
       <Wrapper
         header={
-          <Wrapper.Header title={__('Calendar')} breadcrumb={breadcrumb} />
+          <Wrapper.Header title={__('Kalendář')} breadcrumb={breadcrumb} />
         }
         mainHead={
           <HeaderDescription
             icon="/images/actions/34.svg"
-            title={__(`Group & Calendar`)}
+            title={__(`Skupina a Kalendář`)}
             description={`${__(
-              `Manage your boards and calendars so that its easy to manage incoming pop ups or requests that is adaptable to your team's needs`,
+              `Spravujte své nástěnky a kalendáře tak, aby bylo snadné spravovat příchozí vyskakovací okna nebo požadavky, které lze přizpůsobit potřebám vašeho týmu`,
             )}.${__(
-              `Add in or delete boards and calendars to keep business development on track and in check`,
+              `Přidejte nebo odstraňte nástěnky a kalendáře, abyste udrželi rozvoj podnikání na správné cestě a pod kontrolou`,
             )}`}
           />
         }

@@ -42,7 +42,7 @@ const CalendarContext = React.createContext({} as IStore);
 
 export const CalendarConsumer = CalendarContext.Consumer;
 
-const breadcrumb = [{ title: __('Calendar'), link: '/calendar' }];
+const breadcrumb = [{ title: __('Kalendář'), link: '/calendar' }];
 class CalendarWrapper extends React.Component<Props, State> {
   constructor(props) {
     super(props);
@@ -50,31 +50,31 @@ class CalendarWrapper extends React.Component<Props, State> {
     this.state = {
       currentDate: new Date(),
       type: TYPES.MONTH,
-      calendarIds: []
+      calendarIds: [],
     };
   }
 
-  typeOnChange = type => {
+  typeOnChange = (type) => {
     this.setState({ type });
   };
 
-  dateOnChange = date => {
+  dateOnChange = (date) => {
     this.setState({ currentDate: date });
   };
 
-  onDayClick = date => {
+  onDayClick = (date) => {
     this.setState({ type: TYPES.DAY, currentDate: date });
   };
 
-  onChangeCalendarIds = calendarIds => {
+  onChangeCalendarIds = (calendarIds) => {
     this.setState({ calendarIds });
   };
 
   setColors() {
     const color = {};
 
-    this.props.accounts.map(acc => {
-      return acc.calendars.map(calendar => {
+    this.props.accounts.map((acc) => {
+      return acc.calendars.map((calendar) => {
         return (color[calendar.providerCalendarId] = acc.color);
       });
     });
@@ -122,14 +122,14 @@ class CalendarWrapper extends React.Component<Props, State> {
         <Icon icon="angle-right" onClick={this.onChange.bind(this, true)} />
         <h2>{dayjs(currentDate).format(format)}</h2>
         <Button btnStyle="simple" onClick={onClick}>
-          Today
+          Dnes
         </Button>
       </CalendarController>
     );
   };
 
   renderOptions = (list: string[]) => {
-    return list.map(item => ({ value: item, label: item.toUpperCase() }));
+    return list.map((item) => ({ value: item, label: item.toUpperCase() }));
   };
 
   renderTypeChooser = () => {
@@ -137,7 +137,7 @@ class CalendarWrapper extends React.Component<Props, State> {
 
     return (
       <ButtonGroup>
-        {TYPES.all.map(item => {
+        {TYPES.all.map((item) => {
           const onClick = () => this.typeOnChange(item);
 
           return (
@@ -163,7 +163,7 @@ class CalendarWrapper extends React.Component<Props, State> {
       currentUser,
       currentGroup,
       currentBoard,
-      boards
+      boards,
     } = this.props;
 
     const actionBar = (
@@ -176,7 +176,7 @@ class CalendarWrapper extends React.Component<Props, State> {
 
     const mainContent = (
       <Wrapper
-        header={<Wrapper.Header title="Calendar" breadcrumb={breadcrumb} />}
+        header={<Wrapper.Header title="Kalendář" breadcrumb={breadcrumb} />}
         leftSidebar={
           <Sidebar
             dateOnChange={this.dateOnChange}

@@ -3,7 +3,7 @@ import * as compose from 'lodash.flowright';
 import { Alert, withProps } from '@saashq/ui/src/utils';
 import {
   CreateSchedulePageMutationResponse,
-  SchedulePageMutationVariables
+  SchedulePageMutationVariables,
 } from '../../types';
 
 import PageForm from '../../components/scheduler/PageForm';
@@ -27,33 +27,27 @@ type FinalProps = {
 
 class FormContainer extends React.Component<FinalProps, {}> {
   render() {
-    const {
-      fetchCalendarQuery,
-      accountId,
-      createMutation,
-      history
-    } = this.props;
+    const { fetchCalendarQuery, accountId, createMutation, history } =
+      this.props;
 
     if (fetchCalendarQuery.loading) {
       return <Spinner objective={true} />;
     }
 
     if (fetchCalendarQuery.error) {
-      return (
-        <span style={{ color: 'red' }}>Integrations api is not running</span>
-      );
+      return <span style={{ color: 'red' }}>Integrations api neběží</span>;
     }
 
     const save = (doc: SchedulePageMutationVariables) => {
       createMutation({
         variables: doc,
-        refetchQueries: getRefetchQueries(accountId)
+        refetchQueries: getRefetchQueries(accountId),
       })
         .then(() => {
-          Alert.success('You successfully created a page');
+          Alert.success('Úspěšně jste vytvořili stránku');
           history.push('/settings/schedule');
         })
-        .catch(error => {
+        .catch((error) => {
           Alert.error(error.message);
         });
     };
@@ -61,7 +55,7 @@ class FormContainer extends React.Component<FinalProps, {}> {
     const updatedProps = {
       save,
       accountId,
-      calendars: fetchCalendarQuery.integrationsNylasGetCalendars || []
+      calendars: fetchCalendarQuery.integrationsNylasGetCalendars || [],
     };
 
     return <PageForm {...updatedProps} />;
@@ -73,9 +67,9 @@ const getRefetchQueries = (accountId: string) => {
     {
       query: gql(integrationQueries.integrationsNylasGetSchedulePages),
       variables: {
-        accountId
-      }
-    }
+        accountId,
+      },
+    },
   ];
 };
 
@@ -86,17 +80,17 @@ export default withProps<Props>(
       options: ({ accountId }) => {
         return {
           variables: {
-            accountId
-          }
+            accountId,
+          },
         };
-      }
+      },
     }),
     graphql<
       Props,
       SchedulePageMutationVariables,
       CreateSchedulePageMutationResponse
     >(gql(mutations.createSchedulePage), {
-      name: 'createMutation'
-    })
-  )(FormContainer)
+      name: 'createMutation',
+    }),
+  )(FormContainer),
 );

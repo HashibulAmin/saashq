@@ -19,7 +19,7 @@ class Schedule extends React.Component<
     super(props);
 
     this.state = {
-      iFrameHeight: 600
+      iFrameHeight: 600,
     };
   }
 
@@ -36,7 +36,7 @@ class Schedule extends React.Component<
           src={`https://schedule.nylas.com/${slug}`}
           width="100%"
           height={this.state.iFrameHeight}
-          title="SaasHQ schedule"
+          title="SaasHQ plán"
         />
       </ScheduleContainer>
     );

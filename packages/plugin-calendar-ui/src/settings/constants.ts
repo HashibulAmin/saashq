@@ -3,18 +3,19 @@ import { __ } from '@saashq/ui/src/utils/core';
 export const CALENDAR_INTEGRATIONS = [
   {
     kind: 'nylas-gmail',
-    name: 'Gmail by Nylas',
+    name: 'Gmail podle Nylas',
   },
   {
     kind: 'nylas-office365',
-    name: 'Office 365 by Nylas',
+    name: 'Office 365 podle Nylas',
   },
 ];
 
 export const INTEGRATIONS = [
   {
     name: 'Facebook Post',
-    description: 'Connect to Facebook posts right from your Týmová Schránka',
+    description:
+      'Připojte se k příspěvkům na Facebooku přímo ze svého Týmová Schránka',
     inMessenger: false,
     isAvailable: true,
     kind: 'facebook-post',
@@ -22,12 +23,12 @@ export const INTEGRATIONS = [
     createModal: 'facebook-post',
     createUrl: '/settings/add-ons/createFacebook',
     category:
-      'All integrations, For support teams, Marketing automation, Social media',
+      'Všechny integrace, Pro týmy podpory, Marketingová automatizace, Sociální média',
   },
   {
     name: 'Facebook Messenger',
     description:
-      'Connect and manage Facebook Messages right from your Týmová Schránka',
+      'Připojte se a spravujte zprávy na Facebooku přímo ze svého Týmová Schránka',
     inMessenger: false,
     isAvailable: true,
     kind: 'facebook-messenger',
@@ -35,11 +36,12 @@ export const INTEGRATIONS = [
     createModal: 'facebook-messenger',
     createUrl: '/settings/add-ons/createFacebook',
     category:
-      'All integrations, For support teams, Messaging, Social media, Conversation',
+      'Všechny integrace, Pro týmy podpory, Zprávy, Sociální média, Konverzace',
   },
   {
     name: 'Messenger',
-    description: 'See and reply to Messenger messages in your Týmová Schránka',
+    description:
+      'Prohlížejte si zprávy Messengeru a odpovídejte na ně Týmová Schránka',
     inMessenger: false,
     isAvailable: true,
     kind: 'messenger',
@@ -47,12 +49,12 @@ export const INTEGRATIONS = [
     createModal: 'messenger',
     createUrl: '/settings/add-ons/createMessenger',
     category:
-      'All integrations, For support teams, For marketing teams, Marketing automation, Conversation',
+      'Všechny integrace, Pro týmy podpory, Pro marketingové týmy, Marketingová automatizace, Konverzace',
   },
   {
     name: 'Gmail',
     description: __(
-      'Connect a company email address such as sales@mycompany.com or info@mycompany.com',
+      'Připojte firemní e-mailovou adresu, například sales@mycompany.com nebo info@mycompany.com',
     ),
     inMessenger: false,
     isAvailable: true,
@@ -61,12 +63,12 @@ export const INTEGRATIONS = [
     createModal: 'gmail',
     createUrl: '/settings/add-ons/createGmail',
     category:
-      'All integrations, For support teams, Email marketing, Marketing automation, Conversation',
+      'Všechny integrace, pro týmy podpory, e-mailový marketing, automatizace marketingu, konverzace',
   },
   {
-    name: 'IMAP by Nylas',
+    name: 'IMAP podle Nylas',
     description:
-      'Connect a company email address such as sales@mycompany.com or info@mycompany.com',
+      'Připojte firemní e-mailovou adresu, například sales@mycompany.com nebo info@mycompany.com',
     inMessenger: false,
     isAvailable: true,
     kind: 'nylas-imap',
@@ -74,12 +76,12 @@ export const INTEGRATIONS = [
     createModal: 'nylas-imap',
     createUrl: '/settings/add-ons/nylas-imap',
     category:
-      'All integrations, For support teams, Marketing automation, Email marketing',
+      'Všechny integrace, Pro týmy podpory, Marketingová automatizace, Email marketing',
   },
   {
-    name: 'Office 365 by Nylas',
+    name: 'Office 365 podle Nylas',
     description:
-      'Connect a company email address such as sales@mycompany.com or info@mycompany.com',
+      'Připojte firemní e-mailovou adresu, například sales@mycompany.com nebo info@mycompany.com',
     inMessenger: false,
     isAvailable: true,
     kind: 'nylas-office365',
@@ -87,12 +89,12 @@ export const INTEGRATIONS = [
     createModal: 'nylas-office365',
     createUrl: 'nylas/oauth2/callback',
     category:
-      'All integrations, For support teams, Marketing automation, Email marketing, Conversation',
+      'Všechny integrace, pro týmy podpory, automatizace marketingu, e-mailový marketing, konverzace',
   },
   {
-    name: 'Gmail by Nylas',
+    name: 'Gmail podle Nylas',
     description:
-      'Connect a company email address such as sales@mycompany.com or info@mycompany.com',
+      'Připojte firemní e-mailovou adresu, například sales@mycompany.com nebo info@mycompany.com',
     inMessenger: false,
     isAvailable: true,
     kind: 'nylas-gmail',
@@ -100,12 +102,12 @@ export const INTEGRATIONS = [
     createModal: 'nylas-gmail',
     createUrl: 'nylas/oauth2/callback',
     category:
-      'All integrations, For support teams, Email marketing, Marketing automation, Conversation',
+      'Všechny integrace, pro týmy podpory, e-mailový marketing, automatizace marketingu, konverzace',
   },
   {
-    name: 'Microsoft Exchange by Nylas',
+    name: 'Microsoft Exchange podle Nylas',
     description:
-      'Connect a company email address such as sales@mycompany.com or info@mycompany.com',
+      'Připojte firemní e-mailovou adresu, například sales@mycompany.com nebo info@mycompany.com',
     inMessenger: false,
     isAvailable: true,
     kind: 'nylas-exchange',
@@ -113,12 +115,12 @@ export const INTEGRATIONS = [
     createModal: 'nylas-exchange',
     createUrl: '/settings/add-ons/nylas-exchange',
     category:
-      'All integrations, For support teams, Email marketing, Marketing automation, Conversation',
+      'Všechny integrace, pro týmy podpory, e-mailový marketing, automatizace marketingu, konverzace',
   },
   {
-    name: 'Outlook by Nylas',
+    name: 'Outlook podle Nylas',
     description:
-      'Connect a company email address such as sales@mycompany.com or info@mycompany.com',
+      'Připojte firemní e-mailovou adresu, například sales@mycompany.com nebo info@mycompany.com',
     inMessenger: false,
     isAvailable: true,
     kind: 'nylas-outlook',
@@ -126,12 +128,12 @@ export const INTEGRATIONS = [
     createModal: 'nylas-outlook',
     createUrl: '/settings/add-ons/nylas-outlook',
     category:
-      'All integrations, For support teams, Marketing automation, Email marketing',
+      'Všechny integrace, Pro týmy podpory, Marketingová automatizace, Email marketing',
   },
   {
-    name: 'Yahoo by Nylas',
+    name: 'Yahoo podle Nylas',
     description:
-      'Connect a company email address such as sales@mycompany.com or info@mycompany.com',
+      'Připojte firemní e-mailovou adresu, například sales@mycompany.com nebo info@mycompany.com',
     inMessenger: false,
     isAvailable: true,
     kind: 'nylas-yahoo',
@@ -139,105 +141,106 @@ export const INTEGRATIONS = [
     createModal: 'nylas-yahoo',
     createUrl: '/settings/add-ons/nylas-yahoo',
     category:
-      'All integrations, For support teams, Marketing automation, Email marketing, Conversation',
+      'Všechny integrace, pro týmy podpory, automatizace marketingu, e-mailový marketing, konverzace',
   },
   {
     name: 'Call Pro',
-    description: 'Connect your call pro phone number',
+    description: 'Připojte své telefonní číslo call pro',
     inMessenger: false,
     isAvailable: true,
     kind: 'callpro',
     logo: '/images/integrations/callpro.png',
     createModal: 'callpro',
     category:
-      'All integrations, For support teams, Marketing automation, Phone and video, Conversation',
+      'Všechny integrace, Pro týmy podpory, Marketingová automatizace, Telefon a video, Konverzace',
   },
   {
     name: 'Chatfuel',
-    description: 'Connect your chatfuel account',
+    description: 'Připojte svůj chatfuel účet',
     inMessenger: false,
     isAvailable: true,
     kind: 'chatfuel',
     logo: '/images/integrations/chatfuel.png',
     createModal: 'chatfuel',
     category:
-      'All integrations, For support teams, Marketing automation, Messaging, Conversation',
+      'Všechny integrace, pro týmy podpory, automatizace marketingu, zasílání zpráv, konverzace',
   },
   {
-    name: 'WhatsApp by Smooch',
+    name: 'WhatsApp podle Smooch',
     description:
-      'Get a hold of your Whatsapp messages through your Týmová Schránka',
+      'Získejte své zprávy Whatsapp prostřednictvím svého Týmová Schránka',
     inMessenger: false,
     isAvailable: true,
     kind: 'whatsapp',
     logo: '/images/integrations/whatsapp.png',
     createModal: 'whatsapp',
-    category: 'All integrations, For support teams, Messaging, Conversation',
+    category: 'Všechny integrace, pro týmy podpory, zasílání zpráv, konverzace',
   },
   {
-    name: 'Telegram by Smooch',
+    name: 'Telegram podle Smooch',
     description:
-      'Connect to your Telegram, a cloud-based mobile and desktop messaging app',
+      'Připojte se ke svému Telegramu, cloudové mobilní a stolní aplikaci pro zasílání zpráv',
     inMessenger: false,
     isAvailable: true,
     kind: 'smooch-telegram',
     logo: '/images/integrations/telegram.png',
     createModal: 'smooch-telegram',
-    category: 'All integrations, For support teams, Messaging, Conversation',
+    category: 'Všechny integrace, pro týmy podpory, zasílání zpráv, konverzace',
   },
   {
-    name: 'Viber by Smooch',
-    description: 'Connect Viber to your Týmová Schránka',
+    name: 'Viber podle Smooch',
+    description: 'Připojte Viber k vašemu Týmová Schránka',
     inMessenger: false,
     isAvailable: true,
     kind: 'smooch-viber',
     logo: '/images/integrations/viber.png',
     createModal: 'smooch-viber',
     category:
-      'All integrations, For support teams, Marketing automation, Messaging, Conversation',
+      'Všechny integrace, pro týmy podpory, automatizace marketingu, zasílání zpráv, konverzace',
   },
   {
-    name: 'Line by Smooch',
-    description: 'See and reply to Line messages in your Týmová Schránka',
+    name: 'Line podle Smooch',
+    description:
+      'Zobrazte a odpovídejte na řádkové zprávy ve svém Týmová Schránka',
     inMessenger: false,
     isAvailable: true,
     kind: 'smooch-line',
     logo: '/images/integrations/line.png',
     createModal: 'smooch-line',
     category:
-      'All integrations, For support teams, For sales teams, For marketing teams, Marketing automation, Messaging, Phone and video, Conversation',
+      'Všechny integrace, Pro týmy podpory, Pro prodejní týmy, Pro marketingové týmy, Marketingová automatizace, Zprávy, Telefon a video, Konverzace',
   },
   {
-    name: 'SMS by Telnyx',
-    description: 'Connect your Telnyx account to send & receive SMS',
+    name: 'SMS podle Telnyx',
+    description: 'Chcete-li odesílat a přijímat SMS, připojte svůj účet Telnyx',
     inMessenger: false,
     isAvailable: true,
     kind: 'telnyx',
     logo: '/images/integrations/telnyx.png',
     createModal: 'telnyx',
     category:
-      'All integrations, For support teams, For marketing teams, Conversation',
+      'Všechny integrace, Pro týmy podpory, Pro marketingové týmy, Konverzace',
   },
   {
     name: 'Incoming Webhook',
-    description: 'Configure incoming webhooks',
+    description: 'Konfigurace příchozích webhooků',
     inMessenger: false,
     isAvailable: true,
     kind: 'webhook',
     logo: '/images/integrations/incoming-webhook.png',
     createModal: 'webhook',
     category:
-      'All integrations, For support teams, Conversation, Marketing automation',
+      'Všechny integrace, pro týmy podpory, konverzace, automatizace marketingu',
   },
   // {
   //   name: 'Outgoing Webhook',
-  //   description: 'Configure outging webhooks',
+  //   description: 'Konfigurace odchozích webhooků',
   //   inMessenger: false,
   //   isAvailable: true,
   //   kind: 'outgoing-webhook',
   //   logo: '/images/integrations/webhook.png',
   //   createModal: 'outgoing-webhook',
   //   category:
-  //     'All integrations, For support teams, Conversation, Marketing automation'
+  //     'Všechny integrace, pro týmy podpory, konverzace, automatizace marketingu'
   // }
 ];
