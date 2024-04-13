@@ -30,7 +30,7 @@ class PermissionForm extends React.Component<Props, State> {
   state = {
     selectedModule: '',
     selectedCategories: [],
-    isSubmitted: false
+    isSubmitted: false,
   };
 
   save = (e: React.FormEvent) => {
@@ -55,7 +55,7 @@ class PermissionForm extends React.Component<Props, State> {
     return {
       _id: this.props.groupId,
       permission: selectedModule,
-      categoryIds: this.collectValues(selectedCategories)
+      categoryIds: this.collectValues(selectedCategories),
     };
   };
 
@@ -80,12 +80,12 @@ class PermissionForm extends React.Component<Props, State> {
 
     this.setState({
       selectedModule,
-      selectedCategories: []
+      selectedCategories: [],
     });
   };
 
   collectValues = (items: any[]) => {
-    return items.map(item => item._id);
+    return items.map((item) => item._id);
   };
 
   renderContent() {
@@ -145,7 +145,7 @@ class PermissionForm extends React.Component<Props, State> {
             refetchQueries={refetchQueries}
             isSubmitted={this.state.isSubmitted}
             type="submit"
-            successMessage={__(`You successfully added a permission`) + '.'}
+            successMessage={__(`Úspěšně jste přidali a permission`) + '.'}
           />
         </ModalFooter>
       </form>

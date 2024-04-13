@@ -28,7 +28,7 @@ type Props = {
       | 'saveAsCustomer'
       | 'visibility'
       | 'departmentIds',
-    value: any
+    value: any,
   ) => void;
   type: string;
   formData: IFormData;
@@ -66,7 +66,7 @@ const OptionStep = (props: Props) => {
     props.onChange(key, value);
   }, []);
 
-  const onChangeTitle = useCallback(e => {
+  const onChangeTitle = useCallback((e) => {
     onChangeFunction('title', (e.currentTarget as HTMLInputElement).value);
   }, []);
 
@@ -94,7 +94,7 @@ const OptionStep = (props: Props) => {
 
   const { language, brand, isRequireOnce, saveAsCustomer } = props;
 
-  const onChange = e => {
+  const onChange = (e) => {
     onChangeFunction('brand', (e.currentTarget as HTMLInputElement).value);
   };
 
@@ -102,9 +102,9 @@ const OptionStep = (props: Props) => {
     onChangeFunction('channelIds', values);
   };
 
-  const onChangeLanguage = e => onSelectChange(e, 'language');
+  const onChangeLanguage = (e) => onSelectChange(e, 'language');
 
-  const onSwitchHandler = e => {
+  const onSwitchHandler = (e) => {
     onChangeFunction(e.target.id, e.target.checked);
   };
 
@@ -117,8 +117,9 @@ const OptionStep = (props: Props) => {
     const { fields } = props.formData;
     if (fields && fields.length > 0) {
       if (
-        fields.findIndex(f => f.type === 'productCategory' && f.isRequired) !==
-        -1
+        fields.findIndex(
+          (f) => f.type === 'productCategory' && f.isRequired,
+        ) !== -1
       ) {
         setRenderPayments(true);
         if (props.waitUntilFinish) {
@@ -158,13 +159,13 @@ const OptionStep = (props: Props) => {
           contentTypeId: props.integrationId,
           isSubmitted: props.isIntegrationSubmitted,
           description: __(
-            "Choose payment methods you'd like to enable on this form"
+            "Choose payment methods you'd like to enable on this form",
           ),
           afterSave: () => {
             if (props.onChildProcessFinished) {
               props.onChildProcessFinished('optionsStep');
             }
-          }
+          },
         })}
       </>
     );
@@ -198,7 +199,7 @@ const OptionStep = (props: Props) => {
         <SelectChannels
           defaultValue={props.channelIds}
           isRequired={false}
-          description="Choose a channel, if you wish to see every new form in your Team Inbox."
+          description="Choose a channel, if you wish to see every new form in your Týmová Schránka."
           onChange={channelOnChange}
         />
 
@@ -241,7 +242,7 @@ const OptionStep = (props: Props) => {
               onChange={onSwitchHandler}
               icons={{
                 checked: <span>Yes</span>,
-                unchecked: <span>No</span>
+                unchecked: <span>No</span>,
               }}
             />
           </div>
@@ -257,7 +258,7 @@ const OptionStep = (props: Props) => {
               onChange={onSwitchHandler}
               icons={{
                 checked: <span>Yes</span>,
-                unchecked: <span>No</span>
+                unchecked: <span>No</span>,
               }}
             />
           </div>

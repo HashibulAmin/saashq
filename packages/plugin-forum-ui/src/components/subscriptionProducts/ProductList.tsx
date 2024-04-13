@@ -28,14 +28,14 @@ export default function ProductList({
   onDelete,
   renderButton,
   queryParams,
-  history
+  history,
 }: Props) {
   const breadcrumb = [
     { title: __('Settings'), link: '/settings' },
     {
       title: __('Subscription Products'),
-      link: '/forums/subscription-products'
-    }
+      link: '/forums/subscription-products',
+    },
   ];
 
   const trigger = (
@@ -44,7 +44,7 @@ export default function ProductList({
     </Button>
   );
 
-  const modalContent = props => (
+  const modalContent = (props) => (
     <Form onDelete={onDelete} renderButton={renderButton} {...props} />
   );
 
@@ -92,7 +92,7 @@ export default function ProductList({
           <th>Price</th>
           <th>User type</th>
           <th>List order</th>
-          <th>{__('Actions')}</th>
+          <th>{__('Akce')}</th>
         </tr>
       </thead>
       <tbody id={'ProductList'}>

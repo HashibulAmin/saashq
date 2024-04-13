@@ -75,7 +75,7 @@ class Base extends React.Component<Props> {
             <thead>
               <tr>
                 <th>{__('Your Scheduling Pages')}</th>
-                <th> {__('Action')}</th>
+                <th> {__('Akce')}</th>
               </tr>
             </thead>
 

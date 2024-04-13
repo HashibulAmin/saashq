@@ -6,14 +6,14 @@ import {
   HeaderDescription,
   ModalTrigger,
   Pagination,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import {
   FilterContainer,
   FlexItem,
   FlexRow,
   InputBar,
-  Title
+  Title,
 } from '@saashq/ui-settings/src/styles';
 
 import Form from '../containers/Form';
@@ -53,11 +53,11 @@ class DonateCampaigns extends React.Component<Props, State> {
 
     this.state = {
       searchValue: this.props.searchValue || '',
-      filterStatus: this.props.filterStatus || ''
+      filterStatus: this.props.filterStatus || '',
     };
   }
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -88,7 +88,7 @@ class DonateCampaigns extends React.Component<Props, State> {
   renderRow = () => {
     const { donateCampaigns, history, toggleBulk, bulk } = this.props;
 
-    return donateCampaigns.map(donateCampaign => (
+    return donateCampaigns.map((donateCampaign) => (
       <Row
         key={donateCampaign._id}
         history={history}
@@ -99,14 +99,14 @@ class DonateCampaigns extends React.Component<Props, State> {
     ));
   };
 
-  modalContent = props => {
+  modalContent = (props) => {
     return <Form {...props} />;
   };
 
-  removeDonateCampaigns = donateCampaigns => {
+  removeDonateCampaigns = (donateCampaigns) => {
     const donateCampaignIds: string[] = [];
 
-    donateCampaigns.forEach(donateCampaign => {
+    donateCampaigns.forEach((donateCampaign) => {
       donateCampaignIds.push(donateCampaign._id);
     });
 
@@ -122,7 +122,7 @@ class DonateCampaigns extends React.Component<Props, State> {
           .then(() => {
             this.removeDonateCampaigns(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 
@@ -152,7 +152,7 @@ class DonateCampaigns extends React.Component<Props, State> {
             <FlexItem>
               <FormControl
                 type="text"
-                placeholder={__('Type to search')}
+                placeholder={__('Zadejte a vyhledejte')}
                 onChange={this.search}
                 value={this.state.searchValue}
                 autoFocus={true}
@@ -179,9 +179,9 @@ class DonateCampaigns extends React.Component<Props, State> {
       { title: __('Settings'), link: '/settings' },
       {
         title: __('Loyalties config'),
-        link: '/saashq-plugin-loyalty/settings/general'
+        link: '/saashq-plugin-loyalty/settings/general',
       },
-      { title: __('Donate Campaign') }
+      { title: __('Donate Campaign') },
     ];
 
     const header = (
@@ -208,7 +208,7 @@ class DonateCampaigns extends React.Component<Props, State> {
             <th>{__('End Date')}</th>
             <th>{__('Finish Date of Use')}</th>
             <th>{__('Status')}</th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{this.renderRow()}</tbody>
@@ -235,7 +235,7 @@ class DonateCampaigns extends React.Component<Props, State> {
             data={content}
             loading={loading}
             count={totalCount}
-            emptyText="There is no data"
+            emptyText="Nejsou žádná data"
             emptyImage="/images/actions/5.svg"
           />
         }

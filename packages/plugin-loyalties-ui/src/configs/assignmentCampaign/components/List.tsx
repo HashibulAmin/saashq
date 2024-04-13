@@ -5,14 +5,14 @@ import {
   FormControl,
   HeaderDescription,
   Pagination,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import {
   FilterContainer,
   FlexItem,
   FlexRow,
   InputBar,
-  Title
+  Title,
 } from '@saashq/ui-settings/src/styles';
 
 import CreateForm from './CreateForm';
@@ -36,7 +36,7 @@ type Props = {
   toggleBulk: () => void;
   remove: (
     doc: { assignmentCampaignIds: string[] },
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
   searchValue: string;
   filterStatus: string;
@@ -56,11 +56,11 @@ class AssignmentCampaigns extends React.Component<Props, State> {
 
     this.state = {
       searchValue: this.props.searchValue || '',
-      filterStatus: this.props.filterStatus || ''
+      filterStatus: this.props.filterStatus || '',
     };
   }
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -91,7 +91,7 @@ class AssignmentCampaigns extends React.Component<Props, State> {
   renderRow = () => {
     const { assignmentCampaigns, history, toggleBulk, bulk } = this.props;
 
-    return assignmentCampaigns.map(assignmentCampaign => (
+    return assignmentCampaigns.map((assignmentCampaign) => (
       <Row
         key={assignmentCampaign._id}
         history={history}
@@ -102,17 +102,17 @@ class AssignmentCampaigns extends React.Component<Props, State> {
     ));
   };
 
-  formContent = props => {
+  formContent = (props) => {
     const { queryParams, history } = this.props;
     return (
       <CreateForm {...props} queryParams={queryParams} history={history} />
     );
   };
 
-  removeAssignmentCampaigns = assignmentCampaigns => {
+  removeAssignmentCampaigns = (assignmentCampaigns) => {
     const assignmentCampaignIds: string[] = [];
 
-    assignmentCampaigns.forEach(assignmentCampaign => {
+    assignmentCampaigns.forEach((assignmentCampaign) => {
       assignmentCampaignIds.push(assignmentCampaign._id);
     });
 
@@ -128,7 +128,7 @@ class AssignmentCampaigns extends React.Component<Props, State> {
           .then(() => {
             this.removeAssignmentCampaigns(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 
@@ -152,7 +152,7 @@ class AssignmentCampaigns extends React.Component<Props, State> {
             <FlexItem>
               <FormControl
                 type="text"
-                placeholder={__('Type to search')}
+                placeholder={__('Zadejte a vyhledejte')}
                 onChange={this.search}
                 value={this.state.searchValue}
                 autoFocus={true}
@@ -177,9 +177,9 @@ class AssignmentCampaigns extends React.Component<Props, State> {
       { title: __('Settings'), link: '/settings' },
       {
         title: __('Loyalties config'),
-        link: '/saashq-plugin-loyalty/settings/general'
+        link: '/saashq-plugin-loyalty/settings/general',
       },
-      { title: __('Assignment Campaign') }
+      { title: __('Assignment Campaign') },
     ];
 
     const header = (
@@ -206,7 +206,7 @@ class AssignmentCampaigns extends React.Component<Props, State> {
             <th>{__('End Date')}</th>
             <th>{__('Finish Date of Use')}</th>
             <th>{__('Status')}</th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{this.renderRow()}</tbody>
@@ -233,7 +233,7 @@ class AssignmentCampaigns extends React.Component<Props, State> {
             data={content}
             loading={loading}
             count={totalCount}
-            emptyText="There is no data"
+            emptyText="Nejsou žádná data"
             emptyImage="/images/actions/5.svg"
           />
         }

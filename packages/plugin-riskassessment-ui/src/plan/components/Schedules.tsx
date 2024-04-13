@@ -6,7 +6,7 @@ import {
   ModalTrigger,
   Tip,
   Wrapper,
-  __
+  __,
 } from '@saashq/ui/src';
 import dayjs from 'dayjs';
 import React from 'react';
@@ -28,7 +28,7 @@ class SchedulesConfig extends React.Component<Props> {
   }
 
   renderDuplicateForm(props) {
-    const onClick = e => {
+    const onClick = (e) => {
       e.stopPropagation();
     };
 
@@ -42,7 +42,7 @@ class SchedulesConfig extends React.Component<Props> {
       const updatedProps = {
         ...props,
         closeModal,
-        duplicate: true
+        duplicate: true,
       };
 
       return <ScheduleForm {...updatedProps} />;
@@ -61,13 +61,13 @@ class SchedulesConfig extends React.Component<Props> {
   renderEditForm(props) {
     const trigger = (
       <Button btnStyle="link" icon="file-edit-alt">
-        {__('Edit')}
+        {__('Upravit')}
       </Button>
     );
     const content = ({ closeModal }) => {
       const updatedProps = {
         ...props,
-        closeModal
+        closeModal,
       };
       return <ScheduleForm {...updatedProps} />;
     };
@@ -99,7 +99,7 @@ class SchedulesConfig extends React.Component<Props> {
         closeModal,
         cardType: configs?.cardType,
         pipelineId: configs.pipelineId,
-        refetch
+        refetch,
       };
 
       return <ScheduleForm {...updatedProps} />;
@@ -119,7 +119,7 @@ class SchedulesConfig extends React.Component<Props> {
     const { history, removeSchedule, plan, refetch } = this.props;
     const { configs = {} as Config } = plan;
 
-    const handleRemomve = e => {
+    const handleRemomve = (e) => {
       e.stopPropagation();
       removeSchedule(schedule._id);
     };
@@ -130,7 +130,7 @@ class SchedulesConfig extends React.Component<Props> {
       cardType: configs.cardType,
       pipelineId: configs.pipelineId,
       schedule: schedule,
-      refetch
+      refetch,
     };
 
     if (plan.status === 'archived') {
@@ -200,7 +200,7 @@ class SchedulesConfig extends React.Component<Props> {
       <>
         <Wrapper.ActionBar right={this.renderAddForm()} />
         <FormContainer row gap padding="25px">
-          {list.map(schedule => this.renderSchedule(schedule))}
+          {list.map((schedule) => this.renderSchedule(schedule))}
         </FormContainer>
       </>
     );

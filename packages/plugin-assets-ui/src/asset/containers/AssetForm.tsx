@@ -2,7 +2,7 @@ import React from 'react';
 import {
   IAsset,
   IAssetCategoryQeuryResponse,
-  IAssetQueryResponse
+  IAssetQueryResponse,
 } from '../../common/types';
 import { ButtonMutate } from '@saashq/ui/src';
 import { IButtonMutateProps } from '@saashq/ui/src/types';
@@ -33,14 +33,14 @@ function AssetFormContainer(props: FinalProps) {
     values,
     isSubmitted,
     callback,
-    object
+    object,
   }: IButtonMutateProps) => {
     const { unitPrice, assetCount, minimiumCount } = values;
     const attachmentMoreArray: any[] = [];
     const attachment = values.attachment || undefined;
     const attachmentMore = values.attachmentMore || [];
 
-    attachmentMore.map(attach => {
+    attachmentMore.map((attach) => {
       attachmentMoreArray.push({ ...attach, __typename: undefined });
     });
 
@@ -61,9 +61,9 @@ function AssetFormContainer(props: FinalProps) {
         isSubmitted={isSubmitted}
         type="submit"
         uppercase={false}
-        successMessage={`You successfully ${
-          object ? 'updated' : 'added'
-        } a ${text}`}
+        successMessage={`Ty úspěšně ${
+          object ? 'aktualizováno' : 'přidal'
+        } A ${text}`}
       />
     );
   };
@@ -73,7 +73,7 @@ function AssetFormContainer(props: FinalProps) {
     categories: assetCategories.assetCategories,
     assets: assets.assets,
     renderButton,
-    loading: assetCategories.loading || assets.loading
+    loading: assetCategories.loading || assets.loading,
   };
 
   return <AssetForm {...updatedProps} />;
@@ -82,10 +82,10 @@ function AssetFormContainer(props: FinalProps) {
 export default withProps<Props>(
   compose(
     graphql(gql(queries.assetCategory), {
-      name: 'assetCategories'
+      name: 'assetCategories',
     }),
     graphql(gql(queries.assets), {
-      name: 'assets'
-    })
-  )(AssetFormContainer)
+      name: 'assets',
+    }),
+  )(AssetFormContainer),
 );

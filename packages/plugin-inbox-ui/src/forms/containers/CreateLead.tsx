@@ -108,7 +108,7 @@ class CreateLeadContainer extends React.Component<Props, State> {
                 integrationId: _id,
                 isIntegrationSubmitted: true,
               });
-              Alert.success('You successfully added a form');
+              Alert.success('Úspěšně jste přidali a form');
 
               this.redirect();
             },

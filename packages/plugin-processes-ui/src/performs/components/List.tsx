@@ -12,7 +12,7 @@ import { __ } from 'coreui/utils';
 import {
   BarItems,
   FieldStyle,
-  SidebarCounter
+  SidebarCounter,
 } from '@saashq/ui/src/layout/styles';
 import { Count } from '@saashq/ui/src/styles/main';
 import { IPerform } from '../types';
@@ -37,7 +37,7 @@ class List extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      overallWorkPercent: 0
+      overallWorkPercent: 0,
     };
   }
 
@@ -59,7 +59,7 @@ class List extends React.Component<IProps, State> {
       <li>
         <FieldStyle>{__(name)}</FieldStyle>
         <SidebarCounter>{(products || []).length}</SidebarCounter>
-      </li>
+      </li>,
     );
 
     for (const product of products) {
@@ -74,7 +74,7 @@ class List extends React.Component<IProps, State> {
 
   renderRow = () => {
     const { performs, history, removePerform } = this.props;
-    return (performs || []).map(perform => (
+    return (performs || []).map((perform) => (
       <Row
         history={history}
         key={perform._id}
@@ -84,7 +84,7 @@ class List extends React.Component<IProps, State> {
     ));
   };
 
-  renderCount = performsCount => {
+  renderCount = (performsCount) => {
     return (
       <Count>
         {performsCount} performance{performsCount > 1 && 's'}
@@ -101,7 +101,7 @@ class List extends React.Component<IProps, State> {
       </Button>
     );
 
-    const modalContent = props => <Form {...props} />;
+    const modalContent = (props) => <Form {...props} />;
 
     const actionBarRight = (
       <BarItems>
@@ -126,7 +126,7 @@ class List extends React.Component<IProps, State> {
               <th>{__('StartAt')}</th>
               <th>{__('EndAt')}</th>
               <th>{__('Count')}</th>
-              <th>{__('Description')}</th>
+              <th>{__('Popis')}</th>
               <th>{__('Spend products')}</th>
               <th>{__('Receipt products')}</th>
               <th>{__('Spend Branch')}</th>
@@ -155,7 +155,7 @@ class List extends React.Component<IProps, State> {
             data={content}
             loading={loading}
             count={performsCount || 0}
-            emptyText="There is no data"
+            emptyText="Nejsou žádná data"
             emptyImage="/images/actions/5.svg"
           />
         }

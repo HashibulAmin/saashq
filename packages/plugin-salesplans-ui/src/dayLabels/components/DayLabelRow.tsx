@@ -30,11 +30,11 @@ class Row extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      labelIds: props.dayLabel.labelIds || []
+      labelIds: props.dayLabel.labelIds || [],
     };
   }
 
-  onChangeValue = e => {
+  onChangeValue = (e) => {
     const { edit, dayLabel } = this.props;
     const value = e.target.value;
 
@@ -49,20 +49,20 @@ class Row extends React.Component<Props, State> {
     });
   };
 
-  modalContent = props => {
+  modalContent = (props) => {
     return <Form {...props} dayLabel={this.props.dayLabel} />;
   };
 
   render() {
     const { dayLabel, toggleBulk, isChecked } = this.props;
 
-    const onChange = e => {
+    const onChange = (e) => {
       if (toggleBulk) {
         toggleBulk(dayLabel, e.target.checked);
       }
     };
 
-    const onClick = e => {
+    const onClick = (e) => {
       e.stopPropagation();
     };
 
@@ -86,7 +86,7 @@ class Row extends React.Component<Props, State> {
         <td>{branch ? `${branch.code} - ${branch.title}` : ''}</td>
         <td>{department ? `${department.code} - ${department.title}` : ''}</td>
         <td>
-          {(labels || []).map(l => (
+          {(labels || []).map((l) => (
             <span key={Math.random()}>
               <Label lblColor={l.color} children={l.title} />
               &nbsp;
@@ -95,7 +95,7 @@ class Row extends React.Component<Props, State> {
         </td>
         <td>
           <ActionButtons>
-            <Tip text={__('Edit')} placement="bottom">
+            <Tip text={__('Upravit')} placement="bottom">
               <ModalTrigger
                 title="Edit label"
                 trigger={trigger}

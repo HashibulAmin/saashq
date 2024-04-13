@@ -21,15 +21,15 @@ function CategoryFormContainer({ closeModal, category, categories }: Props) {
     isSubmitted,
     callback,
     confirmationUpdate,
-    object
+    object,
   }: IButtonMutateProps) => {
     let mutation = mutations.assetCategoryAdd;
 
-    let sucessAction = 'added';
+    let sucessAction = 'přidal';
 
     if (object) {
       mutation = mutations.assetCategoryEdit;
-      sucessAction = 'updated';
+      sucessAction = 'aktualizováno';
     }
 
     return (
@@ -41,7 +41,7 @@ function CategoryFormContainer({ closeModal, category, categories }: Props) {
         isSubmitted={isSubmitted}
         type="submit"
         confirmationUpdate={confirmationUpdate}
-        successMessage={`You successfully ${sucessAction} a ${text}`}
+        successMessage={`Ty úspěšně ${sucessAction} A ${text}`}
       />
     );
   };
@@ -50,7 +50,7 @@ function CategoryFormContainer({ closeModal, category, categories }: Props) {
     renderButton,
     closeModal,
     category,
-    categories
+    categories,
   };
 
   return <CategoryForm {...updatedProps} />;

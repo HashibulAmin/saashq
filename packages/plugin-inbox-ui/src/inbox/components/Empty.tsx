@@ -41,7 +41,7 @@ function Empty({ queryParams, currentUser }: Props) {
     <Wrapper
       header={
         <Wrapper.Header
-          title={__('Team Inbox')}
+          title={__('Týmová Schránka')}
           queryParams={queryParams}
           submenu={menuInbox}
         />

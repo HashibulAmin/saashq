@@ -3,7 +3,7 @@ import {
   FlexItem,
   FlexRow,
   InputBar,
-  Title
+  Title,
 } from '@saashq/ui-settings/src/styles';
 import { __, router } from '@saashq/ui/src/utils';
 
@@ -45,7 +45,7 @@ function List({
   types,
   history,
   total,
-  queryParams
+  queryParams,
 }: Props) {
   const [searchValue, setSearchValue] = React.useState(queryParams.searchValue);
   const contentType = (tagType || '').split(':')[1];
@@ -56,7 +56,7 @@ function List({
     </Button>
   );
 
-  const modalContent = props => (
+  const modalContent = (props) => (
     <FormComponent
       {...props}
       tagType={tagType}
@@ -66,7 +66,7 @@ function List({
     />
   );
 
-  const search = e => {
+  const search = (e) => {
     const inputValue = e.target.value;
 
     setSearchValue(inputValue);
@@ -114,15 +114,15 @@ function List({
     <Table>
       <thead>
         <tr>
-          <th>{__('Name')}</th>
+          <th>{__('Název')}</th>
           <th>{__('Total item counts')}</th>
           <th>{__('Item counts')}</th>
           <th>{__('Type')}</th>
-          <th>{__('Actions')}</th>
+          <th>{__('Akce')}</th>
         </tr>
       </thead>
       <tbody id={'TagsShowing'}>
-        {tags.map(tag => {
+        {tags.map((tag) => {
           const order = tag.order || '';
           const foundedString = order.match(/[/]/gi);
 
@@ -147,7 +147,7 @@ function List({
 
   const breadcrumb = [
     { title: __('Settings'), link: '/settings' },
-    { title: __('Tags'), link: '/settings/tags' }
+    { title: __('Tags'), link: '/settings/tags' },
   ];
 
   return (

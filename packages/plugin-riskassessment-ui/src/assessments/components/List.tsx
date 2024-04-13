@@ -32,7 +32,7 @@ class List extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      selectedAssessmentIds: []
+      selectedAssessmentIds: [],
     };
   }
 
@@ -44,8 +44,8 @@ class List extends React.Component<Props, State> {
       if (selectedAssessmentIds.includes(id)) {
         return this.setState({
           selectedAssessmentIds: selectedAssessmentIds.filter(
-            selectedId => selectedId !== id
-          )
+            (selectedId) => selectedId !== id,
+          ),
         });
       }
 
@@ -55,7 +55,7 @@ class List extends React.Component<Props, State> {
     const handleSelectAll = () => {
       if (!selectedAssessmentIds.length) {
         this.setState({
-          selectedAssessmentIds: list.map(assessment => assessment._id)
+          selectedAssessmentIds: list.map((assessment) => assessment._id),
         });
       } else {
         this.setState({ selectedAssessmentIds: [] });
@@ -71,14 +71,14 @@ class List extends React.Component<Props, State> {
                 componentClass="checkbox"
                 checked={_loadash.isEqual(
                   selectedAssessmentIds,
-                  list.map(assessment => assessment._id)
+                  list.map((assessment) => assessment._id),
                 )}
                 onChange={handleSelectAll}
               />
             </th>
             <th>{__('Card type')}</th>
             <th>{__('Card Name')}</th>
-            {headers(queryParams, history).map(header => (
+            {headers(queryParams, history).map((header) => (
               <TableHead
                 key={header.name}
                 filter={header.filter}
@@ -87,11 +87,11 @@ class List extends React.Component<Props, State> {
                 {header.label}
               </TableHead>
             ))}
-            <th>{__('Action')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>
-          {(list || []).map(item => (
+          {(list || []).map((item) => (
             <Row
               item={item}
               key={item._id}

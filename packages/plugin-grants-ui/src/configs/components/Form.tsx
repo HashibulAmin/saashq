@@ -108,7 +108,7 @@ class ConfigForm extends React.Component<Props, State> {
     return (
       <>
         <FormGroup>
-          <ControlLabel required>{__('Name')}</ControlLabel>
+          <ControlLabel required>{__('Název')}</ControlLabel>
           <FormControl
             {...formProps}
             name="name"
@@ -118,7 +118,7 @@ class ConfigForm extends React.Component<Props, State> {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel required>{__('Actions')}</ControlLabel>
+          <ControlLabel required>{__('Akce')}</ControlLabel>
           <SelectActions
             label="Vyberte akci"
             name="action"

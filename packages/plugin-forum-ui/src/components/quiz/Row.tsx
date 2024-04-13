@@ -22,7 +22,7 @@ class Row extends React.Component<Props> {
   renderEditAction(quiz) {
     const trigger = (
       <Button btnStyle="link">
-        <Tip text={__('Edit')} placement="top">
+        <Tip text={__('Upravit')} placement="top">
           <Icon icon="edit-3" />
         </Tip>
       </Button>

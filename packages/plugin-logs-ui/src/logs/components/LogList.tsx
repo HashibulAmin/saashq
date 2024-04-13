@@ -17,7 +17,7 @@ import {
   FlexItem,
   FlexRow,
   InputBar,
-  Title
+  Title,
 } from '@saashq/ui-settings/src/styles';
 
 type Props = {
@@ -39,7 +39,7 @@ type State = {
 
 const breadcrumb = [
   { title: 'Settings', link: '/settings' },
-  { title: __('Logs') }
+  { title: __('Logs') },
 ];
 
 class LogList extends React.Component<Props, State> {
@@ -49,11 +49,11 @@ class LogList extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.queryParams.searchValue || ''
+      searchValue: this.props.queryParams.searchValue || '',
     };
   }
 
-  searchHandler = e => {
+  searchHandler = (e) => {
     const { history } = this.props;
 
     if (this.timer) {
@@ -92,8 +92,8 @@ class LogList extends React.Component<Props, State> {
             <th>{__('Date')}</th>
             <th>{__('Created by')}</th>
             <th>{__('Module')}</th>
-            <th>{__('Action')}</th>
-            <th>{__('Description')}</th>
+            <th>{__('Akce')}</th>
+            <th>{__('Popis')}</th>
             <th>{__('Changes')}</th>
           </tr>
         </thead>
@@ -113,7 +113,7 @@ class LogList extends React.Component<Props, State> {
             <FlexItem>
               <FormControl
                 type="text"
-                placeholder={__('Type to search')}
+                placeholder={__('Zadejte a vyhledejte')}
                 onChange={this.searchHandler}
                 autoFocus={true}
                 value={searchValue}

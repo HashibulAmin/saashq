@@ -78,7 +78,7 @@ class CreateBookingContainer extends React.Component<FinalProps, State> {
           },
         })
           .then(() => {
-            Alert.success('You successfully added a booking');
+            Alert.success('Úspěšně jste přidali a booking');
             history.push('/bookings');
           })
 

@@ -8,7 +8,7 @@ import {
   DataWithLoader,
   FormControl,
   ModalTrigger,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import { IReserveRem } from '../types';
 import { MainStyleTitle as Title } from '@saashq/ui/src/styles/eindex';
@@ -42,11 +42,11 @@ class ReserveRems extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue || ''
+      searchValue: this.props.searchValue || '',
     };
   }
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -77,7 +77,7 @@ class ReserveRems extends React.Component<Props, State> {
   renderRow = () => {
     const { reserveRems, history, toggleBulk, bulk, edit } = this.props;
 
-    return reserveRems.map(reserveRem => (
+    return reserveRems.map((reserveRem) => (
       <Row
         key={reserveRem._id}
         history={history}
@@ -89,14 +89,14 @@ class ReserveRems extends React.Component<Props, State> {
     ));
   };
 
-  modalContent = props => {
+  modalContent = (props) => {
     return <Form {...props} />;
   };
 
-  removeReserveRems = reserveRems => {
+  removeReserveRems = (reserveRems) => {
     const reserveRemIds: string[] = [];
 
-    reserveRems.forEach(reserveRem => {
+    reserveRems.forEach((reserveRem) => {
       reserveRemIds.push(reserveRem._id);
     });
 
@@ -112,7 +112,7 @@ class ReserveRems extends React.Component<Props, State> {
           .then(() => {
             this.removeReserveRems(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 
@@ -138,7 +138,7 @@ class ReserveRems extends React.Component<Props, State> {
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.search}
           value={this.state.searchValue}
           autoFocus={true}
@@ -169,8 +169,8 @@ class ReserveRems extends React.Component<Props, State> {
                 onChange={this.onChange}
               />
             </th>
-            <th>{__('Branch')}</th>
-            <th>{__('Department')}</th>
+            <th>{__('Větev')}</th>
+            <th>{__('Oddělení')}</th>
             <th>{__('Product')}</th>
             <th>{__('Uom')}</th>
             <th>{__('Remainder')}</th>
@@ -198,7 +198,7 @@ class ReserveRems extends React.Component<Props, State> {
             data={content}
             loading={false}
             count={totalCount}
-            emptyText="There is no data"
+            emptyText="Nejsou žádná data"
             emptyImage="/images/actions/5.svg"
           />
         }

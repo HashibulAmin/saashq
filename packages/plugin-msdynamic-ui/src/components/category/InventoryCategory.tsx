@@ -5,7 +5,7 @@ import {
   CollapseContent,
   DataWithLoader,
   Pagination,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import Button from '@saashq/ui/src/components/Button';
 import { BarItems } from '@saashq/ui/src/layout/styles';
@@ -29,20 +29,20 @@ const InventoryCategory = ({
   queryParams,
   setBrand,
   toCheckCategory,
-  toSyncCategory
+  toSyncCategory,
 }: Props) => {
   const checkButton = (
     <BarItems>
       <span>{items && items.matched && `Matched: ${items.matched.count}`}</span>
       <SelectBrands
         label={__('Choose brands')}
-        onSelect={brand => setBrand(brand as string)}
+        onSelect={(brand) => setBrand(brand as string)}
         initialValue={queryParams.brandId}
         multi={false}
         name="selectedBrands"
         customOption={{
           label: 'No Brand (noBrand)',
-          value: ''
+          value: '',
         }}
       />
 
@@ -70,12 +70,12 @@ const InventoryCategory = ({
           data = data.slice(
             Number(queryParams.page - 1) * queryParams.perPage,
             Number((queryParams.page - 1) * queryParams.perPage) +
-              Number(queryParams.perPage)
+              Number(queryParams.perPage),
           );
         } else {
           data = data.slice(
             (queryParams.page - 1) * 20,
-            (queryParams.page - 1) * 20 + 20
+            (queryParams.page - 1) * 20 + 20,
           );
         }
       }
@@ -90,7 +90,7 @@ const InventoryCategory = ({
     data = calculatePagination(data);
 
     const excludeSyncTrue = (syncData: any) => {
-      return syncData.filter(d => d.syncStatus === false);
+      return syncData.filter((d) => d.syncStatus === false);
     };
 
     const onClickSync = () => {
@@ -103,7 +103,7 @@ const InventoryCategory = ({
         rowData = rowData.slice(0, 100);
       }
 
-      return rowData.map(p => (
+      return rowData.map((p) => (
         <Row key={p.code} category={p} action={rowSction} />
       ));
     };
@@ -129,8 +129,8 @@ const InventoryCategory = ({
           <thead>
             <tr>
               <th>{__('Code')}</th>
-              <th>{__('Name')}</th>
-              <th>{__('Description')}</th>
+              <th>{__('Název')}</th>
+              <th>{__('Popis')}</th>
               {action === 'UPDATE' ? <th>{__('Update Status')}</th> : <></>}
               {action === 'CREATE' ? <th>{__('Create Status')}</th> : <></>}
               {action === 'DELETE' ? <th>{__('Delete Status')}</th> : <></>}
@@ -148,7 +148,8 @@ const InventoryCategory = ({
       <br />
       <CollapseContent
         title={__(
-          'Create categories' + (items.create ? ':  ' + items.create.count : '')
+          'Create categories' +
+            (items.create ? ':  ' + items.create.count : ''),
         )}
       >
         <>
@@ -167,7 +168,8 @@ const InventoryCategory = ({
       </CollapseContent>
       <CollapseContent
         title={__(
-          'Update categories' + (items.update ? ':  ' + items.update.count : '')
+          'Update categories' +
+            (items.update ? ':  ' + items.update.count : ''),
         )}
       >
         <>
@@ -186,7 +188,8 @@ const InventoryCategory = ({
       </CollapseContent>
       <CollapseContent
         title={__(
-          'Delete categories' + (items.delete ? ':  ' + items.delete.count : '')
+          'Delete categories' +
+            (items.delete ? ':  ' + items.delete.count : ''),
         )}
       >
         <>

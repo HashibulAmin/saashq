@@ -15,12 +15,12 @@ import { colors, dimensions } from '@saashq/ui/src/styles';
 
 const ZmsNameStyled = styledTS<{ checked: boolean }>(styled.div).attrs({})`
     color: ${colors.colorCoreBlack};
-    text-decoration: ${props => (props.checked ? 'line-through' : 'none')}
+    text-decoration: ${(props) => (props.checked ? 'line-through' : 'none')}
     `;
 
 export const ZmsWrapper = styledTS<{ space: number }>(
-  styled.div
-)`padding-left: ${props => props.space * 20}px;
+  styled.div,
+)`padding-left: ${(props) => props.space * 20}px;
   display:inline-flex;
   justify-content:flex-start;
   align-items: center;
@@ -55,24 +55,18 @@ class Row extends React.Component<Props, State> {
     remove(dictionary);
   };
   render() {
-    const {
-      dictionary,
-      renderButton,
-      space,
-      dictionaries,
-      parents,
-      parentId
-    } = this.props;
+    const { dictionary, renderButton, space, dictionaries, parents, parentId } =
+      this.props;
 
     const editTrigger = (
       <Button btnStyle="link">
-        <Tip text={__('Edit')} placement="top">
+        <Tip text={__('Upravit')} placement="top">
           <Icon icon="edit-3"></Icon>
         </Tip>
       </Button>
     );
 
-    const content = props => (
+    const content = (props) => (
       <Form
         {...props}
         types={parents}

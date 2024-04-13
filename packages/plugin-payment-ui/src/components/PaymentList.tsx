@@ -24,10 +24,10 @@ class IntegrationList extends React.Component<Props> {
     const {
       payments,
       queryParams: { _id },
-      removePayment
+      removePayment,
     } = this.props;
 
-    return payments.map(payment => (
+    return payments.map((payment) => (
       <PaymentListItem
         key={payment._id}
         _id={_id}
@@ -57,9 +57,9 @@ class IntegrationList extends React.Component<Props> {
         <Table>
           <thead>
             <tr>
-              <th>{__('Name')}</th>
+              <th>{__('Název')}</th>
               <th>{__('Status')}</th>
-              <th style={{ width: 130 }}>{__('Actions')}</th>
+              <th style={{ width: 130 }}>{__('Akce')}</th>
             </tr>
           </thead>
           <tbody>{this.renderRows()}</tbody>

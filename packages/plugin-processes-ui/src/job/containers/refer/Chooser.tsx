@@ -8,13 +8,13 @@ import { Alert, withProps } from '@saashq/ui/src/utils';
 import JobCategoryChooser from '../../components/category/Chooser';
 import {
   mutations as jobMutations,
-  queries as jobQueries
+  queries as jobQueries,
 } from '../../graphql';
 import {
   IJobRefer,
   JobRefersAddMutationResponse,
   JobRefersQueryResponse,
-  JobCategoriesQueryResponse
+  JobCategoriesQueryResponse,
 } from '../../types';
 import JobForm from './Form';
 
@@ -49,8 +49,8 @@ class JobReferChooser extends React.Component<FinalProps, { perPage: number }> {
       this.props.jobsQuery.refetch({
         types: this.props.types,
         searchValue: value,
-        perPage: this.state.perPage
-      })
+        perPage: this.state.perPage,
+      }),
     );
   };
 
@@ -58,16 +58,16 @@ class JobReferChooser extends React.Component<FinalProps, { perPage: number }> {
   addJob = (doc: IJobRefer, callback: () => void) => {
     this.props
       .addMutation({
-        variables: doc
+        variables: doc,
       })
       .then(() => {
         this.props.jobsQuery.refetch();
 
-        Alert.success('You successfully added a product or service');
+        Alert.success('Úspěšně jste přidali a product or service');
 
         callback();
       })
-      .catch(e => {
+      .catch((e) => {
         Alert.error(e.message);
       });
   };
@@ -105,7 +105,7 @@ class JobReferChooser extends React.Component<FinalProps, { perPage: number }> {
       add: this.addJob,
       clearState: () => this.search('', true),
       datas: jobsQuery.jobRefers || [],
-      onSelect
+      onSelect,
     };
 
     return (
@@ -122,17 +122,17 @@ export default withProps<Props>(
       { perPage: number; categoryId: string; types: string[] }
     >(gql(jobQueries.jobRefers), {
       name: 'jobsQuery',
-      options: props => ({
+      options: (props) => ({
         variables: {
           perPage: 20,
           categoryId: props.categoryId,
-          types: props.types
+          types: props.types,
         },
-        fetchPolicy: 'network-only'
-      })
+        fetchPolicy: 'network-only',
+      }),
     }),
     graphql<{}, JobCategoriesQueryResponse, {}>(gql(jobQueries.jobCategories), {
-      name: 'jobCategoriesQuery'
+      name: 'jobCategoriesQuery',
     }),
     // mutations
     graphql<{}, JobRefersAddMutationResponse, IJobRefer>(
@@ -143,11 +143,11 @@ export default withProps<Props>(
           refetchQueries: [
             {
               query: gql(jobQueries.jobRefers),
-              variables: { perPage: 20 }
-            }
-          ]
-        })
-      }
-    )
-  )(JobReferChooser)
+              variables: { perPage: 20 },
+            },
+          ],
+        }),
+      },
+    ),
+  )(JobReferChooser),
 );

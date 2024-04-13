@@ -5,12 +5,12 @@ import {
   ModalTrigger,
   Pagination,
   SortHandler,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import { __, Alert, confirm, router } from '@saashq/ui/src/utils';
 import {
   MainStyleTitle as Title,
-  MainStyleCount as Count
+  MainStyleCount as Count,
 } from '@saashq/ui/src/styles/eindex';
 import { BarItems } from '@saashq/ui/src/layout/styles';
 import Wrapper from '@saashq/ui/src/layout/components/Wrapper';
@@ -54,7 +54,7 @@ class SpinsList extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue
+      searchValue: this.props.searchValue,
     };
   }
 
@@ -63,7 +63,7 @@ class SpinsList extends React.Component<IProps, State> {
     toggleAll(spins, 'spins');
   };
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -78,17 +78,17 @@ class SpinsList extends React.Component<IProps, State> {
     }, 500);
   };
 
-  removeSpins = spins => {
+  removeSpins = (spins) => {
     const spinIds: string[] = [];
 
-    spins.forEach(spin => {
+    spins.forEach((spin) => {
       spinIds.push(spin._id);
     });
 
     this.props.removeSpins({ spinIds }, this.props.emptyBulk);
   };
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -104,7 +104,7 @@ class SpinsList extends React.Component<IProps, State> {
       isAllSelected,
       totalCount,
       queryParams,
-      currentCampaign
+      currentCampaign,
     } = this.props;
 
     const mainContent = (
@@ -135,7 +135,7 @@ class SpinsList extends React.Component<IProps, State> {
             </tr>
           </thead>
           <tbody id="spins">
-            {spins.map(spin => (
+            {spins.map((spin) => (
               <SpinRow
                 spin={spin}
                 isChecked={bulk.includes(spin)}
@@ -157,7 +157,7 @@ class SpinsList extends React.Component<IProps, State> {
       </Button>
     );
 
-    const spinForm = props => {
+    const spinForm = (props) => {
       return <SpinForm {...props} queryParams={queryParams} />;
     };
 
@@ -168,7 +168,7 @@ class SpinsList extends React.Component<IProps, State> {
             .then(() => {
               this.removeSpins(bulk);
             })
-            .catch(error => {
+            .catch((error) => {
               Alert.error(error.message);
             });
 
@@ -189,7 +189,7 @@ class SpinsList extends React.Component<IProps, State> {
         <BarItems>
           <FormControl
             type="text"
-            placeholder={__('Type to search')}
+            placeholder={__('Zadejte a vyhledejte')}
             onChange={this.search}
             value={this.state.searchValue}
             autoFocus={true}

@@ -43,14 +43,14 @@ class List extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue
+      searchValue: this.props.searchValue,
     };
   }
 
   renderRow = () => {
     const { jobRefers, history, toggleBulk, bulk } = this.props;
 
-    return jobRefers.map(jobRefer => (
+    return jobRefers.map((jobRefer) => (
       <Row
         history={history}
         key={jobRefer._id}
@@ -66,17 +66,17 @@ class List extends React.Component<IProps, State> {
     toggleAll(jobRefers, 'jobRefers');
   };
 
-  removeProducts = jobRefers => {
+  removeProducts = (jobRefers) => {
     const jobRefersIds: string[] = [];
 
-    jobRefers.forEach(jobRefer => {
+    jobRefers.forEach((jobRefer) => {
       jobRefersIds.push(jobRefer._id);
     });
 
     this.props.remove({ jobRefersIds }, this.props.emptyBulk);
   };
 
-  renderCount = productCount => {
+  renderCount = (productCount) => {
     return (
       <Count>
         {productCount} job{productCount > 1 && 's'}
@@ -84,7 +84,7 @@ class List extends React.Component<IProps, State> {
     );
   };
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -114,7 +114,7 @@ class List extends React.Component<IProps, State> {
       queryParams,
       isAllSelected,
       history,
-      bulk
+      bulk,
     } = this.props;
 
     const trigger = (
@@ -123,13 +123,13 @@ class List extends React.Component<IProps, State> {
       </Button>
     );
 
-    const modalContent = props => <Form {...props} />;
+    const modalContent = (props) => <Form {...props} />;
 
     let actionBarRight = (
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.search}
           value={this.state.searchValue}
           autoFocus={true}
@@ -158,12 +158,12 @@ class List extends React.Component<IProps, State> {
                   onChange={this.onChange}
                 />
               </th>
-              <th>{__('Name')}</th>
+              <th>{__('Název')}</th>
               <th>{__('Code')}</th>
               <th>{__('Type')}</th>
               <th>{__('Need Products')}</th>
               <th>{__('Result Products')}</th>
-              <th>{__('Actions')}</th>
+              <th>{__('Akce')}</th>
             </tr>
           </thead>
           <tbody>{this.renderRow()}</tbody>
@@ -177,7 +177,7 @@ class List extends React.Component<IProps, State> {
           .then(() => {
             this.removeProducts(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 
@@ -212,7 +212,7 @@ class List extends React.Component<IProps, State> {
             data={content}
             loading={loading}
             count={jobRefersCount}
-            emptyText="There is no data"
+            emptyText="Nejsou žádná data"
             emptyImage="/images/actions/5.svg"
           />
         }

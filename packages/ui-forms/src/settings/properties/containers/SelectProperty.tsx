@@ -30,7 +30,7 @@ const SelectPropertyContainer = (props: ChildProps<FinalProps>) => {
   let properties = propertiesQuery.fields || [];
 
   if (queryParams.type === 'contacts:customer') {
-    properties = properties.filter(e => {
+    properties = properties.filter((e) => {
       if (
         [
           'firstName',
@@ -38,7 +38,7 @@ const SelectPropertyContainer = (props: ChildProps<FinalProps>) => {
           'middleName',
           'primaryEmail',
           'primaryPhone',
-          'owner'
+          'owner',
         ].includes(e.type) &&
         e.isDefinedBySaasHQ
       ) {
@@ -47,11 +47,11 @@ const SelectPropertyContainer = (props: ChildProps<FinalProps>) => {
       return e;
     });
 
-    const links: IField[] = getConstantFromStore('social_links').map(link => {
+    const links: IField[] = getConstantFromStore('social_links').map((link) => {
       return {
         _id: `customerLinks_${link.value}`,
         type: `customerLinks_${link.value}`,
-        text: link.label
+        text: link.label,
       };
     });
 
@@ -59,7 +59,7 @@ const SelectPropertyContainer = (props: ChildProps<FinalProps>) => {
   }
 
   if (queryParams.type === 'contacts:company') {
-    properties = properties.filter(e => {
+    properties = properties.filter((e) => {
       if (
         [
           'primaryName',
@@ -67,7 +67,7 @@ const SelectPropertyContainer = (props: ChildProps<FinalProps>) => {
           'primaryPhone',
           'owner',
           'plan',
-          'code'
+          'code',
         ].includes(e.type) &&
         e.isDefinedBySaasHQ
       ) {
@@ -76,11 +76,11 @@ const SelectPropertyContainer = (props: ChildProps<FinalProps>) => {
       return e;
     });
 
-    const links: IField[] = getConstantFromStore('social_links').map(link => {
+    const links: IField[] = getConstantFromStore('social_links').map((link) => {
       return {
         _id: `companyLinks_${link.value}`,
         type: `companyLinks_${link.value}`,
-        text: link.label
+        text: link.label,
       };
     });
 
@@ -97,7 +97,7 @@ const SelectPropertyContainer = (props: ChildProps<FinalProps>) => {
     name,
     values,
     isSubmitted,
-    callback
+    callback,
   }: IButtonMutateProps) => {
     const callBackResponse = () => {
       propertiesQuery.refetch();
@@ -114,7 +114,7 @@ const SelectPropertyContainer = (props: ChildProps<FinalProps>) => {
         callback={callBackResponse}
         isSubmitted={isSubmitted}
         type="submit"
-        successMessage={`You successfully added a ${name}`}
+        successMessage={`Úspěšně jste přidali a ${name}`}
       />
     );
   };
@@ -123,7 +123,7 @@ const SelectPropertyContainer = (props: ChildProps<FinalProps>) => {
     ...props,
     properties,
     groups,
-    renderButton
+    renderButton,
   };
 
   return <SelectProperty {...updatedProps} />;
@@ -133,8 +133,8 @@ const getRefetchQueries = (queryParams?: any) => {
   return [
     {
       query: gql(queries.fields),
-      variables: { contentType: queryParams.type }
-    }
+      variables: { contentType: queryParams.type },
+    },
   ];
 };
 
@@ -144,11 +144,11 @@ export default compose(
     options: ({ queryParams }) => ({
       variables: {
         contentType: queryParams.type,
-        isVisible: true
+        isVisible: true,
       },
       fetchPolicy: 'network-only',
-      refetchQueries: getRefetchQueries(queryParams)
-    })
+      refetchQueries: getRefetchQueries(queryParams),
+    }),
   }),
   graphql<Props, FieldsGroupsQueryResponse, { contentType: string }>(
     gql(queries.fieldsGroups),
@@ -156,9 +156,9 @@ export default compose(
       name: 'fieldsGroupsQuery',
       options: ({ queryParams }) => ({
         variables: {
-          contentType: queryParams.type
-        }
-      })
-    }
-  )
+          contentType: queryParams.type,
+        },
+      }),
+    },
+  ),
 )(SelectPropertyContainer);

@@ -7,7 +7,7 @@ import {
   Icon,
   NameCard,
   Tags,
-  Tip
+  Tip,
 } from '@saashq/ui/src/components';
 import { FlexCenter } from '@saashq/ui/src/styles/main';
 import { __ } from '@saashq/ui/src/utils';
@@ -31,7 +31,7 @@ const Row = (props: Props) => {
     return (
       <Link to={`/reports/details/${report._id}`}>
         <Button btnStyle="link">
-          <Tip text={__('Edit')} placement="top">
+          <Tip text={__('Upravit')} placement="top">
             <Icon icon="edit-3" />
           </Tip>
         </Button>
@@ -53,7 +53,7 @@ const Row = (props: Props) => {
     );
   };
 
-  const onCheckReport = e => {
+  const onCheckReport = (e) => {
     if (toggleReport) {
       toggleReport(report._id, e.target.checked);
     }

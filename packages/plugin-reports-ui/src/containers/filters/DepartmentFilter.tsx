@@ -18,7 +18,7 @@ export default function DepartmentFilterContainer() {
 
   if (listQuery.error) {
     return (
-      <Box isOpen={true} title={__('Department')} name="showDepartment">
+      <Box isOpen={true} title={__('Oddělení')} name="showDepartment">
         <MenuFooter>
           <ErrorMsg>{listQuery.error.message}</ErrorMsg>
         </MenuFooter>

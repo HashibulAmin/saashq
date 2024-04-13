@@ -9,7 +9,7 @@ import {
   FlexRow,
   FlexRowLeft,
   SchedulesTableWrapper,
-  ToggleButton
+  ToggleButton,
 } from '../../styles';
 
 import { IBranch, IDepartment } from '@saashq/ui/src/team/types';
@@ -20,7 +20,7 @@ import {
   dateFormat,
   dateOfTheMonthFormat,
   dayOfTheWeekFormat,
-  timeFormat
+  timeFormat,
 } from '../../constants';
 import Pagination from '@saashq/ui/src/components/pagination/Pagination';
 import { isEnabled, router } from '@saashq/ui/src/utils/core';
@@ -53,7 +53,7 @@ type Props = {
     userId: any,
     filledShifts: any,
     totalBreakInMins?: number | string,
-    selectedScheduleConfigId?: string
+    selectedScheduleConfigId?: string,
   ) => void;
   submitSchedule: (
     branchIds: any,
@@ -61,7 +61,7 @@ type Props = {
     userIds: any,
     filledShifts: any,
     totalBreakInMins?: number | string,
-    selectedScheduleConfigId?: string
+    selectedScheduleConfigId?: string,
   ) => void;
   removeScheduleShifts: (_id: string, type: string) => void;
 
@@ -85,20 +85,20 @@ function ScheduleList(props: Props) {
     getPagination,
     isCurrentUserSupervisor,
     checkDuplicateScheduleShifts,
-    scheduleConfigs
+    scheduleConfigs,
   } = props;
 
   const [scheduleConfigsWrappedById, setScheduleConfigsWrappedById] = useState(
-    {}
+    {},
   );
 
   const [selectedScheduleStatus, setScheduleStatus] = useState(
-    router.getParam(history, 'scheduleStatus') || ''
+    router.getParam(history, 'scheduleStatus') || '',
   );
   const [showButtons, setShowButtons] = useState(false);
 
   const [isSideBarOpen, setIsOpen] = useState(
-    localStorage.getItem('isSideBarOpen') === 'true' ? true : false
+    localStorage.getItem('isSideBarOpen') === 'true' ? true : false,
   );
 
   const onToggleSidebar = () => {
@@ -148,7 +148,7 @@ function ScheduleList(props: Props) {
         dateField: startRange.format(dateOfTheMonthFormat),
         text: startRange.format(dateOfTheMonthFormat),
         backgroundColor,
-        date: startRange.toDate()
+        date: startRange.toDate(),
       });
 
       columnNo += 1;
@@ -186,8 +186,8 @@ function ScheduleList(props: Props) {
       ...scheduleOfMember,
       shifts: scheduleOfMember?.shifts.sort(
         (a, b) =>
-          new Date(a.shiftStart).getTime() - new Date(b.shiftStart).getTime()
-      )
+          new Date(a.shiftStart).getTime() - new Date(b.shiftStart).getTime(),
+      ),
     };
 
     return (
@@ -204,40 +204,40 @@ function ScheduleList(props: Props) {
     switch (selectedScheduleStatus) {
       case 'Rejected':
         return schedules.filter(
-          schedule =>
+          (schedule) =>
             schedule.solved &&
-            schedule.status?.toLocaleLowerCase() === 'rejected'
+            schedule.status?.toLocaleLowerCase() === 'rejected',
         );
       case 'Pending':
-        return schedules.filter(schedule => !schedule.solved);
+        return schedules.filter((schedule) => !schedule.solved);
       default:
         return schedules.filter(
-          schedule =>
+          (schedule) =>
             schedule.solved &&
-            schedule.status?.toLocaleLowerCase() === 'approved'
+            schedule.status?.toLocaleLowerCase() === 'approved',
         );
     }
   };
 
-  const onSelectScheduleStatus = e => {
+  const onSelectScheduleStatus = (e) => {
     setScheduleStatus(e.value);
     router.setParams(history, { scheduleStatus: e.value });
   };
 
   const checkAndApproveSchedule = async (
-    scheduleOfMember: ISchedule
+    scheduleOfMember: ISchedule,
   ): Promise<void> => {
     const checkDuplicateShifts = await checkDuplicateScheduleShifts({
       userIds: [scheduleOfMember.user._id],
-      shifts: scheduleOfMember.shifts.map(shift => ({
+      shifts: scheduleOfMember.shifts.map((shift) => ({
         shiftStart: shift.shiftStart,
         shiftEnd: shift.shiftEnd,
         scheduleConfigId: shift.scheduleConfigId,
-        lunchBreakInMins: shift.lunchBreakInMins
+        lunchBreakInMins: shift.lunchBreakInMins,
       })),
       userType: 'admin',
       checkOnly: true,
-      status: 'Approved'
+      status: 'Approved',
     });
 
     if (!checkDuplicateShifts.length) {
@@ -271,9 +271,9 @@ function ScheduleList(props: Props) {
             onChange={onSelectScheduleStatus}
             placeholder="Select Schedule"
             multi={false}
-            options={['Approved', 'Rejected', 'Pending'].map(el => ({
+            options={['Approved', 'Rejected', 'Pending'].map((el) => ({
               value: el,
-              label: el
+              label: el,
             }))}
           />
         </FormGroup>
@@ -323,7 +323,7 @@ function ScheduleList(props: Props) {
           </th>
           {selectedScheduleStatus === 'Pending' && (
             <th rowSpan={2} style={{ textAlign: 'center' }}>
-              {__('Action')}
+              {__('Akce')}
             </th>
           )}
           <th rowSpan={2} className="fixed-column">
@@ -335,13 +335,13 @@ function ScheduleList(props: Props) {
           <th rowSpan={2}>{__('Total hours')}</th>
           <th rowSpan={2}>{__('Total Break')}</th>
           {!isEnabled('bichil') && <th rowSpan={2}>{__('Member checked')}</th>}
-          {daysAndDatesHeaders.map(column => {
+          {daysAndDatesHeaders.map((column) => {
             return (
               <th
                 key={column.dateField}
                 style={{
                   backgroundColor: column.backgroundColor,
-                  border: '1px solid #EEE'
+                  border: '1px solid #EEE',
                 }}
               >
                 {dayjs(column.date).format(dayOfTheWeekFormat)}
@@ -350,13 +350,13 @@ function ScheduleList(props: Props) {
           })}
         </tr>
         <tr>
-          {daysAndDatesHeaders.map(column => {
+          {daysAndDatesHeaders.map((column) => {
             return (
               <th
                 key={column.dateField}
                 style={{
                   backgroundColor: column.backgroundColor,
-                  border: '1px solid #EEE'
+                  border: '1px solid #EEE',
                 }}
               >
                 {column.text}
@@ -380,9 +380,9 @@ function ScheduleList(props: Props) {
 
     for (const shift of shiftsOfMember) {
       const findColumn = daysAndDatesHeaders.find(
-        date =>
+        (date) =>
           date.dateField ===
-          dayjs(shift.shiftStart).format(dateOfTheMonthFormat)
+          dayjs(shift.shiftStart).format(dateOfTheMonthFormat),
       );
 
       const scheduleConfigId = shift.scheduleConfigId;
@@ -401,15 +401,15 @@ function ScheduleList(props: Props) {
               shiftStart,
               shiftEnd,
               backgroundColor,
-              scheduleConfigId
+              scheduleConfigId,
             },
-            ...prevShifts
+            ...prevShifts,
           ];
           continue;
         }
 
         listShiftsOnCorrectColumn[columnNumber] = [
-          { shiftStart, shiftEnd, backgroundColor, scheduleConfigId }
+          { shiftStart, shiftEnd, backgroundColor, scheduleConfigId },
         ];
         continue;
       }
@@ -432,7 +432,7 @@ function ScheduleList(props: Props) {
                 style={{
                   cursor: 'default',
                   backgroundColor: shift.backgroundColor,
-                  border: '1px solid #EEE'
+                  border: '1px solid #EEE',
                 }}
               >
                 <div>{shift.shiftStart}</div>
@@ -446,16 +446,16 @@ function ScheduleList(props: Props) {
       }
 
       const findBackgroundColor = daysAndDatesHeaders.find(
-        date => date.columnNo === i
+        (date) => date.columnNo === i,
       )?.backgroundColor;
 
       listRowOnColumnOrder.push(
         <td
           style={{
             backgroundColor: '#dddddd',
-            border: '1px solid #EEE'
+            border: '1px solid #EEE',
           }}
-        />
+        />,
       );
     }
 
@@ -475,15 +475,15 @@ function ScheduleList(props: Props) {
         : 'Танилцаагүй';
 
     const totalDaysScheduled = new Set(
-      scheduleOfMember.shifts.map(shift =>
-        dayjs(shift.shiftStart).format(dateFormat)
-      )
+      scheduleOfMember.shifts.map((shift) =>
+        dayjs(shift.shiftStart).format(dateFormat),
+      ),
     ).size;
 
     let totalHoursScheduled = 0;
     let totalBreakInMins = 0;
 
-    scheduleOfMember.shifts.map(shift => {
+    scheduleOfMember.shifts.map((shift) => {
       totalHoursScheduled +=
         (new Date(shift.shiftEnd).getTime() -
           new Date(shift.shiftStart).getTime()) /
@@ -554,7 +554,7 @@ function ScheduleList(props: Props) {
                       btnStyle="link"
                       onClick={() => {
                         confirm(
-                          'Are you sure to Approve according schedule ?'
+                          'Are you sure to Approve according schedule ?',
                         ).then(() => checkAndApproveSchedule(scheduleOfMember));
                       }}
                     />
@@ -608,7 +608,7 @@ function ScheduleList(props: Props) {
       <SchedulesTableWrapper>
         <Table bordered={true} condensed={true} responsive={true}>
           {renderTableHeaders()}
-          {getFilteredSchedules.map(schedule => {
+          {getFilteredSchedules.map((schedule) => {
             return renderScheduleRow(schedule, schedule.user);
           })}
           <tbody>{}</tbody>

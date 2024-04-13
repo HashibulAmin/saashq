@@ -132,7 +132,7 @@ export class SideBar extends React.Component<Props, State> {
     return (
       <CommonSideBar>
         <Section.Title>
-          {__('Addition Filters')}
+          {__('Sčítací Filtry')}
           <Section.QuickButtons>
             {fields.some((field) => queryParams[field]) && extraButton}
           </Section.QuickButtons>

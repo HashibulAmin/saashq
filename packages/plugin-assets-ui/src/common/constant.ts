@@ -1,58 +1,58 @@
 import { __ } from '@saashq/ui/src';
 
 export const ASSET_CATEGORY_STATUSES = [
-  { label: 'Choose Status', value: '' },
-  { label: 'Active', value: 'active' },
-  { label: 'Disabled', value: 'disabled' },
-  { label: 'Archived', value: 'archived' },
+  { label: 'Zvolte Stav', value: '' },
+  { label: 'Aktivní', value: 'active' },
+  { label: 'Zakázáno', value: 'disabled' },
+  { label: 'Archivováno', value: 'archived' },
 ];
 
 export const ASSET_INFO = {
-  name: 'Name',
-  type: 'Type',
-  category: 'category',
-  parent: 'parent',
-  code: 'Code',
-  description: 'Description',
-  unitPrice: 'UnitPrice',
-  vendor: 'Vendor',
+  name: 'Název',
+  type: 'Typ',
+  category: 'kategorie',
+  parent: 'rodič',
+  code: 'Kód',
+  description: 'Popis',
+  unitPrice: 'Jednotková cena',
+  vendor: 'Prodejce',
 
   ALL: [
     { field: 'name', label: 'Název' },
-    { field: 'type', label: 'Type' },
+    { field: 'type', label: 'Typ' },
     { field: 'category', label: 'Kategorie' },
     { field: 'parent', label: 'Rodič' },
     { field: 'code', label: 'Kód' },
     { field: 'description', label: 'Popis' },
-    { field: 'unitPrice', label: 'UnitPrice' },
+    { field: 'unitPrice', label: 'Jednotková cena' },
     { field: 'vendor', label: 'Prodejce' },
   ],
 };
 
 export const ASSET_CATEGORY_STATUS_FILTER = {
-  disabled: 'Disabled',
-  archived: 'Archived',
+  disabled: 'Zakázáno',
+  archived: 'Archivováno',
 };
 
 export const breadcrumb = [
-  { title: __('Settings'), link: '/settings' },
-  { title: __('Assets') },
+  { title: __('Nastavení'), link: '/settings' },
+  { title: __('Aktiva') },
 ];
 
 export const menuMovements = [
-  { title: 'Movements', link: '/asset-movements' },
-  { title: 'Assets', link: '/asset-movement-items' },
+  { title: 'Pohyby', link: '/asset-movements' },
+  { title: 'Aktiva', link: '/asset-movement-items' },
 ];
 
 export const checkKnowledge = [
   {
-    title: 'Assigned',
-    label: 'Assigned Knowledgebase',
+    title: 'Zadáno',
+    label: 'Přiřazená Znalostní báze',
     icon: 'file-bookmark-alt',
   },
   {
     title: 'Designated',
-    label: 'Designated Knowledgebase',
+    label: 'Určená Znalostní báze',
     icon: 'file-times',
   },
 ];

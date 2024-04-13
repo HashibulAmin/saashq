@@ -26,11 +26,11 @@ const List = (props: Props) => {
     <Table>
       <thead>
         <tr>
-          <th>{__('Branch')}</th>
-          <th>{__('Department')}</th>
+          <th>{__('Větev')}</th>
+          <th>{__('Oddělení')}</th>
           <th>{__('Content Type')}</th>
           <th>{__('Created at')}</th>
-          <th>{__('Actions')}</th>
+          <th>{__('Akce')}</th>
         </tr>
       </thead>
       <tbody>{renderRow()}</tbody>

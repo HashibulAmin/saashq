@@ -23,7 +23,7 @@ type FinalProps = {} & IRouterProps & Props;
 const INTEGRATION_FORM = {
   callpro: CallPro,
   webhook: WebHookForm,
-  'outgoing-webhook': OutgoingWebHookFrom
+  'outgoing-webhook': OutgoingWebHookFrom,
 };
 
 class IntegrationFormContainer extends React.Component<FinalProps, State> {
@@ -48,7 +48,7 @@ class IntegrationFormContainer extends React.Component<FinalProps, State> {
         isSubmitted={isSubmitted}
         refetchQueries={getRefetchQueries(type)}
         type="submit"
-        successMessage={`You successfully added a ${type}`}
+        successMessage={`Úspěšně jste přidali a ${type}`}
       />
     );
   };
@@ -61,7 +61,7 @@ class IntegrationFormContainer extends React.Component<FinalProps, State> {
       callback: closeModal,
       renderButton: this.renderButton,
       channelIds,
-      onChannelChange: this.onChannelChange
+      onChannelChange: this.onChannelChange,
     };
 
     if (['imap', 'viber', 'calls'].includes(type)) {
@@ -69,7 +69,7 @@ class IntegrationFormContainer extends React.Component<FinalProps, State> {
         'inboxIntegrationForm',
         updatedProps,
         false,
-        type
+        type,
       );
     }
 

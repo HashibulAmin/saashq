@@ -80,7 +80,7 @@ class BasicInfoSection extends React.Component<Props> {
           <Icon icon="ellipsis-h" />
         ) : (
           <>
-            {__('Action')} <Icon icon="angle-down" />
+            {__('Akce')} <Icon icon="angle-down" />
           </>
         )}
       </Button>
@@ -104,7 +104,7 @@ class BasicInfoSection extends React.Component<Props> {
       <li>
         <ModalTrigger
           title="Upravit základní informace"
-          trigger={<a href="#edit">{__('Edit')}</a>}
+          trigger={<a href="#edit">{__('Upravit')}</a>}
           size="lg"
           content={customerForm}
         />

@@ -25,7 +25,7 @@ class Row extends React.Component<Props> {
     return moment(date).format('YYYY/MM/DD HH:mm');
   };
 
-  displayLoc = obj => {
+  displayLoc = (obj) => {
     if (!obj) {
       return '';
     }
@@ -57,10 +57,10 @@ class Row extends React.Component<Props> {
       inDepartment,
       outBranch,
       outDepartment,
-      description
+      description,
     } = perform;
 
-    const modalContent = props => <Form {...props} perform={perform} />;
+    const modalContent = (props) => <Form {...props} perform={perform} />;
 
     return (
       <tr key={Math.random()}>
@@ -85,7 +85,7 @@ class Row extends React.Component<Props> {
               autoOpenKey="showProductModal"
               trigger={
                 <Button btnStyle="link">
-                  <Tip text={__('Edit')} placement="bottom">
+                  <Tip text={__('Upravit')} placement="bottom">
                     <Icon icon="edit" />
                   </Tip>
                 </Button>

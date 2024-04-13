@@ -6,14 +6,14 @@ import {
   HeaderDescription,
   ModalTrigger,
   Pagination,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import {
   FilterContainer,
   FlexItem,
   FlexRow,
   InputBar,
-  Title
+  Title,
 } from '@saashq/ui-settings/src/styles';
 
 import Form from '../containers/Form';
@@ -36,7 +36,7 @@ type Props = {
   toggleBulk: () => void;
   remove: (
     doc: { voucherCampaignIds: string[] },
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
   searchValue: string;
   filterStatus: string;
@@ -56,11 +56,11 @@ class VoucherCampaigns extends React.Component<Props, State> {
 
     this.state = {
       searchValue: this.props.searchValue || '',
-      filterStatus: this.props.filterStatus || ''
+      filterStatus: this.props.filterStatus || '',
     };
   }
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -91,7 +91,7 @@ class VoucherCampaigns extends React.Component<Props, State> {
   renderRow = () => {
     const { voucherCampaigns, history, toggleBulk, bulk } = this.props;
 
-    return voucherCampaigns.map(voucherCampaign => (
+    return voucherCampaigns.map((voucherCampaign) => (
       <Row
         key={voucherCampaign._id}
         history={history}
@@ -102,14 +102,14 @@ class VoucherCampaigns extends React.Component<Props, State> {
     ));
   };
 
-  modalContent = props => {
+  modalContent = (props) => {
     return <Form {...props} />;
   };
 
-  removeVoucherCampaigns = voucherCampaigns => {
+  removeVoucherCampaigns = (voucherCampaigns) => {
     const voucherCampaignIds: string[] = [];
 
-    voucherCampaigns.forEach(voucherCampaign => {
+    voucherCampaigns.forEach((voucherCampaign) => {
       voucherCampaignIds.push(voucherCampaign._id);
     });
 
@@ -125,7 +125,7 @@ class VoucherCampaigns extends React.Component<Props, State> {
           .then(() => {
             this.removeVoucherCampaigns(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 
@@ -155,7 +155,7 @@ class VoucherCampaigns extends React.Component<Props, State> {
             <FlexItem>
               <FormControl
                 type="text"
-                placeholder={__('Type to search')}
+                placeholder={__('Zadejte a vyhledejte')}
                 onChange={this.search}
                 value={this.state.searchValue}
                 autoFocus={true}
@@ -190,9 +190,9 @@ class VoucherCampaigns extends React.Component<Props, State> {
       { title: __('Settings'), link: '/settings' },
       {
         title: __('Loyalties Config'),
-        link: '/saashq-plugin-loyalty/settings/general'
+        link: '/saashq-plugin-loyalty/settings/general',
       },
-      { title: __('Voucher Campaign') }
+      { title: __('Voucher Campaign') },
     ];
 
     const content = (
@@ -212,7 +212,7 @@ class VoucherCampaigns extends React.Component<Props, State> {
             <th>{__('Finish Date of Use')}</th>
             <th>{__('Type')}</th>
             <th>{__('Status')}</th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{this.renderRow()}</tbody>
@@ -239,7 +239,7 @@ class VoucherCampaigns extends React.Component<Props, State> {
             data={content}
             loading={loading}
             count={voucherCampaigns.length}
-            emptyText="There is no data"
+            emptyText="Nejsou žádná data"
             emptyImage="/images/actions/5.svg"
           />
         }

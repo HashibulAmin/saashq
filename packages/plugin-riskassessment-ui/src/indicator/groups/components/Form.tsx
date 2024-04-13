@@ -92,7 +92,7 @@ class Form extends React.Component<Props, State> {
     return (
       <FormContainer column gap>
         <FormGroup>
-          <ControlLabel>{__('Name')}</ControlLabel>
+          <ControlLabel>{__('Název')}</ControlLabel>
           <FormControl
             {...formProps}
             type="text"
@@ -102,7 +102,7 @@ class Form extends React.Component<Props, State> {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Description')}</ControlLabel>
+          <ControlLabel>{__('Popis')}</ControlLabel>
           <FormControl
             {...formProps}
             componentClass="textarea"

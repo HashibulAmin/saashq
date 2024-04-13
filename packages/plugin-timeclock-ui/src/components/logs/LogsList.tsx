@@ -28,13 +28,13 @@ type Props = {
   extractTimeLogsFromMsSQL: (
     startDate: Date,
     endDate: Date,
-    params: any
+    params: any,
   ) => void;
 
   createTimeclockFromLog: (
     userId: string,
     timelog: Date,
-    inDevice?: string
+    inDevice?: string,
   ) => void;
 
   showSideBar: (sideBar: boolean) => void;
@@ -50,18 +50,18 @@ function ReportList(props: Props) {
     showSideBar,
     getActionBar,
     createTimeclockFromLog,
-    isCurrentUserAdmin
+    isCurrentUserAdmin,
   } = props;
 
   const [isSideBarOpen, setIsOpen] = useState(
-    localStorage.getItem('isSideBarOpen') === 'true' ? true : false
+    localStorage.getItem('isSideBarOpen') === 'true' ? true : false,
   );
 
   const [startDate, setStartDate] = useState(
-    new Date(localStorage.getItem('startDate') || Date.now())
+    new Date(localStorage.getItem('startDate') || Date.now()),
   );
   const [endDate, setEndDate] = useState(
-    new Date(localStorage.getItem('endDate') || Date.now())
+    new Date(localStorage.getItem('endDate') || Date.now()),
   );
 
   const onToggleSidebar = () => {
@@ -120,11 +120,11 @@ function ReportList(props: Props) {
           <th>{__('Date')}</th>
           <th>{__('Time')}</th>
           <th>{__('Device')}</th>
-          <th>{__('Action')}</th>
+          <th>{__('Akce')}</th>
         </tr>
       </thead>
       <tbody>
-        {timelogs.map(timelog => {
+        {timelogs.map((timelog) => {
           return (
             <tr key={timelog._id}>
               <td>{timelog.user && timelog.user.employeeId}</td>
@@ -145,7 +145,7 @@ function ReportList(props: Props) {
                       createTimeclockFromLog(
                         timelog.user._id,
                         timelog.timelog,
-                        timelog.deviceName
+                        timelog.deviceName,
                       )
                     }
                     icon="clock-eight"

@@ -17,23 +17,23 @@ type Props = {
 function RequestAccessForm({ requestAccess, fileId }: Props) {
   const [description, setDesc] = useState('');
 
-  const onRequest = callback => {
+  const onRequest = (callback) => {
     requestAccess(
       {
         fileId,
-        description
+        description,
       },
-      callback
+      callback,
     );
   };
 
-  const renderForm = props => {
-    const onChange = e => setDesc((e.target as HTMLInputElement).value);
+  const renderForm = (props) => {
+    const onChange = (e) => setDesc((e.target as HTMLInputElement).value);
 
     return (
       <>
         <FormGroup>
-          <ControlLabel>{__('Description')}</ControlLabel>
+          <ControlLabel>{__('Popis')}</ControlLabel>
           <p>{__('You can write description or not')}</p>
           <FormControl
             name="description"
@@ -83,7 +83,7 @@ function RequestAccessForm({ requestAccess, fileId }: Props) {
               Request access
             </Button>
           }
-          content={props => renderForm(props)}
+          content={(props) => renderForm(props)}
           centered={true}
           enforceFocus={false}
         />

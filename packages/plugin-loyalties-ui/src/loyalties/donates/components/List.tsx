@@ -6,12 +6,12 @@ import {
   ModalTrigger,
   Pagination,
   SortHandler,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import { Wrapper } from '@saashq/ui/src/layout';
 import {
   MainStyleTitle as Title,
-  MainStyleCount as Count
+  MainStyleCount as Count,
 } from '@saashq/ui/src/styles/eindex';
 import { BarItems } from '@saashq/ui/src/layout/styles';
 import { IRouterProps } from '@saashq/ui/src/types';
@@ -54,7 +54,7 @@ class DonatesList extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue
+      searchValue: this.props.searchValue,
     };
   }
 
@@ -63,7 +63,7 @@ class DonatesList extends React.Component<IProps, State> {
     toggleAll(donates, 'donates');
   };
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -78,17 +78,17 @@ class DonatesList extends React.Component<IProps, State> {
     }, 500);
   };
 
-  removeDonates = donates => {
+  removeDonates = (donates) => {
     const donateIds: string[] = [];
 
-    donates.forEach(donate => {
+    donates.forEach((donate) => {
       donateIds.push(donate._id);
     });
 
     this.props.removeDonates({ donateIds }, this.props.emptyBulk);
   };
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -104,7 +104,7 @@ class DonatesList extends React.Component<IProps, State> {
       isAllSelected,
       totalCount,
       queryParams,
-      currentCampaign
+      currentCampaign,
     } = this.props;
 
     const mainContent = (
@@ -138,7 +138,7 @@ class DonatesList extends React.Component<IProps, State> {
             </tr>
           </thead>
           <tbody id="donates">
-            {donates.map(donate => (
+            {donates.map((donate) => (
               <DonateRow
                 donate={donate}
                 isChecked={bulk.includes(donate)}
@@ -160,7 +160,7 @@ class DonatesList extends React.Component<IProps, State> {
       </Button>
     );
 
-    const donateForm = props => {
+    const donateForm = (props) => {
       return <DonateForm {...props} queryParams={queryParams} />;
     };
 
@@ -171,7 +171,7 @@ class DonatesList extends React.Component<IProps, State> {
             .then(() => {
               this.removeDonates(bulk);
             })
-            .catch(error => {
+            .catch((error) => {
               Alert.error(error.message);
             });
 
@@ -192,7 +192,7 @@ class DonatesList extends React.Component<IProps, State> {
         <BarItems>
           <FormControl
             type="text"
-            placeholder={__('Type to search')}
+            placeholder={__('Zadejte a vyhledejte')}
             onChange={this.search}
             value={this.state.searchValue}
             autoFocus={true}

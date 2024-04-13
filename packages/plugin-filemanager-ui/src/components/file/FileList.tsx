@@ -47,7 +47,7 @@ class FileList extends React.Component<Props> {
                 />
               </th>
               <th style={{ paddingLeft: '0' }}>
-                <SortHandler sortField={'name'} label={__('Name')} />
+                <SortHandler sortField={'name'} label={__('Název')} />
               </th>
               <th>
                 <SortHandler
@@ -58,7 +58,7 @@ class FileList extends React.Component<Props> {
               <th>
                 <SortHandler sortField={'size'} label={__('Size')} />
               </th>
-              <th>{__('Actions')}</th>
+              <th>{__('Akce')}</th>
             </tr>
           </thead>
           <tbody id="fileManagerfiles">

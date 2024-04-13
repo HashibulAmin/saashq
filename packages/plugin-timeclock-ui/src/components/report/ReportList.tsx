@@ -37,20 +37,20 @@ function ReportList(props: Props) {
     getPagination,
     exportReport,
     showSideBar,
-    isCurrentUserAdmin
+    isCurrentUserAdmin,
   } = props;
   const [reportType, setType] = useState(queryParams.reportType);
 
   const [showDepartment, setShowDepartment] = useState(
-    queryParams.showDepartment ? JSON.parse(queryParams.showDepartment) : false
+    queryParams.showDepartment ? JSON.parse(queryParams.showDepartment) : false,
   );
 
   const [showBranch, setShowBranch] = useState(
-    queryParams.showBranch ? JSON.parse(queryParams.showBranch) : false
+    queryParams.showBranch ? JSON.parse(queryParams.showBranch) : false,
   );
 
   const [isSideBarOpen, setIsOpen] = useState(
-    JSON.parse(localStorage.getItem('isSideBarOpen') || 'false')
+    JSON.parse(localStorage.getItem('isSideBarOpen') || 'false'),
   );
 
   const onToggleSidebar = () => {
@@ -91,8 +91,8 @@ function ReportList(props: Props) {
           <>
             <tr>
               <th rowSpan={2}>{'№'}</th>
-              {showDepartment && <th rowSpan={2}>{__('Department')}</th>}
-              {showBranch && <th rowSpan={2}>{__('Branch')}</th>}
+              {showDepartment && <th rowSpan={2}>{__('Oddělení')}</th>}
+              {showBranch && <th rowSpan={2}>{__('Větev')}</th>}
               <th rowSpan={2}>{__('Team member Id')}</th>
               <th rowSpan={2}>{__('Last Name')}</th>
               <th rowSpan={2}>{__('First Name')}</th>
@@ -181,7 +181,7 @@ function ReportList(props: Props) {
       reportType,
       queryParams,
       isCurrentUserAdmin,
-      getPagination
+      getPagination,
     });
 
     if (bichilTable) {
@@ -207,7 +207,7 @@ function ReportList(props: Props) {
   };
 
   const renderSelectionBar = () => {
-    const onTypeSelect = type => {
+    const onTypeSelect = (type) => {
       router.setParams(history, { reportType: type.value });
       router.removeParams(history, 'page', 'perPage');
       setType(type.value);
@@ -230,14 +230,14 @@ function ReportList(props: Props) {
                 isActive={showDepartment}
                 onClick={toggleShowDepartment}
               >
-                <ControlLabel>{__('Department')}</ControlLabel>
+                <ControlLabel>{__('Oddělení')}</ControlLabel>
               </ToggleButton>
               <ToggleButton
                 style={{ width: 'auto' }}
                 isActive={showBranch}
                 onClick={toggleShowBranch}
               >
-                <ControlLabel>{__('Branch')}</ControlLabel>
+                <ControlLabel>{__('Větev')}</ControlLabel>
               </ToggleButton>
             </>
           )}
@@ -250,9 +250,9 @@ function ReportList(props: Props) {
               onChange={onTypeSelect}
               placeholder="Select type"
               multi={false}
-              options={['Урьдчилсан', 'Сүүлд', 'Pivot'].map(ipt => ({
+              options={['Урьдчилсан', 'Сүүлд', 'Pivot'].map((ipt) => ({
                 value: ipt,
-                label: __(ipt)
+                label: __(ipt),
               }))}
             />
           </FormGroup>
@@ -263,7 +263,7 @@ function ReportList(props: Props) {
   const renderExportBtn = () => {
     const bichilExportReportBtn = loadDynamicComponent(
       'bichilExportReportBtn',
-      { ...queryParams, reportType, isCurrentUserAdmin }
+      { ...queryParams, reportType, isCurrentUserAdmin },
     );
     if (bichilExportReportBtn) {
       return bichilExportReportBtn;

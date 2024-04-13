@@ -22,7 +22,7 @@ function CollateralsInfo(props: IProps) {
         <tr>
           <th>{__('Currency')}</th>
           <th>{__('Amount')}</th>
-          <th>{__('Name')}</th>
+          <th>{__('Název')}</th>
         </tr>
       </thead>
       <tbody id="schedules">

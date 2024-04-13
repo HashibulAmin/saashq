@@ -27,7 +27,7 @@ function MyMeetings(props: Props) {
   const { searchValue } = queryParams;
   const [searchText, setSearchValue] = useState(searchValue);
 
-  const searchHandler = e => {
+  const searchHandler = (e) => {
     const searchingValue = e.target.value;
 
     setSearchValue(searchingValue);
@@ -49,7 +49,7 @@ function MyMeetings(props: Props) {
   const actionBarRight = (
     <FormControl
       type="text"
-      placeholder={__('Type to search')}
+      placeholder={__('Zadejte a vyhledejte')}
       defaultValue={searchText}
       onChange={searchHandler}
       autoFocus={true}

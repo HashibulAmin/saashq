@@ -36,7 +36,7 @@ class List extends React.Component<Props, {}> {
   renderRow() {
     const { posts, remove, bulk, toggleBulk } = this.props;
 
-    return posts.map(post => (
+    return posts.map((post) => (
       <Row
         key={post._id}
         post={post}
@@ -47,7 +47,7 @@ class List extends React.Component<Props, {}> {
     ));
   }
 
-  searchHandler = event => {
+  searchHandler = (event) => {
     const { history } = this.props;
 
     routerUtils.setParams(history, { search: event.target.value });
@@ -64,7 +64,7 @@ class List extends React.Component<Props, {}> {
       remove,
       emptyBulk,
       history,
-      totalCount
+      totalCount,
     } = this.props;
 
     let actionBarLeft: React.ReactNode;
@@ -73,10 +73,10 @@ class List extends React.Component<Props, {}> {
       const onClick = () => {
         confirm('Are you sure? This cannot be undone.')
           .then(() => {
-            bulk.map(item => remove(item._id, emptyBulk));
+            bulk.map((item) => remove(item._id, emptyBulk));
             Alert.success('You successfully deleted a post');
           })
-          .catch(e => {
+          .catch((e) => {
             Alert.error(e.message);
           });
       };
@@ -97,7 +97,7 @@ class List extends React.Component<Props, {}> {
       <Flex>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.searchHandler}
           value={routerUtils.getParam(history, 'search')}
         />
@@ -110,7 +110,7 @@ class List extends React.Component<Props, {}> {
               Create New Post
             </Button>
           }
-          content={props => <PostForm {...props} />}
+          content={(props) => <PostForm {...props} />}
           enforceFocus={false}
         />
       </Flex>
@@ -146,7 +146,7 @@ class List extends React.Component<Props, {}> {
               />
             </th>
             <th>
-              <SortHandler sortField={'createdAt'} label={__('Created At')} />
+              <SortHandler sortField={'createdAt'} label={__('Vytvořeno v')} />
             </th>
             <th>{__('Created by')}</th>
             <th>
@@ -174,7 +174,7 @@ class List extends React.Component<Props, {}> {
             <th>
               <SortHandler sortField={'viewCount'} label={__('View count')} />
             </th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{this.renderRow()}</tbody>
@@ -184,7 +184,7 @@ class List extends React.Component<Props, {}> {
     const submenu = [
       { title: 'Posts', link: '/forums/posts' },
       { title: 'Pages', link: '/forums/pages' },
-      { title: 'Quiz', link: '/forums/quizzes' }
+      { title: 'Quiz', link: '/forums/quizzes' },
     ];
 
     return (

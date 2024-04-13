@@ -107,7 +107,7 @@ class ResponseTemplateList extends React.Component<FinalProps, States> {
             <Icon icon="search-1" size={20} />
             <FlexItem>
               <FormControl
-                placeholder={__('Type to search')}
+                placeholder={__('Zadejte a vyhledejte')}
                 name="searchValue"
                 onChange={this.onChange}
                 value={this.state.searchValue}

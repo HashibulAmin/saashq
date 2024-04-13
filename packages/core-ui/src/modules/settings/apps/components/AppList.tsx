@@ -66,11 +66,11 @@ export default class AppList extends React.Component<Props> {
         <thead>
           <tr>
             <th>{__('Date')}</th>
-            <th>{__('Name')}</th>
+            <th>{__('Název')}</th>
             <th>{__('User group')}</th>
             <th>{__('Token')}</th>
             <th>{__('Token expire date')}</th>
-            <th>{__('Action')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{this.renderObjects()}</tbody>

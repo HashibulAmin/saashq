@@ -10,7 +10,7 @@ import {
   ModalTrigger,
   Sidebar,
   SidebarCounter,
-  SidebarList
+  SidebarList,
 } from '@saashq/ui/src';
 import { __ } from 'coreui/utils';
 import React from 'react';
@@ -41,7 +41,7 @@ class DetailInfo extends React.Component<Props> {
     const onDelete = () =>
       confirm()
         .then(() => remove && remove())
-        .catch(error => {
+        .catch((error) => {
           Alert.error(error.message);
         });
 
@@ -50,7 +50,7 @@ class DetailInfo extends React.Component<Props> {
         <Dropdown>
           <Dropdown.Toggle as={DropdownToggle} id="dropdown-info">
             <Button btnStyle="simple" size="medium">
-              {__('Action')}
+              {__('Akce')}
               <Icon icon="angle-down" />
             </Button>
           </Dropdown.Toggle>
@@ -70,7 +70,7 @@ class DetailInfo extends React.Component<Props> {
     const { periodLock } = this.props;
     const { Section } = Sidebar;
 
-    const content = props => (
+    const content = (props) => (
       <PeriodLockForm {...props} periodLock={periodLock} />
     );
 

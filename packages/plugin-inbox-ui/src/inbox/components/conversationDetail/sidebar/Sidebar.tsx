@@ -361,13 +361,13 @@ class Index extends React.Component<IndexProps, IndexState> {
             className={currentTab === 'customer' ? 'active' : ''}
             onClick={customerOnClick}
           >
-            {__('Customer')}
+            {__('Zákazník')}
           </TabTitle>
           <TabTitle
             className={currentTab === 'company' ? 'active' : ''}
             onClick={companyOnClick}
           >
-            {__('Company')}
+            {__('Společnost')}
           </TabTitle>
         </Tabs>
         {this.renderTabContent()}

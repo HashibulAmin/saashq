@@ -31,7 +31,7 @@ const List = (props: Props) => {
 
   const [type, setType] = useState(queryParams.type || 'all');
   const [transactions, setTransactions] = useState(
-    (statement && statement.transactions) || []
+    (statement && statement.transactions) || [],
   );
 
   const totalCount =
@@ -41,13 +41,15 @@ const List = (props: Props) => {
     switch (type) {
       case 'income':
         const incomes =
-          (statement && statement.transactions.filter(t => t.amount > 0)) || [];
+          (statement && statement.transactions.filter((t) => t.amount > 0)) ||
+          [];
 
         setTransactions(incomes);
         break;
       case 'outcome':
         const outcomes =
-          (statement && statement.transactions.filter(t => t.amount < 0)) || [];
+          (statement && statement.transactions.filter((t) => t.amount < 0)) ||
+          [];
 
         setTransactions(outcomes);
         break;
@@ -63,7 +65,7 @@ const List = (props: Props) => {
       : __('No transactions');
 
   const renderRow = () => {
-    return transactions.map(transaction => (
+    return transactions.map((transaction) => (
       <Row key={transaction.record} transaction={transaction} />
     ));
   };
@@ -75,7 +77,7 @@ const List = (props: Props) => {
       <thead>
         <tr>
           <th>{__('Date')}</th>
-          <th>{__('Description')}</th>
+          <th>{__('Popis')}</th>
           <th>{__('Begin balance')}</th>
           <th>{__('End balance')}</th>
           <th>{__('Amount')}</th>
@@ -101,7 +103,7 @@ const List = (props: Props) => {
               routerUtils.setParams(history, { type: e.currentTarget.value });
             }}
           >
-            {['all', 'income', 'outcome'].map(t => (
+            {['all', 'income', 'outcome'].map((t) => (
               <option key={t} value={t}>
                 {__(t)}
               </option>
@@ -114,7 +116,7 @@ const List = (props: Props) => {
             name="startDate"
             onChange={(date: any) => {
               routerUtils.setParams(history, {
-                startDate: dayjs(date).format('YYYY-MM-DD')
+                startDate: dayjs(date).format('YYYY-MM-DD'),
               });
             }}
             placeholder={'Start date'}
@@ -128,7 +130,7 @@ const List = (props: Props) => {
             placeholder={'End date'}
             onChange={(date: any) => {
               routerUtils.setParams(history, {
-                endDate: dayjs(date).format('YYYY-MM-DD')
+                endDate: dayjs(date).format('YYYY-MM-DD'),
               });
             }}
             dateFormat={'YYYY-MM-DD'}
@@ -157,7 +159,7 @@ const List = (props: Props) => {
             content={{
               title: __('No data found'),
               description: __('No transactions found for this period'),
-              steps: []
+              steps: [],
             }}
             maxItemWidth="360px"
           />

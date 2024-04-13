@@ -9,7 +9,7 @@ import {
   ModalTrigger,
   Sidebar,
   SidebarCounter,
-  SidebarList
+  SidebarList,
 } from '@saashq/ui/src';
 import { __ } from 'coreui/utils';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -41,7 +41,7 @@ class DetailInfo extends React.Component<Props> {
     const onDelete = () =>
       confirm()
         .then(() => remove())
-        .catch(error => {
+        .catch((error) => {
           Alert.error(error.message);
         });
 
@@ -50,7 +50,7 @@ class DetailInfo extends React.Component<Props> {
         <Dropdown>
           <Dropdown.Toggle as={DropdownToggle} id="dropdown-info">
             <Button btnStyle="simple" size="medium">
-              {__('Action')}
+              {__('Akce')}
               <Icon icon="angle-down" />
             </Button>
           </Dropdown.Toggle>
@@ -70,7 +70,7 @@ class DetailInfo extends React.Component<Props> {
     const { contractType } = this.props;
     const { Section } = Sidebar;
 
-    const content = props => (
+    const content = (props) => (
       <ContractTypeForm {...props} contractType={contractType} />
     );
 
@@ -96,16 +96,16 @@ class DetailInfo extends React.Component<Props> {
               {this.renderRow('Start Number', contractType.number || '')}
               {this.renderRow(
                 'After vacancy count',
-                (contractType.vacancy || 0).toLocaleString()
+                (contractType.vacancy || 0).toLocaleString(),
               )}
 
               {this.renderRow(
                 'Interest calc type',
-                contractType.interestCalcType
+                contractType.interestCalcType,
               )}
               {this.renderRow(
                 'Store interest interval',
-                contractType.storeInterestInterval
+                contractType.storeInterestInterval,
               )}
               {this.renderRow('Is allow income', contractType.isAllowIncome)}
               {this.renderRow('Is allow outcome', contractType.isAllowOutcome)}
@@ -114,7 +114,7 @@ class DetailInfo extends React.Component<Props> {
               </li>
               <Description
                 dangerouslySetInnerHTML={{
-                  __html: contractType.description
+                  __html: contractType.description,
                 }}
               />
             </SidebarList>

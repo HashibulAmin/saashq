@@ -45,7 +45,7 @@ class SideBar extends React.Component<Props, State> {
 
   editTrigger = (
     <Button btnStyle="link">
-      <Tip text={__('Edit')}>
+      <Tip text={__('Upravit')}>
         <Icon icon="edit-3"></Icon>
       </Tip>
     </Button>
@@ -54,7 +54,7 @@ class SideBar extends React.Component<Props, State> {
   ListItem = (type, currentTypeName) => {
     const { remove } = this.props;
     const className = type && currentTypeName === type._id ? 'active' : '';
-    const content = props => {
+    const content = (props) => {
       const { renderButton } = this.props;
       return <TypeForm {...props} type={type} renderButton={renderButton} />;
     };
@@ -86,7 +86,7 @@ class SideBar extends React.Component<Props, State> {
     );
   };
 
-  modalContent = props => {
+  modalContent = (props) => {
     const { renderButton } = this.props;
     return <TypeForm {...props} renderButton={renderButton} />;
   };
@@ -111,7 +111,7 @@ class SideBar extends React.Component<Props, State> {
         <LeftSidebar.Header uppercase={true}>{__('Parent')}</LeftSidebar.Header>
 
         <SidebarList noTextColor noBackground id="SideBar">
-          {parents.map(type => {
+          {parents.map((type) => {
             return this.ListItem(type, currentTypeId);
           })}
         </SidebarList>

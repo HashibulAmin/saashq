@@ -52,7 +52,7 @@ function Row(props: Props) {
 
     const trigger = (
       <Button btnStyle="link">
-        <Tip text={__('Assign Knowledgebase')} placement="bottom">
+        <Tip text={__('Přiřadit znalostní bázi')} placement="bottom">
           <Icon icon="light-bulb" />
         </Tip>
       </Button>
@@ -121,7 +121,7 @@ function Row(props: Props) {
             title="Upravit základní informace"
             trigger={
               <Button btnStyle="link">
-                <Tip text={__('Edit')} placement="bottom">
+                <Tip text={__('Upravit')} placement="bottom">
                   <Icon icon="edit-3" />
                 </Tip>
               </Button>

@@ -20,7 +20,7 @@ import {
   FlexCenter,
   FlexColumn,
   FlexRowLeft,
-  ToggleButton
+  ToggleButton,
 } from '../../styles';
 import { Title } from '@saashq/ui-settings/src/styles';
 import { ControlLabel, FormControl } from '@saashq/ui/src/components/form';
@@ -49,7 +49,7 @@ type Props = {
     submitTime: any,
     absenceTypeId: string,
     absenceTimeType: string,
-    totalHoursOfAbsence: string
+    totalHoursOfAbsence: string,
   ) => void;
 
   submitCheckInOut: (type: string, userId: string, dateVal: Date) => void;
@@ -67,16 +67,16 @@ function AbsenceList(props: Props) {
     getActionBar,
     showSideBar,
     getPagination,
-    totalCount
+    totalCount,
   } = props;
 
   const [note, setNote] = useState('');
   const [isSideBarOpen, setIsOpen] = useState(
-    localStorage.getItem('isSideBarOpen') === 'true' ? true : false
+    localStorage.getItem('isSideBarOpen') === 'true' ? true : false,
   );
 
   const [seeDates, setSeeDates] = useState(
-    JSON.parse(localStorage.getItem('seeDates') || 'false')
+    JSON.parse(localStorage.getItem('seeDates') || 'false'),
   );
 
   const onToggleSidebar = () => {
@@ -96,19 +96,19 @@ function AbsenceList(props: Props) {
       Create Check In/Out Request
     </Button>
   );
-  const modalContent = contentProps => {
+  const modalContent = (contentProps) => {
     const updatedProps = {
       ...props,
-      contentProps
+      contentProps,
     };
     return <AbsenceForm {...updatedProps} />;
   };
 
-  const checkInModalContent = contentProps => {
+  const checkInModalContent = (contentProps) => {
     const updatedProps = {
       ...props,
       contentProps,
-      checkInOutRequest: true
+      checkInOutRequest: true,
     };
     return <AbsenceForm {...updatedProps} />;
   };
@@ -118,7 +118,7 @@ function AbsenceList(props: Props) {
   const openCheckInOutForm = (
     contentProps: any,
     absence: IAbsence,
-    absenceReason: string
+    absenceReason: string,
   ) => {
     const dateTime = absence.startTime;
     const userId = absence.user._id;
@@ -126,9 +126,7 @@ function AbsenceList(props: Props) {
     const startDate = dayjs(dateTime)
       .add(-16, 'hour')
       .format(dateAndTimeFormat);
-    const endDate = dayjs(dateTime)
-      .add(16, 'hour')
-      .format(dateAndTimeFormat);
+    const endDate = dayjs(dateTime).add(16, 'hour').format(dateAndTimeFormat);
 
     // either check in or check out
     const timeType = absenceReason.split('request')[0].toLocaleLowerCase();
@@ -196,7 +194,7 @@ function AbsenceList(props: Props) {
         <FormControl
           type="text"
           name="requestNote"
-          onChange={e => setNote(e.target.value)}
+          onChange={(e) => setNote(e.target.value)}
         />
         <FlexCenter>
           <Button
@@ -243,7 +241,7 @@ function AbsenceList(props: Props) {
 
     const renderAbsenceDays = () => {
       if (absenceTimeType === 'by day' && seeDates) {
-        return absence.requestDates.map(requestDate => (
+        return absence.requestDates.map((requestDate) => (
           <div key={requestDate}>{requestDate}</div>
         ));
       }
@@ -297,8 +295,8 @@ function AbsenceList(props: Props) {
             ? absence.user.details.fullName
               ? absence.user.details.fullName
               : absence.user.email
-              ? absence.user.email
-              : '-'
+                ? absence.user.email
+                : '-'
             : '-'}
         </td>
         {renderAbsenceTimeInfo()}
@@ -322,7 +320,7 @@ function AbsenceList(props: Props) {
                 size="lg"
                 title="Approve Request"
                 trigger={checkInOutFormBtn}
-                content={contentProps =>
+                content={(contentProps) =>
                   openCheckInOutForm(contentProps, absence, absence.reason)
                 }
               />
@@ -391,11 +389,11 @@ function AbsenceList(props: Props) {
           <th rowSpan={2}>{__('Attachment')}</th>
           <th rowSpan={2}>{__('Status')}</th>
           <th rowSpan={2}>{__('Note')}</th>
-          <th rowSpan={2}>{__('Action')}</th>
+          <th rowSpan={2}>{__('Akce')}</th>
         </tr>
       </thead>
       <tbody>
-        {absences.map(absence => {
+        {absences.map((absence) => {
           return ListAbsenceContent(absence);
         })}
       </tbody>

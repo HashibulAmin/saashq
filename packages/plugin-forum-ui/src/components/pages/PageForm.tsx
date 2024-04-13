@@ -123,7 +123,7 @@ class PageForm extends React.Component<Props, State> {
         </FlexContent>
 
         <FormGroup>
-          <ControlLabel>{__('Description')}</ControlLabel>
+          <ControlLabel>{__('Popis')}</ControlLabel>
           <FormControl
             {...formProps}
             name="description"

@@ -4,7 +4,7 @@ import {
   FormControl,
   FormGroup,
   Icon,
-  __
+  __,
 } from '@saashq/ui/src';
 import { Column, Columns } from '@saashq/ui/src/styles/chooser';
 import { LinkButton, ModalFooter } from '@saashq/ui/src/styles/main';
@@ -14,7 +14,7 @@ import React from 'react';
 import {
   SelectIndicatorGroups,
   SelectIndicators,
-  SelectOperations
+  SelectOperations,
 } from '../../../common/utils';
 import { FormContainer, ListItem } from '../../../styles';
 import { SelectGroupsAssignedUsersWrapper } from '../common/utils';
@@ -35,7 +35,7 @@ class Form extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      bulkItems: []
+      bulkItems: [],
     };
   }
 
@@ -46,11 +46,11 @@ class Form extends React.Component<Props, State> {
       return;
     }
 
-    const handleSelectedUsersbyGroup = groupsAssignedUsers => {
-      const updateBulkItems = this.state.bulkItems.map(bulkItem =>
+    const handleSelectedUsersbyGroup = (groupsAssignedUsers) => {
+      const updateBulkItems = this.state.bulkItems.map((bulkItem) =>
         bulkItem._id === item._id
           ? { ...bulkItem, groupsAssignedUsers }
-          : bulkItem
+          : bulkItem,
       );
       this.setState({ bulkItems: updateBulkItems });
     };
@@ -69,24 +69,24 @@ class Form extends React.Component<Props, State> {
     const { bulkItems } = this.state;
 
     const handleSelect = (values, name) => {
-      const updateBulkItems = bulkItems.map(bulkItem =>
-        bulkItem._id === item._id ? { ...bulkItem, [name]: values } : bulkItem
+      const updateBulkItems = bulkItems.map((bulkItem) =>
+        bulkItem._id === item._id ? { ...bulkItem, [name]: values } : bulkItem,
       );
       this.setState({ bulkItems: updateBulkItems });
     };
 
-    const toggleBool = e => {
+    const toggleBool = (e) => {
       const { name } = e.currentTarget as HTMLInputElement;
 
-      const updateBulkItems = bulkItems.map(bulkItem =>
+      const updateBulkItems = bulkItems.map((bulkItem) =>
         bulkItem._id === item._id
           ? {
               ...bulkItem,
               [name]: !bulkItem[name],
               groupId: name === 'useSplitTeamMembers' ? bulkItem.groupId : '',
-              indicatorId: ''
+              indicatorId: '',
             }
-          : bulkItem
+          : bulkItem,
       );
       this.setState({ bulkItems: updateBulkItems });
     };
@@ -106,7 +106,7 @@ class Form extends React.Component<Props, State> {
                 />
               </FormGroup>
               <FormGroup>
-                <ControlLabel>{__('Department')}</ControlLabel>
+                <ControlLabel>{__('Oddělení')}</ControlLabel>
                 <SelectDepartments
                   name="departmentIds"
                   label="Select Departments"
@@ -182,12 +182,12 @@ class Form extends React.Component<Props, State> {
     const { bulkItems } = this.state;
     const { closeModal, handleSave } = this.props;
 
-    const save = e => {
+    const save = (e) => {
       e.preventDefault();
       handleSave(
         bulkItems.map(
-          ({ _id, useIndicator, useSplitTeamMembers, ...bulkItem }) => bulkItem
-        )
+          ({ _id, useIndicator, useSplitTeamMembers, ...bulkItem }) => bulkItem,
+        ),
       );
     };
 
@@ -197,7 +197,7 @@ class Form extends React.Component<Props, State> {
         branchIds: [],
         departmentIds: [],
         operationIds: [],
-        groupId: ''
+        groupId: '',
       };
 
       this.setState({ bulkItems: [...bulkItems, variables] });
@@ -205,7 +205,7 @@ class Form extends React.Component<Props, State> {
 
     return (
       <form onSubmit={save}>
-        {bulkItems.map(bulkItem => this.renderBulkItem(bulkItem))}
+        {bulkItems.map((bulkItem) => this.renderBulkItem(bulkItem))}
         <LinkButton onClick={addBulkItem}>
           <Icon icon="plus-1" /> {__('Add')}
         </LinkButton>

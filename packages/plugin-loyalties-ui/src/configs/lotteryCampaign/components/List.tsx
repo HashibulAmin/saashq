@@ -6,14 +6,14 @@ import {
   HeaderDescription,
   ModalTrigger,
   Pagination,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import {
   FilterContainer,
   FlexItem,
   FlexRow,
   InputBar,
-  Title
+  Title,
 } from '@saashq/ui-settings/src/styles';
 
 import Form from '../containers/Form';
@@ -36,7 +36,7 @@ type Props = {
   toggleBulk: () => void;
   remove: (
     doc: { lotteryCampaignIds: string[] },
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
   searchValue: string;
   totalCount?: number;
@@ -56,11 +56,11 @@ class LotteryCampaigns extends React.Component<Props, State> {
 
     this.state = {
       searchValue: this.props.searchValue || '',
-      filterStatus: this.props.filterStatus || ''
+      filterStatus: this.props.filterStatus || '',
     };
   }
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -91,7 +91,7 @@ class LotteryCampaigns extends React.Component<Props, State> {
   renderRow = () => {
     const { lotteryCampaigns, history, toggleBulk, bulk } = this.props;
 
-    return lotteryCampaigns.map(lotteryCampaign => (
+    return lotteryCampaigns.map((lotteryCampaign) => (
       <Row
         key={lotteryCampaign._id}
         history={history}
@@ -102,14 +102,14 @@ class LotteryCampaigns extends React.Component<Props, State> {
     ));
   };
 
-  modalContent = props => {
+  modalContent = (props) => {
     return <Form {...props} />;
   };
 
-  removeLotteryCampaigns = lotteryCampaigns => {
+  removeLotteryCampaigns = (lotteryCampaigns) => {
     const lotteryCampaignIds: string[] = [];
 
-    lotteryCampaigns.forEach(lotteryCampaign => {
+    lotteryCampaigns.forEach((lotteryCampaign) => {
       lotteryCampaignIds.push(lotteryCampaign._id);
     });
 
@@ -125,7 +125,7 @@ class LotteryCampaigns extends React.Component<Props, State> {
           .then(() => {
             this.removeLotteryCampaigns(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 
@@ -155,7 +155,7 @@ class LotteryCampaigns extends React.Component<Props, State> {
             <FlexItem>
               <FormControl
                 type="text"
-                placeholder={__('Type to search')}
+                placeholder={__('Zadejte a vyhledejte')}
                 onChange={this.search}
                 value={this.state.searchValue}
                 autoFocus={true}
@@ -182,9 +182,9 @@ class LotteryCampaigns extends React.Component<Props, State> {
       { title: __('Settings'), link: '/settings' },
       {
         title: __('Loyalties Config'),
-        link: '/saashq-plugin-loyalty/settings/general'
+        link: '/saashq-plugin-loyalty/settings/general',
       },
-      { title: __('Lottery Campaign') }
+      { title: __('Lottery Campaign') },
     ];
 
     const header = (
@@ -211,7 +211,7 @@ class LotteryCampaigns extends React.Component<Props, State> {
             <th>{__('End Date')}</th>
             <th>{__('Finish date of Use')}</th>
             <th>{__('Status')}</th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{this.renderRow()}</tbody>
@@ -238,7 +238,7 @@ class LotteryCampaigns extends React.Component<Props, State> {
             data={content}
             loading={loading}
             count={lotteryCampaigns.length}
-            emptyText="There is no data"
+            emptyText="Nejsou žádná data"
             emptyImage="/images/actions/5.svg"
           />
         }

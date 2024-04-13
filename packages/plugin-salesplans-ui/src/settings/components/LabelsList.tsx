@@ -10,7 +10,7 @@ import {
   DataWithLoader,
   FormControl,
   ModalTrigger,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import { ISPLabel } from '../types';
 import { MainStyleTitle as Title } from '@saashq/ui/src/styles/eindex';
@@ -45,11 +45,11 @@ class SPLabels extends React.Component<Props, State> {
 
     this.state = {
       searchValue: this.props.searchValue || '',
-      filterStatus: this.props.filterStatus || ''
+      filterStatus: this.props.filterStatus || '',
     };
   }
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -80,7 +80,7 @@ class SPLabels extends React.Component<Props, State> {
   renderRow = () => {
     const { spLabels, history, toggleBulk, bulk } = this.props;
 
-    return spLabels.map(spLabel => (
+    return spLabels.map((spLabel) => (
       <Row
         key={spLabel._id}
         history={history}
@@ -91,14 +91,14 @@ class SPLabels extends React.Component<Props, State> {
     ));
   };
 
-  modalContent = props => {
+  modalContent = (props) => {
     return <Form {...props} />;
   };
 
-  removeSPLabels = spLabels => {
+  removeSPLabels = (spLabels) => {
     const spLabelIds: string[] = [];
 
-    spLabels.forEach(spLabel => {
+    spLabels.forEach((spLabel) => {
       spLabelIds.push(spLabel._id);
     });
 
@@ -114,7 +114,7 @@ class SPLabels extends React.Component<Props, State> {
           .then(() => {
             this.removeSPLabels(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 
@@ -140,7 +140,7 @@ class SPLabels extends React.Component<Props, State> {
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.search}
           value={this.state.searchValue}
           autoFocus={true}
@@ -161,7 +161,7 @@ class SPLabels extends React.Component<Props, State> {
     const { isAllSelected, totalCount, queryParams, history } = this.props;
     const breadcrumb = [
       { title: __('Settings'), link: '/settings' },
-      { title: __('Sales Plans Labels') }
+      { title: __('Sales Plans Labels') },
     ];
 
     const content = (
@@ -204,7 +204,7 @@ class SPLabels extends React.Component<Props, State> {
             data={content}
             loading={false}
             count={totalCount}
-            emptyText="There is no data"
+            emptyText="Nejsou žádná data"
             emptyImage="/images/actions/5.svg"
           />
         }

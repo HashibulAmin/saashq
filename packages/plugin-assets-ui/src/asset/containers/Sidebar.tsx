@@ -7,7 +7,7 @@ import { graphql } from '@apollo/client/react/hoc';
 import { mutations, queries } from '../graphql';
 import {
   IAssetCategoryQeuryResponse,
-  IAssetCategoriesTotalCountResponse
+  IAssetCategoriesTotalCountResponse,
 } from '../../common/types';
 import { Alert, confirm } from '@saashq/ui/src';
 import Sidebar from '../components/Sidebar';
@@ -26,17 +26,17 @@ function SidebarContainer(props: FinalProps) {
     assetCategoriesTotalCount,
     assetCategoryRemove,
     queryParams,
-    history
+    history,
   } = props;
 
-  const removeAssetCategory = _id => {
+  const removeAssetCategory = (_id) => {
     confirm().then(() => {
       assetCategoryRemove({ variables: { _id } })
         .then(() => {
           assetCategories.refetch();
-          Alert.success(`You successfully deleted a asset category`);
+          Alert.success(`Úspěšně jste smazali kategorii díla`);
         })
-        .catch(e => {
+        .catch((e) => {
           Alert.error(e.message);
         });
     });
@@ -54,7 +54,7 @@ function SidebarContainer(props: FinalProps) {
     remove: removeAssetCategory,
     refetchAssetCategories: refetchCategory,
     queryParams,
-    history
+    history,
   };
 
   return <Sidebar {...updateProps} />;
@@ -71,20 +71,20 @@ export default withProps<Props>(
       options: ({ queryParams }) => ({
         variables: {
           status: queryParams?.status,
-          parentId: queryParams?.parentId
+          parentId: queryParams?.parentId,
         },
         refetchQueries: getRefetchQueries(),
-        fetchPolicy: 'network-only'
-      })
+        fetchPolicy: 'network-only',
+      }),
     }),
     graphql<Props, IAssetCategoriesTotalCountResponse>(
       gql(queries.assetCategoriesTotalCount),
       {
-        name: 'assetCategoriesTotalCount'
-      }
+        name: 'assetCategoriesTotalCount',
+      },
     ),
     graphql<Props>(gql(mutations.assetCategoryRemove), {
-      name: 'assetCategoryRemove'
-    })
-  )(SidebarContainer)
+      name: 'assetCategoryRemove',
+    }),
+  )(SidebarContainer),
 );

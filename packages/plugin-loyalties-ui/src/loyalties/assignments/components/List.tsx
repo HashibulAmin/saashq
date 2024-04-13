@@ -6,12 +6,12 @@ import {
   ModalTrigger,
   Pagination,
   SortHandler,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import { Wrapper } from '@saashq/ui/src/layout';
 import {
   MainStyleTitle as Title,
-  MainStyleCount as Count
+  MainStyleCount as Count,
 } from '@saashq/ui/src/styles/eindex';
 import { BarItems } from '@saashq/ui/src/layout/styles';
 import { IRouterProps } from '@saashq/ui/src/types';
@@ -38,7 +38,7 @@ interface IProps extends IRouterProps {
   emptyBulk: () => void;
   removeAssignments: (
     doc: { assignmentIds: string[] },
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
   history: any;
   queryParams: any;
@@ -55,7 +55,7 @@ class AssignmentsList extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue
+      searchValue: this.props.searchValue,
     };
   }
 
@@ -64,7 +64,7 @@ class AssignmentsList extends React.Component<IProps, State> {
     toggleAll(assignments, 'assignments');
   };
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -79,17 +79,17 @@ class AssignmentsList extends React.Component<IProps, State> {
     }, 500);
   };
 
-  removeAssignments = assignments => {
+  removeAssignments = (assignments) => {
     const assignmentIds: string[] = [];
 
-    assignments.forEach(assignment => {
+    assignments.forEach((assignment) => {
       assignmentIds.push(assignment._id);
     });
 
     this.props.removeAssignments({ assignmentIds }, this.props.emptyBulk);
   };
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -105,7 +105,7 @@ class AssignmentsList extends React.Component<IProps, State> {
       isAllSelected,
       totalCount,
       queryParams,
-      currentCampaign
+      currentCampaign,
     } = this.props;
 
     const mainContent = (
@@ -130,7 +130,7 @@ class AssignmentsList extends React.Component<IProps, State> {
             </tr>
           </thead>
           <tbody id="assignments">
-            {assignments.map(assignment => (
+            {assignments.map((assignment) => (
               <AssignmentRow
                 assignment={assignment}
                 isChecked={bulk.includes(assignment)}
@@ -152,7 +152,7 @@ class AssignmentsList extends React.Component<IProps, State> {
       </Button>
     );
 
-    const assignmentForm = props => {
+    const assignmentForm = (props) => {
       return (
         <AssignmentForm
           {...props}
@@ -169,7 +169,7 @@ class AssignmentsList extends React.Component<IProps, State> {
             .then(() => {
               this.removeAssignments(bulk);
             })
-            .catch(error => {
+            .catch((error) => {
               Alert.error(error.message);
             });
 
@@ -190,7 +190,7 @@ class AssignmentsList extends React.Component<IProps, State> {
         <BarItems>
           <FormControl
             type="text"
-            placeholder={__('Type to search')}
+            placeholder={__('Zadejte a vyhledejte')}
             onChange={this.search}
             value={this.state.searchValue}
             autoFocus={true}

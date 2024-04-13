@@ -8,7 +8,7 @@ import {
   MainStyleFormColumn as FormColumn,
   MainStyleFormWrapper as FormWrapper,
   MainStyleModalFooter as ModalFooter,
-  MainStyleScrollWrapper as ScrollWrapper
+  MainStyleScrollWrapper as ScrollWrapper,
 } from '@saashq/ui/src';
 import { DateContainer } from '@saashq/ui/src/styles/main';
 import { IButtonMutateProps, IFormProps } from '@saashq/ui/src/types';
@@ -17,7 +17,7 @@ import { ChangeAmount } from '../../styles';
 import { IContract, IContractDoc } from '../../types';
 import { __ } from 'coreui/utils';
 import SelectContracts, {
-  Contracts
+  Contracts,
 } from '../../../contracts/components/common/SelectContract';
 
 type Props = {
@@ -45,7 +45,7 @@ class InterestChangeForm extends React.Component<Props, State> {
       type: props.type || 'interestChange',
       description: '',
       interestAmount: 0,
-      contractId: props.contract?._id
+      contractId: props.contract?._id,
     };
   }
 
@@ -63,7 +63,7 @@ class InterestChangeForm extends React.Component<Props, State> {
       interestAmount: Number(this.state.interestAmount),
       description: this.state.description,
       invDate: this.props.invDate,
-      type: this.state.type
+      type: this.state.type,
     };
   };
 
@@ -78,13 +78,13 @@ class InterestChangeForm extends React.Component<Props, State> {
     );
   };
 
-  onChangeField = e => {
+  onChangeField = (e) => {
     const name = (e.target as HTMLInputElement).name;
     const value = (e.target as HTMLInputElement).value;
     this.setState({ [name]: value } as any);
   };
 
-  onFieldClick = e => {
+  onFieldClick = (e) => {
     e.target.select();
   };
 
@@ -119,7 +119,7 @@ class InterestChangeForm extends React.Component<Props, State> {
     const { closeModal, renderButton, onChangeDate } = this.props;
     const { values, isSubmitted } = formProps;
 
-    const onChangeinvDate = value => {
+    const onChangeinvDate = (value) => {
       onChangeDate(value);
     };
 
@@ -155,7 +155,7 @@ class InterestChangeForm extends React.Component<Props, State> {
                     if (typeof v === 'string') {
                       this.setState({
                         contractId: v,
-                        contract: Contracts[v]
+                        contract: Contracts[v],
                       });
                     }
                   }}
@@ -182,7 +182,7 @@ class InterestChangeForm extends React.Component<Props, State> {
           <FormWrapper>
             <FormColumn>
               <FormGroup>
-                <ControlLabel>{__('Description')}</ControlLabel>
+                <ControlLabel>{__('Popis')}</ControlLabel>
                 <FormControl
                   {...formProps}
                   max={140}
@@ -207,7 +207,7 @@ class InterestChangeForm extends React.Component<Props, State> {
             name: 'contract',
             values: this.generateDoc(values),
             isSubmitted,
-            object: this.props.contract
+            object: this.props.contract,
           })}
         </ModalFooter>
       </>

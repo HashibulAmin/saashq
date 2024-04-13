@@ -35,11 +35,11 @@ class ExportHistories extends React.Component<Props & IRouterProps> {
       <Table hover={true}>
         <thead>
           <tr>
-            <th>{__('Name')}</th>
+            <th>{__('Název')}</th>
             <th>{__('Status')}</th>
             <th>{__('Total')}</th>
             <th>{__('Date')}</th>
-            <th>{__('Action')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>

@@ -62,7 +62,7 @@ function List({
         <tr>
           <th>{__('Todo')}</th>
           <th>{__('Expiry Date')}</th>
-          <th>{__('Actions')}</th>
+          <th>{__('Akce')}</th>
         </tr>
       </thead>
       <tbody id={'{Name}sShowing'}>

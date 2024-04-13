@@ -2,7 +2,7 @@ export const INTEGRATIONS = [
   {
     name: 'Instagram Messenger',
     description:
-      'Connect and manage Instagram Messages right from your Team Inbox',
+      'Connect and manage Instagram Messages right from your Týmová Schránka',
     inMessenger: false,
     isAvailable: true,
     kind: 'instagram-messenger',
@@ -10,11 +10,11 @@ export const INTEGRATIONS = [
     createModal: 'instagram-messenger',
     createUrl: '/settings/integrations/createInstagram',
     category:
-      'All integrations, For support teams, Messaging, Social media, Conversation'
-  }
+      'All integrations, For support teams, Messaging, Social media, Conversation',
+  },
 ];
 
 export const KINDS = {
   MESSENGER: 'instagram-messenger',
-  ALL: ['instagram-messenger']
+  ALL: ['instagram-messenger'],
 };

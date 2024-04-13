@@ -211,9 +211,9 @@ class MainList extends React.Component<Props, State> {
             <th>{__('Code')}</th>
             <th>{__('Title')}</th>
             <th>{__('Supervisor')}</th>
-            <th>{__('Department')}</th>
+            <th>{__('Oddělení')}</th>
             <th>{__('Team member count')}</th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{(units || []).map((unit) => this.renderRow(unit))}</tbody>

@@ -14,7 +14,7 @@ import {
   AuthorName,
   ReactionCount,
   ReactionCounts,
-  RowArticle
+  RowArticle,
 } from './styles';
 import { ActionButtons } from '@saashq/ui-settings/src/styles';
 import { Column } from '@saashq/ui/src/styles/main';
@@ -45,18 +45,18 @@ const ArticleRow = (props: Props) => {
     ));
   };
 
-  const renderEditAction = editTrigger => {
+  const renderEditAction = (editTrigger) => {
     const { queryParams, currentCategoryId, topicId } = props;
 
     const editButton = (
       <Button btnStyle="link">
-        <Tip text={__('Edit')}>
+        <Tip text={__('Upravit')}>
           <Icon icon="edit" />
         </Tip>
       </Button>
     );
 
-    const content = contentProps => (
+    const content = (contentProps) => (
       <ArticleForm
         {...contentProps}
         article={props.article}

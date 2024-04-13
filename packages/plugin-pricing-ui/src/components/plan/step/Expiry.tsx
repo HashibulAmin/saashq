@@ -101,28 +101,28 @@ export default function Expiry(props: Props) {
             options={[
               {
                 label: 'None',
-                value: 'none'
+                value: 'none',
               },
               {
                 label: 'Default',
-                value: 'Default'
+                value: 'Default',
               },
               {
                 label: 'Round',
-                value: 'round'
+                value: 'round',
               },
               {
                 label: 'Floor',
-                value: 'floor'
+                value: 'floor',
               },
               {
                 label: 'Ceil',
-                value: 'ceil'
+                value: 'ceil',
               },
               {
                 label: 'Ends With 9',
-                value: 'endsWith9'
-              }
+                value: 'endsWith9',
+              },
             ]}
             onChange={(e: any) =>
               handleChange(index, 'priceAdjustType', e.target.value)
@@ -142,7 +142,7 @@ export default function Expiry(props: Props) {
               handleChange(
                 index,
                 'priceAdjustFactor',
-                parseFloat(e.target.value)
+                parseFloat(e.target.value),
               )
             }
             defaultValue={item.priceAdjustFactor}
@@ -185,12 +185,12 @@ export default function Expiry(props: Props) {
                 <th>{__('Discount value')}</th>
                 <th>{__('Price adjust type')}</th>
                 <th>{__('Price adjust factor')}</th>
-                <th>{__('Actions')}</th>
+                <th>{__('Akce')}</th>
               </tr>
             </thead>
             <tbody>
               {(formValues.expiryRules || []).map((item: any, index: number) =>
-                renderRow(item, index)
+                renderRow(item, index),
               )}
             </tbody>
           </Table>

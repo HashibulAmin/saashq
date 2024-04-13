@@ -1,6 +1,6 @@
 import {
   FilterItem,
-  FilterWrapper
+  FilterWrapper,
 } from '@saashq/ui-settings/src/permissions/styles';
 import { ICategory, IPermission, IUserGroupDocument } from '../../types';
 import { __, router } from '@saashq/ui/src/utils';
@@ -39,7 +39,7 @@ class PermissionList extends React.Component<Props> {
     router.setParams(history, {
       [name]: isObject(item) ? correctValue(item) : item,
       page: null,
-      perPage: null
+      perPage: null,
     });
   };
 
@@ -82,7 +82,7 @@ class PermissionList extends React.Component<Props> {
             <th>{__('Category')}</th>
             <th>{__('Permission')}</th>
             <th>{__('Group')}</th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{this.renderObjects()}</tbody>
@@ -90,14 +90,14 @@ class PermissionList extends React.Component<Props> {
     );
   }
 
-  renderForm = props => {
+  renderForm = (props) => {
     const { categoryList, queryParams, refetchQueries } = this.props;
 
     const extendedProps = {
       ...props,
       groupId: queryParams.groupId,
       categoryList,
-      refetchQueries
+      refetchQueries,
     };
 
     return <PermissionForm {...extendedProps} />;
@@ -158,7 +158,7 @@ class PermissionList extends React.Component<Props> {
 
     const breadcrumb = [
       { title: 'Settings', link: '/settings' },
-      { title: __('Forum Permissions') }
+      { title: __('Forum Permissions') },
     ];
 
     return (

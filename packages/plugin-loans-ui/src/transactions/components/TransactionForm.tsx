@@ -10,7 +10,7 @@ import {
   FormGroup,
   MainStyleFormWrapper as FormWrapper,
   MainStyleModalFooter as ModalFooter,
-  MainStyleScrollWrapper as ScrollWrapper
+  MainStyleScrollWrapper as ScrollWrapper,
 } from '@saashq/ui/src';
 import { IButtonMutateProps, IFormProps } from '@saashq/ui/src/types';
 import { ITransaction, ITransactionDoc } from '../types';
@@ -21,7 +21,7 @@ import { IInvoice } from '../../invoices/types';
 import React from 'react';
 import { __ } from 'coreui/utils';
 import SelectContracts, {
-  Contracts
+  Contracts,
 } from '../../contracts/components/common/SelectContract';
 import dayjs from 'dayjs';
 import client from '@saashq/ui/src/apolloClient';
@@ -76,7 +76,7 @@ class TransactionForm extends React.Component<Props, State> {
         transaction.customerId || (invoice && invoice.customerId) || '',
       invoice: invoice || transaction.invoice || null,
       paymentInfo: null,
-      storedInterest: 0
+      storedInterest: 0,
     };
   }
 
@@ -95,11 +95,11 @@ class TransactionForm extends React.Component<Props, State> {
       transactionType: type,
       isManual: true,
       payDate: finalValues.payDate,
-      total: Number(this.state.total)
+      total: Number(this.state.total),
     };
   };
 
-  onFieldClick = e => {
+  onFieldClick = (e) => {
     e.target.select();
   };
 
@@ -223,43 +223,41 @@ class TransactionForm extends React.Component<Props, State> {
 
     const getPaymentInfo = (
       contractId,
-      payDate: any = dayjs()
-        .locale('en')
-        .format('MMM, D YYYY')
+      payDate: any = dayjs().locale('en').format('MMM, D YYYY'),
     ) => {
       client
         .mutate({
           mutation: gql(queries.getPaymentInfo),
-          variables: { id: contractId, payDate: payDate }
+          variables: { id: contractId, payDate: payDate },
         })
         .then(({ data }) => {
           this.setState({ paymentInfo: data.getPaymentInfo });
         });
     };
 
-    const getCompanyName = register => {
+    const getCompanyName = (register) => {
       if (register && register.length === 7)
         client
           .query({
             query: gql(queries.getCompanyName),
-            variables: { companyRd: register }
+            variables: { companyRd: register },
           })
           .then(({ data }) => {
             data?.ebarimtGetCompany?.info;
             this.setState({
-              organizationName: data?.ebarimtGetCompany?.info?.name
+              organizationName: data?.ebarimtGetCompany?.info?.name,
             });
           });
     };
 
-    const onChangePayDate = value => {
+    const onChangePayDate = (value) => {
       if (this.state.contractId && this.state.payDate !== value)
         getPaymentInfo(this.state.contractId, value);
 
       this.setState({ payDate: value });
     };
 
-    const onChangeField = e => {
+    const onChangeField = (e) => {
       if (
         (e.target as HTMLInputElement).name === 'total' &&
         this.state.paymentInfo
@@ -267,7 +265,8 @@ class TransactionForm extends React.Component<Props, State> {
         const value = Number((e.target as HTMLInputElement).value);
 
         if (value > this.state.paymentInfo.closeAmount) {
-          (e.target as HTMLInputElement).value = this.state.paymentInfo.closeAmount;
+          (e.target as HTMLInputElement).value =
+            this.state.paymentInfo.closeAmount;
         }
       }
       if (
@@ -286,7 +285,7 @@ class TransactionForm extends React.Component<Props, State> {
           ? (e.target as HTMLInputElement).checked
           : (e.target as HTMLInputElement).value;
       this.setState({
-        [(e.target as HTMLInputElement).name]: value
+        [(e.target as HTMLInputElement).name]: value,
       } as any);
     };
 
@@ -309,7 +308,7 @@ class TransactionForm extends React.Component<Props, State> {
                 </DateContainer>
               </FormGroup>
               <FormGroup>
-                <ControlLabel>{__('Description')}</ControlLabel>
+                <ControlLabel>{__('Popis')}</ControlLabel>
                 <DateContainer>
                   <FormControl
                     {...formProps}
@@ -432,7 +431,7 @@ class TransactionForm extends React.Component<Props, State> {
             name: 'transaction',
             values: this.generateDoc(values),
             isSubmitted,
-            object: this.props.transaction
+            object: this.props.transaction,
           })}
         </ModalFooter>
       </>

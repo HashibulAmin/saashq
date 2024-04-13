@@ -1,7 +1,7 @@
 import { FlexContent, FlexItem } from '@saashq/ui/src/layout/styles';
 import {
   FlexRow,
-  Subject
+  Subject,
 } from '@saashq/ui-inbox/src/settings/integrations/components/mail/styles';
 
 import Button from '@saashq/ui/src/components/Button';
@@ -28,14 +28,8 @@ type Props = {
 };
 
 function PostDetail(props: Props) {
-  const {
-    post,
-    onDraft,
-    onPublish,
-    onApproveClick,
-    onDenyClick,
-    onFeature
-  } = props;
+  const { post, onDraft, onPublish, onApproveClick, onDenyClick, onFeature } =
+    props;
 
   const renderThumbnail = () => {
     if (post.thumbnail) {
@@ -150,7 +144,7 @@ function PostDetail(props: Props) {
                   post,
                   typeKey: 'createdUserType',
                   crmKey: 'createdBy',
-                  cpKey: 'createdByCp'
+                  cpKey: 'createdByCp',
                 })}
               </strong>
             </FlexRow>
@@ -173,7 +167,7 @@ function PostDetail(props: Props) {
                   post,
                   typeKey: 'updatedUserType',
                   crmKey: 'updatedBy',
-                  cpKey: 'updatedByCp'
+                  cpKey: 'updatedByCp',
                 })}
               </strong>
             </FlexRow>
@@ -196,7 +190,7 @@ function PostDetail(props: Props) {
                   post,
                   typeKey: 'stateChangedUserType',
                   crmKey: 'stateChangedBy',
-                  cpKey: 'stateChangedByCp'
+                  cpKey: 'stateChangedByCp',
                 })}
               </strong>
             </FlexRow>
@@ -295,7 +289,7 @@ function PostDetail(props: Props) {
           <label>{__('Poll options')}</label>
         </FlexRow>
         <ul>
-          {post.pollOptions.map(op => (
+          {post.pollOptions.map((op) => (
             <li key={op._id}>{op.title}</li>
           ))}
         </ul>
@@ -305,14 +299,14 @@ function PostDetail(props: Props) {
           <label>{__('Tags')}</label>
         </FlexRow>
         <Space>
-          {post.tags.map(tag => (
+          {post.tags.map((tag) => (
             <Label key={tag._id}>{tag.name}</Label>
           ))}
         </Space>
       </Subject>
       <Subject>
         <FlexRow>
-          <label>{__('Description')}</label>
+          <label>{__('Popis')}</label>
         </FlexRow>
         <strong>{post.description}</strong>
       </Subject>
@@ -324,7 +318,7 @@ function PostDetail(props: Props) {
           isFullmessage={true}
           showOverflow={true}
           dangerouslySetInnerHTML={{
-            __html: post.content || ''
+            __html: post.content || '',
           }}
         />
       </Subject>
@@ -334,7 +328,7 @@ function PostDetail(props: Props) {
 
   const breadcrumb = [
     { title: __('Forum Post'), link: '/forums/posts' },
-    { title: post.title || '' }
+    { title: post.title || '' },
   ];
 
   return (

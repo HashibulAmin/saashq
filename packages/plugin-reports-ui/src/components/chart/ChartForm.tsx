@@ -224,7 +224,7 @@ const ChartForm = (props: Props) => {
           <ScrolledContent>
             <DrawerDetail>
               <FormGroup>
-                <ControlLabel required={true}>{__('Name')}</ControlLabel>
+                <ControlLabel required={true}>{__('Název')}</ControlLabel>
 
                 <FormControl
                   type="input"

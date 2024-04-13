@@ -299,10 +299,10 @@ class PropertyRow extends React.Component<Props, State> {
     return (
       <PropertyListTable>
         <PropertyTableHeader>
-          <ControlLabel>{__('Name')}</ControlLabel>
+          <ControlLabel>{__('Název')}</ControlLabel>
           <ControlLabel>{__('Last Updated By')}</ControlLabel>
           {showVisibleDetail ? (
-            <ControlLabel>{__('Visible in Team Inbox')}</ControlLabel>
+            <ControlLabel>{__('Visible in Týmová Schránka')}</ControlLabel>
           ) : isRelation ? (
             <ControlLabel>{__('Visible to create')}</ControlLabel>
           ) : (
@@ -319,7 +319,7 @@ class PropertyRow extends React.Component<Props, State> {
           )}
 
           <ControlLabel>{__('Has logic')}</ControlLabel>
-          <ControlLabel>{__('Actions')}</ControlLabel>
+          <ControlLabel>{__('Akce')}</ControlLabel>
         </PropertyTableHeader>
         <div>
           {this.props.group.isDefinedBySaasHQ

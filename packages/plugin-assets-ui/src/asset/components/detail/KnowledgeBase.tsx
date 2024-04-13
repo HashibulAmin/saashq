@@ -51,7 +51,7 @@ const KbArticles = ({ articles, asset }: Props) => {
                   target="_blank"
                   href={`/knowledgeBase?id=${_id}`}
                 >
-                  {__('View Category')}
+                  {__('Zobrazit Kategorii')}
                 </a>
               </FlexRow>
             </KbTopics>

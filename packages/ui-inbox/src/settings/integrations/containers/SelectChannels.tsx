@@ -36,7 +36,7 @@ const SelectChannelContainer = (props: ChildProps<FinalProps>) => {
     name,
     values,
     isSubmitted,
-    callback
+    callback,
   }: IButtonMutateProps) => {
     const callBackResponse = () => {
       channelsQuery.refetch();
@@ -53,7 +53,7 @@ const SelectChannelContainer = (props: ChildProps<FinalProps>) => {
         callback={callBackResponse}
         isSubmitted={isSubmitted}
         type="submit"
-        successMessage={`You successfully added a ${name}`}
+        successMessage={`Úspěšně jste přidali a ${name}`}
       />
     );
   };
@@ -61,7 +61,7 @@ const SelectChannelContainer = (props: ChildProps<FinalProps>) => {
   const updatedProps = {
     ...props,
     channels,
-    renderButton
+    renderButton,
   };
 
   return <SelectChannels {...updatedProps} />;
@@ -71,8 +71,8 @@ const getRefetchQueries = () => {
   return [
     {
       query: gql(queries.channels),
-      variables: {}
-    }
+      variables: {},
+    },
   ];
 };
 
@@ -80,7 +80,7 @@ export default compose(
   graphql<ChannelsQueryResponse>(gql(queries.channels), {
     name: 'channelsQuery',
     options: () => ({
-      refetchQueries: getRefetchQueries
-    })
-  })
+      refetchQueries: getRefetchQueries,
+    }),
+  }),
 )(SelectChannelContainer);

@@ -20,7 +20,7 @@ class TelnyxContainer extends React.Component<FinalProps> {
     name,
     values,
     isSubmitted,
-    callback
+    callback,
   }: IButtonMutateProps) => {
     return (
       <ButtonMutate
@@ -29,7 +29,7 @@ class TelnyxContainer extends React.Component<FinalProps> {
         callback={callback}
         isSubmitted={isSubmitted}
         type="submit"
-        successMessage={`You successfully added a ${name}`}
+        successMessage={`Úspěšně jste přidali a ${name}`}
         refetchQueries={getRefetchQueries(INTEGRATION_KINDS.TELNYX)}
       />
     );
@@ -39,7 +39,7 @@ class TelnyxContainer extends React.Component<FinalProps> {
     const { closeModal } = this.props;
     const updatedProps = {
       closeModal,
-      renderButton: this.renderButton
+      renderButton: this.renderButton,
     };
 
     return <TelnyxForm {...updatedProps} />;

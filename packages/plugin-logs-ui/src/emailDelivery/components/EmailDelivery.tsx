@@ -29,17 +29,17 @@ type Props = {
 
 const breadcrumb = [
   { title: 'Settings', link: '/settings' },
-  { title: __('Email deliveries') }
+  { title: __('Email deliveries') },
 ];
 
 const emailTypeOptions = [
   { value: 'transaction', label: __('Transaction') },
-  { value: 'engage', label: __('SES Engage') }
+  { value: 'engage', label: __('SES Engage') },
 ];
 
 const tableHeaders = {
   transaction: ['Subject', 'To', 'Cc', 'Bcc', 'From', 'Status', 'Created at'],
-  engage: ['Customer', 'Email', 'Title', 'Status', 'Created at']
+  engage: ['Customer', 'Email', 'Title', 'Status', 'Created at'],
 };
 
 export const STATUS_OPTIONS = [
@@ -50,15 +50,15 @@ export const STATUS_OPTIONS = [
   {
     value: 'complaint',
     label: 'Complained/Spammed',
-    color: colors.colorCoreOrange
+    color: colors.colorCoreOrange,
   },
   { value: 'bounce', label: 'Bounced', color: colors.colorCoreGray },
   {
     value: 'renderingfailure',
     label: 'Rendering failure',
-    color: colors.colorCoreBlack
+    color: colors.colorCoreBlack,
   },
-  { value: 'reject', label: 'Rejected', color: colors.colorCoreRed }
+  { value: 'reject', label: 'Rejected', color: colors.colorCoreRed },
 ];
 
 function EmailDelivery({
@@ -70,12 +70,12 @@ function EmailDelivery({
   searchValue,
   history,
   handleSelectStatus,
-  status
+  status,
 }: Props) {
   const [search, setSearch] = React.useState(searchValue);
   const timerRef = React.useRef<number | null>(null);
 
-  const handleSearch = e => {
+  const handleSearch = (e) => {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
     }
@@ -109,7 +109,7 @@ function EmailDelivery({
           </tr>
         </thead>
         <tbody>
-          {list.map(item => (
+          {list.map((item) => (
             <Row key={item._id} item={item} emailType={emailType} />
           ))}
         </tbody>
@@ -128,7 +128,7 @@ function EmailDelivery({
             <FlexItem>
               <FormControl
                 type="text"
-                placeholder={__('Type to search')}
+                placeholder={__('Zadejte a vyhledejte')}
                 onChange={handleSearch}
                 value={search}
               />

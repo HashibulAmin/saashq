@@ -211,12 +211,12 @@ class Pipelines extends React.Component<Props, State> {
         <thead>
           <tr>
             <th>
-              <SortHandler sortField={'name'} label={__('Name')} />
+              <SortHandler sortField={'name'} label={__('Název')} />
             </th>
             <th>{__('Status')}</th>
             <th>{__('Created at')}</th>
             <th>{__('Created By')}</th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{this.renderRows()}</tbody>
@@ -258,7 +258,7 @@ class Pipelines extends React.Component<Props, State> {
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.searchHandler}
           value={router.getParam(history, 'searchValue')}
           autoFocus={true}

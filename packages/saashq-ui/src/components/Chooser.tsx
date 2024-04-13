@@ -52,7 +52,7 @@ class CommonChooser extends React.Component<Props, State> {
     this.state = {
       datas,
       loadmore: true,
-      searchValue: ''
+      searchValue: '',
     };
   }
 
@@ -95,11 +95,11 @@ class CommonChooser extends React.Component<Props, State> {
 
       this.setState({ datas: [...datas, data] });
     } else {
-      this.setState({ datas: datas.filter(item => item !== data) });
+      this.setState({ datas: datas.filter((item) => item !== data) });
     }
   };
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -123,7 +123,7 @@ class CommonChooser extends React.Component<Props, State> {
   };
 
   renderRow(data, icon) {
-    if (icon === 'plus-1' && this.state.datas.some(e => e._id === data._id)) {
+    if (icon === 'plus-1' && this.state.datas.some((e) => e._id === data._id)) {
       return null;
     }
 
@@ -145,7 +145,7 @@ class CommonChooser extends React.Component<Props, State> {
     if (selectedDatas.length) {
       return (
         <ul>
-          {selectedDatas.map(data => this.renderRow(data, 'times'))}
+          {selectedDatas.map((data) => this.renderRow(data, 'times'))}
           {this.props.renderExtra && this.props.renderExtra()}
         </ul>
       );
@@ -163,7 +163,7 @@ class CommonChooser extends React.Component<Props, State> {
 
     return (
       <ul>
-        {datas.map(dataItem => this.renderRow(dataItem, 'plus-1'))}
+        {datas.map((dataItem) => this.renderRow(dataItem, 'plus-1'))}
         {this.state.loadmore && (
           <CenterContent>
             <Button
@@ -206,7 +206,7 @@ class CommonChooser extends React.Component<Props, State> {
           <Column>
             <ActionTop>
               <FormControl
-                placeholder={__('Type to search')}
+                placeholder={__('Zadejte a vyhledejte')}
                 onChange={this.search}
               />
               {this.renderSubFilter()}

@@ -10,13 +10,13 @@ import {
   Spinner,
   Tip,
   __,
-  router
+  router,
 } from '@saashq/ui/src';
 import { ContainerBox, KbTopics } from '../../../../style';
 import {
   KbArticlesContainer,
   KbArticles,
-  KbTreeViewItem
+  KbTreeViewItem,
 } from '../../../../style';
 
 import { generateParamsIds } from '../../../../common/utils';
@@ -44,15 +44,15 @@ function KnowledgebaseFilter({
   history,
   knowledgeBaseTopics,
   loadedArticles,
-  loading
+  loading,
 }: Props) {
   const [knowledgebase, setKnowledgebase] = React.useState<any[]>([]);
   const [queryParamName, setQueryParamName] = React.useState<string>(
-    'knowledgebaseCategoryId'
+    'knowledgebaseCategoryId',
   );
 
   React.useEffect(() => {
-    const topics = knowledgeBaseTopics.flatMap(topic => {
+    const topics = knowledgeBaseTopics.flatMap((topic) => {
       const { __typename, _id, title, categories } = topic;
 
       const topicInfo = {
@@ -60,15 +60,15 @@ function KnowledgebaseFilter({
         _id,
         name: title,
         parentId: null,
-        numOfCategories: categories.length
+        numOfCategories: categories.length,
       };
 
-      const categoryInfo = topic.categories.map(category => ({
+      const categoryInfo = topic.categories.map((category) => ({
         __typename: category.__typename,
         _id: category._id,
         name: category.title,
         numOfArticles: category.numOfArticles,
-        parentId: category.parentCategoryId || _id
+        parentId: category.parentCategoryId || _id,
       }));
 
       return [topicInfo, ...categoryInfo];
@@ -87,18 +87,18 @@ function KnowledgebaseFilter({
   }, [queryParams.knowledgebaseCategoryId]);
 
   const categoryIds = (knowledgebase || [])
-    .filter(topic => topic.__typename === 'KnowledgeBaseCategory')
-    .map(category => category._id);
+    .filter((topic) => topic.__typename === 'KnowledgeBaseCategory')
+    .map((category) => category._id);
 
-  const getArticlesCategory = categoryId => {
+  const getArticlesCategory = (categoryId) => {
     return loadedArticles
-      .filter(article => article.categoryId === categoryId)
-      .map(article => article._id);
+      .filter((article) => article.categoryId === categoryId)
+      .map((article) => article._id);
   };
 
-  const handleClick = id => {
+  const handleClick = (id) => {
     const selectedCategory = knowledgebase.find(
-      category => category._id === id
+      (category) => category._id === id,
     );
 
     if (selectedCategory.__typename === 'KnowledgeBaseCategory') {
@@ -131,7 +131,7 @@ function KnowledgebaseFilter({
         history={history}
       />
       <Box
-        title={__('Filter by Knowledgebase')}
+        title={__('Filtrujte podle Znalostní Báze')}
         name="assetKnowledgebase"
         isOpen={queryParams.articleIds || queryParams.knowledgebaseCategoryId}
         collapsible={knowledgeBaseTopics.length > 6}

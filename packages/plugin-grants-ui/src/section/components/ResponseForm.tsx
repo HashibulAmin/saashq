@@ -7,7 +7,7 @@ import {
   FormControl,
   FormGroup,
   Icon,
-  __
+  __,
 } from '@saashq/ui/src';
 import { IResponse } from '../containers/ResponseForm';
 
@@ -26,7 +26,7 @@ class ResponseComponent extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      description: ''
+      description: '',
     };
 
     this.renderContent = this.renderContent.bind(this);
@@ -39,7 +39,7 @@ class ResponseComponent extends React.Component<Props, State> {
       this.props.response({ description, response });
     };
 
-    const handleChange = e => {
+    const handleChange = (e) => {
       const { value } = e.currentTarget as HTMLInputElement;
       this.setState({ description: value });
     };
@@ -47,7 +47,7 @@ class ResponseComponent extends React.Component<Props, State> {
     return (
       <>
         <FormGroup>
-          <ControlLabel>{__('Description')}</ControlLabel>
+          <ControlLabel>{__('Popis')}</ControlLabel>
           <FormControl componentClass="textarea" onChange={handleChange} />
         </FormGroup>
         <BarItems>

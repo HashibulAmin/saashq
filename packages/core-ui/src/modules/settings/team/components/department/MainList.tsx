@@ -236,7 +236,7 @@ class MainList extends React.Component<Props, State> {
             <th>{__('Title')}</th>
             <th>{__('Supervisor')}</th>
             <th>{__('Team member count')}</th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>

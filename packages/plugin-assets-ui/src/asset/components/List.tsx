@@ -14,7 +14,7 @@ import {
   Button,
   ModalTrigger,
   Icon,
-  Alert
+  Alert,
 } from '@saashq/ui/src';
 import Row from './Row';
 import { Link } from 'react-router-dom';
@@ -35,7 +35,7 @@ type Props = {
   remove: (doc: { assetIds: string[] }, emptyBulk: () => void) => void;
   assignKbArticles: (
     doc: { assetIds: string[] },
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
   toggleBulk: () => void;
   toggleAll: (targets: IAsset[], containerId: string) => void;
@@ -65,7 +65,7 @@ function List(props: Props) {
     currentCategory,
     currentParent,
     mergeAssets,
-    mergeAssetLoading
+    mergeAssetLoading,
   } = props;
 
   const [search, setSearch] = React.useState(searchValue);
@@ -75,7 +75,7 @@ function List(props: Props) {
     emptyBulk();
   }, [assets.length]);
 
-  const handleSearch = e => {
+  const handleSearch = (e) => {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
     }
@@ -93,7 +93,7 @@ function List(props: Props) {
     toggleAll(assets, 'assets');
   };
 
-  const moveCursorAtTheEnd = e => {
+  const moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
 
     e.target.value = '';
@@ -101,7 +101,7 @@ function List(props: Props) {
   };
 
   const renderRow = () => {
-    return assets.map(asset => (
+    return assets.map((asset) => (
       <Row
         history={history}
         key={asset._id}
@@ -114,11 +114,11 @@ function List(props: Props) {
     ));
   };
 
-  const renderFormContent = formProps => {
+  const renderFormContent = (formProps) => {
     return <AssetForm {...formProps} queryParams={queryParams} />;
   };
 
-  const assetsMerge = assetsProps => {
+  const assetsMerge = (assetsProps) => {
     return (
       <MergeAssets
         {...assetsProps}
@@ -129,7 +129,7 @@ function List(props: Props) {
     );
   };
 
-  const assignArticles = articlesProps => {
+  const assignArticles = (articlesProps) => {
     return (
       <AssignArticles
         {...articlesProps}
@@ -139,10 +139,10 @@ function List(props: Props) {
     );
   };
 
-  const removeAssets = selectedAssets => {
+  const removeAssets = (selectedAssets) => {
     const assetIds: string[] = [];
 
-    selectedAssets.forEach(selectedAsset => {
+    selectedAssets.forEach((selectedAsset) => {
       assetIds.push(selectedAsset._id);
     });
 
@@ -156,20 +156,20 @@ function List(props: Props) {
           .then(() => {
             removeAssets(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
       };
 
       const mergeButton = (
         <Button btnStyle="success" icon="merge">
-          Merge
+          Spojit
         </Button>
       );
 
       const assignButton = (
         <Button btnStyle="success" icon="merge">
-          Assign knowledgebase articles
+          Přiřaďte články znalostní báze
         </Button>
       );
 
@@ -177,7 +177,7 @@ function List(props: Props) {
         <BarItems>
           {bulk.length === 2 && (
             <ModalTrigger
-              title="Merge Asset"
+              title="Sloučit Aktiva"
               dialogClassName="modal-1000w"
               trigger={mergeButton}
               content={assetsMerge}
@@ -186,7 +186,7 @@ function List(props: Props) {
 
           {isEnabled('knowledgebase') && (
             <ModalTrigger
-              title="Assign knowledgebase articles"
+              title="Přiřaďte články znalostní báze"
               size="lg"
               dialogClassName="modal-1000w"
               trigger={assignButton}
@@ -195,7 +195,7 @@ function List(props: Props) {
           )}
 
           <Button btnStyle="danger" icon="cancel-1" onClick={onClick}>
-            Remove
+            Odstranit
           </Button>
         </BarItems>
       );
@@ -208,7 +208,7 @@ function List(props: Props) {
           <FlexItem>
             <FormControl
               type="text"
-              placeholder={__('Type to search')}
+              placeholder={__('Zadejte a vyhledejte')}
               onChange={handleSearch}
               value={search}
               autoFocus={true}
@@ -219,15 +219,15 @@ function List(props: Props) {
 
         <Link to="/settings/importHistories?type=asset">
           <Button btnStyle="simple" icon="arrow-from-right">
-            {__('Import items')}
+            {__('Importujte položky')}
           </Button>
         </Link>
 
         <ModalTrigger
-          title="Add Assets"
+          title="Přidat Aktiva"
           trigger={
             <Button btnStyle="success" icon="plus-circle">
-              Add Assets
+              Přidat Aktiva
             </Button>
           }
           content={renderFormContent}
@@ -250,12 +250,12 @@ function List(props: Props) {
               onChange={handleSelectAllChange}
             />
           </th>
-          <th>{__('Code')}</th>
-          <th>{__('Name')}</th>
-          <th>{__('Category')}</th>
-          <th>{__('Parent')}</th>
-          <th>{__('Unit Price')}</th>
-          <th>{__('Actions')}</th>
+          <th>{__('Kód')}</th>
+          <th>{__('Název')}</th>
+          <th>{__('Kategorie')}</th>
+          <th>{__('Rodič')}</th>
+          <th>{__('Jednotková Cena')}</th>
+          <th>{__('Akce')}</th>
         </tr>
       </thead>
       <tbody>{renderRow()}</tbody>
@@ -265,16 +265,16 @@ function List(props: Props) {
   const sidebar = <Sidebar queryParams={queryParams} history={history} />;
 
   const leftActionBar = (
-    <Title>{`${currentCategory.name ||
-      currentParent.name ||
-      'All Assets'} (${assetsCount})`}</Title>
+    <Title>{`${
+      currentCategory.name || currentParent.name || 'Všechna Aktiva'
+    } (${assetsCount})`}</Title>
   );
 
   return (
     <Wrapper
       header={
         <Wrapper.Header
-          title={__('List Assets')}
+          title={__('Seznam Aktiv')}
           breadcrumb={breadcrumb}
           queryParams={queryParams}
         />
@@ -287,7 +287,7 @@ function List(props: Props) {
           data={content}
           loading={loading}
           count={assetsCount}
-          emptyText="There is no data"
+          emptyText="Nejsou žádná data"
           emptyImage="/images/actions/5.svg"
         />
       }

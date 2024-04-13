@@ -7,7 +7,7 @@ import {
   FormGroup,
   SelectTeamMembers,
   Toggle,
-  __
+  __,
 } from '@saashq/ui/src';
 import client from '@saashq/ui/src/apolloClient';
 import { Columns } from '@saashq/ui/src/styles/chooser';
@@ -42,7 +42,7 @@ class ScheduleForm extends React.Component<Props, State> {
     this.state = {
       doc: props?.schedule || {},
       useGroup: props?.doc?.groupId || false,
-      isDisabled: props?.plan?.status === 'archived'
+      isDisabled: props?.plan?.status === 'archived',
     };
   }
 
@@ -54,7 +54,7 @@ class ScheduleForm extends React.Component<Props, State> {
       cardType,
       pipelineId,
       plan,
-      duplicate
+      duplicate,
     } = this.props;
     const { useGroup, doc, isDisabled } = this.state;
     const { structureType, structureDetail } = plan;
@@ -63,7 +63,7 @@ class ScheduleForm extends React.Component<Props, State> {
       this.setState({ doc: { ...doc, [name]: value } });
     };
 
-    const onChange = e => {
+    const onChange = (e) => {
       const { value, name } = e.currentTarget as HTMLInputElement;
 
       handleChange(value, name);
@@ -80,16 +80,16 @@ class ScheduleForm extends React.Component<Props, State> {
       client
         .mutate({
           mutation: gql(mutation),
-          variables: { planId: plan._id, ...doc }
+          variables: { planId: plan._id, ...doc },
         })
         .then(() => {
           refetch && refetch();
           Alert.success(
-            `${isUpdate ? 'Updated' : 'Added'} schedule successfully`
+            `${isUpdate ? 'Updated' : 'Added'} schedule successfully`,
           );
           closeModal();
         })
-        .catch(err => {
+        .catch((err) => {
           Alert.error(err.message);
         });
     };
@@ -114,7 +114,7 @@ class ScheduleForm extends React.Component<Props, State> {
               onSelect={handleChange}
               filterParams={{
                 tagIds: plan?.tagId ? [plan?.tagId] : undefined,
-                withChilds: true
+                withChilds: true,
               }}
             />
           ) : (
@@ -125,7 +125,7 @@ class ScheduleForm extends React.Component<Props, State> {
               onSelect={handleChange}
               filterParams={{
                 tagIds: plan?.tagId ? [plan?.tagId] : undefined,
-                withChilds: true
+                withChilds: true,
               }}
             />
           )}
@@ -153,7 +153,7 @@ class ScheduleForm extends React.Component<Props, State> {
           </Column>
         </Columns>
         <FormGroup>
-          <ControlLabel>{__('Name')}</ControlLabel>
+          <ControlLabel>{__('Název')}</ControlLabel>
           <FormControl
             name="name"
             required

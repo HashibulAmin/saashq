@@ -15,10 +15,10 @@ export default function List({ list, remove, repair }: Props) {
     <Table>
       <thead>
         <tr>
-          <th>{__('Name')}</th>
+          <th>{__('Název')}</th>
           <th>{__('Account')}</th>
           <th>{__('Page')}</th>
-          <th>{__('Actions')}</th>
+          <th>{__('Akce')}</th>
         </tr>
       </thead>
 

@@ -12,7 +12,7 @@ import {
   ModalTrigger,
   Tip,
   __,
-  ActionButtons
+  ActionButtons,
 } from '@saashq/ui/src';
 
 type Props = {
@@ -30,19 +30,19 @@ class Row extends React.Component<Props> {
 
     const trigger = (
       <Button btnStyle="link">
-        <Tip text={__('Edit')} placement="bottom">
+        <Tip text={__('Upravit')} placement="bottom">
           <Icon icon="edit-3" />
         </Tip>
       </Button>
     );
 
-    const onChange = e => {
+    const onChange = (e) => {
       if (toggleBulk) {
         toggleBulk(product, e.target.checked);
       }
     };
 
-    const onClick = e => {
+    const onClick = (e) => {
       e.stopPropagation();
     };
 
@@ -50,7 +50,7 @@ class Row extends React.Component<Props> {
       history.push(`/settings/product-service/details/${product._id}`);
     };
 
-    const content = props => <ProductForm {...props} product={product} />;
+    const content = (props) => <ProductForm {...props} product={product} />;
 
     const { code, name, type, category, unitPrice } = product;
 

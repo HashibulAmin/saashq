@@ -9,14 +9,14 @@ import {
   ModalTrigger,
   Pagination,
   SortHandler,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import Wrapper from '@saashq/ui/src/layout/components/Wrapper';
 import { __, Alert, confirm, router } from '@saashq/ui/src/utils';
 import { BarItems } from '@saashq/ui/src/layout/styles';
 import {
   MainStyleCount as Count,
-  MainStyleTitle as Title
+  MainStyleTitle as Title,
 } from '@saashq/ui/src/styles/eindex';
 import { IRouterProps, IQueryParams } from '@saashq/ui/src/types';
 import { IVoucher } from '../types';
@@ -39,7 +39,7 @@ interface IProps extends IRouterProps {
   emptyBulk: () => void;
   removeVouchers: (
     doc: { voucherIds: string[] },
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
   history: any;
   queryParams: IQueryParams;
@@ -56,7 +56,7 @@ class VouchersList extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue
+      searchValue: this.props.searchValue,
     };
   }
 
@@ -65,7 +65,7 @@ class VouchersList extends React.Component<IProps, State> {
     toggleAll(vouchers, 'vouchers');
   };
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -80,17 +80,17 @@ class VouchersList extends React.Component<IProps, State> {
     }, 500);
   };
 
-  removeVouchers = vouchers => {
+  removeVouchers = (vouchers) => {
     const voucherIds: string[] = [];
 
-    vouchers.forEach(voucher => {
+    vouchers.forEach((voucher) => {
       voucherIds.push(voucher._id);
     });
 
     this.props.removeVouchers({ voucherIds }, this.props.emptyBulk);
   };
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -106,7 +106,7 @@ class VouchersList extends React.Component<IProps, State> {
       isAllSelected,
       totalCount,
       queryParams,
-      currentCampaign
+      currentCampaign,
     } = this.props;
 
     const renderCheckbox = () => {
@@ -149,7 +149,7 @@ class VouchersList extends React.Component<IProps, State> {
             </tr>
           </thead>
           <tbody id="vouchers">
-            {vouchers.map(voucher => (
+            {vouchers.map((voucher) => (
               <VoucherRow
                 voucher={voucher}
                 isChecked={bulk.includes(voucher)}
@@ -171,7 +171,7 @@ class VouchersList extends React.Component<IProps, State> {
       </Button>
     );
 
-    const voucherForm = props => {
+    const voucherForm = (props) => {
       return <VoucherForm {...props} queryParams={queryParams} />;
     };
 
@@ -182,7 +182,7 @@ class VouchersList extends React.Component<IProps, State> {
             .then(() => {
               this.removeVouchers(bulk);
             })
-            .catch(error => {
+            .catch((error) => {
               Alert.error(error.message);
             });
 
@@ -203,7 +203,7 @@ class VouchersList extends React.Component<IProps, State> {
         <BarItems>
           <FormControl
             type="text"
-            placeholder={__('Type to search')}
+            placeholder={__('Zadejte a vyhledejte')}
             onChange={this.search}
             value={this.state.searchValue}
             autoFocus={true}

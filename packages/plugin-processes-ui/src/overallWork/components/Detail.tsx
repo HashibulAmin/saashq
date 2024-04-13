@@ -79,7 +79,7 @@ class OverallWorkDetail extends React.Component<Props, State> {
 
     this.state = {
       minPotentialCount: this.calcMinPotentialCount(),
-      maxMadeCount: this.calcMaxMadeCount()
+      maxMadeCount: this.calcMaxMadeCount(),
     };
   }
 
@@ -101,7 +101,7 @@ class OverallWorkDetail extends React.Component<Props, State> {
 
   renderEditRow(label, key) {
     const value = this.state[key];
-    const onChangeValue = e => {
+    const onChangeValue = (e) => {
       this.setState({ [key]: Number(e.target.value) } as any);
     };
     return (
@@ -114,7 +114,7 @@ class OverallWorkDetail extends React.Component<Props, State> {
     );
   }
 
-  generateLabel = customer => {
+  generateLabel = (customer) => {
     const { firstName, primaryEmail, primaryPhone, lastName } =
       customer || ({} as ICustomer);
 
@@ -140,7 +140,7 @@ class OverallWorkDetail extends React.Component<Props, State> {
       history,
       errorMsg,
       performs,
-      removePerform
+      removePerform,
     } = this.props;
     if (errorMsg) {
       return (
@@ -160,13 +160,13 @@ class OverallWorkDetail extends React.Component<Props, State> {
             <th>{__('Count')}</th>
             <th>{__('End At')}</th>
             <th>{__('Modified by')}</th>
-            <th>{__('Modified At')}</th>
+            <th>{__('Upraveno v')}</th>
             <th>{__('Status')}</th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody id="overallWorks">
-          {(performs || []).map(perform => (
+          {(performs || []).map((perform) => (
             <PerformRow
               key={Math.random()}
               perform={perform}
@@ -190,7 +190,7 @@ class OverallWorkDetail extends React.Component<Props, State> {
         data={this.renderContent()}
         loading={false}
         count={performsCount}
-        emptyText="There is no data"
+        emptyText="Nejsou žádná data"
         emptyImage="/images/actions/5.svg"
       />
     );
@@ -200,7 +200,7 @@ class OverallWorkDetail extends React.Component<Props, State> {
       </Button>
     );
 
-    const modalContent = props => (
+    const modalContent = (props) => (
       <Form
         {...props}
         overallWorkDetail={overallWork}

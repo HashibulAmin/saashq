@@ -38,13 +38,13 @@ class List extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue
+      searchValue: this.props.searchValue,
     };
   }
 
   renderRow = () => {
     const { works, history, removeWork } = this.props;
-    return works.map(work => (
+    return works.map((work) => (
       <Row
         history={history}
         key={work._id}
@@ -54,7 +54,7 @@ class List extends React.Component<IProps, State> {
     ));
   };
 
-  renderCount = worksCount => {
+  renderCount = (worksCount) => {
     return (
       <Count>
         {worksCount} work{worksCount > 1 && 's'}
@@ -62,7 +62,7 @@ class List extends React.Component<IProps, State> {
     );
   };
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -94,13 +94,13 @@ class List extends React.Component<IProps, State> {
       </Button>
     );
 
-    const modalContent = props => <Form {...props} />;
+    const modalContent = (props) => <Form {...props} />;
 
     const actionBarRight = (
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.search}
           value={this.state.searchValue}
           autoFocus={true}
@@ -122,7 +122,7 @@ class List extends React.Component<IProps, State> {
         <Table hover={true}>
           <thead>
             <tr>
-              <th>{__('Name')}</th>
+              <th>{__('Název')}</th>
               <th>{__('Status')}</th>
               <th>{__('Flow')}</th>
               <th>{__('Count')}</th>
@@ -133,7 +133,7 @@ class List extends React.Component<IProps, State> {
               <th>{__('Need products')}</th>
               <th>{__('Result products')}</th>
               <th>{__('Due Date')}</th>
-              <th>{__('Actions')}</th>
+              <th>{__('Akce')}</th>
             </tr>
           </thead>
           <tbody>{this.renderRow()}</tbody>
@@ -152,7 +152,7 @@ class List extends React.Component<IProps, State> {
             data={content}
             loading={loading}
             count={worksCount}
-            emptyText="There is no data"
+            emptyText="Nejsou žádná data"
             emptyImage="/images/actions/5.svg"
           />
         }

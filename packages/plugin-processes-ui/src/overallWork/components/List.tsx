@@ -40,11 +40,11 @@ class OverallWorks extends React.Component<IProps, {}> {
               <th>{__('Spend Department')}</th>
               <th>{__('Receipt Branch')}</th>
               <th>{__('Receipt Department')}</th>
-              <th>{__('Actions')}</th>
+              <th>{__('Akce')}</th>
             </tr>
           </thead>
           <tbody id="overallWorks">
-            {(overallWorks || []).map(work => (
+            {(overallWorks || []).map((work) => (
               <Row
                 key={Math.random()}
                 work={work}

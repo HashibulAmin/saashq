@@ -69,20 +69,22 @@ class PerformRow extends React.Component<Props> {
       return '';
     }
 
-    return `${(user.details
-      ? `${user.details.fullName || user.details.shortName || ''}`
-      : user.username) || user.email}`;
+    return `${
+      (user.details
+        ? `${user.details.fullName || user.details.shortName || ''}`
+        : user.username) || user.email
+    }`;
   };
 
   render() {
     const { perform, minPotentialCount } = this.props;
     const onTrClick = () => {};
 
-    const onClick = e => {
+    const onClick = (e) => {
       e.stopPropagation();
     };
 
-    const content = props => (
+    const content = (props) => (
       <Form
         {...props}
         perform={perform}
@@ -105,7 +107,7 @@ class PerformRow extends React.Component<Props> {
               title={__(`Edit perform`)}
               trigger={
                 <Button btnStyle="link">
-                  <Tip text={__('Edit')} placement="bottom">
+                  <Tip text={__('Upravit')} placement="bottom">
                     <Icon icon="edit" />
                   </Tip>
                 </Button>

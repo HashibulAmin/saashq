@@ -66,7 +66,7 @@ function AssetForm({
   const [parentId, setParentId] = React.useState<string>('');
   const [categoryId, setCategoryId] = React.useState<string>('');
   const [description, setDescription] = React.useState<string>('');
-  const [currentTab, setCurrentTab] = React.useState<string>('Category');
+  const [currentTab, setCurrentTab] = React.useState<string>('Kategorie');
 
   React.useEffect(() => {
     if (asset) {
@@ -78,7 +78,7 @@ function AssetForm({
       setParentId(asset ? asset.parentId : '');
       setCategoryId(asset ? asset.categoryId : '');
       setDescription(asset ? asset.description : '');
-      setCurrentTab(asset ? (asset.parentId ? 'Parent' : 'Category') : '');
+      setCurrentTab(asset ? (asset.parentId ? 'Rodič' : 'Kategorie') : '');
     }
   }, []);
 
@@ -115,7 +115,7 @@ function AssetForm({
 
     return (
       <ModalTrigger
-        title="Add Asset Category"
+        title="Přidat Kategorii Aktiv"
         trigger={trigger}
         content={content}
       />
@@ -140,11 +140,11 @@ function AssetForm({
 
   const onChangeCurrentTab = (selecteTab) => {
     switch (selecteTab) {
-      case 'Parent':
+      case 'Rodič':
         setCategoryId('');
         setCurrentTab(selecteTab);
         break;
-      case 'Category':
+      case 'Kategorie':
         setParentId('');
         setCurrentTab(selecteTab);
         break;
@@ -180,17 +180,17 @@ function AssetForm({
         }
       };
 
-      if (currentTab === 'Parent') {
+      if (currentTab === 'Rodič') {
         return (
           <FormGroup>
-            <ControlLabel required={true}>Parent</ControlLabel>
+            <ControlLabel required={true}>Rodič</ControlLabel>
             <SelectWithAssets
-              label="Choose Asset"
+              label="Vyberte Aktivum"
               name="parentId"
               multi={false}
               initialValue={object.parentId}
               onSelect={handleSelect}
-              customOption={{ value: '', label: 'Choose Asset' }}
+              customOption={{ value: '', label: 'Vyberte Aktivum' }}
             />
           </FormGroup>
         );
@@ -208,15 +208,15 @@ function AssetForm({
 
       return (
         <FormGroup>
-          <ControlLabel required={true}>Category</ControlLabel>
+          <ControlLabel required={true}>Kategorie</ControlLabel>
           <FormWrapper>
             <SelectWithAssetCategory
-              label="Choose Asset Category"
+              label="Vyberte Kategorii Majetku"
               name="categoryId"
               multi={false}
               initialValue={categoryDefaultValue()}
               onSelect={handleSelect}
-              customOption={{ value: '', label: 'Choose Asset Category' }}
+              customOption={{ value: '', label: 'Vyberte Kategorii Majetku' }}
             />
             {renderFormTrigger(addCategoryTrigger)}
           </FormWrapper>
@@ -229,7 +229,7 @@ function AssetForm({
         <FormWrapper>
           <FormColumn>
             <FormGroup>
-              <ControlLabel required={true}>Name</ControlLabel>
+              <ControlLabel required={true}>Název</ControlLabel>
               <FormControl
                 {...formProps}
                 name="name"
@@ -240,11 +240,12 @@ function AssetForm({
             </FormGroup>
 
             <FormGroup>
-              <ControlLabel required={true}>Code</ControlLabel>
+              <ControlLabel required={true}>Kód</ControlLabel>
               <p>
-                Depending on your business type, you may type in a barcode or
-                any other UPC (Universal Asset Code). If you don't use UPC, type
-                in any numeric value to differentiate your assets.
+                V závislosti na typu vaší firmy můžete zadat čárový kód nebo
+                jakýkoli jiný kód UPC (Universal Asset Code). Pokud nepoužíváte
+                UPC, zadejte v libovolné číselné hodnotě, abyste odlišili svá
+                aktiva.
               </p>
               <FormControl
                 {...formProps}
@@ -256,11 +257,14 @@ function AssetForm({
           </FormColumn>
           <FormColumn>
             <FormGroup>
-              <ControlLabel>Vendor</ControlLabel>
+              <ControlLabel>Prodejce</ControlLabel>
               <SelectCompanies
-                label="Choose an vendor"
+                label="Vyberte prodejce"
                 name="vendorId"
-                customOption={{ value: '', label: 'No vendor chosen' }}
+                customOption={{
+                  value: '',
+                  label: 'Nebyl vybrán žádný prodejce',
+                }}
                 initialValue={object.vendorId}
                 onSelect={onComboEvent.bind(this, 'vendorId')}
                 multi={false}
@@ -269,11 +273,11 @@ function AssetForm({
 
             <FormGroup>
               <div>
-                <ControlLabel required={true}>Unit price</ControlLabel>
+                <ControlLabel required={true}>Jednotková cena</ControlLabel>
                 <p>
-                  Please ensure you have set the default currency in the{' '}
-                  <a href="/settings/general"> {'General Settings'}</a> of the
-                  System Configuration.
+                  Ujistěte se prosím, že jste nastavili výchozí měnu v{' '}
+                  <a href="/settings/general"> {'Obecné Nastavení'}</a> z
+                  Konfigurace Systému.
                 </p>
               </div>
               <FormControl
@@ -291,7 +295,7 @@ function AssetForm({
         <TabContainer>
           <TriggerTabs>
             <Tabs full={true}>
-              {['Category', 'Parent'].map((item) => (
+              {['Kategorie', 'Rodič'].map((item) => (
                 <TabTitle
                   className={currentTab === item ? 'active' : ''}
                   key={item}
@@ -306,7 +310,7 @@ function AssetForm({
         </TabContainer>
 
         <FormGroup>
-          <ControlLabel>Description</ControlLabel>
+          <ControlLabel>Popis</ControlLabel>
           <FlexItem>
             <RichTextEditor
               content={description}
@@ -331,7 +335,7 @@ function AssetForm({
         <FormWrapper>
           <FormColumn>
             <FormGroup>
-              <ControlLabel>Featured image</ControlLabel>
+              <ControlLabel>Doporučený obrázek</ControlLabel>
 
               <Uploader
                 defaultFileList={attachments}
@@ -343,7 +347,7 @@ function AssetForm({
           </FormColumn>
           <FormColumn>
             <FormGroup>
-              <ControlLabel>Secondary Images</ControlLabel>
+              <ControlLabel>Sekundární Obrázky</ControlLabel>
 
               <Uploader
                 defaultFileList={attachmentsMore}
@@ -362,7 +366,7 @@ function AssetForm({
             icon="times-circle"
             uppercase={false}
           >
-            Close
+            Zavřít
           </Button>
 
           {renderButton({

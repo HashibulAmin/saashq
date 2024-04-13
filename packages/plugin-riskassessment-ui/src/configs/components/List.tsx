@@ -14,7 +14,7 @@ import {
   SortHandler,
   Table,
   confirm,
-  __
+  __,
 } from '@saashq/ui/src';
 import Form from '../containers/Form';
 import Row from './Row';
@@ -40,7 +40,7 @@ class List extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      selectedItems: []
+      selectedItems: [],
     };
   }
 
@@ -68,17 +68,17 @@ class List extends React.Component<Props, State> {
 
     const selectAllItems = () => {
       if (!selectedItems.length) {
-        const configIds = configs.map(config => config._id);
+        const configIds = configs.map((config) => config._id);
         return this.setState({ selectedItems: configIds });
       }
 
       this.setState({ selectedItems: [] });
     };
 
-    const selectItem = id => {
+    const selectItem = (id) => {
       if (selectedItems.includes(id)) {
         const removedSelectedItems = selectedItems.filter(
-          selectItem => selectItem !== id
+          (selectItem) => selectItem !== id,
         );
         return this.setState({ selectedItems: removedSelectedItems });
       }
@@ -103,17 +103,17 @@ class List extends React.Component<Props, State> {
             <th>{__('Risk Assessment')}</th>
             <th>
               <SortHandler sortField="createdAt" />
-              {__('Created At')}
+              {__('Vytvořeno v')}
             </th>
             <th>
               <SortHandler sortField="modifiedAt" />
-              {__('Modified At')}
+              {__('Upraveno v')}
             </th>
-            <th>{__('Action')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>
-          {configs.map(config => (
+          {configs.map((config) => (
             <Row
               {...this.props}
               key={config._id}
@@ -145,7 +145,7 @@ class List extends React.Component<Props, State> {
             'cardType',
             'boardId',
             'pipelineId',
-            'stageId'
+            'stageId',
           ]) {
             removeParams(this.props.history, param);
           }
@@ -169,7 +169,7 @@ class List extends React.Component<Props, State> {
               value={queryParams?.cardType}
               options={cardTypes}
               multi={false}
-              onChange={e => handleFilterParams('cardType', e?.value)}
+              onChange={(e) => handleFilterParams('cardType', e?.value)}
             />
           </FormGroup>
           <BoardSelectContainer
@@ -177,9 +177,9 @@ class List extends React.Component<Props, State> {
             boardId={queryParams?.boardId}
             pipelineId={queryParams?.pipelineId}
             stageId={queryParams?.stageId}
-            onChangeBoard={e => handleFilterParams('boardId', e)}
-            onChangePipeline={e => handleFilterParams('pipelineId', e)}
-            onChangeStage={e => handleFilterParams('stageId', e)}
+            onChangeBoard={(e) => handleFilterParams('boardId', e)}
+            onChangePipeline={(e) => handleFilterParams('pipelineId', e)}
+            onChangeStage={(e) => handleFilterParams('stageId', e)}
             autoSelectStage={false}
           />
           <FormGroup>
@@ -222,7 +222,7 @@ class List extends React.Component<Props, State> {
       leftActionBar,
       subMenu,
       totalCount,
-      sidebar
+      sidebar,
     };
 
     return <DefaultWrapper {...updatedProps} />;

@@ -11,7 +11,7 @@ import {
   Tip,
   ModalTrigger,
   __,
-  FormControl
+  FormControl,
 } from '@saashq/ui/src';
 import SelectProducts from '@saashq/ui-products/src/containers/SelectProducts';
 import {
@@ -20,7 +20,7 @@ import {
   FlexColumn,
   FlexItem,
   Block,
-  BlockRow
+  BlockRow,
 } from '../../../styles';
 import SelectProductCategory from '@saashq/ui-products/src/containers/SelectProductCategory';
 
@@ -58,7 +58,7 @@ export default class ConfigStep extends React.Component<Props, State> {
       kioskExcludeProductIds: (pos && pos.kioskExcludeProductIds) || [],
       isCheckRemainder: (pos && pos.isCheckRemainder) || false,
       checkExcludeCategoryIds: (pos && pos.checkExcludeCategoryIds) || [],
-      banFractions: (pos && pos.banFractions) || false
+      banFractions: (pos && pos.banFractions) || false,
     };
   }
 
@@ -66,7 +66,7 @@ export default class ConfigStep extends React.Component<Props, State> {
     const { groups } = this.state;
     const newGroups = [...groups];
 
-    const index = groups.findIndex(e => e._id === group._id);
+    const index = groups.findIndex((e) => e._id === group._id);
 
     if (index !== -1) {
       newGroups[index] = group;
@@ -78,7 +78,7 @@ export default class ConfigStep extends React.Component<Props, State> {
   };
 
   renderGroupFormTrigger(trigger: React.ReactNode, group?: IProductGroup) {
-    const content = props => (
+    const content = (props) => (
       <GroupForm {...props} group={group} onSubmit={this.onSubmitGroup} />
     );
 
@@ -90,7 +90,7 @@ export default class ConfigStep extends React.Component<Props, State> {
   renderEditAction(group: IProductGroup) {
     const trigger = (
       <Button btnStyle="link" style={{ float: 'right' }}>
-        <Tip text={__('Edit')} placement="bottom">
+        <Tip text={__('Upravit')} placement="bottom">
           <Icon icon="edit" />
         </Tip>
       </Button>
@@ -103,7 +103,7 @@ export default class ConfigStep extends React.Component<Props, State> {
     const remove = () => {
       let { groups } = this.state;
 
-      groups = groups.filter(e => e._id !== group._id);
+      groups = groups.filter((e) => e._id !== group._id);
 
       this.setState({ groups });
       this.props.onChange('groups', groups);
@@ -143,20 +143,20 @@ export default class ConfigStep extends React.Component<Props, State> {
       categoryId: cat.categoryId,
       productId: cat.productId,
       code: cat.code || '',
-      name: cat.name || ''
+      name: cat.name || '',
     });
 
     // for omitting react __typename field
-    const mappings = this.state.mappings.map(m => ({
+    const mappings = this.state.mappings.map((m) => ({
       _id: m._id,
       categoryId: m.categoryId,
       productId: m.productId,
       code: m.code || '',
-      name: m.name || ''
+      name: m.name || '',
     }));
 
     const editMapping = (item: CatProd) => {
-      const index = mappings.findIndex(i => i._id === item._id);
+      const index = mappings.findIndex((i) => i._id === item._id);
       const cleanItem = cleanFields(item);
 
       if (index !== -1) {
@@ -171,7 +171,7 @@ export default class ConfigStep extends React.Component<Props, State> {
     };
 
     const removeMapping = (_id: string) => {
-      const excluded = mappings.filter(m => m._id !== _id);
+      const excluded = mappings.filter((m) => m._id !== _id);
 
       this.setState({ mappings: excluded });
 
@@ -205,7 +205,7 @@ export default class ConfigStep extends React.Component<Props, State> {
       kioskExcludeProductIds,
       isCheckRemainder,
       checkExcludeCategoryIds,
-      banFractions
+      banFractions,
     } = this.state;
 
     const groupTrigger = (
@@ -220,7 +220,7 @@ export default class ConfigStep extends React.Component<Props, State> {
       m.push({
         _id: Math.random().toString(),
         categoryId: '',
-        productId: ''
+        productId: '',
       });
 
       this.setState({ mappings: m });
@@ -233,7 +233,7 @@ export default class ConfigStep extends React.Component<Props, State> {
             <Block>
               <h4>{__('Product Groups')}</h4>
               <FormGroup>
-                {groups.map(group => this.renderGroup(group))}
+                {groups.map((group) => this.renderGroup(group))}
               </FormGroup>
 
               {this.renderGroupFormTrigger(groupTrigger)}
@@ -250,9 +250,9 @@ export default class ConfigStep extends React.Component<Props, State> {
                   initialValue={initialCategoryIds}
                   customOption={{
                     value: '',
-                    label: '...Clear product category filter'
+                    label: '...Clear product category filter',
                   }}
-                  onSelect={categoryIds =>
+                  onSelect={(categoryIds) =>
                     this.onChangeValue('initialCategoryIds', categoryIds)
                   }
                   multi={true}
@@ -268,7 +268,7 @@ export default class ConfigStep extends React.Component<Props, State> {
                   label={'kiosk'}
                   name="kioskExcludeCategoryIds"
                   initialValue={kioskExcludeCategoryIds}
-                  onSelect={categoryIds =>
+                  onSelect={(categoryIds) =>
                     this.onChangeValue('kioskExcludeCategoryIds', categoryIds)
                   }
                   multi={true}
@@ -280,7 +280,7 @@ export default class ConfigStep extends React.Component<Props, State> {
                   label={'kiosk'}
                   name="kioskExcludeProductIds"
                   initialValue={kioskExcludeProductIds}
-                  onSelect={productIds =>
+                  onSelect={(productIds) =>
                     this.onChangeValue('kioskExcludeProductIds', productIds)
                   }
                   multi={true}
@@ -310,10 +310,10 @@ export default class ConfigStep extends React.Component<Props, State> {
                 <FormControl
                   checked={isCheckRemainder}
                   componentClass="checkbox"
-                  onChange={e => {
+                  onChange={(e) => {
                     this.onChangeValue(
                       'isCheckRemainder',
-                      (e.target as any).checked
+                      (e.target as any).checked,
                     );
                   }}
                 />
@@ -324,7 +324,7 @@ export default class ConfigStep extends React.Component<Props, State> {
                   label={'kiosk'}
                   name="checkExcludeCategoryIds"
                   initialValue={checkExcludeCategoryIds}
-                  onSelect={categoryIds =>
+                  onSelect={(categoryIds) =>
                     this.onChangeValue('checkExcludeCategoryIds', categoryIds)
                   }
                   multi={true}
@@ -335,10 +335,10 @@ export default class ConfigStep extends React.Component<Props, State> {
                 <FormControl
                   checked={banFractions}
                   componentClass="checkbox"
-                  onChange={e => {
+                  onChange={(e) => {
                     this.onChangeValue(
                       'banFractions',
-                      (e.target as any).checked
+                      (e.target as any).checked,
                     );
                   }}
                 />

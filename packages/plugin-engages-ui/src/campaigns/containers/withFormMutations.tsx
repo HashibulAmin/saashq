@@ -88,11 +88,7 @@ function withSaveAndEdit<IComponentProps>(Component) {
           );
         }
 
-        return doMutation(
-          addMutation,
-          doc,
-          `You successfully added a broadcast`,
-        );
+        return doMutation(addMutation, doc, `Úspěšně jste přidali a broadcast`);
       };
 
       const messenger = message.messenger || {

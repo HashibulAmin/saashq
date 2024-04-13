@@ -136,7 +136,7 @@ class FileDetail extends React.Component<Props, State> {
                 <th>{__('Date')}</th>
                 <th>{__('Created by')}</th>
                 <th>{__('Module')}</th>
-                <th>{__('Action')}</th>
+                <th>{__('Akce')}</th>
               </tr>
             </thead>
             <tbody>
@@ -283,7 +283,7 @@ class FileDetail extends React.Component<Props, State> {
     return (
       <>
         <FormGroup>
-          <ControlLabel>{__('Description')}</ControlLabel>
+          <ControlLabel>{__('Popis')}</ControlLabel>
           <p>{__('You can write description or not')}</p>
           <FormControl
             name="description"

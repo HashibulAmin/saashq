@@ -24,7 +24,7 @@ class {Name}Container extends React.Component<Props> {
         isSubmitted={isSubmitted}
         refetchQueries={getRefetchQueries('{name}')}
         type="submit"
-        successMessage={`You successfully added a {name}`}
+        successMessage={`Úspěšně jste přidali a {name}`}
       />
     );
   };

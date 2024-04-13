@@ -10,7 +10,7 @@ import {
   DataWithLoader,
   FormControl,
   ModalTrigger,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import { IDayLabel } from '../types';
 import { MainStyleTitle as Title } from '@saashq/ui/src/styles/eindex';
@@ -50,7 +50,7 @@ class DayLabels extends React.Component<Props, State> {
   renderRow = () => {
     const { dayLabels, history, toggleBulk, bulk, edit } = this.props;
 
-    return dayLabels.map(dayLabel => (
+    return dayLabels.map((dayLabel) => (
       <Row
         key={dayLabel._id}
         history={history}
@@ -62,14 +62,14 @@ class DayLabels extends React.Component<Props, State> {
     ));
   };
 
-  modalContent = props => {
+  modalContent = (props) => {
     return <Form {...props} />;
   };
 
-  removeDayLabels = dayLabels => {
+  removeDayLabels = (dayLabels) => {
     const dayLabelIds: string[] = [];
 
-    dayLabels.forEach(dayLabel => {
+    dayLabels.forEach((dayLabel) => {
       dayLabelIds.push(dayLabel._id);
     });
 
@@ -85,7 +85,7 @@ class DayLabels extends React.Component<Props, State> {
           .then(() => {
             this.removeDayLabels(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 
@@ -135,8 +135,8 @@ class DayLabels extends React.Component<Props, State> {
               />
             </th>
             <th>{__('Date')}</th>
-            <th>{__('Branch')}</th>
-            <th>{__('Department')}</th>
+            <th>{__('Větev')}</th>
+            <th>{__('Oddělení')}</th>
             <th>{__('Labels')}</th>
             <th>{__('')}</th>
           </tr>
@@ -165,7 +165,7 @@ class DayLabels extends React.Component<Props, State> {
             data={content}
             loading={false}
             count={totalCount}
-            emptyText="There is no data"
+            emptyText="Nejsou žádná data"
             emptyImage="/images/actions/5.svg"
           />
         }

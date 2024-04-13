@@ -34,18 +34,18 @@ class DynamicForm extends React.Component<Props, State> {
     this.state = {
       userId: '',
       selectedDocument: {} as any,
-      attachments: []
+      attachments: [],
     };
   }
 
   onChangeAttachments = (attachments: IAttachment[]) =>
     this.setState({ attachments });
 
-  usersOnChange = userId => {
+  usersOnChange = (userId) => {
     this.setState({ userId });
   };
 
-  onSave = values => {
+  onSave = (values) => {
     const { userId, selectedDocument, attachments } = this.state;
     const { queryParams } = this.props;
     const attachment = attachments[0] || ({} as any);
@@ -58,14 +58,14 @@ class DynamicForm extends React.Component<Props, State> {
       contentTypeId: userId,
       documentId: selectedDocument.value,
       folderId: queryParams && queryParams._id ? queryParams._id : '',
-      info: attachment
+      info: attachment,
     });
   };
 
-  generateParams = options => {
-    return options.map(option => ({
+  generateParams = (options) => {
+    return options.map((option) => ({
       value: option._id,
-      label: option.name
+      label: option.name,
     }));
   };
 
@@ -73,14 +73,14 @@ class DynamicForm extends React.Component<Props, State> {
     const { file } = this.props;
     const object = file || ({} as IFile);
 
-    const onChange = selectedDocument => {
+    const onChange = (selectedDocument) => {
       this.setState({ selectedDocument });
     };
 
     return (
       <>
         <FormGroup>
-          <ControlLabel required={true}>{__('Name')}</ControlLabel>
+          <ControlLabel required={true}>{__('Název')}</ControlLabel>
           <FormControl
             {...formProps}
             name="name"

@@ -89,7 +89,7 @@ export default function Row(props: Props) {
         <ActionButtons>
           {renderArchiveButton()}
           {renderCompleteButton()}
-          <Tip text={__('Edit')} placement="bottom">
+          <Tip text={__('Upravit')} placement="bottom">
             <Link to={`/pricing/plans/edit/${data._id && data._id}`}>
               <Button type="button" btnStyle="link" size="small">
                 <Icon icon="edit-3" />

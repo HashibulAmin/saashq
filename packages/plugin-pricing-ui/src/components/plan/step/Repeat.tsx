@@ -13,7 +13,7 @@ import { __ } from '@saashq/ui/src/utils';
 import {
   DateContainer,
   FormWrapper,
-  FormColumn
+  FormColumn,
 } from '@saashq/ui/src/styles/main';
 // local
 import { Table } from '../../../styles';
@@ -109,7 +109,7 @@ export default function Repeat(props: Props) {
     for (let i = 1; i <= 31; i++) {
       options.push({
         label: i,
-        value: i.toString()
+        value: i.toString(),
       });
     }
 
@@ -227,12 +227,12 @@ export default function Repeat(props: Props) {
               <tr>
                 <th>{__('Rule type')}</th>
                 <th>{__('Rule value')}</th>
-                <th>{__('Actions')}</th>
+                <th>{__('Akce')}</th>
               </tr>
             </thead>
             <tbody>
               {(formValues.repeatRules || []).map((item: any, index: number) =>
-                renderRow(item, index)
+                renderRow(item, index),
               )}
             </tbody>
           </Table>

@@ -36,13 +36,13 @@ class Histories extends React.Component<Props & IRouterProps> {
       <Table hover={true}>
         <thead>
           <tr>
-            <th>{__('Name')}</th>
+            <th>{__('Název')}</th>
             <th>{__('Records')}</th>
             <th>{__('Updated records')}</th>
             <th>{__('Errors')}</th>
-            <th>{__('User')}</th>
+            <th>{__('Uživatel')}</th>
             <th>{__('Date')}</th>
-            <th>{__('Action')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>

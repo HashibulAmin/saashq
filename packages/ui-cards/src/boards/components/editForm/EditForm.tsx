@@ -37,7 +37,7 @@ class EditForm extends React.Component<Props, State> {
 
     this.state = {
       stageId: item.stageId,
-      updatedItem: item
+      updatedItem: item,
     };
   }
 
@@ -47,10 +47,10 @@ class EditForm extends React.Component<Props, State> {
 
       if (item.stageId !== this.state.stageId) {
         this.setState({
-          prevStageId: item.stageId
+          prevStageId: item.stageId,
         });
 
-        saveItem({ stageId }, updatedItem => {
+        saveItem({ stageId }, (updatedItem) => {
           if (onUpdate) {
             onUpdate(updatedItem, this.state.prevStageId);
           }
@@ -60,7 +60,7 @@ class EditForm extends React.Component<Props, State> {
   };
 
   saveItem = (doc: { [key: string]: any }) => {
-    this.props.saveItem(doc, updatedItem => {
+    this.props.saveItem(doc, (updatedItem) => {
       this.setState({ updatedItem });
     });
   };
@@ -137,7 +137,7 @@ class EditForm extends React.Component<Props, State> {
 
     return (
       <Modal.Header closeButton={true}>
-        <Modal.Title>{__('Edit')}</Modal.Title>
+        <Modal.Title>{__('Upravit')}</Modal.Title>
       </Modal.Header>
     );
   }
@@ -160,7 +160,7 @@ class EditForm extends React.Component<Props, State> {
             saveItem: this.saveItem,
             onChangeStage: this.onChangeStage,
             copy: this.copy,
-            remove: this.remove
+            remove: this.remove,
           })}
         </Modal.Body>
       </Modal>

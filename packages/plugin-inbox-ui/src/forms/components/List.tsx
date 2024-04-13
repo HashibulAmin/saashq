@@ -1,6 +1,9 @@
 import * as routerUtils from '@saashq/ui/src/utils/router';
 
-import { ILeadIntegration, IntegrationsCount } from '@saashq/ui-leads/src/types';
+import {
+  ILeadIntegration,
+  IntegrationsCount,
+} from '@saashq/ui-leads/src/types';
 
 import { BarItems } from '@saashq/ui/src/layout/styles';
 import Button from '@saashq/ui/src/components/Button';
@@ -57,10 +60,10 @@ class List extends React.Component<Props, {}> {
       toggleBulk,
       archive,
       queryParams,
-      copy
+      copy,
     } = this.props;
 
-    return integrations.map(integration => (
+    return integrations.map((integration) => (
       <Row
         key={integration._id}
         isChecked={bulk.includes(integration)}
@@ -74,7 +77,7 @@ class List extends React.Component<Props, {}> {
     ));
   }
 
-  searchHandler = event => {
+  searchHandler = (event) => {
     const { history } = this.props;
 
     routerUtils.setParams(history.history, { searchValue: event.target.value });
@@ -89,7 +92,7 @@ class List extends React.Component<Props, {}> {
       emptyBulk,
       isAllSelected,
       integrations,
-      counts
+      counts,
     } = this.props;
 
     queryParams.loadingMainQuery = loading;
@@ -120,11 +123,11 @@ class List extends React.Component<Props, {}> {
       <Flex>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.searchHandler}
           value={routerUtils.getParam(
             this.props.history.history,
-            'searchValue'
+            'searchValue',
           )}
           autoFocus={true}
         />
@@ -153,7 +156,7 @@ class List extends React.Component<Props, {}> {
               />
             </th>
             <th>
-              <SortHandler sortField={'name'} label={__('Name')} />
+              <SortHandler sortField={'name'} label={__('Název')} />
             </th>
             <th>{__('Status')}</th>
             <th>
@@ -181,7 +184,7 @@ class List extends React.Component<Props, {}> {
             </th>
             {isEnabled('tags') && <th>{__('Tags')}</th>}
             <th>{__('Flow type')}</th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{this.renderRow()}</tbody>

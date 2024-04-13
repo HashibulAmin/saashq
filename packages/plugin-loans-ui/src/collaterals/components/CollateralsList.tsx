@@ -44,11 +44,11 @@ class CollateralsList extends React.Component<IProps, State> {
 
     this.state = {
       searchValue: this.props.searchValue,
-      productIds: this.props.productIds
+      productIds: this.props.productIds,
     };
   }
 
-  onSelectProducts = productIds => {
+  onSelectProducts = (productIds) => {
     const { history } = this.props;
 
     this.setState({ productIds });
@@ -56,7 +56,7 @@ class CollateralsList extends React.Component<IProps, State> {
     router.setParams(history, { productIds });
   };
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -71,7 +71,7 @@ class CollateralsList extends React.Component<IProps, State> {
     }, 500);
   };
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -84,7 +84,7 @@ class CollateralsList extends React.Component<IProps, State> {
       loading,
       totalCount,
       queryParams,
-      currentUser
+      currentUser,
     } = this.props;
 
     const mainContent = (
@@ -96,7 +96,7 @@ class CollateralsList extends React.Component<IProps, State> {
                 <SortHandler sortField={'code'} label={__('Code')} />
               </th>
               <th>
-                <SortHandler sortField={'name'} label={__('Name')} />
+                <SortHandler sortField={'name'} label={__('Název')} />
               </th>
               <th>
                 <SortHandler
@@ -125,7 +125,7 @@ class CollateralsList extends React.Component<IProps, State> {
             </tr>
           </thead>
           <tbody id="collaterals">
-            {collaterals.map(collateral => (
+            {collaterals.map((collateral) => (
               <CollateralRow
                 collateral={collateral}
                 key={`${
@@ -145,7 +145,7 @@ class CollateralsList extends React.Component<IProps, State> {
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.search}
           value={this.state.searchValue}
           autoFocus={true}
@@ -167,8 +167,8 @@ class CollateralsList extends React.Component<IProps, State> {
         header={
           <Wrapper.Header
             title={__(`Collaterals`) + ` (${totalCount})`}
-            submenu={menuContracts.filter(row =>
-              can(row.permission, currentUser)
+            submenu={menuContracts.filter((row) =>
+              can(row.permission, currentUser),
             )}
           />
         }

@@ -31,11 +31,11 @@ interface IProps extends IRouterProps {
   addAutomation: () => void;
   removeAutomations: (
     doc: { automationIds: string[] },
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
   archiveAutomations: (
     doc: { automationIds: string[]; isRestore?: boolean },
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
   queryParams: any;
   exportAutomations: (bulk: string[]) => void;
@@ -57,7 +57,7 @@ class AutomationsList extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue
+      searchValue: this.props.searchValue,
     };
   }
 
@@ -67,7 +67,7 @@ class AutomationsList extends React.Component<IProps, State> {
     toggleAll(automations, 'automations');
   };
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -83,30 +83,30 @@ class AutomationsList extends React.Component<IProps, State> {
     }, 500);
   };
 
-  removeAutomations = automations => {
+  removeAutomations = (automations) => {
     const automationIds: string[] = [];
 
-    automations.forEach(automation => {
+    automations.forEach((automation) => {
       automationIds.push(automation._id);
     });
 
     this.props.removeAutomations({ automationIds }, this.props.emptyBulk);
   };
 
-  archiveAutomations = automations => {
+  archiveAutomations = (automations) => {
     const automationIds: string[] = automations.map(
-      automation => automation._id
+      (automation) => automation._id,
     );
 
     const isRestore = this.props?.queryParams?.status === 'archived';
 
     this.props.archiveAutomations(
       { automationIds, isRestore },
-      this.props.emptyBulk
+      this.props.emptyBulk,
     );
   };
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -133,7 +133,7 @@ class AutomationsList extends React.Component<IProps, State> {
       isExpand,
       counts,
       addAutomation,
-      emptyBulk
+      emptyBulk,
     } = this.props;
 
     const automations = this.props.automations || [];
@@ -150,20 +150,20 @@ class AutomationsList extends React.Component<IProps, State> {
                   onChange={this.onChange}
                 />
               </th>
-              <th>{__('Name')}</th>
+              <th>{__('Název')}</th>
               <th>{__('Status')}</th>
               <th>{__('Triggers')}</th>
-              <th>{__('Action')}</th>
+              <th>{__('Akce')}</th>
               {isEnabled('tags') && <th>{__('Tags')}</th>}
               <th>{__('Last updated by')}</th>
               <th>{__('Created by')}</th>
               <th>{__('Last update')}</th>
               <th>{__('Created date')}</th>
-              <th>{__('Actions')}</th>
+              <th>{__('Akce')}</th>
             </tr>
           </thead>
           <tbody id="automations" className={isExpand ? 'expand' : ''}>
-            {(automations || []).map(automation => (
+            {(automations || []).map((automation) => (
               <Row
                 key={automation._id}
                 automation={automation}
@@ -273,7 +273,7 @@ class AutomationsList extends React.Component<IProps, State> {
                 <p>
                   <b>{__('You don’t have any automations yet')}.</b>
                   {__(
-                    'Automatically execute repetitive tasks and make sure nothing falls through the cracks'
+                    'Automatically execute repetitive tasks and make sure nothing falls through the cracks',
                   )}
                   .
                 </p>
@@ -289,5 +289,5 @@ class AutomationsList extends React.Component<IProps, State> {
 
 export default withTableWrapper(
   'Automation',
-  withRouter<IRouterProps>(AutomationsList)
+  withRouter<IRouterProps>(AutomationsList),
 );

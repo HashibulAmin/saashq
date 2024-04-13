@@ -17,7 +17,7 @@ import {
   MarginY,
   TextAlignCenter,
   ToggleButton,
-  ToggleDisplay
+  ToggleDisplay,
 } from '../../styles';
 import DateControl from '@saashq/ui/src/components/form/DateControl';
 import { ControlLabel } from '@saashq/ui/src/components/form';
@@ -68,7 +68,7 @@ function List(props: Props) {
     removeTimeclock,
     getActionBar,
     showSideBar,
-    getPagination
+    getPagination,
   } = props;
 
   const [extractType, setExtractType] = useState('All team members');
@@ -78,34 +78,34 @@ function List(props: Props) {
   const [selectedDepartments, setDepartments] = useState<string[]>([]);
 
   const renderDepartmentOptions = (depts: IDepartment[]) => {
-    return depts.map(dept => ({
+    return depts.map((dept) => ({
       value: dept._id,
       label: dept.title,
-      userIds: dept.userIds
+      userIds: dept.userIds,
     }));
   };
 
   const renderBranchOptions = (branchesList: IBranch[]) => {
-    return branchesList.map(branch => ({
+    return branchesList.map((branch) => ({
       value: branch._id,
       label: branch.title,
-      userIds: branch.userIds
+      userIds: branch.userIds,
     }));
   };
 
-  const onBranchSelect = el => {
+  const onBranchSelect = (el) => {
     const selectedBranchIds: string[] = [];
-    selectedBranchIds.push(...el.map(branch => branch.value));
+    selectedBranchIds.push(...el.map((branch) => branch.value));
     setBranches(selectedBranchIds);
   };
 
-  const onDepartmentSelect = el => {
+  const onDepartmentSelect = (el) => {
     const selectedDeptIds: string[] = [];
-    selectedDeptIds.push(...el.map(dept => dept.value));
+    selectedDeptIds.push(...el.map((dept) => dept.value));
     setDepartments(selectedDeptIds);
   };
 
-  const onMemberSelect = selectedUsers => {
+  const onMemberSelect = (selectedUsers) => {
     setUserIds(selectedUsers);
   };
 
@@ -129,7 +129,7 @@ function List(props: Props) {
     ? {}
     : {
         ids: returnTotalUserOptions(),
-        excludeIds: false
+        excludeIds: false,
       };
 
   const trigger = (
@@ -139,10 +139,10 @@ function List(props: Props) {
   );
 
   const [startDate, setStartDate] = useState(
-    new Date(localStorage.getItem('startDate') || Date.now())
+    new Date(localStorage.getItem('startDate') || Date.now()),
   );
   const [endDate, setEndDate] = useState(
-    new Date(localStorage.getItem('endDate') || Date.now())
+    new Date(localStorage.getItem('endDate') || Date.now()),
   );
 
   const extractTrigger = isCurrentUserAdmin ? (
@@ -154,7 +154,7 @@ function List(props: Props) {
   );
 
   const [isSideBarOpen, setIsOpen] = useState(
-    localStorage.getItem('isSideBarOpen') === 'true' ? true : false
+    localStorage.getItem('isSideBarOpen') === 'true' ? true : false,
   );
 
   const onToggleSidebar = () => {
@@ -163,7 +163,7 @@ function List(props: Props) {
     localStorage.setItem('isSideBarOpen', toggleIsOpen.toString());
   };
 
-  const modalContent = contenProps => (
+  const modalContent = (contenProps) => (
     <TimeForm
       {...contenProps}
       {...props}
@@ -172,14 +172,14 @@ function List(props: Props) {
     />
   );
 
-  const onStartDateChange = dateVal => {
+  const onStartDateChange = (dateVal) => {
     if (checkDateRange(dateVal, endDate)) {
       setStartDate(dateVal);
       localStorage.setItem('startDate', startDate.toISOString());
     }
   };
 
-  const onEndDateChange = dateVal => {
+  const onEndDateChange = (dateVal) => {
     if (checkDateRange(startDate, dateVal)) {
       setEndDate(dateVal);
       localStorage.setItem('endDate', endDate.toISOString());
@@ -201,11 +201,11 @@ function List(props: Props) {
         branchIds: selectedBranches,
         departmentIds: selectedDepartments,
         userIds: currUserIds,
-        extractAll: extractType === 'All team members'
+        extractAll: extractType === 'All team members',
       });
     }
   };
-  const extractContent = contentProps => (
+  const extractContent = (contentProps) => (
     <FlexColumnCustom marginNum={10}>
       <div>
         <ControlLabel>Select Date Range</ControlLabel>
@@ -231,11 +231,11 @@ function List(props: Props) {
 
       <Select
         value={extractType}
-        onChange={el => setExtractType(el.value)}
+        onChange={(el) => setExtractType(el.value)}
         placeholder="Select extract type"
-        options={['All team members', 'Choose team members'].map(e => ({
+        options={['All team members', 'Choose team members'].map((e) => ({
           value: e,
-          label: e
+          label: e,
         }))}
       />
 
@@ -286,7 +286,7 @@ function List(props: Props) {
 
   const bichilTimeclockActionBar = loadDynamicComponent(
     'bichilTimeclockActionBar',
-    { currentUserId: currentUser._id, isCurrentUserAdmin, queryParams }
+    { currentUserId: currentUser._id, isCurrentUserAdmin, queryParams },
   );
 
   const actionBarLeft = (
@@ -341,7 +341,7 @@ function List(props: Props) {
 
   const bichilTimeclockTable = loadDynamicComponent(
     'bichilTimeclockTable',
-    props
+    props,
   );
 
   if (bichilTimeclockTable) {
@@ -362,12 +362,12 @@ function List(props: Props) {
           <th>{__('Out Device')}</th>
           <th>{__('Location')}</th>
           <th>
-            <TextAlignCenter>{__('Action')}</TextAlignCenter>
+            <TextAlignCenter>{__('Akce')}</TextAlignCenter>
           </th>
         </tr>
       </thead>
       <tbody>
-        {timeclocks.map(timeclock => {
+        {timeclocks.map((timeclock) => {
           return (
             <Row
               isCurrentUserAdmin={isCurrentUserAdmin}

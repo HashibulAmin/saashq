@@ -25,7 +25,7 @@ const List = (props: Props) => {
   const { totalCount, queryParams, loading, configs, remove } = props;
 
   const renderRow = () => {
-    return configs.map(config => (
+    return configs.map((config) => (
       <Row key={config._id} config={config} remove={remove} />
     ));
   };
@@ -38,8 +38,11 @@ const List = (props: Props) => {
     </Button>
   );
 
-  const formContent = formProps => (
-    <ConfigForm {...formProps} excludeIds={configs.map(c => c.contentTypeId)} />
+  const formContent = (formProps) => (
+    <ConfigForm
+      {...formProps}
+      excludeIds={configs.map((c) => c.contentTypeId)}
+    />
   );
 
   const righActionBar = (
@@ -59,9 +62,9 @@ const List = (props: Props) => {
       <thead>
         <tr>
           <th>{__('Type')}</th>
-          <th>{__('Name')}</th>
+          <th>{__('Název')}</th>
           <th>{__('Payments')}</th>
-          <th>{__('Actions')}</th>
+          <th>{__('Akce')}</th>
         </tr>
       </thead>
       <tbody>{renderRow()}</tbody>
@@ -88,7 +91,7 @@ const List = (props: Props) => {
               style={{
                 display: 'flex',
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
               }}
             >
               no data

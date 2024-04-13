@@ -44,7 +44,7 @@ const List = (props: IProps) => {
     toggleAll,
     bulk,
     isAllSelected,
-    counts
+    counts,
   } = props;
 
   React.useEffect(() => {
@@ -63,13 +63,13 @@ const List = (props: IProps) => {
   }, [searchValue]);
 
   const renderRow = () => {
-    const onClickRow = invoiceId => {
+    const onClickRow = (invoiceId) => {
       setCurrentInvoiceId(invoiceId);
 
       setShowModal(!showModal);
     };
 
-    return invoices.map(invoice => (
+    return invoices.map((invoice) => (
       <Row
         onClick={onClickRow}
         history={history}
@@ -85,19 +85,19 @@ const List = (props: IProps) => {
   const onChange = () => {
     toggleAll(invoices, 'invoices');
   };
-  const removeInvoices = ids => {
+  const removeInvoices = (ids) => {
     const invoiceIds: string[] = [];
-    ids.forEach(i => {
+    ids.forEach((i) => {
       invoiceIds.push(i._id);
     });
     props.remove(invoiceIds, props.emptyBulk);
   };
 
-  const search = e => {
+  const search = (e) => {
     setSearchValue(e.target.value || '');
   };
 
-  const moveCursorAtTheEnd = e => {
+  const moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -107,7 +107,7 @@ const List = (props: IProps) => {
     <BarItems>
       <FormControl
         type="text"
-        placeholder={__('Type to search')}
+        placeholder={__('Zadejte a vyhledejte')}
         onChange={search}
         value={searchValue}
         autoFocus={true}
@@ -122,7 +122,7 @@ const List = (props: IProps) => {
           <tr>
             <th
               style={{
-                width: 60
+                width: 60,
               }}
             >
               <FormControl
@@ -135,12 +135,12 @@ const List = (props: IProps) => {
             <th>{__('Kind')}</th>
             <th>{__('Amount')}</th>
             <th>{__('Status')}</th>
-            <th>{__('Customer')}</th>
+            <th>{__('Zákazník')}</th>
             <th>{__('Customer Type')}</th>
-            <th>{__('Description')}</th>
+            <th>{__('Popis')}</th>
             <th>{__('Created date')}</th>
             <th>{__('Resolved date')}</th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{renderRow()}</tbody>
@@ -160,12 +160,12 @@ const List = (props: IProps) => {
   if (bulk.length > 0) {
     const onClick = () =>
       confirm(
-        __('Invoices that are already paid will not be deleted. Are you sure?')
+        __('Invoices that are already paid will not be deleted. Are you sure?'),
       )
         .then(() => {
           removeInvoices(bulk);
         })
-        .catch(error => {
+        .catch((error) => {
           Alert.error(error.message);
         });
 
@@ -190,8 +190,8 @@ const List = (props: IProps) => {
           title={__('Invoices')}
           breadcrumb={[
             {
-              title: __('Invoices')
-            }
+              title: __('Invoices'),
+            },
           ]}
           queryParams={props.queryParams}
         />
@@ -204,7 +204,7 @@ const List = (props: IProps) => {
           data={content}
           loading={props.loading}
           count={counts.total}
-          emptyText="There is no data"
+          emptyText="Nejsou žádná data"
           emptyImage="/images/actions/5.svg"
         />
       }

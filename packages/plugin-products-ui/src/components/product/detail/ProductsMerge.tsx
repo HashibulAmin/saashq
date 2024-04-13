@@ -26,7 +26,7 @@ class ProductsMerge extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      selectedValues: {}
+      selectedValues: {},
     };
   }
 
@@ -44,11 +44,11 @@ class ProductsMerge extends React.Component<Props, State> {
     }
 
     this.props.save({
-      ids: objects.map(product => product._id),
+      ids: objects.map((product) => product._id),
       data: { ...selectedValues },
       callback: () => {
         this.props.closeModal();
-      }
+      },
     });
   };
 
@@ -61,7 +61,7 @@ class ProductsMerge extends React.Component<Props, State> {
       if (key === 'links') {
         const links = Object.assign(
           { ...this.state.selectedValues.links },
-          value
+          value,
         );
         selectedValues[key] = links;
       }
@@ -79,7 +79,7 @@ class ProductsMerge extends React.Component<Props, State> {
       <React.Fragment>
         <Title>{product.name}</Title>
         <ul>
-          {properties.map(info => {
+          {properties.map((info) => {
             const key = info.field;
 
             if (!product[key]) {
@@ -125,7 +125,7 @@ class ProductsMerge extends React.Component<Props, State> {
   renderCategoryInfo(value) {
     return (
       <Info>
-        <InfoTitle>{__('Name')}: </InfoTitle>
+        <InfoTitle>{__('Název')}: </InfoTitle>
         <InfoDetail>{value.name}</InfoDetail>
       </Info>
     );
@@ -154,11 +154,11 @@ class ProductsMerge extends React.Component<Props, State> {
     return (
       <form onSubmit={this.save}>
         <Columns>
-          <Column className='multiple'>
+          <Column className="multiple">
             {this.renderProduct(product1, 'plus-1')}
           </Column>
 
-          <Column className='multiple'>
+          <Column className="multiple">
             {this.renderProduct(product2, 'plus-1')}
           </Column>
 
@@ -166,12 +166,12 @@ class ProductsMerge extends React.Component<Props, State> {
         </Columns>
 
         <ModalFooter>
-          <Button btnStyle='simple' onClick={closeModal} icon='times-circle'>
+          <Button btnStyle="simple" onClick={closeModal} icon="times-circle">
             Cancel
           </Button>
           <Button
-            type='submit'
-            btnStyle='success'
+            type="submit"
+            btnStyle="success"
             icon={mergeProductLoading ? undefined : 'check-circle'}
             disabled={mergeProductLoading}
           >

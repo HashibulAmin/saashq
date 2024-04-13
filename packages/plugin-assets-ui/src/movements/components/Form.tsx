@@ -162,12 +162,12 @@ class Form extends React.Component<Props, State> {
     return <AssetChooser {...updatedProps} />;
   }
 
-  assetChooserTrigger = (<Button>Select Assets</Button>);
+  assetChooserTrigger = (<Button>Vyberte Aktiva</Button>);
 
   assetChooserContent(trigger) {
     return (
       <ModalTrigger
-        title="Select Assets"
+        title="Vyberte Aktiva"
         content={this.assetChooser}
         trigger={trigger}
         size="lg"
@@ -186,26 +186,26 @@ class Form extends React.Component<Props, State> {
     let field;
     let text = '';
 
-    if (label === 'Branches') {
+    if (label === 'Větve') {
       Selection = SelectBranches;
       field = 'branchId';
       text = asset?.branch?.title;
     }
-    if (label === 'Departments') {
+    if (label === 'Oddělení') {
       Selection = SelectDepartments;
       field = 'departmentId';
       text = asset?.department?.title;
     }
-    if (label === 'Team Member') {
+    if (label === 'Člen Týmu') {
       Selection = SelectTeamMembers;
       field = 'teamMemberId';
       text = asset?.teamMember?.email;
     }
-    if (label === 'Company') {
+    if (label === 'Společnost') {
       Selection = SelectCompanies;
       field = 'companyId';
     }
-    if (label === 'Customer') {
+    if (label === 'Zákazník') {
       Selection = SelectCustomers;
       field = 'customerId';
       text = asset?.customer?.primaryEmail;
@@ -226,11 +226,11 @@ class Form extends React.Component<Props, State> {
         <ContentColumn flex="3">
           <MovementItemContainer>
             <Selection
-              label={`Choose ${label}`}
+              label={`Vybrat ${label}`}
               onSelect={handleChange}
               initialValue={value || ''}
               multi={false}
-              customOption={{ value: '', label: `Choose ${label}` }}
+              customOption={{ value: '', label: `Vybrat ${label}` }}
             />
           </MovementItemContainer>
         </ContentColumn>
@@ -292,73 +292,73 @@ class Form extends React.Component<Props, State> {
 
     return (
       <CollapseContent
-        title="General Location Configrations"
+        title="Obecné Konfigurace Umístění"
         description={__(
-          'If you want to change the location generally of your selected assets, you should click checkboxes below.',
+          'Pokud chcete obecně změnit umístění vybraných děl, měli byste zaškrtnout políčka níže.',
         )}
       >
         <BarItems>
           <ContentColumn>
             <FormWrapper>
               <FormColumn>
-                <CommonItemRow label="Branch">
+                <CommonItemRow label="Větev">
                   <SelectBranches
-                    label="Choose Branch"
+                    label="Vyberte Pobočku"
                     name="branchId"
                     onSelect={handleGeneralOptions}
                     multi={false}
                     initialValue={general?.branchId}
-                    customOption={{ value: '', label: 'Choose Branch' }}
+                    customOption={{ value: '', label: 'Vyberte Pobočku' }}
                   />
                 </CommonItemRow>
               </FormColumn>
               <FormColumn>
-                <CommonItemRow label="Department">
+                <CommonItemRow label="Oddělení">
                   <SelectDepartments
-                    label="Choose Department"
+                    label="Vyberte Oddělení"
                     name="departmentId"
                     onSelect={handleGeneralOptions}
                     multi={false}
                     initialValue={general?.departmentId}
-                    customOption={{ value: '', label: 'Choose Department' }}
+                    customOption={{ value: '', label: 'Vyberte Oddělení' }}
                   />
                 </CommonItemRow>
               </FormColumn>
             </FormWrapper>
             <FormWrapper>
               <FormColumn>
-                <CommonItemRow label="Customer">
+                <CommonItemRow label="Zákazník">
                   <SelectCustomers
-                    label="Choose Customer"
+                    label="Vyberte Zákazník"
                     name="customerId"
                     onSelect={handleGeneralOptions}
                     multi={false}
                     initialValue={general?.customerId}
-                    customOption={{ value: '', label: 'Choose Customer' }}
+                    customOption={{ value: '', label: 'Vyberte Zákazník' }}
                   />
                 </CommonItemRow>
               </FormColumn>
               <FormColumn>
-                <CommonItemRow label="Company">
+                <CommonItemRow label="Společnost">
                   <SelectCompanies
-                    label="Choose Company"
+                    label="Vyberte Společnost"
                     name="companyId"
                     onSelect={handleGeneralOptions}
                     multi={false}
                     initialValue={general?.companyId}
-                    customOption={{ value: '', label: 'Choose Company' }}
+                    customOption={{ value: '', label: 'Vyberte Společnost' }}
                   />
                 </CommonItemRow>
               </FormColumn>
             </FormWrapper>
-            <CommonItemRow label="Team Member">
+            <CommonItemRow label="Člen Týmu">
               <SelectTeamMembers
-                label="Choose Team Member"
+                label="Vyberte Člen Týmu"
                 name="teamMemberId"
                 onSelect={handleGeneralOptions}
                 multi={false}
                 initialValue={general?.teamMemberId}
-                customOption={{ value: '', label: 'Choose Team Member' }}
+                customOption={{ value: '', label: 'Vyberte Člen Týmu' }}
               />
             </CommonItemRow>
           </ContentColumn>
@@ -405,11 +405,11 @@ class Form extends React.Component<Props, State> {
         onChangeBulkItems={onChangeCheckedItems}
         handleChangeRowItem={this.handleChangeRowItem}
       >
-        {this.renderInfoSelection('Branches', item, item['branchId'])}
-        {this.renderInfoSelection('Departments', item, item['departmentId'])}
-        {this.renderInfoSelection('Customer', item, item['customerId'])}
-        {this.renderInfoSelection('Company', item, item['companyId'])}
-        {this.renderInfoSelection('Team Member', item, item['teamMemberId'])}
+        {this.renderInfoSelection('Větve', item, item['branchId'])}
+        {this.renderInfoSelection('Oddělení', item, item['departmentId'])}
+        {this.renderInfoSelection('Zákazník', item, item['customerId'])}
+        {this.renderInfoSelection('Společnost', item, item['companyId'])}
+        {this.renderInfoSelection('Člen Týmu', item, item['teamMemberId'])}
       </MovementItems>
     ));
   }
@@ -441,12 +441,12 @@ class Form extends React.Component<Props, State> {
                   color="#3B85F4"
                 />
               </th>
-              <th>{__('Name')}</th>
-              <th>{__('Branch')}</th>
-              <th>{__('Departmnet')}</th>
-              <th>{__('Customer')}</th>
+              <th>{__('Název')}</th>
+              <th>{__('Větev')}</th>
+              <th>{__('Oddělení')}</th>
+              <th>{__('Zákazník')}</th>
               <th>{__('Comapny')}</th>
-              <th>{__('Team Member')}</th>
+              <th>{__('Člen Týmu')}</th>
             </tr>
           </thead>
           <tbody>{this.renderRow()}</tbody>
@@ -463,10 +463,10 @@ class Form extends React.Component<Props, State> {
       <ContainerBox column gap={20}>
         <FormWrapper>
           <FormColumn>
-            <CommonFormGroup label="Date">
+            <CommonFormGroup label="Datum">
               <DateContainer>
                 <DateControl
-                  placeholder="Select Date"
+                  placeholder="Vyberte Datum"
                   onChange={this.handleGeneralDate}
                   value={movedAt}
                 />
@@ -474,7 +474,7 @@ class Form extends React.Component<Props, State> {
             </CommonFormGroup>
           </FormColumn>
           <FormColumn>
-            <CommonFormGroup label="Description">
+            <CommonFormGroup label="Popis">
               <FormControl
                 type="text"
                 name="description"
@@ -491,7 +491,7 @@ class Form extends React.Component<Props, State> {
 
         <ContainerBox justifyCenter>
           {this.assetChooserContent(
-            <Button icon="plus-circle">{__('Add Asset')}</Button>,
+            <Button icon="plus-circle">{__('Přidat Aktivum')}</Button>,
           )}
         </ContainerBox>
         {renderButton && (

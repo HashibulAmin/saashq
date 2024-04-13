@@ -68,7 +68,7 @@ export default function Sidebar() {
             utc
             input
             value={queryParams.beginDate || null}
-            onChange={date => handleChangeDate('beginDate', date)}
+            onChange={(date) => handleChangeDate('beginDate', date)}
           />
         </FormGroup>
         <FormGroup>
@@ -82,27 +82,27 @@ export default function Sidebar() {
             utc
             input
             value={queryParams.endDate || null}
-            onChange={date => handleChangeDate('endDate', date)}
+            onChange={(date) => handleChangeDate('endDate', date)}
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Branch')}</ControlLabel>
+          <ControlLabel>{__('Větev')}</ControlLabel>
           <SelectBranches
             label="Choose branch"
             name="selectedBranchIds"
             initialValue={queryParams.branchId}
-            onSelect={branchId => setFilter('branchId', branchId)}
+            onSelect={(branchId) => setFilter('branchId', branchId)}
             multi={false}
             customOption={{ value: '', label: 'All branches' }}
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Department')}</ControlLabel>
+          <ControlLabel>{__('Oddělení')}</ControlLabel>
           <SelectDepartments
             label="Choose department"
             name="selectedDepartmentIds"
             initialValue={queryParams.departmentId}
-            onSelect={departmentId => setFilter('departmentId', departmentId)}
+            onSelect={(departmentId) => setFilter('departmentId', departmentId)}
             multi={false}
             customOption={{ value: '', label: 'All departments' }}
           />
@@ -113,7 +113,7 @@ export default function Sidebar() {
             label="Choose product"
             name="selectedProductId"
             initialValue={queryParams.productId}
-            onSelect={productId => setFilter('productId', productId)}
+            onSelect={(productId) => setFilter('productId', productId)}
             multi={false}
             customOption={{ value: '', label: 'All products' }}
           />

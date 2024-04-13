@@ -29,12 +29,12 @@ export default function List(props: Props) {
     safeRemainderItems,
     submitSafeRemainder,
     updateItem,
-    removeItem
+    removeItem,
   } = props;
 
   const breadcrumb = [
     { title: __('Safe Remainders'), link: '/inventories/safe-remainders' },
-    { title: __('Safe Remainder') }
+    { title: __('Safe Remainder') },
   ];
 
   const focusNext = (index: number, length: number, val?: number) => {
@@ -59,7 +59,7 @@ export default function List(props: Props) {
         item={item}
         updateItem={updateItem}
         removeItem={removeItem}
-        onEnter={val => focusNext(ind, remainderItems.length, val)}
+        onEnter={(val) => focusNext(ind, remainderItems.length, val)}
       />
     ));
   };
@@ -72,7 +72,7 @@ export default function List(props: Props) {
           <th colSpan={3}>{__('LIVE')}</th>
           <th rowSpan={2}>{__('Checked')}</th>
           <th colSpan={2}>{__('Census')}</th>
-          <th rowSpan={2}>{__('Actions')}</th>
+          <th rowSpan={2}>{__('Akce')}</th>
         </tr>
         <tr>
           <th>{__('Date')}</th>

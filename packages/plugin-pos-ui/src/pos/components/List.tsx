@@ -75,17 +75,17 @@ class List extends React.Component<Props, {}> {
         <thead>
           <tr>
             <th>
-              <SortHandler sortField={'name'} label={__('Name')} />
+              <SortHandler sortField={'name'} label={__('Název')} />
             </th>
             <th>{__('Is Online')}</th>
             <th>{__('On Server')}</th>
-            <th>{__('Branch')}</th>
-            <th>{__('Department')}</th>
+            <th>{__('Větev')}</th>
+            <th>{__('Oddělení')}</th>
             <th>{__('Created by')}</th>
             <th>
               <SortHandler sortField={'createdDate'} label={__('Created at')} />
             </th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{this.renderRow()}</tbody>

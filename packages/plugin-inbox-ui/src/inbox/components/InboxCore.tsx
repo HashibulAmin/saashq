@@ -28,7 +28,7 @@ class Inbox extends React.Component<Props> {
   render() {
     const { currentConversationId, queryParams } = this.props;
 
-    const menuInbox = [{ title: 'Team Inbox', link: '/inbox/index' }];
+    const menuInbox = [{ title: 'Týmová Schránka', link: '/inbox/index' }];
 
     return (
       <HeightedWrapper>

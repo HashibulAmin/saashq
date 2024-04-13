@@ -6,9 +6,9 @@ export const TYPES = {
 };
 
 export const PRODUCT_CATEGORY_STATUSES = [
-  { label: 'Active', value: 'active' },
-  { label: 'Disabled', value: 'disabled' },
-  { label: 'Archived', value: 'archived' },
+  { label: 'Aktivní', value: 'active' },
+  { label: 'Zakázáno', value: 'disabled' },
+  { label: 'Archivováno', value: 'archived' },
 ];
 
 export const PRODUCT_INFO = {

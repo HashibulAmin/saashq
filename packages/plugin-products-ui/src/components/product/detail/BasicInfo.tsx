@@ -13,7 +13,7 @@ import {
   FieldStyle,
   SidebarCounter,
   SidebarFlexRow,
-  SidebarList
+  SidebarList,
 } from '@saashq/ui/src/layout/styles';
 import ProductForm from '@saashq/ui-products/src/containers/ProductForm';
 import { IProduct } from '../../../types';
@@ -32,7 +32,7 @@ type Props = {
 };
 
 class BasicInfo extends React.Component<Props> {
-  renderVendor = vendor => {
+  renderVendor = (vendor) => {
     const { history } = this.props;
 
     if (!vendor) {
@@ -61,7 +61,7 @@ class BasicInfo extends React.Component<Props> {
     );
   };
 
-  renderBarcodes = barcodes => {
+  renderBarcodes = (barcodes) => {
     return (
       <>
         <li>
@@ -94,13 +94,13 @@ class BasicInfo extends React.Component<Props> {
 
   renderEdit() {
     const { product } = this.props;
-    const content = props => <ProductForm {...props} product={product} />;
+    const content = (props) => <ProductForm {...props} product={product} />;
     return (
       <ModalTrigger
         title="Edit basic info"
         trigger={
           <li>
-            <a href="#edit">{__('Edit')}</a>
+            <a href="#edit">{__('Upravit')}</a>
           </li>
         }
         size="xl"
@@ -115,7 +115,7 @@ class BasicInfo extends React.Component<Props> {
     const onDelete = () =>
       confirm()
         .then(() => remove())
-        .catch(error => {
+        .catch((error) => {
           Alert.error(error.message);
         });
 
@@ -124,7 +124,7 @@ class BasicInfo extends React.Component<Props> {
         <Dropdown>
           <Dropdown.Toggle as={DropdownToggle} id="dropdown-info">
             <Button btnStyle="simple" size="medium">
-              {__('Action')}
+              {__('Akce')}
               <Icon icon="angle-down" />
             </Button>
           </Dropdown.Toggle>
@@ -159,7 +159,7 @@ class BasicInfo extends React.Component<Props> {
     return (
       <ProductContent
         dangerouslySetInnerHTML={{
-          __html: xss(product.description)
+          __html: xss(product.description),
         }}
       />
     );
@@ -176,7 +176,7 @@ class BasicInfo extends React.Component<Props> {
       unitPrice,
       barcodes,
       attachment,
-      vendor
+      vendor,
     } = product;
 
     return (

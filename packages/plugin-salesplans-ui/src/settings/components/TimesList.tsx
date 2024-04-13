@@ -11,7 +11,7 @@ import {
   DataWithLoader,
   FormControl,
   ModalTrigger,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import { ITimeProportion } from '../types';
 import { MainStyleTitle as Title } from '@saashq/ui/src/styles/eindex';
@@ -48,7 +48,7 @@ class TimeProportion extends React.Component<Props, State> {
   renderRow = () => {
     const { timeProportions, history, toggleBulk, bulk } = this.props;
 
-    return timeProportions.map(timeProportion => (
+    return timeProportions.map((timeProportion) => (
       <Row
         key={timeProportion._id}
         history={history}
@@ -59,14 +59,14 @@ class TimeProportion extends React.Component<Props, State> {
     ));
   };
 
-  modalContent = props => {
+  modalContent = (props) => {
     return <Form {...props} />;
   };
 
-  removeTimeProportion = timeProportions => {
+  removeTimeProportion = (timeProportions) => {
     const timeProportionIds: string[] = [];
 
-    timeProportions.forEach(timeProportion => {
+    timeProportions.forEach((timeProportion) => {
       timeProportionIds.push(timeProportion._id);
     });
 
@@ -82,7 +82,7 @@ class TimeProportion extends React.Component<Props, State> {
           .then(() => {
             this.removeTimeProportion(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 
@@ -138,7 +138,7 @@ class TimeProportion extends React.Component<Props, State> {
     const { isAllSelected, totalCount, queryParams, history } = this.props;
     const breadcrumb = [
       { title: __('Settings'), link: '/settings' },
-      { title: __('Sales Plans Times') }
+      { title: __('Sales Plans Times') },
     ];
 
     const content = (
@@ -152,8 +152,8 @@ class TimeProportion extends React.Component<Props, State> {
                 onChange={this.onChange}
               />
             </th>
-            <th>{__('Branch')}</th>
-            <th>{__('Department')}</th>
+            <th>{__('Větev')}</th>
+            <th>{__('Oddělení')}</th>
             <th>{__('Product Category')}</th>
             <th>{__('Percents')}</th>
           </tr>
@@ -181,7 +181,7 @@ class TimeProportion extends React.Component<Props, State> {
             data={content}
             loading={false}
             count={totalCount}
-            emptyText="There is no data"
+            emptyText="Nejsou žádná data"
             emptyImage="/images/actions/5.svg"
           />
         }

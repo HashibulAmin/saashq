@@ -41,7 +41,7 @@ class Histories extends React.Component<Props> {
           <thead>
             <tr>
               <th>{__('Title')}</th>
-              <th>{__('Description')}</th>
+              <th>{__('Popis')}</th>
               <th>{__('Trigger')}</th>
               <th>{__('Status')}</th>
               <th>{__('Time')}</th>

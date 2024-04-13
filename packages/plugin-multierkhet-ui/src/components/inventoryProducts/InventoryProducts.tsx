@@ -7,7 +7,7 @@ import Row from './InventoryProductsRow';
 import {
   CollapseContent,
   DataWithLoader,
-  Pagination
+  Pagination,
 } from '@saashq/ui/src/components';
 import { menuMultierkhet } from '../../constants';
 import SelectBrands from '@saashq/ui/src/brands/containers/SelectBrands';
@@ -33,7 +33,7 @@ class InventoryProducts extends React.Component<Props, State> {
 
     this.state = {
       openCollapse: 0,
-      loading: false
+      loading: false,
     };
   }
 
@@ -41,7 +41,7 @@ class InventoryProducts extends React.Component<Props, State> {
     if (data.length > 100) {
       data = data.slice(0, 100);
     }
-    return data.map(p => <Row key={p.code} product={p} action={action} />);
+    return data.map((p) => <Row key={p.code} product={p} action={action} />);
   };
   calculatePagination = (data: any) => {
     const { queryParams } = this.props;
@@ -56,12 +56,12 @@ class InventoryProducts extends React.Component<Props, State> {
           data = data.slice(
             Number(queryParams.page - 1) * queryParams.perPage,
             Number((queryParams.page - 1) * queryParams.perPage) +
-              Number(queryParams.perPage)
+              Number(queryParams.perPage),
           );
         } else {
           data = data.slice(
             (queryParams.page - 1) * 20,
-            (queryParams.page - 1) * 20 + 20
+            (queryParams.page - 1) * 20 + 20,
           );
         }
       }
@@ -73,7 +73,7 @@ class InventoryProducts extends React.Component<Props, State> {
   };
 
   excludeSyncTrue = (data: any) => {
-    return data.filter(d => d.syncStatus == false);
+    return data.filter((d) => d.syncStatus == false);
   };
 
   renderTable = (data: any, action: string) => {
@@ -104,7 +104,7 @@ class InventoryProducts extends React.Component<Props, State> {
           <thead>
             <tr>
               <th>{__('Code')}</th>
-              <th>{__('Name')}</th>
+              <th>{__('Název')}</th>
               <th>{__('Barcode')}</th>
               <th>{__('Unit price')}</th>
               {action === 'UPDATE' ? <th>{__('Update Status')}</th> : <></>}
@@ -144,13 +144,13 @@ class InventoryProducts extends React.Component<Props, State> {
       <BarItems>
         <SelectBrands
           label={__('Choose brands')}
-          onSelect={brand => this.props.setBrand(brand as string)}
+          onSelect={(brand) => this.props.setBrand(brand as string)}
           initialValue={this.props.queryParams.brandId}
           multi={false}
           name="selectedBrands"
           customOption={{
             label: 'No Brand (noBrand)',
-            value: ''
+            value: '',
           }}
         />
         <span>
@@ -178,7 +178,8 @@ class InventoryProducts extends React.Component<Props, State> {
         <br />
         <CollapseContent
           title={__(
-            'Create products' + (items.create ? ':  ' + items.create.count : '')
+            'Create products' +
+              (items.create ? ':  ' + items.create.count : ''),
           )}
           onClick={() => {
             onChangeCollapse(1);
@@ -204,7 +205,8 @@ class InventoryProducts extends React.Component<Props, State> {
         </CollapseContent>
         <CollapseContent
           title={__(
-            'Update products' + (items.update ? ':  ' + items.update.count : '')
+            'Update products' +
+              (items.update ? ':  ' + items.update.count : ''),
           )}
           onClick={() => {
             onChangeCollapse(2);
@@ -229,7 +231,8 @@ class InventoryProducts extends React.Component<Props, State> {
         </CollapseContent>
         <CollapseContent
           title={__(
-            'Delete products' + (items.delete ? ':  ' + items.delete.count : '')
+            'Delete products' +
+              (items.delete ? ':  ' + items.delete.count : ''),
           )}
           onClick={() => {
             onChangeCollapse(3);

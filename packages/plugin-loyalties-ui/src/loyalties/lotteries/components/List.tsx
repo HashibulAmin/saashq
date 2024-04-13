@@ -5,11 +5,11 @@ import {
   ModalTrigger,
   Pagination,
   SortHandler,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import {
   MainStyleTitle as Title,
-  MainStyleCount as Count
+  MainStyleCount as Count,
 } from '@saashq/ui/src/styles/eindex';
 import { __, Alert, confirm, router } from '@saashq/ui/src/utils';
 import { BarItems } from '@saashq/ui/src/layout/styles';
@@ -40,7 +40,7 @@ interface IProps extends IRouterProps {
   emptyBulk: () => void;
   removeLotteries: (
     doc: { lotteryIds: string[] },
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
   history: any;
   queryParams: any;
@@ -57,7 +57,7 @@ class LotteriesList extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue
+      searchValue: this.props.searchValue,
     };
   }
 
@@ -66,7 +66,7 @@ class LotteriesList extends React.Component<IProps, State> {
     toggleAll(lotteries, 'lotteries');
   };
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -81,17 +81,17 @@ class LotteriesList extends React.Component<IProps, State> {
     }, 500);
   };
 
-  removeLotteries = lotteries => {
+  removeLotteries = (lotteries) => {
     const lotteryIds: string[] = [];
 
-    lotteries.forEach(lottery => {
+    lotteries.forEach((lottery) => {
       lotteryIds.push(lottery._id);
     });
 
     this.props.removeLotteries({ lotteryIds }, this.props.emptyBulk);
   };
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -107,7 +107,7 @@ class LotteriesList extends React.Component<IProps, State> {
       isAllSelected,
       totalCount,
       queryParams,
-      currentCampaign
+      currentCampaign,
     } = this.props;
 
     const mainContent = (
@@ -141,7 +141,7 @@ class LotteriesList extends React.Component<IProps, State> {
             </tr>
           </thead>
           <tbody id="lotteries">
-            {lotteries.map(lottery => (
+            {lotteries.map((lottery) => (
               <LotteryRow
                 lottery={lottery}
                 isChecked={bulk.includes(lottery)}
@@ -163,7 +163,7 @@ class LotteriesList extends React.Component<IProps, State> {
       </Button>
     );
 
-    const lotteryForm = props => {
+    const lotteryForm = (props) => {
       return <LotteryForm {...props} queryParams={queryParams} />;
     };
 
@@ -174,7 +174,7 @@ class LotteriesList extends React.Component<IProps, State> {
             .then(() => {
               this.removeLotteries(bulk);
             })
-            .catch(error => {
+            .catch((error) => {
               Alert.error(error.message);
             });
 
@@ -195,7 +195,7 @@ class LotteriesList extends React.Component<IProps, State> {
         <BarItems>
           <FormControl
             type="text"
-            placeholder={__('Type to search')}
+            placeholder={__('Zadejte a vyhledejte')}
             onChange={this.search}
             value={this.state.searchValue}
             autoFocus={true}

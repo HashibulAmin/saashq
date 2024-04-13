@@ -25,11 +25,11 @@ function Users({
   loading,
   loadMore,
   all,
-  queryParams
+  queryParams,
 }: IProps) {
   const timerRef = React.useRef<number | null>(null);
   const [searchValue, setSearchValue] = React.useState(
-    queryParams.searchUser || ''
+    queryParams.searchUser || '',
   );
 
   const [disableLoadMoreBtn, setDisableLoadMoreBtn] = React.useState(false);
@@ -40,12 +40,12 @@ function Users({
     }
   }, []);
 
-  const onClick = userId => {
+  const onClick = (userId) => {
     router.setParams(history, { userId });
     router.removeParams(history, 'page');
   };
 
-  const search = e => {
+  const search = (e) => {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
     }
@@ -63,7 +63,7 @@ function Users({
     }, 500);
   };
 
-  const moveCursorAtTheEnd = e => {
+  const moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
 
     e.target.value = '';
@@ -71,7 +71,7 @@ function Users({
   };
 
   const renderUsers = () => {
-    return users.map(user => {
+    return users.map((user) => {
       return (
         <li key={user._id}>
           <a
@@ -116,7 +116,7 @@ function Users({
         <FormControl
           type="text"
           onChange={search}
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           value={searchValue}
           onFocus={moveCursorAtTheEnd}
         />

@@ -6,7 +6,7 @@ import {
   HeaderDescription,
   ModalTrigger,
   Table,
-  __
+  __,
 } from '@saashq/ui/src';
 import Row from './Row';
 import Form from '../containers/Form';
@@ -29,15 +29,15 @@ class List extends React.Component<Props> {
       <Table>
         <thead>
           <tr>
-            <th>{__('Name')}</th>
-            <th>{__('Action')}</th>
-            <th>{__('Created At')}</th>
-            <th>{__('Modified At')}</th>
-            <th>{__('Action')}</th>
+            <th>{__('Název')}</th>
+            <th>{__('Akce')}</th>
+            <th>{__('Vytvořeno v')}</th>
+            <th>{__('Upraveno v')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>
-          {(configs || []).map(config => (
+          {(configs || []).map((config) => (
             <Row key={config._id} config={config} remove={remove} />
           ))}
         </tbody>
@@ -46,7 +46,7 @@ class List extends React.Component<Props> {
   }
 
   renderForm() {
-    const content = props => <Form {...props} />;
+    const content = (props) => <Form {...props} />;
 
     const trigger = <Button btnStyle="success">{__('Add Config')}</Button>;
 
@@ -78,7 +78,7 @@ class List extends React.Component<Props> {
       content: this.renderContent(),
       leftActionBar,
       rightActionBar,
-      totalCount
+      totalCount,
     };
 
     return <DefaultWrapper {...updatedProps} />;

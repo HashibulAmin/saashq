@@ -10,7 +10,7 @@ import {
   router,
   SortHandler,
   Table,
-  Wrapper
+  Wrapper,
 } from '@saashq/ui/src';
 import { IRouterProps } from '@saashq/ui/src/types';
 import React from 'react';
@@ -34,7 +34,7 @@ interface IProps extends IRouterProps {
   emptyBulk: () => void;
   removeContractTypes: (
     doc: { contractTypeIds: string[] },
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
   history: any;
   queryParams: any;
@@ -51,7 +51,7 @@ class ContractTypesList extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue
+      searchValue: this.props.searchValue,
     };
   }
 
@@ -60,7 +60,7 @@ class ContractTypesList extends React.Component<IProps, State> {
     toggleAll(contractTypes, 'contractTypes');
   };
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -75,17 +75,17 @@ class ContractTypesList extends React.Component<IProps, State> {
     }, 500);
   };
 
-  removeContractTypes = contractTypes => {
+  removeContractTypes = (contractTypes) => {
     const contractTypeIds: string[] = [];
 
-    contractTypes.forEach(contractType => {
+    contractTypes.forEach((contractType) => {
       contractTypeIds.push(contractType._id);
     });
 
     this.props.removeContractTypes({ contractTypeIds }, this.props.emptyBulk);
   };
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -100,7 +100,7 @@ class ContractTypesList extends React.Component<IProps, State> {
       bulk,
       isAllSelected,
       totalCount,
-      queryParams
+      queryParams,
     } = this.props;
 
     const mainContent = (
@@ -119,7 +119,7 @@ class ContractTypesList extends React.Component<IProps, State> {
                 <SortHandler sortField={'code'} label={__('Code')} />
               </th>
               <th>
-                <SortHandler sortField={'name'} label={__('Name')} />
+                <SortHandler sortField={'name'} label={__('Název')} />
               </th>
               <th>
                 <SortHandler sortField={'number'} label={__('Start Number')} />
@@ -129,7 +129,7 @@ class ContractTypesList extends React.Component<IProps, State> {
             </tr>
           </thead>
           <tbody id="contractTypes">
-            {contractTypes.map(contractType => (
+            {contractTypes.map((contractType) => (
               <ContractTypeRow
                 contractType={contractType}
                 isChecked={bulk.includes(contractType)}
@@ -157,7 +157,7 @@ class ContractTypesList extends React.Component<IProps, State> {
           .then(() => {
             this.removeContractTypes(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 
@@ -170,7 +170,7 @@ class ContractTypesList extends React.Component<IProps, State> {
       );
     }
 
-    const contractTypeForm = props => {
+    const contractTypeForm = (props) => {
       return <ContractTypeForm {...props} queryParams={queryParams} />;
     };
 
@@ -178,7 +178,7 @@ class ContractTypesList extends React.Component<IProps, State> {
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.search}
           value={this.state.searchValue}
           autoFocus={true}
@@ -208,7 +208,7 @@ class ContractTypesList extends React.Component<IProps, State> {
             queryParams={queryParams}
             breadcrumb={[
               { title: __('Settings'), link: '/settings' },
-              { title: __('Contract Type') }
+              { title: __('Contract Type') },
             ]}
           />
         }

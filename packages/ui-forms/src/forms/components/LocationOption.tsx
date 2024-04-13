@@ -2,7 +2,7 @@ import Button from '@saashq/ui/src/components/Button';
 import {
   ControlLabel,
   FormControl,
-  FormGroup
+  FormGroup,
 } from '@saashq/ui/src/components/form';
 import { __ } from '@saashq/ui/src/utils';
 import { ILocationOption } from '@saashq/ui/src/types';
@@ -19,18 +19,18 @@ type Props = {
 function LocationOption(props: Props) {
   const { option, onChangeOption, removeOption, index } = props;
 
-  const onChangeDescription = e => {
+  const onChangeDescription = (e) => {
     option.description = e.target.value;
     onChangeOption(option, index);
   };
 
-  const onChangeLat = e => {
+  const onChangeLat = (e) => {
     option.lat = Number(e.target.value);
 
     onChangeOption(option, index);
   };
 
-  const onChangeLng = e => {
+  const onChangeLng = (e) => {
     option.lng = Number(e.target.value);
     onChangeOption(option, index);
   };
@@ -66,9 +66,7 @@ function LocationOption(props: Props) {
             </RowFill>
           </LogicRow>
           <FormGroup>
-            <ControlLabel htmlFor="description">
-              {__('Description')}:
-            </ControlLabel>
+            <ControlLabel htmlFor="description">{__('Popis')}:</ControlLabel>
             <FormControl
               defaultValue={option.description}
               name="description"

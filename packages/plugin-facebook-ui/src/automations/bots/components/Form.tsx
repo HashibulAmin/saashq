@@ -131,7 +131,7 @@ function Form({ renderButton, bot, returnToList }: Props) {
           >
             <Padding>
               <FormGroup>
-                <ControlLabel>{__('Name')}</ControlLabel>
+                <ControlLabel>{__('Název')}</ControlLabel>
                 <p>{__('Name this bot to differentiate from the rest')}</p>
                 <FormControl
                   {...formProps}

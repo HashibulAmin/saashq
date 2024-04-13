@@ -9,7 +9,7 @@ import {
   SaasHQContent,
   LeftSide,
   RightSide,
-  Website
+  Website,
 } from './styles';
 
 type Props = {
@@ -69,7 +69,7 @@ function GreetingContent(props: Props) {
             </LeftSide>
             <RightSide>
               <div>{dayjs(new Date()).format('LT')}</div>
-              <span>{__('User')}</span>
+              <span>{__('Uživatel')}</span>
               <p>{__('We need your help!')}</p>
             </RightSide>
           </li>

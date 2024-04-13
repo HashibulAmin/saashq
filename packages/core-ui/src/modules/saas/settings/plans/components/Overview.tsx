@@ -105,7 +105,7 @@ class PlanOverview extends React.Component<Props> {
             >
               <thead>
                 <tr>
-                  <th>{__('Name')}</th>
+                  <th>{__('Název')}</th>
                   <th>{__('Used')}</th>
                   <th>{__('Remaining')}</th>
                   <th>{__('Free')}</th>

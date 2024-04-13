@@ -5,7 +5,7 @@ import {
   Box,
   FieldStyle,
   SidebarList,
-  DataWithLoader
+  DataWithLoader,
 } from '@saashq/ui/src';
 import { generateParamsIds } from '../../../../common/utils';
 
@@ -17,17 +17,17 @@ type Props = {
 };
 
 function ArticleFilter({ articles, queryParams, history, loading }: Props) {
-  const isActive = articleId => {
+  const isActive = (articleId) => {
     return queryParams.articleIds && queryParams.articleIds.includes(articleId);
   };
 
-  const handleArticleSelect = id => {
+  const handleArticleSelect = (id) => {
     const articleIds = generateParamsIds(queryParams?.articleIds) || [];
 
     if (articleIds.includes(id)) {
       router.removeParams(history, 'page');
       router.setParams(history, {
-        articleIds: (articleIds || []).filter(articleId => articleId !== id)
+        articleIds: (articleIds || []).filter((articleId) => articleId !== id),
       });
     }
 
@@ -38,7 +38,7 @@ function ArticleFilter({ articles, queryParams, history, loading }: Props) {
   const renderArticlesContent = () => {
     return (
       <SidebarList>
-        {articles.map(article => (
+        {articles.map((article) => (
           <li key={Math.random()} style={{ marginBottom: '5px' }}>
             <a
               href="#filter"
@@ -57,7 +57,7 @@ function ArticleFilter({ articles, queryParams, history, loading }: Props) {
 
   return (
     <Box
-      title={__('Filter by Knowledgebase Article')}
+      title={__('Filtrovat podle článku Znalostní Báze')}
       name="showFilterByKbArticle"
       isOpen={true}
       collapsible={articles.length > 6}

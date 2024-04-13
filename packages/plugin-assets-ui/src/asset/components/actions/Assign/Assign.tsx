@@ -10,7 +10,7 @@ import { SelectAssignType } from '../../../../style';
 
 export const ASSIGN_TYPE = [
   { label: 'Add', value: 'add' },
-  { label: 'Subtract', value: 'subtract' }
+  { label: 'Subtract', value: 'subtract' },
 ];
 
 type Props = {
@@ -28,39 +28,39 @@ function AssignArticles(props: Props) {
 
   const [assignType, setAssignType] = React.useState<string>('add');
   const [selectedArticles, setSelectedArticles] = React.useState<string[]>(
-    selectedArticleIds || []
+    selectedArticleIds || [],
   );
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     save({
-      ids: (objects || []).map(asset => asset._id),
+      ids: (objects || []).map((asset) => asset._id),
       data: {
         action: assignType,
-        articleIds: selectedArticles
+        articleIds: selectedArticles,
       },
       callback: () => {
         setAssignType(assignType);
         setSelectedArticles(selectedArticleIds || []);
         closeModal();
-      }
+      },
     });
   };
 
   const renderTopics = () => {
-    return kbTopics.map(topic => {
+    return kbTopics.map((topic) => {
       const updatedProps = {
         ...props,
         topic,
         selectedArticles,
-        setSelectedArticles
+        setSelectedArticles,
       };
       return <Topic key={topic._id} {...updatedProps} />;
     });
   };
 
-  const onChangeAction = option => {
+  const onChangeAction = (option) => {
     setAssignType(option.value);
   };
 
@@ -73,7 +73,7 @@ function AssignArticles(props: Props) {
           {!!objects?.length && !selectedArticleIds?.length && (
             <SelectAssignType>
               <Select
-                placeholder={__('Choose status')}
+                placeholder={__('Vyberte stav')}
                 value={assignType}
                 options={ASSIGN_TYPE}
                 onChange={onChangeAction}
@@ -85,11 +85,11 @@ function AssignArticles(props: Props) {
         <Column>
           <ModalFooter>
             <Button btnStyle="simple" onClick={closeModal} icon="times-circle">
-              Cancel
+              Zrušení
             </Button>
 
             <Button type="submit" btnStyle="success" icon={'check-circle'}>
-              Assign
+              Přiřadit
             </Button>
           </ModalFooter>
         </Column>

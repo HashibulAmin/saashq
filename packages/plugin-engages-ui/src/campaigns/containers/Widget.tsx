@@ -3,14 +3,14 @@ import * as compose from 'lodash.flowright';
 import {
   AddMutationResponse,
   EmailTemplatesQueryResponse,
-  IEngageMessageDoc
+  IEngageMessageDoc,
 } from '@saashq/ui-engage/src/types';
 import { Alert, withProps } from '@saashq/ui/src/utils';
 import {
   MESSAGE_KINDS,
   MESSENGER_KINDS,
   METHODS,
-  SENT_AS_CHOICES
+  SENT_AS_CHOICES,
 } from '@saashq/ui-engage/src/constants';
 import { mutations, queries } from '@saashq/ui-engage/src/graphql';
 
@@ -45,7 +45,7 @@ const WidgetContainer = (props: FinalProps) => {
     emailTemplatesQuery,
     brandsQuery,
     emptyBulk,
-    messagesAddMutation
+    messagesAddMutation,
   } = props;
 
   if (emailTemplatesQuery.loading || brandsQuery.loading) {
@@ -70,18 +70,18 @@ const WidgetContainer = (props: FinalProps) => {
     }
 
     messagesAddMutation({
-      variables: doc
+      variables: doc,
     })
       .then(() => {
         callback();
 
-        Alert.success(`You successfully added a engagement message`);
+        Alert.success(`Úspěšně jste přidali a engagement message`);
 
         if (emptyBulk) {
           emptyBulk();
         }
       })
-      .catch(error => {
+      .catch((error) => {
         Alert.error(error.message);
       });
   };
@@ -92,7 +92,7 @@ const WidgetContainer = (props: FinalProps) => {
     brands,
     save,
     messengerKinds: MESSENGER_KINDS.SELECT_OPTIONS,
-    sentAsChoices: SENT_AS_CHOICES.SELECT_OPTIONS
+    sentAsChoices: SENT_AS_CHOICES.SELECT_OPTIONS,
   };
 
   return <Widget {...updatedProps} />;
@@ -104,27 +104,27 @@ const withQueries = withProps<Props>(
       name: 'emailTemplatesQuery',
       options: ({ totalCountQuery }) => ({
         variables: {
-          perPage: totalCountQuery.emailTemplatesTotalCount
-        }
-      })
+          perPage: totalCountQuery.emailTemplatesTotalCount,
+        },
+      }),
     }),
     graphql<Props, BrandsQueryResponse>(gql(queries.brands), {
-      name: 'brandsQuery'
+      name: 'brandsQuery',
     }),
     graphql<Props, AddMutationResponse, IEngageMessageDoc>(
       gql(mutations.messagesAdd),
       {
         name: 'messagesAddMutation',
-        options: crudMutationsOptions
-      }
-    )
-  )(withCurrentUser(WidgetContainer))
+        options: crudMutationsOptions,
+      },
+    ),
+  )(withCurrentUser(WidgetContainer)),
 );
 
 export default withProps<Props>(
   compose(
     graphql(gql(queries.totalCount), {
-      name: 'totalCountQuery'
-    })
-  )(withQueries)
+      name: 'totalCountQuery',
+    }),
+  )(withQueries),
 );

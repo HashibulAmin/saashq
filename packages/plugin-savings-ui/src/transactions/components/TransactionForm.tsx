@@ -9,7 +9,7 @@ import {
   MainStyleFormWrapper as FormWrapper,
   Info,
   MainStyleModalFooter as ModalFooter,
-  MainStyleScrollWrapper as ScrollWrapper
+  MainStyleScrollWrapper as ScrollWrapper,
 } from '@saashq/ui/src';
 import { IButtonMutateProps, IFormProps } from '@saashq/ui/src/types';
 import { ITransaction, ITransactionDoc } from '../types';
@@ -20,7 +20,7 @@ import React from 'react';
 import { __ } from 'coreui/utils';
 import dayjs from 'dayjs';
 import SelectContracts, {
-  Contracts
+  Contracts,
 } from '../../contracts/components/common/SelectContract';
 
 type Props = {
@@ -70,7 +70,7 @@ class TransactionForm extends React.Component<Props, State> {
       closeInterestRate: transaction.closeInterestRate || 0,
       closeInterest: transaction.closeInterest || 0,
       interestRate: transaction.interestRate || 0,
-      savingAmount: transaction.savingAmount || 0
+      savingAmount: transaction.savingAmount || 0,
     };
   }
 
@@ -88,11 +88,11 @@ class TransactionForm extends React.Component<Props, State> {
       ...this.state,
       isManual: true,
       payDate: finalValues.payDate,
-      total: Number(this.state.total)
+      total: Number(this.state.total),
     };
   };
 
-  onFieldClick = e => {
+  onFieldClick = (e) => {
     e.target.select();
   };
 
@@ -151,11 +151,11 @@ class TransactionForm extends React.Component<Props, State> {
       this.setState({ [name]: value } as any);
     };
 
-    const onChangePayDate = value => {
+    const onChangePayDate = (value) => {
       this.setState({ payDate: value });
     };
 
-    const onChangeField = e => {
+    const onChangeField = (e) => {
       if (
         (e.target as HTMLInputElement).name === 'total' &&
         this.state.paymentInfo
@@ -163,7 +163,8 @@ class TransactionForm extends React.Component<Props, State> {
         const value = Number((e.target as HTMLInputElement).value);
 
         if (value > this.state.paymentInfo.closeAmount) {
-          (e.target as HTMLInputElement).value = this.state.paymentInfo.closeAmount;
+          (e.target as HTMLInputElement).value =
+            this.state.paymentInfo.closeAmount;
         }
       }
       const value =
@@ -171,7 +172,7 @@ class TransactionForm extends React.Component<Props, State> {
           ? (e.target as HTMLInputElement).checked
           : (e.target as HTMLInputElement).value;
       this.setState({
-        [(e.target as HTMLInputElement).name]: value
+        [(e.target as HTMLInputElement).name]: value,
       } as any);
     };
 
@@ -216,8 +217,8 @@ class TransactionForm extends React.Component<Props, State> {
                               100 /
                               365) *
                             dayjs().diff(dayjs(Contracts[v].startDate), 'day')
-                          ).toFixed(2)
-                        )
+                          ).toFixed(2),
+                        ),
                       });
                     }
                   }}
@@ -239,7 +240,7 @@ class TransactionForm extends React.Component<Props, State> {
                 />
               </FormGroup>
               <FormGroup>
-                <ControlLabel>{__('Description')}</ControlLabel>
+                <ControlLabel>{__('Popis')}</ControlLabel>
                 <DateContainer>
                   <FormControl
                     {...formProps}
@@ -275,7 +276,7 @@ class TransactionForm extends React.Component<Props, State> {
             name: 'transaction',
             values: this.generateDoc(values),
             isSubmitted,
-            object: this.props.transaction
+            object: this.props.transaction,
           })}
         </ModalFooter>
       </>

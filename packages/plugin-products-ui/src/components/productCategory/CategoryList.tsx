@@ -36,7 +36,7 @@ interface IProps {
 
 class List extends React.Component<IProps> {
   renderFormTrigger(trigger: React.ReactNode, category?: IProductCategory) {
-    const content = props => (
+    const content = (props) => (
       <CategoryForm
         {...props}
         category={category}
@@ -64,7 +64,7 @@ class List extends React.Component<IProps> {
   renderEditAction = (category: IProductCategory) => {
     const trigger = (
       <Button btnStyle="link">
-        <Tip text={__('Edit')} placement="bottom">
+        <Tip text={__('Upravit')} placement="bottom">
           <Icon icon="edit" />
         </Tip>
       </Button>

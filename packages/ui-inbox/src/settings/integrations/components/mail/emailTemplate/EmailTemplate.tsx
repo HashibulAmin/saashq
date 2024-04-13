@@ -1,7 +1,7 @@
 import {
   PopoverBody,
   PopoverFooter,
-  PopoverList
+  PopoverList,
 } from '@saashq/ui/src/components/filterableList/styles';
 
 import Button from '@saashq/ui/src/components/Button';
@@ -39,22 +39,22 @@ class EmailTemplate extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      page: 1
+      page: 1,
     };
   }
 
-  onSearch = e => {
+  onSearch = (e) => {
     return this.props.onSearch(e ? e.target.value : '');
   };
 
   onLoadMore = () => {
     this.setState(
       {
-        page: this.state.page + 1
+        page: this.state.page + 1,
       },
       () => {
         this.props.fetchMoreEmailTemplates(this.state.page);
-      }
+      },
     );
   };
 
@@ -74,7 +74,7 @@ class EmailTemplate extends React.Component<Props, State> {
       return <EmptyState icon="clipboard-1" text="No templates" />;
     }
 
-    return emailTemplates.map(item => (
+    return emailTemplates.map((item) => (
       <li key={item.value} onClick={() => this.handleClick(item.value)}>
         {item.label}
       </li>
@@ -113,7 +113,7 @@ class EmailTemplate extends React.Component<Props, State> {
             <SearchInput>
               <FormControl
                 type="text"
-                placeholder={__('Type to search')}
+                placeholder={__('Zadejte a vyhledejte')}
                 onChange={this.onSearch}
               />
             </SearchInput>
@@ -141,7 +141,7 @@ class EmailTemplate extends React.Component<Props, State> {
           placement="top"
           overlay={popover}
           rootClose={true}
-          ref={overlayTrigger => {
+          ref={(overlayTrigger) => {
             this.overlayRef = overlayTrigger;
           }}
         >

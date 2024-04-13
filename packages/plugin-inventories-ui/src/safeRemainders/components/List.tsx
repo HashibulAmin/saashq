@@ -33,7 +33,7 @@ export default function ListComponent(props: Props) {
     loading = false,
     searchValue,
     handleSearch,
-    removeItem
+    removeItem,
   } = props;
 
   const renderRow = () => {
@@ -54,7 +54,7 @@ export default function ListComponent(props: Props) {
     <BarItems>
       <FormControl
         type="text"
-        placeholder={__('Type to search')}
+        placeholder={__('Zadejte a vyhledejte')}
         onChange={handleSearch}
         defaultValue={searchValue}
         autoFocus={true}
@@ -74,14 +74,14 @@ export default function ListComponent(props: Props) {
       <thead>
         <tr>
           <th>{__('Date')}</th>
-          <th>{__('Branch')}</th>
-          <th>{__('Department')}</th>
+          <th>{__('Větev')}</th>
+          <th>{__('Oddělení')}</th>
           <th>{__('Product Category')}</th>
-          <th>{__('Description')}</th>
+          <th>{__('Popis')}</th>
           <th>{__('Status')}</th>
           <th>{__('ModifiedAt')}</th>
           <th>{__('ModifiedBy')}</th>
-          <th>{__('Actions')}</th>
+          <th>{__('Akce')}</th>
         </tr>
       </thead>
       <tbody>{renderRow()}</tbody>

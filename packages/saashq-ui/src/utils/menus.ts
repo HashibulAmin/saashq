@@ -1,6 +1,6 @@
 import { isEnabled } from './core';
 
-const menuInbox = [{ title: 'Team Inbox', link: '/inbox/index' }];
+const menuInbox = [{ title: 'Týmová Schránka', link: '/inbox/index' }];
 
 const menuDeal = [{ title: 'Sales pipeline', link: '/deal/board' }];
 
@@ -11,15 +11,15 @@ const menuContacts = [
   isEnabled('clientportal')
     ? {
         title: 'Client Portal Users',
-        link: '/settings/client-portal/user'
+        link: '/settings/client-portal/user',
       }
     : { title: '', link: '' },
   isEnabled('clientportal')
     ? {
         title: 'Vendor Portal Users',
-        link: '/settings/vendor-portal/user'
+        link: '/settings/vendor-portal/user',
       }
-    : { title: '', link: '' }
+    : { title: '', link: '' },
 ];
 
 export { menuContacts, menuInbox, menuDeal };

@@ -1,6 +1,6 @@
 import {
   ISkillDocument,
-  ISkillTypesDocument
+  ISkillTypesDocument,
 } from '@saashq/ui-inbox/src/settings/skills/types';
 
 import ActionButtons from '@saashq/ui/src/components/ActionButtons';
@@ -22,7 +22,7 @@ type Props = {
 function SkillRow({ skill, skillTypes, refetchQueries, removeItem }: Props) {
   const handleRemove = () => removeItem(skill._id);
   const getSkillType = () => {
-    const type = skillTypes.find(item => item._id === skill.typeId);
+    const type = skillTypes.find((item) => item._id === skill.typeId);
 
     if (!type) {
       return '-';
@@ -31,7 +31,7 @@ function SkillRow({ skill, skillTypes, refetchQueries, removeItem }: Props) {
     return type.name;
   };
 
-  const renderForm = formProps => {
+  const renderForm = (formProps) => {
     return (
       <SkillForm
         {...formProps}
@@ -45,7 +45,7 @@ function SkillRow({ skill, skillTypes, refetchQueries, removeItem }: Props) {
   function renderActions() {
     const trigger = (
       <Button id="skill-edit-skill" btnStyle="link">
-        <Tip text={__('Edit')} placement="bottom">
+        <Tip text={__('Upravit')} placement="bottom">
           <Icon icon="edit-3" />
         </Tip>
       </Button>

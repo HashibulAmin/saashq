@@ -18,7 +18,7 @@ function StatusFilter({ queryParams, history }: Props) {
     }
   }, [queryParams.status]);
 
-  const onClick = value => {
+  const onClick = (value) => {
     router.setParams(history, { status: value });
     router.removeParams(history, 'assetId');
     router.removeParams(history, 'assetCategoryId');
@@ -26,7 +26,7 @@ function StatusFilter({ queryParams, history }: Props) {
 
   return (
     <Box
-      title={__('Filter category by status')}
+      title={__('Filtrujte kategorii podle stavu')}
       name="showFilterByType"
       isOpen={queryParams.status}
     >
@@ -45,7 +45,7 @@ function StatusFilter({ queryParams, history }: Props) {
                 </a>
               </li>
             );
-          }
+          },
         )}
       </SidebarList>
     </Box>

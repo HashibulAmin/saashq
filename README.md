@@ -46,7 +46,7 @@ SaasHQ is composed of 2 main components: **SHQ** & **Plugins**
 
 **Plugins:** SaasHQ comes with a set of plugins that allow you to create unique customer experiences. Below is a list of some plugins you can choose from our **<a href="https://shq.saashq.org/marketplace" >marketplace</a>** after you’ve finished installing SaasHQ:
 
-- **Team Inbox** - Combine real-time client and team communication with in-app messaging, live chat, email, and form, so your customers can reach you, however, and whenever they want.  
+- **Týmová Schránka** - Combine real-time client and team communication with in-app messaging, live chat, email, and form, so your customers can reach you, however, and whenever they want.  
 - **Messenger** - Enable businesses to capture every single customer feedback and educate customers through knowledge-base right from the SaasHQMessenger.
 - **Sales Management** - Easy and clear sales funnels allow you to control your sales pipeline from one responsive field by precisely analyzing your progress and determining your next best move for success.
 - **Lead generation** - Turn regular visitors into qualified leads by capturing them with a customizable landing page, forms, pop-up, or embed placements.

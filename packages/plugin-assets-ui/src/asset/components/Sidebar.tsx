@@ -27,7 +27,7 @@ function Sidebar({
   remove,
   refetchAssetCategories,
   queryParams,
-  history
+  history,
 }: Props) {
   const trigger = (
     <Button btnStyle="success" block={true} icon="plus-circle">
@@ -35,11 +35,11 @@ function Sidebar({
     </Button>
   );
 
-  const content = props => {
+  const content = (props) => {
     const updatedProps = {
       ...props,
       refetchAssetCategories,
-      categories: assetCategories
+      categories: assetCategories,
     };
 
     return <CategoryForm {...updatedProps} />;
@@ -48,7 +48,7 @@ function Sidebar({
   const header = (
     <Header>
       <ModalTrigger
-        title="Add Asset Category"
+        title="Přidat Kategorii Aktiv"
         autoOpenKey="showAssetCategoryAddModal"
         trigger={trigger}
         content={content}
@@ -64,7 +64,7 @@ function Sidebar({
       remove,
       refetchAssetCategories,
       queryParams,
-      history
+      history,
     };
 
     return <CategoryFilter {...updatedProps} />;

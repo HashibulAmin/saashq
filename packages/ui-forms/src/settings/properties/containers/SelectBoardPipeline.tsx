@@ -38,7 +38,7 @@ const SelectContainer = (props: ChildProps<FinalProps>) => {
     name,
     values,
     isSubmitted,
-    callback
+    callback,
   }: IButtonMutateProps) => {
     const callBackResponse = () => {
       boardsQuery.refetch();
@@ -55,7 +55,7 @@ const SelectContainer = (props: ChildProps<FinalProps>) => {
         callback={callBackResponse}
         isSubmitted={isSubmitted}
         type="submit"
-        successMessage={`You successfully added a ${name}`}
+        successMessage={`Úspěšně jste přidali a ${name}`}
       />
     );
   };
@@ -64,7 +64,7 @@ const SelectContainer = (props: ChildProps<FinalProps>) => {
     ...props,
     boards,
     items: [],
-    renderButton
+    renderButton,
   };
 
   return <SelectBoards {...updatedProps} />;
@@ -74,8 +74,8 @@ const getRefetchQueries = () => {
   return [
     {
       query: gql(queries.boards),
-      variables: {}
-    }
+      variables: {},
+    },
   ];
 };
 
@@ -85,10 +85,10 @@ export default withProps<Props>(
       name: 'boardsQuery',
       options: ({ type }) => ({
         variables: {
-          type
+          type,
         },
-        refetchQueries: getRefetchQueries
-      })
-    })
-  )(SelectContainer)
+        refetchQueries: getRefetchQueries,
+      }),
+    }),
+  )(SelectContainer),
 );

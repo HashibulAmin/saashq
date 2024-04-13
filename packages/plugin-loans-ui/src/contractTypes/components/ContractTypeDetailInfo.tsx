@@ -38,7 +38,7 @@ class DetailInfo extends React.Component<Props> {
     const onDelete = () =>
       confirm()
         .then(() => remove())
-        .catch(error => {
+        .catch((error) => {
           Alert.error(error.message);
         });
 
@@ -47,7 +47,7 @@ class DetailInfo extends React.Component<Props> {
         <Dropdown>
           <Dropdown.Toggle as={DropdownToggle} id="dropdown-info">
             <Button btnStyle="simple" size="medium">
-              {__('Action')}
+              {__('Akce')}
               <Icon icon="angle-down" />
             </Button>
           </Dropdown.Toggle>
@@ -67,7 +67,7 @@ class DetailInfo extends React.Component<Props> {
     const { contractType } = this.props;
     const { Section } = Sidebar;
 
-    const content = props => (
+    const content = (props) => (
       <ContractTypeForm {...props} contractType={contractType} />
     );
 
@@ -93,24 +93,24 @@ class DetailInfo extends React.Component<Props> {
               {this.renderRow('Start Number', contractType.number || '')}
               {this.renderRow(
                 'After vacancy count',
-                (contractType.vacancy || 0).toLocaleString()
+                (contractType.vacancy || 0).toLocaleString(),
               )}
               {this.renderRow(
                 'Loss percent',
-                (contractType.unduePercent || 0).toLocaleString()
+                (contractType.unduePercent || 0).toLocaleString(),
               )}
               {this.renderRow('Loss calc type', contractType.undueCalcType)}
               {this.renderRow(
                 'Is use debt',
-                __(contractType.useDebt ? 'Yes' : 'No')
+                __(contractType.useDebt ? 'Yes' : 'No'),
               )}
               {this.renderRow(
                 'Is use margin',
-                __(contractType.useMargin ? 'Yes' : 'No')
+                __(contractType.useMargin ? 'Yes' : 'No'),
               )}
               {this.renderRow(
                 'Is use skip interest',
-                __(contractType.useSkipInterest ? 'Yes' : 'No')
+                __(contractType.useSkipInterest ? 'Yes' : 'No'),
               )}
 
               {this.renderRow('Leasing Type', contractType.leaseType)}
@@ -118,7 +118,7 @@ class DetailInfo extends React.Component<Props> {
                 <FieldStyle>{__(`Allow categories`)}</FieldStyle>
               </li>
               <ul>
-                {contractType.productCategories.map(cat => {
+                {contractType.productCategories.map((cat) => {
                   return (
                     <li key={cat._id}>
                       {cat.code} - {cat.name}
@@ -131,7 +131,7 @@ class DetailInfo extends React.Component<Props> {
               </li>
               <Description
                 dangerouslySetInnerHTML={{
-                  __html: contractType.description
+                  __html: contractType.description,
                 }}
               />
             </SidebarList>

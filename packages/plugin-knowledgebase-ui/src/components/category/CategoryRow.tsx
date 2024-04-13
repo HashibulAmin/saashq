@@ -37,13 +37,13 @@ class CategoryRow extends React.Component<Props> {
 
     const editTrigger = (
       <Button btnStyle="link">
-        <Tip text={__('Edit')} placement="bottom">
+        <Tip text={__('Upravit')} placement="bottom">
           <Icon icon="edit" />
         </Tip>
       </Button>
     );
 
-    const content = props => {
+    const content = (props) => {
       return this.renderEditForm({ ...props, category, topicId });
     };
 

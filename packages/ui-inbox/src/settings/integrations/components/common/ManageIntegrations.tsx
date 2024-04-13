@@ -26,7 +26,7 @@ type Props = {
     integration: IIntegration,
     actionTrigger: React.ReactNode,
     icon: any,
-    handleChange: (type: string, integration: IIntegration) => any
+    handleChange: (type: string, integration: IIntegration) => any,
   ) => void;
 };
 
@@ -47,7 +47,7 @@ class ManageIntegrations extends React.Component<Props, State> {
     this.state = {
       selectedIntegrations: current.integrations || [],
       hasMore: true,
-      searchValue: ''
+      searchValue: '',
     };
   }
 
@@ -55,7 +55,7 @@ class ManageIntegrations extends React.Component<Props, State> {
     const { selectedIntegrations } = this.state;
     const ids: string[] = [];
 
-    selectedIntegrations.forEach(integration => {
+    selectedIntegrations.forEach((integration) => {
       ids.push(integration._id);
     });
 
@@ -72,7 +72,7 @@ class ManageIntegrations extends React.Component<Props, State> {
     this.setState({ hasMore: allIntegrations.length === perPage });
   }
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -96,14 +96,14 @@ class ManageIntegrations extends React.Component<Props, State> {
 
     if (type === 'plus-1') {
       return this.setState({
-        selectedIntegrations: [...selectedIntegrations, integration]
+        selectedIntegrations: [...selectedIntegrations, integration],
       });
     }
 
     return this.setState({
       selectedIntegrations: selectedIntegrations.filter(
-        item => item !== integration
-      )
+        (item) => item !== integration,
+      ),
     });
   };
 
@@ -133,7 +133,7 @@ class ManageIntegrations extends React.Component<Props, State> {
         integration,
         actionTrigger,
         icon,
-        this.handleChange
+        this.handleChange,
       );
 
       if (confirm !== undefined) {
@@ -149,7 +149,7 @@ class ManageIntegrations extends React.Component<Props, State> {
 
     if (
       icon === 'plus-1' &&
-      selectedIntegrations.some(e => e._id === integration._id)
+      selectedIntegrations.some((e) => e._id === integration._id)
     ) {
       return null;
     }
@@ -166,13 +166,13 @@ class ManageIntegrations extends React.Component<Props, State> {
         <Columns>
           <Column>
             <FormControl
-              placeholder={__('Type to search')}
+              placeholder={__('Zadejte a vyhledejte')}
               onChange={this.search}
               autoFocus={true}
             />
             <ul>
-              {allIntegrations.map(integration =>
-                this.renderRow(integration, 'plus-1')
+              {allIntegrations.map((integration) =>
+                this.renderRow(integration, 'plus-1'),
               )}
               {this.state.hasMore && (
                 <CenterContent>
@@ -195,8 +195,8 @@ class ManageIntegrations extends React.Component<Props, State> {
               <span>({selectedIntegrations.length})</span>
             </Title>
             <ul>
-              {selectedIntegrations.map(integration =>
-                this.renderRow(integration, 'times')
+              {selectedIntegrations.map((integration) =>
+                this.renderRow(integration, 'times'),
               )}
             </ul>
           </Column>

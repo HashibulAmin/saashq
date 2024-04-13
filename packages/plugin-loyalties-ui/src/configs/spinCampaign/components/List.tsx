@@ -6,14 +6,14 @@ import {
   HeaderDescription,
   ModalTrigger,
   Pagination,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import {
   FilterContainer,
   FlexItem,
   FlexRow,
   InputBar,
-  Title
+  Title,
 } from '@saashq/ui-settings/src/styles';
 
 import Form from '../containers/Form';
@@ -55,11 +55,11 @@ class SpinCampaigns extends React.Component<Props, State> {
 
     this.state = {
       searchValue: this.props.searchValue || '',
-      filterStatus: this.props.filterStatus || ''
+      filterStatus: this.props.filterStatus || '',
     };
   }
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -90,7 +90,7 @@ class SpinCampaigns extends React.Component<Props, State> {
   renderRow = () => {
     const { spinCampaigns, history, toggleBulk, bulk } = this.props;
 
-    return spinCampaigns.map(spinCampaign => (
+    return spinCampaigns.map((spinCampaign) => (
       <Row
         key={spinCampaign._id}
         history={history}
@@ -101,14 +101,14 @@ class SpinCampaigns extends React.Component<Props, State> {
     ));
   };
 
-  modalContent = props => {
+  modalContent = (props) => {
     return <Form {...props} />;
   };
 
-  removeSpinCampaigns = spinCampaigns => {
+  removeSpinCampaigns = (spinCampaigns) => {
     const spinCampaignIds: string[] = [];
 
-    spinCampaigns.forEach(spinCampaign => {
+    spinCampaigns.forEach((spinCampaign) => {
       spinCampaignIds.push(spinCampaign._id);
     });
 
@@ -124,7 +124,7 @@ class SpinCampaigns extends React.Component<Props, State> {
           .then(() => {
             this.removeSpinCampaigns(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 
@@ -154,7 +154,7 @@ class SpinCampaigns extends React.Component<Props, State> {
             <FlexItem>
               <FormControl
                 type="text"
-                placeholder={__('Type to search')}
+                placeholder={__('Zadejte a vyhledejte')}
                 onChange={this.search}
                 value={this.state.searchValue}
                 autoFocus={true}
@@ -189,9 +189,9 @@ class SpinCampaigns extends React.Component<Props, State> {
       { title: __('Settings'), link: '/settings' },
       {
         title: __('Loyalties config'),
-        link: '/saashq-plugin-loyalty/settings/general'
+        link: '/saashq-plugin-loyalty/settings/general',
       },
-      { title: __('Spin Campaign') }
+      { title: __('Spin Campaign') },
     ];
 
     const content = (
@@ -210,7 +210,7 @@ class SpinCampaigns extends React.Component<Props, State> {
             <th>{__('End Date')}</th>
             <th>{__('Finish Date of Use')}</th>
             <th>{__('Status')}</th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{this.renderRow()}</tbody>
@@ -234,7 +234,7 @@ class SpinCampaigns extends React.Component<Props, State> {
             data={content}
             loading={loading}
             count={spinCampaigns.length}
-            emptyText="There is no data"
+            emptyText="Nejsou žádná data"
             emptyImage="/images/actions/5.svg"
           />
         }

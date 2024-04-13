@@ -96,7 +96,7 @@ module.exports = {
     {
       name: 'Instagram Messenger',
       description:
-        'Connect and manage Instagram Messages right from your Team Inbox',
+        'Connect and manage Instagram Messages right from your Týmová Schránka',
       inMessenger: false,
       isAvailable: true,
       kind: 'instagram-messenger',

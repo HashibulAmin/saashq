@@ -45,7 +45,7 @@ class FormContainer extends React.Component<FinalProps, State> {
     name,
     values,
     isSubmitted,
-    callback
+    callback,
   }: IButtonMutateProps) => {
     return (
       <ButtonMutate
@@ -55,7 +55,7 @@ class FormContainer extends React.Component<FinalProps, State> {
         refetchQueries={getRefetchQueries(this.props.kind)}
         isSubmitted={isSubmitted}
         type="submit"
-        successMessage={__(`You successfully added a`) + `${name}`}
+        successMessage={__(`Úspěšně jste přidali a`) + `${name}`}
       />
     );
   };
@@ -70,7 +70,7 @@ class FormContainer extends React.Component<FinalProps, State> {
       accountId,
       onAccountSelect: this.onAccountSelect,
       onRemoveAccount: this.onRemoveAccount,
-      renderButton: this.renderButton
+      renderButton: this.renderButton,
     };
 
     return <Form {...updatedProps} />;

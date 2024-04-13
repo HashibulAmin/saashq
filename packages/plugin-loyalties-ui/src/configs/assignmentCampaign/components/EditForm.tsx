@@ -325,7 +325,7 @@ class EditForm extends React.Component<Props, State> {
           <DataWithLoader
             data={content}
             loading={false}
-            emptyText="There is no data"
+            emptyText="Nejsou žádná data"
             emptyImage="/images/actions/5.svg"
           />
         }

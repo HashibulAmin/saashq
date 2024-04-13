@@ -48,7 +48,7 @@ function BookingList(props: Props) {
     totalCount,
     counts,
     archive,
-    integrations
+    integrations,
   } = props;
 
   const onChange = () => {
@@ -56,7 +56,7 @@ function BookingList(props: Props) {
   };
 
   const renderRow = () => {
-    return integrations.map(integration => (
+    return integrations.map((integration) => (
       <Row
         key={integration._id}
         integration={integration}
@@ -122,7 +122,7 @@ function BookingList(props: Props) {
           <th>{__('Created by')}</th>
           <th>{__('Created at')}</th>
           <th>{__('Tags')}</th>
-          <th>{__('Actions')}</th>
+          <th>{__('Akce')}</th>
         </tr>
       </thead>
       <tbody>{renderRow()}</tbody>

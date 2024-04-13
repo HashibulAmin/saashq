@@ -13,7 +13,12 @@ import FormControl from '@saashq/ui/src/components/form/Control';
 import ModalTrigger from '@saashq/ui/src/components/ModalTrigger';
 import PageForm from './PageForm';
 import { IButtonMutateProps } from '@saashq/ui/src/types';
-import { Alert, confirm, __, router as routerUtils } from '@saashq/ui/src/utils';
+import {
+  Alert,
+  confirm,
+  __,
+  router as routerUtils,
+} from '@saashq/ui/src/utils';
 import { Flex } from '@saashq/ui/src/styles/main';
 
 type Props = {
@@ -36,7 +41,7 @@ class List extends React.Component<Props> {
   renderRow() {
     const { pages, remove, bulk, toggleBulk, renderButton } = this.props;
 
-    return pages.map(page => (
+    return pages.map((page) => (
       <Row
         key={page._id}
         page={page}
@@ -49,11 +54,11 @@ class List extends React.Component<Props> {
     ));
   }
 
-  renderForm = props => {
+  renderForm = (props) => {
     return <PageForm {...props} renderButton={this.props.renderButton} />;
   };
 
-  searchHandler = event => {
+  searchHandler = (event) => {
     const { history } = this.props;
 
     routerUtils.setParams(history, { search: event.target.value });
@@ -69,7 +74,7 @@ class List extends React.Component<Props> {
       toggleAll,
       remove,
       emptyBulk,
-      history
+      history,
     } = this.props;
 
     let actionBarLeft: React.ReactNode;
@@ -78,10 +83,10 @@ class List extends React.Component<Props> {
       const onClick = () => {
         confirm('Are you sure? This cannot be undone.')
           .then(() => {
-            bulk.map(item => remove(item._id, emptyBulk));
+            bulk.map((item) => remove(item._id, emptyBulk));
             Alert.success('You successfully deleted a page');
           })
-          .catch(e => {
+          .catch((e) => {
             Alert.error(e.message);
           });
       };
@@ -102,7 +107,7 @@ class List extends React.Component<Props> {
       <Flex>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.searchHandler}
           value={routerUtils.getParam(history, 'search')}
         />
@@ -146,7 +151,7 @@ class List extends React.Component<Props> {
             <th>
               <SortHandler sortField={'listOrder'} label={__('List Order')} />
             </th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{this.renderRow()}</tbody>
@@ -156,7 +161,7 @@ class List extends React.Component<Props> {
     const submenu = [
       { title: 'Posts', link: '/forums/posts' },
       { title: 'Pages', link: '/forums/pages' },
-      { title: 'Quiz', link: '/forums/quizzes' }
+      { title: 'Quiz', link: '/forums/quizzes' },
     ];
 
     return (

@@ -94,7 +94,7 @@ const Description = (props: DescProps) => {
         <TitleRow>
           <ControlLabel>
             <Icon icon="align-left-justify" />
-            {__('Description')}
+            {__('Popis')}
           </ControlLabel>
         </TitleRow>
 

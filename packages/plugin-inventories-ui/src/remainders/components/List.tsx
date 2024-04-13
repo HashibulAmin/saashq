@@ -26,7 +26,7 @@ type Props = {
     products: any[],
     departmentId: string,
     branchId: string,
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
   handleSearch: (event: any) => void;
   emptyBulk: () => void;
@@ -48,7 +48,7 @@ export default function ListComponent(props: Props) {
     handleSearch,
     emptyBulk,
     toggleBulk,
-    toggleAll
+    toggleAll,
   } = props;
 
   const renderRow = () => {
@@ -66,7 +66,7 @@ export default function ListComponent(props: Props) {
     <BarItems>
       <FormControl
         type="text"
-        placeholder={__('Type to search')}
+        placeholder={__('Zadejte a vyhledejte')}
         onChange={handleSearch}
         defaultValue={searchValue}
         autoFocus={true}
@@ -94,7 +94,7 @@ export default function ListComponent(props: Props) {
             />
           </th>
           <th>{__('Code')}</th>
-          <th>{__('Name')}</th>
+          <th>{__('Název')}</th>
           <th>{__('Category')}</th>
           <th>{__('Unit Price')}</th>
           <th>{__('Remainder')}</th>

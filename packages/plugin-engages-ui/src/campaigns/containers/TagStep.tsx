@@ -19,7 +19,7 @@ type Props = {
   renderContent: ({
     actionSelector,
     selectedComponent,
-    customerCounts
+    customerCounts,
   }: {
     actionSelector: React.ReactNode;
     selectedComponent: React.ReactNode;
@@ -37,7 +37,7 @@ const TagStepContianer = (props: FinalProps) => {
   const { tagsQuery, customerCountsQuery } = props;
 
   const customerCounts = customerCountsQuery.customerCounts || {
-    byTag: {}
+    byTag: {},
   };
 
   const countValues = customerCounts.byTag || {};
@@ -46,7 +46,7 @@ const TagStepContianer = (props: FinalProps) => {
   const renderButton = ({
     values,
     isSubmitted,
-    callback
+    callback,
   }: IButtonMutateProps) => {
     return (
       <ButtonMutate
@@ -56,7 +56,7 @@ const TagStepContianer = (props: FinalProps) => {
         refetchQueries={getRefetchQueries()}
         isSubmitted={isSubmitted}
         type="submit"
-        successMessage={`You successfully added a tag`}
+        successMessage={`Úspěšně jste přidali a tag`}
       />
     );
   };
@@ -67,7 +67,7 @@ const TagStepContianer = (props: FinalProps) => {
     targetCount: countValues,
     customersCount,
     renderButton,
-    loadingCount: customerCountsQuery.loading
+    loadingCount: customerCountsQuery.loading,
   };
 
   return <TagStep {...updatedProps} />;
@@ -77,12 +77,12 @@ const getRefetchQueries = () => {
   return [
     {
       query: gql(queries.customerCounts),
-      variables: { only: 'byTag' }
+      variables: { only: 'byTag' },
     },
     {
       query: gql(tagQueries.tags),
-      variables: { type: 'contacts:customer' }
-    }
+      variables: { type: 'contacts:customer' },
+    },
   ];
 };
 
@@ -90,7 +90,7 @@ export default withProps<Props>(
   compose(
     graphql<Props, TagsQueryResponse>(gql(tagQueries.tags), {
       name: 'tagsQuery',
-      options: () => ({ variables: { type: 'contacts:customer' } })
+      options: () => ({ variables: { type: 'contacts:customer' } }),
     }),
     graphql<Props, CountQueryResponse, { only: string }>(
       gql(queries.customerCounts),
@@ -98,10 +98,10 @@ export default withProps<Props>(
         name: 'customerCountsQuery',
         options: {
           variables: {
-            only: 'byTag'
-          }
-        }
-      }
-    )
-  )(TagStepContianer)
+            only: 'byTag',
+          },
+        },
+      },
+    ),
+  )(TagStepContianer),
 );

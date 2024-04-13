@@ -48,19 +48,19 @@ class FacebookContainer extends React.Component<FinalProps, State> {
         query: gql(queries.facebookGetPages),
         variables: {
           accountId,
-          kind
-        }
+          kind,
+        },
       })
       .then(({ data, loading }: any) => {
         if (!loading) {
           this.setState({
             pages: data.facebookGetPages,
             accountId,
-            loadingPages: false
+            loadingPages: false,
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         Alert.error(error.message);
         this.setState({ loadingPages: false });
       });
@@ -74,7 +74,7 @@ class FacebookContainer extends React.Component<FinalProps, State> {
     passedName,
     values,
     isSubmitted,
-    callback
+    callback,
   }: IButtonMutateProps) => {
     const { kind } = this.props;
 
@@ -86,7 +86,7 @@ class FacebookContainer extends React.Component<FinalProps, State> {
         refetchQueries={getRefetchQueries(kind)}
         isSubmitted={isSubmitted}
         type="submit"
-        successMessage={`You successfully added an ${passedName}`}
+        successMessage={`Úspěšně jste přidali an ${passedName}`}
       />
     );
   };
@@ -103,7 +103,7 @@ class FacebookContainer extends React.Component<FinalProps, State> {
       loadingPages,
       onAccountSelect: this.onAccountSelect,
       onRemoveAccount: this.onRemoveAccount,
-      renderButton: this.renderButton
+      renderButton: this.renderButton,
     };
 
     return <Facebook {...updatedProps} />;

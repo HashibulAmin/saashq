@@ -30,15 +30,15 @@ function ActionRow({
   isChecked,
   duplicate,
   toggleBulk,
-  removeAutomations
+  removeAutomations,
 }: Props) {
-  const onChange = e => {
+  const onChange = (e) => {
     if (toggleBulk) {
       toggleBulk(automation, e.target.checked);
     }
   };
 
-  const onClick = e => {
+  const onClick = (e) => {
     e.stopPropagation();
   };
 
@@ -50,7 +50,7 @@ function ActionRow({
     return (
       <Link to={`/automations/details/${automation._id}`}>
         <Button btnStyle="link">
-          <Tip text={__('Edit')} placement="top">
+          <Tip text={__('Upravit')} placement="top">
             <Icon icon="edit-3" />
           </Tip>
         </Button>
@@ -99,7 +99,7 @@ function ActionRow({
     updatedUser,
     triggers,
     actions,
-    tags
+    tags,
   } = automation;
 
   const isActive = status !== 'draft' ? true : false;
@@ -128,7 +128,7 @@ function ActionRow({
       </td>
       {isEnabled('tags') && (
         <td>
-          {(tags || []).map(tag => (
+          {(tags || []).map((tag) => (
             <Label lblColor={tag.colorCode}>{tag.name}</Label>
           ))}
         </td>

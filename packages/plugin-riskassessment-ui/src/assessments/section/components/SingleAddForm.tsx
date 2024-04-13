@@ -3,7 +3,7 @@ import {
   FormGroup,
   SelectTeamMembers,
   Toggle,
-  __
+  __,
 } from '@saashq/ui/src';
 import SelectBranches from '@saashq/ui/src/team/containers/SelectBranches';
 import SelectDepartments from '@saashq/ui/src/team/containers/SelectDepartments';
@@ -45,7 +45,7 @@ class Form extends React.Component<Props, State> {
       operationId: riskAssessment?.operationId || '',
       permittedUserIds: riskAssessment?.permittedUserIds || [],
       useBulkCreate: false,
-      usePrivateRA: riskAssessment?.permittedUserIds?.length || false
+      usePrivateRA: riskAssessment?.permittedUserIds?.length || false,
     };
   }
 
@@ -59,7 +59,7 @@ class Form extends React.Component<Props, State> {
       <>
         <FormContainer row gap flex>
           <FormGroup>
-            <ControlLabel>{__('Branch')}</ControlLabel>
+            <ControlLabel>{__('Větev')}</ControlLabel>
             <SelectBranches
               name={'branchId'}
               label={`Select Branch`}
@@ -69,7 +69,7 @@ class Form extends React.Component<Props, State> {
             />
           </FormGroup>
           <FormGroup>
-            <ControlLabel>{__('Department')}</ControlLabel>
+            <ControlLabel>{__('Oddělení')}</ControlLabel>
             <SelectDepartments
               name={'departmentId'}
               label={`Select Department`}
@@ -95,14 +95,10 @@ class Form extends React.Component<Props, State> {
 
   renderSingleAssessment() {
     const { riskAssessment, cardId, cardType, closeModal } = this.props;
-    const {
-      branchId,
-      departmentId,
-      operationId,
-      permittedUserIds
-    } = this.state;
+    const { branchId, departmentId, operationId, permittedUserIds } =
+      this.state;
 
-    const handleSelect = props => {
+    const handleSelect = (props) => {
       this.props.handleSelect({
         ...props,
         branchId,
@@ -110,7 +106,7 @@ class Form extends React.Component<Props, State> {
         operationId,
         permittedUserIds: !!permittedUserIds?.length
           ? permittedUserIds
-          : undefined
+          : undefined,
       });
     };
 
@@ -121,7 +117,7 @@ class Form extends React.Component<Props, State> {
       closeModal,
       refetchQueries: () => [],
       handleSelect,
-      filters: { branchId, departmentId, operationId }
+      filters: { branchId, departmentId, operationId },
     };
 
     return (
@@ -138,7 +134,7 @@ class Form extends React.Component<Props, State> {
     const updatedProps = {
       closeModal,
       cardId,
-      cardType
+      cardType,
     };
     return <BulkAddForm {...updatedProps} />;
   }
@@ -151,14 +147,14 @@ class Form extends React.Component<Props, State> {
         this.setState({
           branchId: '',
           departmentId: '',
-          operationId: ''
+          operationId: '',
         });
       }
 
       this.setState({ useBulkCreate: !useBulkCreate });
     };
 
-    const handleSelectUsers = ids => {
+    const handleSelectUsers = (ids) => {
       this.setState({ permittedUserIds: ids });
     };
 

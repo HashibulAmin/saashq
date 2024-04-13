@@ -139,11 +139,11 @@ class PermissionList extends React.Component<Props> {
         <thead>
           <tr>
             <th>{__('Module')}</th>
-            <th>{__('Action')}</th>
+            <th>{__('Akce')}</th>
             <th>{__('Email')}</th>
             <th>{__('Group')}</th>
             <th>{__('Allow')}</th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{this.renderObjects()}</tbody>

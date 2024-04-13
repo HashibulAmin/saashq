@@ -3,7 +3,7 @@ import { FieldStyle, SidebarList } from '@saashq/ui/src/layout/styles';
 import { IButtonMutateProps, IRouterProps } from '@saashq/ui/src/types';
 import {
   ISkillType,
-  ISkillTypesDocument
+  ISkillTypesDocument,
 } from '@saashq/ui-inbox/src/settings/skills/types';
 import { Link, withRouter } from 'react-router-dom';
 
@@ -41,7 +41,7 @@ function SkillTypes({
   loading,
   refetch,
   remove,
-  renderButton
+  renderButton,
 }: Props) {
   const isItemActive = (id: string) => {
     const currentType = queryParams.typeId || '';
@@ -52,7 +52,7 @@ function SkillTypes({
   function renderEditAction(object: ISkillTypesDocument) {
     const trigger = (
       <Button id="skilltype-edit" btnStyle="link">
-        <Tip text={__('Edit')} placement="bottom">
+        <Tip text={__('Upravit')} placement="bottom">
           <Icon icon="edit" />
         </Tip>
       </Button>
@@ -80,7 +80,7 @@ function SkillTypes({
   }
 
   function renderFormTrigger(trigger: React.ReactNode, object?: ISkillType) {
-    const content = props => renderForm({ ...props, object });
+    const content = (props) => renderForm({ ...props, object });
 
     return (
       <ModalTrigger
@@ -114,7 +114,7 @@ function SkillTypes({
   function renderContent() {
     return (
       <SidebarList noTextColor noBackground>
-        {objects.map(object => (
+        {objects.map((object) => (
           <SidebarListItem key={object._id} isActive={isItemActive(object._id)}>
             <Link to={`?typeId=${object._id}`}>
               <FieldStyle>{object.name}</FieldStyle>
@@ -136,7 +136,7 @@ function SkillTypes({
         loading={loading}
         count={totalCount}
         emptyText={`${__('Get started by grouping the skills into types')}.${__(
-          'For example, language skills'
+          'For example, language skills',
         )}`}
         emptyImage="/images/actions/26.svg"
       />

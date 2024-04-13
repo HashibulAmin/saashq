@@ -215,7 +215,7 @@ class PostForm extends React.Component<Props, State> {
             </FlexItem>
             <FlexItem>
               <CustomRangeContainer>
-                <ControlLabel>{__('Created At')}</ControlLabel>
+                <ControlLabel>{__('Vytvořeno v')}</ControlLabel>
                 <DateControl
                   value={this.state.createdAt}
                   required={false}
@@ -261,7 +261,7 @@ class PostForm extends React.Component<Props, State> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>{__('Description')}</ControlLabel>
+          <ControlLabel>{__('Popis')}</ControlLabel>
           <FormControl
             {...formProps}
             name="description"

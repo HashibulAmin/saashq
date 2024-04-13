@@ -147,7 +147,7 @@ class Sidebar extends React.Component<Props, State> {
     return (
       <CommonSideBar>
         <Section.Title>
-          {__('Addition Filters')}
+          {__('Sčítací Filtry')}
           <Section.QuickButtons>
             {fields.some((field) => queryParams[field]) && extraButton}
           </Section.QuickButtons>
@@ -278,9 +278,7 @@ class Sidebar extends React.Component<Props, State> {
                 handleToggle(queryParams.onlyCurrent, 'onlyCurrent')
               }
             />
-            <ControlLabel>
-              {__('only last movement of per assets')}
-            </ControlLabel>
+            <ControlLabel>{__('pouze poslední pohyb za aktiva')}</ControlLabel>
           </CommonFormGroup>
         </ContainerBox>
       </CommonSideBar>

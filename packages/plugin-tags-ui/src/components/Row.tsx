@@ -17,7 +17,7 @@ import styled from 'styled-components';
 import styledTS from 'styled-components-ts';
 
 export const TagWrapper = styledTS<{ space: number }>(styled.div)`
-  padding-left: ${props => props.space * 20}px;
+  padding-left: ${(props) => props.space * 20}px;
 `;
 
 type Props = {
@@ -55,7 +55,7 @@ class Row extends React.Component<Props, State> {
     this.setState({ showMerge: !showMerge, mergeDestination: undefined });
   };
 
-  onChangeDestination = option => {
+  onChangeDestination = (option) => {
     this.setState({ mergeDestination: option });
   };
 
@@ -140,13 +140,13 @@ class Row extends React.Component<Props, State> {
 
     const editTrigger = (
       <Button btnStyle="link">
-        <Tip text={__('Edit')} placement="top">
+        <Tip text={__('Upravit')} placement="top">
           <Icon icon="edit-3" />
         </Tip>
       </Button>
     );
 
-    const content = props => (
+    const content = (props) => (
       <FormComponent
         {...props}
         type={type}

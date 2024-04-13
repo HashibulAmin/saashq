@@ -38,7 +38,7 @@ class RelatedFileList extends React.Component<Props> {
           <thead>
             <tr>
               <th style={{ paddingLeft: '0' }}>
-                <ItemName>{__('Name')}</ItemName>
+                <ItemName>{__('Název')}</ItemName>
               </th>
               <th>
                 <ItemName>{__('Created Date')}</ItemName>

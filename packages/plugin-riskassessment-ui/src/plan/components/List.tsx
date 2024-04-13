@@ -9,7 +9,7 @@ import {
   Tip,
   Wrapper,
   __,
-  router
+  router,
 } from '@saashq/ui/src';
 import { setParams } from '@saashq/ui/src/utils/router';
 import React from 'react';
@@ -45,7 +45,7 @@ class List extends React.Component<Props, State> {
     this.state = {
       selectedItems: [],
       showFilters: false,
-      searchValue: props?.queryParams?.searchValue || ''
+      searchValue: props?.queryParams?.searchValue || '',
     };
   }
 
@@ -65,28 +65,23 @@ class List extends React.Component<Props, State> {
   }
 
   renderContent() {
-    const {
-      queryParams,
-      history,
-      list,
-      duplicatePlan,
-      changeStatus
-    } = this.props;
+    const { queryParams, history, list, duplicatePlan, changeStatus } =
+      this.props;
     const { selectedItems } = this.state;
 
     const handleSelectAll = () => {
       if (!selectedItems.length) {
-        const branchIds = this.props.list.map(branch => branch._id);
+        const branchIds = this.props.list.map((branch) => branch._id);
         return this.setState({ selectedItems: branchIds });
       }
 
       this.setState({ selectedItems: [] });
     };
 
-    const handleSelect = id => {
+    const handleSelect = (id) => {
       if (selectedItems.includes(id)) {
         const removedSelectedItems = selectedItems.filter(
-          selectItem => selectItem !== id
+          (selectItem) => selectItem !== id,
         );
         return this.setState({ selectedItems: removedSelectedItems });
       }
@@ -103,19 +98,19 @@ class List extends React.Component<Props, State> {
                 onClick={handleSelectAll}
               />
             </th>
-            <th>{__('Name')}</th>
+            <th>{__('Název')}</th>
             {headers(queryParams, history).map(
               ({ name, label, sort, filter }) => (
                 <TableHead key={name} sort={sort} filter={filter}>
                   {label}
                 </TableHead>
-              )
+              ),
             )}
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>
-          {list.map(plan => (
+          {list.map((plan) => (
             <Row
               plan={plan}
               selectedItems={selectedItems}
@@ -130,7 +125,7 @@ class List extends React.Component<Props, State> {
     );
   }
   renderSearchField = () => {
-    const search = e => {
+    const search = (e) => {
       if (this.timer) {
         clearTimeout(this.timer);
       }
@@ -145,7 +140,7 @@ class List extends React.Component<Props, State> {
         router.setParams(history, { searchValue });
       }, 500);
     };
-    const moveCursorAtTheEnd = e => {
+    const moveCursorAtTheEnd = (e) => {
       const tmpValue = e.target.value;
 
       e.target.value = '';

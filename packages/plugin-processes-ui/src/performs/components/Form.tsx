@@ -16,13 +16,13 @@ import ModalTrigger from '@saashq/ui/src/components/ModalTrigger';
 import {
   FieldStyle,
   SidebarCounter,
-  SidebarList
+  SidebarList,
 } from '@saashq/ui/src/layout/styles';
 import {
   DateContainer,
   FormColumn,
   FormWrapper,
-  ModalFooter
+  ModalFooter,
 } from '@saashq/ui/src/styles/main';
 import SelectBranches from '@saashq/ui/src/team/containers/SelectBranches';
 import SelectDepartments from '@saashq/ui/src/team/containers/SelectDepartments';
@@ -44,7 +44,7 @@ import PerformDetail from './PerformDetail';
 
 type Props = {
   renderButton: (
-    props: IButtonMutateProps & { disabled?: boolean }
+    props: IButtonMutateProps & { disabled?: boolean },
   ) => JSX.Element;
   closeModal: () => void;
   perform?: IPerform;
@@ -93,7 +93,7 @@ class Form extends React.Component<Props, State> {
         count: perform.count,
         needProductsData: perform.needProducts,
         resultProductsData: perform.resultProducts,
-        workIds: []
+        workIds: [],
       }) || {
         _id: '',
         key: {
@@ -101,7 +101,7 @@ class Form extends React.Component<Props, State> {
           inBranchId: '',
           inDepartmentId: '',
           outBranchId: '',
-          outDepartmentId: ''
+          outDepartmentId: '',
         },
         startAt,
         dueDate: endAt,
@@ -112,18 +112,18 @@ class Form extends React.Component<Props, State> {
         count: 0,
         needProductsData: [],
         resultProductsData: [],
-        workIds: []
+        workIds: [],
       };
 
     const overCount = overallWorkDet.count;
     let count = 1;
-    const needProducts = overallWorkDet.needProductsData.map(np => ({
+    const needProducts = overallWorkDet.needProductsData.map((np) => ({
       ...np,
-      quantity: np.quantity / overCount
+      quantity: np.quantity / overCount,
     }));
-    const resultProducts = overallWorkDet.resultProductsData.map(rp => ({
+    const resultProducts = overallWorkDet.resultProductsData.map((rp) => ({
       ...rp,
-      quantity: rp.quantity / overCount
+      quantity: rp.quantity / overCount,
     }));
 
     let inProducts = needProducts;
@@ -154,7 +154,7 @@ class Form extends React.Component<Props, State> {
       needProducts,
       resultProducts,
       inProducts,
-      outProducts
+      outProducts,
     };
   }
 
@@ -173,7 +173,7 @@ class Form extends React.Component<Props, State> {
       inDepartmentId,
       outBranchId,
       outDepartmentId,
-      typeId
+      typeId,
     } = key;
     const finalValues = values;
     const {
@@ -188,7 +188,7 @@ class Form extends React.Component<Props, State> {
       inProducts,
       outProducts,
       needProducts,
-      resultProducts
+      resultProducts,
     } = this.state;
 
     if (perform) {
@@ -217,7 +217,7 @@ class Form extends React.Component<Props, State> {
       inProducts,
       outProducts: type === 'move' ? inProducts : outProducts,
       needProducts,
-      resultProducts: type === 'move' ? needProducts : resultProducts
+      resultProducts: type === 'move' ? needProducts : resultProducts,
     };
   };
 
@@ -315,7 +315,7 @@ class Form extends React.Component<Props, State> {
     });
   };
 
-  setStateWrapper = state => {
+  setStateWrapper = (state) => {
     this.setState({ ...state });
   };
 
@@ -338,7 +338,7 @@ class Form extends React.Component<Props, State> {
       <li key={Math.random()}>
         <FieldStyle>{__(name)}</FieldStyle>
         <SidebarCounter>{(products || []).length}</SidebarCounter>
-      </li>
+      </li>,
     );
 
     for (const product of products) {
@@ -349,7 +349,7 @@ class Form extends React.Component<Props, State> {
       const uomCode = uom;
 
       result.push(
-        this.renderViewInfo(productName, product.quantity * count, uomCode)
+        this.renderViewInfo(productName, product.quantity * count, uomCode),
       );
     }
 
@@ -378,10 +378,10 @@ class Form extends React.Component<Props, State> {
 
   renderBulkProductChooser(
     productsData: any[],
-    stateName: 'inProducts' | 'outProducts'
+    stateName: 'inProducts' | 'outProducts',
   ) {
     const productOnChange = (products: IProduct[]) => {
-      const currentProductIds = productsData.map(p => p.productId);
+      const currentProductIds = productsData.map((p) => p.productId);
 
       for (const product of products) {
         if (currentProductIds.includes(product._id)) {
@@ -393,25 +393,25 @@ class Form extends React.Component<Props, State> {
           quantity: 1,
           uom: product.uom,
           productId: product._id,
-          product: product
+          product: product,
         });
       }
 
-      const chosenProductIds = products.map(p => p._id);
+      const chosenProductIds = products.map((p) => p._id);
       this.setStateWrapper({
-        [stateName]: productsData.filter(pd =>
-          chosenProductIds.includes(pd.productId)
-        )
+        [stateName]: productsData.filter((pd) =>
+          chosenProductIds.includes(pd.productId),
+        ),
       } as any);
     };
 
-    const content = props => (
+    const content = (props) => (
       <ProductChooser
         {...props}
         onSelect={productOnChange}
         data={{
           name: 'Product',
-          products: productsData.filter(p => p.product).map(p => p.product)
+          products: productsData.filter((p) => p.product).map((p) => p.product),
         }}
       />
     );
@@ -437,7 +437,7 @@ class Form extends React.Component<Props, State> {
 
   onChangePerView = (values: any) => {
     this.setStateWrapper({
-      ...values
+      ...values,
     } as any);
   };
 
@@ -459,7 +459,7 @@ class Form extends React.Component<Props, State> {
   renderProducts = (
     title: string,
     productsData: any[],
-    stateName: 'inProducts' | 'outProducts'
+    stateName: 'inProducts' | 'outProducts',
   ) => {
     return (
       <>
@@ -471,7 +471,7 @@ class Form extends React.Component<Props, State> {
               </th>
               <th>{__('UOM')}</th>
               <th>{__('Quantity')}</th>
-              <th>{__('Actions')}</th>
+              <th>{__('Akce')}</th>
             </tr>
           </thead>
           <tbody>
@@ -484,7 +484,7 @@ class Form extends React.Component<Props, State> {
                   stateName={stateName}
                   onChangeState={this.onChangePerView}
                   isReadSeries={stateName === 'inProducts'}
-                  onEnter={val =>
+                  onEnter={(val) =>
                     this.focusNext(index, productsData.length, val)
                   }
                 />
@@ -522,7 +522,7 @@ class Form extends React.Component<Props, State> {
                   stateName={'outProducts'}
                   hasCost={true}
                   onChangeState={this.onChangePerView}
-                  onEnter={val =>
+                  onEnter={(val) =>
                     this.focusNext(index, productsData.length, val)
                   }
                 />
@@ -554,7 +554,7 @@ class Form extends React.Component<Props, State> {
         {this.renderProducts(
           'Receipt Products',
           outProducts || [],
-          'outProducts'
+          'outProducts',
         )}
       </SidebarList>
     );
@@ -598,24 +598,24 @@ class Form extends React.Component<Props, State> {
     );
   }
 
-  onChangeCount = e => {
+  onChangeCount = (e) => {
     const { needProducts, resultProducts } = this.state;
     const count = Number(e.target.value);
 
     this.setStateWrapper({
       count,
-      inProducts: needProducts.map(np => ({
+      inProducts: needProducts.map((np) => ({
         ...np,
-        quantity: np.quantity * count
+        quantity: np.quantity * count,
       })),
-      outProducts: resultProducts.map(rp => ({
+      outProducts: resultProducts.map((rp) => ({
         ...rp,
-        quantity: rp.quantity * count
-      }))
+        quantity: rp.quantity * count,
+      })),
     });
   };
 
-  onChangeInput = e => {
+  onChangeInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     this.setStateWrapper({ [name]: value } as any);
@@ -642,8 +642,8 @@ class Form extends React.Component<Props, State> {
     this.setStateWrapper({
       overallWorkDet: {
         ...overallWorkDet,
-        key: { ...overallWorkDet.key, [name]: value }
-      }
+        key: { ...overallWorkDet.key, [name]: value },
+      },
     });
   };
 
@@ -661,9 +661,9 @@ class Form extends React.Component<Props, State> {
               initialValue={overallWorkDet.inBranchId || ''}
               customOption={{
                 value: '',
-                label: '...Clear branch filter'
+                label: '...Clear branch filter',
               }}
-              onSelect={branchId => this.setLocations('inBranchId', branchId)}
+              onSelect={(branchId) => this.setLocations('inBranchId', branchId)}
               multi={false}
             />
           </FormGroup>
@@ -675,9 +675,9 @@ class Form extends React.Component<Props, State> {
               initialValue={overallWorkDet.inDepartmentId || ''}
               customOption={{
                 value: '',
-                label: '...Clear department filter'
+                label: '...Clear department filter',
               }}
-              onSelect={departmentId =>
+              onSelect={(departmentId) =>
                 this.setLocations('inDepartmentId', departmentId)
               }
               multi={false}
@@ -718,9 +718,11 @@ class Form extends React.Component<Props, State> {
               initialValue={overallWorkDet.outBranchId || ''}
               customOption={{
                 value: '',
-                label: '...Clear branch filter'
+                label: '...Clear branch filter',
               }}
-              onSelect={branchId => this.setLocations('outBranchId', branchId)}
+              onSelect={(branchId) =>
+                this.setLocations('outBranchId', branchId)
+              }
               multi={false}
             />
           </FormGroup>
@@ -732,9 +734,9 @@ class Form extends React.Component<Props, State> {
               initialValue={overallWorkDet.outDepartmentId || ''}
               customOption={{
                 value: '',
-                label: '...Clear department filter'
+                label: '...Clear department filter',
               }}
-              onSelect={departmentId =>
+              onSelect={(departmentId) =>
                 this.setLocations('outDepartmentId', departmentId)
               }
               multi={false}
@@ -793,12 +795,12 @@ class Form extends React.Component<Props, State> {
       return <></>;
     }
 
-    const setJobRefer = value => {
+    const setJobRefer = (value) => {
       client
         .query({
           query: gql(queries.jobReferDetail),
           fetchPolicy: 'network-only',
-          variables: { id: value }
+          variables: { id: value },
         })
         .then(({ data }) => {
           this.setStateWrapper({
@@ -808,15 +810,15 @@ class Form extends React.Component<Props, State> {
               jobReferId: value,
               jobRefer: data.jobReferDetail,
               needProducts: data.jobReferDetail.needProducts,
-              resultProducts: data.jobReferDetail.resultProducts
+              resultProducts: data.jobReferDetail.resultProducts,
             },
             needProducts: data.jobReferDetail.needProducts,
             resultProducts: data.jobReferDetail.resultProducts,
             inProducts: data.jobReferDetail.needProducts,
-            outProducts: data.jobReferDetail.resultProducts
+            outProducts: data.jobReferDetail.resultProducts,
           });
         })
-        .catch(e => {
+        .catch((e) => {
           Alert.error(e.message);
         });
     };
@@ -830,10 +832,10 @@ class Form extends React.Component<Props, State> {
           initialValue={overallWorkDet.jobReferId || ''}
           customOption={{
             value: '',
-            label: '...Clear jobRefer filter'
+            label: '...Clear jobRefer filter',
           }}
           filterParams={{ types: [overallWorkDet.type] }}
-          onSelect={jobReferId => setJobRefer(jobReferId)}
+          onSelect={(jobReferId) => setJobRefer(jobReferId)}
           multi={false}
         />
       </FormGroup>
@@ -850,17 +852,17 @@ class Form extends React.Component<Props, State> {
         <>
           <FormColumn>
             <FormGroup>
-              <ControlLabel>{__('Company')}</ControlLabel>
+              <ControlLabel>{__('Společnost')}</ControlLabel>
               <SelectCompanies
                 label={__('Choose company')}
                 name="companyId"
                 initialValue={perform ? perform.companyId : '' || ''}
-                onSelect={companyId =>
+                onSelect={(companyId) =>
                   this.setStateWrapper({ companyId: companyId as string })
                 }
                 customOption={{
                   value: '',
-                  label: 'No company'
+                  label: 'No company',
                 }}
                 multi={false}
               />
@@ -868,17 +870,17 @@ class Form extends React.Component<Props, State> {
           </FormColumn>
           <FormColumn>
             <FormGroup>
-              <ControlLabel>{__('Customer')}</ControlLabel>
+              <ControlLabel>{__('Zákazník')}</ControlLabel>
               <SelectCustomers
                 label={__('Choose company')}
                 name="customerId"
                 initialValue={perform ? perform.customerId : '' || ''}
-                onSelect={customerId =>
+                onSelect={(customerId) =>
                   this.setStateWrapper({ customerId: customerId as string })
                 }
                 customOption={{
                   value: '',
-                  label: 'No customer'
+                  label: 'No customer',
                 }}
                 multi={false}
               />
@@ -945,14 +947,14 @@ class Form extends React.Component<Props, State> {
     const { count, startAt, endAt, description, appendix } = this.state;
 
     if (!overallWorkDet.type) {
-      const onchangeType = e => {
+      const onchangeType = (e) => {
         const value = e.target.value;
         this.setStateWrapper({
           overallWorkDet: {
             ...overallWorkDet,
             type: value,
-            key: { ...overallWorkDet.key, type: value }
-          }
+            key: { ...overallWorkDet.key, type: value },
+          },
         });
       };
       return (
@@ -966,7 +968,7 @@ class Form extends React.Component<Props, State> {
             onChange={onchangeType}
           >
             <option value="">Choose type</option>
-            {Object.keys(JOB_TYPE_CHOISES).map(jt => (
+            {Object.keys(JOB_TYPE_CHOISES).map((jt) => (
               <option value={jt} key={Math.random()}>
                 {JOB_TYPE_CHOISES[jt]}
               </option>
@@ -997,7 +999,7 @@ class Form extends React.Component<Props, State> {
                   timeFormat={true}
                   placeholder="Choose date"
                   value={startAt}
-                  onChange={value => this.onSelectDate(value, 'startAt')}
+                  onChange={(value) => this.onSelectDate(value, 'startAt')}
                 />
               </DateContainer>
             </FormGroup>
@@ -1026,7 +1028,7 @@ class Form extends React.Component<Props, State> {
                 label={__('Choose team member')}
                 name="assignedUserIds"
                 initialValue={perform ? perform.assignedUserIds : [] || []}
-                onSelect={userIds =>
+                onSelect={(userIds) =>
                   this.setStateWrapper({ assignedUserIds: userIds as string[] })
                 }
                 multi={false}
@@ -1037,7 +1039,7 @@ class Form extends React.Component<Props, State> {
         <FormWrapper>
           <FormColumn>
             <FormGroup>
-              <ControlLabel required={true}>{__('Description')}</ControlLabel>
+              <ControlLabel required={true}>{__('Popis')}</ControlLabel>
               <FormControl
                 name="description"
                 defaultValue={description}
@@ -1084,7 +1086,7 @@ class Form extends React.Component<Props, State> {
                     timeFormat={true}
                     placeholder="Choose date"
                     value={endAt}
-                    onChange={value => this.onSelectDate(value, 'endAt')}
+                    onChange={(value) => this.onSelectDate(value, 'endAt')}
                   />
                 </DateContainer>
               </FormGroup>
@@ -1108,7 +1110,7 @@ class Form extends React.Component<Props, State> {
                   values: this.generateDoc(values),
                   isSubmitted,
                   callback: () => {},
-                  disabled: !this.checkSave()
+                  disabled: !this.checkSave(),
                 })}
               {this.renderConfirmOrAbort()}
             </FormColumn>

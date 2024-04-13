@@ -65,7 +65,7 @@ class List extends React.Component<IProps> {
   renderEditAction(category: ICarCategory) {
     const trigger = (
       <Button btnStyle="link">
-        <Tip text={__('Edit')} placement="bottom">
+        <Tip text={__('Upravit')} placement="bottom">
           <Icon icon="edit" />
         </Tip>
       </Button>

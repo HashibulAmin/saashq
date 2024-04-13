@@ -11,12 +11,12 @@ import { FormControl } from '@saashq/ui/src/components/form';
 const ExpensesForm = ({
   expensesQueryData,
   expensesData,
-  onChangeExpensesData
+  onChangeExpensesData,
 }) => {
   const onChangeField = (field, value, expenseId: string) => {
     const updatedExpensesData = expensesData;
     if (updatedExpensesData) {
-      const expenseData = updatedExpensesData.find(p => p._id === expenseId);
+      const expenseData = updatedExpensesData.find((p) => p._id === expenseId);
       if (expenseData) {
         expenseData[field] = value;
       }
@@ -24,7 +24,7 @@ const ExpensesForm = ({
     }
   };
 
-  const deleteElement = index => {
+  const deleteElement = (index) => {
     const newItems = [...expensesData];
     newItems.splice(index, 1);
     onChangeExpensesData(newItems);
@@ -40,24 +40,24 @@ const ExpensesForm = ({
       _id: Math.random().toString(),
       type: typeOptions[0].value,
       name: nameOptions[0].value,
-      value: 0
+      value: 0,
     };
 
     onChangeExpensesData([...expensesData, newElement]);
   };
   const options = [
     { value: 'quantity', label: 'by quantity' },
-    { value: 'amount', label: 'by amount' }
+    { value: 'amount', label: 'by amount' },
   ];
 
-  const nameOptions = (expensesQueryData || []).map(result => ({
+  const nameOptions = (expensesQueryData || []).map((result) => ({
     value: result.name,
-    label: result.name
+    label: result.name,
   }));
 
-  const typeOptions = options.map(result => ({
+  const typeOptions = options.map((result) => ({
     value: result.value,
-    label: result.value
+    label: result.value,
   }));
 
   return (
@@ -66,9 +66,9 @@ const ExpensesForm = ({
         <thead>
           <tr>
             <th>{__('Type')}</th>
-            <th>{__('Name')}</th>
+            <th>{__('Název')}</th>
             <th>{__('Price')}</th>
-            <th>{__('Action')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>

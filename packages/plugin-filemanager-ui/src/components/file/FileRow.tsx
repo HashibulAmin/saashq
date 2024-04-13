@@ -49,7 +49,7 @@ const FileRow = ({
   const renderEditAction = () => {
     const editTrigger = (
       <Button btnStyle="link">
-        <Tip text={__('Edit')} placement="bottom">
+        <Tip text={__('Upravit')} placement="bottom">
           <Icon icon="edit" />
         </Tip>
       </Button>

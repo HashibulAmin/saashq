@@ -5,7 +5,7 @@ import {
   HeaderDescription,
   ModalTrigger,
   Pagination,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import { IButtonMutateProps } from '@saashq/ui/src/types';
 import Form from './UomsForm';
@@ -35,12 +35,12 @@ class Uoms extends React.Component<Props, {}> {
           <thead>
             <tr>
               <th>{__('code')}</th>
-              <th>{__('Name')}</th>
+              <th>{__('Název')}</th>
               <th>{__('actions')}</th>
             </tr>
           </thead>
           <tbody>
-            {uoms.map(uom => {
+            {uoms.map((uom) => {
               return (
                 <Row
                   key={uom._id}
@@ -61,7 +61,7 @@ class Uoms extends React.Component<Props, {}> {
     const { uomsTotalCount, loading } = this.props;
     const breadcrumb = [
       { title: __('Settings'), link: '/settings' },
-      { title: __('Uoms'), link: '/settings/uoms-manage' }
+      { title: __('Uoms'), link: '/settings/uoms-manage' },
     ];
 
     const addBrand = (
@@ -75,7 +75,7 @@ class Uoms extends React.Component<Props, {}> {
       </Button>
     );
 
-    const content = props => (
+    const content = (props) => (
       <Form {...props} extended={true} renderButton={this.props.renderButton} />
     );
 

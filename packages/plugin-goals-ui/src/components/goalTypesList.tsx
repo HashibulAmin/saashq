@@ -10,7 +10,7 @@ import {
   router,
   Table,
   Wrapper,
-  __
+  __,
 } from '@saashq/ui/src';
 import { IRouterProps } from '@saashq/ui/src/types';
 import queryString from 'query-string';
@@ -18,7 +18,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import {
   default as GoalForm,
-  default as GoalTypeForm
+  default as GoalTypeForm,
 } from '../containers/goalForm';
 import { GoalTypesTableWrapper } from '../styles';
 import { IGoalType } from '../types';
@@ -37,7 +37,7 @@ interface IProps extends IRouterProps {
   emptyBulk: () => void;
   removeGoalTypes: (
     doc: { goalTypeIds: string[] },
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
   history: any;
   queryParams: any;
@@ -54,7 +54,7 @@ class GoalTypesList extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue
+      searchValue: this.props.searchValue,
     };
   }
 
@@ -63,7 +63,7 @@ class GoalTypesList extends React.Component<IProps, State> {
     toggleAll(goalTypes, 'goalTypes');
   };
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -78,24 +78,24 @@ class GoalTypesList extends React.Component<IProps, State> {
     }, 500);
   };
 
-  removeGoalTypes = goalTypes => {
+  removeGoalTypes = (goalTypes) => {
     const goalTypeIds: string[] = [];
 
-    goalTypes.forEach(goalType => {
+    goalTypes.forEach((goalType) => {
       goalTypeIds.push(goalType._id);
     });
 
     this.props.removeGoalTypes({ goalTypeIds }, this.props.emptyBulk);
   };
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
   };
 
   renderForm() {
-    const content = props => <GoalForm {...props} />;
+    const content = (props) => <GoalForm {...props} />;
 
     const trigger = <Button btnStyle="success">{__('Add Config')}</Button>;
 
@@ -118,7 +118,7 @@ class GoalTypesList extends React.Component<IProps, State> {
       bulk,
       isAllSelected,
       totalCount,
-      queryParams
+      queryParams,
     } = this.props;
 
     const query = queryString.parse(location.search);
@@ -126,7 +126,7 @@ class GoalTypesList extends React.Component<IProps, State> {
     const params = {
       ...query,
       perPage: query.perPage && Number(query.perPage),
-      page: query.page && Number(query.page)
+      page: query.page && Number(query.page),
     };
 
     const mainContent = (
@@ -154,11 +154,11 @@ class GoalTypesList extends React.Component<IProps, State> {
               <th>{__('target')}</th>
               <th>{__('progress(%)')}</th>
               <th>{__('View')}</th>
-              <th>{__('Edit')}</th>
+              <th>{__('Upravit')}</th>
             </tr>
           </thead>
           <tbody id="goalTypes">
-            {goalTypes.map(goalType => (
+            {goalTypes.map((goalType) => (
               <GoalRow
                 goalType={goalType}
                 isChecked={bulk.includes(goalType)}
@@ -186,7 +186,7 @@ class GoalTypesList extends React.Component<IProps, State> {
           .then(() => {
             this.removeGoalTypes(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 
@@ -204,7 +204,7 @@ class GoalTypesList extends React.Component<IProps, State> {
       );
     }
 
-    const goalTypeForm = props => {
+    const goalTypeForm = (props) => {
       return <GoalTypeForm {...props} queryParams={queryParams} />;
     };
 
@@ -232,7 +232,7 @@ class GoalTypesList extends React.Component<IProps, State> {
             queryParams={queryParams}
             breadcrumb={[
               { title: __('Settings'), link: '/settings' },
-              { title: __('Goal') }
+              { title: __('Goal') },
             ]}
           />
         }

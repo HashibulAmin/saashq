@@ -29,12 +29,12 @@ class InventoryCategory extends React.Component<Props, State> {
     super(props);
     this.state = {
       openCollapse: -1,
-      loading: false
+      loading: false,
     };
   }
 
   renderRow = (data: any, action: string) => {
-    return data.map(c => <Row key={c.code} category={c} action={action} />);
+    return data.map((c) => <Row key={c.code} category={c} action={action} />);
   };
   calculatePagination = (data: any) => {
     const { queryParams } = this.props;
@@ -49,12 +49,12 @@ class InventoryCategory extends React.Component<Props, State> {
           data = data.slice(
             Number(queryParams.page - 1) * queryParams.perPage,
             Number((queryParams.page - 1) * queryParams.perPage) +
-              Number(queryParams.perPage)
+              Number(queryParams.perPage),
           );
         } else {
           data = data.slice(
             (queryParams.page - 1) * 20,
-            (queryParams.page - 1) * 20 + 20
+            (queryParams.page - 1) * 20 + 20,
           );
         }
       }
@@ -66,7 +66,7 @@ class InventoryCategory extends React.Component<Props, State> {
   };
 
   excludeSyncTrue = (data: any) => {
-    return data.filter(d => d.syncStatus === false);
+    return data.filter((d) => d.syncStatus === false);
   };
 
   renderTable = (data: any, action: string) => {
@@ -98,7 +98,7 @@ class InventoryCategory extends React.Component<Props, State> {
         <thead>
           <tr>
             <th>{__('Code')}</th>
-            <th>{__('Name')}</th>
+            <th>{__('Název')}</th>
             {action === 'UPDATE' ? <th>{__('Update Status')}</th> : <></>}
             {action === 'CREATE' ? <th>{__('Create Status')}</th> : <></>}
             {action === 'DELETE' ? <th>{__('Delete Status')}</th> : <></>}
@@ -158,7 +158,7 @@ class InventoryCategory extends React.Component<Props, State> {
         <CollapseContent
           title={__(
             'Create categories' +
-              (items.create ? ':  ' + items.create.count : '')
+              (items.create ? ':  ' + items.create.count : ''),
           )}
           id={'1'}
           onClick={() => {
@@ -185,7 +185,7 @@ class InventoryCategory extends React.Component<Props, State> {
         <CollapseContent
           title={__(
             'Update categories' +
-              (items.update ? ':  ' + items.update.count : '')
+              (items.update ? ':  ' + items.update.count : ''),
           )}
           id={'2'}
           onClick={() => {
@@ -212,7 +212,7 @@ class InventoryCategory extends React.Component<Props, State> {
         <CollapseContent
           title={__(
             'Delete categories' +
-              (items.delete ? ':  ' + items.delete.count : '')
+              (items.delete ? ':  ' + items.delete.count : ''),
           )}
           id={'3'}
           onClick={() => {

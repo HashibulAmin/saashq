@@ -1,14 +1,14 @@
 export const VISIBLITIES = {
   PUBLIC: 'public',
   PRIVATE: 'private',
-  ALL: ['public', 'private']
+  ALL: ['public', 'private'],
 };
 
 export const HACK_SCORING_TYPES = {
   RICE: 'rice',
   ICE: 'ice',
   PIE: 'pie',
-  ALL: ['rice', 'ice', 'pie']
+  ALL: ['rice', 'ice', 'pie'],
 };
 
 export const PROBABILITY = {
@@ -38,19 +38,19 @@ export const PROBABILITY = {
     'Won',
     'Lost',
     'Done',
-    'Resolved'
-  ]
+    'Resolved',
+  ],
 };
 
 export const BOARD_STATUSES = {
   ACTIVE: 'active',
   ARCHIVED: 'archived',
-  ALL: ['active', 'archived']
+  ALL: ['active', 'archived'],
 };
 
 export const BOARD_STATUSES_OPTIONS = [
-  { label: 'Active', value: 'active' },
-  { label: 'Archived', value: 'archived' }
+  { label: 'Aktivní', value: 'active' },
+  { label: 'Archivováno', value: 'archived' },
 ];
 
 export const TIME_TRACK_TYPES = {
@@ -58,7 +58,7 @@ export const TIME_TRACK_TYPES = {
   STOPPED: 'stopped',
   PAUSED: 'paused',
   COMPLETED: 'completed',
-  ALL: ['started', 'stopped', 'paused', 'completed']
+  ALL: ['started', 'stopped', 'paused', 'completed'],
 };
 
 export const BOARD_TYPES = {
@@ -67,7 +67,7 @@ export const BOARD_TYPES = {
   PURCHASE: 'purchase',
   TASK: 'task',
   GROWTH_HACK: 'growthHack',
-  ALL: ['deal', 'ticket', 'purchase', 'task', 'growthHack']
+  ALL: ['deal', 'ticket', 'purchase', 'task', 'growthHack'],
 };
 
 export const NOTIFICATION_TYPES = {
@@ -131,8 +131,8 @@ export const NOTIFICATION_TYPES = {
     'taskEdit',
     'taskChange',
     'taskDueDate',
-    'taskDelete'
-  ]
+    'taskDelete',
+  ],
 };
 
 export const ACTIVITY_CONTENT_TYPES = {
@@ -151,12 +151,12 @@ export const ACTIVITY_CONTENT_TYPES = {
     'task',
     'product',
     'growthHack',
-    'checklist'
-  ]
+    'checklist',
+  ],
 };
 
 export const EXPENSE_DIVIDE_TYPES = {
   QUANTITY: 'quantity',
   AMOUNT: 'amount',
-  ALL: ['quantity', 'amount']
+  ALL: ['quantity', 'amount'],
 };

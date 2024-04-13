@@ -184,7 +184,7 @@ window.plugins = [
     inboxIntegrations: [
       {
         name: 'Facebook Post',
-        description: 'Connect to Facebook posts right from your Team Inbox',
+        description: 'Connect to Facebook posts right from your Týmová Schránka',
         inMessenger: false,
         isAvailable: true,
         kind: 'facebook-post',
@@ -198,7 +198,7 @@ window.plugins = [
       {
         name: 'Facebook Messenger',
         description:
-          'Connect and manage Facebook Messages right from your Team Inbox',
+          'Connect and manage Facebook Messages right from your Týmová Schránka',
         inMessenger: false,
         isAvailable: true,
         kind: 'facebook-messenger',

@@ -56,7 +56,7 @@ class ActionSection extends React.Component<Props> {
           <Icon icon="ellipsis-h" />
         ) : (
           <>
-            {__('Action')} <Icon icon="angle-down" />
+            {__('Akce')} <Icon icon="angle-down" />
           </>
         )}
       </Button>

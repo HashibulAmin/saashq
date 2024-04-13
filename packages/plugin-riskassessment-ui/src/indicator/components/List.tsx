@@ -5,7 +5,7 @@ import {
   HeaderDescription,
   SortHandler,
   Table,
-  __
+  __,
 } from '@saashq/ui/src';
 import { IRouterProps } from '@saashq/ui/src/types';
 import { isEnabled } from '@saashq/ui/src/utils/core';
@@ -26,7 +26,7 @@ type Props = {
   totalCount: number;
   refetch: ({
     perPage,
-    searchValue
+    searchValue,
   }: {
     perPage: number;
     searchValue: string;
@@ -48,7 +48,7 @@ class ListComp extends React.Component<Props, IState> {
     this.state = {
       selectedItems: [],
       perPage: 20,
-      searchValue: ''
+      searchValue: '',
     };
     this.selectItem = this.selectItem.bind(this);
   }
@@ -56,7 +56,7 @@ class ListComp extends React.Component<Props, IState> {
   selectItem(id: string) {
     const { selectedItems } = this.state;
     if (selectedItems.includes(id)) {
-      const newSelectedValue = selectedItems.filter(p => p !== id);
+      const newSelectedValue = selectedItems.filter((p) => p !== id);
       return this.setState({ selectedItems: newSelectedValue });
     }
     this.setState({ selectedItems: [...selectedItems, id] });
@@ -65,13 +65,13 @@ class ListComp extends React.Component<Props, IState> {
   selectAllValue(items) {
     if (
       _loadash.isEqual(
-        items.map(object => object._id),
-        this.state.selectedItems
+        items.map((object) => object._id),
+        this.state.selectedItems,
       )
     ) {
       return this.setState({ selectedItems: [] });
     }
-    const ids = items.map(item => item._id);
+    const ids = items.map((item) => item._id);
     this.setState({ selectedItems: ids });
   }
 
@@ -82,7 +82,7 @@ class ListComp extends React.Component<Props, IState> {
     this.setState({ selectedItems: [] });
   };
 
-  handleSearch = e => {
+  handleSearch = (e) => {
     const { value } = e.currentTarget as HTMLInputElement;
 
     const { perPage } = this.state;
@@ -120,13 +120,13 @@ class ListComp extends React.Component<Props, IState> {
                   componentClass="checkbox"
                   checked={_loadash.isEqual(
                     selectedItems,
-                    list.map(object => object._id)
+                    list.map((object) => object._id),
                   )}
                   onChange={() => this.selectAllValue(list)}
                 />
               )}
             </th>
-            <th>{__('Name')}</th>
+            <th>{__('Název')}</th>
             {isEnabled('tags') && <th>{__('Tags')}</th>}
             <th>
               <SortHandler />
@@ -134,9 +134,9 @@ class ListComp extends React.Component<Props, IState> {
             </th>
             <th>
               <SortHandler />
-              {__('Modified At')}
+              {__('Upraveno v')}
             </th>
-            <th>{__('Action')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>
@@ -147,7 +147,7 @@ class ListComp extends React.Component<Props, IState> {
               queryParams,
               history,
               handleDuplicate: duplicate,
-              onChange: this.selectItem
+              onChange: this.selectItem,
             };
 
             return <TableRow key={i} {...updatedProps} />;
@@ -206,7 +206,7 @@ class ListComp extends React.Component<Props, IState> {
       sidebar: (
         <SideBar queryParams={queryParams} history={this.props.history} />
       ),
-      subMenu
+      subMenu,
     };
 
     return <DefaultWrapper {...updatedProps} />;

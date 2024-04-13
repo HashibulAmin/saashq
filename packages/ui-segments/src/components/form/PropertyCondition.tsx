@@ -24,7 +24,7 @@ type Props = {
   hideDetailForm: boolean;
   changeSubSegmentConjunction: (
     segmentKey: string,
-    conjunction: string
+    conjunction: string,
   ) => void;
   config?: any;
   onChangeConfig?: (config: any) => void;
@@ -44,11 +44,11 @@ class PropertyCondition extends React.Component<Props, State> {
 
     this.state = {
       propertyType: contentType,
-      searchValue: ''
+      searchValue: '',
     };
   }
 
-  onClickProperty = field => {
+  onClickProperty = (field) => {
     this.setState({ chosenProperty: field });
   };
 
@@ -56,7 +56,7 @@ class PropertyCondition extends React.Component<Props, State> {
     this.setState({ chosenProperty: undefined, searchValue: '' });
   };
 
-  onSearch = e => {
+  onSearch = (e) => {
     const value = e.target.value;
 
     this.setState({ searchValue: value });
@@ -80,7 +80,7 @@ class PropertyCondition extends React.Component<Props, State> {
               propertyType,
               onChangeConfig,
               hideDetailForm,
-              component: 'filter'
+              component: 'filter',
             }}
           />
         );
@@ -91,16 +91,12 @@ class PropertyCondition extends React.Component<Props, State> {
   };
 
   render() {
-    const {
-      associationTypes,
-      onClickBackToList,
-      hideBackButton,
-      config
-    } = this.props;
+    const { associationTypes, onClickBackToList, hideBackButton, config } =
+      this.props;
 
     const { chosenProperty, propertyType, searchValue } = this.state;
 
-    const onChange = e => {
+    const onChange = (e) => {
       const value = e.value;
 
       this.setState({ propertyType: value, chosenProperty: undefined });
@@ -111,9 +107,9 @@ class PropertyCondition extends React.Component<Props, State> {
         <Select
           clearable={false}
           value={propertyType}
-          options={associationTypes.map(option => ({
+          options={associationTypes.map((option) => ({
             value: option.value,
-            label: option.description
+            label: option.description,
           }))}
           onChange={onChange}
         />
@@ -140,7 +136,7 @@ class PropertyCondition extends React.Component<Props, State> {
             <ControlLabel>Properties</ControlLabel>
             <FormControl
               type="text"
-              placeholder={__('Type to search')}
+              placeholder={__('Zadejte a vyhledejte')}
               onChange={this.onSearch}
             />
           </FormGroup>

@@ -7,7 +7,7 @@ import {
   FormControl,
   SortHandler,
   Table,
-  __
+  __,
 } from '@saashq/ui/src';
 import Row from './Row';
 import SideBar from './SideBar';
@@ -29,7 +29,7 @@ class List extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      selectedRequests: []
+      selectedRequests: [],
     };
   }
 
@@ -37,7 +37,7 @@ class List extends React.Component<Props, State> {
     const { list, queryParams, history } = this.props;
     const { selectedRequests } = this.state;
     const requestIds = list
-      .map(item => item._id)
+      .map((item) => item._id)
       .filter((value): value is string => typeof value === 'string');
 
     const handleSelectAll = () => {
@@ -52,8 +52,8 @@ class List extends React.Component<Props, State> {
       if (selectedRequests.includes(id)) {
         return this.setState({
           selectedRequests: selectedRequests.filter(
-            selectedId => selectedId !== id
-          )
+            (selectedId) => selectedId !== id,
+          ),
         });
       }
 
@@ -74,7 +74,7 @@ class List extends React.Component<Props, State> {
               />
             </th>
             <th>{__('Type')}</th>
-            <th>{__('Name')}</th>
+            <th>{__('Název')}</th>
             <th>{__('Requester')}</th>
             <th>{__('Recipients')}</th>
             <th>{__('Status')}</th>
@@ -86,11 +86,11 @@ class List extends React.Component<Props, State> {
               <SortHandler sortField="resolvedAt" />
               {__('Resolved at')}
             </th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>
-          {list.map(item => (
+          {list.map((item) => (
             <Row
               request={item}
               key={item._id}
@@ -125,7 +125,7 @@ class List extends React.Component<Props, State> {
       content: this.renderList(),
       rightActionBar,
       totalCount: this.props.totalCount,
-      sidebar: <SideBar queryParams={queryParams} history={history} />
+      sidebar: <SideBar queryParams={queryParams} history={history} />,
     };
 
     return <DefaultWrapper {...updatedProps} />;

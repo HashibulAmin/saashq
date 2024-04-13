@@ -24,7 +24,7 @@ function List({ packages, remove, loading, renderButton }: Props) {
     </Button>
   );
 
-  const modalContent = props => (
+  const modalContent = (props) => (
     <PackageForm {...props} renderButton={renderButton} />
   );
 
@@ -50,13 +50,13 @@ function List({ packages, remove, loading, renderButton }: Props) {
     <Table>
       <thead>
         <tr>
-          <th>{__('Name')}</th>
-          <th>{__('Description')}</th>
-          <th>{__('Actions')}</th>
+          <th>{__('Název')}</th>
+          <th>{__('Popis')}</th>
+          <th>{__('Akce')}</th>
         </tr>
       </thead>
       <tbody id={'TagsShowing'}>
-        {packages.map(item => {
+        {packages.map((item) => {
           return (
             <Row
               key={item._id}

@@ -13,25 +13,25 @@ import {
   Tip,
   Toggle,
   __,
-  confirm
+  confirm,
 } from '@saashq/ui/src';
 import client from '@saashq/ui/src/apolloClient';
 import {
   ControlWrapper,
-  StepWrapper
+  StepWrapper,
 } from '@saashq/ui/src/components/step/styles';
 import {
   ColorPick,
   ColorPicker,
   FormColumn,
-  FormWrapper
+  FormWrapper,
 } from '@saashq/ui/src/styles/main';
 import SelectBranches from '@saashq/ui/src/team/containers/SelectBranches';
 import SelectDepartments from '@saashq/ui/src/team/containers/SelectDepartments';
 import {
   IButtonMutateProps,
   IFormProps,
-  IRouterProps
+  IRouterProps,
 } from '@saashq/ui/src/types';
 import { isEnabled } from '@saashq/ui/src/utils/core';
 import React from 'react';
@@ -45,7 +45,7 @@ import {
   CommonFormContainer,
   FormContainer,
   FormContent,
-  Header
+  Header,
 } from '../../styles';
 import { RiskCalculateLogicType, RiskIndicatorsType } from '../common/types';
 import { SelectTags } from '../common/utils';
@@ -82,7 +82,7 @@ class Form extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      riskIndicator: props.detail || {}
+      riskIndicator: props.detail || {},
     };
 
     this.generateDoc = this.generateDoc.bind(this);
@@ -100,13 +100,13 @@ class Form extends React.Component<Props, State> {
       return {
         ...form,
         calculateLogics: (form?.calculateLogics || []).map(
-          ({ __typename, ...logic }) => logic
-        )
+          ({ __typename, ...logic }) => logic,
+        ),
       };
     });
 
     calculateLogics = (calculateLogics || []).map(
-      ({ __typename, ...logic }) => logic
+      ({ __typename, ...logic }) => logic,
     );
 
     return { ...values, ...{ ...riskIndicator, forms, calculateLogics } };
@@ -122,17 +122,17 @@ class Form extends React.Component<Props, State> {
       }
     }
 
-    const checkSaved = formIds.every(formId =>
-      detail?.forms?.find(form => form.formId === formId)
+    const checkSaved = formIds.every((formId) =>
+      detail?.forms?.find((form) => form.formId === formId),
     );
 
     if (!checkSaved) {
       confirm(
-        `Are you sure you want to close.Your created form won't save`
+        `Are you sure you want to close.Your created form won't save`,
       ).then(() => {
         client.mutate({
           mutation: gql(mutations.removeUnusedRiskIndicatorForm),
-          variables: { formIds }
+          variables: { formIds },
         });
         return history.push('/settings/risk-indicators');
       });
@@ -142,66 +142,66 @@ class Form extends React.Component<Props, State> {
 
   renderLogic(
     { _id, name, logic, value, value2, color }: RiskCalculateLogicType,
-    formProps
+    formProps,
   ) {
-    const handleRow = e => {
+    const handleRow = (e) => {
       const { riskIndicator } = this.state;
       const { name, value } = e.currentTarget as HTMLInputElement;
       const { calculateLogics } = riskIndicator;
-      const newVariables = (calculateLogics || []).map(logic =>
+      const newVariables = (calculateLogics || []).map((logic) =>
         logic._id === _id
           ? {
               ...logic,
               [name]: ['value', 'value2'].includes(name)
                 ? parseInt(value)
-                : value
+                : value,
             }
-          : logic
+          : logic,
       );
-      this.setState(prev => ({
+      this.setState((prev) => ({
         riskIndicator: {
           ...prev.riskIndicator,
-          calculateLogics: newVariables
-        }
+          calculateLogics: newVariables,
+        },
       }));
     };
 
-    const removeLogicRow = e => {
+    const removeLogicRow = (e) => {
       const { riskIndicator } = this.state;
       const removedLogicRows =
         riskIndicator.calculateLogics &&
-        riskIndicator?.calculateLogics.filter(logic => logic._id !== _id);
-      this.setState(prev => ({
+        riskIndicator?.calculateLogics.filter((logic) => logic._id !== _id);
+      this.setState((prev) => ({
         riskIndicator: {
           ...prev.riskIndicator,
-          calculateLogics: removedLogicRows
-        }
+          calculateLogics: removedLogicRows,
+        },
       }));
     };
 
-    const onChangeColor = hex => {
+    const onChangeColor = (hex) => {
       const { riskIndicator } = this.state;
       const newVariables =
         riskIndicator.calculateLogics &&
-        riskIndicator.calculateLogics.map(logic =>
-          logic._id === _id ? { ...logic, color: hex } : logic
+        riskIndicator.calculateLogics.map((logic) =>
+          logic._id === _id ? { ...logic, color: hex } : logic,
         );
-      this.setState(prev => ({
+      this.setState((prev) => ({
         riskIndicator: {
           ...prev.riskIndicator,
-          calculateLogics: newVariables
-        }
+          calculateLogics: newVariables,
+        },
       }));
     };
 
-    const renderColorSelect = selectedColor => {
+    const renderColorSelect = (selectedColor) => {
       const popoverBottom = (
         <Popover id="color-picker">
           <TwitterPicker
             width="266px"
             triangle="hide"
             color={selectedColor}
-            onChange={e => onChangeColor(e.hex)}
+            onChange={(e) => onChangeColor(e.hex)}
             colors={COLORS}
           />
         </Popover>
@@ -242,11 +242,11 @@ class Form extends React.Component<Props, State> {
           >
             <option />
             {['(>) greater than', '(<) lower than', '(≈) between'].map(
-              value => (
+              (value) => (
                 <option value={value} key={value}>
                   {value}
                 </option>
-              )
+              ),
             )}
           </FormControl>
         </FormColumn>
@@ -291,8 +291,8 @@ class Form extends React.Component<Props, State> {
 
     return (
       riskIndicator.calculateLogics &&
-      riskIndicator.calculateLogics.map(logic =>
-        this.renderLogic(logic, formProps)
+      riskIndicator.calculateLogics.map((logic) =>
+        this.renderLogic(logic, formProps),
       )
     );
   }
@@ -305,27 +305,27 @@ class Form extends React.Component<Props, State> {
     }
 
     const handleChangeCalculateMethod = ({ value }) => {
-      this.setState(prev => ({
-        riskIndicator: { ...prev.riskIndicator, calculateMethod: value }
+      this.setState((prev) => ({
+        riskIndicator: { ...prev.riskIndicator, calculateMethod: value },
       }));
     };
 
-    const handleAddLevel = e => {
+    const handleAddLevel = (e) => {
       const variables = {
         _id: Math.random().toString(),
         name: '',
         value: 0,
-        logic: ''
+        logic: '',
       };
 
-      this.setState(prev => ({
+      this.setState((prev) => ({
         riskIndicator: {
           ...prev.riskIndicator,
           calculateLogics: [
             ...(prev.riskIndicator.calculateLogics || []),
-            variables
-          ]
-        }
+            variables,
+          ],
+        },
       }));
     };
 
@@ -348,7 +348,7 @@ class Form extends React.Component<Props, State> {
           />
         </FormGroup>
         <FormWrapper>
-          {['Name', 'Logic', 'Value', 'Status Color'].map(head => (
+          {['Name', 'Logic', 'Value', 'Status Color'].map((head) => (
             <FormColumn key={head}>
               <ControlLabel required>{head}</ControlLabel>
             </FormColumn>
@@ -369,27 +369,29 @@ class Form extends React.Component<Props, State> {
       return <EmptyState text="No Forms" icon="file-question" />;
     }
 
-    const handleChange = doc => {
+    const handleChange = (doc) => {
       const { riskIndicator } = this.state;
 
-      const updatedForms = (riskIndicator?.forms || []).map(formData =>
-        formData?._id === doc._id ? doc : formData
+      const updatedForms = (riskIndicator?.forms || []).map((formData) =>
+        formData?._id === doc._id ? doc : formData,
       );
 
-      this.setState(prev => ({
-        riskIndicator: { ...prev.riskIndicator, forms: updatedForms }
+      this.setState((prev) => ({
+        riskIndicator: { ...prev.riskIndicator, forms: updatedForms },
       }));
     };
 
     const removeRow = (id: string) => {
       const { riskIndicator } = this.state;
 
-      riskIndicator.forms = riskIndicator.forms.filter(form => form._id !== id);
+      riskIndicator.forms = riskIndicator.forms.filter(
+        (form) => form._id !== id,
+      );
 
       this.setState({ riskIndicator });
     };
 
-    return (riskIndicator?.forms || []).map(form => (
+    return (riskIndicator?.forms || []).map((form) => (
       <FormItem
         key={form._id}
         doc={form}
@@ -404,23 +406,23 @@ class Form extends React.Component<Props, State> {
   renderGeneralStep(formProps) {
     const { riskIndicator } = this.state;
 
-    const handleState = e => {
+    const handleState = (e) => {
       const { name, value } = e.currentTarget as HTMLInputElement;
-      this.setState(prev => ({
-        riskIndicator: { ...prev.riskIndicator, [name]: value }
+      this.setState((prev) => ({
+        riskIndicator: { ...prev.riskIndicator, [name]: value },
       }));
     };
 
     const handleChangeSelection = (value, name) => {
-      this.setState(prev => ({
-        riskIndicator: { ...prev.riskIndicator, [name]: value }
+      this.setState((prev) => ({
+        riskIndicator: { ...prev.riskIndicator, [name]: value },
       }));
     };
 
     return (
       <FormContainer column gap style={{ padding: 10 }}>
         <FormGroup>
-          <ControlLabel required>{__('Name')}</ControlLabel>
+          <ControlLabel required>{__('Název')}</ControlLabel>
           <FormControl
             {...formProps}
             key="name"
@@ -432,7 +434,7 @@ class Form extends React.Component<Props, State> {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Description')}</ControlLabel>
+          <ControlLabel>{__('Popis')}</ControlLabel>
           <FormControl
             {...formProps}
             name="description"
@@ -494,24 +496,24 @@ class Form extends React.Component<Props, State> {
     const { riskIndicator } = this.state;
 
     const addForm = () => {
-      this.setState(prev => ({
+      this.setState((prev) => ({
         riskIndicator: {
           ...prev.riskIndicator,
           forms: [
             ...(prev?.riskIndicator?.forms || []),
-            { _id: String(Math.random()), formId: '', calculateMethod: '' }
-          ]
-        }
+            { _id: String(Math.random()), formId: '', calculateMethod: '' },
+          ],
+        },
       }));
     };
 
     const toggleWithDescription = () => {
-      this.setState(prev => ({
+      this.setState((prev) => ({
         ...prev,
         riskIndicator: {
           ...prev.riskIndicator,
-          isWithDescription: !prev.riskIndicator?.isWithDescription
-        }
+          isWithDescription: !prev.riskIndicator?.isWithDescription,
+        },
       }));
     };
 
@@ -573,7 +575,7 @@ class Form extends React.Component<Props, State> {
             name: 'Indicator',
             values: this.generateDoc(values),
             isSubmitted,
-            object: detail
+            object: detail,
           })}
       </ControlWrapper>
     );

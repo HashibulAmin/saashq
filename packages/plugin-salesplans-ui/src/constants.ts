@@ -1,7 +1,7 @@
 export const menuSalesplans = [
   { title: 'Labels', link: '/sales-plans/day-labels' },
   { title: 'Day plans', link: '/sales-plans/day-plan' },
-  { title: 'Year plans', link: '/sales-plans/year-plan' }
+  { title: 'Year plans', link: '/sales-plans/year-plan' },
 ];
 
 export const COLORS = [
@@ -18,21 +18,21 @@ export const COLORS = [
   '#63D2D6',
   '#F7CE53',
   '#FF6900',
-  '#EB144C'
+  '#EB144C',
 ];
 
 export const TYPES = [
   { value: 'Year', label: 'Year' },
   { value: 'Month', label: 'Month' },
-  { value: 'Day', label: 'Day' }
+  { value: 'Day', label: 'Day' },
 ];
 
 export const STATUS = [
-  { value: 'active', label: 'Active' },
-  { value: 'disabled', label: 'Disabled' },
-  { value: 'archived', label: 'Archived' },
+  { value: 'active', label: 'Aktivní' },
+  { value: 'disabled', label: 'Zakázáno' },
+  { value: 'archived', label: 'Archivováno' },
   { value: 'pending', label: 'Pending' },
-  { value: 'published', label: 'Published' }
+  { value: 'published', label: 'Published' },
 ];
 
 export const MONTH = [
@@ -47,7 +47,7 @@ export const MONTH = [
   { value: 9, label: 'September' },
   { value: 10, label: 'October' },
   { value: 11, label: 'November' },
-  { value: 12, label: 'December' }
+  { value: 12, label: 'December' },
 ];
 
 export const MONTHS = [
@@ -62,7 +62,7 @@ export const MONTHS = [
   'sep',
   'oct',
   'nov',
-  'dec'
+  'dec',
 ];
 
 export const DAYS = [
@@ -96,5 +96,5 @@ export const DAYS = [
   { value: 28, label: 28 },
   { value: 29, label: 29 },
   { value: 30, label: 30 },
-  { value: 31, label: 31 }
+  { value: 31, label: 31 },
 ];

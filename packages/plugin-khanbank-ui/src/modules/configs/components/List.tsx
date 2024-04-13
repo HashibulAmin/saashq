@@ -26,7 +26,7 @@ const List = (props: Props) => {
   const { totalCount, queryParams, loading, configs, remove } = props;
 
   const renderRow = () => {
-    return configs.map(config => (
+    return configs.map((config) => (
       <Row key={config._id} config={config} remove={remove} />
     ));
   };
@@ -39,7 +39,7 @@ const List = (props: Props) => {
     </Button>
   );
 
-  const formContent = formProps => <Form {...formProps} />;
+  const formContent = (formProps) => <Form {...formProps} />;
 
   const righActionBar = (
     <ModalTrigger
@@ -55,7 +55,7 @@ const List = (props: Props) => {
 
   const breadcrumb = [
     { title: __('Settings'), link: '/settings' },
-    { title: __('Khanbank'), link: '/settings/khanbank' }
+    { title: __('Khanbank'), link: '/settings/khanbank' },
   ];
 
   const content = (
@@ -63,7 +63,7 @@ const List = (props: Props) => {
       <thead>
         <tr>
           <th>{__('name')}</th>
-          <th>{__('Action')}</th>
+          <th>{__('Akce')}</th>
         </tr>
       </thead>
       <tbody>{renderRow()}</tbody>
@@ -84,7 +84,7 @@ const List = (props: Props) => {
           icon="/images/actions/27.svg"
           title={'Khanbank Corporate Gateway'}
           description={__(
-            `Corporate Gateway enables you access banking services through saashq.`
+            `Corporate Gateway enables you access banking services through saashq.`,
           )}
         />
       }
@@ -103,14 +103,14 @@ const List = (props: Props) => {
                   {
                     title: __('Create Corporate Gateway config'),
                     description: __(
-                      'Register at Khanbank and become a Khanbank customer'
+                      'Register at Khanbank and become a Khanbank customer',
                     ),
                     url: `https://www.khanbank.com/en/corporate/product/429?activetab=2`,
                     urlText: 'Apply for Corporate Gateway',
                     isOutside: true,
-                    target: '_blank'
-                  }
-                ]
+                    target: '_blank',
+                  },
+                ],
               }}
               maxItemWidth="360px"
             />

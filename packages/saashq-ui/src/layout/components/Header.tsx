@@ -21,7 +21,7 @@ class Header extends React.Component<Props> {
 
     setTitle(
       title,
-      title === `${__('Team Inbox')}` && document.title.startsWith('(1)'),
+      title === `${__('Týmová Schránka')}` && document.title.startsWith('(1)'),
     );
   }
 

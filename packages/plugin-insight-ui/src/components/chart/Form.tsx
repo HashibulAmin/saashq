@@ -274,7 +274,7 @@ const Form = (props: Props) => {
             </Description>
 
             <FormGroup>
-              <ControlLabel required={true}>{__('Name')}</ControlLabel>
+              <ControlLabel required={true}>{__('Název')}</ControlLabel>
 
               <FormControl
                 type="input"

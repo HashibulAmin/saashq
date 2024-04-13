@@ -36,7 +36,7 @@ interface IProps extends IRouterProps {
   searchValue: string;
   removeUsers: (
     doc: { clientPortalUserIds: string[] },
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
   verifyUsers: (type: string, userIds: string[]) => void;
 }
@@ -51,7 +51,7 @@ class ClientportalUserList extends React.Component<IProps, State> {
   constructor(props) {
     super(props);
     this.state = {
-      searchValue: this.props.searchValue
+      searchValue: this.props.searchValue,
     };
   }
 
@@ -61,7 +61,7 @@ class ClientportalUserList extends React.Component<IProps, State> {
     toggleAll(clientPortalUsers, 'clientPortalUsers');
   };
 
-  removeUsers = clientPortalUsers => {
+  removeUsers = (clientPortalUsers) => {
     const clientPortalUserIds: string[] = [];
 
     clientPortalUsers.forEach((cpUser: any) => {
@@ -76,7 +76,7 @@ class ClientportalUserList extends React.Component<IProps, State> {
   verifyUsers = (type, clientPortalUsers) => {
     this.props.verifyUsers(
       type,
-      clientPortalUsers.map(cpUser => cpUser._id)
+      clientPortalUsers.map((cpUser) => cpUser._id),
     );
   };
 
@@ -87,7 +87,7 @@ class ClientportalUserList extends React.Component<IProps, State> {
       toggleBulk,
       bulk,
       history,
-      queryParams
+      queryParams,
     } = this.props;
 
     const { page = 1, perPage = 20 } = queryParams;
@@ -144,7 +144,7 @@ class ClientportalUserList extends React.Component<IProps, State> {
     );
   }
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -174,7 +174,7 @@ class ClientportalUserList extends React.Component<IProps, State> {
       loading,
       type,
       bulk,
-      clientPortalUsers
+      clientPortalUsers,
     } = this.props;
 
     const addTrigger = (
@@ -183,7 +183,7 @@ class ClientportalUserList extends React.Component<IProps, State> {
       </Button>
     );
 
-    const customerForm = props => {
+    const customerForm = (props) => {
       return (
         <ClientPortalUserForm {...props} size="lg" kind={this.props.kind} />
       );
@@ -193,7 +193,7 @@ class ClientportalUserList extends React.Component<IProps, State> {
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.search}
           value={this.state.searchValue}
           autoFocus={true}
@@ -219,21 +219,21 @@ class ClientportalUserList extends React.Component<IProps, State> {
           .then(() => {
             this.removeUsers(bulk);
           })
-          .catch(e => {
+          .catch((e) => {
             Alert.error(e.message);
           });
 
-      const onClickConfirm = e => {
+      const onClickConfirm = (e) => {
         const userType = e.currentTarget.id;
         confirm(
           `This action forces the ${
             bulk.length > 1 ? "users'" : "user's"
-          }  ${userType} to be verified. Do you want to continue?`
+          }  ${userType} to be verified. Do you want to continue?`,
         )
           .then(() => {
             this.verifyUsers(userType, bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
       };
@@ -291,7 +291,7 @@ class ClientportalUserList extends React.Component<IProps, State> {
             loadingMainQuery={loading}
             counts={{
               byCP: { byCP: clientPortalUserCount },
-              byType: { byType: 0 }
+              byType: { byType: 0 },
             }}
             kind={this.props.kind}
           />

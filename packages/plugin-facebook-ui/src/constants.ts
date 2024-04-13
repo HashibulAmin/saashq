@@ -1,7 +1,7 @@
 export const INTEGRATIONS = [
   {
     name: 'Facebook Post',
-    description: 'Connect to Facebook posts right from your Team Inbox',
+    description: 'Connect to Facebook posts right from your Týmová Schránka',
     inMessenger: false,
     isAvailable: true,
     kind: 'facebook-post',
@@ -9,12 +9,12 @@ export const INTEGRATIONS = [
     createModal: 'facebook-post',
     createUrl: '/settings/integrations/createFacebook',
     category:
-      'All integrations, For support teams, Marketing automation, Social media'
+      'All integrations, For support teams, Marketing automation, Social media',
   },
   {
     name: 'Facebook Messenger',
     description:
-      'Connect and manage Facebook Messages right from your Team Inbox',
+      'Connect and manage Facebook Messages right from your Týmová Schránka',
     inMessenger: false,
     isAvailable: true,
     kind: 'facebook-messenger',
@@ -22,12 +22,12 @@ export const INTEGRATIONS = [
     createModal: 'facebook-messenger',
     createUrl: '/settings/integrations/createFacebook',
     category:
-      'All integrations, For support teams, Messaging, Social media, Conversation'
-  }
+      'All integrations, For support teams, Messaging, Social media, Conversation',
+  },
 ];
 
 export const KINDS = {
   MESSENGER: 'facebook-messenger',
   POST: 'facebook-post',
-  ALL: ['facebook-messenger', 'facebook-post']
+  ALL: ['facebook-messenger', 'facebook-post'],
 };

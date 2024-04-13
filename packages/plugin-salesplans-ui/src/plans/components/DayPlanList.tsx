@@ -11,7 +11,7 @@ import {
   DataWithLoader,
   FormControl,
   ModalTrigger,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import { IDayPlan, IDayPlanConfirmParams } from '../types';
 import { ITimeframe } from '../../settings/types';
@@ -48,11 +48,11 @@ class DayPlans extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue || ''
+      searchValue: this.props.searchValue || '',
     };
   }
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -81,16 +81,10 @@ class DayPlans extends React.Component<Props, State> {
   };
 
   renderRow = () => {
-    const {
-      dayPlans,
-      history,
-      toggleBulk,
-      bulk,
-      edit,
-      timeFrames
-    } = this.props;
+    const { dayPlans, history, toggleBulk, bulk, edit, timeFrames } =
+      this.props;
 
-    return dayPlans.map(dayPlan => (
+    return dayPlans.map((dayPlan) => (
       <Row
         key={dayPlan._id}
         history={history}
@@ -103,14 +97,14 @@ class DayPlans extends React.Component<Props, State> {
     ));
   };
 
-  modalContent = props => {
+  modalContent = (props) => {
     return <Form {...props} history={this.props.history} />;
   };
 
-  removeDayPlans = dayPlans => {
+  removeDayPlans = (dayPlans) => {
     const dayPlanIds: string[] = [];
 
-    dayPlans.forEach(dayPlan => {
+    dayPlans.forEach((dayPlan) => {
       dayPlanIds.push(dayPlan._id);
     });
 
@@ -119,13 +113,8 @@ class DayPlans extends React.Component<Props, State> {
 
   actionBarRight() {
     const { bulk, queryParams, emptyBulk, toConfirm } = this.props;
-    const {
-      date,
-      branchId,
-      departmentId,
-      productCategoryId,
-      productId
-    } = queryParams;
+    const { date, branchId, departmentId, productCategoryId, productId } =
+      queryParams;
     const _date = new Date(moment(date).format('YYYY/MM/DD'));
 
     if (bulk.length) {
@@ -134,7 +123,7 @@ class DayPlans extends React.Component<Props, State> {
           .then(() => {
             this.removeDayPlans(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 
@@ -160,7 +149,7 @@ class DayPlans extends React.Component<Props, State> {
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.search}
           value={this.state.searchValue}
           autoFocus={true}
@@ -186,9 +175,9 @@ class DayPlans extends React.Component<Props, State> {
                 branchId: (branchId || '').toString(),
                 productCategoryId: (productCategoryId || '').toString(),
                 productId: (productId || '').toString(),
-                ids: bulk.map(b => b._id)
+                ids: bulk.map((b) => b._id),
               },
-              emptyBulk
+              emptyBulk,
             )
           }
         >
@@ -205,13 +194,13 @@ class DayPlans extends React.Component<Props, State> {
       totalSum,
       queryParams,
       history,
-      timeFrames
+      timeFrames,
     } = this.props;
 
-    const timeIds = Object.keys(totalSum).filter(k => k !== 'planCount');
+    const timeIds = Object.keys(totalSum).filter((k) => k !== 'planCount');
     const totalSumValue = timeIds.reduce(
       (sum, i) => Number(sum) + Number(totalSum[i]),
-      0
+      0,
     );
     const totalDiff = totalSumValue - totalSum.planCount;
     const content = (
@@ -227,12 +216,12 @@ class DayPlans extends React.Component<Props, State> {
                 />
               </th>
               <th rowSpan={2}>{__('Date')}</th>
-              <th rowSpan={2}>{__('Branch')}</th>
-              <th rowSpan={2}>{__('Department')}</th>
+              <th rowSpan={2}>{__('Větev')}</th>
+              <th rowSpan={2}>{__('Oddělení')}</th>
               <th rowSpan={2}>{__('Product')}</th>
               <th>{__('Uom')}</th>
               <th>{__('Plan')}</th>
-              {timeFrames.map(tf => (
+              {timeFrames.map((tf) => (
                 <th key={tf._id}>{tf.name}</th>
               ))}
 
@@ -243,7 +232,7 @@ class DayPlans extends React.Component<Props, State> {
             <tr>
               <th>{__('Sum')}:</th>
               <th>{(totalSum.planCount || 0).toLocaleString()}</th>
-              {timeFrames.map(tf => (
+              {timeFrames.map((tf) => (
                 <th key={tf._id}>{totalSum[tf._id || '']}</th>
               ))}
 
@@ -277,7 +266,7 @@ class DayPlans extends React.Component<Props, State> {
             data={content}
             loading={false}
             count={totalCount}
-            emptyText="There is no data"
+            emptyText="Nejsou žádná data"
             emptyImage="/images/actions/5.svg"
           />
         }

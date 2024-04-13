@@ -7,7 +7,7 @@ import { Title } from '@saashq/ui-settings/src/styles';
 import { FlexContent, FlexItem } from '@saashq/ui/src/layout/styles';
 import {
   FlexRow,
-  Subject
+  Subject,
 } from '@saashq/ui-inbox/src/settings/integrations/components/mail/styles';
 import { PreviewContent } from '@saashq/ui-engage/src/styles';
 import { Thumbnail } from '../../styles';
@@ -55,7 +55,7 @@ function PageDetail(props: Props) {
       {renderThumbnail()}
       <Subject noBorder={true}>
         <FlexRow>
-          <label>{__('Description')}</label>
+          <label>{__('Popis')}</label>
         </FlexRow>
         <strong>{page.description}</strong>
       </Subject>
@@ -67,7 +67,7 @@ function PageDetail(props: Props) {
           isFullmessage={true}
           showOverflow={true}
           dangerouslySetInnerHTML={{
-            __html: page.content || ''
+            __html: page.content || '',
           }}
         />
       </Subject>
@@ -76,7 +76,7 @@ function PageDetail(props: Props) {
 
   const breadcrumb = [
     { title: __('Forum Page'), link: '/forums/pages' },
-    { title: page.title }
+    { title: page.title },
   ];
 
   return (

@@ -3,7 +3,7 @@ import { gql, useQuery, useMutation } from '@apollo/client';
 import { Alert, confirm } from '@saashq/ui/src/utils';
 import {
   mutations,
-  queries
+  queries,
 } from '@saashq/ui-cards/src/settings/boards/graphql';
 import Button from '@saashq/ui/src/components/Button';
 import Icon from '@saashq/ui/src/components/Icon';
@@ -35,20 +35,20 @@ function ExpensesForm() {
   const [inputValues, setInputValues] = useState({
     _id: '',
     name: '',
-    description: ''
+    description: '',
   });
 
   const addElement = () => {
     const newElement = {
       _id: Math.random().toString(),
       name: inputValues.name,
-      description: inputValues.description
+      description: inputValues.description,
     };
-    setElements(prevElements => [...prevElements, newElement]);
+    setElements((prevElements) => [...prevElements, newElement]);
     setInputValues({
       _id: '',
       name: '',
-      description: ''
+      description: '',
     });
   };
 
@@ -56,18 +56,18 @@ function ExpensesForm() {
     const updatedElements = [...elements];
     updatedElements[index] = {
       ...updatedElements[index],
-      [key]: value
+      [key]: value,
     };
     setElements(updatedElements);
   };
 
-  const deleteElement = index => {
+  const deleteElement = (index) => {
     const updatedElements = [...elements];
     updatedElements.splice(index, 1);
     setElements(updatedElements);
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     const setData = elements.map((element, index) => {
       if (!element.name) {
         Alert.error('Please fill all fields');
@@ -76,7 +76,7 @@ function ExpensesForm() {
       return {
         name: element.name,
         description: element.description,
-        _id: element._id
+        _id: element._id,
       };
     });
     event.preventDefault();
@@ -86,7 +86,7 @@ function ExpensesForm() {
           Alert.success('Successfully created');
           handleClose();
         })
-        .catch(e => {
+        .catch((e) => {
           Alert.error(e.message);
         });
     });
@@ -111,9 +111,9 @@ function ExpensesForm() {
           <Table whiteSpace="nowrap" hover={true}>
             <thead>
               <tr>
-                <th>{__('Name')}</th>
-                <th>{__('Description')}</th>
-                <th>{__('Action')}</th>
+                <th>{__('Název')}</th>
+                <th>{__('Popis')}</th>
+                <th>{__('Akce')}</th>
               </tr>
             </thead>
             <tbody>

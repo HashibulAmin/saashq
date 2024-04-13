@@ -6,7 +6,7 @@ import {
   Table,
   Wrapper,
   BarItems,
-  Button
+  Button,
 } from '@saashq/ui/src';
 import { IRouterProps, IQueryParams } from '@saashq/ui/src/types';
 import React from 'react';
@@ -43,7 +43,7 @@ class Orders extends React.Component<IProps, {}> {
     super(props);
   }
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -54,27 +54,27 @@ class Orders extends React.Component<IProps, {}> {
     { name: 'created_time', title: __('created time') },
     { name: 'number', title: __('Number') },
     { name: 'pos', title: __('POS') },
-    { name: 'branch', title: __('Branch') },
-    { name: 'department', title: __('Department') },
+    { name: 'branch', title: __('Větev') },
+    { name: 'department', title: __('Oddělení') },
     { name: 'cashier', title: __('Cashier') },
     { name: 'type', title: __('Type') },
     { name: 'billType', title: __('Bill Type') },
     { name: 'companyRD', title: __('Company RD') },
     { name: 'customerType', title: __('Customer type') },
-    { name: 'customer', title: __('Customer') },
+    { name: 'customer', title: __('Zákazník') },
     { name: 'barcode', title: __('Barcode') },
     { name: 'subBarcode', title: __('Factor') },
     { name: 'code', title: __('Code') },
     { name: 'categoryCode', title: __('Category code') },
     { name: 'categoryName', title: __('Category name') },
-    { name: 'name', title: __('Name') },
+    { name: 'name', title: __('Název') },
     { name: 'count', title: __('Count') },
     { name: 'firstPrice', title: __('First price') },
     { name: 'discount', title: __('Discount') },
     { name: 'discountType', title: __('Discount type') },
     { name: 'salePrice', title: __('Sale price') },
     { name: 'amount', title: __('Amount') },
-    { name: 'payType', title: __('Payment type') }
+    { name: 'payType', title: __('Payment type') },
   ];
 
   render() {
@@ -89,7 +89,7 @@ class Orders extends React.Component<IProps, {}> {
       onSelect,
       onSearch,
       isFiltered,
-      clearFilter
+      clearFilter,
     } = this.props;
 
     const rightMenuProps = {
@@ -98,7 +98,7 @@ class Orders extends React.Component<IProps, {}> {
       onSearch,
       isFiltered,
       clearFilter,
-      queryParams
+      queryParams,
     };
 
     const actionBarRight = (
@@ -132,7 +132,7 @@ class Orders extends React.Component<IProps, {}> {
         <Table whiteSpace="nowrap" bordered={true} hover={true}>
           <thead>
             <tr>
-              {this.tableHeaders.map(th => (
+              {this.tableHeaders.map((th) => (
                 <th>
                   <SortHandler
                     key={th.name}
@@ -145,7 +145,7 @@ class Orders extends React.Component<IProps, {}> {
             </tr>
           </thead>
           <tbody id="orders">
-            {(orders || []).map(order => (
+            {(orders || []).map((order) => (
               <Record
                 order={order}
                 key={`${order._id}_${order.items._id}`}

@@ -5,7 +5,7 @@ import {
   SortHandler,
   Table,
   Wrapper,
-  ModalTrigger
+  ModalTrigger,
 } from '@saashq/ui/src';
 import dayjs from 'dayjs';
 import { IRouterProps, IQueryParams } from '@saashq/ui/src/types';
@@ -35,7 +35,7 @@ class SyncHistoryList extends React.Component<IProps, {}> {
     super(props);
   }
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -46,13 +46,8 @@ class SyncHistoryList extends React.Component<IProps, {}> {
   };
 
   render() {
-    const {
-      history,
-      syncHistories,
-      totalCount,
-      loading,
-      queryParams
-    } = this.props;
+    const { history, syncHistories, totalCount, loading, queryParams } =
+      this.props;
 
     const mainContent = (
       <Table whiteSpace="nowrap" bordered={true} hover={true}>
@@ -62,7 +57,7 @@ class SyncHistoryList extends React.Component<IProps, {}> {
               <SortHandler sortField={'createdAt'} label={__('Date')} />
             </th>
             <th>
-              <SortHandler sortField={'createdBy'} label={__('User')} />
+              <SortHandler sortField={'createdBy'} label={__('Uživatel')} />
             </th>
             <th>
               <SortHandler
@@ -79,7 +74,7 @@ class SyncHistoryList extends React.Component<IProps, {}> {
           </tr>
         </thead>
         <tbody id="orders">
-          {(syncHistories || []).map(item => (
+          {(syncHistories || []).map((item) => (
             <ModalTrigger
               title="Sync erkhet information"
               trigger={
@@ -98,14 +93,14 @@ class SyncHistoryList extends React.Component<IProps, {}> {
                       ${item.error || ''}
                       ${(item.responseData?.error || '').replace(
                         'ЕБаримт руу илгээгдээгүй түр баримт болно.',
-                        ''
+                        '',
                       )}
                       `}
                   </td>
                 </tr>
               }
               size="xl"
-              content={props => this.rowContent(props, item)}
+              content={(props) => this.rowContent(props, item)}
             />
           ))}
         </tbody>

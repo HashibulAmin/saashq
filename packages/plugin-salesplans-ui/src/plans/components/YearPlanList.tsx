@@ -8,7 +8,7 @@ import {
   DataWithLoader,
   FormControl,
   ModalTrigger,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import { IYearPlan } from '../types';
 import { MainStyleTitle as Title } from '@saashq/ui/src/styles/eindex';
@@ -44,11 +44,11 @@ class YearPlans extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue || ''
+      searchValue: this.props.searchValue || '',
     };
   }
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -79,7 +79,7 @@ class YearPlans extends React.Component<Props, State> {
   renderRow = () => {
     const { yearPlans, history, toggleBulk, bulk, edit } = this.props;
 
-    return yearPlans.map(yearPlan => (
+    return yearPlans.map((yearPlan) => (
       <Row
         key={yearPlan._id}
         history={history}
@@ -91,14 +91,14 @@ class YearPlans extends React.Component<Props, State> {
     ));
   };
 
-  modalContent = props => {
+  modalContent = (props) => {
     return <Form {...props} />;
   };
 
-  removeYearPlans = yearPlans => {
+  removeYearPlans = (yearPlans) => {
     const yearPlanIds: string[] = [];
 
-    yearPlans.forEach(yearPlan => {
+    yearPlans.forEach((yearPlan) => {
       yearPlanIds.push(yearPlan._id);
     });
 
@@ -114,7 +114,7 @@ class YearPlans extends React.Component<Props, State> {
           .then(() => {
             this.removeYearPlans(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 
@@ -140,7 +140,7 @@ class YearPlans extends React.Component<Props, State> {
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.search}
           value={this.state.searchValue}
           autoFocus={true}
@@ -158,13 +158,8 @@ class YearPlans extends React.Component<Props, State> {
   }
 
   render() {
-    const {
-      isAllSelected,
-      totalCount,
-      totalSum,
-      queryParams,
-      history
-    } = this.props;
+    const { isAllSelected, totalCount, totalSum, queryParams, history } =
+      this.props;
 
     const content = (
       <TableWrapper>
@@ -179,11 +174,11 @@ class YearPlans extends React.Component<Props, State> {
                 />
               </th>
               <th rowSpan={2}>{__('Year')}</th>
-              <th rowSpan={2}>{__('Branch')}</th>
-              <th rowSpan={2}>{__('Department')}</th>
+              <th rowSpan={2}>{__('Větev')}</th>
+              <th rowSpan={2}>{__('Oddělení')}</th>
               <th rowSpan={2}>{__('Product')}</th>
               <th>{__('Uom')}</th>
-              {MONTHS.map(m => (
+              {MONTHS.map((m) => (
                 <th key={m}>{m}</th>
               ))}
               <th>{__('Sum')}</th>
@@ -191,13 +186,13 @@ class YearPlans extends React.Component<Props, State> {
             </tr>
             <tr>
               <th>{__('Sum')}:</th>
-              {MONTHS.map(m => (
+              {MONTHS.map((m) => (
                 <th key={m}>{totalSum[m]}</th>
               ))}
               <th>
                 {Object.values(totalSum).reduce(
                   (sum, i) => Number(sum) + Number(i),
-                  0
+                  0,
                 )}
               </th>
               <th>{__('')}</th>
@@ -228,7 +223,7 @@ class YearPlans extends React.Component<Props, State> {
             data={content}
             loading={false}
             count={totalCount}
-            emptyText="There is no data"
+            emptyText="Nejsou žádná data"
             emptyImage="/images/actions/5.svg"
           />
         }

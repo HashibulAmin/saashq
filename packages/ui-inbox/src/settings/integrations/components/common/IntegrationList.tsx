@@ -1,6 +1,6 @@
 import {
   IIntegration,
-  IntegrationMutationVariables
+  IntegrationMutationVariables,
 } from '@saashq/ui-inbox/src/settings/integrations/types';
 
 import { Count } from '@saashq/ui/src/styles/main';
@@ -21,7 +21,7 @@ type Props = {
   kind?: string | null;
   editIntegration: (
     id: string,
-    { name, brandId, channelIds }: IntegrationMutationVariables
+    { name, brandId, channelIds }: IntegrationMutationVariables,
   ) => void;
   queryParams: any;
   disableAction?: boolean;
@@ -47,14 +47,14 @@ class IntegrationList extends React.Component<Props, State> {
       editIntegration,
       queryParams: { _id },
       disableAction,
-      repair
+      repair,
     } = this.props;
 
     const showExternalInfoColumn = () => {
       this.setState({ showExternalInfo: true });
     };
 
-    return integrations.map(i => (
+    return integrations.map((i) => (
       <IntegrationListItem
         key={i._id}
         _id={_id}
@@ -94,7 +94,7 @@ class IntegrationList extends React.Component<Props, State> {
         <Table>
           <thead>
             <tr>
-              <th>{__('Name')}</th>
+              <th>{__('Název')}</th>
               <th>{__('Kind')}</th>
               <th>{__('Brand')}</th>
               <th>{__('Status')}</th>
@@ -102,7 +102,7 @@ class IntegrationList extends React.Component<Props, State> {
               {this.state.showExternalInfo ? (
                 <th>{__('External info')}</th>
               ) : null}
-              <th style={{ width: 130 }}>{__('Actions')}</th>
+              <th style={{ width: 130 }}>{__('Akce')}</th>
             </tr>
           </thead>
           <tbody>{this.renderRows()}</tbody>

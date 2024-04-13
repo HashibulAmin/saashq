@@ -38,7 +38,7 @@ interface IProps extends IRouterProps {
   emptyBulk: () => void;
   removePeriodLocks: (
     doc: { periodLockIds: string[] },
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
   history: any;
   queryParams: any;
@@ -56,7 +56,7 @@ class PeriodLocksList extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue
+      searchValue: this.props.searchValue,
     };
   }
 
@@ -65,7 +65,7 @@ class PeriodLocksList extends React.Component<IProps, State> {
     toggleAll(periodLocks, 'periodLocks');
   };
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -80,17 +80,17 @@ class PeriodLocksList extends React.Component<IProps, State> {
     }, 500);
   };
 
-  removePeriodLocks = periodLocks => {
+  removePeriodLocks = (periodLocks) => {
     const periodLockIds: string[] = [];
 
-    periodLocks.forEach(periodLock => {
+    periodLocks.forEach((periodLock) => {
       periodLockIds.push(periodLock._id);
     });
 
     this.props.removePeriodLocks({ periodLockIds }, this.props.emptyBulk);
   };
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -106,7 +106,7 @@ class PeriodLocksList extends React.Component<IProps, State> {
       isAllSelected,
       totalCount,
       queryParams,
-      currentUser
+      currentUser,
     } = this.props;
 
     const mainContent = (
@@ -128,7 +128,7 @@ class PeriodLocksList extends React.Component<IProps, State> {
             </tr>
           </thead>
           <tbody id="periodLocks">
-            {periodLocks.map(periodLock => (
+            {periodLocks.map((periodLock) => (
               <PeriodLockRow
                 periodLock={periodLock}
                 isChecked={bulk.includes(periodLock)}
@@ -156,7 +156,7 @@ class PeriodLocksList extends React.Component<IProps, State> {
           .then(() => {
             this.removePeriodLocks(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 
@@ -171,7 +171,7 @@ class PeriodLocksList extends React.Component<IProps, State> {
       );
     }
 
-    const periodLockForm = props => {
+    const periodLockForm = (props) => {
       return <PeriodLockForm {...props} queryParams={queryParams} />;
     };
 
@@ -179,7 +179,7 @@ class PeriodLocksList extends React.Component<IProps, State> {
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.search}
           value={this.state.searchValue}
           autoFocus={true}
@@ -208,8 +208,8 @@ class PeriodLocksList extends React.Component<IProps, State> {
           <Wrapper.Header
             title={__(`Period Locks`) + ` (${totalCount})`}
             queryParams={queryParams}
-            submenu={menuContracts.filter(row =>
-              can(row.permission, currentUser)
+            submenu={menuContracts.filter((row) =>
+              can(row.permission, currentUser),
             )}
           />
         }

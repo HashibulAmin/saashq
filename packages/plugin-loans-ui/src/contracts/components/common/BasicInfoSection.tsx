@@ -41,7 +41,7 @@ class BasicInfoSection extends React.Component<Props, State> {
     super(props);
     this.state = {
       documents: [],
-      loading: false
+      loading: false,
     };
   }
 
@@ -51,7 +51,7 @@ class BasicInfoSection extends React.Component<Props, State> {
     const onDelete = () =>
       confirm()
         .then(() => remove())
-        .catch(error => {
+        .catch((error) => {
           Alert.error(error.message);
         });
 
@@ -61,7 +61,7 @@ class BasicInfoSection extends React.Component<Props, State> {
       client
         .mutate({
           mutation: gql(queries.documents),
-          variables: { contentType: 'loans' }
+          variables: { contentType: 'loans' },
         })
         .then(({ data }) => {
           this.setState({ documents: data.documents });
@@ -72,36 +72,36 @@ class BasicInfoSection extends React.Component<Props, State> {
         });
     };
 
-    const onPrint = mur => {
+    const onPrint = (mur) => {
       window.open(
         `${getEnv().REACT_APP_API_URL}/pl:documents/print?_id=${
           mur._id
-        }&contractId=${contract?._id}`
+        }&contractId=${contract?._id}`,
       );
     };
 
-    const closeForm = props => <CloseForm {...props} contract={contract} />;
+    const closeForm = (props) => <CloseForm {...props} contract={contract} />;
 
-    const interestChangeForm = props => (
+    const interestChangeForm = (props) => (
       <InterestChange {...props} contract={contract} />
     );
 
-    const contractForm = props => (
+    const contractForm = (props) => (
       <ContractForm change={true} {...props} contract={contract} />
     );
 
     return (
       <Action>
-        <Dropdown onToggle={isShown => isShown && onOpen()}>
+        <Dropdown onToggle={(isShown) => isShown && onOpen()}>
           <Dropdown.Toggle as={DropdownToggle} id="dropdown-info">
             <Button btnStyle="simple" size="medium">
-              {__('Action')}
+              {__('Akce')}
               <Icon icon="angle-down" />
             </Button>
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            {this.state.documents?.map(mur => {
+            {this.state.documents?.map((mur) => {
               return (
                 <li key={mur._id}>
                   <a href="#print" onClick={() => onPrint(mur)}>
@@ -153,7 +153,7 @@ class BasicInfoSection extends React.Component<Props, State> {
     const { Section } = Sidebar;
     const { contract, currentUser } = this.props;
 
-    const contractForm = props => (
+    const contractForm = (props) => (
       <ContractForm {...props} contract={contract} />
     );
 

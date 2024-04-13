@@ -23,7 +23,7 @@ function FormContainer(props: Props) {
     name,
     values,
     isSubmitted,
-    callback
+    callback,
   }: IButtonMutateProps) => {
     const _callback = (data: any) => {
       if (callback) {
@@ -31,7 +31,7 @@ function FormContainer(props: Props) {
       }
 
       history.push(
-        `/inventories/safe-remainders/details/${data.safeRemainderAdd._id}`
+        `/inventories/safe-remainders/details/${data.safeRemainderAdd._id}`,
       );
     };
 
@@ -44,14 +44,14 @@ function FormContainer(props: Props) {
         isSubmitted={isSubmitted}
         type="submit"
         uppercase={false}
-        successMessage={`You successfully added a ${name}`}
+        successMessage={`Úspěšně jste přidali a ${name}`}
       />
     );
   };
 
   const componentProps = {
     ...props,
-    renderButton
+    renderButton,
   };
 
   return <FormComponent {...componentProps} />;

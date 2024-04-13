@@ -32,7 +32,7 @@ class SegmentsList extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      expandedParentIds: []
+      expandedParentIds: [],
     };
   }
 
@@ -45,7 +45,7 @@ class SegmentsList extends React.Component<Props, State> {
 
     return (
       <ActionButtons>
-        <Tip text={__('Edit')} placement="top">
+        <Tip text={__('Upravit')} placement="top">
           <Link
             to={`/segments/edit?contentType=${contentType}&id=${segment._id}`}
           >
@@ -62,12 +62,12 @@ class SegmentsList extends React.Component<Props, State> {
   renderTree(segments) {
     const { expandedParentIds = [] } = this.state;
 
-    const handleExpand = parentId => {
+    const handleExpand = (parentId) => {
       if (expandedParentIds.includes(parentId)) {
         return this.setState({
           expandedParentIds: expandedParentIds.filter(
-            expandedParentId => expandedParentId !== parentId
-          )
+            (expandedParentId) => expandedParentId !== parentId,
+          ),
         });
       }
 
@@ -76,7 +76,7 @@ class SegmentsList extends React.Component<Props, State> {
 
     return (
       <>
-        {segments.map(segment => (
+        {segments.map((segment) => (
           <>
             <tr key={segment._id}>
               <td>
@@ -113,8 +113,8 @@ class SegmentsList extends React.Component<Props, State> {
       <Table>
         <thead>
           <tr>
-            <th>{__('Name')}</th>
-            <th>{__('Description')}</th>
+            <th>{__('Název')}</th>
+            <th>{__('Popis')}</th>
             <th>{__('Color')}</th>
             <th style={{ width: 80 }} />
           </tr>
@@ -128,7 +128,7 @@ class SegmentsList extends React.Component<Props, State> {
     const { types, contentType, loading, segments } = this.props;
     const parentSegments: ISegment[] = [];
 
-    segments.forEach(segment => {
+    segments.forEach((segment) => {
       if (!segment.subOf) {
         parentSegments.push(segment);
       }
@@ -136,7 +136,7 @@ class SegmentsList extends React.Component<Props, State> {
 
     const breadcrumb = [
       { title: __('Settings'), link: '/settings' },
-      { title: __('Segments') }
+      { title: __('Segments') },
     ];
 
     const title = (

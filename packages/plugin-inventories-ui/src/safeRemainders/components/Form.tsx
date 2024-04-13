@@ -36,7 +36,7 @@ export default function FormComponent(props: Props) {
   const [description, setDescription] = useState<string>('');
   const [categoryId, setCategoryId] = useState<string>('');
   const [attachment, setAttachment] = useState<IAttachment | undefined>(
-    undefined
+    undefined,
   );
   const [fieldsCombined, setFieldsCombined] = useState<any[]>([]);
   const [filterField, setFilterField] = useState<string>('');
@@ -53,11 +53,11 @@ export default function FormComponent(props: Props) {
       description,
       productCategoryId: categoryId,
       attachment,
-      filterField
+      filterField,
     };
   };
 
-  const changeAttachment = files => {
+  const changeAttachment = (files) => {
     setAttachment(files.length ? files[0] : undefined);
 
     if (isEnabled('forms')) {
@@ -65,8 +65,8 @@ export default function FormComponent(props: Props) {
         .query({
           query: gql(formQueries.fieldsCombinedByContentType),
           variables: {
-            contentType: 'products:product'
-          }
+            contentType: 'products:product',
+          },
         })
         .then(({ data }) => {
           setFieldsCombined(data?.fieldsCombinedByContentType || []);
@@ -74,7 +74,7 @@ export default function FormComponent(props: Props) {
     } else {
       setFieldsCombined([
         { name: 'code', label: 'code' },
-        { name: 'barcode', label: 'barcode' }
+        { name: 'barcode', label: 'barcode' },
       ]);
     }
   };
@@ -89,12 +89,12 @@ export default function FormComponent(props: Props) {
         <ControlLabel>{__('Choose B filter field')}</ControlLabel>
         <Select
           value={filterField || ''}
-          onChange={option =>
+          onChange={(option) =>
             setFilterField(!option ? '' : option.value.toString())
           }
-          options={(fieldsCombined || []).map(f => ({
+          options={(fieldsCombined || []).map((f) => ({
             value: f.name,
-            label: f.label
+            label: f.label,
           }))}
         />
       </FormGroup>
@@ -131,7 +131,7 @@ export default function FormComponent(props: Props) {
                 defaultValue={description}
                 onChange={(event: any) =>
                   setDescription(
-                    (event.currentTarget as HTMLButtonElement).value
+                    (event.currentTarget as HTMLButtonElement).value,
                   )
                 }
                 autoFocus
@@ -140,7 +140,7 @@ export default function FormComponent(props: Props) {
             </FormGroup>
 
             <FormGroup>
-              <ControlLabel>{__('Branch')}</ControlLabel>
+              <ControlLabel>{__('Větev')}</ControlLabel>
               <SelectBranches
                 label="Choose branch"
                 name="selectedBranchIds"
@@ -151,7 +151,7 @@ export default function FormComponent(props: Props) {
               />
             </FormGroup>
             <FormGroup>
-              <ControlLabel>{__('Department')}</ControlLabel>
+              <ControlLabel>{__('Oddělení')}</ControlLabel>
               <SelectDepartments
                 label="Choose department"
                 name="selectedDepartmentIds"
@@ -179,12 +179,12 @@ export default function FormComponent(props: Props) {
               <ControlLabel>Attach file</ControlLabel>
               <p>
                 {__(
-                  'xls file: A=>info, B=>filter, C=>changeCount || D=>lastCount'
+                  'xls file: A=>info, B=>filter, C=>changeCount || D=>lastCount',
                 )}
               </p>
               <Uploader
                 defaultFileList={attachment ? [attachment] : []}
-                onChange={files => changeAttachment(files)}
+                onChange={(files) => changeAttachment(files)}
                 multiple={false}
                 single={true}
               />
@@ -207,7 +207,7 @@ export default function FormComponent(props: Props) {
             name: 'product and service',
             values: generateDoc(values),
             isSubmitted,
-            callback: closeModal
+            callback: closeModal,
           })}
         </ModalFooter>
       </>

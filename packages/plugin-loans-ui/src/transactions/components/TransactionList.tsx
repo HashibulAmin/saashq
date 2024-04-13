@@ -11,7 +11,7 @@ import {
   Wrapper,
   BarItems,
   DropdownToggle,
-  Icon
+  Icon,
 } from '@saashq/ui/src';
 import { IRouterProps } from '@saashq/ui/src/types';
 import React from 'react';
@@ -41,7 +41,7 @@ interface IProps extends IRouterProps {
   emptyBulk: () => void;
   removeTransactions: (
     doc: { transactionIds: string[] },
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
 
   onSearch: (search: string) => void;
@@ -64,10 +64,10 @@ class TransactionsList extends React.Component<IProps> {
     toggleAll(transactions, 'transactions');
   };
 
-  removeTransactions = transactions => {
+  removeTransactions = (transactions) => {
     const transactionIds: string[] = [];
 
-    transactions.forEach(transaction => {
+    transactions.forEach((transaction) => {
       transactionIds.push(transaction._id);
     });
 
@@ -88,7 +88,7 @@ class TransactionsList extends React.Component<IProps> {
       onSearch,
       isFiltered,
       clearFilter,
-      currentUser
+      currentUser,
     } = this.props;
 
     const mainContent = (
@@ -112,7 +112,7 @@ class TransactionsList extends React.Component<IProps> {
               <th>
                 <SortHandler
                   sortField={'contract.description'}
-                  label={__('Description')}
+                  label={__('Popis')}
                 />
               </th>
               <th>
@@ -149,7 +149,7 @@ class TransactionsList extends React.Component<IProps> {
             </tr>
           </thead>
           <tbody id="transactions">
-            {transactions.map(transaction => (
+            {transactions.map((transaction) => (
               <TransactionRow
                 transaction={transaction}
                 isChecked={bulk.includes(transaction)}
@@ -171,7 +171,7 @@ class TransactionsList extends React.Component<IProps> {
           .then(() => {
             this.removeTransactions(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 
@@ -188,7 +188,7 @@ class TransactionsList extends React.Component<IProps> {
       );
     }
 
-    const repaymentForm = props => {
+    const repaymentForm = (props) => {
       return (
         <TransactionForm
           {...props}
@@ -198,17 +198,17 @@ class TransactionsList extends React.Component<IProps> {
       );
     };
 
-    const giveForm = props => {
+    const giveForm = (props) => {
       return (
         <TransactionForm {...props} type="give" queryParams={queryParams} />
       );
     };
 
-    const interestChangeForm = props => (
+    const interestChangeForm = (props) => (
       <InterestChange {...props} type="interestChange" />
     );
 
-    const interestReturnForm = props => (
+    const interestReturnForm = (props) => (
       <InterestChange {...props} type="interestReturn" />
     );
 
@@ -217,7 +217,7 @@ class TransactionsList extends React.Component<IProps> {
       onSearch,
       isFiltered,
       clearFilter,
-      queryParams
+      queryParams,
     };
 
     const actionBarRight = (
@@ -288,8 +288,8 @@ class TransactionsList extends React.Component<IProps> {
           <Wrapper.Header
             title={__(`Transactions`) + ` (${totalCount})`}
             queryParams={queryParams}
-            submenu={menuContracts.filter(row =>
-              can(row.permission, currentUser)
+            submenu={menuContracts.filter((row) =>
+              can(row.permission, currentUser),
             )}
           />
         }

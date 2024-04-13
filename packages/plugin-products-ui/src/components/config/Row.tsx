@@ -12,7 +12,7 @@ import Form from './UomsForm';
 import { IUom } from '../../types';
 
 export const TagWrapper = styledTS<{ space: number }>(styled.div)`
-  padding-left: ${props => props.space * 20}px;
+  padding-left: ${(props) => props.space * 20}px;
 `;
 
 type Props = {
@@ -32,22 +32,22 @@ class Row extends React.Component<Props, State> {
     this.state = { showMerge: false };
   }
 
-  onChangeDestination = option => {
+  onChangeDestination = (option) => {
     this.setState({ mergeDestination: option });
   };
 
-  renderEditAction = uom => {
+  renderEditAction = (uom) => {
     const { renderButton } = this.props;
 
     const editTrigger = (
       <Button btnStyle="link">
-        <Tip text={__('Edit')} placement="bottom">
+        <Tip text={__('Upravit')} placement="bottom">
           <Icon icon="edit-3" />
         </Tip>
       </Button>
     );
 
-    const content = props => (
+    const content = (props) => (
       <Form {...props} uom={uom} extended={true} renderButton={renderButton} />
     );
 
@@ -61,7 +61,7 @@ class Row extends React.Component<Props, State> {
     );
   };
 
-  remove = uom => {
+  remove = (uom) => {
     const { remove } = this.props;
 
     remove(uom);

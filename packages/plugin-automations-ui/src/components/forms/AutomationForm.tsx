@@ -719,7 +719,7 @@ class AutomationForm extends React.Component<Props, State> {
               className={isActionTab ? 'active' : ''}
               onClick={this.switchActionbarTab.bind(this, 'action')}
             >
-              {__('Actions')}
+              {__('Akce')}
             </TabTitle>
             <TabTitle
               className={isActionTab ? '' : 'active'}

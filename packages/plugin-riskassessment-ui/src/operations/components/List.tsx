@@ -7,7 +7,7 @@ import {
   ModalTrigger,
   router,
   Table,
-  __
+  __,
 } from '@saashq/ui/src';
 import { IRouterProps } from '@saashq/ui/src/types';
 import React from 'react';
@@ -36,14 +36,14 @@ class List extends React.Component<Props, State> {
     this.state = {
       selectedItems: [],
       searchValue: props.queryParams.searchValue || '',
-      perPage: 20
+      perPage: 20,
     };
   }
 
   renderAddButton = () => {
     const trigger = <Button btnStyle="success">{__('Add Operation')}</Button>;
 
-    const content = props => (
+    const content = (props) => (
       <Form {...props} queryParams={this.props.queryParams} />
     );
 
@@ -68,7 +68,7 @@ class List extends React.Component<Props, State> {
   };
 
   renderSearchField = () => {
-    const search = e => {
+    const search = (e) => {
       if (this.timer) {
         clearTimeout(this.timer);
       }
@@ -83,7 +83,7 @@ class List extends React.Component<Props, State> {
         router.setParams(history, { searchValue });
       }, 500);
     };
-    const moveCursorAtTheEnd = e => {
+    const moveCursorAtTheEnd = (e) => {
       const tmpValue = e.target.value;
 
       e.target.value = '';
@@ -106,17 +106,17 @@ class List extends React.Component<Props, State> {
     const { selectedItems } = this.state;
     const handleSelectAll = () => {
       if (!selectedItems.length) {
-        const branchIds = list.map(branch => branch._id);
+        const branchIds = list.map((branch) => branch._id);
         return this.setState({ selectedItems: branchIds });
       }
 
       this.setState({ selectedItems: [] });
     };
 
-    const handleSelect = id => {
+    const handleSelect = (id) => {
       if (selectedItems.includes(id)) {
         const removedSelectedItems = selectedItems.filter(
-          selectItem => selectItem !== id
+          (selectItem) => selectItem !== id,
         );
         return this.setState({ selectedItems: removedSelectedItems });
       }
@@ -124,10 +124,10 @@ class List extends React.Component<Props, State> {
     };
 
     const generateList = () => {
-      return list.map(operation =>
-        !list.find(op => op._id === operation.parentId)
+      return list.map((operation) =>
+        !list.find((op) => op._id === operation.parentId)
           ? { ...operation, parent: null }
-          : operation
+          : operation,
       );
     };
 
@@ -142,10 +142,10 @@ class List extends React.Component<Props, State> {
               />
             </th>
             <th>{__('Code')}</th>
-            <th>{__('Name')}</th>
-            <th>{__('Created At')}</th>
-            <th>{__('Modified At')}</th>
-            <th>{__('Actions')}</th>
+            <th>{__('Název')}</th>
+            <th>{__('Vytvořeno v')}</th>
+            <th>{__('Upraveno v')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>
@@ -190,7 +190,7 @@ class List extends React.Component<Props, State> {
       rightActionBar,
       content: this.renderContent(),
       loading,
-      totalCount
+      totalCount,
     };
 
     return <DefaultWrapper {...updateProps} />;

@@ -26,14 +26,14 @@ export default function List(props: Props) {
     <Table>
       <thead>
         <tr>
-          <th>{__('Name')}</th>
+          <th>{__('Název')}</th>
           <th>{__('Status')}</th>
           <th>{__('isPriority')}</th>
           <th>{__('Apply type')}</th>
           <th>{__('Created by')}</th>
           <th>{__('Created at')}</th>
           <th>{__('Last updated at')}</th>
-          <th>{__('Actions')}</th>
+          <th>{__('Akce')}</th>
         </tr>
       </thead>
       <tbody>{renderRow()}</tbody>

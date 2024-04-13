@@ -3,12 +3,12 @@ import {
   FlexItem,
   FlexRow,
   InputBar,
-  Title
+  Title,
 } from '@saashq/ui-settings/src/styles';
 import {
   FormControl,
   ModalTrigger,
-  Pagination
+  Pagination,
 } from '@saashq/ui/src/components';
 
 import Button from '@saashq/ui/src/components/Button';
@@ -46,15 +46,15 @@ function List({
   totalCount,
   history,
   remove,
-  loading
+  loading,
 }: Props) {
   let timer;
 
   const typeObject = contentTypes.find(
-    type => contentType === type.contentType
+    (type) => contentType === type.contentType,
   );
 
-  const searchHandler = e => {
+  const searchHandler = (e) => {
     if (timer) {
       clearTimeout(timer);
     }
@@ -74,7 +74,7 @@ function List({
         <FlexItem>
           <FormControl
             type="text"
-            placeholder={__('Type to search')}
+            placeholder={__('Zadejte a vyhledejte')}
             onChange={searchHandler}
             autoFocus={true}
           />
@@ -83,11 +83,11 @@ function List({
     );
   };
 
-  const modalContent = modalProps => {
+  const modalContent = (modalProps) => {
     const props = {
       ...modalProps,
       contentType,
-      history
+      history,
     };
 
     return <Form {...props} />;
@@ -100,7 +100,7 @@ function List({
   );
 
   function renderObjects() {
-    return list.map(obj => {
+    return list.map((obj) => {
       return <Row key={obj._id} obj={obj} remove={remove} />;
     });
   }
@@ -111,7 +111,7 @@ function List({
         <thead>
           <tr>
             <th>{__('name')}</th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{renderObjects()}</tbody>
@@ -170,7 +170,7 @@ function List({
 
   const breadcrumb = [
     { title: __('Settings'), link: '/settings' },
-    { title: __('Documents'), link: '/settings/documents' }
+    { title: __('Documents'), link: '/settings/documents' },
   ];
 
   return (

@@ -5,7 +5,7 @@ import {
   ModalTrigger,
   router,
   Table,
-  __
+  __,
 } from '@saashq/ui/src';
 import React from 'react';
 import { menuMovements } from '../../../common/constant';
@@ -31,11 +31,11 @@ class MovementItem extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      searchValue: props.queryParams.searchValue || ''
+      searchValue: props.queryParams.searchValue || '',
     };
   }
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -60,21 +60,21 @@ class MovementItem extends React.Component<Props, State> {
   renderForm() {
     const trigger = (
       <Button btnStyle="success" icon="plus-circle">
-        Add Movement
+        Přidat Pohyb
       </Button>
     );
 
-    const content = props => {
+    const content = (props) => {
       const updatedProps = {
         ...props,
-        queryParams: this.props.queryParams || {}
+        queryParams: this.props.queryParams || {},
       };
 
       return <Form {...updatedProps} />;
     };
     return (
       <ModalTrigger
-        title="Add Movement"
+        title="Přidat Pohyb"
         content={content}
         trigger={trigger}
         size="xl"
@@ -84,7 +84,7 @@ class MovementItem extends React.Component<Props, State> {
 
   renderRow() {
     const { items, queryParams } = this.props;
-    return items.map(movement => (
+    return items.map((movement) => (
       <Row key={movement._id} item={movement} queryParams={queryParams} />
     ));
   }
@@ -94,14 +94,14 @@ class MovementItem extends React.Component<Props, State> {
       <Table>
         <thead>
           <tr>
-            <th>{__('Asset Name')}</th>
-            <th>{__('Branch')}</th>
-            <th>{__('Department')}</th>
-            <th>{__('Team Member')}</th>
-            <th>{__('Company')}</th>
-            <th>{__('Customer')}</th>
-            <th>{__('Created At')}</th>
-            <th>{__('Actions')}</th>
+            <th>{__('Název Díla')}</th>
+            <th>{__('Větev')}</th>
+            <th>{__('Oddělení')}</th>
+            <th>{__('Člen Týmu')}</th>
+            <th>{__('Společnost')}</th>
+            <th>{__('Zákazník')}</th>
+            <th>{__('Vytvořeno v')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{this.renderRow()}</tbody>
@@ -116,7 +116,7 @@ class MovementItem extends React.Component<Props, State> {
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.search}
           value={this.state.searchValue}
           autoFocus={true}
@@ -127,12 +127,12 @@ class MovementItem extends React.Component<Props, State> {
     );
 
     const updatedProps = {
-      title: 'Asset Movement Items',
+      title: 'Položky Pohybu Aktiv',
       subMenu: menuMovements,
       rightActionBar,
       content: this.renderList(),
       sidebar: <SideBar history={history} queryParams={queryParams} />,
-      totalCount
+      totalCount,
     };
 
     return <DefaultWrapper {...updatedProps} />;

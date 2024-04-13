@@ -6,7 +6,7 @@ import {
   ModalTrigger,
   Table,
   __,
-  router
+  router,
 } from '@saashq/ui/src';
 import { IRouterProps } from '@saashq/ui/src/types';
 import React from 'react';
@@ -37,7 +37,7 @@ class List extends React.Component<Props, State> {
 
     this.state = {
       searchValue: props.queryParams.searchValue || '',
-      selectedItems: []
+      selectedItems: [],
     };
   }
 
@@ -46,7 +46,7 @@ class List extends React.Component<Props, State> {
       <Button btnStyle="success">{__('Add Grouping Indicators')}</Button>
     );
 
-    const content = props => (
+    const content = (props) => (
       <Form queryParams={this.props.queryParams} {...props} />
     );
 
@@ -62,7 +62,7 @@ class List extends React.Component<Props, State> {
   }
 
   renderSearchField = () => {
-    const handleSearch = e => {
+    const handleSearch = (e) => {
       if (this.timer) {
         clearTimeout(this.timer);
       }
@@ -104,16 +104,16 @@ class List extends React.Component<Props, State> {
 
     const selectAll = () => {
       if (!selectedItems.length) {
-        const ids = list.map(item => item._id);
+        const ids = list.map((item) => item._id);
         return this.setState({ selectedItems: ids });
       }
 
       this.setState({ selectedItems: [] });
     };
 
-    const selectItem = id => {
+    const selectItem = (id) => {
       if (selectedItems.includes(id)) {
-        const newselectedItems = selectedItems.filter(p => p !== id);
+        const newselectedItems = selectedItems.filter((p) => p !== id);
         return this.setState({ selectedItems: newselectedItems });
       }
       this.setState({ selectedItems: [...selectedItems, id] });
@@ -126,15 +126,15 @@ class List extends React.Component<Props, State> {
             <th>
               <FormControl componentClass="checkbox" onClick={selectAll} />
             </th>
-            <th>{__('Name')}</th>
+            <th>{__('Název')}</th>
             <th>{__('Tags')}</th>
-            <th>{__('Created At')}</th>
-            <th>{__('Modified At')}</th>
+            <th>{__('Vytvořeno v')}</th>
+            <th>{__('Upraveno v')}</th>
             <th>{__('')}</th>
           </tr>
         </thead>
         <tbody>
-          {list.map(item => (
+          {list.map((item) => (
             <Row
               key={item._id}
               indicatorsGroups={item}
@@ -182,7 +182,7 @@ class List extends React.Component<Props, State> {
       sidebar: <Sidebar queryParams={queryParams} history={history} />,
       content: this.renderContent(),
       totalCount,
-      subMenu
+      subMenu,
     };
 
     return <DefaultWrapper {...updatedProps} />;

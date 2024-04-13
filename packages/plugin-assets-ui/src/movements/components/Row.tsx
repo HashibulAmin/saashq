@@ -80,7 +80,7 @@ class Row extends React.Component<Props> {
 
     return (
       <ModalTrigger
-        title="Edit Movement"
+        title="Upravit pohyb"
         content={renderDetail}
         trigger={renderRow}
         autoOpenKey="showListFormModal"

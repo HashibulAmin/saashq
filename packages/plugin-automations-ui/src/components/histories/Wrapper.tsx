@@ -33,17 +33,17 @@ class HistoriesHeader extends React.Component<Props, State> {
     this.state = {
       filterParams: {},
       page: 0,
-      perPage: 20
+      perPage: 20,
     };
   }
 
   onSelect = (
     name: string,
-    selectedItem: string & { value: string; label?: string }
+    selectedItem: string & { value: string; label?: string },
   ) => {
     const value = selectedItem ? selectedItem.value : '';
 
-    this.setState(({ [name]: value } as unknown) as Pick<State, keyof State>);
+    this.setState({ [name]: value } as unknown as Pick<State, keyof State>);
   };
 
   onDateChange = (type: string, date) => {
@@ -59,7 +59,7 @@ class HistoriesHeader extends React.Component<Props, State> {
     this.setState(filter);
   };
 
-  onFilter = e => {
+  onFilter = (e) => {
     const { status, triggerId, triggerType, beginDate, endDate } = this.state;
 
     this.setState({
@@ -68,8 +68,8 @@ class HistoriesHeader extends React.Component<Props, State> {
         triggerId,
         triggerType,
         beginDate,
-        endDate
-      }
+        endDate,
+      },
     });
   };
 
@@ -77,8 +77,8 @@ class HistoriesHeader extends React.Component<Props, State> {
     const props = {
       value: this.state[key],
       inputProps: {
-        placeholder: `${__(`Filter by ${__(name)}`)}`
-      }
+        placeholder: `${__(`Filter by ${__(name)}`)}`,
+      },
     };
 
     return (
@@ -113,11 +113,11 @@ class HistoriesHeader extends React.Component<Props, State> {
                 placeholder={__('Filter by Status')}
                 value={status}
                 options={[
-                  { value: 'active', label: 'Active' },
+                  { value: 'active', label: 'Aktivní' },
                   { value: 'waiting', label: 'Waiting' },
                   { value: 'error', label: 'Error' },
                   { value: 'missed', label: 'Missed' },
-                  { value: 'complete', label: 'Complete' }
+                  { value: 'complete', label: 'Complete' },
                 ]}
                 onChange={this.onSelect.bind(this, 'status')}
               />
@@ -130,10 +130,10 @@ class HistoriesHeader extends React.Component<Props, State> {
                 placeholder={__('Filter by Trigger')}
                 value={triggerId}
                 options={[
-                  ...automation.triggers.map(t => ({
+                  ...automation.triggers.map((t) => ({
                     value: t.id,
-                    label: t.label
-                  }))
+                    label: t.label,
+                  })),
                 ]}
                 onChange={this.onSelect.bind(this, 'triggerId')}
               />
@@ -146,7 +146,10 @@ class HistoriesHeader extends React.Component<Props, State> {
                 placeholder={__('Filter by Trigger Type')}
                 value={triggerType}
                 options={[
-                  ...triggersConst.map(t => ({ value: t.type, label: t.label }))
+                  ...triggersConst.map((t) => ({
+                    value: t.type,
+                    label: t.label,
+                  })),
                 ]}
                 onChange={this.onSelect.bind(this, 'triggerType')}
               />

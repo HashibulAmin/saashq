@@ -4,7 +4,7 @@ import {
   ControlLabel,
   FormGroup,
   ModalTrigger,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import { IDeal, IPaymentsData, IProductData } from '../../types';
 import { TabTitle, Tabs } from '@saashq/ui/src/components/tabs';
@@ -94,8 +94,8 @@ class ProductForm extends React.Component<Props, State> {
       changePayData: {},
       tempId: '',
       filterValues: JSON.parse(
-        localStorage.getItem('dealProductFormFilter') || '{}'
-      )
+        localStorage.getItem('dealProductFormFilter') || '{}',
+      ),
     };
   }
 
@@ -103,14 +103,14 @@ class ProductForm extends React.Component<Props, State> {
     this.updateTotal();
   }
 
-  duplicateProductItem = _id => {
+  duplicateProductItem = (_id) => {
     const { productsData, onChangeProductsData } = this.props;
 
-    const productData: any = productsData.find(p => p._id === _id);
+    const productData: any = productsData.find((p) => p._id === _id);
 
     productsData.push({
       ...productData,
-      _id: Math.random().toString()
+      _id: Math.random().toString(),
     });
 
     onChangeProductsData(productsData);
@@ -120,10 +120,10 @@ class ProductForm extends React.Component<Props, State> {
     }
   };
 
-  removeProductItem = _id => {
+  removeProductItem = (_id) => {
     const { productsData, onChangeProductsData } = this.props;
 
-    const removedProductsData = productsData.filter(p => p._id !== _id);
+    const removedProductsData = productsData.filter((p) => p._id !== _id);
 
     onChangeProductsData(removedProductsData);
 
@@ -133,8 +133,8 @@ class ProductForm extends React.Component<Props, State> {
   setDiscount = (id, discount) => {
     const { productsData, onChangeProductsData } = this.props;
 
-    const discountAdded = productsData.map(p =>
-      p.product?._id === id ? { ...p, discountPercent: discount } : p
+    const discountAdded = productsData.map((p) =>
+      p.product?._id === id ? { ...p, discountPercent: discount } : p,
     );
 
     onChangeProductsData(discountAdded);
@@ -142,7 +142,7 @@ class ProductForm extends React.Component<Props, State> {
     this.updateTotal(discountAdded);
   };
 
-  onChangeVatPercent = e => {
+  onChangeVatPercent = (e) => {
     this.setState({ vatPercent: parseInt(e.currentTarget.value) });
   };
 
@@ -150,15 +150,15 @@ class ProductForm extends React.Component<Props, State> {
     const { productsData, onChangeProductsData } = this.props;
     const { vatPercent } = this.state;
 
-    const updatedData = productsData.map(p => {
+    const updatedData = productsData.map((p) => {
       const pData = {
         ...p,
         isVatApplied: true,
         unitPrice: p.isVatApplied
           ? p.unitPrice
           : parseFloat(
-              ((p.unitPrice * 100) / (100 + (vatPercent || 0))).toFixed(4)
-            )
+              ((p.unitPrice * 100) / (100 + (vatPercent || 0))).toFixed(4),
+            ),
       };
 
       this.calculatePerProductAmount('', pData, false);
@@ -178,7 +178,7 @@ class ProductForm extends React.Component<Props, State> {
     const tax = {};
     const discount = {};
 
-    productsData.forEach(p => {
+    productsData.forEach((p) => {
       if (p.currency) {
         if (!bothTotal[p.currency]) {
           bothTotal[p.currency] = 0;
@@ -219,7 +219,7 @@ class ProductForm extends React.Component<Props, State> {
   renderTotal(totalKind, kindTxt) {
     const { productsData, onChangeProductsData } = this.props;
 
-    return Object.keys(totalKind).map(currency => (
+    return Object.keys(totalKind).map((currency) => (
       <ProductTotal
         key={kindTxt.concat(currency)}
         totalKind={totalKind[currency]}
@@ -233,12 +233,8 @@ class ProductForm extends React.Component<Props, State> {
   }
 
   renderContent() {
-    const {
-      productsData,
-      onChangeProductsData,
-      currentProduct,
-      dealQuery
-    } = this.props;
+    const { productsData, onChangeProductsData, currentProduct, dealQuery } =
+      this.props;
 
     if (productsData.length === 0) {
       return (
@@ -252,44 +248,45 @@ class ProductForm extends React.Component<Props, State> {
 
     if (filterValues.search) {
       filteredProductsData = filteredProductsData.filter(
-        p =>
+        (p) =>
           p.product &&
           (p.product.name.includes(filterValues.search) ||
-            p.product.code.includes(filterValues.search))
+            p.product.code.includes(filterValues.search)),
       );
     }
 
     if (filterValues.categories && filterValues.categories.length) {
       filteredProductsData = filteredProductsData.filter(
-        p => p.product && filterValues.categories.includes(p.product.categoryId)
+        (p) =>
+          p.product && filterValues.categories.includes(p.product.categoryId),
       );
     }
 
     if (filterValues.vendors && filterValues.vendors.length) {
       filteredProductsData = filteredProductsData.filter(
-        p => p.product && filterValues.vendors.includes(p.product.vendorId)
+        (p) => p.product && filterValues.vendors.includes(p.product.vendorId),
       );
     }
 
     if (filterValues.brand) {
       filteredProductsData = filteredProductsData.filter(
-        p =>
+        (p) =>
           p.product &&
           ((filterValues.brand === 'noBrand' &&
             !p.product.scopeBrandIds.length) ||
-            p.product.scopeBrandIds.includes(filterValues.brand))
+            p.product.scopeBrandIds.includes(filterValues.brand)),
       );
     }
 
     if (filterValues.branches && filterValues.branches.length) {
-      filteredProductsData = filteredProductsData.filter(p =>
-        filterValues.branches.includes(p.branchId)
+      filteredProductsData = filteredProductsData.filter((p) =>
+        filterValues.branches.includes(p.branchId),
       );
     }
 
     if (filterValues.departments && filterValues.departments.length) {
-      filteredProductsData = filteredProductsData.filter(p =>
-        filterValues.departments.includes(p.departmentId)
+      filteredProductsData = filteredProductsData.filter((p) =>
+        filterValues.departments.includes(p.departmentId),
       );
     }
 
@@ -315,8 +312,8 @@ class ProductForm extends React.Component<Props, State> {
               <th>{__('Is tick used')}</th>
               <th>{__('Is vat applied')}</th>
               <th>{__('Assigned to')}</th>
-              <th style={avStyle}>{__('Branch')}</th>
-              <th style={avStyle}>{__('Department')}</th>
+              <th style={avStyle}>{__('Větev')}</th>
+              <th style={avStyle}>{__('Oddělení')}</th>
               <th style={avStyle}>{__('Unit price (global)')}</th>
               <th style={avStyle}>{__('Unit price percent')}</th>
               <th />
@@ -324,7 +321,7 @@ class ProductForm extends React.Component<Props, State> {
             </tr>
           </thead>
           <tbody id="products">
-            {filteredProductsData.map(productData => (
+            {filteredProductsData.map((productData) => (
               <ProductItem
                 key={productData._id}
                 advancedView={advancedView}
@@ -354,7 +351,7 @@ class ProductForm extends React.Component<Props, State> {
     const changePayData = Object.assign({}, total);
     const payments = paymentsData || {};
 
-    Object.keys(payments || {}).forEach(key => {
+    Object.keys(payments || {}).forEach((key) => {
       const perPaid = payments[key];
       const currency = perPaid.currency || '';
 
@@ -384,7 +381,7 @@ class ProductForm extends React.Component<Props, State> {
 
         if (!data.unitPrice && data.unitPrice !== 0) {
           return Alert.error(
-            'Please enter an unit price. It should be a number'
+            'Please enter an unit price. It should be a number',
           );
         }
 
@@ -441,7 +438,7 @@ class ProductForm extends React.Component<Props, State> {
 
       localStorage.setItem(
         'dealProductFormFilter',
-        JSON.stringify({ ...filterValues, [name]: value, ...otherValues })
+        JSON.stringify({ ...filterValues, [name]: value, ...otherValues }),
       );
     });
   };
@@ -466,7 +463,7 @@ class ProductForm extends React.Component<Props, State> {
           <ControlLabel>By product</ControlLabel>
           <FormControl
             type="text"
-            placeholder={__('Type to search')}
+            placeholder={__('Zadejte a vyhledejte')}
             onChange={(e: any) => this.onFilter('search', e.target.value)}
             value={filterValues.search}
           />
@@ -481,7 +478,7 @@ class ProductForm extends React.Component<Props, State> {
                 'category',
                 categoryId,
                 this.onFilterCategory,
-                childIds
+                childIds,
               )
             }
             hasChildIds={true}
@@ -494,7 +491,7 @@ class ProductForm extends React.Component<Props, State> {
             name="branches"
             initialValue={filterValues.branches}
             multi={true}
-            onSelect={branchIds => this.onFilter('branches', branchIds)}
+            onSelect={(branchIds) => this.onFilter('branches', branchIds)}
           />
         </FormGroup>
         <FormGroup>
@@ -504,7 +501,7 @@ class ProductForm extends React.Component<Props, State> {
             name="departments"
             initialValue={filterValues.departments}
             multi={true}
-            onSelect={departmentIds =>
+            onSelect={(departmentIds) =>
               this.onFilter('departments', departmentIds)
             }
           />
@@ -516,7 +513,7 @@ class ProductForm extends React.Component<Props, State> {
             name="vendors"
             initialValue={filterValues.vendors}
             multi={true}
-            onSelect={companyIds => this.onFilter('vendors', companyIds)}
+            onSelect={(companyIds) => this.onFilter('vendors', companyIds)}
           />
         </FormGroup>
         <FormGroup>
@@ -527,10 +524,10 @@ class ProductForm extends React.Component<Props, State> {
             initialValue={filterValues.brands}
             customOption={{
               label: 'No Brand',
-              value: 'noBrand'
+              value: 'noBrand',
             }}
             multi={false}
-            onSelect={brandId => this.onFilter('brand', brandId)}
+            onSelect={(brandId) => this.onFilter('brand', brandId)}
           />
         </FormGroup>
         <Button
@@ -548,7 +545,7 @@ class ProductForm extends React.Component<Props, State> {
   calculatePerProductAmount = (
     type: string,
     productData: IProductData,
-    callUpdateTotal = true
+    callUpdateTotal = true,
   ) => {
     const amount = productData.unitPrice * productData.quantity;
 
@@ -604,7 +601,7 @@ class ProductForm extends React.Component<Props, State> {
           unitPrice: product.unitPrice,
           globalUnitPrice: product.unitPrice,
           unitPricePercent: 100,
-          _id: Math.random().toString()
+          _id: Math.random().toString(),
         });
       }
 
@@ -615,13 +612,13 @@ class ProductForm extends React.Component<Props, State> {
       }
     };
 
-    const content = props => (
+    const content = (props) => (
       <ProductChooser
         {...props}
         onSelect={productOnChange}
         data={{
           name: 'Product',
-          products: []
+          products: [],
         }}
       />
     );
@@ -653,7 +650,7 @@ class ProductForm extends React.Component<Props, State> {
       currentTab,
       advancedView,
       unUsedTotal,
-      bothTotal
+      bothTotal,
     } = this.state;
 
     if (currentTab === 'payments') {

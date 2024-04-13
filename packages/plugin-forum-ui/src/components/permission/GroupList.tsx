@@ -54,7 +54,7 @@ class GroupList extends React.Component<IProps> {
   renderEditAction(object: IUserGroupDocument) {
     const trigger = (
       <Button btnStyle="link">
-        <Tip text={__('Edit')} placement="bottom">
+        <Tip text={__('Upravit')} placement="bottom">
           <Icon icon="edit" />
         </Tip>
       </Button>

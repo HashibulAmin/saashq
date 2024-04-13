@@ -44,7 +44,7 @@ class SideBar extends React.Component<Props, State> {
 
   editTrigger = (
     <Button btnStyle='link'>
-      <Tip text={__('Edit')}>
+      <Tip text={__('Upravit')}>
         <Icon icon='edit-3'></Icon>
       </Tip>
     </Button>

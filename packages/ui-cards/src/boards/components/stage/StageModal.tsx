@@ -45,20 +45,20 @@ export default class StageModal extends React.Component<Props, State> {
       selectedDocumentId: '',
       selectedDocumentName: '',
       copies: Number(
-        localStorage.getItem('saashq_stages_documents_copies') || 1
+        localStorage.getItem('saashq_stages_documents_copies') || 1,
       ),
       width: Number(
-        localStorage.getItem('saashq_stages_documents_width') || 300
+        localStorage.getItem('saashq_stages_documents_width') || 300,
       ),
       brandId: localStorage.getItem('saashq_stages_documents_brandIds') || '',
-      toggleModal: () => {}
+      toggleModal: () => {},
     };
   }
 
   onChangeCheckbox = (id: string, isChecked: boolean) => {
     const { item } = this.props;
     const changeItems = [...item];
-    changeItems.map(item => {
+    changeItems.map((item) => {
       if (item._id === id) {
         item.checked = isChecked;
       }
@@ -67,7 +67,7 @@ export default class StageModal extends React.Component<Props, State> {
     this.setState({ item: changeItems });
   };
 
-  onChange = e => {
+  onChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     this.setState({ [name]: value } as any, () => {
@@ -75,7 +75,7 @@ export default class StageModal extends React.Component<Props, State> {
     });
   };
 
-  onChangeBrand = brandId => {
+  onChangeBrand = (brandId) => {
     this.setState({ brandId }, () => {
       localStorage.setItem(`saashq_stages_documents_brandIds`, brandId);
     });
@@ -87,12 +87,12 @@ export default class StageModal extends React.Component<Props, State> {
     client
       .mutate({
         mutation: gql(queries.documents),
-        variables: { contentType: 'cards', subType: 'stageDeal' }
+        variables: { contentType: 'cards', subType: 'stageDeal' },
       })
       .then(({ data }) => {
         this.setState({
           documents: data.documents,
-          loading: false
+          loading: false,
         });
       })
       .catch(() => {
@@ -106,8 +106,8 @@ export default class StageModal extends React.Component<Props, State> {
     if (!selectedDocumentId) return Alert.error('Please select document !!!');
     try {
       const checkedItemIds = item
-        .filter(item => item.checked) // Filter only checked items
-        .map(item => item._id); // Map to an array of _id values
+        .filter((item) => item.checked) // Filter only checked items
+        .map((item) => item._id); // Map to an array of _id values
 
       if (checkedItemIds.length === 0) {
         return Alert.error('Please select item !!!');
@@ -125,7 +125,7 @@ export default class StageModal extends React.Component<Props, State> {
     // Update the selectedDocumentId in the state
     this.setState({
       selectedDocumentId: itemId,
-      selectedDocumentName: itemName
+      selectedDocumentName: itemName,
     });
 
     // Perform additional actions as needed based on the selected item
@@ -141,14 +141,14 @@ export default class StageModal extends React.Component<Props, State> {
         {loading ? 'loading' : ''}
         <Dropdown.Toggle variant="success" id="dropdown-basic">
           {selectedDocumentId
-            ? documents.find(item => item._id === selectedDocumentId)?.name ||
+            ? documents.find((item) => item._id === selectedDocumentId)?.name ||
               'Select Document'
             : 'Select Document'}
           {}
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          {documents.map(item => (
+          {documents.map((item) => (
             <Dropdown.Item
               key={item._id}
               onSelect={() => this.onchangeDocument(item._id, item.name)}
@@ -209,9 +209,9 @@ export default class StageModal extends React.Component<Props, State> {
                   name="brandId"
                   customOption={{
                     label: 'No Brand (noBrand)',
-                    value: 'noBrand'
+                    value: 'noBrand',
                   }}
-                  onSelect={brandId => this.onChangeBrand(brandId)}
+                  onSelect={(brandId) => this.onChangeBrand(brandId)}
                   multi={false}
                 />
               </FormGroup>
@@ -225,12 +225,12 @@ export default class StageModal extends React.Component<Props, State> {
             <thead>
               <tr>
                 <th>{__('Number')}</th>
-                <th>{__('Name')}</th>
-                <th>{__('Action')}</th>
+                <th>{__('Název')}</th>
+                <th>{__('Akce')}</th>
               </tr>
             </thead>
             <tbody>
-              {item.map(item => (
+              {item.map((item) => (
                 <tr key={item._id}>
                   <td>{item.number}</td>
                   <td>{item.name}</td>
@@ -238,7 +238,7 @@ export default class StageModal extends React.Component<Props, State> {
                     <input
                       type="checkbox"
                       checked={item.checked}
-                      onChange={event =>
+                      onChange={(event) =>
                         this.onChangeCheckbox(item._id, event.target.checked)
                       }
                     />

@@ -126,7 +126,7 @@ class ManageColumns extends React.Component<Props, State> {
         <FormGroup>
           <FormControl
             type="text"
-            placeholder={__('Type to search')}
+            placeholder={__('Zadejte a vyhledejte')}
             onChange={this.search}
             value={this.state.searchValue}
           />

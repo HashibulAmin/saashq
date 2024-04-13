@@ -277,7 +277,7 @@ class ContractForm extends React.Component<Props, State> {
                 {this.state.customerType === 'customer' && (
                   <FormGroup>
                     <ControlLabel required={true}>
-                      {__('Customer')}
+                      {__('Zákazník')}
                     </ControlLabel>
                     <SelectCustomers
                       label="Choose customer"
@@ -291,7 +291,9 @@ class ContractForm extends React.Component<Props, State> {
 
                 {this.state.customerType === 'company' && (
                   <FormGroup>
-                    <ControlLabel required={true}>{__('Company')}</ControlLabel>
+                    <ControlLabel required={true}>
+                      {__('Společnost')}
+                    </ControlLabel>
                     <SelectCompanies
                       label="Choose company"
                       name="customerId"
@@ -440,7 +442,7 @@ class ContractForm extends React.Component<Props, State> {
             <FormWrapper>
               <FormColumn>
                 <FormGroup>
-                  <ControlLabel>{__('Description')}</ControlLabel>
+                  <ControlLabel>{__('Popis')}</ControlLabel>
                   <FormControl
                     {...formProps}
                     max={140}

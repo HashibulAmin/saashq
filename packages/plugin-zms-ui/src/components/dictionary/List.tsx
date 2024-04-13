@@ -27,7 +27,7 @@ function List({
   types,
   remove,
   renderButton,
-  loading
+  loading,
 }: Props) {
   const trigger = (
     <Button id={'AddDictionaryButton'} btnStyle="success" icon="plus-circle">
@@ -35,7 +35,7 @@ function List({
     </Button>
   );
 
-  const modalContent = props => (
+  const modalContent = (props) => (
     <Form
       {...props}
       types={types}
@@ -65,11 +65,11 @@ function List({
           <th>{__('Startted')}</th>
           <th>{__('Code')}</th>
           <th>{__('Type')}</th>
-          <th>{__('Actions')}</th>
+          <th>{__('Akce')}</th>
         </tr>
       </thead>
       <tbody id={'ZmssShowing'}>
-        {dictionaries.map(dictionary => {
+        {dictionaries.map((dictionary) => {
           return (
             <Row
               space={0}
@@ -87,10 +87,11 @@ function List({
     </Table>
   );
 
-  const SideBarList = asyncComponent(() =>
-    import(
-      /* webpackChunkName: "List - Zmss" */ '../../containers/dictionary/SideBarList'
-    )
+  const SideBarList = asyncComponent(
+    () =>
+      import(
+        /* webpackChunkName: "List - Zmss" */ '../../containers/dictionary/SideBarList'
+      ),
   );
 
   return (
@@ -100,7 +101,7 @@ function List({
           title={__('Zmss')}
           submenu={[
             { title: 'Zms', link: '/plugin-zms/zms' },
-            { title: 'Dictionary', link: '/plugin-zms/dictionary' }
+            { title: 'Dictionary', link: '/plugin-zms/dictionary' },
           ]}
         />
       }

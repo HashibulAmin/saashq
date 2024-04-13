@@ -69,7 +69,7 @@ function CategoryForm({
 
     return (
       <>
-        <CommonFormGroup required={true} label="Name">
+        <CommonFormGroup required={true} label="Název">
           <FormControl
             name="name"
             {...formProps}
@@ -78,7 +78,7 @@ function CategoryForm({
             required={true}
           />
         </CommonFormGroup>
-        <CommonFormGroup required={true} label="Code">
+        <CommonFormGroup required={true} label="Kód">
           <FormControl
             name="code"
             {...formProps}
@@ -87,7 +87,7 @@ function CategoryForm({
             required={true}
           />
         </CommonFormGroup>
-        <CommonFormGroup label="Description">
+        <CommonFormGroup label="Popis">
           <FormControl
             name="description"
             {...formProps}
@@ -98,9 +98,9 @@ function CategoryForm({
 
         <FormWrapper>
           <FormColumn>
-            <CommonFormGroup label="Status">
+            <CommonFormGroup label="Postavení">
               <Select
-                placeholder={__('Choose status')}
+                placeholder={__('Vyberte stav')}
                 value={status}
                 options={ASSET_CATEGORY_STATUSES}
                 onChange={(option) => setStatus(option.value)}
@@ -109,21 +109,21 @@ function CategoryForm({
             </CommonFormGroup>
           </FormColumn>
           <FormColumn>
-            <CommonFormGroup label="Parent Category">
+            <CommonFormGroup label="Rodičovská Kategorie">
               <SelectWithAssetCategory
-                label="Choose Asset Category"
+                label="Vyberte Kategorii Majetku"
                 name="categoryId"
                 multi={false}
                 initialValue={object.parentId}
                 onSelect={(value) => setParentId(value as string)}
-                customOption={{ value: '', label: 'Choose Asset Category' }}
+                customOption={{ value: '', label: 'Vyberte Kategorii Majetku' }}
                 {...formProps}
               />
             </CommonFormGroup>
           </FormColumn>
         </FormWrapper>
 
-        <CommonFormGroup label="Image">
+        <CommonFormGroup label="Obraz">
           <Uploader
             onChange={onChangeAttachment}
             defaultFileList={attachments}
@@ -134,7 +134,7 @@ function CategoryForm({
 
         <ModalFooter>
           <Button btnStyle="simple" onClick={closeModal}>
-            Cancel
+            Zrušení
           </Button>
 
           {renderButton({

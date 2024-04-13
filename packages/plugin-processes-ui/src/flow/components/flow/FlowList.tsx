@@ -43,14 +43,14 @@ class List extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue
+      searchValue: this.props.searchValue,
     };
   }
 
   renderRow = () => {
     const { flows, history, toggleBulk, bulk } = this.props;
 
-    return flows.map(flow => (
+    return flows.map((flow) => (
       <Row
         history={history}
         key={flow._id}
@@ -66,17 +66,17 @@ class List extends React.Component<IProps, State> {
     toggleAll(flows, 'flows');
   };
 
-  removeProducts = flows => {
+  removeProducts = (flows) => {
     const flowIds: string[] = [];
 
-    flows.forEach(jobRefer => {
+    flows.forEach((jobRefer) => {
       flowIds.push(jobRefer._id);
     });
 
     this.props.remove({ flowIds }, this.props.emptyBulk);
   };
 
-  renderCount = flowCount => {
+  renderCount = (flowCount) => {
     return (
       <Count>
         {flowCount} flow{flowCount > 1 && 's'}
@@ -84,7 +84,7 @@ class List extends React.Component<IProps, State> {
     );
   };
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -122,14 +122,14 @@ class List extends React.Component<IProps, State> {
       queryParams,
       isAllSelected,
       history,
-      bulk
+      bulk,
     } = this.props;
 
     let actionBarRight = (
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.search}
           value={this.state.searchValue}
           autoFocus={true}
@@ -168,7 +168,7 @@ class List extends React.Component<IProps, State> {
                 />
               </th>
               <th>{__('Type')}</th>
-              <th>{__('Name')}</th>
+              <th>{__('Název')}</th>
               <th>{__('Product')}</th>
               <th>{__('Latest Branch')}</th>
               <th>{__('Latest Department')}</th>
@@ -198,7 +198,7 @@ class List extends React.Component<IProps, State> {
           .then(() => {
             this.removeProducts(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 

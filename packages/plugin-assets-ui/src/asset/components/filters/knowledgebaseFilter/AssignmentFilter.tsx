@@ -9,7 +9,7 @@ type Props = {
 };
 
 function KnowledgebaseAssignmentFilter({ queryParams, history }: Props) {
-  const handleWithKnowledge = type => {
+  const handleWithKnowledge = (type) => {
     router.setParams(history, { state: type });
     router.removeParams(history, 'page');
   };
@@ -17,7 +17,7 @@ function KnowledgebaseAssignmentFilter({ queryParams, history }: Props) {
   const renderTypeContent = () => {
     return (
       <SidebarList>
-        {checkKnowledge.map(type => (
+        {checkKnowledge.map((type) => (
           <li key={Math.random()}>
             <a
               href="#filter"
@@ -36,7 +36,7 @@ function KnowledgebaseAssignmentFilter({ queryParams, history }: Props) {
 
   return (
     <Box
-      title={__('Filter by Knowledgebase Assign')}
+      title={__('Filtrovat podle Znalostní Báze Přiřadit')}
       name="showFilterByType"
       isOpen={queryParams.state}
     >

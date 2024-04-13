@@ -2,7 +2,7 @@ import Button from '@saashq/ui/src/components/Button';
 import {
   ControlLabel,
   FormControl,
-  FormGroup
+  FormGroup,
 } from '@saashq/ui/src/components/form';
 import { ILocationOption } from '@saashq/ui/src/types';
 import { __ } from '@saashq/ui/src/utils';
@@ -10,7 +10,7 @@ import React, { useEffect } from 'react';
 import {
   LogicItem,
   LogicRow,
-  RowSmall
+  RowSmall,
 } from '@saashq/ui-forms/src/forms/styles';
 import { Column } from '@saashq/ui/src/styles/main';
 
@@ -24,16 +24,16 @@ type Props = {
 function LocationOption(props: Props) {
   const { option, onChangeOption, removeOption, index } = props;
 
-  const onChangeDescription = e => {
+  const onChangeDescription = (e) => {
     option.description = e.target.value;
     onChangeOption(option, index);
   };
 
-  const onChangeLat = e => {
+  const onChangeLat = (e) => {
     onChangeOption({ ...option, lat: Number(e.target.value) }, index);
   };
 
-  const onChangeLng = e => {
+  const onChangeLng = (e) => {
     onChangeOption({ ...option, lng: Number(e.target.value) }, index);
   };
 
@@ -66,9 +66,7 @@ function LocationOption(props: Props) {
             </Column>
           </LogicRow>
           <FormGroup>
-            <ControlLabel htmlFor="description">
-              {__('Description')}:
-            </ControlLabel>
+            <ControlLabel htmlFor="description">{__('Popis')}:</ControlLabel>
             <FormControl
               defaultValue={option.description}
               name="description"

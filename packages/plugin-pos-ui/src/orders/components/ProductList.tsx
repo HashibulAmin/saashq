@@ -11,7 +11,7 @@ import {
   Pagination,
   router,
   Table,
-  Wrapper
+  Wrapper,
 } from '@saashq/ui/src';
 import { IPosProduct } from '../types';
 import { IProductCategory } from '@saashq/ui-products/src/types';
@@ -45,19 +45,19 @@ class List extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.queryParams.searchValue
+      searchValue: this.props.queryParams.searchValue,
     };
   }
 
   renderRow = () => {
     const { products, history } = this.props;
 
-    return products.map(product => (
+    return products.map((product) => (
       <Row history={history} key={product._id} product={product} />
     ));
   };
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -90,7 +90,7 @@ class List extends React.Component<IProps, State> {
       isFiltered,
       clearFilter,
       onFilter,
-      totalCount
+      totalCount,
     } = this.props;
 
     const rightMenuProps = {
@@ -99,14 +99,14 @@ class List extends React.Component<IProps, State> {
       isFiltered,
       clearFilter,
       queryParams,
-      onFilter
+      onFilter,
     };
 
     let actionBarRight = (
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.search}
           defaultValue={queryParams.searchValue}
           autoFocus={true}
@@ -122,7 +122,7 @@ class List extends React.Component<IProps, State> {
           <thead>
             <tr>
               <th>{__('Code')}</th>
-              <th>{__('Name')}</th>
+              <th>{__('Název')}</th>
               <th>{__('Category')}</th>
               <th>{__('Unit Price')}</th>
               <th>{__('<10')}</th>
@@ -171,7 +171,7 @@ class List extends React.Component<IProps, State> {
           <DataWithLoader
             data={content}
             loading={loading}
-            emptyText="There is no data"
+            emptyText="Nejsou žádná data"
             emptyImage="/images/actions/5.svg"
           />
         }

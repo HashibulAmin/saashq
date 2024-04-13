@@ -41,7 +41,7 @@ class QuizForm extends React.Component<Props, State> {
 
     this.state = {
       selectedTags: quiz.tagIds || [],
-      state: quiz.state || 'DRAFT'
+      state: quiz.state || 'DRAFT',
     };
   }
 
@@ -67,7 +67,7 @@ class QuizForm extends React.Component<Props, State> {
       companyId: finalValues.companyId,
       tagIds: this.state.selectedTags,
       description: finalValues.description,
-      state: this.state.state
+      state: this.state.state,
     };
   };
 
@@ -78,7 +78,7 @@ class QuizForm extends React.Component<Props, State> {
           No {type}
         </option>
         {item &&
-          item.map(p => (
+          item.map((p) => (
             <option key={p._id} value={p._id}>
               {type === 'category' ? p.name : p.primaryName}
             </option>
@@ -88,26 +88,26 @@ class QuizForm extends React.Component<Props, State> {
   };
 
   renderTagOptions = () => {
-    return this.props.tags.map(tag => ({
+    return this.props.tags.map((tag) => ({
       value: tag._id,
       label: tag.name,
-      _id: tag._id
+      _id: tag._id,
     }));
   };
 
-  onChangeTag = tags => {
-    const ids = tags.map(m => m._id);
+  onChangeTag = (tags) => {
+    const ids = tags.map((m) => m._id);
     this.setState({ selectedTags: ids });
   };
 
-  onStatusChange = e => {
+  onStatusChange = (e) => {
     e.preventDefault();
 
     this.setState({ state: e.target.value });
     this.props.changeState(e.target.value, this.props.quiz._id);
   };
 
-  renderQuestionForm = props => (
+  renderQuestionForm = (props) => (
     <QuestionForm {...props} quizId={this.props.quiz._id} />
   );
 
@@ -123,7 +123,7 @@ class QuizForm extends React.Component<Props, State> {
     return 'No questions';
   };
 
-  renderDetail = object => {
+  renderDetail = (object) => {
     if (object._id) {
       return (
         <>
@@ -132,10 +132,10 @@ class QuizForm extends React.Component<Props, State> {
             <FormControl
               componentClass="select"
               name="state"
-              onChange={e => this.onStatusChange(e)}
+              onChange={(e) => this.onStatusChange(e)}
               value={this.state.state}
             >
-              {quizState.map(p => (
+              {quizState.map((p) => (
                 <option key={p.value} value={p.value}>
                   {p.label}
                 </option>
@@ -178,11 +178,11 @@ class QuizForm extends React.Component<Props, State> {
     return (
       <>
         <FormGroup>
-          <ControlLabel>{__('Name')}</ControlLabel>
+          <ControlLabel>{__('Název')}</ControlLabel>
           <FormControl {...formProps} name="name" defaultValue={object.name} />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Description')}</ControlLabel>
+          <ControlLabel>{__('Popis')}</ControlLabel>
           <FormControl
             {...formProps}
             name="description"
@@ -244,7 +244,7 @@ class QuizForm extends React.Component<Props, State> {
             values: this.generateDoc(values),
             isSubmitted,
             callback: closeModal,
-            object: Object.keys(quiz).length > 0 && quiz
+            object: Object.keys(quiz).length > 0 && quiz,
           })}
         </ModalFooter>
       </>

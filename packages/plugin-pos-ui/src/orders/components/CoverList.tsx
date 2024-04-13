@@ -5,7 +5,7 @@ import {
   SortHandler,
   Table,
   Wrapper,
-  BarItems
+  BarItems,
 } from '@saashq/ui/src';
 import { IRouterProps, IQueryParams } from '@saashq/ui/src/types';
 import React from 'react';
@@ -38,7 +38,7 @@ class Covers extends React.Component<IProps, {}> {
     super(props);
   }
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -62,13 +62,13 @@ class Covers extends React.Component<IProps, {}> {
                 <SortHandler sortField={'posToken'} label={__('POS')} />
               </th>
               <th>
-                <SortHandler sortField={'user'} label={__('User')} />
+                <SortHandler sortField={'user'} label={__('Uživatel')} />
               </th>
-              <th>{__('Actions')}</th>
+              <th>{__('Akce')}</th>
             </tr>
           </thead>
           <tbody id="covers">
-            {(covers || []).map(cover => (
+            {(covers || []).map((cover) => (
               <Row
                 cover={cover}
                 key={cover._id}

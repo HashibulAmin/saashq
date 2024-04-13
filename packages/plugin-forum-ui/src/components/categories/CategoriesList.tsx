@@ -17,7 +17,7 @@ type Props = {
 export default function CategoriesList({ forumCategories }: Props) {
   const breadcrumb = [
     { title: __('Settings'), link: '/settings' },
-    { title: __('Categories'), link: '/forums/categories' }
+    { title: __('Categories'), link: '/forums/categories' },
   ];
 
   const trigger = (
@@ -26,7 +26,7 @@ export default function CategoriesList({ forumCategories }: Props) {
     </Button>
   );
 
-  const modalContent = props => <CategoryFormContainer {...props} />;
+  const modalContent = (props) => <CategoryFormContainer {...props} />;
 
   const actionBarRight = (
     <ModalTrigger
@@ -50,12 +50,12 @@ export default function CategoriesList({ forumCategories }: Props) {
     <Table>
       <thead>
         <tr>
-          <th>{__('Name')}</th>
-          <th>{__('Description')}</th>
+          <th>{__('Název')}</th>
+          <th>{__('Popis')}</th>
           <th>{__('Code')}</th>
           <th>{__('Post Counts')}</th>
           <th>{__('Order')}</th>
-          <th>{__('Actions')}</th>
+          <th>{__('Akce')}</th>
         </tr>
       </thead>
       <tbody id={'ForumCategoriesList'}>

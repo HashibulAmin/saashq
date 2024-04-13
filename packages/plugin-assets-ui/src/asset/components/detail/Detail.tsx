@@ -20,9 +20,9 @@ function Details({ asset, currentUser, history, refetchDetail }: Props) {
   const title = asset.name || 'Unknown';
 
   const breadcrumb = [
-    { title: __('Settings'), link: '/settings' },
-    { title: __('Assets'), link: '/settings/assets' },
-    { title }
+    { title: __('Nastavení'), link: '/settings' },
+    { title: __('Aktiva'), link: '/settings/assets' },
+    { title },
   ];
 
   const content = (

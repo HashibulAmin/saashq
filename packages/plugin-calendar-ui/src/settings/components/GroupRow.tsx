@@ -32,7 +32,7 @@ class GroupRow extends React.Component<Props, State> {
     this.state = {
       showModal: false,
       showCalendarModal: false,
-      calendarId: ''
+      calendarId: '',
     };
   }
 
@@ -47,7 +47,7 @@ class GroupRow extends React.Component<Props, State> {
 
     return (
       <>
-        <Tip text={__('Edit')} placement="top">
+        <Tip text={__('Upravit')} placement="top">
           <Button btnStyle="link" onClick={edit} icon="edit-3" />
         </Tip>
         <Tip text={__('Delete')}>
@@ -86,7 +86,7 @@ class GroupRow extends React.Component<Props, State> {
 
     return (
       <>
-        <Tip text={__('Edit')} placement="top">
+        <Tip text={__('Upravit')} placement="top">
           <Button btnStyle="link" onClick={edit} icon="edit-3" />
         </Tip>
         <Tip text={__('Delete')}>
@@ -107,7 +107,7 @@ class GroupRow extends React.Component<Props, State> {
     return (
       <CalendarForm
         renderButton={renderCalendarButton}
-        calendar={group.calendars.find(c => c._id === calendarId)}
+        calendar={group.calendars.find((c) => c._id === calendarId)}
         closeModal={closeModal}
         show={showCalendarModal}
         groups={groups}
@@ -116,7 +116,7 @@ class GroupRow extends React.Component<Props, State> {
   }
 
   renderCalendarAccounts(calendars) {
-    return calendars.map(calendar => (
+    return calendars.map((calendar) => (
       <>
         <tr key={calendar._id}>
           <td>

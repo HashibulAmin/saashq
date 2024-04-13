@@ -41,11 +41,11 @@ function MergeAssets({ objects, mergeAssetLoading, save, closeModal }: Props) {
     }
 
     save({
-      ids: objects.map(asset => asset._id),
+      ids: objects.map((asset) => asset._id),
       data: { ...values },
       callback: () => {
         closeModal();
-      }
+      },
     });
   };
 
@@ -78,9 +78,9 @@ function MergeAssets({ objects, mergeAssetLoading, save, closeModal }: Props) {
 
     return (
       <React.Fragment>
-        <Title>{asset.name || 'Name'}</Title>
+        <Title>{asset.name || 'Název'}</Title>
         <ul>
-          {properties.map(info => {
+          {properties.map((info) => {
             const key = info.field;
 
             if (!asset[key]) {
@@ -126,25 +126,25 @@ function MergeAssets({ objects, mergeAssetLoading, save, closeModal }: Props) {
     }
   };
 
-  const renderCategoryInfo = value => {
+  const renderCategoryInfo = (value) => {
     return (
       <Info>
-        <InfoTitle>{__('Name')}: </InfoTitle>
+        <InfoTitle>{__('Název')}: </InfoTitle>
         <InfoDetail>{value.name}</InfoDetail>
       </Info>
     );
   };
 
-  const renderParentInfo = value => {
+  const renderParentInfo = (value) => {
     return (
       <Info>
-        <InfoTitle>{__('Name')}</InfoTitle>
+        <InfoTitle>{__('Název')}</InfoTitle>
         <InfoTitle>{value.name}</InfoTitle>
       </Info>
     );
   };
 
-  const renderVendorInfo = value => {
+  const renderVendorInfo = (value) => {
     return (
       <Info>
         <InfoTitle>{__('Info')}: </InfoTitle>
@@ -174,7 +174,7 @@ function MergeAssets({ objects, mergeAssetLoading, save, closeModal }: Props) {
 
       <ModalFooter>
         <Button btnStyle="simple" onClick={closeModal} icon="times-circle">
-          Cancel
+          Zrušení
         </Button>
         <Button
           type="submit"
@@ -183,7 +183,7 @@ function MergeAssets({ objects, mergeAssetLoading, save, closeModal }: Props) {
           disabled={mergeAssetLoading}
         >
           {mergeAssetLoading && <SmallLoader />}
-          Save
+          Uložit
         </Button>
       </ModalFooter>
     </form>

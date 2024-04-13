@@ -61,7 +61,7 @@ class List extends React.Component<Props, State> {
   };
   renderRightActionBar = (
     <ModalTrigger
-      title="Add Movement"
+      title="Přidat Mohyb"
       content={this.renderRightActionBarContent}
       trigger={this.renderRightActionBarButton}
       size="xl"
@@ -147,12 +147,12 @@ class List extends React.Component<Props, State> {
                 onChange={onchange}
               />
             </th>
-            <th>{__('User')}</th>
-            <th>{__('Moved At')}</th>
-            <th>{__('Description')}</th>
-            <th>{__('Created At')}</th>
-            <th>{__('Modified At')}</th>
-            <th>{__('Action')}</th>
+            <th>{__('Uživatel')}</th>
+            <th>{__('Přesunuto v')}</th>
+            <th>{__('Popis')}</th>
+            <th>{__('Vytvořeno v')}</th>
+            <th>{__('Upraveno v')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{this.renderRow(props)}</tbody>
@@ -173,7 +173,7 @@ class List extends React.Component<Props, State> {
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.search}
           value={this.state.searchValue}
           autoFocus={true}

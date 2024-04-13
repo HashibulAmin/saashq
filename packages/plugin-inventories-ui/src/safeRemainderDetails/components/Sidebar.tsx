@@ -37,17 +37,17 @@ export default function Sidebar(props: Props) {
             <span>{dayjs(safeRemainder.date).format('lll') || ''}</span>
           </FormGroup>
           <FormGroup>
-            <ControlLabel>{__('Description')}: </ControlLabel>
+            <ControlLabel>{__('Popis')}: </ControlLabel>
             <br />
             <span>{safeRemainder.description || ''}</span>
           </FormGroup>
           <FormGroup>
-            <ControlLabel>{__('Branch')}: </ControlLabel>
+            <ControlLabel>{__('Větev')}: </ControlLabel>
             <br />
             <span>{safeRemainder.branch && safeRemainder.branch.title}</span>
           </FormGroup>
           <FormGroup>
-            <ControlLabel>{__('Department')}: </ControlLabel>
+            <ControlLabel>{__('Oddělení')}: </ControlLabel>
             <br />
             <span>
               {safeRemainder.department && safeRemainder.department.title}
@@ -84,13 +84,13 @@ export default function Sidebar(props: Props) {
               options={[
                 { label: 'Тэнцүү', value: 'eq' },
                 { label: 'Их', value: 'gt' },
-                { label: 'Бага', value: 'lt' }
+                { label: 'Бага', value: 'lt' },
               ]}
               value={(queryParams.diffType || '').split(',')}
               onChange={(options: any) =>
                 setFilter(
                   'diffType',
-                  (options || []).map(o => o.value).join(',')
+                  (options || []).map((o) => o.value).join(','),
                 )
               }
               multi={true}
@@ -102,7 +102,7 @@ export default function Sidebar(props: Props) {
               options={[
                 { label: 'All', value: '' },
                 { label: 'New', value: 'new' },
-                { label: 'Checked', value: 'checked' }
+                { label: 'Checked', value: 'checked' },
               ]}
               value={queryParams.status || ''}
               onChange={(option: any) => setFilter('status', option.value)}

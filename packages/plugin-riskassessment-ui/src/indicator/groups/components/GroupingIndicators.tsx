@@ -4,7 +4,7 @@ import {
   FormControl,
   FormGroup,
   Icon,
-  __
+  __,
 } from '@saashq/ui/src';
 import { LinkButton } from '@saashq/ui/src/styles/main';
 import React from 'react';
@@ -28,18 +28,18 @@ export default class GroupingIndicators extends React.Component<Props, State> {
 
     this.state = {
       indicatorGroups: props.indicatorGroups || [],
-      generalConfig: props.generalConfig || {}
+      generalConfig: props.generalConfig || {},
     };
   }
 
   componentDidUpdate(
     prevProps: Readonly<Props>,
-    prevState: Readonly<State>
+    prevState: Readonly<State>,
   ): void {
     if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
       this.props.handleChange({
         ...this.state.generalConfig,
-        groups: this.state.indicatorGroups
+        groups: this.state.indicatorGroups,
       });
     }
   }
@@ -51,41 +51,41 @@ export default class GroupingIndicators extends React.Component<Props, State> {
       indicatorIds,
       calculateLogics,
       calculateMethod,
-      percentWeight
+      percentWeight,
     },
-    length
+    length,
   ) {
     const { indicatorGroups } = this.state;
 
     const handleSelect = (values, id) => {
       this.setState({
-        indicatorGroups: indicatorGroups.map(indicator =>
+        indicatorGroups: indicatorGroups.map((indicator) =>
           indicator._id === id
             ? { ...indicator, indicatorIds: values }
-            : indicator
-        )
+            : indicator,
+        ),
       });
     };
 
     const removeItem = () => {
       this.setState({
         indicatorGroups: indicatorGroups.filter(
-          indicator => indicator._id !== _id
-        )
+          (indicator) => indicator._id !== _id,
+        ),
       });
     };
 
-    const onChangeCalculateField = values => {
-      const updatedIndicatorGroups = indicatorGroups.map(indicator =>
-        indicator._id === _id ? { ...indicator, ...values } : indicator
+    const onChangeCalculateField = (values) => {
+      const updatedIndicatorGroups = indicatorGroups.map((indicator) =>
+        indicator._id === _id ? { ...indicator, ...values } : indicator,
       );
 
       this.setState({
-        indicatorGroups: updatedIndicatorGroups
+        indicatorGroups: updatedIndicatorGroups,
       });
     };
 
-    const handleChangePercentWeight = e => {
+    const handleChangePercentWeight = (e) => {
       const { value } = e.currentTarget as HTMLInputElement;
       const totalPercentWeight = indicatorGroups.reduce((acc, group) => {
         if (group._id === _id) {
@@ -96,20 +96,20 @@ export default class GroupingIndicators extends React.Component<Props, State> {
       }, 0);
       if (Number(value) > -1 && totalPercentWeight <= 100) {
         this.setState({
-          indicatorGroups: indicatorGroups.map(indicator =>
+          indicatorGroups: indicatorGroups.map((indicator) =>
             indicator._id === _id
               ? { ...indicator, percentWeight: Number(value) }
-              : indicator
-          )
+              : indicator,
+          ),
         });
       }
     };
-    const handleChangeGroupName = e => {
+    const handleChangeGroupName = (e) => {
       const { value } = e.currentTarget as HTMLInputElement;
       this.setState({
-        indicatorGroups: indicatorGroups.map(indicator =>
-          indicator._id === _id ? { ...indicator, name: value } : indicator
-        )
+        indicatorGroups: indicatorGroups.map((indicator) =>
+          indicator._id === _id ? { ...indicator, name: value } : indicator,
+        ),
       });
     };
     return (
@@ -122,7 +122,7 @@ export default class GroupingIndicators extends React.Component<Props, State> {
         <Padding vertical horizontal>
           <FormContainer column gap>
             <FormGroup>
-              <ControlLabel>{__('Name')}</ControlLabel>
+              <ControlLabel>{__('Název')}</ControlLabel>
               <FormControl
                 name="groupName"
                 type="text"
@@ -138,7 +138,7 @@ export default class GroupingIndicators extends React.Component<Props, State> {
                     name="indicatorIds"
                     label="Choose Indicators"
                     initialValue={indicatorIds}
-                    onSelect={values => handleSelect(values, _id)}
+                    onSelect={(values) => handleSelect(values, _id)}
                     multi={true}
                   />
                 </FormGroup>
@@ -168,7 +168,7 @@ export default class GroupingIndicators extends React.Component<Props, State> {
   }
 
   renderGeneralGroupConfig() {
-    const handleChange = values => {
+    const handleChange = (values) => {
       this.setState({ generalConfig: values });
     };
 
@@ -189,8 +189,8 @@ export default class GroupingIndicators extends React.Component<Props, State> {
       this.setState({
         indicatorGroups: [
           ...indicatorGroups,
-          { _id: Math.random().toString(), indicatorIds: [] }
-        ]
+          { _id: Math.random().toString(), indicatorIds: [] },
+        ],
       });
     };
 
@@ -200,8 +200,8 @@ export default class GroupingIndicators extends React.Component<Props, State> {
           <Padding vertical>{this.renderGeneralGroupConfig()}</Padding>
         )}
         <CollapseContent title="Groups">
-          {indicatorGroups.map(group =>
-            this.renderItem(group, indicatorGroups.length)
+          {indicatorGroups.map((group) =>
+            this.renderItem(group, indicatorGroups.length),
           )}
           <LinkButton onClick={addGroup}>
             <Icon icon="plus-1" /> {__('Add group')}

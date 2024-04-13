@@ -52,7 +52,7 @@ const QuickQrForm = (props: Props) => {
     type: config ? (config.isCompany ? 'company' : 'person') : undefined,
     ...config,
     name,
-    companyName: config ? config.name : ''
+    companyName: config ? config.name : '',
   });
 
   const generateDoc = () => {
@@ -76,8 +76,8 @@ const QuickQrForm = (props: Props) => {
         bankCode: state.bankCode,
         bankAccount: state.bankAccount,
         bankAccountName: state.bankAccountName,
-        merchantId: state.merchantId
-      }
+        merchantId: state.merchantId,
+      },
     };
 
     return payment ? { id: payment._id, ...generatedValues } : generatedValues;
@@ -91,7 +91,7 @@ const QuickQrForm = (props: Props) => {
     key: string,
     title: string,
     description?: string,
-    isPassword?: boolean
+    isPassword?: boolean,
   ) => {
     const value = state[key];
 
@@ -110,7 +110,7 @@ const QuickQrForm = (props: Props) => {
     );
   };
 
-  const renderInputs = formProps => {
+  const renderInputs = (formProps) => {
     if (!state.type) {
       return null;
     }
@@ -120,7 +120,7 @@ const QuickQrForm = (props: Props) => {
         style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
-          gap: '20px'
+          gap: '20px',
         }}
       >
         {state.type === 'company' && renderItem('companyName', 'Company Name')}
@@ -139,7 +139,7 @@ const QuickQrForm = (props: Props) => {
         {renderItem(
           'bankAccount',
           'Account Number',
-          'The account number to receive payments'
+          'The account number to receive payments',
         )}
         <FormGroup>
           <ControlLabel required={true}>Bank</ControlLabel>
@@ -155,7 +155,7 @@ const QuickQrForm = (props: Props) => {
             errors={formProps.errors}
           >
             <option value="">{__('Select a bank')}</option>
-            {BANK_CODES.map(bank => (
+            {BANK_CODES.map((bank) => (
               <option key={bank.value} value={bank.value}>
                 {bank.label}
               </option>
@@ -168,7 +168,7 @@ const QuickQrForm = (props: Props) => {
   };
 
   const renderMccCode = () => {
-    const onChangeMccCode = e => {
+    const onChangeMccCode = (e) => {
       setState({ ...state, mccCode: e.value });
     };
 
@@ -203,7 +203,7 @@ const QuickQrForm = (props: Props) => {
               onChange={onChangeConfig.bind(this, 'type')}
             >
               <option>{__('Please select a type')}</option>
-              <option value={'company'}>{__('Company')}</option>
+              <option value={'company'}>{__('Společnost')}</option>
               <option value={'person'}>{__('Individual')}</option>
             </FormControl>
           </FormGroup>
@@ -224,7 +224,7 @@ const QuickQrForm = (props: Props) => {
             passedName: 'payment',
             values: generateDoc(),
             isSubmitted,
-            callback: closeModal
+            callback: closeModal,
           })}
         </ModalFooter>
       </>

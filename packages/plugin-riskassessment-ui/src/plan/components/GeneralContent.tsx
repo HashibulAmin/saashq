@@ -4,7 +4,7 @@ import {
   DateControl,
   FormControl,
   FormGroup,
-  __
+  __,
 } from '@saashq/ui/src';
 import { Columns } from '@saashq/ui/src/styles/chooser';
 import { Column, DateContainer } from '@saashq/ui/src/styles/main';
@@ -29,7 +29,7 @@ class GeneralConfig extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      useGroup: false
+      useGroup: false,
     };
   }
 
@@ -51,7 +51,7 @@ class GeneralConfig extends React.Component<Props, State> {
     return (
       <FormContainer padding="15px" column>
         <FormGroup>
-          <ControlLabel required>{__('Name')}</ControlLabel>
+          <ControlLabel required>{__('Název')}</ControlLabel>
           <FormControl
             name="name"
             defaultValue={plan?.name}
@@ -67,7 +67,7 @@ class GeneralConfig extends React.Component<Props, State> {
             value={plan?.structureType}
             options={STRUCTURETYPES}
             multi={false}
-            onChange={props => onChange(props?.value, 'structureType')}
+            onChange={(props) => onChange(props?.value, 'structureType')}
           />
         </FormGroup>
         <SelectStructure
@@ -99,7 +99,7 @@ class GeneralConfig extends React.Component<Props, State> {
                 value={configs?.cardType}
                 options={CARDTYPES}
                 multi={false}
-                onChange={props =>
+                onChange={(props) =>
                   onChange({ ...configs, cardType: props?.value }, 'configs')
                 }
               />
@@ -110,11 +110,11 @@ class GeneralConfig extends React.Component<Props, State> {
                 boardId={configs?.boardId}
                 pipelineId={configs?.pipelineId}
                 stageId={configs?.stageId}
-                onChangeBoard={value => handleConfigChange(value, 'boardId')}
-                onChangePipeline={value =>
+                onChangeBoard={(value) => handleConfigChange(value, 'boardId')}
+                onChangePipeline={(value) =>
                   handleConfigChange(value, 'pipelineId')
                 }
-                onChangeStage={value => handleConfigChange(value, 'stageId')}
+                onChangeStage={(value) => handleConfigChange(value, 'stageId')}
                 autoSelectStage
               />
             )}
@@ -130,7 +130,7 @@ class GeneralConfig extends React.Component<Props, State> {
                   name="createDate"
                   value={plan.createDate}
                   placeholder="select from create date "
-                  onChange={date => onChange(date, 'createDate')}
+                  onChange={(date) => onChange(date, 'createDate')}
                 />
               </DateContainer>
             </FormGroup>
@@ -143,7 +143,7 @@ class GeneralConfig extends React.Component<Props, State> {
                   name="startDate"
                   value={plan.startDate}
                   placeholder="select from start date "
-                  onChange={date => onChange(date, 'startDate')}
+                  onChange={(date) => onChange(date, 'startDate')}
                 />
               </DateContainer>
             </FormGroup>
@@ -156,7 +156,7 @@ class GeneralConfig extends React.Component<Props, State> {
                   name="closeDate"
                   value={plan.closeDate}
                   placeholder="select from end date "
-                  onChange={date => onChange(date, 'closeDate')}
+                  onChange={(date) => onChange(date, 'closeDate')}
                 />
               </DateContainer>
             </FormGroup>

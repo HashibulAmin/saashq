@@ -16,12 +16,12 @@ class SelectWithAssetOnProperties extends React.Component<Props> {
 
     return (
       <SelectWithAssets
-        label="Choose Asset"
+        label="Vyberte Aktivum"
         name="assets"
         multi={false}
         initialValue={value}
         onSelect={onSelect}
-        customOption={{ value: '', label: 'Choose Asset' }}
+        customOption={{ value: '', label: 'Vyberte Aktivum' }}
       />
     );
   }

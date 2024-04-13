@@ -45,7 +45,7 @@ interface IProps extends IRouterProps {
   emptyBulk: () => void;
   removeCompanies: (
     doc: { companyIds: string[] },
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
   mergeCompanies: () => void;
   queryParams: any;
@@ -68,7 +68,7 @@ class CompaniesList extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue
+      searchValue: this.props.searchValue,
     };
   }
 
@@ -77,7 +77,7 @@ class CompaniesList extends React.Component<IProps, State> {
     toggleAll(companies, 'companies');
   };
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -92,17 +92,17 @@ class CompaniesList extends React.Component<IProps, State> {
     }, 500);
   };
 
-  removeCompanies = companies => {
+  removeCompanies = (companies) => {
     const companyIds: string[] = [];
 
-    companies.forEach(company => {
+    companies.forEach((company) => {
       companyIds.push(company._id);
     });
 
     this.props.removeCompanies({ companyIds }, this.props.emptyBulk);
   };
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -133,7 +133,7 @@ class CompaniesList extends React.Component<IProps, State> {
       isExpand,
       renderExpandButton,
       perPage,
-      page
+      page,
     } = this.props;
 
     const mainContent = (
@@ -199,7 +199,7 @@ class CompaniesList extends React.Component<IProps, State> {
 
     let actionBarLeft: React.ReactNode;
 
-    const companiesMerge = props => {
+    const companiesMerge = (props) => {
       return <CompaniesMerge {...props} objects={bulk} save={mergeCompanies} />;
     };
 
@@ -215,13 +215,13 @@ class CompaniesList extends React.Component<IProps, State> {
           .then(() => {
             this.removeCompanies(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 
       const refetchQuery = {
         query: gql(queries.companyCounts),
-        variables: { only: 'byTag' }
+        variables: { only: 'byTag' },
       };
 
       actionBarLeft = (
@@ -258,7 +258,7 @@ class CompaniesList extends React.Component<IProps, State> {
       );
     }
 
-    const manageColumns = props => {
+    const manageColumns = (props) => {
       return (
         <ManageColumns
           {...props}
@@ -269,7 +269,7 @@ class CompaniesList extends React.Component<IProps, State> {
       );
     };
 
-    const companyForm = props => {
+    const companyForm = (props) => {
       return <CompanyForm {...props} queryParams={queryParams} />;
     };
 
@@ -277,7 +277,7 @@ class CompaniesList extends React.Component<IProps, State> {
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.search}
           value={this.state.searchValue}
           autoFocus={true}
@@ -365,5 +365,5 @@ class CompaniesList extends React.Component<IProps, State> {
 
 export default withTableWrapper(
   'Company',
-  withRouter<IRouterProps>(CompaniesList)
+  withRouter<IRouterProps>(CompaniesList),
 );

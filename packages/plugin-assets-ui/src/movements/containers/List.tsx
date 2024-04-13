@@ -7,7 +7,7 @@ import React from 'react';
 import { graphql } from '@apollo/client/react/hoc';
 import {
   MovementQueryResponse,
-  MovementsTotalCountQueryResponse
+  MovementsTotalCountQueryResponse,
 } from '../../common/types';
 import { generateParams, movementRefetchQueries } from '../../common/utils';
 import List from '../components/List';
@@ -39,10 +39,10 @@ class ListContainer extends React.Component<FinalProps> {
       confirm()
         .then(() => {
           this.props.movementRemove({ variables: { ids } }).then(() => {
-            Alert.success('Removed movement');
+            Alert.success('Odstraněný pohyb');
           });
         })
-        .catch(error => Alert.error(error.message));
+        .catch((error) => Alert.error(error.message));
     };
 
     const updateProps = {
@@ -51,7 +51,7 @@ class ListContainer extends React.Component<FinalProps> {
       totalCount: movementsTotalCountQuery.assetMovementTotalCount,
       loading: movementsQuery.loading,
       history,
-      remove
+      remove,
     };
 
     return <List {...updateProps} />;
@@ -72,20 +72,20 @@ export default withProps(
     graphql<Props>(gql(queries.movements), {
       name: 'movementsQuery',
       options: ({ queryParams }) => ({
-        variables: generateParams({ queryParams })
-      })
+        variables: generateParams({ queryParams }),
+      }),
     }),
     graphql<Props>(gql(queries.movementsTotalCount), {
       name: 'movementsTotalCountQuery',
       options: ({ queryParams }) => ({
-        variables: generateParams({ queryParams })
-      })
+        variables: generateParams({ queryParams }),
+      }),
     }),
     graphql<Props>(gql(mutations.movementRemove), {
       name: 'movementRemove',
       options: ({ queryParams }) => ({
-        refetchQueries: movementRefetchQueries(queryParams)
-      })
-    })
-  )(ListContainer)
+        refetchQueries: movementRefetchQueries(queryParams),
+      }),
+    }),
+  )(ListContainer),
 );

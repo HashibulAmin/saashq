@@ -1,7 +1,7 @@
 import {
   FieldStyle,
   SidebarCounter,
-  SidebarList
+  SidebarList,
 } from '@saashq/ui/src/layout/styles';
 import { __, router } from 'coreui/utils';
 
@@ -29,21 +29,21 @@ function Leads({
   integrations = [],
   loading,
   loadMore,
-  all
+  all,
 }: IProps) {
   let timer;
   const [searchValue, setSearchValue] = useState(
-    router.getParam(history, 'searchTarget') || ''
+    router.getParam(history, 'searchTarget') || '',
   );
 
   const [disableLoadMoreBtn, setDisableLoadMoreBtn] = useState(false);
 
-  const onClick = formId => {
+  const onClick = (formId) => {
     router.setParams(history, { form: formId });
     router.removeParams(history, 'page');
   };
 
-  const search = e => {
+  const search = (e) => {
     if (timer) {
       clearTimeout(timer);
     }
@@ -61,7 +61,7 @@ function Leads({
     }, 1000);
   };
 
-  const moveCursorAtTheEnd = e => {
+  const moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
 
     e.target.value = '';
@@ -69,7 +69,7 @@ function Leads({
   };
 
   const renderIntegrations = () => {
-    return integrations.map(integration => {
+    return integrations.map((integration) => {
       const form = integration.form || ({} as any);
 
       return (
@@ -113,7 +113,7 @@ function Leads({
         <FormControl
           type="text"
           onChange={search}
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           value={searchValue}
           onFocus={moveCursorAtTheEnd}
         />

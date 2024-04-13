@@ -9,7 +9,7 @@ import {
   FormGroup,
   MainStyleFormWrapper as FormWrapper,
   MainStyleModalFooter as ModalFooter,
-  MainStyleScrollWrapper as ScrollWrapper
+  MainStyleScrollWrapper as ScrollWrapper,
 } from '@saashq/ui/src';
 import { IButtonMutateProps, IFormProps } from '@saashq/ui/src/types';
 import { IInsuranceType, IInsuranceTypeDoc } from '../types';
@@ -24,7 +24,7 @@ const SelectCompanies = asyncComponent(
     isEnabled('contacts') &&
     import(
       /* webpackChunkName: "SelectCompanies" */ '@saashq/ui-contacts/src/companies/containers/SelectCompanies'
-    )
+    ),
 );
 
 type Props = {
@@ -48,7 +48,7 @@ class InsuranceTypeForm extends React.Component<Props, State> {
     this.state = {
       name: insuranceType.name || '',
       description: insuranceType.description || '',
-      companyId: insuranceType.companyId || ''
+      companyId: insuranceType.companyId || '',
     };
   }
 
@@ -70,7 +70,7 @@ class InsuranceTypeForm extends React.Component<Props, State> {
       percent: Number(finalValues.percent),
       description: finalValues.description,
       companyId,
-      yearPercents: finalValues.yearPercents
+      yearPercents: finalValues.yearPercents,
     };
   };
 
@@ -90,7 +90,7 @@ class InsuranceTypeForm extends React.Component<Props, State> {
 
     const { companyId } = this.state;
 
-    const onSelectCompany = value => {
+    const onSelectCompany = (value) => {
       this.setState({ companyId: value });
     };
 
@@ -103,18 +103,18 @@ class InsuranceTypeForm extends React.Component<Props, State> {
                 ...formProps,
                 name: 'code',
                 required: true,
-                defaultValue: insuranceType.code || ''
+                defaultValue: insuranceType.code || '',
               })}
               {this.renderFormGroup('Name', {
                 ...formProps,
                 name: 'name',
                 required: true,
-                defaultValue: insuranceType.name || ''
+                defaultValue: insuranceType.name || '',
               })}
 
               {isEnabled('contacts') && (
                 <FormGroup>
-                  <ControlLabel required>{__('Company')}</ControlLabel>
+                  <ControlLabel required>{__('Společnost')}</ControlLabel>
                   <SelectCompanies
                     label="Choose an company"
                     name="companyId"
@@ -130,17 +130,17 @@ class InsuranceTypeForm extends React.Component<Props, State> {
                 ...formProps,
                 name: 'percent',
                 type: 'number',
-                defaultValue: insuranceType.percent || 0
+                defaultValue: insuranceType.percent || 0,
               })}
 
               {this.renderFormGroup('Year Percents', {
                 ...formProps,
                 name: 'yearPercents',
-                defaultValue: insuranceType.yearPercents || ''
+                defaultValue: insuranceType.yearPercents || '',
               })}
 
               <FormGroup>
-                <ControlLabel>{__('Description')}</ControlLabel>
+                <ControlLabel>{__('Popis')}</ControlLabel>
                 <FormControl
                   {...formProps}
                   max={140}
@@ -162,7 +162,7 @@ class InsuranceTypeForm extends React.Component<Props, State> {
             name: 'insuranceType',
             values: this.generateDoc(values),
             isSubmitted,
-            object: this.props.insuranceType
+            object: this.props.insuranceType,
           })}
         </ModalFooter>
       </>

@@ -5,7 +5,7 @@ import {
   CollapseContent,
   DataWithLoader,
   Pagination,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import Button from '@saashq/ui/src/components/Button';
 import { menuDynamic } from '../../constants';
@@ -29,20 +29,20 @@ const Customers = ({
   queryParams,
   setBrand,
   toCheckCustomers,
-  toSyncCustomers
+  toSyncCustomers,
 }: Props) => {
   const checkButton = (
     <BarItems>
       <span>{items && items.matched && `Matched: ${items.matched.count}`}</span>
       <SelectBrands
         label={__('Choose brands')}
-        onSelect={brand => setBrand(brand as string)}
+        onSelect={(brand) => setBrand(brand as string)}
         initialValue={queryParams.brandId}
         multi={false}
         name="selectedBrands"
         customOption={{
           label: 'No Brand (noBrand)',
-          value: ''
+          value: '',
         }}
       />
       <Button
@@ -69,12 +69,12 @@ const Customers = ({
           data = data.slice(
             Number(queryParams.page - 1) * queryParams.perPage,
             Number((queryParams.page - 1) * queryParams.perPage) +
-              Number(queryParams.perPage)
+              Number(queryParams.perPage),
           );
         } else {
           data = data.slice(
             (queryParams.page - 1) * 20,
-            (queryParams.page - 1) * 20 + 20
+            (queryParams.page - 1) * 20 + 20,
           );
         }
       }
@@ -89,7 +89,7 @@ const Customers = ({
     data = calculatePagination(data);
 
     const excludeSyncTrue = (syncData: any) => {
-      return syncData.filter(d => d.syncStatus === false);
+      return syncData.filter((d) => d.syncStatus === false);
     };
 
     const onClickSync = () => {
@@ -128,7 +128,7 @@ const Customers = ({
           <thead>
             <tr>
               <th>{__('Code')}</th>
-              <th>{__('Name')}</th>
+              <th>{__('Název')}</th>
               {action === 'UPDATE' ? <th>{__('Update Status')}</th> : <></>}
               {action === 'CREATE' ? <th>{__('Create Status')}</th> : <></>}
               {action === 'DELETE' ? <th>{__('Delete Status')}</th> : <></>}
@@ -146,7 +146,7 @@ const Customers = ({
       <br />
       <CollapseContent
         title={__(
-          'Create customers' + (items.create ? ':  ' + items.create.count : '')
+          'Create customers' + (items.create ? ':  ' + items.create.count : ''),
         )}
       >
         <>
@@ -165,7 +165,7 @@ const Customers = ({
       </CollapseContent>
       <CollapseContent
         title={__(
-          'Update customers' + (items.update ? ':  ' + items.update.count : '')
+          'Update customers' + (items.update ? ':  ' + items.update.count : ''),
         )}
       >
         <>
@@ -184,7 +184,7 @@ const Customers = ({
       </CollapseContent>
       <CollapseContent
         title={__(
-          'Delete customers' + (items.delete ? ':  ' + items.delete.count : '')
+          'Delete customers' + (items.delete ? ':  ' + items.delete.count : ''),
         )}
       >
         <>

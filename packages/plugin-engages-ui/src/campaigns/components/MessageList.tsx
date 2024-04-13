@@ -222,7 +222,7 @@ class List extends React.Component<Props> {
             <th>{__('Created date')}</th>
             <th>{__('Scheduled date')}</th>
             {isEnabled('tags') && <th>{__('Tags')}</th>}
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody id="engageMessages">

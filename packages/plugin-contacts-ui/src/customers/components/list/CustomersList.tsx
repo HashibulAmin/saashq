@@ -2,7 +2,7 @@ import CustomersMerge from '@saashq/ui-contacts/src/customers/components/detail/
 import {
   EMAIL_VALIDATION_STATUSES,
   PHONE_VALIDATION_STATUSES,
-  CUSTOMER_STATE_OPTIONS
+  CUSTOMER_STATE_OPTIONS,
 } from '@saashq/ui-contacts/src/customers/constants';
 import CustomerForm from '@saashq/ui-contacts/src/customers/containers/CustomerForm';
 import { queries } from '@saashq/ui-contacts/src/customers/graphql';
@@ -56,7 +56,7 @@ interface IProps extends IRouterProps {
   searchValue: string;
   removeCustomers: (
     doc: { customerIds: string[] },
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
   mergeCustomers: (doc: {
     ids: string[];
@@ -93,7 +93,7 @@ class CustomersList extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue
+      searchValue: this.props.searchValue,
     };
   }
 
@@ -116,10 +116,10 @@ class CustomersList extends React.Component<IProps, State> {
     toggleAll(customers, 'customers');
   };
 
-  removeCustomers = customers => {
+  removeCustomers = (customers) => {
     const customerIds: string[] = [];
 
-    customers.forEach(customer => {
+    customers.forEach((customer) => {
       customerIds.push(customer._id);
     });
 
@@ -145,7 +145,7 @@ class CustomersList extends React.Component<IProps, State> {
   changeVerificationStatus = (type: string, status: string, customers) => {
     const customerIds: string[] = [];
 
-    customers.forEach(customer => {
+    customers.forEach((customer) => {
       customerIds.push(customer._id);
     });
 
@@ -161,7 +161,7 @@ class CustomersList extends React.Component<IProps, State> {
       return Alert.warning(`Contacts are already in "${value}" state`);
     }
 
-    const _ids: string[] = bulk.map(c => c._id);
+    const _ids: string[] = bulk.map((c) => c._id);
 
     changeStateBulk(_ids, value);
   }
@@ -176,7 +176,7 @@ class CustomersList extends React.Component<IProps, State> {
       isAllSelected,
       isExpand,
       perPage,
-      page
+      page,
     } = this.props;
 
     return (
@@ -227,7 +227,7 @@ class CustomersList extends React.Component<IProps, State> {
     );
   }
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -272,7 +272,7 @@ class CustomersList extends React.Component<IProps, State> {
       queryParams,
       exportData,
       renderExpandButton,
-      mergeCustomerLoading
+      mergeCustomerLoading,
     } = this.props;
 
     const addTrigger = (
@@ -281,15 +281,15 @@ class CustomersList extends React.Component<IProps, State> {
       </Button>
     );
 
-    const onEmailStatusClick = e => {
+    const onEmailStatusClick = (e) => {
       this.changeVerificationStatus('email', e.target.id, bulk);
     };
 
-    const onPhoneStatusClick = e => {
+    const onPhoneStatusClick = (e) => {
       this.changeVerificationStatus('phone', e.target.id, bulk);
     };
 
-    const onStateClick = e => {
+    const onStateClick = (e) => {
       this.changeState(e.target.id);
     };
 
@@ -305,7 +305,7 @@ class CustomersList extends React.Component<IProps, State> {
           >
             {status.label}
           </a>
-        </li>
+        </li>,
       );
     }
 
@@ -321,7 +321,7 @@ class CustomersList extends React.Component<IProps, State> {
           >
             {status.label}
           </a>
-        </li>
+        </li>,
       );
     }
 
@@ -333,7 +333,7 @@ class CustomersList extends React.Component<IProps, State> {
           <a id={option.value} href="#changeState" onClick={onStateClick}>
             {option.label}
           </a>
-        </li>
+        </li>,
       );
     }
 
@@ -343,7 +343,7 @@ class CustomersList extends React.Component<IProps, State> {
       <DateFilter queryParams={queryParams} history={history} />
     );
 
-    const manageColumns = props => {
+    const manageColumns = (props) => {
       return (
         <ManageColumns
           {...props}
@@ -354,7 +354,7 @@ class CustomersList extends React.Component<IProps, State> {
       );
     };
 
-    const customerForm = props => {
+    const customerForm = (props) => {
       return (
         <CustomerForm
           {...props}
@@ -365,7 +365,7 @@ class CustomersList extends React.Component<IProps, State> {
       );
     };
 
-    const customersMerge = props => {
+    const customersMerge = (props) => {
       return (
         <CustomersMerge
           {...props}
@@ -380,7 +380,7 @@ class CustomersList extends React.Component<IProps, State> {
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.search}
           value={this.state.searchValue}
           autoFocus={true}
@@ -476,13 +476,13 @@ class CustomersList extends React.Component<IProps, State> {
           .then(() => {
             this.removeCustomers(bulk);
           })
-          .catch(e => {
+          .catch((e) => {
             Alert.error(e.message);
           });
 
       const refetchQuery = {
         query: gql(queries.customerCounts),
-        variables: { type, only: 'byTag' }
+        variables: { type, only: 'byTag' },
       };
 
       actionBarLeft = (

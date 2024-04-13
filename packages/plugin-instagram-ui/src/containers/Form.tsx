@@ -48,19 +48,19 @@ class InstagramContainer extends React.Component<FinalProps, State> {
         query: gql(queries.instagramGetPages),
         variables: {
           accountId,
-          kind
-        }
+          kind,
+        },
       })
       .then(({ data, loading }: any) => {
         if (!loading) {
           this.setState({
             pages: data.instagramGetPages,
             accountId,
-            loadingPages: false
+            loadingPages: false,
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         Alert.error(error.message);
         this.setState({ loadingPages: false });
       });
@@ -74,7 +74,7 @@ class InstagramContainer extends React.Component<FinalProps, State> {
     passedName,
     values,
     isSubmitted,
-    callback
+    callback,
   }: IButtonMutateProps) => {
     const { kind } = this.props;
     return (
@@ -85,7 +85,7 @@ class InstagramContainer extends React.Component<FinalProps, State> {
         refetchQueries={getRefetchQueries(kind)}
         isSubmitted={isSubmitted}
         type="submit"
-        successMessage={`You successfully added an ${passedName}`}
+        successMessage={`Úspěšně jste přidali an ${passedName}`}
       />
     );
   };
@@ -101,7 +101,7 @@ class InstagramContainer extends React.Component<FinalProps, State> {
       loadingPages,
       onAccountSelect: this.onAccountSelect,
       onRemoveAccount: this.onRemoveAccount,
-      renderButton: this.renderButton
+      renderButton: this.renderButton,
     };
 
     return <Instagram {...updatedProps} />;

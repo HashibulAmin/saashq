@@ -37,7 +37,7 @@ const SelectBrandContainer = (props: ChildProps<FinalProps>) => {
     name,
     values,
     isSubmitted,
-    callback
+    callback,
   }: IButtonMutateProps) => {
     const callBackResponse = () => {
       brandsQuery.refetch();
@@ -54,7 +54,7 @@ const SelectBrandContainer = (props: ChildProps<FinalProps>) => {
         callback={callBackResponse}
         isSubmitted={isSubmitted}
         type="submit"
-        successMessage={`You successfully added a ${name}`}
+        successMessage={`Úspěšně jste přidali a ${name}`}
       />
     );
   };
@@ -63,7 +63,7 @@ const SelectBrandContainer = (props: ChildProps<FinalProps>) => {
     ...props,
     brands,
     formProps,
-    renderButton
+    renderButton,
   };
 
   return <SelectBrand {...updatedProps} />;
@@ -73,8 +73,8 @@ const getRefetchQueries = () => {
   return [
     {
       query: gql(brandQueries.brands),
-      variables: {}
-    }
+      variables: {},
+    },
   ];
 };
 
@@ -82,7 +82,7 @@ export default compose(
   graphql<BrandsQueryResponse>(gql(brandQueries.brands), {
     name: 'brandsQuery',
     options: () => ({
-      refetchQueries: getRefetchQueries
-    })
-  })
+      refetchQueries: getRefetchQueries,
+    }),
+  }),
 )(SelectBrandContainer);

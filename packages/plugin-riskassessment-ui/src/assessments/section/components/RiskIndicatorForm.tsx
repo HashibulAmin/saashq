@@ -8,7 +8,7 @@ import {
   ModalTrigger,
   Uploader,
   __,
-  colors
+  colors,
 } from '@saashq/ui/src';
 import { FormColumn, ModalFooter } from '@saashq/ui/src/styles/main';
 import { IField } from '@saashq/ui/src/types';
@@ -48,7 +48,7 @@ class IndicatorForm extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      submissions: {}
+      submissions: {},
     };
   }
 
@@ -64,33 +64,33 @@ class IndicatorForm extends React.Component<Props, State> {
   renderFieldAdditionalContent(
     {
       description,
-      attachments
+      attachments,
     }: {
       value: string;
       description: string;
       isFlagged?: boolean;
       attachments?: any;
     },
-    _id: string
+    _id: string,
   ) {
     const { submissions } = this.state;
 
-    const onChange = e => {
+    const onChange = (e) => {
       const { value, name } = e.currentTarget as HTMLInputElement;
       submissions[_id] = {
         ...submissions[_id],
-        [name]: value
+        [name]: value,
       };
       this.setState({ submissions });
     };
 
-    const onChangeAttachments = e => {
+    const onChangeAttachments = (e) => {
       for (const att of e) {
         att.url = readFile(att.url);
       }
       submissions[_id] = {
         ...submissions[_id],
-        attachments: e
+        attachments: e,
       };
       this.setState({ submissions });
     };
@@ -98,7 +98,7 @@ class IndicatorForm extends React.Component<Props, State> {
     return (
       <>
         <FormGroup>
-          <ControlLabel>{__('Description')}</ControlLabel>
+          <ControlLabel>{__('Popis')}</ControlLabel>
           <FormControl
             name="description"
             componentClass="textarea"
@@ -125,7 +125,7 @@ class IndicatorForm extends React.Component<Props, State> {
         <GenerateField {...props} />
         {this.renderFieldAdditionalContent(
           submissions[field._id] || {},
-          field._id
+          field._id,
         )}
       </>
     );
@@ -144,24 +144,24 @@ class IndicatorForm extends React.Component<Props, State> {
   renderField(field: IField) {
     const { withDescription } = this.props;
     const { submissions } = this.state;
-    const handleChange = field => {
+    const handleChange = (field) => {
       let value = field.value;
 
       if (typeof field.value === 'object') {
         value = JSON.stringify(field.value);
       }
 
-      this.setState(prev => ({
+      this.setState((prev) => ({
         submissions: {
           ...prev.submissions,
-          [field._id]: { ...prev.submissions[field._id], value }
-        }
+          [field._id]: { ...prev.submissions[field._id], value },
+        },
       }));
     };
     const handleFlag = () => {
       submissions[field._id] = {
         ...submissions[field._id],
-        isFlagged: !submissions[field._id]?.isFlagged
+        isFlagged: !submissions[field._id]?.isFlagged,
       };
       this.setState({ submissions });
     };
@@ -171,7 +171,7 @@ class IndicatorForm extends React.Component<Props, State> {
       key: field.key,
       field,
       onValueChange: handleChange,
-      isPreview: true
+      isPreview: true,
     };
 
     if (field.type === 'file' && submissions[field._id]?.value) {
@@ -210,10 +210,10 @@ class IndicatorForm extends React.Component<Props, State> {
       branchId,
       departmentId,
       operationId,
-      checkTestScore
+      checkTestScore,
     } = this.props;
 
-    const setHistory = submissions => {
+    const setHistory = (submissions) => {
       this.setState({ submissions });
     };
 
@@ -221,7 +221,7 @@ class IndicatorForm extends React.Component<Props, State> {
       const { submitForm } = this.props;
       const { submissions } = this.state;
       submitForm({
-        formSubmissions: submissions
+        formSubmissions: submissions,
       });
     };
 
@@ -240,7 +240,7 @@ class IndicatorForm extends React.Component<Props, State> {
           setHistory={setHistory}
         />
         <Padding horizontal>
-          {(fields || []).map(field => (
+          {(fields || []).map((field) => (
             <>
               {this.renderField(field)}
               <Divider />

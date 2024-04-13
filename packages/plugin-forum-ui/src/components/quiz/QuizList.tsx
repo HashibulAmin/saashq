@@ -33,7 +33,7 @@ class List extends React.Component<Props> {
   renderRow() {
     const { quizzes, remove, bulk, toggleBulk, emptyBulk } = this.props;
 
-    return quizzes.map(quiz => (
+    return quizzes.map((quiz) => (
       <Row
         key={quiz._id}
         quiz={quiz}
@@ -45,7 +45,7 @@ class List extends React.Component<Props> {
     ));
   }
 
-  renderForm = props => {
+  renderForm = (props) => {
     return <QuizForm {...props} />;
   };
 
@@ -58,7 +58,7 @@ class List extends React.Component<Props> {
       bulk,
       toggleAll,
       remove,
-      emptyBulk
+      emptyBulk,
     } = this.props;
 
     let actionBarLeft: React.ReactNode;
@@ -67,10 +67,10 @@ class List extends React.Component<Props> {
       const onClick = () => {
         confirm('Are you sure? This cannot be undone.')
           .then(() => {
-            bulk.map(item => remove(item._id, emptyBulk));
+            bulk.map((item) => remove(item._id, emptyBulk));
             Alert.success('You successfully deleted a quiz');
           })
-          .catch(e => {
+          .catch((e) => {
             Alert.error(e.message);
           });
       };
@@ -120,15 +120,15 @@ class List extends React.Component<Props> {
               />
             </th>
             <th>
-              <SortHandler sortField={'name'} label={__('Name')} />
+              <SortHandler sortField={'name'} label={__('Název')} />
             </th>
-            <th>{__('Description')}</th>
+            <th>{__('Popis')}</th>
             <th>
-              <SortHandler sortField={'company'} label={__('Company')} />
+              <SortHandler sortField={'company'} label={__('Společnost')} />
             </th>
             <th>{__('State')}</th>
             <th>{__('Category')}</th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{this.renderRow()}</tbody>
@@ -138,7 +138,7 @@ class List extends React.Component<Props> {
     const submenu = [
       { title: 'Posts', link: '/forums/posts' },
       { title: 'Pages', link: '/forums/pages' },
-      { title: 'Quiz', link: '/forums/quizzes' }
+      { title: 'Quiz', link: '/forums/quizzes' },
     ];
 
     return (

@@ -2,7 +2,7 @@ import {
   MainStyleFormColumn as FormColumn,
   MainStyleFormWrapper as FormWrapper,
   MainStyleModalFooter as ModalFooter,
-  MainStyleScrollWrapper as ScrollWrapper
+  MainStyleScrollWrapper as ScrollWrapper,
 } from '@saashq/ui/src/styles/eindex';
 import Button from '@saashq/ui/src/components/Button';
 import ControlLabel from '@saashq/ui/src/components/form/Label';
@@ -49,7 +49,7 @@ class InterestChangeForm extends React.Component<Props, State> {
     this.state = {
       type: this.props.type || 'stopInterest',
       description: '',
-      interestAmount: 0
+      interestAmount: 0,
     };
   }
 
@@ -68,11 +68,11 @@ class InterestChangeForm extends React.Component<Props, State> {
       interestAmount: Number(
         this.state.type === 'stopInterest'
           ? this.props.closeInfo.storedInterest
-          : this.state.interestAmount
+          : this.state.interestAmount,
       ),
       description: this.state.description,
       invDate: this.props.invDate,
-      type: this.state.type
+      type: this.state.type,
     };
   };
 
@@ -87,13 +87,13 @@ class InterestChangeForm extends React.Component<Props, State> {
     );
   };
 
-  onChangeField = e => {
+  onChangeField = (e) => {
     const name = (e.target as HTMLInputElement).name;
     const value = (e.target as HTMLInputElement).value;
     this.setState({ [name]: value } as any);
   };
 
-  onFieldClick = e => {
+  onFieldClick = (e) => {
     e.target.select();
   };
 
@@ -128,20 +128,18 @@ class InterestChangeForm extends React.Component<Props, State> {
     const { closeModal, renderButton, onChangeDate } = this.props;
     const { values, isSubmitted } = formProps;
 
-    const onChangeinvDate = value => {
+    const onChangeinvDate = (value) => {
       onChangeDate(value);
     };
 
     const getPaymentInfo = (
       contractId,
-      payDate: any = dayjs()
-        .locale('en')
-        .format('MMM, D YYYY')
+      payDate: any = dayjs().locale('en').format('MMM, D YYYY'),
     ) => {
       client
         .mutate({
           mutation: gql(queries.getPaymentInfo),
-          variables: { id: contractId, payDate: payDate }
+          variables: { id: contractId, payDate: payDate },
         })
         .then(({ data }) => {
           this.setState({ paymentInfo: data.getPaymentInfo });
@@ -186,7 +184,7 @@ class InterestChangeForm extends React.Component<Props, State> {
                         <option key={index} value={typeName}>
                           {typeName}
                         </option>
-                      )
+                      ),
                     )}
                   </FormControl>
                 </FormGroup>
@@ -202,7 +200,7 @@ class InterestChangeForm extends React.Component<Props, State> {
                     initialValue={this.state.contractId}
                     onSelect={(v, n) => {
                       this.onChangeField({
-                        target: { name: n, value: v }
+                        target: { name: n, value: v },
                       } as any);
 
                       if (this.state.contractId !== v)
@@ -234,7 +232,7 @@ class InterestChangeForm extends React.Component<Props, State> {
           <FormWrapper>
             <FormColumn>
               <FormGroup>
-                <ControlLabel>{__('Description')}</ControlLabel>
+                <ControlLabel>{__('Popis')}</ControlLabel>
                 <FormControl
                   {...formProps}
                   max={140}
@@ -259,7 +257,7 @@ class InterestChangeForm extends React.Component<Props, State> {
             name: 'contract',
             values: this.generateDoc(values),
             isSubmitted,
-            object: this.props.contract
+            object: this.props.contract,
           })}
         </ModalFooter>
       </>

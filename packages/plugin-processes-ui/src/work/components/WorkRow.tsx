@@ -55,10 +55,10 @@ class Row extends React.Component<Props> {
       needProducts,
       resultProducts,
       origin,
-      type
+      type,
     } = work;
 
-    const content = props => <Form {...props} work={work} />;
+    const content = (props) => <Form {...props} work={work} />;
 
     return (
       <tr>
@@ -80,7 +80,7 @@ class Row extends React.Component<Props> {
                 title={__(`Edit perform`)}
                 trigger={
                   <Button btnStyle="link">
-                    <Tip text={__('Edit')} placement="bottom">
+                    <Tip text={__('Upravit')} placement="bottom">
                       <Icon icon="edit" />
                     </Tip>
                   </Button>

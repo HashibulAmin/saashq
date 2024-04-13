@@ -44,7 +44,7 @@ class RequestedFileList extends React.Component<Props> {
           <thead>
             <tr>
               <th style={{ paddingLeft: '0' }}>
-                <ItemName>{__('Name')}</ItemName>
+                <ItemName>{__('Název')}</ItemName>
               </th>
               <th>
                 <ItemName>{__('Size')}</ItemName>
@@ -56,11 +56,11 @@ class RequestedFileList extends React.Component<Props> {
                 <ItemName>{__('Status')}</ItemName>
               </th>
               <th>
-                <ItemName>{__('Description')}</ItemName>
+                <ItemName>{__('Popis')}</ItemName>
               </th>
               <th>
                 <ItemName>
-                  {hideActions ? __('User') : __('Requested user')}
+                  {hideActions ? __('Uživatel') : __('Requested user')}
                 </ItemName>
               </th>
               <th>
@@ -68,7 +68,7 @@ class RequestedFileList extends React.Component<Props> {
               </th>
               {!hideActions && (
                 <th>
-                  <ItemName>{__('Actions')}</ItemName>
+                  <ItemName>{__('Akce')}</ItemName>
                 </th>
               )}
             </tr>

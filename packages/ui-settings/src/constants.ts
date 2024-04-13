@@ -242,7 +242,7 @@ export const EMPTY_CONTENT_MESSENGER = {
   title: __('Getting Started with saashq Messenger'),
   description: `${__(
     'Learn how the saashq Messenger works and it is set up',
-  )}.${' It is used in the Team Inbox and Knowledgebase and Engage features uses Messenger'}`,
+  )}.${' It is used in the Týmová Schránka and Knowledgebase and Engage features uses Messenger'}`,
   steps: [
     {
       title: __('Create a new messenger'),

@@ -33,7 +33,7 @@ class PipelineRow extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      showModal: false
+      showModal: false,
     };
   }
 
@@ -94,7 +94,7 @@ class PipelineRow extends React.Component<Props, State> {
 
     return (
       <>
-        <Tip text={__('Edit')} placement="top">
+        <Tip text={__('Upravit')} placement="top">
           <Button btnStyle="link" onClick={edit} icon="edit-3" />
         </Tip>
         <Tip text={__('Duplicate')} placement="top">

@@ -146,7 +146,7 @@ class EmailTemplateList extends React.Component<Props> {
           <Icon icon="search-1" size={20} />
           <FormControl
             type="text"
-            placeholder={__('Type to search')}
+            placeholder={__('Zadejte a vyhledejte')}
             onChange={this.searchHandler}
             value={router.getParam(this.props.history, 'searchValue')}
             autoFocus={true}

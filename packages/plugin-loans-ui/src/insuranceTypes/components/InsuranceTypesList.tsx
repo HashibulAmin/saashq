@@ -10,7 +10,7 @@ import {
   router,
   SortHandler,
   Table,
-  Wrapper
+  Wrapper,
 } from '@saashq/ui/src';
 import { IRouterProps } from '@saashq/ui/src/types';
 import React from 'react';
@@ -35,7 +35,7 @@ interface IProps extends IRouterProps {
   emptyBulk: () => void;
   removeInsuranceTypes: (
     doc: { insuranceTypeIds: string[] },
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
   history: any;
   queryParams: any;
@@ -52,7 +52,7 @@ class InsuranceTypesList extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue
+      searchValue: this.props.searchValue,
     };
   }
 
@@ -61,7 +61,7 @@ class InsuranceTypesList extends React.Component<IProps, State> {
     toggleAll(insuranceTypes, 'insuranceTypes');
   };
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -76,17 +76,17 @@ class InsuranceTypesList extends React.Component<IProps, State> {
     }, 500);
   };
 
-  removeInsuranceTypes = insuranceTypes => {
+  removeInsuranceTypes = (insuranceTypes) => {
     const insuranceTypeIds: string[] = [];
 
-    insuranceTypes.forEach(insuranceType => {
+    insuranceTypes.forEach((insuranceType) => {
       insuranceTypeIds.push(insuranceType._id);
     });
 
     this.props.removeInsuranceTypes({ insuranceTypeIds }, this.props.emptyBulk);
   };
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -101,7 +101,7 @@ class InsuranceTypesList extends React.Component<IProps, State> {
       bulk,
       isAllSelected,
       totalCount,
-      queryParams
+      queryParams,
     } = this.props;
 
     const mainContent = (
@@ -120,23 +120,20 @@ class InsuranceTypesList extends React.Component<IProps, State> {
                 <SortHandler sortField={'code'} label={__('Code')} />
               </th>
               <th>
-                <SortHandler sortField={'name'} label={__('Name')} />
+                <SortHandler sortField={'name'} label={__('Název')} />
               </th>
               <th>{__('Company Code')}</th>
               <th>{__('Company Name')}</th>
               <th>{__('Percent')}</th>
               <th>{__('Year Percents')}</th>
               <th>
-                <SortHandler
-                  sortField={'description'}
-                  label={__('Description')}
-                />
+                <SortHandler sortField={'description'} label={__('Popis')} />
               </th>
               <th></th>
             </tr>
           </thead>
           <tbody id="insuranceTypes">
-            {insuranceTypes.map(insuranceType => (
+            {insuranceTypes.map((insuranceType) => (
               <InsuranceTypeRow
                 insuranceType={insuranceType}
                 isChecked={bulk.includes(insuranceType)}
@@ -164,7 +161,7 @@ class InsuranceTypesList extends React.Component<IProps, State> {
           .then(() => {
             this.removeInsuranceTypes(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 
@@ -177,7 +174,7 @@ class InsuranceTypesList extends React.Component<IProps, State> {
       );
     }
 
-    const insuranceTypeForm = props => {
+    const insuranceTypeForm = (props) => {
       return <InsuranceTypeForm {...props} queryParams={queryParams} />;
     };
 
@@ -185,7 +182,7 @@ class InsuranceTypesList extends React.Component<IProps, State> {
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.search}
           value={this.state.searchValue}
           autoFocus={true}
@@ -214,7 +211,7 @@ class InsuranceTypesList extends React.Component<IProps, State> {
             queryParams={queryParams}
             breadcrumb={[
               { title: __('Settings'), link: '/settings' },
-              { title: __('Insurance type') }
+              { title: __('Insurance type') },
             ]}
           />
         }

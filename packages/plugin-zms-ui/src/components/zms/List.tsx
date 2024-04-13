@@ -16,7 +16,7 @@ type Props = {
 
 function List({ logs, id, loading }: Props) {
   const actionBarRight = (
-    <FormControl type="text" placeholder={__('Type to search')} />
+    <FormControl type="text" placeholder={__('Zadejte a vyhledejte')} />
   );
   const title = <Title capitalize={true}>{__('ZMS')}</Title>;
   const actionBar = (

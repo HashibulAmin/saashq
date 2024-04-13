@@ -10,7 +10,7 @@ import {
   SortHandler,
   Table,
   Wrapper,
-  BarItems
+  BarItems,
 } from '@saashq/ui/src';
 import { IRouterProps } from '@saashq/ui/src/types';
 import React from 'react';
@@ -43,7 +43,7 @@ interface IProps extends IRouterProps {
   emptyBulk: () => void;
   removeContracts: (
     doc: { contractIds: string[] },
-    emptyBulk: () => void
+    emptyBulk: () => void,
   ) => void;
   // mergeContracts: () => void;
   history: any;
@@ -67,7 +67,7 @@ class ContractsList extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue
+      searchValue: this.props.searchValue,
     };
   }
 
@@ -76,7 +76,7 @@ class ContractsList extends React.Component<IProps, State> {
     toggleAll(contracts, 'contracts');
   };
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -91,17 +91,17 @@ class ContractsList extends React.Component<IProps, State> {
     }, 500);
   };
 
-  removeContracts = contracts => {
+  removeContracts = (contracts) => {
     const contractIds: string[] = [];
 
-    contracts.forEach(contract => {
+    contracts.forEach((contract) => {
       contractIds.push(contract._id);
     });
 
     this.props.removeContracts({ contractIds }, this.props.emptyBulk);
   };
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -123,7 +123,7 @@ class ContractsList extends React.Component<IProps, State> {
       isFiltered,
       clearFilter,
       currentUser,
-      alerts
+      alerts,
     } = this.props;
 
     const mainContent = (
@@ -174,7 +174,7 @@ class ContractsList extends React.Component<IProps, State> {
             </tr>
           </thead>
           <tbody id="contracts">
-            {contracts.map(contract => (
+            {contracts.map((contract) => (
               <ContractRow
                 contract={contract}
                 isChecked={bulk.includes(contract)}
@@ -202,7 +202,7 @@ class ContractsList extends React.Component<IProps, State> {
           .then(() => {
             this.removeContracts(bulk);
           })
-          .catch(error => {
+          .catch((error) => {
             Alert.error(error.message);
           });
 
@@ -213,7 +213,7 @@ class ContractsList extends React.Component<IProps, State> {
               {__('Delete')}
             </Button>
           )}
-          {alerts.map(mur => (
+          {alerts.map((mur) => (
             <Button onClick={() => onSelect(mur.filter, 'ids')}>
               {mur.name}:{mur.count}
             </Button>
@@ -223,7 +223,7 @@ class ContractsList extends React.Component<IProps, State> {
     } else {
       actionBarLeft = (
         <BarItems>
-          {alerts.map(mur => (
+          {alerts.map((mur) => (
             <Button onClick={() => onSelect(mur.filter, 'ids')}>
               {mur.name}:{mur.count}
             </Button>
@@ -232,7 +232,7 @@ class ContractsList extends React.Component<IProps, State> {
       );
     }
 
-    const contractForm = props => {
+    const contractForm = (props) => {
       return <ContractForm {...props} queryParams={queryParams} />;
     };
 
@@ -241,14 +241,14 @@ class ContractsList extends React.Component<IProps, State> {
       onSearch,
       isFiltered,
       clearFilter,
-      queryParams
+      queryParams,
     };
 
     const actionBarRight = (
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           onChange={this.search}
           value={this.state.searchValue}
           autoFocus={true}
@@ -279,8 +279,8 @@ class ContractsList extends React.Component<IProps, State> {
           <Wrapper.Header
             title={__(`Contracts`) + ` (${totalCount})`}
             queryParams={queryParams}
-            submenu={menuContracts.filter(row =>
-              can(row.permission, currentUser)
+            submenu={menuContracts.filter((row) =>
+              can(row.permission, currentUser),
             )}
           />
         }

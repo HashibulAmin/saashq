@@ -7,7 +7,7 @@ import React from 'react';
 import { graphql } from '@apollo/client/react/hoc';
 import {
   IMovementDetailQueryResponse,
-  IMovementItem
+  IMovementItem,
 } from '../../common/types';
 import { movementRefetchQueries } from '../../common/utils';
 import Form from '../components/Form';
@@ -33,7 +33,7 @@ class FormContainer extends React.Component<FinalProps> {
     values,
     isSubmitted,
     callback,
-    object
+    object,
   }: IButtonMutateProps) => {
     let mutation = mutations.movementAdd;
     if (object) {
@@ -49,7 +49,7 @@ class FormContainer extends React.Component<FinalProps> {
         isSubmitted={isSubmitted}
         type="submit"
         uppercase={false}
-        successMessage={`You successfully added a ${text}`}
+        successMessage={`Úspěšně jste přidali a ${text}`}
       />
     );
   };
@@ -65,7 +65,7 @@ class FormContainer extends React.Component<FinalProps> {
       closeModal,
       renderButton: this.renderButton,
       assetId,
-      movementId
+      movementId,
     };
 
     return <Form {...updatedProps} />;
@@ -79,8 +79,8 @@ export default withProps(
       skip: ({ movementId }) => !movementId,
       options: ({ movementId }) => ({
         variables: { _id: movementId },
-        fetchPolicy: 'network-only'
-      })
-    })
-  )(FormContainer)
+        fetchPolicy: 'network-only',
+      }),
+    }),
+  )(FormContainer),
 );

@@ -6,7 +6,7 @@ import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import {
   mutations,
-  queries
+  queries,
 } from '@saashq/ui-inbox/src/settings/integrations/graphql';
 
 type Props = {} & IRouterProps;
@@ -27,7 +27,7 @@ class ZaloContainer extends React.Component<Props> {
         isSubmitted={isSubmitted}
         refetchQueries={getRefetchQueries('zalo')}
         type="submit"
-        successMessage={`You successfully added a zalo`}
+        successMessage={`Úspěšně jste přidali a zalo`}
       />
     );
   };
@@ -35,7 +35,7 @@ class ZaloContainer extends React.Component<Props> {
   render() {
     const updatedProps = {
       ...this.props,
-      renderButton: this.renderButton
+      renderButton: this.renderButton,
     };
 
     return <Form {...updatedProps} />;
@@ -47,15 +47,15 @@ const getRefetchQueries = (kind: string) => {
     {
       query: gql(queries.integrations),
       variables: {
-        kind
-      }
+        kind,
+      },
     },
     {
       query: gql(queries.integrationTotalCount),
       variables: {
-        kind
-      }
-    }
+        kind,
+      },
+    },
   ];
 };
 

@@ -45,7 +45,7 @@ function BasicInfo({ asset, remove, assignKbArticles, history }: Props) {
     if (!vendor) {
       return (
         <li>
-          <FieldStyle>{__(`Vendor`)}</FieldStyle>
+          <FieldStyle>{__(`Prodejce`)}</FieldStyle>
           <SidebarCounter>-</SidebarCounter>
         </li>
       );
@@ -53,7 +53,7 @@ function BasicInfo({ asset, remove, assignKbArticles, history }: Props) {
 
     return (
       <li>
-        <FieldStyle>{__(`Vendor`)}</FieldStyle>
+        <FieldStyle>{__(`Prodejce`)}</FieldStyle>
         <SidebarCounter>{vendor.primaryName || ''}</SidebarCounter>
         <Button
           onClick={() => history.push(`/companies/detail/${vendor._id}`)}
@@ -98,7 +98,7 @@ function BasicInfo({ asset, remove, assignKbArticles, history }: Props) {
         size="xl"
         trigger={
           <li>
-            <a href="#assign">{__('Assign')}</a>
+            <a href="#assign">{__('Přiřadit')}</a>
           </li>
         }
       />
@@ -118,14 +118,14 @@ function BasicInfo({ asset, remove, assignKbArticles, history }: Props) {
         <Dropdown>
           <Dropdown.Toggle as={DropdownToggle} id="dropdown-info">
             <Button btnStyle="simple" size="medium">
-              {__('Action')}
+              {__('Akce')}
               <Icon icon="angle-down" />
             </Button>
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <li>
               <a href="#delete" onClick={onDelete}>
-                {__('Delete')}
+                {__('Vymazat')}
               </a>
             </li>
             {renderEditForm()}
@@ -153,7 +153,7 @@ function BasicInfo({ asset, remove, assignKbArticles, history }: Props) {
         "
         trigger={
           <li>
-            <a href="#edit">{__('Edit')}</a>
+            <a href="#edit">{__('Upravit')}</a>
           </li>
         }
         size="lg"
@@ -201,22 +201,22 @@ function BasicInfo({ asset, remove, assignKbArticles, history }: Props) {
 
       {renderImage(asset.attachment)}
       <SidebarList className="no-link">
-        {renderView('Code', asset.code)}
-        {renderView('Type', asset.type)}
-        {renderView('Category', asset.category ? asset.category.name : '')}
+        {renderView('Kód', asset.code)}
+        {renderView('Typ', asset.type)}
+        {renderView('Kategorie', asset.category ? asset.category.name : '')}
         {renderView(
-          'Parent',
+          'Rodič',
           asset.parent ? asset.parent.name : '',
           asset.parent && changeAssetDetail(),
         )}
-        {renderView('Unit price', (asset.unitPrice || 0).toLocaleString())}
+        {renderView('Jednotková cena', (asset.unitPrice || 0).toLocaleString())}
         {renderVendor(asset.vendor)}
         {renderView(
-          'Create At',
+          'Vytvořit v',
           moment(asset.createdAt).format('YYYY-MM-DD HH:mm'),
         )}
         {renderView(
-          'Knowledge Base',
+          'Znalostní Báze',
           <Icon
             icon={showKnowledgeBase ? 'uparrow' : 'downarrow-2'}
             onClick={() => setShowKnowledgeBase(!showKnowledgeBase)}
@@ -225,7 +225,7 @@ function BasicInfo({ asset, remove, assignKbArticles, history }: Props) {
         {showKnowledgeBase && (
           <KnowledgeBase asset={asset} kbArticleIds={asset.kbArticleIds} />
         )}
-        <SidebarFlexRow>{__(`Description`)}</SidebarFlexRow>
+        <SidebarFlexRow>{__(`Popis`)}</SidebarFlexRow>
       </SidebarList>
       {renderAssetContent()}
     </Sidebar.Section>

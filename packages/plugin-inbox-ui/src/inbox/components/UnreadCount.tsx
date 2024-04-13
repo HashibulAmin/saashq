@@ -11,7 +11,7 @@ class UnreadCount extends React.Component<Props> {
     const unreadCount = nextProps.unreadConversationsCount;
 
     if (unreadCount !== this.props.unreadConversationsCount) {
-      setBadge(unreadCount, __('Team Inbox').toString());
+      setBadge(unreadCount, __('Týmová Schránka').toString());
     }
   }
 

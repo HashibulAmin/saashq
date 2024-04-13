@@ -21,7 +21,7 @@ type Props = {
     departmentId: string,
     branchId: string,
     products: any,
-    closeModal: any
+    closeModal: any,
   ) => void;
 };
 
@@ -45,8 +45,8 @@ export default function ActionBarContent(props: Props) {
         productId: '',
         count: 0,
         isDebit: true,
-        uom: '465'
-      }
+        uom: '465',
+      },
     ]);
   };
 
@@ -65,7 +65,7 @@ export default function ActionBarContent(props: Props) {
               label="Choose product"
               name={`selectedProductId` + index}
               initialValue={item.productId}
-              onSelect={productId =>
+              onSelect={(productId) =>
                 handleDataChange(index, 'productId', productId)
               }
               multi={false}
@@ -102,7 +102,7 @@ export default function ActionBarContent(props: Props) {
     return (
       <div>
         <FormGroup>
-          <ControlLabel>{__('Branch')}</ControlLabel>
+          <ControlLabel>{__('Větev')}</ControlLabel>
           <SelectBranches
             label="Choose branch"
             name="selectedBranchIds"
@@ -113,7 +113,7 @@ export default function ActionBarContent(props: Props) {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Department')}</ControlLabel>
+          <ControlLabel>{__('Oddělení')}</ControlLabel>
           <SelectDepartments
             label="Choose department"
             name="selectedDepartmentIds"

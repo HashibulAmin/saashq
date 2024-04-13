@@ -3,7 +3,7 @@ import {
   SidebarList,
   Box,
   FormControl,
-  DataWithLoader
+  DataWithLoader,
 } from '@saashq/ui/src';
 import { __, router } from 'coreui/utils';
 import React from 'react';
@@ -62,11 +62,11 @@ const moduleOptions = [
   { value: 'knowledgebase:knowledgeBaseTopic', label: 'Knowledgebase topics' },
   {
     value: 'knowledgebase:knowledgeBaseCategory',
-    label: 'Knowledgebase categories'
+    label: 'Knowledgebase categories',
   },
   {
     value: 'knowledgebase:knowledgeBaseArticle',
-    label: 'Knowledgebase articles'
+    label: 'Knowledgebase articles',
   },
   // others
   { value: 'engages:engage', label: 'Campaigns' },
@@ -77,7 +77,7 @@ const moduleOptions = [
   { value: 'emailTemplate', label: 'Email templates' },
   { value: 'importHistory', label: 'Import histories' },
   { value: 'script', label: 'Scripts' },
-  { value: 'pricing:pricingPlan', label: 'PricingPlan' }
+  { value: 'pricing:pricingPlan', label: 'PricingPlan' },
 ];
 
 function ModuleFilter({ history, queryParams }: Props) {
@@ -103,8 +103,8 @@ function ModuleFilter({ history, queryParams }: Props) {
 
   const applyModuleFilter = (value: string) => {
     setSearchValue(value);
-    const filteredModules = moduleOptions.filter(module =>
-      module.label.toLowerCase().includes(value.toLowerCase())
+    const filteredModules = moduleOptions.filter((module) =>
+      module.label.toLowerCase().includes(value.toLowerCase()),
     );
     setModules(filteredModules);
   };
@@ -114,7 +114,7 @@ function ModuleFilter({ history, queryParams }: Props) {
     router.removeParams(history, 'page');
   };
 
-  const searchModule = e => {
+  const searchModule = (e) => {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
     }
@@ -158,7 +158,7 @@ function ModuleFilter({ history, queryParams }: Props) {
         <FormControl
           type="text"
           onChange={searchModule}
-          placeholder={__('Type to search')}
+          placeholder={__('Zadejte a vyhledejte')}
           value={searchValue}
         />
       </CustomPadding>

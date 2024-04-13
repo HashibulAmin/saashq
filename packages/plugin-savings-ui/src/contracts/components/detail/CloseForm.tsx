@@ -9,7 +9,7 @@ import {
   MainStyleFormColumn as FormColumn,
   MainStyleFormWrapper as FormWrapper,
   MainStyleModalFooter as ModalFooter,
-  MainStyleScrollWrapper as ScrollWrapper
+  MainStyleScrollWrapper as ScrollWrapper,
 } from '@saashq/ui/src/styles/eindex';
 
 import Info from '@saashq/ui/src/components/Info';
@@ -40,7 +40,7 @@ class CloseForm extends React.Component<Props, State> {
 
     this.state = {
       closeType: '',
-      description: ''
+      description: '',
     };
   }
 
@@ -58,7 +58,7 @@ class CloseForm extends React.Component<Props, State> {
       ...this.state,
       description: this.state.description,
       closeDate: this.props.closeDate,
-      closeType: this.state.closeType
+      closeType: this.state.closeType,
     };
   };
 
@@ -73,13 +73,13 @@ class CloseForm extends React.Component<Props, State> {
     );
   };
 
-  onChangeField = e => {
+  onChangeField = (e) => {
     const name = (e.target as HTMLInputElement).name;
     const value = (e.target as HTMLInputElement).value;
     this.setState({ [name]: value } as any);
   };
 
-  onFieldClick = e => {
+  onFieldClick = (e) => {
     e.target.select();
   };
 
@@ -119,7 +119,7 @@ class CloseForm extends React.Component<Props, State> {
     const { closeModal, renderButton, onChangeDate } = this.props;
     const { values, isSubmitted } = formProps;
 
-    const onChangeCloseDate = value => {
+    const onChangeCloseDate = (value) => {
       onChangeDate(value);
     };
 
@@ -146,7 +146,7 @@ class CloseForm extends React.Component<Props, State> {
           <FormWrapper>
             <FormColumn>
               <FormGroup>
-                <ControlLabel>{__('Description')}</ControlLabel>
+                <ControlLabel>{__('Popis')}</ControlLabel>
                 <FormControl
                   {...formProps}
                   max={140}
@@ -171,7 +171,7 @@ class CloseForm extends React.Component<Props, State> {
             name: 'contract',
             values: this.generateDoc(values),
             isSubmitted,
-            object: this.props.contract
+            object: this.props.contract,
           })}
         </ModalFooter>
       </>

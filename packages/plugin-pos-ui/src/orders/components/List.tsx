@@ -5,7 +5,7 @@ import {
   SortHandler,
   Table,
   Wrapper,
-  BarItems
+  BarItems,
 } from '@saashq/ui/src';
 import { IRouterProps, IQueryParams } from '@saashq/ui/src/types';
 import React from 'react';
@@ -43,7 +43,7 @@ class Orders extends React.Component<IProps, {}> {
     super(props);
   }
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -61,7 +61,7 @@ class Orders extends React.Component<IProps, {}> {
       isFiltered,
       clearFilter,
       summary,
-      onReturnBill
+      onReturnBill,
     } = this.props;
 
     const rightMenuProps = {
@@ -70,7 +70,7 @@ class Orders extends React.Component<IProps, {}> {
       onSearch,
       isFiltered,
       clearFilter,
-      queryParams
+      queryParams,
     };
 
     const actionBarRight = (
@@ -81,8 +81,8 @@ class Orders extends React.Component<IProps, {}> {
 
     const staticKeys = ['count', 'totalAmount', 'cashAmount', 'mobileAmount'];
     const otherPayTitles = (summary ? Object.keys(summary) || [] : [])
-      .filter(a => !['_id'].includes(a))
-      .filter(a => !staticKeys.includes(a))
+      .filter((a) => !['_id'].includes(a))
+      .filter((a) => !staticKeys.includes(a))
       .sort();
 
     const header = (
@@ -118,14 +118,14 @@ class Orders extends React.Component<IProps, {}> {
                   label={__('Mobile Amount')}
                 />
               </th>
-              {otherPayTitles.map(key => (
+              {otherPayTitles.map((key) => (
                 <th key={Math.random()}>{__(key)}</th>
               ))}
               <th>
                 <SortHandler sortField={'totalAmount'} label={__('Amount')} />
               </th>
               <th>
-                <SortHandler sortField={'customerId'} label={__('Customer')} />
+                <SortHandler sortField={'customerId'} label={__('Zákazník')} />
               </th>
               <th>
                 <SortHandler sortField={'posName'} label={__('Pos')} />
@@ -134,13 +134,13 @@ class Orders extends React.Component<IProps, {}> {
                 <SortHandler sortField={'type'} label={__('Type')} />
               </th>
               <th>
-                <SortHandler sortField={'user'} label={__('User')} />
+                <SortHandler sortField={'user'} label={__('Uživatel')} />
               </th>
               <th>Үйлдлүүд</th>
             </tr>
           </thead>
           <tbody id="orders">
-            {(orders || []).map(order => (
+            {(orders || []).map((order) => (
               <Row
                 order={order}
                 key={order._id}

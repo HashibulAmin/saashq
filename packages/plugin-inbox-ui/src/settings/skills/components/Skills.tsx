@@ -1,6 +1,6 @@
 import {
   ISkillDocument,
-  ISkillTypesDocument
+  ISkillTypesDocument,
 } from '@saashq/ui-inbox/src/settings/skills/types';
 
 import Button from '@saashq/ui/src/components/Button';
@@ -20,7 +20,7 @@ import { __ } from 'coreui/utils';
 
 const breadcrumb = [
   { title: 'Settings', link: '/settings' },
-  { title: __('Skill types') }
+  { title: __('Skill types') },
 ];
 
 type Props = {
@@ -44,10 +44,10 @@ function Skills(props: Props) {
     skillTypes,
     currentTypeName,
     remove,
-    refetchQueries
+    refetchQueries,
   } = props;
 
-  const renderForm = formProps => {
+  const renderForm = (formProps) => {
     return (
       <SkillForm
         {...formProps}
@@ -82,7 +82,7 @@ function Skills(props: Props) {
   }
 
   function renderObjects() {
-    return skills.map(skill => {
+    return skills.map((skill) => {
       return (
         <SkillRow
           key={skill._id}
@@ -100,9 +100,9 @@ function Skills(props: Props) {
       <Table whiteSpace="nowrap" hover={true} bordered={true}>
         <thead>
           <tr>
-            <th>{__('Name')}</th>
+            <th>{__('Název')}</th>
             <th>{__('Type')}</th>
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{renderObjects()}</tbody>
@@ -132,11 +132,11 @@ function Skills(props: Props) {
           icon="/images/actions/32.svg"
           title={'All Skills'}
           description={`${__(
-            'The skills feature works with the saashq Messenger and the Team Inbox'
+            'The skills feature works with the saashq Messenger and the Týmová Schránka',
           )}.${__(
-            'By creating and assigning certain skills to your team members, they will only see conversations that they have the skills for'
+            'By creating and assigning certain skills to your team members, they will only see conversations that they have the skills for',
           )}.${__(
-            'As for the customers, they will see the option to choose from when interacting with you through the saashq Messenger'
+            'As for the customers, they will see the option to choose from when interacting with you through the saashq Messenger',
           )}.${__('This way conversations are directed to the right person')}`}
         />
       }

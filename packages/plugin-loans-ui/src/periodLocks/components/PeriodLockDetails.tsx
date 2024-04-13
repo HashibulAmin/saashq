@@ -10,7 +10,7 @@ import {
   CollateralTableWrapper,
   ItemLabel,
   ItemValue,
-  ScrollTableColls
+  ScrollTableColls,
 } from '../../contracts/styles';
 
 import CollapseContent from './CollapseContent';
@@ -39,14 +39,11 @@ class ContractDetails extends React.Component<Props, State> {
   render() {
     const { periodLock, saveItem } = this.props;
 
-    const title =
-      dayjs(periodLock.date)
-        .format('ll')
-        .toString() || 'Unknown';
+    const title = dayjs(periodLock.date).format('ll').toString() || 'Unknown';
 
     const breadcrumb = [
       { title: __('PeriodLocks'), link: '/saashq-plugin-loan/periodLock-list' },
-      { title }
+      { title },
     ];
 
     const renderRow = (value, style?: React.CSSProperties) => {
@@ -62,7 +59,7 @@ class ContractDetails extends React.Component<Props, State> {
         amount: number;
         account: string;
         side: 'kt' | 'dt';
-      }[]
+      }[],
     ) => {
       return (
         <table style={{ width: '100%' }}>
@@ -80,15 +77,15 @@ class ContractDetails extends React.Component<Props, State> {
             </tr>
           </thead>
           <tbody>
-            {dtl?.map(row => (
+            {dtl?.map((row) => (
               <tr>
                 {renderRow(row.account)}
                 {renderRow(Number(row.amount || 0).toLocaleString(), {
-                  textAlign: 'right'
+                  textAlign: 'right',
                 })}
 
                 {renderRow(row.side, {
-                  textAlign: 'right'
+                  textAlign: 'right',
                 })}
               </tr>
             ))}
@@ -114,14 +111,14 @@ class ContractDetails extends React.Component<Props, State> {
           <tr style={{ cursor: 'pointer' }}>
             {renderRow(generalNumber)}
             {renderRow(Number(amount || 0).toLocaleString(), {
-              textAlign: 'right'
+              textAlign: 'right',
             })}
             {renderRow(description, {
-              textAlign: 'right'
+              textAlign: 'right',
             })}
 
             {renderRow(new Date(payDate).toLocaleString(), {
-              textAlign: 'right'
+              textAlign: 'right',
             })}
           </tr>
         </CollapseContent>
@@ -142,7 +139,7 @@ class ContractDetails extends React.Component<Props, State> {
                     <ItemLabel>{__('Amount')}</ItemLabel>
                   </td>
                   <td style={{ padding: 10 }}>
-                    <ItemLabel>{__('Description')}</ItemLabel>
+                    <ItemLabel>{__('Popis')}</ItemLabel>
                   </td>
 
                   <td style={{ padding: 10 }}>
@@ -152,7 +149,7 @@ class ContractDetails extends React.Component<Props, State> {
               </thead>
               <tbody>
                 {periodLock.generals?.map((general, index) =>
-                  renderCollateral(general)
+                  renderCollateral(general),
                 )}
               </tbody>
             </table>

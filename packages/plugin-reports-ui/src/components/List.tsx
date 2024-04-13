@@ -38,7 +38,7 @@ function List(props: FinalProps) {
 
   // let timer: NodeJS.Timer;
 
-  const search = e => {
+  const search = (e) => {
     if (timer) {
       clearTimeout(timer);
       setTimer(undefined);
@@ -51,11 +51,11 @@ function List(props: FinalProps) {
       setTimeout(() => {
         router.removeParams(history, 'page');
         router.setParams(history, { searchValue: value });
-      }, 500)
+      }, 500),
     );
   };
 
-  const moveCursorAtTheEnd = e => {
+  const moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -89,31 +89,31 @@ function List(props: FinalProps) {
     if (isChecked) {
       setChosenReportIds([...chosenReportIds, reportId]);
     } else {
-      setChosenReportIds(chosenReportIds.filter(id => id !== reportId));
+      setChosenReportIds(chosenReportIds.filter((id) => id !== reportId));
     }
   };
 
   const updatedProps = {
     ...props,
-    toggleReport
+    toggleReport,
   };
   const content = (
     <Table>
       <thead>
         <tr>
           <th>{__('')}</th>
-          <th>{__('Name')}</th>
+          <th>{__('Název')}</th>
           <th>{__('Charts')}</th>
           <th>{__('Last updated by')}</th>
           <th>{__('Created by')}</th>
           <th>{__('Last updated at')}</th>
           <th>{__('Created at')}</th>
           <th>{__('Tags')}</th>
-          <th>{__('Actions')}</th>
+          <th>{__('Akce')}</th>
         </tr>
       </thead>
       <tbody>
-        {reports.map(report => {
+        {reports.map((report) => {
           return (
             <Row
               key={report._id}
@@ -135,7 +135,7 @@ function List(props: FinalProps) {
 
   const breadcrumb = [
     { title: __('Settings'), link: '/settings' },
-    { title: __('Reports'), link: '/reports' }
+    { title: __('Reports'), link: '/reports' },
   ];
 
   let actionBarLeft: React.ReactNode;
@@ -164,7 +164,7 @@ function List(props: FinalProps) {
           <TaggerPopover
             type={TAG_TYPES.REPORT}
             successCallback={afterTag}
-            targets={reports.filter(r => chosenReportIds.includes(r._id))}
+            targets={reports.filter((r) => chosenReportIds.includes(r._id))}
             trigger={tagButton}
             refetchQueries={['reportsCountByTags']}
           />

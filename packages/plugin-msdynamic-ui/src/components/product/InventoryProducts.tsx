@@ -129,7 +129,7 @@ const InventoryProducts = ({
           <thead>
             <tr>
               <th>{__('Code')}</th>
-              <th>{__('Name')}</th>
+              <th>{__('Název')}</th>
               <th>{__('Unit price')}</th>
               {action === 'UPDATE' ? <th>{__('Update Status')}</th> : <></>}
               {action === 'CREATE' ? <th>{__('Create Status')}</th> : <></>}

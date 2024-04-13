@@ -19,13 +19,13 @@ class Row extends React.Component<Props> {
   render() {
     const { flow, history, toggleBulk, isChecked } = this.props;
 
-    const onChange = e => {
+    const onChange = (e) => {
       if (toggleBulk) {
         toggleBulk(flow, e.target.checked);
       }
     };
 
-    const onClick = e => {
+    const onClick = (e) => {
       e.stopPropagation();
     };
 
@@ -45,7 +45,7 @@ class Row extends React.Component<Props> {
       product,
       latestBranch,
       latestDepartment,
-      isSub
+      isSub,
     } = flow;
 
     return (
@@ -70,8 +70,9 @@ class Row extends React.Component<Props> {
         </td>
         <td>
           {(latestDepartment &&
-            `${latestDepartment.code || ''} - ${latestDepartment.title ||
-              ''}`) ||
+            `${latestDepartment.code || ''} - ${
+              latestDepartment.title || ''
+            }`) ||
             ''}
         </td>
         <td>{status}</td>
@@ -83,7 +84,7 @@ class Row extends React.Component<Props> {
         <td onClick={onClick}>
           <ActionButtons>
             <Button btnStyle="link" onClick={onTrClick}>
-              <Tip text={__('Edit')} placement="bottom">
+              <Tip text={__('Upravit')} placement="bottom">
                 <Icon icon="edit" />
               </Tip>
             </Button>

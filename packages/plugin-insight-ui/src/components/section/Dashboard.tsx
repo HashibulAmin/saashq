@@ -75,7 +75,7 @@ const DashboardSection = (props: Props) => {
           setShowDrawer(!showDrawer);
         }}
       >
-        <Tip text={__('Edit')} placement="bottom">
+        <Tip text={__('Upravit')} placement="bottom">
           <Icon icon="edit" />
         </Tip>
       </Button>

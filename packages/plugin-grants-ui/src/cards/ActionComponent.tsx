@@ -4,9 +4,13 @@ import { CollapseContent, Icon } from '@saashq/ui/src';
 import {
   ControlLabel,
   FormControl,
-  FormGroup
+  FormGroup,
 } from '@saashq/ui/src/components/form';
-import { FormColumn, FormWrapper, LinkButton } from '@saashq/ui/src/styles/main';
+import {
+  FormColumn,
+  FormWrapper,
+  LinkButton,
+} from '@saashq/ui/src/styles/main';
 import { __ } from '@saashq/ui/src/utils';
 import React from 'react';
 import Select from 'react-select-plus';
@@ -29,7 +33,7 @@ class CardActionComponent extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      params: props.initialProps || {}
+      params: props.initialProps || {},
     };
   }
 
@@ -55,9 +59,9 @@ class CardActionComponent extends React.Component<Props, State> {
     const updateProps = {
       ...extraProps,
       ...params,
-      onChangeBoard: e => this.handleChange(e, 'boardId'),
-      onChangePipeline: e => this.handleChange(e, 'pipelineId'),
-      onChangeStage: e => this.handleChange(e, 'stageId')
+      onChangeBoard: (e) => this.handleChange(e, 'boardId'),
+      onChangePipeline: (e) => this.handleChange(e, 'pipelineId'),
+      onChangeStage: (e) => this.handleChange(e, 'stageId'),
     };
 
     return (
@@ -72,7 +76,7 @@ class CardActionComponent extends React.Component<Props, State> {
           onSelect={({ value }) =>
             this.handleChange(
               [{ logic: 'declined', targetStageId: value }],
-              'logics'
+              'logics',
             )
           }
         />
@@ -86,7 +90,7 @@ class CardActionComponent extends React.Component<Props, State> {
     const { pipelineId } = source || {};
 
     const {
-      configs
+      configs,
     }: {
       configs: {
         _id: string;
@@ -95,26 +99,28 @@ class CardActionComponent extends React.Component<Props, State> {
       }[];
     } = params || {};
 
-    const selectedSourceStageIds = configs.map(config => config.sourceStageId);
+    const selectedSourceStageIds = configs.map(
+      (config) => config.sourceStageId,
+    );
     const selectedDestinationStageIds = configs.map(
-      config => config.destinationStageId
+      (config) => config.destinationStageId,
     );
 
-    const removeConfig = _id => {
-      params.configs = configs.filter(config => config._id !== _id);
+    const removeConfig = (_id) => {
+      params.configs = configs.filter((config) => config._id !== _id);
 
       this.props.onChange(params);
     };
 
     const onSelect = (value, name, configId) => {
-      params.configs = configs.map(config =>
-        config._id === configId ? { ...config, [name]: value } : config
+      params.configs = configs.map((config) =>
+        config._id === configId ? { ...config, [name]: value } : config,
       );
 
       this.props.onChange(params);
     };
 
-    return (configs || []).map(config => (
+    return (configs || []).map((config) => (
       <ListItem key={config._id}>
         <RemoveRow onClick={() => removeConfig(config._id)}>
           <Icon icon="times-circle" />
@@ -152,37 +158,37 @@ class CardActionComponent extends React.Component<Props, State> {
   renderLogics() {
     const { params } = this.state;
     const {
-      source: { pipelineId }
+      source: { pipelineId },
     } = this.props;
 
-    const removeLogic = _id => {
-      params.logics = params.logics.filter(logic => logic._id !== _id);
+    const removeLogic = (_id) => {
+      params.logics = params.logics.filter((logic) => logic._id !== _id);
 
       this.props.onChange(params);
     };
 
     const onChangeLogic = (_id, value, name) => {
-      params.logics = params.logics.map(logic =>
-        logic._id === _id ? { ...logic, [name]: value } : logic
+      params.logics = params.logics.map((logic) =>
+        logic._id === _id ? { ...logic, [name]: value } : logic,
       );
       this.props.onChange(params);
     };
 
     const logicOptions = [
       { value: 'approved', label: 'Approved' },
-      { value: 'declined', label: 'Declined' }
+      { value: 'declined', label: 'Declined' },
     ];
 
     const generateOptions = (_id, options) => {
       const logics = params.logics
-        .filter(logic => logic._id !== _id && logic?.logic)
+        .filter((logic) => logic._id !== _id && logic?.logic)
         .map(({ logic }) => logic);
 
-      options = options.filter(logic => !logics.includes(logic.value));
+      options = options.filter((logic) => !logics.includes(logic.value));
       return options;
     };
 
-    return params.logics.map(logic => (
+    return params.logics.map((logic) => (
       <ListItem key={logic._id}>
         <RemoveRow onClick={() => removeLogic(logic._id)}>
           <Icon icon="times-circle" />
@@ -223,7 +229,7 @@ class CardActionComponent extends React.Component<Props, State> {
       this.handleChange(value, 'type');
     };
 
-    const onChange = e => {
+    const onChange = (e) => {
       const { value, name } = e.currentTarget as HTMLInputElement;
       this.handleChange(value, name);
     };
@@ -232,7 +238,7 @@ class CardActionComponent extends React.Component<Props, State> {
       params.configs.push({
         _id: Math.random(),
         sourceStageId: null,
-        destinationStageId: null
+        destinationStageId: null,
       });
 
       this.props.onChange(params);
@@ -240,7 +246,7 @@ class CardActionComponent extends React.Component<Props, State> {
 
     const addLogics = () => {
       params.logics.push({
-        _id: Math.random()
+        _id: Math.random(),
       });
 
       this.props.onChange(params);
@@ -248,9 +254,9 @@ class CardActionComponent extends React.Component<Props, State> {
 
     const updateProps = {
       ...params,
-      onChangeBoard: e => this.handleChange(e, 'boardId'),
-      onChangePipeline: e => this.handleChange(e, 'pipelineId'),
-      onChangeStage: e => this.handleChange(e, 'stageId')
+      onChangeBoard: (e) => this.handleChange(e, 'boardId'),
+      onChangePipeline: (e) => this.handleChange(e, 'pipelineId'),
+      onChangeStage: (e) => this.handleChange(e, 'stageId'),
     };
 
     return (
@@ -269,12 +275,12 @@ class CardActionComponent extends React.Component<Props, State> {
               <BoardSelect {...updateProps} />
               <FormGroup>
                 <Row>
-                  <ControlLabel required>{__('Name')}</ControlLabel>
+                  <ControlLabel required>{__('Název')}</ControlLabel>
                   <Attribution
                     triggerType={`cards:${params['type']}`}
                     inputName="name"
                     config={params}
-                    setConfig={params => this.props.onChange(params)}
+                    setConfig={(params) => this.props.onChange(params)}
                   />
                 </Row>
                 <FormControl

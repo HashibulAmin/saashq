@@ -73,7 +73,7 @@ class List extends React.Component<Props> {
 
               return <th key={field.code}>{field.text}</th>;
             })}
-            <th>{__('Actions')}</th>
+            <th>{__('Akce')}</th>
           </tr>
         </thead>
         <tbody>{this.renderRow()}</tbody>
