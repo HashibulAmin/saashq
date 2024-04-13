@@ -25,7 +25,7 @@ class CloseFromContainer extends React.Component<FinalProps, State> {
 
     this.state = {
       loading: false,
-      closeDate: new Date()
+      closeDate: new Date(),
     };
   }
 
@@ -49,7 +49,7 @@ class CloseFromContainer extends React.Component<FinalProps, State> {
           type="submit"
           successMessage={__(`You successfully expand this contract`)}
         >
-          {__('Save')}
+          {__('Uložit')}
         </ButtonMutate>
       );
     };
@@ -57,7 +57,7 @@ class CloseFromContainer extends React.Component<FinalProps, State> {
     const updatedProps = {
       ...this.props,
       contract,
-      renderButton
+      renderButton,
     };
 
     return <ExpandForm {...updatedProps} />;

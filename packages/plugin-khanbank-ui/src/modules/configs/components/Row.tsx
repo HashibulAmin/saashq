@@ -23,7 +23,7 @@ const Row = (props: Props) => {
     };
 
     return (
-      <Tip text={__('Delete')} placement="top">
+      <Tip text={__('Vymazat')} placement="top">
         <Button
           id="configDelete"
           btnStyle="link"
@@ -34,7 +34,7 @@ const Row = (props: Props) => {
     );
   };
 
-  const formContent = props => <Form {...props} config={config} />;
+  const formContent = (props) => <Form {...props} config={config} />;
 
   return (
     <tr>

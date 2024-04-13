@@ -4,7 +4,7 @@ import DateControl from '@saashq/ui/src/components/form/DateControl';
 import FormGroup from '@saashq/ui/src/components/form/Group';
 import {
   CustomRangeContainer,
-  EndDateContainer
+  EndDateContainer,
 } from '@saashq/ui-forms/src/forms/styles';
 import { DateContainer } from '@saashq/ui/src/styles/main';
 import React from 'react';
@@ -22,7 +22,7 @@ type State = {
 
 const types = ['default', 'range', 'cycle'];
 
-const capitalizeFirstLetter = text => {
+const capitalizeFirstLetter = (text) => {
   return text[0].toUpperCase() + text.slice(1);
 };
 
@@ -33,7 +33,7 @@ class DateSettings extends React.Component<Props, State> {
     const selectDateType = props?.config?.dateConfig?.type;
 
     this.state = {
-      selectDateType: selectDateType || 'default'
+      selectDateType: selectDateType || 'default',
     };
   }
 
@@ -44,16 +44,16 @@ class DateSettings extends React.Component<Props, State> {
           <DateContainer>
             <DateControl
               value={dateConfig?.startDate}
-              placeholder="select start date "
-              onChange={e => onChangeDate(e, 'startDate')}
+              placeholder="vyberte datum zahájení "
+              onChange={(e) => onChangeDate(e, 'startDate')}
             />
           </DateContainer>
           <EndDateContainer>
             <DateContainer>
               <DateControl
                 value={dateConfig?.endDate}
-                placeholder="select  end date "
-                onChange={e => onChangeDate(e, 'endDate')}
+                placeholder="vyberte datum ukončení "
+                onChange={(e) => onChangeDate(e, 'endDate')}
               />
             </DateContainer>
           </EndDateContainer>
@@ -66,12 +66,12 @@ class DateSettings extends React.Component<Props, State> {
     const frequencyOptions = [
       {
         value: 'everyYear',
-        label: 'Every Year'
+        label: 'Každý Rok',
       },
       {
         value: 'everyMonth',
-        label: 'Every Month'
-      }
+        label: 'Každý Měsíc',
+      },
     ];
 
     const renderDateFormat = () => {
@@ -84,7 +84,7 @@ class DateSettings extends React.Component<Props, State> {
     return (
       <>
         <FormGroup>
-          <ControlLabel>{__('Frequency Type')}</ControlLabel>
+          <ControlLabel>{__('Typ Frekvence')}</ControlLabel>
           <Select
             options={frequencyOptions}
             onChange={({ value }) => onChangeDate(value, 'frequencyType')}
@@ -94,23 +94,23 @@ class DateSettings extends React.Component<Props, State> {
         <Features isToggled={dateConfig?.frequencyType}>
           <CustomRangeContainer>
             <DateContainer>
-              <ControlLabel>{__('Select a start date')}</ControlLabel>
+              <ControlLabel>{__('Vyberte datum zahájení')}</ControlLabel>
               <DateControl
-                placeholder="select a date"
+                placeholder="vyberte datum"
                 value={dateConfig?.startDate}
                 dateFormat={renderDateFormat()}
-                onChange={date => onChangeDate(date, 'startDate')}
+                onChange={(date) => onChangeDate(date, 'startDate')}
               />
             </DateContainer>
             <EndDateContainer>
               <DateContainer>
                 <ControlLabel>
-                  {__('Select a end date (optional)')}
+                  {__('Vyberte datum ukončení (volitelné)')}
                 </ControlLabel>
                 <DateControl
-                  placeholder="select a date"
+                  placeholder="vyberte datum"
                   value={dateConfig?.endDate}
-                  onChange={date => onChangeDate(date, 'endDate')}
+                  onChange={(date) => onChangeDate(date, 'endDate')}
                   dateFormat={renderDateFormat()}
                 />
               </DateContainer>
@@ -145,9 +145,9 @@ class DateSettings extends React.Component<Props, State> {
 
     return (
       <DateControl
-        placeholder="select a date"
+        placeholder="vyberte datum"
         value={dateConfig?.date}
-        onChange={e => onChangeDate(e, 'date')}
+        onChange={(e) => onChangeDate(e, 'date')}
       />
     );
   }
@@ -167,11 +167,11 @@ class DateSettings extends React.Component<Props, State> {
     return (
       <>
         <FormGroup>
-          <ControlLabel>{__('Select Type')}</ControlLabel>
+          <ControlLabel>{__('Vyberte Typ')}</ControlLabel>
           <Select
-            options={types.map(type => ({
+            options={types.map((type) => ({
               value: type,
-              label: capitalizeFirstLetter(type)
+              label: capitalizeFirstLetter(type),
             }))}
             value={selectDateType}
             onChange={onSelectType}

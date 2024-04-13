@@ -3,13 +3,13 @@ import { Appearance, Availability, Greeting, Intro, Options } from './steps';
 import {
   Content,
   LeftContent,
-  MessengerPreview
+  MessengerPreview,
 } from '@saashq/ui-inbox/src/settings/integrations/styles';
 import {
   ControlWrapper,
   Indicator,
   Preview,
-  StepWrapper
+  StepWrapper,
 } from '@saashq/ui/src/components/step/styles';
 import {
   IIntegration,
@@ -17,7 +17,7 @@ import {
   IMessengerApps,
   IMessengerData,
   ISkillData,
-  IUiOptions
+  IUiOptions,
 } from '@saashq/ui-inbox/src/settings/integrations/types';
 import { Step, Steps } from '@saashq/ui/src/components/step';
 
@@ -105,7 +105,7 @@ class CreateMessenger extends React.Component<Props, State> {
       forceLogoutWhenResolve: false,
       showVideoCallRequest: false,
       botEndpointUrl: '',
-      botShowInitialMessage: false
+      botShowInitialMessage: false,
     };
     const links = configData.links || {};
     const messages = configData.messages || {};
@@ -120,7 +120,7 @@ class CreateMessenger extends React.Component<Props, State> {
       skillData: configData.skillData,
       brandId: integration.brandId || '',
       languageCode,
-      channelIds: channels.map(item => item._id) || [],
+      channelIds: channels.map((item) => item._id) || [],
       color: uiOptions.color || '#6569DF',
       textColor: uiOptions.textColor || '#fff',
       wallpaper: uiOptions.wallpaper || '1',
@@ -136,9 +136,9 @@ class CreateMessenger extends React.Component<Props, State> {
       timezone: configData.timezone || '',
       responseRate: configData.responseRate || 'A few minutes',
       showTimezone: configData.showTimezone || false,
-      onlineHours: (configData.onlineHours || []).map(h => ({
+      onlineHours: (configData.onlineHours || []).map((h) => ({
         _id: Math.random(),
-        ...h
+        ...h,
       })),
       showVideoCallRequest: configData.showVideoCallRequest,
       logo: uiOptions.logo || '',
@@ -149,14 +149,14 @@ class CreateMessenger extends React.Component<Props, State> {
       twitter: links.twitter || '',
       youtube: links.youtube || '',
       messages: { ...this.generateMessages(messages) },
-      messengerApps
+      messengerApps,
     };
   }
 
   generateMessages(integrationMessages) {
     const messages = {};
 
-    LANGUAGES.forEach(item => {
+    LANGUAGES.forEach((item) => {
       const message = integrationMessages[item.value] || {};
 
       messages[item.value] = {
@@ -164,11 +164,11 @@ class CreateMessenger extends React.Component<Props, State> {
           title:
             message && message.greetings ? message.greetings.title || '' : '',
           message:
-            message && message.greetings ? message.greetings.message || '' : ''
+            message && message.greetings ? message.greetings.message || '' : '',
         },
         welcome: message.welcome || '',
         away: message.away || '',
-        thank: message.thank || ''
+        thank: message.thank || '',
       };
     });
 
@@ -176,14 +176,14 @@ class CreateMessenger extends React.Component<Props, State> {
   }
 
   onChange = <T extends keyof State>(key: T, value: State[T]) => {
-    this.setState(({ [key]: value } as unknown) as Pick<State, keyof State>);
+    this.setState({ [key]: value } as unknown as Pick<State, keyof State>);
   };
 
   handleMessengerApps = (messengerApps: IMessengerApps) => {
     this.setState({ messengerApps });
   };
 
-  save = e => {
+  save = (e) => {
     e.preventDefault();
 
     const {
@@ -205,7 +205,7 @@ class CreateMessenger extends React.Component<Props, State> {
       forceLogoutWhenResolve,
       showVideoCallRequest,
       messengerApps,
-      skillData
+      skillData,
     } = this.state;
 
     if (!languageCode) {
@@ -260,7 +260,7 @@ class CreateMessenger extends React.Component<Props, State> {
       facebook: linkify(facebook),
       instagram: linkify(instagram),
       twitter: linkify(twitter),
-      youtube: linkify(youtube)
+      youtube: linkify(youtube),
     };
 
     this.props.save({
@@ -278,10 +278,10 @@ class CreateMessenger extends React.Component<Props, State> {
         timezone: this.state.timezone,
         responseRate: this.state.responseRate,
         showTimezone: this.state.showTimezone,
-        onlineHours: (this.state.onlineHours || []).map(oh => ({
+        onlineHours: (this.state.onlineHours || []).map((oh) => ({
           day: oh.day,
           from: oh.from,
-          to: oh.to
+          to: oh.to,
         })),
         supporterIds: this.state.supporterIds,
         messages,
@@ -291,25 +291,25 @@ class CreateMessenger extends React.Component<Props, State> {
         hideWhenOffline,
         forceLogoutWhenResolve,
         showVideoCallRequest,
-        links
+        links,
       },
       uiOptions: {
         color: this.state.color,
         textColor: this.state.textColor,
         wallpaper: this.state.wallpaper,
-        logo: this.state.logo
+        logo: this.state.logo,
       },
-      messengerApps
+      messengerApps,
     });
   };
 
-  onStepClick = name => {
+  onStepClick = (name) => {
     this.setState({
       isStepActive:
         name === 'greeting' || name === 'hours' || name === 'addon'
           ? true
           : false,
-      activeStep: name
+      activeStep: name,
     });
   };
 
@@ -375,16 +375,16 @@ class CreateMessenger extends React.Component<Props, State> {
       showVideoCallRequest,
       channelIds,
       skillData,
-      messengerApps
+      messengerApps,
     } = this.state;
 
     const { integration } = this.props;
     const message = messages[languageCode];
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Integrations'), link: '/settings/integrations' },
-      { title: __('Messenger') }
+      { title: __('Messenger') },
     ];
 
     return (

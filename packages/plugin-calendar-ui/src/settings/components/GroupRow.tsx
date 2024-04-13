@@ -50,7 +50,7 @@ class GroupRow extends React.Component<Props, State> {
         <Tip text={__('Upravit')} placement="top">
           <Button btnStyle="link" onClick={edit} icon="edit-3" />
         </Tip>
-        <Tip text={__('Delete')}>
+        <Tip text={__('Vymazat')}>
           <Button btnStyle="link" onClick={onClick} icon="times-circle" />
         </Tip>
       </>
@@ -89,7 +89,7 @@ class GroupRow extends React.Component<Props, State> {
         <Tip text={__('Upravit')} placement="top">
           <Button btnStyle="link" onClick={edit} icon="edit-3" />
         </Tip>
-        <Tip text={__('Delete')}>
+        <Tip text={__('Vymazat')}>
           <Button btnStyle="link" onClick={onClick} icon="times-circle" />
         </Tip>
       </>

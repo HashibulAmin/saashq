@@ -196,7 +196,7 @@ export default function Repeat(props: Props) {
       </td>
       <td>{renderInputForm(item, index)}</td>
       <td>
-        <Tip text={__('Delete')} placement="bottom">
+        <Tip text={__('Vymazat')} placement="bottom">
           <Button
             btnStyle="danger"
             icon="trash"

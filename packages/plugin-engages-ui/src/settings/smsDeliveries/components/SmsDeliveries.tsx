@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import {
   FilterItem,
-  FilterWrapper
+  FilterWrapper,
 } from '@saashq/ui-settings/src/permissions/styles';
 import { __, router } from '@saashq/ui/src/utils';
 
@@ -34,7 +34,7 @@ type commonProps = {
 
 const breadcrumb = [
   { title: 'Settings', link: '/settings' },
-  { title: __('SMS deliveries') }
+  { title: __('SMS deliveries') },
 ];
 
 export const SOURCE_TYPES = {
@@ -43,8 +43,8 @@ export const SOURCE_TYPES = {
   ALL: ['campaign', 'integration'],
   OPTIONS: [
     { value: 'campaign', label: 'Campaign' },
-    { value: 'integration', label: 'Conversation' }
-  ]
+    { value: 'integration', label: 'Conversation' },
+  ],
 };
 
 class SmsDeliveries extends React.Component<Props, State> {
@@ -54,7 +54,7 @@ class SmsDeliveries extends React.Component<Props, State> {
     const qp = props.queryParams || { type: '' };
 
     this.state = {
-      type: qp.type || SOURCE_TYPES.CAMPAIGN
+      type: qp.type || SOURCE_TYPES.CAMPAIGN,
     };
   }
 
@@ -88,7 +88,7 @@ class SmsDeliveries extends React.Component<Props, State> {
             <th key="date">{__('Date')}</th>
             <th key="direction">{__('Direction')}</th>
             <th key="to">{__('To')}</th>
-            <th key="status">{__('Status')}</th>
+            <th key="status">{__('Postavení')}</th>
             <th key="campaign">{__('Campaign')}</th>
             <th key="from">{__('From')}</th>
             <th key="content">{__('Content')}</th>
@@ -103,11 +103,11 @@ class SmsDeliveries extends React.Component<Props, State> {
   renderActionBar() {
     const { type } = this.state;
 
-    const onTypeChange = option => {
+    const onTypeChange = (option) => {
       this.setState({
         type: option && option.value ? option.value : '',
         page: '',
-        perPage: ''
+        perPage: '',
       });
     };
 
@@ -117,7 +117,7 @@ class SmsDeliveries extends React.Component<Props, State> {
         <FilterItem>
           <Select
             placeholder={__('Choose module')}
-            value={SOURCE_TYPES.OPTIONS.find(item => item.value === type)}
+            value={SOURCE_TYPES.OPTIONS.find((item) => item.value === type)}
             options={SOURCE_TYPES.OPTIONS}
             onChange={onTypeChange}
             clearable={false}

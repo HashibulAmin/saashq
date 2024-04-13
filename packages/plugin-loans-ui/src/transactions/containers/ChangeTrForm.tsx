@@ -27,7 +27,7 @@ class TransactionFromContainer extends React.Component<FinalProps> {
     const renderButton = ({
       values,
       isSubmitted,
-      disableLoading
+      disableLoading,
     }: IButtonMutateProps) => {
       const { closeModal } = this.props;
 
@@ -46,7 +46,7 @@ class TransactionFromContainer extends React.Component<FinalProps> {
           type="submit"
           successMessage={`You successfully changed transaction`}
         >
-          {__('Save')}
+          {__('Uložit')}
         </ButtonMutate>
       );
     };
@@ -56,7 +56,7 @@ class TransactionFromContainer extends React.Component<FinalProps> {
     const updatedProps = {
       ...this.props,
       renderButton,
-      transaction: { ...transaction }
+      transaction: { ...transaction },
     };
     return <ChangeTrForm {...updatedProps} />;
   }

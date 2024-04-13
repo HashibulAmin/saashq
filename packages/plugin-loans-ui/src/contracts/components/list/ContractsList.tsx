@@ -199,7 +199,7 @@ class ContractsList extends React.Component<IProps, State> {
                 />
               </th>
               <th>
-                <SortHandler sortField={'tenor'} label={__('Status')} />
+                <SortHandler sortField={'tenor'} label={__('Postavení')} />
               </th>
               <th />
             </tr>
@@ -259,7 +259,7 @@ class ContractsList extends React.Component<IProps, State> {
             ORGANIZATION_TYPE.ENTITY &&
             can('contractsRemove', currentUser) && (
               <Button btnStyle="danger" icon="cancel-1" onClick={onClick}>
-                {__('Delete')}
+                {__('Vymazat')}
               </Button>
             )}
           {alerts.map((mur) => (

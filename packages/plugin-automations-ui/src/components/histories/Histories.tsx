@@ -18,7 +18,7 @@ class Histories extends React.Component<Props> {
 
     const triggersByType = {};
     triggersConst.forEach((t) => {
-      triggersByType[t.type] = `${t.label} based`;
+      triggersByType[t.type] = `${t.label} na základě`;
     });
 
     const actionsByType = {};
@@ -40,11 +40,11 @@ class Histories extends React.Component<Props> {
         <Table whiteSpace="nowrap" bordered={true} hover={true}>
           <thead>
             <tr>
-              <th>{__('Title')}</th>
+              <th>{__('Titul')}</th>
               <th>{__('Popis')}</th>
-              <th>{__('Trigger')}</th>
-              <th>{__('Status')}</th>
-              <th>{__('Time')}</th>
+              <th>{__('Spoušť')}</th>
+              <th>{__('Postavení')}</th>
+              <th>{__('Čas')}</th>
             </tr>
           </thead>
           <tbody id="automationHistories">

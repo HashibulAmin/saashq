@@ -54,7 +54,7 @@ const List = (props: Props) => {
   const actionBar = <Wrapper.ActionBar right={righActionBar} />;
 
   const breadcrumb = [
-    { title: __('Settings'), link: '/settings' },
+    { title: __('Nastavení'), link: '/settings' },
     { title: __('Khanbank'), link: '/settings/khanbank' },
   ];
 

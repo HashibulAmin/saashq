@@ -1,7 +1,7 @@
 import {
   FieldStyle,
   SidebarCounter,
-  SidebarList
+  SidebarList,
 } from '@saashq/ui/src/layout/styles';
 import { __, isValidDate } from '@saashq/ui/src/utils';
 
@@ -70,7 +70,7 @@ class TrackedDataSection extends React.Component<Props> {
     return (
       <SidebarList className="no-link">
         <li>
-          <FieldStyle>{__('Status')}</FieldStyle>
+          <FieldStyle>{__('Postavení')}</FieldStyle>
           <SidebarCounter>
             {isOnline ? (
               <Label lblStyle="success">Online</Label>

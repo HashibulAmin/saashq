@@ -11,7 +11,7 @@ import {
   CloseInfoQueryResponse,
   CloseMutationResponse,
   CloseMutationVariables,
-  IContract
+  IContract,
 } from '../../types';
 import InterestChangeForm from '../../components/detail/InterestChangeForm';
 
@@ -36,7 +36,7 @@ class InterestChangeContainer extends React.Component<FinalProps, State> {
 
     this.state = {
       loading: false,
-      invDate: new Date()
+      invDate: new Date(),
     };
   }
 
@@ -77,7 +77,7 @@ class InterestChangeContainer extends React.Component<FinalProps, State> {
           type="submit"
           successMessage={__(`You successfully change interest this contract`)}
         >
-          {__('Save')}
+          {__('Uložit')}
         </ButtonMutate>
       );
     };
@@ -88,8 +88,8 @@ class InterestChangeContainer extends React.Component<FinalProps, State> {
         () =>
           !this.props.type &&
           closeInfoQuery.refetch({
-            date
-          })
+            date,
+          }),
       );
     };
 
@@ -105,7 +105,7 @@ class InterestChangeContainer extends React.Component<FinalProps, State> {
       renderButton,
       closeInfo,
       onChangeDate,
-      invDate: this.state.invDate
+      invDate: this.state.invDate,
     };
 
     return <InterestChangeForm {...updatedProps} />;
@@ -119,7 +119,7 @@ const getRefetchQueries = () => {
     'contracts',
     'contractCounts',
     'activityLogs',
-    'schedules'
+    'schedules',
   ];
 };
 
@@ -132,17 +132,17 @@ export default withProps<Props>(
         options: ({ contract }) => ({
           variables: {
             contractId: contract?._id,
-            date: new Date()
+            date: new Date(),
           },
-          fetchPolicy: 'network-only'
-        })
-      }
+          fetchPolicy: 'network-only',
+        }),
+      },
     ),
     graphql<{}, CloseMutationResponse, CloseMutationVariables>(
       gql(mutations.contractsClose),
       {
-        name: 'contractsClose'
-      }
-    )
-  )(InterestChangeContainer)
+        name: 'contractsClose',
+      },
+    ),
+  )(InterestChangeContainer),
 );

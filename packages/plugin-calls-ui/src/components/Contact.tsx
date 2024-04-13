@@ -91,7 +91,7 @@ class Contact extends React.Component<Props, State> {
       <>
         <InputBar type="searchBar">
           <FormControl
-            placeholder={__('Search')}
+            placeholder={__('Vyhledávání')}
             name="searchValue"
             onChange={onChange}
             value={searchValue}

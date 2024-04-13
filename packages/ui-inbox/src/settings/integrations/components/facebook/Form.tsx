@@ -5,7 +5,7 @@ import {
   Content,
   ImageWrapper,
   MessengerPreview,
-  TextWrapper
+  TextWrapper,
 } from '../../styles';
 import {
   ControlWrapper,
@@ -13,7 +13,7 @@ import {
   Indicator,
   LeftItem,
   Preview,
-  StepWrapper
+  StepWrapper,
 } from '@saashq/ui/src/components/step/styles';
 import { IButtonMutateProps, IFormProps } from '@saashq/ui/src/types';
 import { Step, Steps } from '@saashq/ui/src/components/step';
@@ -57,7 +57,7 @@ class Facebook extends React.Component<Props, State> {
 
     this.state = {
       selectedPages: [],
-      channelIds: []
+      channelIds: [],
     };
   }
 
@@ -65,7 +65,7 @@ class Facebook extends React.Component<Props, State> {
     const { selectedPages } = this.state;
     if (selectedPages.includes(pageId)) {
       return this.setState({
-        selectedPages: selectedPages.filter(item => item !== pageId)
+        selectedPages: selectedPages.filter((item) => item !== pageId),
       });
     }
 
@@ -86,8 +86,8 @@ class Facebook extends React.Component<Props, State> {
       accountId: accountId ? accountId : values.accountId,
       channelIds: this.state.channelIds,
       data: {
-        pageIds: this.state.selectedPages
-      }
+        pageIds: this.state.selectedPages,
+      },
     };
   };
 
@@ -107,7 +107,7 @@ class Facebook extends React.Component<Props, State> {
         <LeftItem>
           <AccountBox>
             <AccountTitle>{__('Facebook Pages')}</AccountTitle>
-            {pages.map(page => (
+            {pages.map((page) => (
               <AccountItem key={page.id}>
                 {page.name}
 
@@ -122,7 +122,7 @@ class Facebook extends React.Component<Props, State> {
                 >
                   {this.state.selectedPages.includes(page.id)
                     ? __('Selected')
-                    : __('Select')}
+                    : __('Vybrat')}
                 </Button>
               </AccountItem>
             ))}
@@ -185,7 +185,7 @@ class Facebook extends React.Component<Props, State> {
                 <SelectBrand
                   isRequired={true}
                   description={__(
-                    'Which specific Brand does this integration belong to?'
+                    'Which specific Brand does this integration belong to?',
                   )}
                   formProps={formProps}
                 />
@@ -214,7 +214,7 @@ class Facebook extends React.Component<Props, State> {
               name: 'integration',
               values: this.generateDoc(values),
               isSubmitted,
-              callback: this.props.callBack
+              callback: this.props.callBack,
             })}
           </Button.Group>
         </ControlWrapper>
@@ -229,20 +229,20 @@ class Facebook extends React.Component<Props, State> {
   render() {
     let title = __('Facebook Posts');
     let description = __(
-      'Connect your Facebook Posts to start receiving Facebook post and comments in your team inbox'
+      'Connect your Facebook Posts to start receiving Facebook post and comments in your team inbox',
     );
 
     if (this.props.kind === INTEGRATION_KINDS.FACEBOOK_MESSENGER) {
       title = __('Facebook Messenger');
       description = __(
-        'Connect your Facebook Messenger to start receiving Facebook messages in your team inbox'
+        'Connect your Facebook Messenger to start receiving Facebook messages in your team inbox',
       );
     }
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('integrations'), link: '/settings/integrations' },
-      { title }
+      { title },
     ];
 
     return (

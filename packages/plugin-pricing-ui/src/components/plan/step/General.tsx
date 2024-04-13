@@ -352,7 +352,7 @@ export default function General(props: Props) {
               />
             </FormGroup>
             <FormGroup>
-              <FormLabel>{__('Status')}</FormLabel>
+              <FormLabel>{__('Postavení')}</FormLabel>
               <FormControl
                 name="status"
                 componentClass="select"

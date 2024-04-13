@@ -29,15 +29,15 @@ class ShareForm extends React.Component<Props, State> {
 
     this.state = {
       userIds: [],
-      selectedUnit: {} as any
+      selectedUnit: {} as any,
     };
   }
 
-  usersOnChange = userIds => {
+  usersOnChange = (userIds) => {
     this.setState({ userIds });
   };
 
-  onSave = values => {
+  onSave = (values) => {
     const { userIds, selectedUnit } = this.state;
     const { item, shareFile } = this.props;
 
@@ -45,19 +45,19 @@ class ShareForm extends React.Component<Props, State> {
       type: item.folderId ? 'file' : 'folder',
       _id: item._id,
       userIds,
-      unitId: selectedUnit.value
+      unitId: selectedUnit.value,
     });
   };
 
-  generateParams = options => {
-    return options.map(option => ({
+  generateParams = (options) => {
+    return options.map((option) => ({
       value: option._id,
-      label: option.title
+      label: option.title,
     }));
   };
 
   renderContent = (formProps: IFormProps) => {
-    const onChange = selectedUnit => {
+    const onChange = (selectedUnit) => {
       this.setState({ selectedUnit });
     };
 
@@ -67,7 +67,7 @@ class ShareForm extends React.Component<Props, State> {
       <>
         <Info>
           Shared with {sharedUsers.length || 0} members: &nbsp;
-          {sharedUsers.map(user => (
+          {sharedUsers.map((user) => (
             <small key={user._id}>{renderUserFullName(user)}, &nbsp;</small>
           ))}
         </Info>
@@ -99,7 +99,7 @@ class ShareForm extends React.Component<Props, State> {
             onClick={this.props.closeModal}
             icon="times-circle"
           >
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
 
           <Button type="submit" btnStyle="success" icon="share-alt">

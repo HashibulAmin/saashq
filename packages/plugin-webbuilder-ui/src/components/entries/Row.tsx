@@ -23,8 +23,8 @@ function Row(props: Props) {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    values.forEach(val => {
-      setData(dat => ({ ...dat, [val.fieldCode]: val.value }));
+    values.forEach((val) => {
+      setData((dat) => ({ ...dat, [val.fieldCode]: val.value }));
     });
   }, [values]);
 
@@ -59,7 +59,7 @@ function Row(props: Props) {
     const onClick = () => remove(item._id);
 
     return (
-      <Tip text={__('Delete')} placement="top">
+      <Tip text={__('Vymazat')} placement="top">
         <Button btnStyle="link" onClick={onClick} icon="times-circle" />
       </Tip>
     );
@@ -67,7 +67,7 @@ function Row(props: Props) {
 
   return (
     <tr>
-      {fields.map(val => {
+      {fields.map((val) => {
         if (!val.show) {
           return;
         }

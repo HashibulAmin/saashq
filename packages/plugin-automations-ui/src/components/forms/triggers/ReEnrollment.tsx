@@ -38,7 +38,7 @@ class ReEnrollment extends React.Component<Props, State> {
 
     this.state = {
       reEnroll: config.reEnrollment ? true : false,
-      checked: config.reEnrollmentRules || []
+      checked: config.reEnrollmentRules || [],
     };
   }
 
@@ -48,19 +48,19 @@ class ReEnrollment extends React.Component<Props, State> {
 
     const config = {
       reEnrollment: reEnroll,
-      reEnrollmentRules: checked
+      reEnrollmentRules: checked,
     };
 
     addConfig(trigger, trigger.id, config);
   };
 
-  onSwitchHandler = e => {
+  onSwitchHandler = (e) => {
     this.setState({ reEnroll: e.target.checked }, () => {
       this.onChangeConfig();
     });
   };
 
-  onChangeCheckbox = e => {
+  onChangeCheckbox = (e) => {
     const property = e.target.value;
     const isCheck = e.target.checked;
     const { checked } = this.state;
@@ -69,7 +69,7 @@ class ReEnrollment extends React.Component<Props, State> {
     if (isCheck) {
       updated = [...checked, property];
     } else {
-      updated = checked.filter(ch => ch !== property);
+      updated = checked.filter((ch) => ch !== property);
     }
 
     this.setState({ checked: updated }, () => {
@@ -77,20 +77,20 @@ class ReEnrollment extends React.Component<Props, State> {
     });
   };
 
-  renderCheckbox = condition => {
+  renderCheckbox = (condition) => {
     const { fields } = this.props;
     const { checked, reEnroll } = this.state;
 
     const labelByName = {};
 
     for (const cond of condition.conditions) {
-      const field = fields.find(f => f.name === cond.propertyName) || {
-        label: ''
+      const field = fields.find((f) => f.name === cond.propertyName) || {
+        label: '',
       };
       labelByName[cond.propertyName] = field.label || cond.propertyName;
     }
 
-    return Object.keys(labelByName).map(propertyName => (
+    return Object.keys(labelByName).map((propertyName) => (
       <FormControl
         key={Math.random()}
         componentClass="checkbox"
@@ -109,17 +109,17 @@ class ReEnrollment extends React.Component<Props, State> {
     const { segment } = this.props;
 
     if (!segment) {
-      return __('Must segment form save');
+      return __('Formulář segmentu je nutné uložit');
     }
 
     return (
       <>
         <EnrollmentWrapper noMargin={true}>
-          <b>{__('Re-enrollment')}</b>
+          <b>{__('Opětovná registrace')}</b>
           <div>
             <p>
               {__(
-                'This will allow you that meet the trigger criteria to re-enroll'
+                'To vám umožní splnit spouštěcí kritéria pro opětovnou registraci',
               )}
               .
             </p>
@@ -129,7 +129,7 @@ class ReEnrollment extends React.Component<Props, State> {
                 onChange={this.onSwitchHandler}
                 icons={{
                   checked: <span>Yes</span>,
-                  unchecked: <span>No</span>
+                  unchecked: <span>No</span>,
                 }}
               />
             </StyledToggle>
@@ -137,12 +137,14 @@ class ReEnrollment extends React.Component<Props, State> {
         </EnrollmentWrapper>
         <p>
           {__(
-            'Re-enroll deal if they meet the trigger criteria and any of the following occurs'
+            'Znovu zaregistrujte dohodu, pokud splňují spouštěcí kritéria a dojde k některé z následujících situací',
           )}
           :
         </p>
         <Checkbox>
-          {segment.subSegmentConditions.map(cond => this.renderCheckbox(cond))}
+          {segment.subSegmentConditions.map((cond) =>
+            this.renderCheckbox(cond),
+          )}
         </Checkbox>
       </>
     );

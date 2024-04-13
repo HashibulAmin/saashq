@@ -4,7 +4,7 @@ import {
   ControlLabel,
   FormControl,
   FormGroup,
-  Icon
+  Icon,
 } from '@saashq/ui/src/components';
 import { __ } from '@saashq/ui/src/utils';
 import { Wrapper } from '@saashq/ui/src/layout';
@@ -30,11 +30,11 @@ class GeneralSettings extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      currentMap: props.configsMap.EBARIMT || {}
+      currentMap: props.configsMap.EBARIMT || {},
     };
   }
 
-  save = e => {
+  save = (e) => {
     e.preventDefault();
 
     const { currentMap } = this.state;
@@ -72,8 +72,8 @@ class GeneralSettings extends React.Component<Props, State> {
 
   render() {
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
-      { title: __('Ebarimt config') }
+      { title: __('Nastavení'), link: '/settings' },
+      { title: __('Ebarimt config') },
     ];
 
     const actionButtons = (

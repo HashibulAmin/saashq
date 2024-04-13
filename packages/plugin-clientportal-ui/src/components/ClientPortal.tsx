@@ -19,12 +19,12 @@ class ClientPortal extends React.Component<Props, {}> {
     const text = this.props.kind === 'client' ? 'Client' : 'Vendor';
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Business Portal'), link: '/settings/business-portal' },
       {
         title: __(`${text} Portal`),
-        link: `/settings/business-portal/${this.props.kind}`
-      }
+        link: `/settings/business-portal/${this.props.kind}`,
+      },
     ];
 
     const count = queryParams._id ? 1 : 0;
@@ -39,7 +39,7 @@ class ClientPortal extends React.Component<Props, {}> {
             icon="/images/actions/32.svg"
             title="Business Portal"
             description={__(
-              'Add unlimited Business Portals with unlimited support to further your growth and accelerate your business'
+              'Add unlimited Business Portals with unlimited support to further your growth and accelerate your business',
             )}
           />
         }

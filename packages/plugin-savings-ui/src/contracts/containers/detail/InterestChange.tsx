@@ -30,7 +30,7 @@ class InterestChangeContainer extends React.Component<FinalProps, State> {
 
     this.state = {
       loading: false,
-      invDate: new Date()
+      invDate: new Date(),
     };
   }
 
@@ -68,7 +68,7 @@ class InterestChangeContainer extends React.Component<FinalProps, State> {
           type="submit"
           successMessage={__(`You successfully change interest this contract`)}
         >
-          {__('Save')}
+          {__('Uložit')}
         </ButtonMutate>
       );
     };
@@ -82,7 +82,7 @@ class InterestChangeContainer extends React.Component<FinalProps, State> {
       contract,
       renderButton,
       onChangeDate,
-      invDate: this.state.invDate
+      invDate: this.state.invDate,
     };
 
     return <InterestChangeForm {...updatedProps} />;
@@ -96,7 +96,7 @@ const getRefetchQueries = () => {
     'contracts',
     'contractCounts',
     'activityLogs',
-    'schedules'
+    'schedules',
   ];
 };
 

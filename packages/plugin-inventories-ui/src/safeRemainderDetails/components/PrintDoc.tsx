@@ -22,7 +22,7 @@ export default function List(props: Props) {
 
   const breadcrumb = [
     { title: __('Safe Remainders'), link: '/inventories/safe-remainders' },
-    { title: __('Safe Remainder') }
+    { title: __('Safe Remainder') },
   ];
 
   // Hooks
@@ -58,7 +58,7 @@ export default function List(props: Props) {
         <div>
           <span><Strong>Date: </Strong>
             ${dayjs(safeRemainder.beginDate).format(
-              'YYYY-MM-DD HH:mm'
+              'YYYY-MM-DD HH:mm',
             )} - ${dayjs(safeRemainder.endDate).format('YYYY-MM-DD HH:mm')}
           </span>
           <span>
@@ -77,7 +77,7 @@ export default function List(props: Props) {
             <th>${__('Date')}</th>
             <th>${__('Live')}</th>
             <th>${__('UOM')}</th>
-            <th>${__('Status')}</th>
+            <th>${__('Postavení')}</th>
             <th>${__('Safe')}</th>
             <th>${__('Diff')}</th>
           </tr>
@@ -85,14 +85,8 @@ export default function List(props: Props) {
     `;
 
     for (const remainderItem of safeRemainderItems) {
-      const {
-        product,
-        modifiedAt,
-        count,
-        preCount,
-        uom,
-        status
-      } = remainderItem;
+      const { product, modifiedAt, count, preCount, uom, status } =
+        remainderItem;
 
       printContentHTML += `<tr>
         <td>${product && `${product.code} - ${product.name} `}</td>
@@ -260,7 +254,7 @@ export default function List(props: Props) {
           height: '100%',
           border: 'none',
           outline: 'none',
-          backgroundColor: '#F0F0F0'
+          backgroundColor: '#F0F0F0',
         }}
       />
     </>

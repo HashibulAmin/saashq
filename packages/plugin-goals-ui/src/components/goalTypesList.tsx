@@ -198,7 +198,7 @@ class GoalTypesList extends React.Component<IProps, State> {
             icon="cancel-1"
             onClick={onClick}
           >
-            {__('Delete')}
+            {__('Vymazat')}
           </Button>
         </BarItems>
       );
@@ -231,7 +231,7 @@ class GoalTypesList extends React.Component<IProps, State> {
             title={__(`GoalTypes`) + ` (${totalCount})`}
             queryParams={queryParams}
             breadcrumb={[
-              { title: __('Settings'), link: '/settings' },
+              { title: __('Nastavení'), link: '/settings' },
               { title: __('Goal') },
             ]}
           />

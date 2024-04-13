@@ -34,7 +34,7 @@ class List extends React.Component<IProps> {
   clearLocationFilter = () => {
     router.setParams(this.props.history, {
       branchId: null,
-      departmentId: null
+      departmentId: null,
     });
   };
 
@@ -64,7 +64,7 @@ class List extends React.Component<IProps> {
         <Link to={`?categoryId=${'unknownCategory'}`}>
           {__('!Unknown Category')}
         </Link>
-      </SidebarListItem>
+      </SidebarListItem>,
     ];
 
     for (const category of flowCategories) {
@@ -95,7 +95,7 @@ class List extends React.Component<IProps> {
             {space}
             {name}
           </Link>
-        </SidebarListItem>
+        </SidebarListItem>,
       );
     }
 
@@ -176,7 +176,7 @@ class List extends React.Component<IProps> {
                 name="selectedBranchId"
                 initialValue={queryParams.branchId}
                 customOption={{ value: '', label: 'Skip branch' }}
-                onSelect={branchId => this.setFilter('branchId', branchId)}
+                onSelect={(branchId) => this.setFilter('branchId', branchId)}
                 multi={false}
               />
             </FormGroup>
@@ -187,7 +187,7 @@ class List extends React.Component<IProps> {
                 name="selectedDepartmentId"
                 initialValue={queryParams.departmentId}
                 customOption={{ value: '', label: 'Skip department' }}
-                onSelect={departmentId =>
+                onSelect={(departmentId) =>
                   this.setFilter('departmentId', departmentId)
                 }
                 multi={false}
@@ -197,7 +197,7 @@ class List extends React.Component<IProps> {
         </Section>
         <Section>
           <Section.Title>
-            {__('Status')}
+            {__('Postavení')}
 
             <Section.QuickButtons>
               {(router.getParam(this.props.history, 'status') ||
@@ -218,10 +218,10 @@ class List extends React.Component<IProps> {
                 componentClass="select"
                 defaultValue={queryParams.status}
                 required={false}
-                onChange={e =>
+                onChange={(e) =>
                   this.setFilter(
                     'status',
-                    (e.currentTarget as HTMLInputElement).value
+                    (e.currentTarget as HTMLInputElement).value,
                   )
                 }
               >
@@ -250,10 +250,10 @@ class List extends React.Component<IProps> {
                 componentClass="select"
                 defaultValue={queryParams.validation}
                 required={false}
-                onChange={e =>
+                onChange={(e) =>
                   this.setFilter(
                     'validation',
-                    (e.currentTarget as HTMLInputElement).value
+                    (e.currentTarget as HTMLInputElement).value,
                   )
                 }
               >

@@ -85,7 +85,7 @@ class SendMail extends React.Component<Props, State> {
 
     return (
       <FormGroup>
-        <ControlLabel>{__('Custom Mail')}</ControlLabel>
+        <ControlLabel>{__('Vlastní Pošta')}</ControlLabel>
         {(config?.customMails || []).map((customMail) => (
           <Chip
             key={customMail}
@@ -95,7 +95,7 @@ class SendMail extends React.Component<Props, State> {
             {customMail}
           </Chip>
         ))}
-        <FormControl onKeyPress={onChange} placeholder="enter a some email" />
+        <FormControl onKeyPress={onChange} placeholder="zadejte email" />
       </FormGroup>
     );
   }
@@ -139,9 +139,7 @@ class SendMail extends React.Component<Props, State> {
           customAttributions={customAttributions}
           additionalContent={
             <HelpPopover>
-              <br>
-                This type does not include (From Mail) and (Not Verified mails)
-              </br>
+              <br>Tento typ nezahrnuje (z pošty) a (neověřené e-maily)</br>
             </HelpPopover>
           }
         />
@@ -159,7 +157,7 @@ class SendMail extends React.Component<Props, State> {
 
     return (
       <FormGroup>
-        <ControlLabel>{__('Segment based mails')}</ControlLabel>
+        <ControlLabel>{__('E-maily založené na segmentech')}</ControlLabel>
         <FormControl
           componentClass="checkbox"
           checked={config[key]}
@@ -295,20 +293,20 @@ class SendMail extends React.Component<Props, State> {
             triggerType={triggerType}
           />
           <FormGroup>
-            <ControlLabel>{__('To Emails')}</ControlLabel>
+            <ControlLabel>{__('Na Emaily')}</ControlLabel>
             <DrawerDetail>
               <Tabs full>
                 <TabTitle
                   className={selectedTab === 'general' ? 'active' : ''}
                   onClick={handleSelectTab.bind(this, 'general')}
                 >
-                  {__('General')}
+                  {__('Všeobecné')}
                 </TabTitle>
                 <TabTitle
                   className={selectedTab === 'static' ? 'active' : ''}
                   onClick={handleSelectTab.bind(this, 'static')}
                 >
-                  {__('Static')}
+                  {__('Statický')}
                 </TabTitle>
               </Tabs>
               <Padding>
@@ -326,7 +324,7 @@ class SendMail extends React.Component<Props, State> {
 
     const trigger = (
       <Button btnStyle="success" icon="plus-circle">
-        {__('Add template')}
+        {__('Přidat šablonu')}
       </Button>
     );
     const content = ({ closeModal }) => {
@@ -392,7 +390,7 @@ class SendMail extends React.Component<Props, State> {
     return (
       <>
         <FormGroup>
-          <ControlLabel>{__('Search')}</ControlLabel>
+          <ControlLabel>{__('Vyhledávání')}</ControlLabel>
           <BarItems>
             <FormControl
               name="searchValue"

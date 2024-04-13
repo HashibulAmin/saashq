@@ -173,7 +173,7 @@ class ResponseTemplateList extends React.Component<FinalProps, States> {
       <List
         formTitle="New response template"
         breadcrumb={[
-          { title: __('Settings'), link: '/settings' },
+          { title: __('Nastavení'), link: '/settings' },
           { title: __('Response templates') },
         ]}
         title={__('Response templates')}

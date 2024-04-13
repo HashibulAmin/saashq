@@ -97,7 +97,7 @@ export default function Sidebar(props: Props) {
             />
           </FormGroup>
           <FormGroup>
-            <ControlLabel>{__('Status')}</ControlLabel>
+            <ControlLabel>{__('Postavení')}</ControlLabel>
             <Select
               options={[
                 { label: 'All', value: '' },

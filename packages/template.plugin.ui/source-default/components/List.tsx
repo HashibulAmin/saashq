@@ -89,7 +89,7 @@ function List({
   );
 
   const breadcrumb = [
-    { title: __('Settings'), link: '/settings' },
+    { title: __('Nastavení'), link: '/settings' },
     { title: __('{Name}s'), link: '/{name}s' }
   ];
 

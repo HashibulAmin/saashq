@@ -158,7 +158,7 @@ function Form({ renderButton, bot, returnToList }: Props) {
         <ModalFooter>
           <Padding>
             <Button btnStyle="simple" onClick={returnToList}>
-              {__('Cancel')}
+              {__('Zrušení')}
             </Button>
             {renderButton({
               name: 'Bot',
@@ -173,7 +173,7 @@ function Form({ renderButton, bot, returnToList }: Props) {
   };
 
   const breadcrumb = [
-    { title: __('Settings'), link: '/settings' },
+    { title: __('Nastavení'), link: '/settings' },
     {
       title: __('Bots config'),
       link: '/settings/automations/bots',

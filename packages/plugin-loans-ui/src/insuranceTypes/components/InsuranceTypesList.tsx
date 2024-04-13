@@ -168,7 +168,7 @@ class InsuranceTypesList extends React.Component<IProps, State> {
       actionBarLeft = (
         <BarItems>
           <Button btnStyle="danger" icon="cancel-1" onClick={onClick}>
-            {__('Delete')}
+            {__('Vymazat')}
           </Button>
         </BarItems>
       );
@@ -210,7 +210,7 @@ class InsuranceTypesList extends React.Component<IProps, State> {
             title={__(`InsuranceTypes`) + ` (${totalCount})`}
             queryParams={queryParams}
             breadcrumb={[
-              { title: __('Settings'), link: '/settings' },
+              { title: __('Nastavení'), link: '/settings' },
               { title: __('Insurance type') },
             ]}
           />

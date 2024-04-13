@@ -15,7 +15,7 @@ import { FlowJobFooter } from './styles';
 import {
   FormColumn,
   FormWrapper,
-  ModalFooter
+  ModalFooter,
 } from '@saashq/ui/src/styles/main';
 import { IJob } from '../../../types';
 import { IJobRefer } from '../../../../job/types';
@@ -58,7 +58,7 @@ class CommonForm extends React.Component<Props, State> {
       inBranchId: config.inBranchId || '',
       inDepartmentId: config.inDepartmentId || '',
       outBranchId: config.outBranchId || '',
-      outDepartmentId: config.outDepartmentId || ''
+      outDepartmentId: config.outDepartmentId || '',
     };
   }
 
@@ -77,13 +77,13 @@ class CommonForm extends React.Component<Props, State> {
             inBranchId: config.inBranchId,
             inDepartmentId: config.inDepartmentId,
             outBranchId: config.outBranchId,
-            outDepartmentId: config.outDepartmentId
+            outDepartmentId: config.outDepartmentId,
           },
           () => {
             if (this.timer) {
               this.timer = undefined;
             }
-          }
+          },
         );
       }, 100);
     }
@@ -95,12 +95,8 @@ class CommonForm extends React.Component<Props, State> {
       return Alert.error('has not active FlowJob');
     }
 
-    const {
-      inBranchId,
-      inDepartmentId,
-      outBranchId,
-      outDepartmentId
-    } = this.state;
+    const { inBranchId, inDepartmentId, outBranchId, outDepartmentId } =
+      this.state;
 
     switch (activeFlowJob.type) {
       case FLOWJOB_TYPES.INCOME:
@@ -129,7 +125,7 @@ class CommonForm extends React.Component<Props, State> {
     this.props.addFlowJob(
       { ...activeFlowJob, label: name, description },
       activeFlowJob.id,
-      { ...this.props.config, ...this.state }
+      { ...this.props.config, ...this.state },
     );
 
     this.props.closeModal();
@@ -148,7 +144,7 @@ class CommonForm extends React.Component<Props, State> {
       inBranchId,
       inDepartmentId,
       outBranchId,
-      outDepartmentId
+      outDepartmentId,
     } = this.state;
 
     if (activeFlowJob.type === FLOWJOB_TYPES.FLOW) {
@@ -208,7 +204,9 @@ class CommonForm extends React.Component<Props, State> {
                     label="Choose branch"
                     name="selectedBranchIds"
                     initialValue={inBranchId}
-                    onSelect={branchId => this.onSelect('inBranchId', branchId)}
+                    onSelect={(branchId) =>
+                      this.onSelect('inBranchId', branchId)
+                    }
                     multi={false}
                   />
                 </FormGroup>
@@ -220,7 +218,7 @@ class CommonForm extends React.Component<Props, State> {
                     label="Choose department"
                     name="selectedDepartmentIds"
                     initialValue={inDepartmentId}
-                    onSelect={departmentId =>
+                    onSelect={(departmentId) =>
                       this.onSelect('inDepartmentId', departmentId)
                     }
                     multi={false}
@@ -245,7 +243,7 @@ class CommonForm extends React.Component<Props, State> {
                     label="Choose branch"
                     name="selectedBranchIds"
                     initialValue={outBranchId}
-                    onSelect={branchId =>
+                    onSelect={(branchId) =>
                       this.onSelect('outBranchId', branchId)
                     }
                     multi={false}
@@ -259,7 +257,7 @@ class CommonForm extends React.Component<Props, State> {
                     label="Choose department"
                     name="selectedDepartmentIds"
                     initialValue={outDepartmentId}
-                    onSelect={departmentId =>
+                    onSelect={(departmentId) =>
                       this.onSelect('outDepartmentId', departmentId)
                     }
                     multi={false}
@@ -294,7 +292,7 @@ class CommonForm extends React.Component<Props, State> {
               onClick={closeModal}
               icon="times-circle"
             >
-              {__('Cancel')}
+              {__('Zrušení')}
             </Button>
 
             <Button btnStyle="success" icon="checked-1" onClick={this.onSave}>

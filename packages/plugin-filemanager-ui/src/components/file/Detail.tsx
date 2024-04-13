@@ -134,7 +134,7 @@ class FileDetail extends React.Component<Props, State> {
             <thead>
               <tr>
                 <th>{__('Date')}</th>
-                <th>{__('Created by')}</th>
+                <th>{__('Vytvořil')}</th>
                 <th>{__('Module')}</th>
                 <th>{__('Akce')}</th>
               </tr>
@@ -302,7 +302,7 @@ class FileDetail extends React.Component<Props, State> {
             onClick={props.closeModal}
             icon="times-circle"
           >
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
 
           <Button

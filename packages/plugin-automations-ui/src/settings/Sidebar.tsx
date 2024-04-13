@@ -23,8 +23,8 @@ function Sidebar() {
   return (
     <LeftSidebar header={<SidebarHeader />} hasBorder>
       <List id="SettingsSidebar">
-        {renderListItem('/settings/automations/general', 'General config')}
-        {renderListItem('/settings/automations/bots', 'Bots')}
+        {renderListItem('/settings/automations/general', 'Obecná konfigurace')}
+        {renderListItem('/settings/automations/bots', 'Roboti')}
       </List>
     </LeftSidebar>
   );

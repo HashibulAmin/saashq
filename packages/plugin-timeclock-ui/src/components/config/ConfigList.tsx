@@ -11,14 +11,14 @@ import {
   FilterItem,
   TextAlignCenter,
   SearchInput,
-  FlexRow
+  FlexRow,
 } from '../../styles';
 import {
   IAbsence,
   IAbsenceType,
   IDeviceConfig,
   IPayDates,
-  IScheduleConfig
+  IScheduleConfig,
 } from '../../types';
 import { IButtonMutateProps } from '@saashq/ui/src/types';
 import Table from '@saashq/ui/src/components/table';
@@ -73,15 +73,15 @@ function ConfigList(props: Props) {
     showSideBar,
     getPagination,
 
-    refetchDeviceConfigsQuery
+    refetchDeviceConfigsQuery,
   } = props;
 
   const [selectedType, setType] = useState(
-    localStorage.getItem('contentType') || 'Schedule Configs'
+    localStorage.getItem('contentType') || 'Schedule Configs',
   );
 
   const renderSelectionBar = () => {
-    const onTypeSelect = type => {
+    const onTypeSelect = (type) => {
       setType(type.value);
       localStorage.setItem('contentType', type.value);
     };
@@ -101,10 +101,10 @@ function ConfigList(props: Props) {
                 'Absence types',
                 'Pay period',
                 'Holidays',
-                'Terminal Devices'
-              ].map(ipt => ({
+                'Terminal Devices',
+              ].map((ipt) => ({
                 value: ipt,
-                label: __(ipt)
+                label: __(ipt),
               }))}
             />
           </Row>
@@ -201,7 +201,7 @@ function ConfigList(props: Props) {
     );
   };
 
-  const onSearchDeviceConfigs = e => {
+  const onSearchDeviceConfigs = (e) => {
     e.preventDefault();
     refetchDeviceConfigsQuery({ searchValue: e.target.value });
   };
@@ -224,27 +224,27 @@ function ConfigList(props: Props) {
           size="lg"
           title={__('Schedule Config')}
           trigger={scheduleConfigTrigger}
-          content={contentProps => scheduleConfigContent(contentProps, null)}
+          content={(contentProps) => scheduleConfigContent(contentProps, null)}
         />
         <ModalTrigger
           title={__('Requests Config')}
           trigger={absenceConfigTrigger}
-          content={contentProps => absenceConfigContent(contentProps, null)}
+          content={(contentProps) => absenceConfigContent(contentProps, null)}
         />
         <ModalTrigger
           title={__('Schedule Config')}
           trigger={payPeriodConfigTrigger}
-          content={contentProps => payPeriodConfigContent(contentProps, null)}
+          content={(contentProps) => payPeriodConfigContent(contentProps, null)}
         />
         <ModalTrigger
           title={__('Holiday Config')}
           trigger={holidayConfigTrigger}
-          content={contentProps => holidayConfigContent(contentProps, null)}
+          content={(contentProps) => holidayConfigContent(contentProps, null)}
         />
         <ModalTrigger
           title={__('Terminal Device Config')}
           trigger={devicesConfigTrigger}
-          content={contentProps => deviceConfigContent(contentProps, null)}
+          content={(contentProps) => deviceConfigContent(contentProps, null)}
         />
       </div>
     </FlexRow>
@@ -264,7 +264,7 @@ function ConfigList(props: Props) {
     </Button>
   );
 
-  const getRemoveFunction = configType => {
+  const getRemoveFunction = (configType) => {
     switch (configType) {
       case 'absenceType':
         return removeAbsenceType;
@@ -281,7 +281,7 @@ function ConfigList(props: Props) {
   const removeTrigger = (_id, configType) => {
     const remove = getRemoveFunction(configType);
     return (
-      <Tip text={__('Delete')} placement="top">
+      <Tip text={__('Vymazat')} placement="top">
         <Button
           btnStyle="link"
           onClick={() => remove(_id)}
@@ -325,14 +325,14 @@ function ConfigList(props: Props) {
         </thead>
         <tbody>
           {scheduleConfigs &&
-            scheduleConfigs.map(scheduleConfig => {
+            scheduleConfigs.map((scheduleConfig) => {
               return (
                 <tr key={scheduleConfig.scheduleName}>
                   <td>{scheduleConfig.scheduleName}</td>
                   <td>{scheduleConfig.shiftStart}</td>
                   <td>{scheduleConfig.shiftEnd}</td>
                   <td>{scheduleConfig.lunchBreakInMins}</td>
-                  {scheduleConfig.configDays.map(configDay => {
+                  {scheduleConfig.configDays.map((configDay) => {
                     if (
                       configDay.configName?.toLocaleLowerCase() ===
                       'validcheckin'
@@ -346,7 +346,7 @@ function ConfigList(props: Props) {
                       );
                     }
                   })}
-                  {scheduleConfig.configDays.map(configDay => {
+                  {scheduleConfig.configDays.map((configDay) => {
                     if (
                       configDay.configName?.toLocaleLowerCase() ===
                       'validcheckout'
@@ -360,7 +360,7 @@ function ConfigList(props: Props) {
                       );
                     }
                   })}
-                  {scheduleConfig.configDays.map(configDay => {
+                  {scheduleConfig.configDays.map((configDay) => {
                     if (
                       configDay.configName?.toLocaleLowerCase() === 'overtime'
                     ) {
@@ -379,7 +379,7 @@ function ConfigList(props: Props) {
                         size="lg"
                         title="Edit Schedule Configs"
                         trigger={editTrigger}
-                        content={contentProps =>
+                        content={(contentProps) =>
                           scheduleConfigContent(contentProps, scheduleConfig)
                         }
                       />
@@ -415,7 +415,7 @@ function ConfigList(props: Props) {
                   <ModalTrigger
                     title="Edit Pay Dates"
                     trigger={editTrigger}
-                    content={contentProps =>
+                    content={(contentProps) =>
                       payPeriodConfigContent(contentProps, payDates[0])
                     }
                   />
@@ -446,7 +446,7 @@ function ConfigList(props: Props) {
         </thead>
         <tbody>
           {absenceTypes &&
-            absenceTypes.map(absenceType => {
+            absenceTypes.map((absenceType) => {
               return (
                 <tr key={absenceType._id}>
                   <td>{absenceType.name}</td>
@@ -464,7 +464,7 @@ function ConfigList(props: Props) {
                       <ModalTrigger
                         title="Edit absence type"
                         trigger={editTrigger}
-                        content={contentProps =>
+                        content={(contentProps) =>
                           absenceConfigContent(contentProps, absenceType)
                         }
                       />
@@ -494,7 +494,7 @@ function ConfigList(props: Props) {
         </thead>
         <tbody>
           {holidays &&
-            holidays.map(holiday => {
+            holidays.map((holiday) => {
               return (
                 <tr key={holiday._id}>
                   <td>{holiday.holidayName}</td>
@@ -521,7 +521,7 @@ function ConfigList(props: Props) {
                       <ModalTrigger
                         title="Edit holiday"
                         trigger={editTrigger}
-                        content={contentProps =>
+                        content={(contentProps) =>
                           holidayConfigContent(contentProps, holiday)
                         }
                       />
@@ -550,7 +550,7 @@ function ConfigList(props: Props) {
           </tr>
         </thead>
         <tbody>
-          {deviceConfigs?.map(deviceConfig => (
+          {deviceConfigs?.map((deviceConfig) => (
             <tr key={deviceConfig.serialNo}>
               <td>{deviceConfig.deviceName}</td>
               <td>{deviceConfig.serialNo}</td>
@@ -560,7 +560,7 @@ function ConfigList(props: Props) {
                   <ModalTrigger
                     title="Edit holiday"
                     trigger={editTrigger}
-                    content={contentProps =>
+                    content={(contentProps) =>
                       deviceConfigContent(contentProps, deviceConfig)
                     }
                   />

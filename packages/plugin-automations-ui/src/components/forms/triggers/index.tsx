@@ -18,7 +18,7 @@ class DefaultForm extends React.Component<Props> {
     return (
       <>
         <div>
-          {__('content')} {action.type}
+          {__('obsah')} {action.type}
         </div>
         <ModalFooter>
           <Button
@@ -27,11 +27,11 @@ class DefaultForm extends React.Component<Props> {
             onClick={closeModal}
             icon="times-circle"
           >
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
 
           <Button btnStyle="success" icon="checked-1" onClick={onSave}>
-            Save
+            Uložit
           </Button>
         </ModalFooter>
       </>
@@ -41,5 +41,5 @@ class DefaultForm extends React.Component<Props> {
 
 export const TriggerForms = {
   default: DefaultForm,
-  formSubmit: FormSubmit
+  formSubmit: FormSubmit,
 };

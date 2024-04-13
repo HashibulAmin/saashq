@@ -7,7 +7,7 @@ import { __ } from '@saashq/ui/src/utils';
 
 function EngageConfigs() {
   const breadcrumb = [
-    { title: __('Settings'), link: '/settings' },
+    { title: __('Nastavení'), link: '/settings' },
     { title: __('XM Broadcast config') },
   ];
 

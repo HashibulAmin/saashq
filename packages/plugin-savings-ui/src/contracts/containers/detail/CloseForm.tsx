@@ -11,7 +11,7 @@ import {
   CloseInfoQueryResponse,
   CloseMutationResponse,
   CloseMutationVariables,
-  IContract
+  IContract,
 } from '../../types';
 
 type Props = {
@@ -34,7 +34,7 @@ class CloseFromContainer extends React.Component<FinalProps, State> {
 
     this.state = {
       loading: false,
-      closeDate: new Date()
+      closeDate: new Date(),
     };
   }
 
@@ -58,7 +58,7 @@ class CloseFromContainer extends React.Component<FinalProps, State> {
           type="submit"
           successMessage={__(`You successfully closed this contract`)}
         >
-          {__('Save')}
+          {__('Uložit')}
         </ButtonMutate>
       );
     };
@@ -66,8 +66,8 @@ class CloseFromContainer extends React.Component<FinalProps, State> {
     const onChangeDate = (date: Date) => {
       this.setState({ closeDate: date }, () =>
         closeInfoQuery.refetch({
-          date
-        })
+          date,
+        }),
       );
     };
 
@@ -83,7 +83,7 @@ class CloseFromContainer extends React.Component<FinalProps, State> {
       renderButton,
       closeInfo,
       onChangeDate,
-      closeDate: this.state.closeDate
+      closeDate: this.state.closeDate,
     };
 
     return <CloseForm {...updatedProps} />;
@@ -97,7 +97,7 @@ const getRefetchQueries = () => {
     'contracts',
     'contractCounts',
     'activityLogs',
-    'schedules'
+    'schedules',
   ];
 };
 
@@ -110,17 +110,17 @@ export default withProps<Props>(
         options: ({ contract }) => ({
           variables: {
             contractId: contract._id,
-            date: new Date()
+            date: new Date(),
           },
-          fetchPolicy: 'network-only'
-        })
-      }
+          fetchPolicy: 'network-only',
+        }),
+      },
     ),
     graphql<{}, CloseMutationResponse, CloseMutationVariables>(
       gql(mutations.contractsClose),
       {
-        name: 'savingsContractsClose'
-      }
-    )
-  )(CloseFromContainer)
+        name: 'savingsContractsClose',
+      },
+    ),
+  )(CloseFromContainer),
 );

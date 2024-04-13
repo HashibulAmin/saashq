@@ -134,7 +134,7 @@ class List extends React.Component<IProps, State> {
               <th>{__('Receipt Branch')}</th>
               <th>{__('Receipt Department')}</th>
 
-              <th>{__('Status')}</th>
+              <th>{__('Postavení')}</th>
             </tr>
           </thead>
           <tbody>{this.renderRow()}</tbody>

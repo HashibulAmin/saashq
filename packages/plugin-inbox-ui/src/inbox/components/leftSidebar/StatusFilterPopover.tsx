@@ -9,7 +9,7 @@ import { generateParams } from '@saashq/ui-inbox/src/inbox/utils';
 import {
   FieldStyle,
   SidebarCounter,
-  SidebarList
+  SidebarList,
 } from '@saashq/ui/src/layout/styles';
 import React from 'react';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
@@ -34,7 +34,7 @@ export default class StatusFilterPopover extends React.Component<Props, State> {
 
     this.state = {
       counts: {},
-      loading: true
+      loading: true,
     };
   }
 
@@ -45,12 +45,12 @@ export default class StatusFilterPopover extends React.Component<Props, State> {
       .query({
         query: gql(queries.conversationCounts),
         variables: generateParams(queryParams),
-        fetchPolicy: ignoreCache ? 'network-only' : 'cache-first'
+        fetchPolicy: ignoreCache ? 'network-only' : 'cache-first',
       })
       .then(({ data, loading }: { data: any; loading: boolean }) => {
         this.setState({ counts: data.conversationCounts, loading });
       })
-      .catch(e => {
+      .catch((e) => {
         Alert.error(e.message);
       });
   };
@@ -71,7 +71,7 @@ export default class StatusFilterPopover extends React.Component<Props, State> {
       status: '',
       unassigned: '',
       starred: '',
-      awaitingResponse: ''
+      awaitingResponse: '',
     });
   };
 
@@ -79,7 +79,7 @@ export default class StatusFilterPopover extends React.Component<Props, State> {
     paramName: string,
     paramValue: string,
     text: string,
-    count: number
+    count: number,
   ) => {
     const { history } = this.props;
 
@@ -129,27 +129,27 @@ export default class StatusFilterPopover extends React.Component<Props, State> {
               'unassigned',
               'true',
               'Unassigned',
-              counts.unassigned
+              counts.unassigned,
             )}
             {this.renderSingleFilter(
               'participating',
               'true',
               'Participating',
-              counts.participating
+              counts.participating,
             )}
 
             {this.renderSingleFilter(
               'awaitingResponse',
               'true',
               'Awaiting Response',
-              counts.awaitingResponse
+              counts.awaitingResponse,
             )}
 
             {this.renderSingleFilter(
               'status',
               'closed',
               'Resolved',
-              counts.resolved
+              counts.resolved,
             )}
           </SidebarList>
         </Popover.Content>
@@ -160,7 +160,7 @@ export default class StatusFilterPopover extends React.Component<Props, State> {
   render() {
     return (
       <OverlayTrigger
-        ref={overlayTrigger => {
+        ref={(overlayTrigger) => {
           this.overlayTrigger = overlayTrigger;
         }}
         trigger="click"
@@ -170,7 +170,7 @@ export default class StatusFilterPopover extends React.Component<Props, State> {
         rootClose={true}
       >
         <PopoverButton onClick={this.onClick}>
-          {__('Status')}
+          {__('Postavení')}
           <Icon icon="angle-down" />
         </PopoverButton>
       </OverlayTrigger>

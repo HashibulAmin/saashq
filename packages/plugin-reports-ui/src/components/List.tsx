@@ -105,7 +105,7 @@ function List(props: FinalProps) {
           <th>{__('Název')}</th>
           <th>{__('Charts')}</th>
           <th>{__('Last updated by')}</th>
-          <th>{__('Created by')}</th>
+          <th>{__('Vytvořil')}</th>
           <th>{__('Last updated at')}</th>
           <th>{__('Created at')}</th>
           <th>{__('Tags')}</th>
@@ -134,7 +134,7 @@ function List(props: FinalProps) {
   const LeftSidebar = <SideBar {...props} />;
 
   const breadcrumb = [
-    { title: __('Settings'), link: '/settings' },
+    { title: __('Nastavení'), link: '/settings' },
     { title: __('Reports'), link: '/reports' },
   ];
 

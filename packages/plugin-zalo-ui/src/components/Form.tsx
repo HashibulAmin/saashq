@@ -11,7 +11,7 @@ import {
   Indicator,
   LeftItem,
   Preview,
-  StepWrapper
+  StepWrapper,
 } from '@saashq/ui/src/components/step/styles';
 import { IButtonMutateProps, IFormProps } from '@saashq/ui/src/types';
 import { __ } from '@saashq/ui/src/utils';
@@ -25,7 +25,7 @@ import {
   Content,
   ImageWrapper,
   MessengerPreview,
-  TextWrapper
+  TextWrapper,
 } from '@saashq/ui-inbox/src/settings/integrations/styles';
 import Accounts from '../containers/Accounts';
 
@@ -44,7 +44,7 @@ class Zalo extends React.Component<Props, State> {
 
     this.state = {
       channelIds: [],
-      accountId: ''
+      accountId: '',
     };
   }
 
@@ -55,7 +55,7 @@ class Zalo extends React.Component<Props, State> {
       ...values,
       kind: 'zalo',
       channelIds,
-      accountId
+      accountId,
     };
   };
 
@@ -121,7 +121,7 @@ class Zalo extends React.Component<Props, State> {
                   isRequired={true}
                   formProps={formProps}
                   description={__(
-                    'Which specific Brand does this integration belong to?'
+                    'Which specific Brand does this integration belong to?',
                   )}
                 />
 
@@ -147,7 +147,7 @@ class Zalo extends React.Component<Props, State> {
             </Link>
             {renderButton({
               values: this.generateDoc(values),
-              isSubmitted
+              isSubmitted,
             })}
           </Button.Group>
         </ControlWrapper>
@@ -163,9 +163,9 @@ class Zalo extends React.Component<Props, State> {
     const title = __('Zalo');
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Integrations'), link: '/settings/integrations' },
-      { title }
+      { title },
     ];
 
     return (
@@ -183,7 +183,7 @@ class Zalo extends React.Component<Props, State> {
                   </h1>
                   <p>
                     {__(
-                      'Connect your Zalo to start receiving emails in your team inbox'
+                      'Connect your Zalo to start receiving emails in your team inbox',
                     )}
                   </p>
                   <img alt={title} src="/images/previews/facebook.png" />

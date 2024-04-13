@@ -30,7 +30,7 @@ class OnlineHours extends React.Component<Props, State> {
 
     // find current editing one
     const onlineHour =
-      onlineHours.find(hour => hour._id === onlineHourId) || [];
+      onlineHours.find((hour) => hour._id === onlineHourId) || [];
 
     // set new value
     onlineHour[name] = value;
@@ -48,7 +48,7 @@ class OnlineHours extends React.Component<Props, State> {
       _id: Math.random().toString(),
       day: days[0].value,
       from: hours[0].value,
-      to: hours[0].value
+      to: hours[0].value,
     });
 
     this.setState({ onlineHours });
@@ -57,10 +57,10 @@ class OnlineHours extends React.Component<Props, State> {
     this.props.onChange(onlineHours);
   };
 
-  removeTime = onlineHourId => {
+  removeTime = (onlineHourId) => {
     let onlineHours = this.state.onlineHours;
 
-    onlineHours = onlineHours.filter(hour => hour._id !== onlineHourId);
+    onlineHours = onlineHours.filter((hour) => hour._id !== onlineHourId);
 
     this.setState({ onlineHours });
 
@@ -73,15 +73,15 @@ class OnlineHours extends React.Component<Props, State> {
       this.removeTime(onlineHour._id);
     };
 
-    const onDayChange = e => {
+    const onDayChange = (e) => {
       this.onTimeItemChange(onlineHour._id, 'day', e.value);
     };
 
-    const onFromChange = e => {
+    const onFromChange = (e) => {
       this.onTimeItemChange(onlineHour._id, 'from', e.value);
     };
 
-    const onToChange = e => {
+    const onToChange = (e) => {
       this.onTimeItemChange(onlineHour._id, 'to', e.value);
     };
 
@@ -124,10 +124,10 @@ class OnlineHours extends React.Component<Props, State> {
   render() {
     return (
       <FormGroup>
-        <ControlLabel>Online hours</ControlLabel>
+        <ControlLabel>Online hodiny</ControlLabel>
 
-        {this.state.onlineHours.map(onlineHour =>
-          this.renderOnlineHour(onlineHour)
+        {this.state.onlineHours.map((onlineHour) =>
+          this.renderOnlineHour(onlineHour),
         )}
 
         <br />
@@ -137,7 +137,7 @@ class OnlineHours extends React.Component<Props, State> {
           onClick={this.addTime}
           icon="add"
         >
-          Add another time
+          Přidejte další čas
         </Button>
       </FormGroup>
     );

@@ -8,7 +8,7 @@ import {
   DataWithLoader,
   EmptyState,
   HeaderDescription,
-  Spinner
+  Spinner,
 } from '@saashq/ui/src/components';
 import { Wrapper } from '@saashq/ui/src/layout';
 import { __ } from '@saashq/ui/src/utils';
@@ -37,7 +37,7 @@ class GeneralSettings extends React.Component<Props, State> {
 
     this.state = {
       configsMap: props.configsMap,
-      fieldGroups: []
+      fieldGroups: [],
     };
 
     if (isEnabled('forms')) {
@@ -45,12 +45,12 @@ class GeneralSettings extends React.Component<Props, State> {
         .query({
           query: gql(fieldQueries.fieldsGroups),
           variables: {
-            contentType: FIELDS_GROUPS_CONTENT_TYPES.PRODUCT
-          }
+            contentType: FIELDS_GROUPS_CONTENT_TYPES.PRODUCT,
+          },
         })
         .then(({ data }) => {
           this.setState({
-            fieldGroups: data ? data.fieldsGroups : [] || []
+            fieldGroups: data ? data.fieldsGroups : [] || [],
           });
         });
     }
@@ -62,7 +62,7 @@ class GeneralSettings extends React.Component<Props, State> {
     }
   }
 
-  add = e => {
+  add = (e) => {
     e.preventDefault();
     const { configsMap } = this.state;
 
@@ -74,10 +74,10 @@ class GeneralSettings extends React.Component<Props, State> {
           newSimilarityGroup: {
             title: 'New similiraty group',
             codeMask: '',
-            rules: []
-          }
-        }
-      }
+            rules: [],
+          },
+        },
+      },
     });
   };
 
@@ -94,7 +94,7 @@ class GeneralSettings extends React.Component<Props, State> {
   };
 
   renderConfigs(configs) {
-    return Object.keys(configs).map(key => {
+    return Object.keys(configs).map((key) => {
       return (
         <PerSettings
           key={key}
@@ -137,8 +137,8 @@ class GeneralSettings extends React.Component<Props, State> {
 
   render() {
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
-      { title: __('Products similarity group config') }
+      { title: __('Nastavení'), link: '/settings' },
+      { title: __('Products similarity group config') },
     ];
 
     const actionButtons = (

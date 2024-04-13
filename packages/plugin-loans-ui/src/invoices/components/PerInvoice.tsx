@@ -1,13 +1,13 @@
 import {
   ActivityIcon,
-  ActivityRow
+  ActivityRow,
 } from '@saashq/ui-log/src/activityLogs/styles';
 import { Alert, Button, Icon, ModalTrigger, __, confirm } from '@saashq/ui/src';
 import {
   ItemDesc,
   ItemLabel,
   ItemValue,
-  ScheduleItem
+  ScheduleItem,
 } from '../../contracts/styles';
 
 import { IActivityLog } from '@saashq/ui-log/src/activityLogs/types';
@@ -32,8 +32,8 @@ const renderCol = (label, value, desc?) => {
   );
 };
 
-const renderAddInvoice = content => {
-  const invoiceForm = props => {
+const renderAddInvoice = (content) => {
+  const invoiceForm = (props) => {
     return <InvoiceForm {...props} invoice={content} />;
   };
 
@@ -55,8 +55,8 @@ const renderAddInvoice = content => {
   );
 };
 
-const renderAddTransaction = invoice => {
-  const transactionForm = props => {
+const renderAddTransaction = (invoice) => {
+  const transactionForm = (props) => {
     return <TransactionForm {...props} invoice={invoice} />;
   };
 
@@ -78,7 +78,7 @@ const renderAddTransaction = invoice => {
   );
 };
 
-const renderStatus = status => {
+const renderStatus = (status) => {
   if (status === 'done') {
     return (
       <ActivityIcon color={'blue'}>
@@ -99,7 +99,7 @@ const renderButtons = (content, removeInvoices) => {
       .then(() => {
         removeInvoices({ invoiceIds: [content._id] });
       })
-      .catch(error => {
+      .catch((error) => {
         Alert.error(error.message);
       });
 
@@ -109,7 +109,7 @@ const renderButtons = (content, removeInvoices) => {
   return (
     <>
       <Button btnStyle="danger" icon="cancel-1" onClick={onDelete}>
-        {__('Delete')}
+        {__('Vymazat')}
       </Button>
       {renderAddTransaction(content)}
     </>
@@ -133,18 +133,18 @@ function PerInvoice(props: Props) {
       {renderCol(
         'Invoice payment',
         (content.payment || 0).toLocaleString(),
-        content.transaction && content.transaction.payment
+        content.transaction && content.transaction.payment,
       )}
       {renderCol(
         'Invoice interest',
         (
           (content.interestEve || 0) + (content.interestNonce || 0)
-        ).toLocaleString()
+        ).toLocaleString(),
       )}
       {renderCol('Invoice undue', (content.undue || 0).toLocaleString())}
       {renderCol(
         'Invoice insurance',
-        (content.insurance || 0).toLocaleString()
+        (content.insurance || 0).toLocaleString(),
       )}
       {renderCol('Invoice debt', (content.debt || 0).toLocaleString())}
       {renderCol('Invoice total', (content.total || 0).toLocaleString())}

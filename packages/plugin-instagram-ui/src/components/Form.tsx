@@ -5,7 +5,7 @@ import {
   Content,
   ImageWrapper,
   MessengerPreview,
-  TextWrapper
+  TextWrapper,
 } from '@saashq/ui-inbox/src/settings/integrations/styles';
 import {
   ControlWrapper,
@@ -13,7 +13,7 @@ import {
   Indicator,
   LeftItem,
   Preview,
-  StepWrapper
+  StepWrapper,
 } from '@saashq/ui/src/components/step/styles';
 import { IButtonMutateProps, IFormProps } from '@saashq/ui/src/types';
 import { Step, Steps } from '@saashq/ui/src/components/step';
@@ -56,13 +56,13 @@ class Instagram extends React.Component<Props, State> {
     super(props);
     this.state = {
       selectedPages: '',
-      channelIds: []
+      channelIds: [],
     };
   }
 
   onSelectPages = (pageId: string) => {
     this.setState({
-      selectedPages: pageId
+      selectedPages: pageId,
     });
   };
 
@@ -80,8 +80,8 @@ class Instagram extends React.Component<Props, State> {
       accountId: accountId ? accountId : values.accountId,
       channelIds: this.state.channelIds,
       data: {
-        pageId: this.state.selectedPages
-      }
+        pageId: this.state.selectedPages,
+      },
     };
   };
 
@@ -101,7 +101,7 @@ class Instagram extends React.Component<Props, State> {
         <LeftItem>
           <AccountBox>
             <AccountTitle>{__('Instagram Pages')}</AccountTitle>
-            {pages.map(page => (
+            {pages.map((page) => (
               <AccountItem key={page.id}>
                 {page.name}
                 <Button
@@ -115,7 +115,7 @@ class Instagram extends React.Component<Props, State> {
                 >
                   {this.state.selectedPages.includes(page.id)
                     ? __('Selected')
-                    : __('Select')}
+                    : __('Vybrat')}
                 </Button>
               </AccountItem>
             ))}
@@ -126,7 +126,7 @@ class Instagram extends React.Component<Props, State> {
   }
 
   onChange = <T extends keyof State>(key: T, value: State[T]) => {
-    this.setState(({ [key]: value } as unknown) as Pick<State, keyof State>);
+    this.setState({ [key]: value } as unknown as Pick<State, keyof State>);
   };
 
   channelOnChange = (values: string[]) => this.onChange('channelIds', values);
@@ -177,7 +177,7 @@ class Instagram extends React.Component<Props, State> {
                 <SelectBrand
                   isRequired={true}
                   description={__(
-                    'Which specific Brand does this integration belong to?'
+                    'Which specific Brand does this integration belong to?',
                   )}
                   formProps={formProps}
                 />
@@ -206,7 +206,7 @@ class Instagram extends React.Component<Props, State> {
               passedName: 'integration',
               values: this.generateDoc(values),
               isSubmitted,
-              callback: this.props.callBack
+              callback: this.props.callBack,
             })}
           </Button.Group>
         </ControlWrapper>
@@ -225,14 +225,14 @@ class Instagram extends React.Component<Props, State> {
     if (this.props.kind === INTEGRATION_KINDS.INSTAGRAM_MESSENGER) {
       title = __('Instagram Messenger');
       description = __(
-        'Connect your Instagram Messenger to start receiving Instagram messages in your team inbox'
+        'Connect your Instagram Messenger to start receiving Instagram messages in your team inbox',
       );
     }
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Integrations'), link: '/settings/integrations' },
-      { title }
+      { title },
     ];
 
     return (

@@ -218,7 +218,7 @@ class Properties extends React.Component<
     const { currentType, services } = this.props;
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Properties'), link: '/settings/properties' },
       { title: __(`${currentType} properties`) },
     ];

@@ -17,7 +17,7 @@ class Home extends React.Component<Props, {}> {
     const { boardId, queryParams, history } = this.props;
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Calendar'), link: `/settings/calendars` },
     ];
 

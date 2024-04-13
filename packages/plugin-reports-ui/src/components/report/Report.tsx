@@ -344,7 +344,7 @@ const Report = (props: Props) => {
             icon={'check-circle'}
             onClick={handleSubmit}
           >
-            {__('Save')}
+            {__('Uložit')}
           </Button>
         </ActionBarButtonsWrapper>
       </BarItems>

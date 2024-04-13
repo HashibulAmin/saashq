@@ -127,7 +127,7 @@ class History extends React.Component<Props, State> {
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <li key="delete" onClick={() => this.onRemove(item._id)}>
-                  <Icon icon="trash-alt" size={14} /> {__('Delete')}
+                  <Icon icon="trash-alt" size={14} /> {__('Vymazat')}
                 </li>
               </Dropdown.Menu>
             </Dropdown>

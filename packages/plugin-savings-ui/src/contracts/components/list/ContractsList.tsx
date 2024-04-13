@@ -160,7 +160,7 @@ class ContractsList extends React.Component<IProps, State> {
                 />
               </th>
               <th>
-                <SortHandler sortField={'tenor'} label={__('Status')} />
+                <SortHandler sortField={'tenor'} label={__('Postavení')} />
               </th>
               <th>
                 <SortHandler sortField={'tenor'} label={__('Tenor')} />
@@ -210,7 +210,7 @@ class ContractsList extends React.Component<IProps, State> {
         <BarItems>
           {can('contractsRemove', currentUser) && (
             <Button btnStyle="danger" icon="cancel-1" onClick={onClick}>
-              {__('Delete')}
+              {__('Vymazat')}
             </Button>
           )}
           {alerts.map((mur) => (

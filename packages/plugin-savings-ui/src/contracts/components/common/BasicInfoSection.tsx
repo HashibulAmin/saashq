@@ -139,7 +139,7 @@ class BasicInfoSection extends React.Component<Props, State> {
             {can('contractsRemove', currentUser) && (
               <li>
                 <a href="#delete" onClick={onDelete}>
-                  {__('Delete')}
+                  {__('Vymazat')}
                 </a>
               </li>
             )}

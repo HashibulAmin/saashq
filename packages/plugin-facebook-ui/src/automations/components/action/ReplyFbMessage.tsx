@@ -335,7 +335,7 @@ function ReplyFbMessage({
         <ModalFooter>
           <PreviewWidget messages={messages} />
           <Button btnStyle="success" icon="checked-1" block onClick={onSave}>
-            {__('Save')}
+            {__('Uložit')}
           </Button>
         </ModalFooter>
       </BottomBarContainer>

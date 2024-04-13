@@ -77,7 +77,7 @@ class HistoriesHeader extends React.Component<Props, State> {
     const props = {
       value: this.state[key],
       inputProps: {
-        placeholder: `${__(`Filter by ${__(name)}`)}`,
+        placeholder: `${__(`Filtrovat podle ${__(name)}`)}`,
       },
     };
 
@@ -110,14 +110,14 @@ class HistoriesHeader extends React.Component<Props, State> {
             <div className="icon-option">
               <Icon icon="checked-1" />
               <Select
-                placeholder={__('Filter by Status')}
+                placeholder={__('Filtrovat podle Stavu')}
                 value={status}
                 options={[
                   { value: 'active', label: 'Aktivní' },
-                  { value: 'waiting', label: 'Waiting' },
-                  { value: 'error', label: 'Error' },
-                  { value: 'missed', label: 'Missed' },
-                  { value: 'complete', label: 'Complete' },
+                  { value: 'waiting', label: 'Čekání' },
+                  { value: 'error', label: 'Chyba' },
+                  { value: 'missed', label: 'Zmeškaný' },
+                  { value: 'complete', label: 'Kompletní' },
                 ]}
                 onChange={this.onSelect.bind(this, 'status')}
               />
@@ -127,7 +127,7 @@ class HistoriesHeader extends React.Component<Props, State> {
             <div className="icon-option">
               <Icon icon="swatchbook" />
               <Select
-                placeholder={__('Filter by Trigger')}
+                placeholder={__('Filtrovat podle Spouštěče')}
                 value={triggerId}
                 options={[
                   ...automation.triggers.map((t) => ({
@@ -143,7 +143,7 @@ class HistoriesHeader extends React.Component<Props, State> {
             <div className="icon-option">
               <Icon icon="cell" />
               <Select
-                placeholder={__('Filter by Trigger Type')}
+                placeholder={__('Filtrujte podle typu Spouštění')}
                 value={triggerType}
                 options={[
                   ...triggersConst.map((t) => ({
@@ -161,7 +161,7 @@ class HistoriesHeader extends React.Component<Props, State> {
             onClick={this.onFilter}
             size="small"
           >
-            {'Filter'}
+            {'Filtr'}
           </Button>
         </FilterWrapper>
         <Histories {...this.props} filterParams={filterParams} />

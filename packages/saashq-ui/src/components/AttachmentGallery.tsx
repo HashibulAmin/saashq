@@ -60,7 +60,7 @@ function AttachmentsGallery(props: Props) {
       confirm().then(() => removeAttachment(index));
     };
 
-    const remove = <Delete onClick={onRemove}>{__('Delete')}</Delete>;
+    const remove = <Delete onClick={onRemove}>{__('Vymazat')}</Delete>;
 
     return (
       <Item key={item.url}>

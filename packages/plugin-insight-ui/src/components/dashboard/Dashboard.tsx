@@ -144,7 +144,7 @@ const Dashboard = (props: Props) => {
               >
                 <Icon icon="trash-alt" />
 
-                {__('Delete')}
+                {__('Vymazat')}
               </a>
             </li>
           </Dropdown.Menu>

@@ -212,13 +212,13 @@ class List extends React.Component<Props> {
                 onChange={this.onChange}
               />
             </th>
-            <th>{__('Title')}</th>
-            <th>{__('Status')}</th>
+            <th>{__('Titul')}</th>
+            <th>{__('Postavení')}</th>
             <th>{__('Total')}</th>
             <th>{__('Type')}</th>
             <th>{__('Brand')}</th>
             <th>{__('From')}</th>
-            <th>{__('Created by')}</th>
+            <th>{__('Vytvořil')}</th>
             <th>{__('Created date')}</th>
             <th>{__('Scheduled date')}</th>
             {isEnabled('tags') && <th>{__('Tags')}</th>}

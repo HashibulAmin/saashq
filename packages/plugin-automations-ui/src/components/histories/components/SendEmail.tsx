@@ -30,7 +30,7 @@ class SendEmail extends React.Component<Props> {
 
     return (
       <FormGroup>
-        <ControlLabel>{__('Email Template')}</ControlLabel>
+        <ControlLabel>{__('Šablona E-mailu')}</ControlLabel>
         <EmailTemplate templateId={actionConfig.templateId} onlyPreview />
       </FormGroup>
     );

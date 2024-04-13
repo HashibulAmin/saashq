@@ -11,7 +11,7 @@ import {
   IAutomationNote,
   RemoveNoteMutationResponse,
   EditNoteMutationResponse,
-  IAutomationNoteDoc
+  IAutomationNoteDoc,
 } from '../../types';
 
 type Props = {
@@ -29,51 +29,50 @@ type FinalProps = {} & Props &
   RemoveNoteMutationResponse;
 
 const NoteFormContainer = (props: FinalProps) => {
-  const {
-    automationsRemoveNote,
-    automationsEditNote,
-    automationsAddNote
-  } = props;
+  const { automationsRemoveNote, automationsEditNote, automationsAddNote } =
+    props;
 
   const remove = (_id: string) => {
-    confirm('Are you sure? This cannot be undone.').then(() => {
+    confirm('Jsi si jistá? To nelze vrátit zpět.').then(() => {
       automationsRemoveNote({
-        variables: { _id }
+        variables: { _id },
       })
         .then(() => {
-          Alert.success('You successfully deleted a note.');
+          Alert.success('Úspěšně jste smazali poznámku.');
         })
-        .catch(error => {
+        .catch((error) => {
           Alert.error(error.message);
         });
     });
   };
 
-  const save = variables => {
+  const save = (variables) => {
     automationsAddNote({
-      variables
+      variables,
     })
       .then(() => {
-        Alert.success(`You successfully created a note`);
+        Alert.success(`Úspěšně jste vytvořili poznámku`);
 
         props.closeModal();
       })
 
-      .catch(error => {
+      .catch((error) => {
         Alert.error(error.message);
       });
   };
 
-  const edit = variables => {
+  const edit = (variables) => {
     automationsEditNote({
-      variables
+      variables,
     })
       .then(() => {
-        Alert.success(`You successfully updated a ${variables.name || 'note'}`);
+        Alert.success(
+          `Úspěšně jste aktualizovali a ${variables.name || 'poznámka'}`,
+        );
         props.closeModal();
       })
 
-      .catch(error => {
+      .catch((error) => {
         Alert.error(error.message);
       });
   };
@@ -82,7 +81,7 @@ const NoteFormContainer = (props: FinalProps) => {
     ...props,
     save,
     edit,
-    remove
+    remove,
   };
 
   return <NoteForm {...extendedProps} />;
@@ -95,9 +94,9 @@ export default withProps<Props>(
       {
         name: 'automationsRemoveNote',
         options: {
-          refetchQueries: ['automationNotes']
-        }
-      }
+          refetchQueries: ['automationNotes'],
+        },
+      },
     ),
     graphql<Props, AddNoteMutationResponse, IAutomationNoteDoc>(
       gql(mutations.automationsAddNote),
@@ -108,21 +107,21 @@ export default withProps<Props>(
             {
               query: gql(queries.automationNotes),
               variables: {
-                automationId
-              }
-            }
-          ]
-        })
-      }
+                automationId,
+              },
+            },
+          ],
+        }),
+      },
     ),
     graphql<Props, EditNoteMutationResponse, IAutomationNoteDoc>(
       gql(mutations.automationsEditNote),
       {
         name: 'automationsEditNote',
         options: () => ({
-          refetchQueries: ['automationNotes']
-        })
-      }
-    )
-  )(NoteFormContainer)
+          refetchQueries: ['automationNotes'],
+        }),
+      },
+    ),
+  )(NoteFormContainer),
 );

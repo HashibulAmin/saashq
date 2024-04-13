@@ -52,7 +52,7 @@ class SegmentsList extends React.Component<Props, State> {
             <Button btnStyle="link" icon="edit-3" />
           </Link>
         </Tip>
-        <Tip text={__('Delete')} placement="top">
+        <Tip text={__('Vymazat')} placement="top">
           <Button btnStyle="link" onClick={onClick} icon="times-circle" />
         </Tip>
       </ActionButtons>
@@ -135,7 +135,7 @@ class SegmentsList extends React.Component<Props, State> {
     });
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Segments') },
     ];
 

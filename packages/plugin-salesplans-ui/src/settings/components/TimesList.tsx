@@ -137,7 +137,7 @@ class TimeProportion extends React.Component<Props, State> {
   render() {
     const { isAllSelected, totalCount, queryParams, history } = this.props;
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Sales Plans Times') },
     ];
 

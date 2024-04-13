@@ -11,19 +11,19 @@ class UnEnrollment extends React.Component<Props> {
   render() {
     return (
       <UnEnroll>
-        <h3>{__('Unenrollment and suppression')}</h3>
+        <h3>{__('Zrušení registrace a potlačení')}</h3>
         <div>
-          <p>{'When contacts enroll in this workflow'}</p>
+          <p>{'Když se kontakty zaregistrují do tohoto pracovního postupu'}</p>
           <FormGroup>
             <FormControl componentClass="radio" value="any" inline={true}>
-              {__('Do not remove them from other workflows')}
+              {__('Neodstraňujte je z jiných pracovních postupů')}
             </FormControl>
 
             <FormControl componentClass="radio" value="specific" inline={true}>
-              {__('Remove them from all other workflows')}
+              {__('Odstraňte je ze všech ostatních pracovních postupů')}
             </FormControl>
             <FormControl componentClass="radio" value="specific" inline={true}>
-              {__('Remove them from aspecific workflows')}
+              {__('Odeberte je z konkrétního pracovního postupu')}
             </FormControl>
           </FormGroup>
         </div>
@@ -31,16 +31,16 @@ class UnEnrollment extends React.Component<Props> {
         <div>
           <p>
             {
-              'When a contact no longer meets the enrollment conditions, remove them from this workflow'
+              'Když kontakt již nesplňuje podmínky registrace, odeberte jej z tohoto pracovního postupu'
             }
           </p>
           <FormGroup>
             <FormControl componentClass="radio" value="any" inline={true}>
-              {__('Yes, remove them from this workflow')}
+              {__('Ano, odeberte je z tohoto pracovního postupu')}
             </FormControl>
 
             <FormControl componentClass="radio" value="specific" inline={true}>
-              {__('No, keep them in this workflow')}
+              {__('Ne, ponechat je v tomto pracovním postupu')}
             </FormControl>
           </FormGroup>
         </div>
@@ -48,33 +48,33 @@ class UnEnrollment extends React.Component<Props> {
         <div>
           <p>
             {
-              'When two contacts are merged, shoud the newly created contact enroll in this workflow if they meet the trigger criteria'
+              'Když jsou dva kontakty sloučeny, měl by se nově vytvořený kontakt zapsat do tohoto pracovního postupu, pokud splňují spouštěcí kritéria'
             }
             ?
           </p>
           <FormGroup>
             <FormControl componentClass="radio" value="any" inline={true}>
-              {__('Yes')}
+              {__('Ano')}
             </FormControl>
 
             <FormControl componentClass="radio" value="specific" inline={true}>
-              {__('No')}
+              {__('Ne')}
             </FormControl>
           </FormGroup>
         </div>
 
         <div>
-          <b>Suppression lists for this workflow</b>
+          <b>Seznamy potlačení pro tento pracovní postup</b>
           <p>
             {
-              'Contacts on these lists will be removed from the workflow. You can add up to 20 suppression lists'
+              'Kontakty na těchto seznamech budou odstraněny z pracovního postupu. Můžete přidat až 20 seznamů potlačení'
             }
           </p>
           <Select
             isRequired={true}
             value={''}
             options={[]}
-            placeholder={__('Select')}
+            placeholder={__('Vybrat')}
           />
         </div>
       </UnEnroll>

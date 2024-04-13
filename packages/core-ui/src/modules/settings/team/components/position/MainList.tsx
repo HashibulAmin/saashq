@@ -155,7 +155,7 @@ const MainList = (props: Props) => {
               />
             </th>
             <th>{__('Code')}</th>
-            <th>{__('Title')}</th>
+            <th>{__('Titul')}</th>
             <th>{__('Parent')}</th>
             <th>{__('Team member count')}</th>
             <th>{__('Akce')}</th>

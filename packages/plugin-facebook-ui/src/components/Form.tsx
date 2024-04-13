@@ -124,7 +124,7 @@ class Facebook extends React.Component<Props, State> {
                 >
                   {this.state.selectedPages.includes(page.id)
                     ? __('Selected')
-                    : __('Select')}
+                    : __('Vybrat')}
                 </Button>
               </AccountItem>
             ))}
@@ -241,7 +241,7 @@ class Facebook extends React.Component<Props, State> {
     }
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Integrations'), link: '/settings/integrations' },
       { title },
     ];

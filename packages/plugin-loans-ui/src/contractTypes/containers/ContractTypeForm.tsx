@@ -30,11 +30,11 @@ class ContractTypeFromContainer extends React.Component<FinalProps> {
       name,
       values,
       isSubmitted,
-      object
+      object,
     }: IButtonMutateProps) => {
       const { closeModal, getAssociatedContractType } = this.props;
 
-      const afterSave = data => {
+      const afterSave = (data) => {
         closeModal();
 
         if (getAssociatedContractType) {
@@ -56,7 +56,7 @@ class ContractTypeFromContainer extends React.Component<FinalProps> {
             object ? 'updated' : 'added'
           } a ${name}`}
         >
-          {__('Save')}
+          {__('Uložit')}
         </ButtonMutate>
       );
     };
@@ -71,7 +71,7 @@ class ContractTypeFromContainer extends React.Component<FinalProps> {
     const updatedProps = {
       ...this.props,
       renderButton,
-      productCategories
+      productCategories,
     };
     return <ContractTypeForm {...updatedProps} />;
   }
@@ -87,9 +87,9 @@ export default withCurrentUser(
       graphql<Props, ProductCategoriesQueryResponse>(
         gql(productCategoryQueries.productCategories),
         {
-          name: 'productCategoriesQuery'
-        }
-      )
-    )(ContractTypeFromContainer)
-  )
+          name: 'productCategoriesQuery',
+        },
+      ),
+    )(ContractTypeFromContainer),
+  ),
 );

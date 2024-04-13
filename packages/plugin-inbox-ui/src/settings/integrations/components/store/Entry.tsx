@@ -2,7 +2,7 @@ import {
   Box,
   IntegrationItem,
   Ribbon,
-  Type
+  Type,
 } from '@saashq/ui-inbox/src/settings/integrations/components/store/styles';
 
 import Icon from '@saashq/ui/src/components/Icon';
@@ -71,17 +71,17 @@ function renderCreate(createUrl, kind, isAvailable) {
     return null;
   }
 
-  const trigger = <button>+ {__('Add')}</button>;
+  const trigger = <button>+ {__('Přidat')}</button>;
 
   if (createUrl && kind && isAvailable) {
-    return <Link to={`${createUrl}?kind=${kind}`}>+ {__('Add')}</Link>;
+    return <Link to={`${createUrl}?kind=${kind}`}>+ {__('Přidat')}</Link>;
   }
 
   if ((createUrl || '').includes('create')) {
-    return <Link to={createUrl}>+ {__('Add')}</Link>;
+    return <Link to={createUrl}>+ {__('Přidat')}</Link>;
   }
 
-  const formContent = props => <IntegrationForm {...props} type={kind} />;
+  const formContent = (props) => <IntegrationForm {...props} type={kind} />;
 
   return (
     <ModalTrigger

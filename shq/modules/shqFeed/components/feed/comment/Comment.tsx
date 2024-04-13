@@ -21,7 +21,7 @@ const Comment: React.FC<{
   const renderCancelButton = () => {
     if (showReplyForm) {
       return (
-        <Tip text={__('Cancel')} placement="top">
+        <Tip text={__('Zrušení')} placement="top">
           <Button
             id="commentDelete"
             btnStyle="link"
@@ -79,7 +79,7 @@ const Comment: React.FC<{
               icon="reply"
             />
           </Tip>
-          <Tip text={__('Delete')} placement="top">
+          <Tip text={__('Vymazat')} placement="top">
             <Button
               id="commentDelete"
               btnStyle="link"

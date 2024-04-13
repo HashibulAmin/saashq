@@ -74,7 +74,7 @@ function EditForm({
           </BackIcon>
           {renderConditionForm(type, condition, onChange)}
           <Button size="small" btnStyle="success" onClick={handleSave} block>
-            {__('Save')}
+            {__('Uložit')}
           </Button>
         </DrawerDetail>
       );
@@ -139,10 +139,10 @@ function EditForm({
       {!activeItem && (
         <ModalFooter>
           <Button btnStyle="simple" onClick={onCancel}>
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
           <Button btnStyle="success" onClick={() => onSave(conditions)}>
-            {__('Save')}
+            {__('Uložit')}
           </Button>
         </ModalFooter>
       )}

@@ -4,23 +4,23 @@ import {
   CustomFields,
   Event,
   OpeningHours,
-  PageStyles
+  PageStyles,
 } from './steps';
 import {
   Content,
-  LeftContent
+  LeftContent,
 } from '@saashq/ui-inbox/src/settings/integrations/styles';
 import {
   ControlWrapper,
   Indicator,
-  StepWrapper
+  StepWrapper,
 } from '@saashq/ui/src/components/step/styles';
 import { FlexItem, LeftItem } from '@saashq/ui/src/components/step/styles';
 import {
   IPage,
   SchedulePageMutationVariables,
   additionalField,
-  openingHour
+  openingHour,
 } from '../../types';
 import { Step, Steps } from '@saashq/ui/src/components/step';
 
@@ -95,11 +95,11 @@ class CreateSchedulePage extends React.Component<FinalProps, State> {
       color: appearance.color || '#9900ef',
       companyName: appearance.companyName || '',
       submitText: appearance.submitText || '',
-      thankYouText: appearance.thankYouText || ''
+      thankYouText: appearance.thankYouText || '',
     };
   }
 
-  save = e => {
+  save = (e) => {
     e.preventDefault();
 
     const {
@@ -115,7 +115,7 @@ class CreateSchedulePage extends React.Component<FinalProps, State> {
       cancellationPolicy,
       confirmationMethod,
       additionalFields,
-      openingHours
+      openingHours,
     } = this.state;
 
     let slug = this.state.slug;
@@ -140,20 +140,20 @@ class CreateSchedulePage extends React.Component<FinalProps, State> {
       event: {
         title,
         location,
-        duration
+        duration,
       },
       appearance: {
         color,
         companyName,
         submitText,
-        thankYouText
+        thankYouText,
       },
       booking: {
         cancellationPolicy,
         confirmationMethod,
         additionalFields,
-        openingHours
-      }
+        openingHours,
+      },
     });
   };
 
@@ -168,7 +168,7 @@ class CreateSchedulePage extends React.Component<FinalProps, State> {
   };
 
   onChange = <T extends keyof State>(key: T, value: State[T]) => {
-    this.setState(({ [key]: value } as unknown) as Pick<State, keyof State>);
+    this.setState({ [key]: value } as unknown as Pick<State, keyof State>);
   };
 
   renderButtons() {
@@ -190,10 +190,10 @@ class CreateSchedulePage extends React.Component<FinalProps, State> {
     );
   }
 
-  renderOptions = array => {
-    return array.map(obj => ({
+  renderOptions = (array) => {
+    return array.map((obj) => ({
       value: obj._id,
-      label: obj.name
+      label: obj.name,
     }));
   };
 
@@ -218,16 +218,17 @@ class CreateSchedulePage extends React.Component<FinalProps, State> {
       slug,
       color,
       submitText,
-      thankYouText
+      thankYouText,
     } = this.state;
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Calendar'), link: '/settings/calendars' },
-      { title: __('Schedule'), link: `/settings/schedule` }
+      { title: __('Schedule'), link: `/settings/schedule` },
     ];
 
-    const onChangeCalendar = item => this.setState({ calendarId: item.value });
+    const onChangeCalendar = (item) =>
+      this.setState({ calendarId: item.value });
 
     return (
       <StepWrapper>

@@ -412,7 +412,7 @@ class AutoAndManualForm extends React.Component<Props, State> {
       <StepWrapper>
         <Wrapper.Header title={renderTitle()} breadcrumb={breadcrumbs} />
         <TitleContainer>
-          <div>{__('Title')}</div>
+          <div>{__('Titul')}</div>
           <FormControl
             required={true}
             onChange={onChange}

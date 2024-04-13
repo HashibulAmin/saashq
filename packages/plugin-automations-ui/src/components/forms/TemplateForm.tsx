@@ -17,7 +17,7 @@ class TemplateForm extends React.Component<Props> {
   generateDoc = ({ name }: { name: string }) => {
     return {
       _id: this.props.id,
-      name
+      name,
     };
   };
 
@@ -32,7 +32,7 @@ class TemplateForm extends React.Component<Props> {
           {...formProps}
           defaultValue={`${name} (template)`}
           name="name"
-          placeholder={__('Template name')}
+          placeholder={__('Název šablony')}
         />
         <ModalFooter>
           <Button
@@ -41,13 +41,13 @@ class TemplateForm extends React.Component<Props> {
             onClick={closeModal}
             icon="times-circle"
           >
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
 
           {renderButton({
             values: this.generateDoc(values),
             isSubmitted,
-            callback: closeModal
+            callback: closeModal,
           })}
         </ModalFooter>
       </div>

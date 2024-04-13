@@ -226,7 +226,7 @@ class IntegrationConfigs extends React.Component<Props, State> {
     );
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Integrations config') },
     ];
 

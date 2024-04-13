@@ -160,7 +160,7 @@ class TransactionsList extends React.Component<IProps> {
         <BarItems>
           {can('transactionsRemove', currentUser) && (
             <Button btnStyle="danger" icon="cancel-1" onClick={onClick}>
-              {__('Delete')}
+              {__('Vymazat')}
             </Button>
           )}
         </BarItems>

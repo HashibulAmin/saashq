@@ -493,7 +493,7 @@ class Form extends React.Component<Props, State> {
                     btnStyle="link"
                     onClick={() => this.onClickBarcode(item)}
                   >
-                    <Tip text={__('Delete')} placement="bottom">
+                    <Tip text={__('Vymazat')} placement="bottom">
                       <Icon icon="trash" />
                     </Tip>
                   </Button>

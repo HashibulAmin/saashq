@@ -165,7 +165,7 @@ function UserDetails({
           {isChanged && (
             <ModalFooter>
               <Button btnStyle="simple" onClick={handleCancel}>
-                {__('Cancel')}
+                {__('Zrušení')}
               </Button>
               {renderButton({
                 text: 'pohyb uživatele',

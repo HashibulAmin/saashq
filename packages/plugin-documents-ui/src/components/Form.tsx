@@ -142,11 +142,11 @@ class Form extends React.Component<Props, State> {
 
         <ModalFooter>
           <Button btnStyle="simple" type="button" onClick={closeModal}>
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
 
           <Button onClick={this.onSave} btnStyle="success" type="button">
-            {__('Save')}
+            {__('Uložit')}
           </Button>
         </ModalFooter>
       </>

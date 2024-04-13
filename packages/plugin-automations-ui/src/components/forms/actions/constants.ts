@@ -1,69 +1,69 @@
 export const PROPERTY_FIELD = [
   {
     value: 'size',
-    label: 'Size'
+    label: 'Velikost',
   },
   {
     value: 'amount',
-    label: 'Amount'
+    label: 'Množství',
   },
   {
     value: 'state',
-    label: 'State'
-  }
+    label: 'Stát',
+  },
 ];
 
 export const PROPERTY_OPERATOR = {
   String: [
     {
       value: 'set',
-      label: 'Set'
+      label: 'Soubor',
     },
     {
       value: 'concat',
-      label: 'Concat'
-    }
+      label: 'Concat',
+    },
   ],
   Date: [
     {
       value: 'set',
-      label: 'Set'
+      label: 'Soubor',
     },
     {
       value: 'addDay',
-      label: 'Add Day'
+      label: 'Přidat Den',
     },
     {
       value: 'subtractDay',
-      label: 'Subtract Day'
-    }
+      label: 'Odečíst Den',
+    },
   ],
   Number: [
     {
       value: 'add',
-      label: 'Add'
+      label: 'Přidat',
     },
     {
       value: 'subtract',
-      label: 'subtract'
+      label: 'Odčítat',
     },
     {
       value: 'multiply',
-      label: 'Multiply'
+      label: 'Násobit',
     },
     {
       value: 'divide',
-      label: 'Divide'
+      label: 'Rozdělit',
     },
     {
       value: 'set',
-      label: 'Set'
-    }
+      label: 'Soubor',
+    },
   ],
   Default: [
     {
       value: 'set',
-      label: 'Set'
-    }
-  ]
+      label: 'Soubor',
+    },
+  ],
 };

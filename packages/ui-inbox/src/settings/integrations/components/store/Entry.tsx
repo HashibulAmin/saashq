@@ -70,12 +70,12 @@ function renderCreate(createUrl, kind, isAvailable) {
     return null;
   }
 
-  const trigger = <button>+ {__('Add')}</button>;
+  const trigger = <button>+ {__('Přidat')}</button>;
 
   if (kind === INTEGRATION_KINDS.FACEBOOK_MESSENGER) {
     return (
       <Link to={`${createUrl}?kind=${INTEGRATION_KINDS.FACEBOOK_MESSENGER}`}>
-        + {__('Add')}
+        + {__('Přidat')}
       </Link>
     );
   }
@@ -83,27 +83,27 @@ function renderCreate(createUrl, kind, isAvailable) {
   if (kind === INTEGRATION_KINDS.INSTAGRAM_MESSENGER) {
     return (
       <Link to={`${createUrl}?kind=${INTEGRATION_KINDS.INSTAGRAM_MESSENGER}`}>
-        + {__('Add')}
+        + {__('Přidat')}
       </Link>
     );
   }
   if (kind === INTEGRATION_KINDS.FACEBOOK_POST) {
     return (
       <Link to={`${createUrl}?kind=${INTEGRATION_KINDS.FACEBOOK_POST}`}>
-        + {__('Add')}
+        + {__('Přidat')}
       </Link>
     );
   }
   if (kind === INTEGRATION_KINDS.INSTAGRAM_MESSENGER) {
     return (
       <Link to={`${createUrl}?kind=${INTEGRATION_KINDS.INSTAGRAM_MESSENGER}`}>
-        + {__('Add')}
+        + {__('Přidat')}
       </Link>
     );
   }
 
   if (kind === INTEGRATION_KINDS.MESSENGER) {
-    return <Link to={createUrl}>+ {__('Add')}</Link>;
+    return <Link to={createUrl}>+ {__('Přidat')}</Link>;
   }
 
   if (
@@ -140,7 +140,7 @@ function renderCreate(createUrl, kind, isAvailable) {
   }
 
   if (kind === INTEGRATION_KINDS.GMAIL) {
-    return <Link to={createUrl}>+ {__('Add')}</Link>;
+    return <Link to={createUrl}>+ {__('Přidat')}</Link>;
   }
 
   if (kind === 'twitter') {
@@ -202,7 +202,7 @@ function Entry({
       return null;
     }
 
-    return <button onClick={handleLink}>+{__('Add')}</button>;
+    return <button onClick={handleLink}>+{__('Přidat')}</button>;
   }
 
   return (

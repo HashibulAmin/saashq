@@ -71,7 +71,7 @@ class CategoryRow extends React.Component<Props> {
         </Link>
         <ActionButtons>
           {this.renderEditAction()}
-          <Tip text={__('Delete')} placement="bottom">
+          <Tip text={__('Vymazat')} placement="bottom">
             <Button btnStyle="link" onClick={this.remove} icon="cancel-1" />
           </Tip>
         </ActionButtons>

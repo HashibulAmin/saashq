@@ -60,7 +60,7 @@ function FieldChoices(props: Props) {
       <FieldChoice
         {...props}
         type="select"
-        text={__('Select')}
+        text={__('Vybrat')}
         icon="sort-amount-down"
       />
       <FieldChoice {...props} type="file" text={__('File')} icon="paperclip" />

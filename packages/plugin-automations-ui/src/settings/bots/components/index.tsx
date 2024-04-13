@@ -18,12 +18,12 @@ import { Link } from 'react-router-dom';
 import Sidebar from '../../Sidebar';
 
 const breadcrumb = [
-  { title: __('Settings'), link: '/settings' },
+  { title: __('Nastavení'), link: '/settings' },
   {
-    title: __('Automations config'),
+    title: __('Konfigurace automatizace'),
     link: '/settings/automations/bots',
   },
-  { title: __('Bots config') },
+  { title: __('Konfigurace robotů') },
 ];
 
 const getBotsByPlatform = () => {
@@ -49,7 +49,7 @@ function Settings() {
   const header = (
     <HeaderDescription
       icon="/images/actions/25.svg"
-      title="Bots configs"
+      title="Konfigurace robotů"
       description=""
     />
   );
@@ -60,7 +60,7 @@ function Settings() {
     const platforms = getBotsByPlatform();
 
     if (!platforms.length) {
-      return <>Something went wrong</>;
+      return <>Něco se pokazilo</>;
     }
 
     const handleSelectPlatform = (platform) => {
@@ -78,7 +78,7 @@ function Settings() {
           <h5>{platform.label}</h5>
           <p>{__(platform.description)}</p>
         </Box>
-        <Link to={platform.createUrl}>+ {__('Add')}</Link>
+        <Link to={platform.createUrl}>+ {__('Přidat')}</Link>
       </IntegrationItem>
     ));
   };
@@ -114,12 +114,15 @@ function Settings() {
   return (
     <Wrapper
       header={
-        <Wrapper.Header title={__('Bots Config')} breadcrumb={breadcrumb} />
+        <Wrapper.Header
+          title={__('Konfigurace robotů')}
+          breadcrumb={breadcrumb}
+        />
       }
       mainHead={header}
       actionBar={
         <Wrapper.ActionBar
-          left={<Title capitalize={true}>{__('Bots config')}</Title>}
+          left={<Title capitalize={true}>{__('Konfigurace robotů')}</Title>}
           right={actionButtons}
           wideSpacing={true}
         />

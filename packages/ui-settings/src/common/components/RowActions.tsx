@@ -34,7 +34,7 @@ export default class RowActions extends React.Component<Props, {}> {
     }
 
     return (
-      <Tip text={__('Delete')} placement="top">
+      <Tip text={__('Vymazat')} placement="top">
         <Button btnStyle="link" onClick={this.remove} icon="times-circle" />
       </Tip>
     );

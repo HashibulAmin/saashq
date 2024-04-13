@@ -110,7 +110,7 @@ const ArticleRow = (props: Props) => {
       </Column>
       <ActionButtons>
         {renderEditAction('')}
-        <Tip text={__('Delete')}>
+        <Tip text={__('Vymazat')}>
           <Button btnStyle="link" onClick={remove} icon="cancel-1" />
         </Tip>
       </ActionButtons>

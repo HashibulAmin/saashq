@@ -2,7 +2,7 @@ import React from 'react';
 import {
   IButtonMutateProps,
   IFormProps,
-  IAttachment
+  IAttachment,
 } from '@saashq/ui/src/types';
 import Form from '@saashq/ui/src/components/form/Form';
 import FormControl from '@saashq/ui/src/components/form/Control';
@@ -32,24 +32,24 @@ const QuizQuestionForm: React.FC<Props> = ({
   quizId,
   type,
   choice,
-  questionId
+  questionId,
 }) => {
   const defaultFile = question
     ? {
         url: question.imageUrl,
         name: 'Question image',
-        type: 'image'
+        type: 'image',
       }
     : choice
-    ? {
-        url: choice.imageUrl,
-        name: 'Choice image',
-        type: 'image'
-      }
-    : ({} as IAttachment);
+      ? {
+          url: choice.imageUrl,
+          name: 'Choice image',
+          type: 'image',
+        }
+      : ({} as IAttachment);
   const [image, setImage] = React.useState(defaultFile);
   const [isMultipleChoice, setIsMultipleChoice] = React.useState(
-    question?.isMultipleChoice || false
+    question?.isMultipleChoice || false,
   );
   const [isCorrect, setIsCorrect] = React.useState(choice?.isCorrect || false);
 
@@ -77,18 +77,18 @@ const QuizQuestionForm: React.FC<Props> = ({
       listOrder: parseInt(finalValues.listOrder, 10),
       quizId,
       isCorrect,
-      questionId
+      questionId,
     };
   };
 
-  const onChangeAttachment = attachment =>
+  const onChangeAttachment = (attachment) =>
     setImage(
       attachment && attachment.length !== 0
         ? attachment[0]
-        : ({} as IAttachment)
+        : ({} as IAttachment),
     );
 
-  const checkboxOptions = props => {
+  const checkboxOptions = (props) => {
     if (type === 'choice') {
       return (
         <FormGroup>
@@ -174,7 +174,7 @@ const QuizQuestionForm: React.FC<Props> = ({
             onClick={closeModal}
             icon="times-circle"
           >
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
 
           {renderButton({
@@ -182,7 +182,7 @@ const QuizQuestionForm: React.FC<Props> = ({
             values: generateDoc(values),
             isSubmitted,
             callback: closeModal,
-            object: type === 'choice' ? choice : question
+            object: type === 'choice' ? choice : question,
           })}
         </ModalFooter>
       </>

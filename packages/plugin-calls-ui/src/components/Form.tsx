@@ -173,7 +173,7 @@ const CallIntegrationForm = (props: IProps) => {
             icon="check-circle"
             onClick={saveCallConfig}
           >
-            {__('Save')}
+            {__('Uložit')}
           </Button>
         </ModalFooter>
       </>

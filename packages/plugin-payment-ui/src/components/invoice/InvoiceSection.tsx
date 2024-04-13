@@ -36,7 +36,7 @@ export default function Component(props: Props) {
       return <EmptyState icon="user-6" text="No data" />;
     }
 
-    const renderStatus = status => {
+    const renderStatus = (status) => {
       let labelStyle = 'error';
 
       switch (status) {
@@ -64,7 +64,7 @@ export default function Component(props: Props) {
             <tr>
               <th>{__('Kind')}</th>
               <th>{__('Amount')}</th>
-              <th>{__('Status')}</th>
+              <th>{__('Postavení')}</th>
             </tr>
           </thead>
           <tbody>

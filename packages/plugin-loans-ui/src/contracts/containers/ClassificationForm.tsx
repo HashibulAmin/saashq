@@ -34,7 +34,7 @@ class ContractFromContainer extends React.Component<FinalProps> {
       values,
       isSubmitted,
       object,
-      disabled
+      disabled,
     }: IButtonMutateProps & { disabled: boolean }) => {
       const { closeModal } = this.props;
 
@@ -55,7 +55,7 @@ class ContractFromContainer extends React.Component<FinalProps> {
             object ? 'updated' : 'added'
           } a ${name}`}
         >
-          {__('Save')}
+          {__('Uložit')}
         </ButtonMutate>
       );
     };
@@ -64,7 +64,7 @@ class ContractFromContainer extends React.Component<FinalProps> {
       const updatedProps = {
         ...this.props,
         contractTypes: this.props.contractTypesMain?.contractTypesMain?.list,
-        renderButton
+        renderButton,
       };
 
       return <ClassificationForm {...updatedProps} />;
@@ -79,7 +79,7 @@ const getRefetchQueries = () => {
     'contracts',
     'contractCounts',
     'activityLogs',
-    'schedules'
+    'schedules',
   ];
 };
 
@@ -89,15 +89,15 @@ export default withCurrentUser(
       graphql<any, any, any>(gql(queries.contractTypesMain), {
         name: 'contractTypesMain',
         options: ({ queryParams, ...other }) => {
-          const constractTypeIds = other.contracts.map(a => a.contractTypeId);
+          const constractTypeIds = other.contracts.map((a) => a.contractTypeId);
           return {
             variables: {
-              ids: constractTypeIds
+              ids: constractTypeIds,
             },
-            fetchPolicy: 'network-only'
+            fetchPolicy: 'network-only',
           };
-        }
-      })
-    )(ContractFromContainer)
-  )
+        },
+      }),
+    )(ContractFromContainer),
+  ),
 );

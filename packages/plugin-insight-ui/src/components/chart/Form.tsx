@@ -308,7 +308,7 @@ const Form = (props: Props) => {
               onClick={closeDrawer}
               icon="times-circle"
             >
-              {__('Cancel')}
+              {__('Zrušení')}
             </Button>
 
             {renderButton({

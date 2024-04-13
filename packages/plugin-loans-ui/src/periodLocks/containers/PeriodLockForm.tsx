@@ -24,11 +24,11 @@ class PeriodLockFromContainer extends React.Component<FinalProps> {
       name,
       values,
       isSubmitted,
-      object
+      object,
     }: IButtonMutateProps) => {
       const { closeModal, getAssociatedPeriodLock } = this.props;
 
-      const afterSave = data => {
+      const afterSave = (data) => {
         closeModal();
 
         if (getAssociatedPeriodLock) {
@@ -50,14 +50,14 @@ class PeriodLockFromContainer extends React.Component<FinalProps> {
             object ? 'updated' : 'added'
           } a ${name}`}
         >
-          {__('Save')}
+          {__('Uložit')}
         </ButtonMutate>
       );
     };
 
     const updatedProps = {
       ...this.props,
-      renderButton
+      renderButton,
     };
     return <PeriodLockForm {...updatedProps} />;
   }

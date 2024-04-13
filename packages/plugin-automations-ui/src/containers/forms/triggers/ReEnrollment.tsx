@@ -36,7 +36,7 @@ class ReEnrollmentContainer extends React.Component<
     this.state = {
       loading: false,
       count: 0,
-      fields: []
+      fields: [],
     };
   }
 
@@ -45,7 +45,7 @@ class ReEnrollmentContainer extends React.Component<
     values,
     isSubmitted,
     callback,
-    object
+    object,
   }: IButtonMutateProps) => {
     const { closeModal } = this.props;
 
@@ -57,9 +57,9 @@ class ReEnrollmentContainer extends React.Component<
         isSubmitted={isSubmitted}
         icon="check-circle"
         type="submit"
-        successMessage={`You successfully ${
-          object ? 'updated' : 'added'
-        } a ${name}`}
+        successMessage={`Ty úspěšně ${
+          object ? 'aktualizováno' : 'přidal'
+        } A ${name}`}
       />
     );
   };
@@ -79,7 +79,7 @@ class ReEnrollmentContainer extends React.Component<
       segment,
       trigger,
       fields,
-      addConfig: this.props.addConfig
+      addConfig: this.props.addConfig,
     };
 
     return <ReEnrollment {...extendedProps} />;
@@ -93,18 +93,18 @@ export default withProps<Props>(
       {
         name: 'segmentDetailQuery',
         options: ({ trigger }) => ({
-          variables: { _id: trigger.config ? trigger.config.contentId : '' }
-        })
-      }
+          variables: { _id: trigger.config ? trigger.config.contentId : '' },
+        }),
+      },
     ),
     graphql<Props>(gql(formQueries.fieldsCombinedByContentType), {
       name: 'fieldsQuery',
       options: ({ trigger, segmentId }) => ({
         variables: {
           contentType: trigger.type,
-          segmentId
-        }
-      })
-    })
-  )(ReEnrollmentContainer)
+          segmentId,
+        },
+      }),
+    }),
+  )(ReEnrollmentContainer),
 );

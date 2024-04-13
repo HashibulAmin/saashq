@@ -42,7 +42,7 @@ const Row = (props: Props) => {
     const onRemove = () => removeReports([report._id]);
 
     return (
-      <Tip text={__('Delete')} placement="top">
+      <Tip text={__('Vymazat')} placement="top">
         <Button
           id="dashboardDelete"
           btnStyle="link"

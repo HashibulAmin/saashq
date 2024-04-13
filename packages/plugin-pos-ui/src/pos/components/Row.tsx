@@ -8,7 +8,7 @@ import {
   Button,
   Icon,
   Tip,
-  WithPermission
+  WithPermission,
 } from '@saashq/ui/src';
 import { Capitalize } from '@saashq/ui-settings/src/permissions/styles';
 import { DateWrapper } from '@saashq/ui/src/styles/main';
@@ -43,7 +43,7 @@ class Row extends React.Component<Props> {
     const onClick = () => remove(pos._id);
 
     return (
-      <Tip text={__('Delete')} placement="top">
+      <Tip text={__('Vymazat')} placement="top">
         <Button
           id="integrationDelete"
           btnStyle="link"
@@ -54,7 +54,7 @@ class Row extends React.Component<Props> {
     );
   }
 
-  renderCopyAction = object => {
+  renderCopyAction = (object) => {
     const onCopy = () => {
       Alert.success('Copied');
     };
@@ -77,7 +77,7 @@ class Row extends React.Component<Props> {
 
     const createdUser = pos.user || {
       _id: '',
-      details: { fullName: '' }
+      details: { fullName: '' },
     };
 
     return (

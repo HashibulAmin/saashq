@@ -244,7 +244,7 @@ class ActionSection extends React.Component<Props, { customerState: string }> {
           </li>
           <li>
             <a href="#delete" onClick={onClick}>
-              {__('Delete')}
+              {__('Vymazat')}
             </a>
           </li>
           <li>{this.renderChangeStateForm()}</li>

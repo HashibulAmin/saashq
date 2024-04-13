@@ -1,11 +1,11 @@
 import {
   FieldStyle,
   SidebarCounter,
-  SidebarList
+  SidebarList,
 } from '@saashq/ui/src/layout/styles';
 import {
   MESSAGE_KIND_FILTERS,
-  statusFilters
+  statusFilters,
 } from '@saashq/ui-engage/src/constants';
 import { __, router } from 'coreui/utils';
 
@@ -66,7 +66,7 @@ class Sidebar extends React.Component<Props> {
 
     return (
       <Section noShadow noMargin>
-        <Section.Title>{__('Status')}</Section.Title>
+        <Section.Title>{__('Postavení')}</Section.Title>
 
         <SidebarList>
           {statusFilters.map((status, index) => (

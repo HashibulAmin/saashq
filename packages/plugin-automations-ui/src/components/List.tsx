@@ -151,14 +151,14 @@ class AutomationsList extends React.Component<IProps, State> {
                 />
               </th>
               <th>{__('Název')}</th>
-              <th>{__('Status')}</th>
-              <th>{__('Triggers')}</th>
+              <th>{__('Postavení')}</th>
+              <th>{__('Spouštěče')}</th>
               <th>{__('Akce')}</th>
-              {isEnabled('tags') && <th>{__('Tags')}</th>}
-              <th>{__('Last updated by')}</th>
-              <th>{__('Created by')}</th>
-              <th>{__('Last update')}</th>
-              <th>{__('Created date')}</th>
+              {isEnabled('tags') && <th>{__('Tagy')}</th>}
+              <th>{__('Naposledy aktualizováno uživatelem')}</th>
+              <th>{__('Vytvořil')}</th>
+              <th>{__('Poslední aktualizace')}</th>
+              <th>{__('Datum vytvoření')}</th>
               <th>{__('Akce')}</th>
             </tr>
           </thead>
@@ -190,7 +190,7 @@ class AutomationsList extends React.Component<IProps, State> {
             icon="cancel-1"
             onClick={() => this.removeAutomations(bulk)}
           >
-            Remove
+            Odstranit
           </Button>
           <Button
             btnStyle="simple"
@@ -208,7 +208,7 @@ class AutomationsList extends React.Component<IProps, State> {
               targets={bulk}
               trigger={
                 <Button btnStyle="simple" size="small" icon="tag-alt">
-                  Tag
+                  Štítek
                 </Button>
               }
             />
@@ -221,7 +221,7 @@ class AutomationsList extends React.Component<IProps, State> {
       <BarItems>
         <FormControl
           type="text"
-          placeholder={__('Search an automation')}
+          placeholder={__('Hledejte automatizaci')}
           onChange={this.search}
           value={this.state.searchValue}
           autoFocus={true}
@@ -234,7 +234,7 @@ class AutomationsList extends React.Component<IProps, State> {
           icon="plus-circle"
           onClick={addAutomation}
         >
-          {__('Create an automation')}
+          {__('Vytvořte automatizaci')}
         </Button>
       </BarItems>
     );
@@ -247,8 +247,8 @@ class AutomationsList extends React.Component<IProps, State> {
       <Wrapper
         header={
           <Wrapper.Header
-            title={__('Automations')}
-            breadcrumb={[{ title: __('Automations') }]}
+            title={__('Automatizace')}
+            breadcrumb={[{ title: __('Automatizace') }]}
             queryParams={queryParams}
           />
         }
@@ -271,9 +271,9 @@ class AutomationsList extends React.Component<IProps, State> {
                 <img src="/images/actions/automation.svg" alt="empty-img" />
 
                 <p>
-                  <b>{__('You don’t have any automations yet')}.</b>
+                  <b>{__('Zatím nemáte žádné automatizace')}.</b>
                   {__(
-                    'Automatically execute repetitive tasks and make sure nothing falls through the cracks',
+                    'Automaticky provádějte opakující se úkoly a ujistěte se, že nic nepropadne',
                   )}
                   .
                 </p>
@@ -288,6 +288,6 @@ class AutomationsList extends React.Component<IProps, State> {
 }
 
 export default withTableWrapper(
-  'Automation',
-  withRouter<IRouterProps>(AutomationsList),
+  'Automatizace',
+  withRouter<IRouterProps, any>(AutomationsList),
 );

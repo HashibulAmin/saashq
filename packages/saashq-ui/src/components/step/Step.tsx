@@ -13,7 +13,7 @@ import {
   StepImg,
   StepItem,
   StepButton,
-  ButtonContainer
+  ButtonContainer,
 } from './styles';
 
 import { BoxRow } from './style';
@@ -52,7 +52,7 @@ class Step extends React.Component<Props> {
     if (link)
       return (
         <Link to={link}>
-          <StepButton>{__('Cancel')}</StepButton>
+          <StepButton>{__('Zrušení')}</StepButton>
         </Link>
       );
 
@@ -123,7 +123,7 @@ class Step extends React.Component<Props> {
       children,
       noButton,
       direction,
-      progress = 0
+      progress = 0,
     } = this.props;
 
     let show = false;

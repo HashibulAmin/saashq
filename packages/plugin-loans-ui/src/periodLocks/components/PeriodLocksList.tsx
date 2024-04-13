@@ -164,7 +164,7 @@ class PeriodLocksList extends React.Component<IProps, State> {
         <BarItems>
           {can('managePeriodLocks', currentUser) && (
             <Button btnStyle="danger" icon="cancel-1" onClick={onClick}>
-              {__('Delete')}
+              {__('Vymazat')}
             </Button>
           )}
         </BarItems>

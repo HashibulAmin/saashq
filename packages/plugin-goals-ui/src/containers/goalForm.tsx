@@ -5,7 +5,7 @@ import { IUser, UsersQueryResponse } from '@saashq/ui/src/auth/types';
 import {
   BranchesMainQueryResponse,
   DepartmentsMainQueryResponse,
-  UnitsMainQueryResponse
+  UnitsMainQueryResponse,
 } from '@saashq/ui/src/team/types';
 import { IButtonMutateProps } from '@saashq/ui/src/types';
 import { __ } from 'coreui/utils';
@@ -45,10 +45,10 @@ class GoalTypeFromContainer extends React.Component<FinalProps> {
       name,
       values,
       isSubmitted,
-      object
+      object,
     }: IButtonMutateProps) => {
       const { closeModal, getAssociatedGoalType } = this.props;
-      const afterSave = data => {
+      const afterSave = (data) => {
         closeModal();
 
         if (getAssociatedGoalType) {
@@ -67,14 +67,14 @@ class GoalTypeFromContainer extends React.Component<FinalProps> {
             object ? 'updated' : 'added'
           } a ${name}`}
         >
-          {__('Save')}
+          {__('Uložit')}
         </ButtonMutate>
       );
     };
 
     const updatedProps = {
       ...this.props,
-      renderButton
+      renderButton,
     };
     return <GoalTypeForm segmentIds={[]} {...updatedProps} />;
   }
@@ -89,25 +89,25 @@ export default withProps<{}>(
       name: 'branchListQuery',
       options: () => ({
         variables: {
-          withoutUserFilter: true
-        }
-      })
+          withoutUserFilter: true,
+        },
+      }),
     }),
     graphql<{}>(gql(queries.unitsMain), {
       name: 'unitListQuery',
       options: () => ({
         variables: {
-          withoutUserFilter: true
-        }
-      })
+          withoutUserFilter: true,
+        },
+      }),
     }),
     graphql<{}>(gql(queries.departmentsMain), {
       name: 'departmentListQuery',
       options: () => ({
         variables: {
-          withoutUserFilter: true
-        }
-      })
-    })
-  )(GoalTypeFromContainer)
+          withoutUserFilter: true,
+        },
+      }),
+    }),
+  )(GoalTypeFromContainer),
 );

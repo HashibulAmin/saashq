@@ -75,7 +75,7 @@ const QuestionList: React.FC<{
                   title="Přidat volbu"
                 />
 
-                <Tip text={__('Delete')} placement="top">
+                <Tip text={__('Vymazat')} placement="top">
                   <Button
                     id="questionDelete"
                     btnStyle="link"

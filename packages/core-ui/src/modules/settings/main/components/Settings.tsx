@@ -14,7 +14,7 @@ import {
 } from '@saashq/ui-settings/src/main/styles';
 import { getVersion } from '@saashq/ui/src/utils/core';
 
-const breadcrumb = [{ title: __('Settings'), link: '/settings' }];
+const breadcrumb = [{ title: __('Nastavení'), link: '/settings' }];
 const permissionActions = [
   'managePermissions',
   'showPermissions',

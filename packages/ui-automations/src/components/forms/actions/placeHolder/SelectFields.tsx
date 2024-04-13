@@ -10,7 +10,7 @@ import PlaceHolderInput from './PlaceHolderInput';
 import {
   ControlLabel,
   FormControl,
-  FormGroup
+  FormGroup,
 } from '@saashq/ui/src/components/form';
 
 type Props = {
@@ -40,15 +40,15 @@ class SelectFields extends React.Component<Props, State> {
 
     this.state = {
       fields: [],
-      searchValue: ''
+      searchValue: '',
     };
   }
 
   componentDidMount() {
     const { config = {}, attributions = [] } = this.props;
 
-    const selectedFields = attributions.filter(attribution =>
-      Object.keys(config).includes(attribution.name)
+    const selectedFields = attributions.filter((attribution) =>
+      Object.keys(config).includes(attribution.name),
     );
 
     if (selectedFields.length) {
@@ -64,7 +64,7 @@ class SelectFields extends React.Component<Props, State> {
     let { attributions, onSelect, config, withDefaultValue } = this.props;
     const { fields, searchValue } = this.state;
 
-    const onClickField = item => {
+    const onClickField = (item) => {
       item?.callback && item?.callback();
 
       this.setState({ fields: [...fields, item] });
@@ -75,15 +75,15 @@ class SelectFields extends React.Component<Props, State> {
       this.hideContent();
     };
 
-    const onSearch = e => {
+    const onSearch = (e) => {
       const { value } = e.currentTarget as HTMLInputElement;
 
       this.setState({ searchValue: value });
     };
 
     if (searchValue) {
-      attributions = attributions.filter(option =>
-        new RegExp(searchValue, 'i').test(option.label)
+      attributions = attributions.filter((option) =>
+        new RegExp(searchValue, 'i').test(option.label),
       );
     }
 
@@ -92,7 +92,7 @@ class SelectFields extends React.Component<Props, State> {
         <Attributes>
           <React.Fragment>
             <FormGroup>
-              <ControlLabel>{__('Search')}</ControlLabel>
+              <ControlLabel>{__('Vyhledávání')}</ControlLabel>
               <FormControl placeholder="type a search" onChange={onSearch} />
             </FormGroup>
             <li>
@@ -100,10 +100,10 @@ class SelectFields extends React.Component<Props, State> {
             </li>
             {attributions
               .filter(
-                attribution =>
-                  !fields.find(field => field._id === attribution._id)
+                (attribution) =>
+                  !fields.find((field) => field._id === attribution._id),
               )
-              .map(item => (
+              .map((item) => (
                 <li key={item.name} onClick={onClickField.bind(this, item)}>
                   {__(item.label)}
                 </li>
@@ -119,12 +119,12 @@ class SelectFields extends React.Component<Props, State> {
     const { fields } = this.state;
 
     const removeField = ({ _id, name }) => {
-      this.setState({ fields: fields.filter(field => field._id !== _id) });
+      this.setState({ fields: fields.filter((field) => field._id !== _id) });
 
       onSelect({ ...config, [name]: undefined });
     };
 
-    return fields.map(field => (
+    return fields.map((field) => (
       <PlaceHolderInput
         key={field._id}
         inputName={field.name}
@@ -159,7 +159,7 @@ class SelectFields extends React.Component<Props, State> {
       <>
         {this.renderFields()}
         <OverlayTrigger
-          ref={overlay => {
+          ref={(overlay) => {
             this.overlay = overlay;
           }}
           trigger="click"

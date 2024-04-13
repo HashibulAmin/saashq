@@ -112,9 +112,9 @@ class HistoryRow extends React.Component<Props, State> {
       <>
         <tr key={Math.random()} style={{ backgroundColor: '#ececec' }}>
           <td>{}</td>
-          <td>{__('Sub Time')}</td>
-          <td>{__('Action Type')}</td>
-          <td colSpan={2}>{__('Results')}</td>
+          <td>{__('Dílčí čas')}</td>
+          <td>{__('Typ Akce')}</td>
+          <td colSpan={2}>{__('Výsledek')}</td>
         </tr>
 
         {actions.map((action) => (

@@ -10,13 +10,13 @@ import {
   Title,
   ToggleWrapper,
   ZoomFlowJobs,
-  ZoomIcon
+  ZoomIcon,
 } from '../../styles';
 import { Alert, __ } from '@saashq/ui/src/utils';
 import {
   BarItems,
   FlexContent,
-  HeightedWrapper
+  HeightedWrapper,
 } from '@saashq/ui/src/layout/styles';
 import { FLOWJOBS, FLOWJOB_TYPES } from '../../constants';
 import { IFlowDocument, IJob } from '../../../flow/types';
@@ -28,7 +28,7 @@ import {
   deleteConnection,
   hoverPaintStyle,
   sourceEndpoint,
-  targetEndpoint
+  targetEndpoint,
 } from '../../utils';
 
 import Button from '@saashq/ui/src/components/Button';
@@ -92,7 +92,7 @@ class FlowForm extends React.Component<Props, State> {
     const { flow } = this.props;
     const lenFlow = Object.keys(flow);
     const flowJobs = JSON.parse(
-      JSON.stringify(lenFlow.length ? flow.jobs : [])
+      JSON.stringify(lenFlow.length ? flow.jobs : []),
     );
 
     this.state = {
@@ -112,19 +112,19 @@ class FlowForm extends React.Component<Props, State> {
       productId: flow.productId || '',
       product: flow.product,
       lastFlowJob: undefined,
-      flowValidation: flow.flowValidation || ''
+      flowValidation: flow.flowValidation || '',
     };
   }
 
-  setWrapperRef = node => {
+  setWrapperRef = (node) => {
     this.wrapperRef = node;
   };
 
-  setUsedPopup = check => {
+  setUsedPopup = (check) => {
     this.usedPopup = check;
   };
 
-  setMainState = param => {
+  setMainState = (param) => {
     this.setState({ ...param });
   };
 
@@ -132,7 +132,7 @@ class FlowForm extends React.Component<Props, State> {
     if (nextProps.flow !== this.props.flow) {
       this.setState({
         flowValidation: nextProps.flow.flowValidation,
-        isActive: (nextProps.flow.status === 'active' && true) || false
+        isActive: (nextProps.flow.status === 'active' && true) || false,
       });
     }
   }
@@ -178,17 +178,17 @@ class FlowForm extends React.Component<Props, State> {
       HoverPaintStyle: connectorHoverStyle,
       EndpointStyle: { radius: 10 },
       EndpointHoverStyle: hoverPaintStyle,
-      Container: 'canvas'
+      Container: 'canvas',
     });
 
     const { flowJobs } = this.state;
 
     instance.bind('ready', () => {
-      instance.bind('connection', info => {
+      instance.bind('connection', (info) => {
         this.onConnection(info);
       });
 
-      instance.bind('connectionDetached', info => {
+      instance.bind('connectionDetached', (info) => {
         this.onDettachConnection(info);
       });
 
@@ -204,14 +204,14 @@ class FlowForm extends React.Component<Props, State> {
     });
 
     // hover flowJob control ===================
-    jquery('#canvas .control').hover(event => {
+    jquery('#canvas .control').hover((event) => {
       event.preventDefault();
 
       jquery(`div#${event.currentTarget.id}`).toggleClass('show-flowJob-menu');
     });
 
     // delete control ===================
-    jquery('#canvas').on('click', '.delete-control', event => {
+    jquery('#canvas').on('click', '.delete-control', (event) => {
       event.preventDefault();
 
       const innerFlowJobs = this.state.flowJobs;
@@ -222,12 +222,12 @@ class FlowForm extends React.Component<Props, State> {
       instance.remove(item);
 
       const leftFlowJobs = innerFlowJobs.filter(
-        flowJob => flowJob.id !== splitItem[1]
+        (flowJob) => flowJob.id !== splitItem[1],
       );
 
       if (type === 'flowJob') {
         return this.setState({
-          flowJobs: leftFlowJobs
+          flowJobs: leftFlowJobs,
         });
       }
     });
@@ -247,15 +247,15 @@ class FlowForm extends React.Component<Props, State> {
       status: isActive ? 'active' : 'draft',
       productId,
       flowValidation,
-      jobs: flowJobs.map(a => ({
+      jobs: flowJobs.map((a) => ({
         id: a.id,
         type: a.type,
         nextJobIds: a.nextJobIds,
         label: a.label,
         description: a.description || '',
         config: a.config,
-        style: jquery(`#flowJob-${a.id}`).attr('style')
-      }))
+        style: jquery(`#flowJob-${a.id}`).attr('style'),
+      })),
     };
 
     return finalValues;
@@ -277,7 +277,7 @@ class FlowForm extends React.Component<Props, State> {
     }
   };
 
-  onToggle = e => {
+  onToggle = (e) => {
     const isActive = e.target.checked;
 
     this.setState({ isActive }, () => {
@@ -316,7 +316,7 @@ class FlowForm extends React.Component<Props, State> {
         this.setState({ percentage: max ? percentage + 10 : 100 }, () => {
           localStorage.setItem(
             'processFlowZoomPercentage',
-            JSON.stringify(this.state.percentage)
+            JSON.stringify(this.state.percentage),
           );
         });
       }
@@ -326,7 +326,7 @@ class FlowForm extends React.Component<Props, State> {
         this.setState({ percentage: min ? percentage - 10 : 0 }, () => {
           localStorage.setItem(
             'processFlowZoomPercentage',
-            JSON.stringify(this.state.percentage)
+            JSON.stringify(this.state.percentage),
           );
         });
       }
@@ -338,11 +338,11 @@ class FlowForm extends React.Component<Props, State> {
       showFlowJob: true,
       showDrawer: true,
       currentTab: 'flowJobs',
-      activeFlowJob: flowJob ? flowJob : ({} as IJob)
+      activeFlowJob: flowJob ? flowJob : ({} as IJob),
     });
   };
 
-  onConnection = info => {
+  onConnection = (info) => {
     const { flowJobs } = this.state;
 
     this.setState({
@@ -350,22 +350,22 @@ class FlowForm extends React.Component<Props, State> {
         flowJobs,
         info,
         info.targetId.replace('flowJob-', ''),
-        'connect'
-      )
+        'connect',
+      ),
     });
 
     const sourceFlowJob = flowJobs.find(
-      a => a.id.toString() === info.sourceId.replace('flowJob-', '')
+      (a) => a.id.toString() === info.sourceId.replace('flowJob-', ''),
     );
 
     const idElm = 'flowJob-' + (sourceFlowJob || {}).id;
     instance.addEndpoint(idElm, sourceEndpoint, {
-      anchor: ['Right']
+      anchor: ['Right'],
     });
     instance.draggable(instance.getSelector(`#${idElm}`));
   };
 
-  onDettachConnection = info => {
+  onDettachConnection = (info) => {
     const { flowJobs } = this.state;
 
     this.setState({
@@ -373,12 +373,12 @@ class FlowForm extends React.Component<Props, State> {
         flowJobs,
         info,
         info.targetId.replace('flowJob-', ''),
-        'disconnect'
-      )
+        'disconnect',
+      ),
     });
   };
 
-  handleClickOutside = event => {
+  handleClickOutside = (event) => {
     if (
       !this.usedPopup &&
       this.wrapperRef &&
@@ -392,14 +392,12 @@ class FlowForm extends React.Component<Props, State> {
     this.setState({
       showDrawer: !this.state.showDrawer,
       activeFlowJob: undefined,
-      currentTab: type
+      currentTab: type,
     });
   };
 
   getNewId = (checkIds: string[]) => {
-    let newId = Math.random()
-      .toString(36)
-      .slice(-8);
+    let newId = Math.random().toString(36).slice(-8);
 
     if (checkIds.includes(newId)) {
       newId = this.getNewId(checkIds);
@@ -413,13 +411,13 @@ class FlowForm extends React.Component<Props, State> {
 
     let flowJob: IJob = {
       ...job,
-      id: this.getNewId(flowJobs.map(a => a.id))
+      id: this.getNewId(flowJobs.map((a) => a.id)),
     };
 
     let flowJobIndex = -1;
 
     if (jobId) {
-      flowJobIndex = flowJobs.findIndex(a => a.id === jobId);
+      flowJobIndex = flowJobs.findIndex((a) => a.id === jobId);
 
       if (flowJobIndex !== -1) {
         flowJob = { ...flowJobs[flowJobIndex], ...job };
@@ -442,7 +440,7 @@ class FlowForm extends React.Component<Props, State> {
         } else {
           this.renderControl('flowJob', flowJob, this.onClickFlowJob);
         }
-      }
+      },
     );
   };
 
@@ -460,15 +458,15 @@ class FlowForm extends React.Component<Props, State> {
           <div class='custom-menu'>
             <div>
               <i class="icon-trash-alt delete-control" id="${idElm}" title=${__(
-      'Delete control one'
-    )}></i>
+                'Delete control one',
+              )}></i>
             </div>
           </div>
           <div>
             <i class="icon-${
               (
-                FLOWJOBS.find(f => f.type === item.type) || {
-                  icon: 'sync-exclamation'
+                FLOWJOBS.find((f) => f.type === item.type) || {
+                  icon: 'sync-exclamation',
                 }
               ).icon
             }"></i>
@@ -479,7 +477,7 @@ class FlowForm extends React.Component<Props, State> {
       </div>
     `);
 
-    jquery('#canvas').on('dblclick', `#${idElm}`, event => {
+    jquery('#canvas').on('dblclick', `#${idElm}`, (event) => {
       event.preventDefault();
 
       onClick(item);
@@ -487,11 +485,11 @@ class FlowForm extends React.Component<Props, State> {
 
     if (key === 'flowJob') {
       instance.addEndpoint(idElm, targetEndpoint, {
-        anchor: ['Left']
+        anchor: ['Left'],
       });
 
       instance.addEndpoint(idElm, sourceEndpoint, {
-        anchor: ['Right']
+        anchor: ['Right'],
       });
 
       instance.draggable(instance.getSelector(`#${idElm}`));
@@ -505,7 +503,7 @@ class FlowForm extends React.Component<Props, State> {
     jquery(`#canvas #${idElm} .job-description`).html(item.description || '');
 
     jquery('#canvas').off('dblclick', `#${idElm}`);
-    jquery('#canvas').on('dblclick', `#${idElm}`, event => {
+    jquery('#canvas').on('dblclick', `#${idElm}`, (event) => {
       event.preventDefault();
 
       onClick(item);
@@ -541,7 +539,7 @@ class FlowForm extends React.Component<Props, State> {
           {(product &&
             this.renderLabelInfo(
               `default`,
-              `${product.code} - ${product.name}`
+              `${product.code} - ${product.name}`,
             )) ||
             this.renderLabelInfo(`simple`, 'Not found yet')}
         </ToggleWrapper>
@@ -588,7 +586,7 @@ class FlowForm extends React.Component<Props, State> {
             icon={'check-circle'}
             onClick={this.handleSubmit}
           >
-            {__('Save')}
+            {__('Uložit')}
           </Button>
         </ActionBarButtonsWrapper>
       </BarItems>
@@ -647,7 +645,7 @@ class FlowForm extends React.Component<Props, State> {
             <CloseIcon
               onClick={() => {
                 this.setState({
-                  showDrawer: false
+                  showDrawer: false,
                 });
               }}
             >
@@ -671,7 +669,9 @@ class FlowForm extends React.Component<Props, State> {
     return (
       <FlowJobsForm
         onClickFlowJob={this.onClickFlowJob}
-        flowJobsOfEnd={flowJobs.find(fj => fj.type === FLOWJOB_TYPES.ENDPOINT)}
+        flowJobsOfEnd={flowJobs.find(
+          (fj) => fj.type === FLOWJOB_TYPES.ENDPOINT,
+        )}
         isSub={this.props.flow.isSub}
         setMainState={this.setMainState}
       />
@@ -767,7 +767,7 @@ class FlowForm extends React.Component<Props, State> {
               title={`${(flow && flow.name) || 'Flow detail'}`}
               breadcrumb={[
                 { title: __('Flows'), link: '/processes/Flows' },
-                { title: `${(flow && flow.name) || 'New Form'}` }
+                { title: `${(flow && flow.name) || 'New Form'}` },
               ]}
             />
             <PageContent

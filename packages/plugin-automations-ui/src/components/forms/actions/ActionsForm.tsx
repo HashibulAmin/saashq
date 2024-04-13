@@ -68,11 +68,11 @@ class ActionsForm extends React.Component<Props, State> {
         <Icon icon={action.icon} size={30} />
         <div>
           <b>{__(action.label)}</b>
-          {!action.isAvailable && <span>{__('Coming soon')}</span>}
+          {!action.isAvailable && <span>{__('Již brzy')}</span>}
           <p>{__(action.description)}</p>
         </div>
         <Tip
-          text={isFavourite ? __('Unfavourite') : __('Favourite')}
+          text={isFavourite ? __('Neoblíbený') : __('Oblíbený')}
           placement="top"
         >
           <div
@@ -130,13 +130,13 @@ class ActionsForm extends React.Component<Props, State> {
               className={currentTab === 'actions' ? 'active' : ''}
               onClick={this.tabOnClick.bind(this, 'actions')}
             >
-              {__('Available actions')}
+              {__('Dostupné akce')}
             </TabTitle>
             <TabTitle
               className={currentTab === 'favourite' ? 'active' : ''}
               onClick={this.tabOnClick.bind(this, 'favourite')}
             >
-              {__('Favourite')}
+              {__('Oblíbený')}
             </TabTitle>
           </Tabs>
         </TriggerTabs>

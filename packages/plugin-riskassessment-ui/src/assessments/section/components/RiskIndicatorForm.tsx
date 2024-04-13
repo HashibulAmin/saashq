@@ -249,14 +249,14 @@ class IndicatorForm extends React.Component<Props, State> {
         </Padding>
         <ModalFooter>
           <Button btnStyle="simple" onClick={closeModal}>
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
           <Button btnStyle="warning" onClick={handleTestScore}>
             {__('Check Test Score')}
           </Button>
           {_loadash.isEmpty(submittedFields) && !onlyPreview && (
             <Button btnStyle="success" onClick={submitForm}>
-              {__('Save')}
+              {__('Uložit')}
             </Button>
           )}
         </ModalFooter>

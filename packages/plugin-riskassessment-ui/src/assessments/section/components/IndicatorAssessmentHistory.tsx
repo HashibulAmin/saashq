@@ -6,7 +6,7 @@ import {
   TabTitle,
   TextInfo,
   Tip,
-  __
+  __,
 } from '@saashq/ui/src';
 import { ModalFooter } from '@saashq/ui/src/styles/main';
 import moment from 'moment';
@@ -14,7 +14,7 @@ import React from 'react';
 import { ColorBox, FormContainer, TriggerTabs } from '../../../styles';
 import {
   IndicatorAssessmentHistory,
-  IndicatorSubmissions
+  IndicatorSubmissions,
 } from '../../common/types';
 import { renderSubmission } from '../../components/Detail';
 
@@ -32,19 +32,19 @@ class AssessmentHistory extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      currentUserId: ''
+      currentUserId: '',
     };
   }
 
   renderContent({
     closeModal,
-    submissions
+    submissions,
   }: {
     closeModal: () => void;
     submissions: IndicatorSubmissions[];
   }) {
     const { currentUserId } = this.state;
-    const handleSelect = _id => {
+    const handleSelect = (_id) => {
       this.setState({ currentUserId: _id });
     };
 
@@ -60,7 +60,7 @@ class AssessmentHistory extends React.Component<Props, State> {
       for (const field of fields || []) {
         doc[field.fieldId] = {
           value: field.value,
-          description: field.description
+          description: field.description,
         };
       }
 
@@ -72,7 +72,7 @@ class AssessmentHistory extends React.Component<Props, State> {
       <>
         <TriggerTabs>
           <Tabs full>
-            {(submissions || []).map(submission => (
+            {(submissions || []).map((submission) => (
               <TabTitle
                 key={submission._id}
                 className={currentUserId ? 'active' : ''}
@@ -86,12 +86,12 @@ class AssessmentHistory extends React.Component<Props, State> {
         {currentUserId &&
           renderSubmission(
             (submissions.find(({ _id }) => _id === currentUserId) || {})
-              .fields || []
+              .fields || [],
           )}
 
         <ModalFooter>
           <Button btnStyle="simple" onClick={closeModal}>
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
           {currentUserId && (
             <Button btnStyle="success" onClick={onClick}>
@@ -111,12 +111,12 @@ class AssessmentHistory extends React.Component<Props, State> {
             <FormContainer column gapBetween={5}>
               <TextInfo textStyle="simple">
                 {`Started At: ${moment(assessmentHistory.createdAt).format(
-                  'll HH:mm'
+                  'll HH:mm',
                 )}`}
               </TextInfo>
               <TextInfo textStyle="simple">
                 {`End At: ${moment(assessmentHistory.closedAt).format(
-                  'll HH:mm'
+                  'll HH:mm',
                 )}`}
               </TextInfo>
             </FormContainer>
@@ -130,10 +130,10 @@ class AssessmentHistory extends React.Component<Props, State> {
       </div>
     );
 
-    const content = props =>
+    const content = (props) =>
       this.renderContent({
         ...props,
-        submissions: assessmentHistory.submissions
+        submissions: assessmentHistory.submissions,
       });
 
     return (
@@ -153,8 +153,8 @@ class AssessmentHistory extends React.Component<Props, State> {
       <FormContainer row gap>
         <h4>{assessmentsHistory[0]?.indicator?.name || ''}</h4>
         <FormContainer row gapBetween={5} padding={'15px 0'}>
-          {(assessmentsHistory || []).map(assessmentHistory =>
-            this.renderItem(assessmentHistory)
+          {(assessmentsHistory || []).map((assessmentHistory) =>
+            this.renderItem(assessmentHistory),
           )}
         </FormContainer>
       </FormContainer>

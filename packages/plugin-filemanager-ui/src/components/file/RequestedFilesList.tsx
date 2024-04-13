@@ -53,7 +53,7 @@ class RequestedFileList extends React.Component<Props> {
                 <ItemName>{__('Type')}</ItemName>
               </th>
               <th>
-                <ItemName>{__('Status')}</ItemName>
+                <ItemName>{__('Postavení')}</ItemName>
               </th>
               <th>
                 <ItemName>{__('Popis')}</ItemName>

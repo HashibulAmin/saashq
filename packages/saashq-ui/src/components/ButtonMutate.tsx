@@ -146,7 +146,7 @@ class ButtonMutate extends React.Component<Props, { isLoading: boolean }> {
 
   render() {
     const {
-      children = __('Save'),
+      children = __('Uložit'),
       btnSize,
       icon,
       type,

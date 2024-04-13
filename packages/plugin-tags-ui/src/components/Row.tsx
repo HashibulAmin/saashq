@@ -187,7 +187,7 @@ class Row extends React.Component<Props, State> {
               />
             </Tip>
 
-            <Tip text={__('Delete')} placement="top">
+            <Tip text={__('Vymazat')} placement="top">
               <Button
                 btnStyle="link"
                 onClick={this.removeTag}

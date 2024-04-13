@@ -11,19 +11,19 @@ import React from 'react';
 import Sidebar from '../../Sidebar';
 
 const breadcrumb = [
-  { title: __('Settings'), link: '/settings' },
+  { title: __('Nastavení'), link: '/settings' },
   {
-    title: __('Automations config'),
+    title: __('Konfigurace automatizace'),
     link: '/settings/automations/general',
   },
-  { title: __('General config') },
+  { title: __('Obecná konfigurace') },
 ];
 
 function GeneralSettings() {
   const header = (
     <HeaderDescription
       icon="/images/actions/25.svg"
-      title="Automations configs"
+      title="Konfigurace automatizace"
       description=""
     />
   );
@@ -39,12 +39,17 @@ function GeneralSettings() {
   return (
     <Wrapper
       header={
-        <Wrapper.Header title={__('General Config')} breadcrumb={breadcrumb} />
+        <Wrapper.Header
+          title={__('Obecná Konfigurace')}
+          breadcrumb={breadcrumb}
+        />
       }
       mainHead={header}
       actionBar={
         <Wrapper.ActionBar
-          left={<Title capitalize={true}>{__('Automations config')}</Title>}
+          left={
+            <Title capitalize={true}>{__('Konfigurace automatizace')}</Title>
+          }
           right={actionButtons}
           wideSpacing={true}
         />

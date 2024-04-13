@@ -52,7 +52,7 @@ function RequestAccessForm({ requestAccess, fileId }: Props) {
             onClick={props.closeModal}
             icon="times-circle"
           >
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
 
           <Button

@@ -160,7 +160,7 @@ class {Name} extends React.Component<Props, State> {
     const title = __('{Name}');
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Integrations'), link: '/settings/integrations' },
       { title }
     ];

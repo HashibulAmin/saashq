@@ -35,7 +35,7 @@ class CollateralForm extends React.Component<Props, State> {
     this.state = {
       collateralsData: this.props.collateralsData || [],
       currentTab: 'collaterals',
-      tempId: ''
+      tempId: '',
     };
   }
 
@@ -60,19 +60,19 @@ class CollateralForm extends React.Component<Props, State> {
         leaseAmount: 0,
 
         insuranceTypeId: '',
-        insuranceAmount: 0
+        insuranceAmount: 0,
       });
 
       onChangeCollateralsData(collateralsData);
     });
   };
 
-  removeCollateralItem = collateralId => {
+  removeCollateralItem = (collateralId) => {
     const { onChangeCollateralsData } = this.props;
     const { collateralsData } = this.state;
 
     const removedCollateralsData = collateralsData.filter(
-      p => p._id !== collateralId
+      (p) => p._id !== collateralId,
     );
 
     this.setState({ collateralsData: removedCollateralsData }, () => {
@@ -106,7 +106,7 @@ class CollateralForm extends React.Component<Props, State> {
             </tr>
           </thead>
           <tbody id="collaterals">
-            {collateralsData.map(collateralData => (
+            {collateralsData.map((collateralData) => (
               <CollateralItem
                 key={collateralData._id}
                 collateralData={collateralData}
@@ -180,7 +180,7 @@ class CollateralForm extends React.Component<Props, State> {
             icon="times-circle"
             uppercase={false}
           >
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
 
           <Button
@@ -189,7 +189,7 @@ class CollateralForm extends React.Component<Props, State> {
             icon="check-circle"
             uppercase={false}
           >
-            {__('Save')}
+            {__('Uložit')}
           </Button>
         </ModalFooter>
       </>

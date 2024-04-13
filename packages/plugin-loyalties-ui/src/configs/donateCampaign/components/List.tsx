@@ -176,7 +176,7 @@ class DonateCampaigns extends React.Component<Props, State> {
     const { loading, isAllSelected, totalCount } = this.props;
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       {
         title: __('Loyalties config'),
         link: '/saashq-plugin-loyalty/settings/general',
@@ -203,11 +203,11 @@ class DonateCampaigns extends React.Component<Props, State> {
                 onChange={this.onChange}
               />
             </th>
-            <th>{__('Title')}</th>
+            <th>{__('Titul')}</th>
             <th>{__('Start Date')}</th>
             <th>{__('End Date')}</th>
             <th>{__('Finish Date of Use')}</th>
-            <th>{__('Status')}</th>
+            <th>{__('Postavení')}</th>
             <th>{__('Akce')}</th>
           </tr>
         </thead>

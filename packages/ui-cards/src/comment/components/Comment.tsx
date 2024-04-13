@@ -8,7 +8,7 @@ import {
   CommentWrapper,
   TicketComment,
   CreatedUser,
-  CommentContent
+  CommentContent,
 } from '@saashq/ui-settings/src/styles';
 import { ColorButton } from '../../boards/styles/common';
 import dayjs from 'dayjs';
@@ -30,7 +30,7 @@ class Comment extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      show: false
+      show: false,
     };
   }
 
@@ -60,7 +60,7 @@ class Comment extends React.Component<Props, State> {
           <Modal.Body>
             <SpaceFormsWrapper>
               <CommentWrapper>
-                {clientPortalComments.map(comment => {
+                {clientPortalComments.map((comment) => {
                   const { createdUser = {} as ICommentCreatedUser } = comment;
 
                   return (
@@ -70,7 +70,7 @@ class Comment extends React.Component<Props, State> {
                           src={readFile(
                             createdUser && createdUser.avatar
                               ? createdUser.avatar
-                              : '/images/avatar-colored.svg'
+                              : '/images/avatar-colored.svg',
                           )}
                           alt="profile"
                         />
@@ -84,14 +84,14 @@ class Comment extends React.Component<Props, State> {
                             <div
                               className="comment"
                               dangerouslySetInnerHTML={{
-                                __html: comment.content
+                                __html: comment.content,
                               }}
                             />
                           </CommentContent>
                           <span>
                             Created at{' '}
                             {dayjs(comment.createdAt).format(
-                              'YYYY-MM-DD HH:mm'
+                              'YYYY-MM-DD HH:mm',
                             )}
                           </span>
                         </div>
@@ -115,7 +115,7 @@ class Comment extends React.Component<Props, State> {
                 icon="times-circle"
                 onClick={() => handleClose()}
               >
-                {__('Cancel')}
+                {__('Zrušení')}
               </Button>
             </Modal.Footer>
           </Modal.Body>

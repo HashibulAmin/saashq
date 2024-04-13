@@ -101,7 +101,7 @@ const FileRow = ({
         <ActionButtons>
           {/* {item.contentType && renderEditAction()} */}
           {remove && (
-            <Tip text={__('Delete')} placement="bottom">
+            <Tip text={__('Vymazat')} placement="bottom">
               <Button btnStyle="link" onClick={onRemove} icon="cancel-1" />
             </Tip>
           )}

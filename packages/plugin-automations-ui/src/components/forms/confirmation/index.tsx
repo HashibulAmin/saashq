@@ -11,7 +11,7 @@ type Props = {
   save: () => void;
   removeAutomations: (
     doc: { automationIds: string[] },
-    navigateToNextLocation: () => void
+    navigateToNextLocation: () => void,
   ) => void;
 };
 
@@ -24,18 +24,18 @@ class Confirmation extends React.Component<Props, State> {
     this.state = {
       nextLocation: {},
       showModal: false,
-      isConfirm: false
+      isConfirm: false,
     };
   }
 
   componentDidUpdate() {
     const { history, when } = this.props;
 
-    this.blockRoute = history.block(nextLocation => {
+    this.blockRoute = history.block((nextLocation) => {
       if (when && nextLocation.pathname !== history.location.pathname) {
         this.setState({
           showModal: true,
-          nextLocation
+          nextLocation,
         });
       }
 
@@ -53,7 +53,7 @@ class Confirmation extends React.Component<Props, State> {
     if (queryParams.isCreate) {
       return removeAutomations(
         { automationIds: [id] },
-        this.navigateToNextLocation
+        this.navigateToNextLocation,
       );
     }
 
@@ -63,8 +63,8 @@ class Confirmation extends React.Component<Props, State> {
   onConfirm = () => {
     const { name } = this.props;
 
-    if (!name || name === 'Your automation title') {
-      Alert.error('Enter an Automation title');
+    if (!name || name === 'Váš název automatizace') {
+      Alert.error('Zadejte název automatizace');
 
       return this.setState({ showModal: false });
     }
@@ -96,7 +96,7 @@ class Confirmation extends React.Component<Props, State> {
     return this.props.children(
       this.state.showModal,
       this.onConfirm,
-      this.onCancel
+      this.onCancel,
     );
   }
 }

@@ -30,11 +30,11 @@ class TransactionFromContainer extends React.Component<FinalProps> {
       name,
       values,
       isSubmitted,
-      object
+      object,
     }: IButtonMutateProps) => {
       const { closeModal, getAssociatedTransaction } = this.props;
 
-      const afterSave = data => {
+      const afterSave = (data) => {
         closeModal();
 
         if (getAssociatedTransaction) {
@@ -58,7 +58,7 @@ class TransactionFromContainer extends React.Component<FinalProps> {
             object ? 'updated' : 'added'
           } a ${name}`}
         >
-          {__('Save')}
+          {__('Uložit')}
         </ButtonMutate>
       );
     };
@@ -69,7 +69,7 @@ class TransactionFromContainer extends React.Component<FinalProps> {
       ...this.props,
       renderButton,
       // invoice,
-      transaction: { ...transaction }
+      transaction: { ...transaction },
     };
     return <TransactionForm {...updatedProps} />;
   }

@@ -60,7 +60,7 @@ class Uoms extends React.Component<Props, {}> {
   render() {
     const { uomsTotalCount, loading } = this.props;
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Uoms'), link: '/settings/uoms-manage' },
     ];
 

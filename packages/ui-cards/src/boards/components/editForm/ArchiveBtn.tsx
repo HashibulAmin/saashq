@@ -31,7 +31,7 @@ export const ArchiveBtn = (props: IProps) => {
       <>
         <ColorButton color={colors.colorCoreRed} onClick={onRemove}>
           <Icon icon="times-circle" />
-          {__('Delete')}
+          {__('Vymazat')}
         </ColorButton>
         <ColorButton onClick={onSendToBoard}>
           <Icon icon="redo" />

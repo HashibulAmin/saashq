@@ -36,7 +36,7 @@ const Box = styled(BoxRoot)`
 
 type Props = {};
 
-const SelectMenu = props => {
+const SelectMenu = (props) => {
   // const onChangeFunction = useCallback((key, val) => {
   //     props.onChange(key, val);
   //   }, []);
@@ -60,13 +60,13 @@ const SelectMenu = props => {
   }, []);
   const breadcrumb = [
     {
-      title: __('Settings'),
-      link: '/settings'
+      title: __('Nastavení'),
+      link: '/settings',
     },
     {
       title: __('Business Portal'),
-      link: '/settings/business-portal'
-    }
+      link: '/settings/business-portal',
+    },
   ];
   return (
     <>
@@ -85,15 +85,15 @@ const SelectMenu = props => {
           'Client portal',
           'user',
           `${__('Helpdesk, knowledge base etc... for your customers')}`,
-          `/settings/business-portal/client`
+          `/settings/business-portal/client`,
         )}
         {renderBox(
           'Vendor portal',
           'building',
           `${__(
-            'Knowledge base, Vendor Company profiles,  etc... for your vendors'
+            'Knowledge base, Vendor Company profiles,  etc... for your vendors',
           )}`,
-          `/settings/business-portal/vendor`
+          `/settings/business-portal/vendor`,
         )}
       </FullContent>
     </>

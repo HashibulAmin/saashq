@@ -153,7 +153,7 @@ class PopoverContent extends React.Component<Props, State> {
             <InlineColumn>
               <FormControl
                 type="text"
-                placeholder={__('Search') as string}
+                placeholder={__('Vyhledávání') as string}
                 onChange={onChangeSearchValue}
                 defaultValue={this.state.searchValue}
                 autoFocus={true}

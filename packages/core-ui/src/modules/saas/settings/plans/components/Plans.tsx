@@ -21,7 +21,7 @@ type Props = {
 class Plans extends React.Component<Props> {
   renderHeader() {
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Organization settings') },
     ];
 

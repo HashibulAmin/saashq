@@ -19,7 +19,7 @@ const TemplateFormContainer = (props: FinalProps) => {
   const renderButton = ({
     values,
     isSubmitted,
-    callback
+    callback,
   }: IButtonMutateProps) => {
     return (
       <ButtonMutate
@@ -30,21 +30,21 @@ const TemplateFormContainer = (props: FinalProps) => {
           {
             query: gql(queries.automations),
             variables: {
-              status: 'template'
-            }
-          }
+              status: 'template',
+            },
+          },
         ]}
         isSubmitted={isSubmitted}
         type="submit"
         icon="check-circle"
-        successMessage={`You successfully save as a template`}
+        successMessage={`Úspěšně jste uložili šablonu`}
       />
     );
   };
 
   const extendedProps = {
     ...props,
-    renderButton
+    renderButton,
   };
 
   return <TemplateForm {...extendedProps} />;

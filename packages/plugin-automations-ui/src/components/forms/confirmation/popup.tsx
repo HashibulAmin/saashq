@@ -17,10 +17,12 @@ class ConfirmationPopup extends React.Component<Props> {
     const { isOpen, onConfirm, onCancel, queryParams } = this.props;
 
     const description = queryParams.isCreate
-      ? `Please save or delete this automation`
-      : `Please save or discard these changes`;
-    const confirmText = queryParams.isCreate ? 'Save automation' : 'Save';
-    const cancelText = queryParams.isCreate ? 'Delete automation' : 'Discard';
+      ? `Uložte nebo odstraňte tuto automatizaci`
+      : `Tyto změny prosím uložte nebo zahoďte`;
+    const confirmText = queryParams.isCreate
+      ? 'Ušetřete automatizaci'
+      : 'Uložit';
+    const cancelText = queryParams.isCreate ? 'Smazat automatizaci' : 'Vyřadit';
 
     return (
       <Modal

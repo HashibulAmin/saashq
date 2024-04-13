@@ -162,7 +162,7 @@ function ExpensesForm() {
               icon="times-circle"
               onClick={handleClose}
             >
-              {__('Cancel')}
+              {__('Zrušení')}
             </Button>
 
             <Button btnStyle="success" onClick={handleSubmit} icon="checked-1">

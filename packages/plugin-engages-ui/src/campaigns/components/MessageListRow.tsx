@@ -117,7 +117,7 @@ class Row extends React.Component<Props> {
 
   renderRemoveButton = (onClick) => {
     return (
-      <Tip text={__('Delete')} placement="top">
+      <Tip text={__('Vymazat')} placement="top">
         <Button btnStyle="link" onClick={onClick} icon="times-circle" />
       </Tip>
     );

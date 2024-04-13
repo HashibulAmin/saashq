@@ -5,7 +5,7 @@ import Wrapper from '@saashq/ui/src/layout/components/Wrapper';
 import React from 'react';
 import {
   NotificationConfig,
-  NotificationModule
+  NotificationModule,
 } from '@saashq/ui-notifications/src/types';
 import { Box, InlineItems, ModuleBox } from './styles';
 import CollapseContent from '@saashq/ui/src/components/CollapseContent';
@@ -28,22 +28,22 @@ type Props = {
 };
 
 class NotificationSettings extends React.Component<Props> {
-  onTypeChange = e => {
+  onTypeChange = (e) => {
     // save config
     this.props.saveNotificationConfigurations({
       notifType: e.target.value,
-      isAllowed: e.target.checked
+      isAllowed: e.target.checked,
     });
   };
 
-  onEmailConfigChange = e => {
+  onEmailConfigChange = (e) => {
     // save get notification by email config
     this.props.configGetNotificationByEmail({ isAllowed: e.target.checked });
   };
 
   isChecked(notifType) {
     const oldEntry = this.props.configs.find(
-      config => config.notifType === notifType.name
+      (config) => config.notifType === notifType.name,
     );
 
     // if no previous configuration found then default is checked
@@ -64,7 +64,7 @@ class NotificationSettings extends React.Component<Props> {
           onChange={this.onTypeChange}
           icons={{
             checked: null,
-            unchecked: null
+            unchecked: null,
           }}
         />
       </InlineItems>
@@ -79,7 +79,7 @@ class NotificationSettings extends React.Component<Props> {
         beforeTitle={<Icon icon={module.icon} />}
       >
         {module.types.map((type, index) =>
-          this.renderNotifType(type, `${mindex}${index}`)
+          this.renderNotifType(type, `${mindex}${index}`),
         )}
       </CollapseContent>
     );
@@ -103,7 +103,7 @@ class NotificationSettings extends React.Component<Props> {
               onChange={this.onEmailConfigChange}
               icons={{
                 checked: null,
-                unchecked: null
+                unchecked: null,
               }}
             />
           </InlineItems>
@@ -111,15 +111,15 @@ class NotificationSettings extends React.Component<Props> {
 
         <ModuleBox>
           {this.props.modules.map((module, index) =>
-            this.renderModule(module, index)
+            this.renderModule(module, index),
           )}
         </ModuleBox>
       </Box>
     );
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
-      { title: __('Notification config') }
+      { title: __('Nastavení'), link: '/settings' },
+      { title: __('Notification config') },
     ];
 
     const headerDescription = (
@@ -127,7 +127,7 @@ class NotificationSettings extends React.Component<Props> {
         icon="/images/actions/28.svg"
         title="Notification config"
         description={`${__(
-          `This allows you to see saashq's real-time notification on all system`
+          `This allows you to see saashq's real-time notification on all system`,
         )}`}
       />
     );

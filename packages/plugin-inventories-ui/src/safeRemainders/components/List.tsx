@@ -78,7 +78,7 @@ export default function ListComponent(props: Props) {
           <th>{__('Oddělení')}</th>
           <th>{__('Product Category')}</th>
           <th>{__('Popis')}</th>
-          <th>{__('Status')}</th>
+          <th>{__('Postavení')}</th>
           <th>{__('ModifiedAt')}</th>
           <th>{__('ModifiedBy')}</th>
           <th>{__('Akce')}</th>

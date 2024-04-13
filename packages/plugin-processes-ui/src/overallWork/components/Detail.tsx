@@ -161,7 +161,7 @@ class OverallWorkDetail extends React.Component<Props, State> {
             <th>{__('End At')}</th>
             <th>{__('Modified by')}</th>
             <th>{__('Upraveno v')}</th>
-            <th>{__('Status')}</th>
+            <th>{__('Postavení')}</th>
             <th>{__('Akce')}</th>
           </tr>
         </thead>

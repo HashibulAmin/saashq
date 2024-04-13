@@ -199,7 +199,7 @@ class CommonFieldForm extends React.PureComponent<Props, CommonTypes> {
             btnStyle="success"
             icon="check-circle"
           >
-            {__('Save')}
+            {__('Uložit')}
           </Button>
         </ModalFooter>
       </>

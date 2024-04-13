@@ -45,7 +45,7 @@ const ChoiceDetail = ({ choice, index, onDelete, quizId }: Props) => {
               title="Upravit volbu"
             />
 
-            <Tip text={__('Delete')} placement="top">
+            <Tip text={__('Vymazat')} placement="top">
               <Button
                 id="choiceDelete"
                 btnStyle="link"

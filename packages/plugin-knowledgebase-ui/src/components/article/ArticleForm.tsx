@@ -339,7 +339,7 @@ class ArticleForm extends React.Component<Props, State> {
     return (
       <>
         <FormGroup>
-          <ControlLabel required={true}>{__('Title')}</ControlLabel>
+          <ControlLabel required={true}>{__('Titul')}</ControlLabel>
           <FormControl
             {...formProps}
             name="title"
@@ -369,18 +369,18 @@ class ArticleForm extends React.Component<Props, State> {
                 onChange={this.onChangeReactions}
                 optionRenderer={this.renderOption}
                 valueRenderer={this.renderOption}
-                placeholder={__('Select')}
+                placeholder={__('Vybrat')}
               />
             </FormGroup>
           </FlexItem>
           <FlexItem count={2} hasSpace={true}>
             <FormGroup>
-              <ControlLabel required={true}>{__('Status')}</ControlLabel>
+              <ControlLabel required={true}>{__('Postavení')}</ControlLabel>
               <FormControl
                 {...formProps}
                 name="status"
                 componentClass="select"
-                placeholder={__('Select')}
+                placeholder={__('Vybrat')}
                 defaultValue={object.status || 'draft'}
                 required={true}
               >
@@ -530,7 +530,7 @@ class ArticleForm extends React.Component<Props, State> {
             onClick={this.props.closeModal}
             icon="times-circle"
           >
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
 
           {renderButton({

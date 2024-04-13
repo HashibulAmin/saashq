@@ -46,23 +46,23 @@ class Delay extends React.Component<Props, State> {
   renderContent() {
     const { config } = this.state;
 
-    const onChangeValue = code => this.onChangeField('code', code);
+    const onChangeValue = (code) => this.onChangeField('code', code);
 
     return (
       <DrawerDetail>
         <FormGroup>
           <BoardHeader>
             <div className="header-row">
-              <ControlLabel required={true}>{__('Value')}</ControlLabel>
+              <ControlLabel required={true}>{__('Hodnota')}</ControlLabel>
             </div>
             <Editor
               value={config.code || ''}
               onValueChange={onChangeValue}
-              highlight={code => highlight(code, languages.javascript)}
+              highlight={(code) => highlight(code, languages.javascript)}
               padding={10}
               style={{
                 fontFamily: '"Fira code", "Fira Mono", monospace',
-                fontSize: 12
+                fontSize: 12,
               }}
             />
           </BoardHeader>

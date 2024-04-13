@@ -296,7 +296,7 @@ const ChartForm = (props: Props) => {
                   onClick={toggleForm}
                   icon="times-circle"
                 >
-                  {__('Cancel')}
+                  {__('Zrušení')}
                 </Button>
                 <Button btnStyle="success" icon="checked-1" onClick={onSave}>
                   Save

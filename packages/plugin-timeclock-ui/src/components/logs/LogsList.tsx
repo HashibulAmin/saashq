@@ -118,7 +118,7 @@ function ReportList(props: Props) {
           <th>{__('Employee Id')}</th>
           <th>{__('Team member')}</th>
           <th>{__('Date')}</th>
-          <th>{__('Time')}</th>
+          <th>{__('Čas')}</th>
           <th>{__('Device')}</th>
           <th>{__('Akce')}</th>
         </tr>

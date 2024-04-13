@@ -86,7 +86,7 @@ const FormContainer = (props: Props) => {
         type="submit"
         successMessage={successMessage}
       >
-        {__('Save')}
+        {__('Uložit')}
       </ButtonMutate>
     );
   };

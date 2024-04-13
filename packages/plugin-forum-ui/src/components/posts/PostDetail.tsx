@@ -138,7 +138,7 @@ function PostDetail(props: Props) {
           </FlexItem>
           <FlexItem>
             <FlexRow>
-              <label>{__('Created by')}</label>
+              <label>{__('Vytvořil')}</label>
               <strong>
                 {postUsername({
                   post,

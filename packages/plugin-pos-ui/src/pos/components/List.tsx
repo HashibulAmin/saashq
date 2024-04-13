@@ -81,7 +81,7 @@ class List extends React.Component<Props, {}> {
             <th>{__('On Server')}</th>
             <th>{__('Větev')}</th>
             <th>{__('Oddělení')}</th>
-            <th>{__('Created by')}</th>
+            <th>{__('Vytvořil')}</th>
             <th>
               <SortHandler sortField={'createdDate'} label={__('Created at')} />
             </th>

@@ -3,7 +3,7 @@ import {
   FlexWrap,
   PreviewContent,
   SiteBox,
-  SitePreview
+  SitePreview,
 } from './styles';
 import { __, readFile } from '@saashq/ui/src/utils';
 
@@ -36,7 +36,7 @@ class SiteList extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      currentSite: null
+      currentSite: null,
     };
   }
 
@@ -111,7 +111,7 @@ class SiteList extends React.Component<Props, State> {
                 <Icon icon="copy" /> {__('Duplicate')}
               </li>
               <li key="delete" onClick={() => remove(site._id)}>
-                <Icon icon="trash-alt" size={14} /> {__('Delete')}
+                <Icon icon="trash-alt" size={14} /> {__('Vymazat')}
               </li>
             </Dropdown.Menu>
           </Dropdown>
@@ -123,7 +123,7 @@ class SiteList extends React.Component<Props, State> {
   render() {
     const { sites = [] } = this.props;
 
-    return <FlexWrap>{sites.map(site => this.renderList(site))}</FlexWrap>;
+    return <FlexWrap>{sites.map((site) => this.renderList(site))}</FlexWrap>;
   }
 }
 

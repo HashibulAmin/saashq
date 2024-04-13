@@ -123,7 +123,7 @@ class List extends React.Component<IProps, State> {
           <thead>
             <tr>
               <th>{__('Název')}</th>
-              <th>{__('Status')}</th>
+              <th>{__('Postavení')}</th>
               <th>{__('Flow')}</th>
               <th>{__('Count')}</th>
               <th>{__('Spend Branch')}</th>

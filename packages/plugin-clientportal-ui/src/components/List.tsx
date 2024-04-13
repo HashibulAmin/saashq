@@ -59,7 +59,7 @@ function ClientPortalList({
             </FieldStyle>
           </Link>
           <ActionButtons>
-            <Tip text={__('Delete')} placement="bottom">
+            <Tip text={__('Vymazat')} placement="bottom">
               <Button btnStyle="link" onClick={onRemove} icon="cancel-1" />
             </Tip>
           </ActionButtons>

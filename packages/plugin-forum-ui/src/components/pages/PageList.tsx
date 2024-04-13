@@ -145,7 +145,7 @@ class List extends React.Component<Props> {
               />
             </th>
             <th>
-              <SortHandler sortField={'title'} label={__('Title')} />
+              <SortHandler sortField={'title'} label={__('Titul')} />
             </th>
             <th>{__('Code')}</th>
             <th>

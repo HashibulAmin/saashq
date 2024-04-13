@@ -126,11 +126,11 @@ class DynamicForm extends React.Component<Props, State> {
             onClick={this.props.closeModal}
             icon="times-circle"
           >
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
 
           <Button type="submit" btnStyle="success" icon="check-circle">
-            {__('Save')}
+            {__('Uložit')}
           </Button>
         </ModalFooter>
       </>

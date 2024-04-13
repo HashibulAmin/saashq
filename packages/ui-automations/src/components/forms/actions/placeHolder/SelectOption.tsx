@@ -8,7 +8,7 @@ import { __ } from '@saashq/ui/src/utils/core';
 import {
   ControlLabel,
   FormControl,
-  FormGroup
+  FormGroup,
 } from '@saashq/ui/src/components/form';
 
 type Props = {
@@ -31,7 +31,7 @@ export default class SelectOption extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      searchValue: ''
+      searchValue: '',
     };
   }
 
@@ -39,7 +39,7 @@ export default class SelectOption extends React.Component<Props, State> {
     this.overlay.hide();
   };
 
-  onChange = item => {
+  onChange = (item) => {
     this.overlay.hide();
 
     const { config, setConfig, inputName = 'value' } = this.props;
@@ -67,15 +67,15 @@ export default class SelectOption extends React.Component<Props, State> {
     let { options } = this.props;
     const { searchValue } = this.state;
 
-    const onSearch = e => {
+    const onSearch = (e) => {
       const { value } = e.currentTarget as HTMLInputElement;
 
       this.setState({ searchValue: value });
     };
 
     if (searchValue) {
-      options = options.filter(option =>
-        new RegExp(searchValue, 'i').test(option.label)
+      options = options.filter((option) =>
+        new RegExp(searchValue, 'i').test(option.label),
       );
     }
 
@@ -84,13 +84,13 @@ export default class SelectOption extends React.Component<Props, State> {
         <Attributes>
           <React.Fragment>
             <FormGroup>
-              <ControlLabel>{__('Search')}</ControlLabel>
+              <ControlLabel>{__('Vyhledávání')}</ControlLabel>
               <FormControl placeholder="type a search" onChange={onSearch} />
             </FormGroup>
             <li>
               <b>Default Options</b>
             </li>
-            {options.map(item => (
+            {options.map((item) => (
               <li key={item.label} onClick={this.onChange.bind(this, item)}>
                 {item.label}
               </li>
@@ -104,7 +104,7 @@ export default class SelectOption extends React.Component<Props, State> {
   render() {
     return (
       <OverlayTrigger
-        ref={overlay => {
+        ref={(overlay) => {
           this.overlay = overlay;
         }}
         trigger="click"

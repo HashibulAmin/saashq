@@ -108,7 +108,7 @@ export default class Attribution extends React.Component<Props, State> {
         <Attributes>
           <React.Fragment>
             <FormGroup>
-              <ControlLabel>{__('Search')}</ControlLabel>
+              <ControlLabel>{__('Vyhledávání')}</ControlLabel>
               <FormControl
                 placeholder="type a search"
                 value={searchValue}

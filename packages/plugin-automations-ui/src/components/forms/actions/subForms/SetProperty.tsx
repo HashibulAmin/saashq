@@ -140,7 +140,7 @@ class SetProperty extends React.Component<Props, State> {
         _id: String(Math.random()),
         type: 'Default',
         name: 'name',
-        label: 'label',
+        label: 'označení',
       };
 
       const operatorType: string = chosenField.name.includes('customFieldsData')
@@ -184,7 +184,7 @@ class SetProperty extends React.Component<Props, State> {
       return (
         <GroupWrapper key={rule.id}>
           <FormGroup>
-            <ControlLabel>Field</ControlLabel>
+            <ControlLabel>Pole</ControlLabel>
 
             <Select
               value={rule.field}
@@ -198,7 +198,7 @@ class SetProperty extends React.Component<Props, State> {
           </FormGroup>
 
           <FormGroup>
-            <ControlLabel>Operator</ControlLabel>
+            <ControlLabel>Operátor</ControlLabel>
 
             <Select
               value={rule.operator}
@@ -227,7 +227,7 @@ class SetProperty extends React.Component<Props, State> {
           />
 
           <FormGroup>
-            <ControlLabel>{__('Forward to')}</ControlLabel>
+            <ControlLabel>{__('Předat dál')}</ControlLabel>
 
             <FormControl
               onChange={onChangeForwardToValue}
@@ -265,7 +265,7 @@ class SetProperty extends React.Component<Props, State> {
               value: p.value,
             }))}
             onChange={this.onChangeType}
-            placeholder={__('Choose type')}
+            placeholder={__('Vyberte typ')}
           />
         </FormGroup>
 
@@ -277,7 +277,7 @@ class SetProperty extends React.Component<Props, State> {
           onClick={this.addRule}
           icon="add"
         >
-          {__('Add Rule')}
+          {__('Přidat Pravidlo')}
         </Button>
       </DrawerDetail>
     );

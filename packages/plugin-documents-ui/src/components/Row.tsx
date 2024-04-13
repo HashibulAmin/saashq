@@ -38,7 +38,7 @@ function Row({ obj, remove }: Props) {
           autoOpenKey="showDocumentModal"
           trigger={trigger}
         />
-        <Tip text={__('Delete')} placement="top">
+        <Tip text={__('Vymazat')} placement="top">
           <Button
             btnStyle="link"
             onClick={remove.bind(this, obj._id)}

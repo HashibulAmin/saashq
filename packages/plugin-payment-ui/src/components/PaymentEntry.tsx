@@ -63,7 +63,7 @@ function renderCreate(kind: string) {
     return null;
   }
 
-  const trigger = <button>+ {__('Add')}</button>;
+  const trigger = <button>+ {__('Přidat')}</button>;
 
   const meta: any = PAYMENTCONFIGS.find((p) => p.kind === kind);
 

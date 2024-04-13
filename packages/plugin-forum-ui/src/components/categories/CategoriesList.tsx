@@ -16,7 +16,7 @@ type Props = {
 
 export default function CategoriesList({ forumCategories }: Props) {
   const breadcrumb = [
-    { title: __('Settings'), link: '/settings' },
+    { title: __('Nastavení'), link: '/settings' },
     { title: __('Categories'), link: '/forums/categories' },
   ];
 

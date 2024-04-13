@@ -6,7 +6,7 @@ import {
   FormControl,
   FormGroup,
   Icon,
-  Spinner
+  Spinner,
 } from '@saashq/ui/src/components';
 import { Title } from '@saashq/ui-settings/src/styles';
 import { __ } from '@saashq/ui/src/utils';
@@ -38,7 +38,9 @@ class GeneralSettings extends React.Component<Props, State> {
     this.state = {
       currentMap: props.configsMap || {},
       is_uom: props.configsMap.isRequireUOM || false,
-      defaultUOM: props.configsMap.defaultUOM ? props.configsMap.defaultUOM : ''
+      defaultUOM: props.configsMap.defaultUOM
+        ? props.configsMap.defaultUOM
+        : '',
     };
   }
 
@@ -49,12 +51,12 @@ class GeneralSettings extends React.Component<Props, State> {
       this.setState({
         currentMap: configsMap || {},
         is_uom: configsMap.isRequireUOM || false,
-        defaultUOM: configsMap.defaultUOM ? configsMap.defaultUOM : ''
+        defaultUOM: configsMap.defaultUOM ? configsMap.defaultUOM : '',
       });
     }
   }
 
-  save = e => {
+  save = (e) => {
     e.preventDefault();
 
     const { currentMap } = this.state;
@@ -109,7 +111,7 @@ class GeneralSettings extends React.Component<Props, State> {
         {description && <p>{__(description)}</p>}
         <AutoCompletionSelect
           defaultValue={this.state.defaultUOM}
-          defaultOptions={(uoms || []).map(e => e.code)}
+          defaultOptions={(uoms || []).map((e) => e.code)}
           autoCompletionType="uoms"
           placeholder="Enter an uom"
           queryName="uoms"
@@ -142,8 +144,8 @@ class GeneralSettings extends React.Component<Props, State> {
 
   render() {
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
-      { title: __('Products config') }
+      { title: __('Nastavení'), link: '/settings' },
+      { title: __('Products config') },
     ];
 
     const actionButtons = (

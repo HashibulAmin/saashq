@@ -13,8 +13,8 @@ class Empty extends React.Component<Props, {}> {
     const { queryParams } = this.props;
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
-      { title: __('Channels'), link: '/settings/channels' }
+      { title: __('Nastavení'), link: '/settings' },
+      { title: __('Channels'), link: '/settings/channels' },
     ];
 
     const content = (

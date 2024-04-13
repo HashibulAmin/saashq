@@ -199,7 +199,7 @@ const Form = (props: Props) => {
 
         <FormFooter>
           <Button btnStyle="simple" onClick={closeDrawer}>
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
           <Button btnStyle="success" onClick={handleSubmit}>
             Save

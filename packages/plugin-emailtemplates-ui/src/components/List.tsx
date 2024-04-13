@@ -162,7 +162,7 @@ class EmailTemplateList extends React.Component<Props> {
         formTitle="New email template"
         size="lg"
         breadcrumb={[
-          { title: __('Settings'), link: '/settings' },
+          { title: __('Nastavení'), link: '/settings' },
           { title: __('Email templates') },
         ]}
         title={__('Email templates')}

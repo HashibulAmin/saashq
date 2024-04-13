@@ -36,7 +36,7 @@ class ExportHistories extends React.Component<Props & IRouterProps> {
         <thead>
           <tr>
             <th>{__('Název')}</th>
-            <th>{__('Status')}</th>
+            <th>{__('Postavení')}</th>
             <th>{__('Total')}</th>
             <th>{__('Date')}</th>
             <th>{__('Akce')}</th>

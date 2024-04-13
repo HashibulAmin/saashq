@@ -25,11 +25,11 @@ class ContractTypeFromContainer extends React.Component<FinalProps> {
       name,
       values,
       isSubmitted,
-      object
+      object,
     }: IButtonMutateProps) => {
       const { closeModal, getAssociatedContractType } = this.props;
 
-      const afterSave = data => {
+      const afterSave = (data) => {
         closeModal();
 
         if (getAssociatedContractType) {
@@ -51,14 +51,14 @@ class ContractTypeFromContainer extends React.Component<FinalProps> {
             object ? 'updated' : 'added'
           } a ${name}`}
         >
-          {__('Save')}
+          {__('Uložit')}
         </ButtonMutate>
       );
     };
 
     const updatedProps = {
       ...this.props,
-      renderButton
+      renderButton,
     };
     return <ContractTypeForm {...updatedProps} />;
   }
@@ -68,10 +68,10 @@ const getRefetchQueries = () => {
   return [
     'contractTypesMain',
     'SavingsContractTypesMain',
-    'savingsContractTypes'
+    'savingsContractTypes',
   ];
 };
 
 export default withCurrentUser(
-  withProps<Props>(compose()(ContractTypeFromContainer))
+  withProps<Props>(compose()(ContractTypeFromContainer)),
 );

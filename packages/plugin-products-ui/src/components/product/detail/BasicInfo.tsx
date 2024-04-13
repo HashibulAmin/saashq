@@ -132,7 +132,7 @@ class BasicInfo extends React.Component<Props> {
             {this.renderEdit()}
             <li>
               <a href="#delete" onClick={onDelete}>
-                {__('Delete')}
+                {__('Vymazat')}
               </a>
             </li>
           </Dropdown.Menu>

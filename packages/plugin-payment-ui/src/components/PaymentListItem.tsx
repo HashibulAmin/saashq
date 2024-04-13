@@ -30,7 +30,7 @@ class IntegrationListItem extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      externalData: null
+      externalData: null,
     };
   }
 
@@ -44,7 +44,7 @@ class IntegrationListItem extends React.Component<Props, State> {
     const onClick = () => removePayment(payment);
 
     return (
-      <Tip text={__('Delete')} placement="top">
+      <Tip text={__('Vymazat')} placement="top">
         <Button btnStyle="link" onClick={onClick} icon="times-circle" />
       </Tip>
     );
@@ -58,7 +58,7 @@ class IntegrationListItem extends React.Component<Props, State> {
       passedName: name,
       values,
       isSubmitted,
-      callback
+      callback,
     }: IButtonMutateProps) => {
       return (
         <ButtonMutate
@@ -81,7 +81,7 @@ class IntegrationListItem extends React.Component<Props, State> {
       </Button>
     );
 
-    const meta = PAYMENTCONFIGS.find(p => p.kind === kind);
+    const meta = PAYMENTCONFIGS.find((p) => p.kind === kind);
 
     if (!meta || !meta.isAvailable) {
       return null;
@@ -89,7 +89,7 @@ class IntegrationListItem extends React.Component<Props, State> {
 
     const Component = meta.createModal;
 
-    const formContent = props => (
+    const formContent = (props) => (
       <Component {...props} payment={payment} renderButton={renderButton} />
     );
 

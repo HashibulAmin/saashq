@@ -137,7 +137,7 @@ export default function Home(props: Props) {
           <Icon icon="search-1" size={20} />
           <FlexItem>
             <FormControl
-              placeholder={__('Search')}
+              placeholder={__('Vyhledávání')}
               name="searchValue"
               onChange={search}
               value={searchValue}

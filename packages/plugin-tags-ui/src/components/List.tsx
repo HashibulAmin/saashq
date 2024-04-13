@@ -81,7 +81,7 @@ function List({
           <Icon icon="search-1" size={20} />
           <FlexItem>
             <FormControl
-              placeholder={__('Search')}
+              placeholder={__('Vyhledávání')}
               name="searchValue"
               onChange={search}
               value={searchValue}
@@ -146,7 +146,7 @@ function List({
   );
 
   const breadcrumb = [
-    { title: __('Settings'), link: '/settings' },
+    { title: __('Nastavení'), link: '/settings' },
     { title: __('Tags'), link: '/settings/tags' },
   ];
 

@@ -24,11 +24,11 @@ class GeneralSettings extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      configsMap: props.configsMap
+      configsMap: props.configsMap,
     };
   }
 
-  add = e => {
+  add = (e) => {
     e.preventDefault();
     const { configsMap } = this.state;
 
@@ -45,7 +45,7 @@ class GeneralSettings extends React.Component<Props, State> {
       productCategoryIds: [],
       excludeCategoryIds: [],
       excludeProductIds: [],
-      segmentIds: []
+      segmentIds: [],
     };
 
     this.setState({ configsMap });
@@ -62,7 +62,7 @@ class GeneralSettings extends React.Component<Props, State> {
   };
 
   renderConfigs(configs) {
-    return Object.keys(configs).map(key => {
+    return Object.keys(configs).map((key) => {
       return (
         <PerSplit
           key={Math.random()}
@@ -89,8 +89,8 @@ class GeneralSettings extends React.Component<Props, State> {
 
   render() {
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
-      { title: __('Places config') }
+      { title: __('Nastavení'), link: '/settings' },
+      { title: __('Places config') },
     ];
 
     const actionButtons = (

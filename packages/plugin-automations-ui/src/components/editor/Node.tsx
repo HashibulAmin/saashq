@@ -65,7 +65,7 @@ export const ScratchNode = ({ data }: Props) => {
   return (
     <CommonScratchNode onClick={toggleDrawer.bind(this, { type: 'triggers' })}>
       <Icon icon="file-plus" size={25} />
-      <p>{__('How do you want to trigger this automation')}?</p>
+      <p>{__('Jak chcete tuto automatizaci spustit')}?</p>
     </CommonScratchNode>
   );
 };
@@ -160,7 +160,7 @@ export default memo(({ id, data }: Props) => {
     };
 
     const trigger = (
-      <i className="icon-notes add-note" title={__('Write Note')}></i>
+      <i className="icon-notes add-note" title={__('Napsat Poznámku')}></i>
     );
 
     return (
@@ -237,7 +237,7 @@ export default memo(({ id, data }: Props) => {
               <i
                 className="icon-trash-alt delete-control"
                 onClick={removeNode}
-                title={__('Delete')}
+                title={__('Vymazat')}
               ></i>
             </div>
           </div>

@@ -36,7 +36,7 @@ function ArchivedItem(props: ItemProps) {
       <>
         <span onClick={sendToBoard}>{__('Send to Board')}</span>
         {' - '}
-        <span onClick={remove}>{__('Delete')}</span>
+        <span onClick={remove}>{__('Vymazat')}</span>
       </>
     );
   };
@@ -87,7 +87,7 @@ class ArchivedItems extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      showForm: false
+      showForm: false,
     };
   }
 
@@ -111,7 +111,7 @@ class ArchivedItems extends React.Component<Props, State> {
 
     return (
       <>
-        {items.map(item => (
+        {items.map((item) => (
           <ArchivedItem
             options={options}
             key={item._id}

@@ -77,7 +77,7 @@ class Row extends React.Component<Props, State> {
         <td>
           <ActionButtons>
             {this.renderEditAction(uom)}
-            <Tip text={__('Delete')} placement="bottom">
+            <Tip text={__('Vymazat')} placement="bottom">
               <Button
                 btnStyle="link"
                 onClick={() => this.remove(uom)}

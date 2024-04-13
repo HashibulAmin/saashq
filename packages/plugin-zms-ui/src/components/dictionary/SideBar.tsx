@@ -73,7 +73,7 @@ class SideBar extends React.Component<Props, State> {
               enforceFocus={false}
             />
 
-            <Tip text={__('Delete')} placement="top">
+            <Tip text={__('Vymazat')} placement="top">
               <Button
                 btnStyle="link"
                 onClick={remove.bind(null, type)}

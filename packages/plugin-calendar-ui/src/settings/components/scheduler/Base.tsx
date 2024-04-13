@@ -50,7 +50,7 @@ class Base extends React.Component<Props> {
     const { accountId } = queryParams;
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Calendar'), link: `/settings/calendars` },
       { title: __('Schedule'), link: '' },
     ];

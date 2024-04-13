@@ -62,7 +62,7 @@ function ActionRow({
     const onDuplicate = () => duplicate(automation._id);
 
     return (
-      <Tip text={__('Duplicate')} placement="top">
+      <Tip text={__('Duplikát')} placement="top">
         <Button
           id="automationDuplicate"
           btnStyle="link"
@@ -78,7 +78,7 @@ function ActionRow({
 
     return (
       <WithPermission action="automationsRemove">
-        <Tip text={__('Delete')} placement="top">
+        <Tip text={__('Vymazat')} placement="top">
           <Button
             id="automationDelete"
             btnStyle="link"

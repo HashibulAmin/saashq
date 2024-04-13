@@ -118,7 +118,7 @@ class TemplateList extends React.Component<Props> {
       <List
         formTitle={__('New Growth Hacking Templates')}
         breadcrumb={[
-          { title: __('Settings'), link: '/settings' },
+          { title: __('Nastavení'), link: '/settings' },
           { title: __('Growth Hacking Templates') },
         ]}
         title={__('Growth Hacking Templates')}

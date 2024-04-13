@@ -43,11 +43,11 @@ const BarcodeGenerator = (props: Props) => {
       barcodeDescriptionFontSize: 8,
 
       isQrcode: true,
-      qrSize: 128
+      qrSize: 128,
     },
     ...JSON.parse(
-      localStorage.getItem('saashq_product_barcodeGenerator_config') || '{}'
-    )
+      localStorage.getItem('saashq_product_barcodeGenerator_config') || '{}',
+    ),
   };
 
   if (new Date(configStored.date) < new Date()) {
@@ -68,7 +68,7 @@ const BarcodeGenerator = (props: Props) => {
 
     localStorage.setItem(
       'saashq_product_barcodeGenerator_config',
-      JSON.stringify(configCopy)
+      JSON.stringify(configCopy),
     );
 
     updatePrint();
@@ -201,10 +201,10 @@ const BarcodeGenerator = (props: Props) => {
   const title = product ? product.name : 'Unknown';
 
   const breadcrumb = [
-    { title: __('Settings'), link: '/settings' },
+    { title: __('Nastavení'), link: '/settings' },
     { title: __('Product & Service'), link: '/settings/product-service' },
     { title, link: `/settings/product-service/details/${product._id}` },
-    { title: __('Barcode Generator') }
+    { title: __('Barcode Generator') },
   ];
 
   const shortStr = dateToShortStr(config.date, 92, 'h');
@@ -236,7 +236,7 @@ const BarcodeGenerator = (props: Props) => {
           height: '100%',
           border: 'none',
           outline: 'none',
-          backgroundColor: '#F0F0F0'
+          backgroundColor: '#F0F0F0',
         }}
       />
     </>

@@ -5,7 +5,7 @@ import {
   TypeBox,
   Description,
   TriggerTabs,
-  TypeBoxContainer
+  TypeBoxContainer,
 } from '../../../styles';
 import { ScrolledContent } from '@saashq/ui-automations/src/styles';
 import { ITrigger } from '../../../types';
@@ -33,7 +33,7 @@ class TriggerForm extends React.Component<Props, State> {
 
     this.state = {
       currentTab: 'new',
-      currentType: 'customer'
+      currentType: 'customer',
     };
   }
 
@@ -54,8 +54,8 @@ class TriggerForm extends React.Component<Props, State> {
       .mutate({
         mutation: gql(mutations.automationsCreateFromTemplate),
         variables: {
-          _id: template._id
-        }
+          _id: template._id,
+        },
       })
       .then(({ data }) => {
         window.location.href = `/automations/details/${data.automationsCreateFromTemplate._id}`;
@@ -67,16 +67,16 @@ class TriggerForm extends React.Component<Props, State> {
       client.mutate({
         mutation: gql(mutations.automationsRemove),
         variables: {
-          automationIds: [templateId]
+          automationIds: [templateId],
         },
         refetchQueries: [
           {
             query: gql(queries.automations),
             variables: {
-              status: 'template'
-            }
-          }
-        ]
+              status: 'template',
+            },
+          },
+        ],
       });
     });
   };
@@ -87,7 +87,7 @@ class TriggerForm extends React.Component<Props, State> {
         <img src={`/images/actions/${trigger.img}`} alt={trigger.label} />
         <FormGroup>
           <ControlLabel>
-            {__(trigger.label)} {__('based')}
+            {__(trigger.label)} {__('na základě')}
           </ControlLabel>
           <p>{__(trigger.description)}</p>
         </FormGroup>
@@ -118,14 +118,14 @@ class TriggerForm extends React.Component<Props, State> {
   renderTabContent() {
     if (this.state.currentTab === 'library') {
       return this.props.templates.map((t, index) =>
-        this.renderTemplateItem(t, index)
+        this.renderTemplateItem(t, index),
       );
     }
 
     const { triggersConst } = this.props;
 
     return triggersConst.map((trigger, index) =>
-      this.renderTriggerItem(trigger, index)
+      this.renderTriggerItem(trigger, index),
     );
   }
 
@@ -135,9 +135,9 @@ class TriggerForm extends React.Component<Props, State> {
     return (
       <>
         <Description>
-          <h4>{__('Choose your trigger type')}</h4>
+          <h4>{__('Vyberte typ spouštění')}</h4>
           <p>
-            {__('Start with an automation type that enrolls and triggers off')}
+            {__('Začněte s typem automatizace, který se zaregistruje a spustí')}
           </p>
         </Description>
         <TriggerTabs>
@@ -146,13 +146,13 @@ class TriggerForm extends React.Component<Props, State> {
               className={currentTab === 'new' ? 'active' : ''}
               onClick={this.tabOnClick.bind(this, 'new')}
             >
-              {__('Start from scratch')}
+              {__('Začít od začátku')}
             </TabTitle>
             <TabTitle
               className={currentTab === 'library' ? 'active' : ''}
               onClick={this.tabOnClick.bind(this, 'library')}
             >
-              {__('Library')}
+              {__('Knihovna')}
             </TabTitle>
           </Tabs>
         </TriggerTabs>

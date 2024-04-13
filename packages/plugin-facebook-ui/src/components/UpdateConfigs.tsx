@@ -96,7 +96,7 @@ export default class UpdateConfigs extends React.Component<Props, State> {
           '',
           'pages_messaging,pages_manage_ads,pages_manage_engagement,pages_manage_metadata,pages_read_user_content',
         )}
-        <Button onClick={onClick}>{__('Save')}</Button>
+        <Button onClick={onClick}>{__('Uložit')}</Button>
       </CollapseContent>
     );
   }

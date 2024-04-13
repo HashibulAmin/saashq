@@ -131,7 +131,7 @@ class NoteForm extends React.Component<Props, State> {
               icon="check-circle"
               size="small"
             >
-              {__('Save')}
+              {__('Uložit')}
             </Button>
           </>
         ) : (
@@ -162,7 +162,7 @@ class NoteForm extends React.Component<Props, State> {
             onClick={closeModal}
             icon="times-circle"
           >
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
 
           <Button
@@ -171,7 +171,7 @@ class NoteForm extends React.Component<Props, State> {
             onClick={() => save(this.generateDoc(values))}
             icon="check-circle"
           >
-            {__('Save')}
+            {__('Uložit')}
           </Button>
         </ModalFooter>
       </div>

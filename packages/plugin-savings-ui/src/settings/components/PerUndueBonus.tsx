@@ -5,7 +5,7 @@ import {
   ControlLabel,
   FormControl,
   FormGroup,
-  MainStyleModalFooter as ModalFooter
+  MainStyleModalFooter as ModalFooter,
 } from '@saashq/ui/src';
 import { DateContainer } from '@saashq/ui/src/styles/main';
 import React from 'react';
@@ -31,11 +31,11 @@ class PerSettings extends React.Component<Props, State> {
 
     this.state = {
       config: props.config,
-      hasOpen: false
+      hasOpen: false,
     };
   }
 
-  onSave = e => {
+  onSave = (e) => {
     e.preventDefault();
     const { configsMap, currentConfigKey } = this.props;
     const { config } = this.state;
@@ -46,7 +46,7 @@ class PerSettings extends React.Component<Props, State> {
     this.props.save(configsMap);
   };
 
-  onDelete = e => {
+  onDelete = (e) => {
     e.preventDefault();
 
     this.props.delete(this.props.currentConfigKey);
@@ -74,7 +74,7 @@ class PerSettings extends React.Component<Props, State> {
         open={this.props.currentConfigKey === 'newEbarimtConfig' ? true : false}
       >
         <FormGroup>
-          <ControlLabel>{__('Title')}</ControlLabel>
+          <ControlLabel>{__('Titul')}</ControlLabel>
           <FormControl
             defaultValue={config['title']}
             onChange={this.onChangeInput.bind(this, 'title')}
@@ -122,7 +122,7 @@ class PerSettings extends React.Component<Props, State> {
             onClick={this.onDelete}
             uppercase={false}
           >
-            {__('Delete')}
+            {__('Vymazat')}
           </Button>
 
           <Button
@@ -131,7 +131,7 @@ class PerSettings extends React.Component<Props, State> {
             onClick={this.onSave}
             uppercase={false}
           >
-            {__('Save')}
+            {__('Uložit')}
           </Button>
         </ModalFooter>
       </CollapseContent>

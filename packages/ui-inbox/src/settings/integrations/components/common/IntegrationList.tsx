@@ -97,7 +97,7 @@ class IntegrationList extends React.Component<Props, State> {
               <th>{__('Název')}</th>
               <th>{__('Kind')}</th>
               <th>{__('Brand')}</th>
-              <th>{__('Status')}</th>
+              <th>{__('Postavení')}</th>
               <th>{__('Health status')}</th>
               {this.state.showExternalInfo ? (
                 <th>{__('External info')}</th>

@@ -23,7 +23,7 @@ const Row = (props: Props) => {
     };
 
     return (
-      <Tip text={__('Delete')} placement="top">
+      <Tip text={__('Vymazat')} placement="top">
         <Button
           id="configDelete"
           btnStyle="link"
@@ -34,7 +34,7 @@ const Row = (props: Props) => {
     );
   };
 
-  const formContent = formProps => (
+  const formContent = (formProps) => (
     <ConfigForm {...formProps} config={config} />
   );
 
@@ -49,7 +49,7 @@ const Row = (props: Props) => {
       </td>
 
       <td key={Math.random()}>
-        <RowTitle>{config.payments.map(c => c.name).join(', ')}</RowTitle>
+        <RowTitle>{config.payments.map((c) => c.name).join(', ')}</RowTitle>
       </td>
       <td>
         <ActionButtons>

@@ -30,17 +30,13 @@ class FormSubmit extends React.Component<Props, State> {
       activeIntegrationId: props.activeTrigger.config
         ? props.activeTrigger.config.contentId
         : '',
-      formId: ''
+      formId: '',
     };
   }
 
   onSave = () => {
-    const {
-      addTrigger,
-      activeTrigger,
-      closeParentModal,
-      closeModal
-    } = this.props;
+    const { addTrigger, activeTrigger, closeParentModal, closeModal } =
+      this.props;
 
     const { formId } = this.state;
 
@@ -49,8 +45,10 @@ class FormSubmit extends React.Component<Props, State> {
     closeParentModal ? closeParentModal() : closeModal();
   };
 
-  onChangeForm = option => {
-    const form = this.props.formIntegrations.find(e => e._id === option.value);
+  onChangeForm = (option) => {
+    const form = this.props.formIntegrations.find(
+      (e) => e._id === option.value,
+    );
 
     if (!form) {
       return;
@@ -58,7 +56,7 @@ class FormSubmit extends React.Component<Props, State> {
 
     this.setState({
       formId: (form || ({} as any)).formId,
-      activeIntegrationId: option.value
+      activeIntegrationId: option.value,
     });
   };
 
@@ -66,11 +64,11 @@ class FormSubmit extends React.Component<Props, State> {
     const { formIntegrations } = this.props;
 
     const selectOptions = (array: ILeadIntegration[] = []) => {
-      return array.map(item => ({ value: item._id, label: item.name }));
+      return array.map((item) => ({ value: item._id, label: item.name }));
     };
 
     const selectedValue = formIntegrations.find(
-      item => (item || ({} as any)).formId === this.state.activeIntegrationId
+      (item) => (item || ({} as any)).formId === this.state.activeIntegrationId,
     );
 
     const value = selectedValue
@@ -80,13 +78,13 @@ class FormSubmit extends React.Component<Props, State> {
     return (
       <>
         <FormGroup>
-          <ControlLabel required={true}>{__('Select form')}</ControlLabel>
+          <ControlLabel required={true}>{__('Vyberte formulář')}</ControlLabel>
           <Select
             isRequired={true}
             value={value}
             options={selectOptions(formIntegrations)}
             onChange={this.onChangeForm}
-            placeholder={__('Select')}
+            placeholder={__('Vybrat')}
           />
         </FormGroup>
         <ModalFooter>
@@ -96,11 +94,11 @@ class FormSubmit extends React.Component<Props, State> {
             onClick={this.props.closeModal}
             icon="times-circle"
           >
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
 
           <Button btnStyle="success" icon="checked-1" onClick={this.onSave}>
-            Save
+            Uložit
           </Button>
         </ModalFooter>
       </>

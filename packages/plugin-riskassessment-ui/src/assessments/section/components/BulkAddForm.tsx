@@ -207,7 +207,7 @@ class Form extends React.Component<Props, State> {
       <form onSubmit={save}>
         {bulkItems.map((bulkItem) => this.renderBulkItem(bulkItem))}
         <LinkButton onClick={addBulkItem}>
-          <Icon icon="plus-1" /> {__('Add')}
+          <Icon icon="plus-1" /> {__('Přidat')}
         </LinkButton>
         <ModalFooter>
           <Button btnStyle="simple" onClick={closeModal}>
@@ -220,7 +220,7 @@ class Form extends React.Component<Props, State> {
               icon={'check-circle'}
               onClick={save}
             >
-              {__('Save')}
+              {__('Uložit')}
             </Button>
           )}
         </ModalFooter>

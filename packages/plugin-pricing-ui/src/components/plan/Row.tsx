@@ -96,7 +96,7 @@ export default function Row(props: Props) {
               </Button>
             </Link>
           </Tip>
-          <Tip text={__('Delete')} placement="bottom">
+          <Tip text={__('Vymazat')} placement="bottom">
             <Button type="button" btnStyle="link" onClick={remove} size="small">
               <Icon icon="times-circle" />
             </Button>

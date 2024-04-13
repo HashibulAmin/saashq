@@ -4,7 +4,7 @@ import {
   SettingsContent,
   SettingsLayout,
   SpecificTimeContainer,
-  DateControlWrapper
+  DateControlWrapper,
 } from '../../../styles';
 import FormGroup from '@saashq/ui/src/components/form/Group';
 import FormControl from '@saashq/ui/src/components/form/Control';
@@ -37,11 +37,11 @@ class Settings extends React.Component<Props, State> {
     this.state = {
       currentTab: 'general',
       time: 'any',
-      hours: (props.hours || []).map(hour => ({ ...hour })),
+      hours: (props.hours || []).map((hour) => ({ ...hour })),
       selectedOption: {},
       date: dayjs(new Date()).format('YYYY-MM-DD'),
       dates: [],
-      isAnnulay: false
+      isAnnulay: false,
     };
   }
 
@@ -49,19 +49,19 @@ class Settings extends React.Component<Props, State> {
     this.setState({ currentTab });
   };
 
-  onChangeTimeType = e => {
+  onChangeTimeType = (e) => {
     this.setState({ time: e.target.value });
   };
 
-  onChangeAnnually = e => {
+  onChangeAnnually = (e) => {
     this.setState({ isAnnulay: e.target.checked });
   };
 
-  onChangeHours = hours => {
+  onChangeHours = (hours) => {
     this.setState({ hours });
   };
 
-  onDateChange = date => {
+  onDateChange = (date) => {
     this.setState({ date });
   };
 
@@ -70,16 +70,16 @@ class Settings extends React.Component<Props, State> {
 
     dates.push({
       _id: Math.random().toString(),
-      name: ''
+      name: '',
     });
 
     this.setState({ dates });
   };
 
-  onRemove = dateId => {
+  onRemove = (dateId) => {
     let dates = this.state.dates;
 
-    dates = dates.filter(date => date._id !== dateId);
+    dates = dates.filter((date) => date._id !== dateId);
 
     this.setState({ dates });
   };
@@ -112,8 +112,8 @@ class Settings extends React.Component<Props, State> {
           value={this.state.date}
           required={false}
           name="date"
-          onChange={date => this.onDateChange(date)}
-          placeholder={'Start date'}
+          onChange={(date) => this.onDateChange(date)}
+          placeholder={'Datum zahájení'}
           dateFormat={'YYYY-MM-DD'}
         />
 
@@ -122,7 +122,7 @@ class Settings extends React.Component<Props, State> {
           value={this.state.isAnnulay}
           onChange={this.onChangeAnnually}
         >
-          {__('Annually')}
+          {__('Každoročně')}
         </FormControl>
 
         <Button size="small" btnStyle="danger" onClick={remove}>
@@ -140,7 +140,7 @@ class Settings extends React.Component<Props, State> {
         <div>
           <h3>{currentTab}</h3>
           <div>
-            <p>{'What times do you want the actions to execute'}?</p>
+            <p>{'V kolika časech chcete akce provést'}?</p>
             <FormGroup>
               <FormControl
                 componentClass="checkbox"
@@ -148,7 +148,7 @@ class Settings extends React.Component<Props, State> {
                 onChange={this.onChangeTimeType}
                 inline={true}
               >
-                {__('Any time')}
+                {__('Kdykoli')}
               </FormControl>
 
               <FormControl
@@ -157,7 +157,7 @@ class Settings extends React.Component<Props, State> {
                 onChange={this.onChangeTimeType}
                 inline={true}
               >
-                {__('Specific times')}
+                {__('Konkrétní časy')}
               </FormControl>
             </FormGroup>
             {this.renderSpecificTime()}
@@ -165,10 +165,7 @@ class Settings extends React.Component<Props, State> {
 
           <div>
             <p>
-              {
-                'What upcoming dates do you want to pause actions from executing?'
-              }
-              ?
+              {'Která nadcházející data chcete pozastavit provádění akcí?'}?
             </p>
             <DateControlWrapper>
               {this.state.dates.map((date, index) => (
@@ -182,7 +179,7 @@ class Settings extends React.Component<Props, State> {
                 onClick={this.add}
                 icon="add"
               >
-                Add another dates
+                Přidejte další datum
               </Button>
             </DateControlWrapper>
           </div>
@@ -203,13 +200,13 @@ class Settings extends React.Component<Props, State> {
             className={currentTab === 'general' ? 'active' : ''}
             onClick={this.onClickTab.bind(this, 'general')}
           >
-            General
+            Všeobecné
           </li>
           <li
             className={currentTab === 'suppression' ? 'active' : ''}
             onClick={this.onClickTab.bind(this, 'suppression')}
           >
-            Unenrollment and Suppression
+            Zrušení registrace a Potlačení
           </li>
         </LeftSidebar>
         <SettingsContent>{this.renderContent()}</SettingsContent>

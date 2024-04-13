@@ -203,7 +203,7 @@ class List extends React.Component<IProps, State> {
     } = this.props;
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Product & Service') },
     ];
 

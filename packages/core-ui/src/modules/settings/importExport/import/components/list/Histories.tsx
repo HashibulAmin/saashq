@@ -105,7 +105,7 @@ class Histories extends React.Component<Props & IRouterProps> {
     const { histories, loading, totalCount, history, currentType } = this.props;
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Import & Export'), link: '/settings/selectMenu' },
       { title: __('Imports') },
     ];

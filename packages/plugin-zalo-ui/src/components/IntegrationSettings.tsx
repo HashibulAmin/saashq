@@ -11,7 +11,7 @@ import { __ } from '@saashq/ui/src/utils/core';
 
 const KEY_LABELS = {
   ZALO_APP_ID: 'ZALO APP ID',
-  ZALO_APP_SECRET_KEY: 'ZALO App APP SECRET KEY'
+  ZALO_APP_SECRET_KEY: 'ZALO App APP SECRET KEY',
 };
 
 type Props = {
@@ -47,7 +47,7 @@ class Settings extends React.Component<Props, State> {
     type?: string,
     description?: string,
     defaultValue?: string,
-    label?: string
+    label?: string,
   ) => {
     const { configsMap } = this.state;
 
@@ -77,7 +77,7 @@ class Settings extends React.Component<Props, State> {
       >
         {this.renderItem('ZALO_APP_ID')}
         {this.renderItem('ZALO_APP_SECRET_KEY')}
-        <Button onClick={onClick}>{__('Save')}</Button>
+        <Button onClick={onClick}>{__('Uložit')}</Button>
       </CollapseContent>
     );
   }

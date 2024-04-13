@@ -27,10 +27,10 @@ export default function List(props: Props) {
       <thead>
         <tr>
           <th>{__('Název')}</th>
-          <th>{__('Status')}</th>
+          <th>{__('Postavení')}</th>
           <th>{__('isPriority')}</th>
           <th>{__('Apply type')}</th>
-          <th>{__('Created by')}</th>
+          <th>{__('Vytvořil')}</th>
           <th>{__('Created at')}</th>
           <th>{__('Last updated at')}</th>
           <th>{__('Akce')}</th>

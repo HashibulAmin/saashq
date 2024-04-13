@@ -134,7 +134,7 @@ const List = (props: IProps) => {
             <th>{__('Payment name')}</th>
             <th>{__('Kind')}</th>
             <th>{__('Amount')}</th>
-            <th>{__('Status')}</th>
+            <th>{__('Postavení')}</th>
             <th>{__('Zákazník')}</th>
             <th>{__('Customer Type')}</th>
             <th>{__('Popis')}</th>

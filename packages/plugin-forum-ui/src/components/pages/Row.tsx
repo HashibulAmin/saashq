@@ -51,7 +51,7 @@ class Row extends React.Component<Props> {
     const onClick = () => remove(page._id);
 
     return (
-      <Tip text={__('Delete')} placement="top">
+      <Tip text={__('Vymazat')} placement="top">
         <Button
           id="pageDelete"
           btnStyle="link"

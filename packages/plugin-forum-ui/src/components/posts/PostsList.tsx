@@ -136,7 +136,7 @@ class List extends React.Component<Props, {}> {
               />
             </th>
             <th>
-              <SortHandler sortField={'title'} label={__('Title')} />
+              <SortHandler sortField={'title'} label={__('Titul')} />
             </th>
             <th>{__('State')}</th>
             <th>
@@ -148,7 +148,7 @@ class List extends React.Component<Props, {}> {
             <th>
               <SortHandler sortField={'createdAt'} label={__('Vytvořeno v')} />
             </th>
-            <th>{__('Created by')}</th>
+            <th>{__('Vytvořil')}</th>
             <th>
               <SortHandler sortField={'updatedAt'} label={__('Updated At')} />
             </th>

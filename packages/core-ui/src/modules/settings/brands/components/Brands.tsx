@@ -57,7 +57,7 @@ class Brands extends React.Component<Props, {}> {
     const { brandsTotalCount, currentBrand, loading } = this.props;
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Brands'), link: '/settings/brands' },
       { title: `${currentBrand.name || ''}` },
     ];

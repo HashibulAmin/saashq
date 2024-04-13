@@ -45,7 +45,7 @@ class Delay extends React.Component<Props, State> {
     const { config } = this.state;
 
     const onChangeSelect = (field, e) => this.onChangeField(field, e.value);
-    const onChangeValue = e => this.onChangeField('value', e.target.value);
+    const onChangeValue = (e) => this.onChangeField('value', e.target.value);
 
     return (
       <DrawerDetail>
@@ -56,13 +56,13 @@ class Delay extends React.Component<Props, State> {
             value={config.type || 'hour'}
             options={[
               {
-                label: 'Hour',
-                value: 'hour'
+                label: 'Hodina',
+                value: 'hour',
               },
               {
-                label: 'Day',
-                value: 'day'
-              }
+                label: 'Den',
+                value: 'day',
+              },
             ]}
             onChange={onChangeSelect.bind(this, 'type')}
             clearable={false}
@@ -72,7 +72,7 @@ class Delay extends React.Component<Props, State> {
         <BoardHeader>
           <FormGroup>
             <div className="header-row">
-              <ControlLabel required={true}>{__('Value')}</ControlLabel>
+              <ControlLabel required={true}>{__('Hodnota')}</ControlLabel>
             </div>
             <FormControl
               type="number"

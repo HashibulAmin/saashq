@@ -1,7 +1,7 @@
 import {
   Content,
   FullHeight,
-  IntegrationWrapper
+  IntegrationWrapper,
 } from '@saashq/ui-inbox/src/settings/integrations/components/store/styles';
 
 import { ByKindTotalCount } from '@saashq/ui-inbox/src/settings/integrations/types';
@@ -30,7 +30,7 @@ class Home extends React.Component<Props, State> {
 
     let integrations = [...INTEGRATIONS];
     const pluginsWithIntegrations = (window as any).plugins.filter(
-      plugin => plugin.inboxIntegrations
+      (plugin) => plugin.inboxIntegrations,
     );
 
     for (const p of pluginsWithIntegrations) {
@@ -39,11 +39,11 @@ class Home extends React.Component<Props, State> {
 
     this.state = {
       searchValue: '',
-      integrations
+      integrations,
     };
   }
 
-  onSearch = e => {
+  onSearch = (e) => {
     this.setState({ searchValue: e.target.value.toLowerCase() });
   };
 
@@ -62,7 +62,7 @@ class Home extends React.Component<Props, State> {
           totalCount={totalCount}
           customLink={customLink}
           queryParams={queryParams}
-        />
+        />,
       );
     }
 
@@ -82,8 +82,8 @@ class Home extends React.Component<Props, State> {
 
   render() {
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
-      { title: __('Integrations') }
+      { title: __('Nastavení'), link: '/settings' },
+      { title: __('Integrations') },
     ];
 
     const headerDescription = (
@@ -91,7 +91,7 @@ class Home extends React.Component<Props, State> {
         icon="/images/actions/33.svg"
         title="Integrations"
         description={`${__(
-          'Set up your integrations and start connecting with your customers'
+          'Set up your integrations and start connecting with your customers',
         )}`}
       />
     );

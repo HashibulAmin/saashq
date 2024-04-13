@@ -40,7 +40,7 @@ function PackageRow({ item, renderButton, removeItem }: Props) {
           trigger={trigger}
           content={renderForm}
         />
-        <Tip text={__('Delete')} placement="top">
+        <Tip text={__('Vymazat')} placement="top">
           <Button btnStyle="link" onClick={handleRemove}>
             <Icon icon="times-circle" />
           </Button>

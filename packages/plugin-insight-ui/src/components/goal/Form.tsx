@@ -463,7 +463,7 @@ const Form = (props: Props) => {
 
         <FormFooter>
           <Button btnStyle="simple" onClick={closeDrawer}>
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
           {renderButton({
             name: 'Goal',

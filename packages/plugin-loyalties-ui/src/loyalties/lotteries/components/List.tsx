@@ -135,7 +135,7 @@ class LotteriesList extends React.Component<IProps, State> {
                 <SortHandler sortField={'ownerId'} label={__('Owner')} />
               </th>
               <th>
-                <SortHandler sortField={'status'} label={__('Status')} />
+                <SortHandler sortField={'status'} label={__('Postavení')} />
               </th>
               <th>Actions</th>
             </tr>

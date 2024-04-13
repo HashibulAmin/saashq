@@ -4,7 +4,7 @@ import {
   ControlLabel,
   FormControl,
   FormGroup,
-  MainStyleModalFooter as ModalFooter
+  MainStyleModalFooter as ModalFooter,
 } from '@saashq/ui/src';
 import React from 'react';
 import { IConfigsMap } from '../types';
@@ -29,7 +29,7 @@ class MainConfig extends React.Component<Props, State> {
     this.state = props.configsMap?.zmsConfig || {};
   }
 
-  onSave = e => {
+  onSave = (e) => {
     e.preventDefault();
     const { configsMap } = this.props;
     configsMap.zmsConfig = this.state;
@@ -100,7 +100,7 @@ class MainConfig extends React.Component<Props, State> {
             onClick={this.onSave.bind(this)}
             uppercase={false}
           >
-            {__('Save')}
+            {__('Uložit')}
           </Button>
         </ModalFooter>
       </CollapseContent>

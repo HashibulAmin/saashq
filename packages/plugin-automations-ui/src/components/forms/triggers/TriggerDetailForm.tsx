@@ -80,7 +80,7 @@ function TriggerDetailForm(props: Props) {
           <DateSettings onChange={onChange} config={config} />
           <ModalFooter>
             <Button btnStyle="simple" onClick={onClear}>
-              {__('Clear')}
+              {__('Průhledná')}
             </Button>
           </ModalFooter>
         </>
@@ -89,7 +89,7 @@ function TriggerDetailForm(props: Props) {
 
     return (
       <ModalTrigger
-        title="Trigger Settings"
+        title="Nastavení Spouštění"
         trigger={trigger}
         content={content}
         hideHeader={true}
@@ -118,7 +118,7 @@ function TriggerDetailForm(props: Props) {
       <Description>
         <FlexContainer>
           <h4>
-            {activeTrigger.label} {__('based')}
+            {activeTrigger.label} {__('na základě')}
           </h4>
           {renderSettings()}
         </FlexContainer>
@@ -130,13 +130,13 @@ function TriggerDetailForm(props: Props) {
             className={currentTab === 'new' ? 'active' : ''}
             onClick={tabOnClick.bind(this, 'new')}
           >
-            {__('New trigger')}
+            {__('Nová spoušť')}
           </TabTitle>
           <TabTitle
             className={currentTab === 'reenrollment' ? 'active' : ''}
             onClick={tabOnClick.bind(this, 'reenrollment')}
           >
-            {__('Re-enrollment')}
+            {__('Opětovná registrace')}
           </TabTitle>
         </Tabs>
       </TriggerTabs>

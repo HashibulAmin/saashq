@@ -90,7 +90,7 @@ class SchedulesConfig extends React.Component<Props> {
       return null;
     }
 
-    const trigger = <Button btnStyle="success">{__('Add')}</Button>;
+    const trigger = <Button btnStyle="success">{__('Přidat')}</Button>;
 
     const content = ({ closeModal }) => {
       const updatedProps = {

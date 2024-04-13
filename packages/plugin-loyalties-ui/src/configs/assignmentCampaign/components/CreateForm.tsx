@@ -292,7 +292,7 @@ class CreateForm extends React.Component<Props, State> {
 
   render() {
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Assignment Campaign') },
     ];
 

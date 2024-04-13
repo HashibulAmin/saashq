@@ -83,7 +83,7 @@ const FormContainer = (props: Props) => {
           object ? 'updated' : 'added'
         } a ${name}`}
       >
-        {__('Save')}
+        {__('Uložit')}
       </ButtonMutate>
     );
   };

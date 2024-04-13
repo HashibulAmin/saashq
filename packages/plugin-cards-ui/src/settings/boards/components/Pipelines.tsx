@@ -213,7 +213,7 @@ class Pipelines extends React.Component<Props, State> {
             <th>
               <SortHandler sortField={'name'} label={__('Název')} />
             </th>
-            <th>{__('Status')}</th>
+            <th>{__('Postavení')}</th>
             <th>{__('Created at')}</th>
             <th>{__('Created By')}</th>
             <th>{__('Akce')}</th>

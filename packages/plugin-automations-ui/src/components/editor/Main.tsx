@@ -132,8 +132,8 @@ class Editor extends React.Component<Props, State> {
     const { name, isActive, triggers, actions } = this.state;
     const { automation, save } = this.props;
 
-    if (!name || name === 'Your automation title') {
-      return Alert.error('Enter an Automation title');
+    if (!name || name === 'Váš název automatizace') {
+      return Alert.error('Zadejte název automatizace');
     }
 
     const generateValues = () => {
@@ -219,7 +219,7 @@ class Editor extends React.Component<Props, State> {
     const { showDrawer, triggers, currentTab } = this.state;
 
     if (type === 'actions' && triggers.length === 0) {
-      return Alert.warning('Please add a Trigger first!');
+      return Alert.warning('Nejprve prosím přidejte spouštěč!');
     }
 
     this.setState({
@@ -353,7 +353,7 @@ class Editor extends React.Component<Props, State> {
         return (
           <>
             <BackIcon onClick={onBack}>
-              <Icon icon="angle-left" size={20} /> {__('Back to triggers')}
+              <Icon icon="angle-left" size={20} /> {__('Zpět ke spouštěčům')}
             </BackIcon>
             <ScrolledContent>
               <TriggerDetailForm
@@ -383,7 +383,7 @@ class Editor extends React.Component<Props, State> {
         return (
           <>
             <BackIcon onClick={onBackAction}>
-              <Icon icon="angle-left" size={20} /> {__('Back to actions')}
+              <Icon icon="angle-left" size={20} /> {__('Zpět k akcím')}
             </BackIcon>
             <ActionDetailForm
               activeAction={activeAction}
@@ -426,7 +426,7 @@ class Editor extends React.Component<Props, State> {
           icon="plus-circle"
           onClick={this.toggleDrawer.bind(this, { type: 'triggers' })}
         >
-          Add a Trigger
+          Přidat Spouštěč
         </Button>
         <Button
           btnStyle="primary"
@@ -434,7 +434,7 @@ class Editor extends React.Component<Props, State> {
           icon="plus-circle"
           onClick={this.toggleDrawer.bind(this, { type: 'actions' })}
         >
-          Add an Action
+          Přidat Akci
         </Button>
       </>
     );
@@ -472,7 +472,7 @@ class Editor extends React.Component<Props, State> {
               className={isActionTab ? '' : 'active'}
               onClick={this.switchActionbarTab.bind(this, 'history')}
             >
-              {__('Histories')}
+              {__('Historie')}
             </TabTitle>
           </Tabs>
         </CenterBar>
@@ -555,9 +555,9 @@ class Editor extends React.Component<Props, State> {
     return (
       <BarItems>
         <ToggleWrapper>
-          <span className={isActive ? 'active' : ''}>{__('Inactive')}</span>
+          <span className={isActive ? 'active' : ''}>{__('Neaktivní')}</span>
           <Toggle defaultChecked={isActive} onChange={this.onToggle} />
-          <span className={!isActive ? 'active' : ''}>{__('Active')}</span>
+          <span className={!isActive ? 'active' : ''}>{__('Aktivní')}</span>
         </ToggleWrapper>
         <ActionBarButtonsWrapper>
           {this.renderButtons()}
@@ -568,7 +568,7 @@ class Editor extends React.Component<Props, State> {
             icon={'check-circle'}
             onClick={this.handleSubmit}
           >
-            {__('Save')}
+            {__('Uložit')}
           </Button>
         </ActionBarButtonsWrapper>
       </BarItems>
@@ -622,9 +622,9 @@ class Editor extends React.Component<Props, State> {
       <>
         {this.renderConfirmation()}
         <Wrapper.Header
-          title={`${(automation && automation.name) || 'Automation'}`}
+          title={`${(automation && automation.name) || 'Automatizace'}`}
           breadcrumb={[
-            { title: __('Automations'), link: '/automations' },
+            { title: __('Automatizace'), link: '/automations' },
             { title: `${(automation && automation.name) || ''}` },
           ]}
         />

@@ -160,7 +160,7 @@ class SPLabels extends React.Component<Props, State> {
   render() {
     const { isAllSelected, totalCount, queryParams, history } = this.props;
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Sales Plans Labels') },
     ];
 
@@ -175,10 +175,10 @@ class SPLabels extends React.Component<Props, State> {
                 onChange={this.onChange}
               />
             </th>
-            <th>{__('Title')}</th>
+            <th>{__('Titul')}</th>
             <th>{__('Effect')}</th>
             <th>{__('Color')}</th>
-            <th>{__('Status')}</th>
+            <th>{__('Postavení')}</th>
           </tr>
         </thead>
         <tbody>{this.renderRow()}</tbody>

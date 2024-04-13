@@ -9,13 +9,14 @@ const PosSlotItem = ({
   code,
   option,
   posId,
-  setSlots
+  setSlots,
 }) => {
-  const deleteSlot = () => setSlots(prev => prev.filter(sl => sl._id !== _id));
+  const deleteSlot = () =>
+    setSlots((prev) => prev.filter((sl) => sl._id !== _id));
 
   const copySlot = () => {
     const copyId = Math.random().toString();
-    setSlots(prev => [
+    setSlots((prev) => [
       ...(prev || []),
       {
         _id: copyId,
@@ -25,9 +26,9 @@ const PosSlotItem = ({
         option: {
           ...(option || {}),
           top: option.top + 20,
-          left: option.left + 20
-        }
-      }
+          left: option.left + 20,
+        },
+      },
     ]);
     setActiveSlot(copyId);
   };
@@ -48,7 +49,7 @@ const PosSlotItem = ({
           </Tip>
         </Button>
         <Button btnStyle="danger" onClick={deleteSlot}>
-          <Tip text={__('Delete')} placement="top">
+          <Tip text={__('Vymazat')} placement="top">
             <Icon icon="trash" />
           </Tip>
         </Button>

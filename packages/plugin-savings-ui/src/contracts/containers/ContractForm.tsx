@@ -28,11 +28,11 @@ class ContractFromContainer extends React.Component<FinalProps> {
       values,
       isSubmitted,
       object,
-      disabled
+      disabled,
     }: IButtonMutateProps & { disabled: boolean }) => {
       const { closeModal, getAssociatedContract, currentUser } = this.props;
 
-      const afterSave = data => {
+      const afterSave = (data) => {
         closeModal();
 
         if (getAssociatedContract) {
@@ -53,14 +53,14 @@ class ContractFromContainer extends React.Component<FinalProps> {
             object ? 'updated' : 'added'
           } a ${name}`}
         >
-          {__('Save')}
+          {__('Uložit')}
         </ButtonMutate>
       );
     };
 
     const updatedProps = {
       ...this.props,
-      renderButton
+      renderButton,
     };
     return <ContractForm {...updatedProps} />;
   }
@@ -73,10 +73,10 @@ const getRefetchQueries = () => {
     'contracts',
     'contractCounts',
     'activityLogs',
-    'schedules'
+    'schedules',
   ];
 };
 
 export default withCurrentUser(
-  withProps<Props>(compose()(ContractFromContainer))
+  withProps<Props>(compose()(ContractFromContainer)),
 );

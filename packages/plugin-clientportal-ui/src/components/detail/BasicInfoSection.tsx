@@ -154,7 +154,7 @@ class BasicInfoSection extends React.Component<Props> {
           )}
           <li>
             <a href="#delete" onClick={onClick}>
-              {__('Delete')}
+              {__('Vymazat')}
             </a>
           </li>
         </Dropdown.Menu>

@@ -10,18 +10,18 @@ type Props = {
 const actionOptions = [
   { value: 'create', label: __('Create') },
   { value: 'update', label: __('Update') },
-  { value: 'delete', label: __('Delete') }
+  { value: 'delete', label: __('Vymazat') },
 ];
 
 function ActionFilter({ history, queryParams }: Props) {
-  const onClick = action => {
+  const onClick = (action) => {
     router.setParams(history, { action: action.value });
     router.removeParams(history, 'page');
   };
 
   const content = (
     <SidebarList>
-      {actionOptions.map(action => {
+      {actionOptions.map((action) => {
         return (
           <li key={action.value}>
             <a

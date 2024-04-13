@@ -77,7 +77,7 @@ class List extends React.Component<Props, State> {
             <th>{__('Název')}</th>
             <th>{__('Requester')}</th>
             <th>{__('Recipients')}</th>
-            <th>{__('Status')}</th>
+            <th>{__('Postavení')}</th>
             <th>
               <SortHandler sortField="createdAt" />
               {__('Requested at')}

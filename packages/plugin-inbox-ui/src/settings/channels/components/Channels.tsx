@@ -22,17 +22,13 @@ type Props = {
 
 class Channels extends React.Component<Props, {}> {
   render() {
-    const {
-      integrationsCount,
-      currentChannel,
-      queryParams,
-      loading
-    } = this.props;
+    const { integrationsCount, currentChannel, queryParams, loading } =
+      this.props;
 
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
+      { title: __('Nastavení'), link: '/settings' },
       { title: __('Channels'), link: '/settings/channels' },
-      { title: `${currentChannel.name || ''}` }
+      { title: `${currentChannel.name || ''}` },
     ];
 
     const trigger = (
@@ -41,7 +37,7 @@ class Channels extends React.Component<Props, {}> {
       </Button>
     );
 
-    const content = props => (
+    const content = (props) => (
       <ManageIntegrations
         {...props}
         queryParams={queryParams}
@@ -74,7 +70,7 @@ class Channels extends React.Component<Props, {}> {
             icon="/images/actions/31.svg"
             title={'Channels'}
             description={`${__(
-              `Channels are important to know how and where your team members are spread out`
+              `Channels are important to know how and where your team members are spread out`,
             )}.${__(`Manage your channels and stay at the top of your game`)}`}
           />
         }
@@ -104,7 +100,7 @@ class Channels extends React.Component<Props, {}> {
             loading={loading}
             count={integrationsCount}
             emptyText={__(
-              'Choose from our many integrations and add to your channel'
+              'Choose from our many integrations and add to your channel',
             )}
             emptyImage="/images/actions/2.svg"
           />

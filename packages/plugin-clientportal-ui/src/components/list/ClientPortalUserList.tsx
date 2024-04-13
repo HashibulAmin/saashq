@@ -121,7 +121,7 @@ class ClientportalUserList extends React.Component<IProps, State> {
               <th>{__('Company name')}</th>
               <th>{__('Type')}</th>
               <th>{__('from')}</th>
-              <th>{__('Status')}</th>
+              <th>{__('Postavení')}</th>
               <th>{__('Session count')}</th>
               <th>{__('Last seen at')}</th>
               <th>{__('Registered at')}</th>

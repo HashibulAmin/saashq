@@ -19,9 +19,9 @@ type Props = {
   propertyTypesConst: any[];
 };
 
-const renderExtraContent = props => {
+const renderExtraContent = (props) => {
   const {
-    activeAction: { type }
+    activeAction: { type },
   } = props;
 
   const response = {
@@ -30,15 +30,15 @@ const renderExtraContent = props => {
     setProperty: <SetProperty {...props} />,
     if: <IfForm {...props} />,
     customCode: <CustomCode {...props} />,
-    sendEmail: <SendMail {...props} />
+    sendEmail: <SendMail {...props} />,
   };
 
   const Component = renderDynamicComponent(
     {
       ...props,
-      componentType: 'actionForm'
+      componentType: 'actionForm',
     },
-    type
+    type,
   );
 
   if (Component) {
@@ -52,7 +52,7 @@ class DefaultForm extends React.Component<Props> {
     const { activeAction, onSave, closeModal, actionsConst } = this.props;
 
     const currentAction = actionsConst.find(
-      action => action.type === activeAction.type && action.component
+      (action) => action.type === activeAction.type && action.component,
     );
 
     if (currentAction) {
@@ -63,7 +63,7 @@ class DefaultForm extends React.Component<Props> {
     return (
       <>
         <div>
-          {__('contents')} {activeAction.type}
+          {__('obsah')} {activeAction.type}
         </div>
         <ModalFooter>
           <Button
@@ -72,11 +72,11 @@ class DefaultForm extends React.Component<Props> {
             icon="times-circle"
             onClick={closeModal}
           >
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
 
           <Button btnStyle="success" icon="checked-1" onClick={onSave}>
-            Saves
+            Uložit
           </Button>
         </ModalFooter>
       </>

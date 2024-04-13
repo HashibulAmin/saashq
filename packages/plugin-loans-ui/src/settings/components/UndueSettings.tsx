@@ -2,7 +2,7 @@ import {
   Button,
   MainStyleTitle as Title,
   Wrapper,
-  HeaderDescription
+  HeaderDescription,
 } from '@saashq/ui/src';
 import React from 'react';
 
@@ -36,11 +36,11 @@ class GeneralSettings extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      configsMap: props.configsMap
+      configsMap: props.configsMap,
     };
   }
 
-  add = e => {
+  add = (e) => {
     e.preventDefault();
     const { configsMap } = this.state;
 
@@ -53,7 +53,7 @@ class GeneralSettings extends React.Component<Props, State> {
       title: 'New Loss Config',
       startDate: new Date(),
       endDate: new Date(),
-      percent: 0
+      percent: 0,
     };
 
     this.setState({ configsMap });
@@ -70,7 +70,7 @@ class GeneralSettings extends React.Component<Props, State> {
   };
 
   renderConfigs(configs) {
-    return Object.keys(configs).map(key => {
+    return Object.keys(configs).map((key) => {
       return (
         <PerSettings
           key={Math.random()}
@@ -97,8 +97,8 @@ class GeneralSettings extends React.Component<Props, State> {
 
   render() {
     const breadcrumb = [
-      { title: __('Settings'), link: '/settings' },
-      { title: __('Loan config') }
+      { title: __('Nastavení'), link: '/settings' },
+      { title: __('Loan config') },
     ];
 
     const actionButtons = (

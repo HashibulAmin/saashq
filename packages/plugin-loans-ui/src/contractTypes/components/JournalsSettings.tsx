@@ -49,7 +49,7 @@ export const DISTRICTS = [
   { value: 'Багахангай', label: 'Багахангай' },
   { value: 'Налайх', label: 'Налайх' },
   { value: 'Сонгинохайрхан', label: 'Сонгинохайрхан' },
-  { value: 'Чингэлтэй', label: 'Чингэлтэй' }
+  { value: 'Чингэлтэй', label: 'Чингэлтэй' },
 ];
 
 const ContentBox = styled.div`
@@ -76,11 +76,11 @@ class GeneralSettings extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      currentMap: this.props.contractType.config || {}
+      currentMap: this.props.contractType.config || {},
     };
   }
 
-  save = e => {
+  save = (e) => {
     e.preventDefault();
     const { contractType } = this.props;
     const { currentMap } = this.state;
@@ -172,13 +172,13 @@ class GeneralSettings extends React.Component<Props, State> {
       }
     };
 
-    const content = props => (
+    const content = (props) => (
       <ProductChooser
         {...props}
         onSelect={productOnChange}
         data={{
           name: 'Product',
-          products: product ? [product] : []
+          products: product ? [product] : [],
         }}
         limit={1}
         chooserComponent={Chooser}
@@ -203,7 +203,7 @@ class GeneralSettings extends React.Component<Props, State> {
         icon="check-circle"
         uppercase={false}
       >
-        {__('Save')}
+        {__('Uložit')}
       </Button>
     );
 
@@ -261,7 +261,7 @@ class GeneralSettings extends React.Component<Props, State> {
                 boxShadow: '1px 0px 5px rgba(0,0,0,0.1)',
                 padding: 20,
                 paddingBottom: 10,
-                borderRadius: 10
+                borderRadius: 10,
               }}
             >
               {this.renderCheckbox('isAmountUseEBarimt')}
@@ -278,7 +278,7 @@ class GeneralSettings extends React.Component<Props, State> {
                 padding: 20,
                 paddingBottom: 10,
                 borderRadius: 10,
-                marginTop: 10
+                marginTop: 10,
               }}
             >
               {this.renderCheckbox('isInterestUseEBarimt')}
@@ -295,7 +295,7 @@ class GeneralSettings extends React.Component<Props, State> {
                 padding: 20,
                 paddingBottom: 10,
                 borderRadius: 10,
-                marginTop: 10
+                marginTop: 10,
               }}
             >
               {this.renderCheckbox('isUndueUseEBarimt')}
@@ -310,53 +310,53 @@ class GeneralSettings extends React.Component<Props, State> {
 
           <CollapseContent title={__('Classification')}>
             {this.renderItem('normalExpirationDay', 'Normal /Expiration Day/', {
-              type: 'number'
+              type: 'number',
             })}
             {this.renderItem(
               'expiredExpirationDay',
               'Expired /Expiration Day/',
               {
-                type: 'number'
-              }
+                type: 'number',
+              },
             )}
             {this.renderItem('doubtExpirationDay', 'Doubt /Expiration Day/', {
-              type: 'number'
+              type: 'number',
             })}
             {this.renderItem(
               'negativeExpirationDay',
               'Negative /Expiration Day/',
               {
-                type: 'number'
-              }
+                type: 'number',
+              },
             )}
             {this.renderItem('badExpirationDay', 'Bad /Expiration Day/', {
-              type: 'number'
+              type: 'number',
             })}
           </CollapseContent>
 
           <CollapseContent title={__('Range config')}>
             {this.renderItem('minInterest', 'Min interest', {
-              type: 'number'
+              type: 'number',
             })}
             {this.renderItem('maxInterest', 'Max interest', {
-              type: 'number'
+              type: 'number',
             })}
             {this.renderItem('defaultInterest', 'Default interest', {
-              type: 'number'
+              type: 'number',
             })}
             {this.renderItem('minTenor', 'Min tenor /Month/', {
-              type: 'number'
+              type: 'number',
             })}
             {this.renderItem('maxTenor', 'Max tenor /Month/', {
-              type: 'number'
+              type: 'number',
             })}
             {this.renderItem('minAmount', 'Min amount', {
               type: 'number',
-              useNumberFormat: true
+              useNumberFormat: true,
             })}
             {this.renderItem('maxAmount', 'Max amount', {
               type: 'number',
-              useNumberFormat: true
+              useNumberFormat: true,
             })}
             {this.props.contractType?.leaseType === LEASE_TYPES.LINEAR &&
               this.renderItem(
@@ -364,8 +364,8 @@ class GeneralSettings extends React.Component<Props, State> {
                 'Min Commitment Interest',
                 {
                   type: 'number',
-                  useNumberFormat: true
-                }
+                  useNumberFormat: true,
+                },
               )}
             {this.props.contractType?.leaseType === LEASE_TYPES.LINEAR &&
               this.renderItem(
@@ -373,8 +373,8 @@ class GeneralSettings extends React.Component<Props, State> {
                 'Max Commitment Interest',
                 {
                   type: 'number',
-                  useNumberFormat: true
-                }
+                  useNumberFormat: true,
+                },
               )}
           </CollapseContent>
         </ContentBox>

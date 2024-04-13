@@ -8,7 +8,7 @@ import {
   Icon,
   ModalTrigger,
   MainStyleTitle as Title,
-  Wrapper
+  Wrapper,
 } from '@saashq/ui/src';
 import { dimensions } from '@saashq/ui/src';
 import styled from 'styled-components';
@@ -45,11 +45,11 @@ class GeneralSettings extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      currentMap: this.props.contractType.config || {}
+      currentMap: this.props.contractType.config || {},
     };
   }
 
-  save = e => {
+  save = (e) => {
     e.preventDefault();
     const { contractType } = this.props;
     const { currentMap } = this.state;
@@ -141,13 +141,13 @@ class GeneralSettings extends React.Component<Props, State> {
       }
     };
 
-    const content = props => (
+    const content = (props) => (
       <ProductChooser
         {...props}
         onSelect={productOnChange}
         data={{
           name: 'Product',
-          products: product ? [product] : []
+          products: product ? [product] : [],
         }}
         limit={1}
         chooserComponent={Chooser}
@@ -172,7 +172,7 @@ class GeneralSettings extends React.Component<Props, State> {
         icon="check-circle"
         uppercase={false}
       >
-        {__('Save')}
+        {__('Uložit')}
       </Button>
     );
 
@@ -187,32 +187,32 @@ class GeneralSettings extends React.Component<Props, State> {
           </CollapseContent>
           <CollapseContent title={__('Range config')}>
             {this.renderItem('minInterest', 'Min interest /Month/', {
-              type: 'number'
+              type: 'number',
             })}
             {this.renderItem('maxInterest', 'Max interest /Month/', {
-              type: 'number'
+              type: 'number',
             })}
             {this.renderItem('defaultInterest', 'Default interest /Month/', {
-              type: 'number'
+              type: 'number',
             })}
             {this.renderItem('minDuration', 'Min duration /Month/', {
-              type: 'number'
+              type: 'number',
             })}
             {this.renderItem('maxDuration', 'Max duration /Month/', {
-              type: 'number'
+              type: 'number',
             })}
             {this.renderItem('minAmount', 'Min amount /Month/', {
               type: 'number',
-              useNumberFormat: true
+              useNumberFormat: true,
             })}
             {this.renderItem('maxAmount', 'Max amount /Month/', {
               type: 'number',
-              useNumberFormat: true
+              useNumberFormat: true,
             })}
           </CollapseContent>
           <CollapseContent title={__('Store interest config')}>
             {this.renderItem('Store interest time', 'Store interest time', {
-              type: 'time'
+              type: 'time',
             })}
           </CollapseContent>
         </ContentBox>

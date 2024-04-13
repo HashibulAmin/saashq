@@ -60,7 +60,7 @@ const Goal = (props: Props) => {
               <a href="#delete" onClick={() => {}}>
                 <Icon icon="trash-alt" />
 
-                {__('Delete')}
+                {__('Vymazat')}
               </a>
             </li>
           </Dropdown.Menu>

@@ -31,7 +31,7 @@ export default function ProductList({
   history,
 }: Props) {
   const breadcrumb = [
-    { title: __('Settings'), link: '/settings' },
+    { title: __('Nastavení'), link: '/settings' },
     {
       title: __('Subscription Products'),
       link: '/forums/subscription-products',

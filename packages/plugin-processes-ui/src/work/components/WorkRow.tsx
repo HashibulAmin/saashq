@@ -89,7 +89,7 @@ class Row extends React.Component<Props> {
                 content={content}
               />
               <Button btnStyle="link" onClick={this.remove}>
-                <Tip text={__('Delete')} placement="bottom">
+                <Tip text={__('Vymazat')} placement="bottom">
                   <Icon icon="trash-alt" />
                 </Tip>
               </Button>

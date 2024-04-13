@@ -91,7 +91,7 @@ export default class UpdateConfigs extends React.Component<Props, State> {
         {this.renderItem('TURN_SERVER_URL')}
         {this.renderItem('TURN_SERVER_USERNAME')}
         {this.renderItem('TURN_SERVER_CREDENTIAL')}
-        <Button onClick={onClick}>{__('Save')}</Button>
+        <Button onClick={onClick}>{__('Uložit')}</Button>
       </CollapseContent>
     );
   }

@@ -150,7 +150,7 @@ class Form extends React.Component<Props, State> {
         />
         <ModalFooter>
           <Button btnStyle="simple" onClick={handleClose}>
-            {__('Cancel')}
+            {__('Zrušení')}
           </Button>
           {this.props.renderButton({
             text: 'Skupiny indikátorů',

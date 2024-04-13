@@ -172,7 +172,7 @@ class List extends React.Component<IProps, State> {
               <th>{__('Product')}</th>
               <th>{__('Latest Branch')}</th>
               <th>{__('Latest Department')}</th>
-              <th>{__('Status')}</th>
+              <th>{__('Postavení')}</th>
               <th>{__('Is match')}</th>
               <th>{__('Jobs count')}</th>
             </tr>

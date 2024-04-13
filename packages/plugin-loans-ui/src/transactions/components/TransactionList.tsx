@@ -181,7 +181,7 @@ class TransactionsList extends React.Component<IProps> {
             ORGANIZATION_TYPE.ENTITY &&
             can('transactionsRemove', currentUser) && (
               <Button btnStyle="danger" icon="cancel-1" onClick={onClick}>
-                {__('Delete')}
+                {__('Vymazat')}
               </Button>
             )}
         </BarItems>

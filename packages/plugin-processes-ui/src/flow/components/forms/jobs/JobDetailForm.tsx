@@ -27,7 +27,7 @@ class JobDetailForm extends React.Component<Props, State> {
 
     this.state = {
       currentTab: 'content',
-      activeFlowJob: props.activeFlowJob
+      activeFlowJob: props.activeFlowJob,
     };
   }
 
@@ -101,7 +101,7 @@ class JobDetailForm extends React.Component<Props, State> {
               className={currentTab === 'status' ? 'active' : ''}
               onClick={this.tabOnClick.bind(this, 'status')}
             >
-              {__('Status')}
+              {__('Postavení')}
             </TabTitle>
           </Tabs>
         </FlowJobTabs>

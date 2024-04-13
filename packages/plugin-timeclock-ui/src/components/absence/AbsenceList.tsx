@@ -357,7 +357,7 @@ function AbsenceList(props: Props) {
         </td>
 
         <td>
-          <Tip text={__('Delete')} placement="top">
+          <Tip text={__('Vymazat')} placement="top">
             <Button
               btnStyle="link"
               onClick={() => removeAbsence(absence._id)}
@@ -387,7 +387,7 @@ function AbsenceList(props: Props) {
           <th rowSpan={2}>{__('Reason')}</th>
           <th rowSpan={2}>{__('Explanation')}</th>
           <th rowSpan={2}>{__('Attachment')}</th>
-          <th rowSpan={2}>{__('Status')}</th>
+          <th rowSpan={2}>{__('Postavení')}</th>
           <th rowSpan={2}>{__('Note')}</th>
           <th rowSpan={2}>{__('Akce')}</th>
         </tr>

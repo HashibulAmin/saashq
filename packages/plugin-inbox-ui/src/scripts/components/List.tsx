@@ -169,7 +169,7 @@ class ScriptList extends React.Component<FinalProps> {
       <List
         formTitle="New widget script"
         breadcrumb={[
-          { title: __('Settings'), link: '/settings' },
+          { title: __('Nastavení'), link: '/settings' },
           { title: __('Widget Script Manager') },
         ]}
         title={__('Widget Script Manager')}

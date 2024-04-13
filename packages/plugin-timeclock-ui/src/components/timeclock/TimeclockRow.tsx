@@ -27,7 +27,7 @@ class Row extends React.Component<Props> {
     super(props);
   }
 
-  modalContent = props => (
+  modalContent = (props) => (
     <TimeForm
       {...props}
       selectedUserId={
@@ -113,11 +113,11 @@ class Row extends React.Component<Props> {
               size="lg"
               title="Edit Shift"
               trigger={this.editShiftTimeTrigger()}
-              content={contentProps =>
+              content={(contentProps) =>
                 this.editShiftTimeContent(contentProps, timeclock)
               }
             />
-            <Tip text={__('Delete')} placement="top">
+            <Tip text={__('Vymazat')} placement="top">
               <Button
                 btnStyle="link"
                 onClick={() => removeTimeclock(timeclock._id)}

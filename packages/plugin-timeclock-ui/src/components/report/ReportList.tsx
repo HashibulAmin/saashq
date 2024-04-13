@@ -135,7 +135,7 @@ function ReportList(props: Props) {
               >
                 {__('General Information')}
               </th>
-              <th colSpan={1}>{__('Time')}</th>
+              <th colSpan={1}>{__('Čas')}</th>
               <th
                 colSpan={4}
                 style={{ textAlign: 'center', border: '1px solid #EEE' }}

@@ -42,11 +42,11 @@ class InvoiceFromContainer extends React.Component<FinalProps> {
       name,
       values,
       isSubmitted,
-      object
+      object,
     }: IButtonMutateProps) => {
       const { closeModal, getAssociatedInvoice } = this.props;
 
-      const afterSave = data => {
+      const afterSave = (data) => {
         closeModal();
 
         if (getAssociatedInvoice) {
@@ -70,7 +70,7 @@ class InvoiceFromContainer extends React.Component<FinalProps> {
             object ? 'updated' : 'added'
           } a ${name}`}
         >
-          {__('Save')}
+          {__('Uložit')}
         </ButtonMutate>
       );
     };
@@ -83,7 +83,7 @@ class InvoiceFromContainer extends React.Component<FinalProps> {
       renderButton,
       companies,
       customers,
-      invoice: { ...invoice }
+      invoice: { ...invoice },
     };
     return <InvoiceForm {...updatedProps} />;
   }
@@ -101,9 +101,9 @@ export default withProps<Props>(
         variables: {
           mainType: 'contract',
           mainTypeId: invoice && invoice.contractId,
-          isSaved: true
-        }
-      })
+          isSaved: true,
+        },
+      }),
     }),
     graphql<Props, CustomersQueryResponse>(gql(customerQueries.customers), {
       name: 'customersQuery',
@@ -111,9 +111,9 @@ export default withProps<Props>(
         variables: {
           mainType: 'contract',
           mainTypeId: invoice && invoice.contractId,
-          isSaved: true
-        }
-      })
-    })
-  )(InvoiceFromContainer)
+          isSaved: true,
+        },
+      }),
+    }),
+  )(InvoiceFromContainer),
 );

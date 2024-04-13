@@ -187,7 +187,7 @@ class RequestForm extends React.Component<Props, State> {
               disabled={loading}
             >
               {loading && <SmallLoader />}
-              {__('Cancel')}
+              {__('Zrušení')}
             </Button>
           )}
           {this.props?.renderButton({

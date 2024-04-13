@@ -314,7 +314,7 @@ export default function ChatList({
       <SearchInput>
         <Icon icon="search-1" size={18} />
         <FormControl
-          placeholder={__('Search')}
+          placeholder={__('Vyhledávání')}
           name="searchValue"
           onChange={search}
           value={searchValue}

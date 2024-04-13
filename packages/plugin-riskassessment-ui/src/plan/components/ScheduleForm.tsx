@@ -176,7 +176,7 @@ class ScheduleForm extends React.Component<Props, State> {
               {__('Close')}
             </Button>
             <Button btnStyle="success" onClick={handleSave}>
-              {__('Save')}
+              {__('Uložit')}
             </Button>
           </ModalFooter>
         )}

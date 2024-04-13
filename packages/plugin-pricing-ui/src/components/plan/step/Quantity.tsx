@@ -152,7 +152,7 @@ export default function Quantity(props: Props) {
           </FormGroup>
         </td>
         <td>
-          <Tip text={__('Delete')} placement="bottom">
+          <Tip text={__('Vymazat')} placement="bottom">
             <Button
               btnStyle="danger"
               icon="trash"
