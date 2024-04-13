@@ -20,7 +20,7 @@ type Props = {
 function List({ packages, remove, loading, renderButton }: Props) {
   const trigger = (
     <Button id={'AddPackage'} btnStyle="success" icon="plus-circle">
-      Add package
+      Přidat balíček
     </Button>
   );
 
@@ -30,7 +30,7 @@ function List({ packages, remove, loading, renderButton }: Props) {
 
   const actionBarRight = (
     <ModalTrigger
-      title={__('Add package')}
+      title={__('Přidat balíček')}
       autoOpenKey={`showModal`}
       trigger={trigger}
       content={modalContent}
@@ -40,7 +40,7 @@ function List({ packages, remove, loading, renderButton }: Props) {
 
   const actionBar = (
     <Wrapper.ActionBar
-      left={'Packages'}
+      left={'Balíčky'}
       right={actionBarRight}
       wideSpacing={true}
     />
@@ -72,14 +72,14 @@ function List({ packages, remove, loading, renderButton }: Props) {
 
   return (
     <Wrapper
-      header={<Wrapper.Header title={'Packages'} />}
+      header={<Wrapper.Header title={'Balíčky'} />}
       actionBar={actionBar}
       content={
         <DataWithLoader
           data={content}
           loading={loading}
           count={packages.length}
-          emptyText={__('There is no tag') + '.'}
+          emptyText={__('Není tam žádný štítek') + '.'}
           emptyImage="/images/actions/8.svg"
         />
       }

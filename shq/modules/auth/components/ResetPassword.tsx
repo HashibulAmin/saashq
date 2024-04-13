@@ -42,7 +42,7 @@ class ResetPassword extends React.Component<Props, { newPassword: string }> {
             />
           </FormGroup>
           <Button btnStyle="success" type="submit" block={true}>
-            Change password
+            Změnit heslo
           </Button>
         </form>
       </AuthBox>

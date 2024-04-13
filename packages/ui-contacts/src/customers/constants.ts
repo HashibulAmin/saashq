@@ -81,7 +81,7 @@ export const EMAIL_VALIDATION_STATUSES = [
   { label: 'Valid', value: 'valid' },
   { label: 'Invalid', value: 'invalid' },
   { label: 'Accept all unverifiable', value: 'accept_all_unverifiable' },
-  { label: 'Unknown', value: 'unknown' },
+  { label: 'Neznámý', value: 'unknown' },
   { label: 'Disposable', value: 'disposable' },
   { label: 'Catchall', value: 'catchall' },
   { label: 'Bad syntax', value: 'badsyntax' },
@@ -92,7 +92,7 @@ export const EMAIL_VALIDATION_STATUSES = [
 export const PHONE_VALIDATION_STATUSES = [
   { label: 'Valid', value: 'valid' },
   { label: 'Invalid', value: 'invalid' },
-  { label: 'Unknown', value: 'unknown' },
+  { label: 'Neznámý', value: 'unknown' },
   { label: 'Unverifiable', value: 'unverifiable' },
   { label: 'Mobile phone', value: 'receives_sms' },
 ];

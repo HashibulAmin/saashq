@@ -8,7 +8,7 @@ import {
   MainStyleFormColumn as FormColumn,
   MainStyleFormWrapper as FormWrapper,
   MainStyleModalFooter as ModalFooter,
-  MainStyleScrollWrapper as ScrollWrapper
+  MainStyleScrollWrapper as ScrollWrapper,
 } from '@saashq/ui/src';
 import { IButtonMutateProps, IFormProps } from '@saashq/ui/src/types';
 import React from 'react';
@@ -46,7 +46,7 @@ class PackageForm extends React.Component<Props, State> {
       level: data.level || '',
       price: data.fuelType || 0,
       duration: data.duration || 0,
-      profit: data.profit || 0
+      profit: data.profit || 0,
     };
   }
 
@@ -67,7 +67,7 @@ class PackageForm extends React.Component<Props, State> {
       wpId: finalValues.wpId,
       price: Number(finalValues.price),
       duration: Number(finalValues.duration),
-      profit: Number(finalValues.profit)
+      profit: Number(finalValues.profit),
     };
   };
 
@@ -80,7 +80,7 @@ class PackageForm extends React.Component<Props, State> {
     );
   };
 
-  onLevelChange = option => {
+  onLevelChange = (option) => {
     this.setState({ level: option.value });
   };
 
@@ -96,20 +96,20 @@ class PackageForm extends React.Component<Props, State> {
         <ScrollWrapper>
           <FormWrapper>
             <FormColumn>
-              {this.renderFormGroup('Name', {
+              {this.renderFormGroup('Název', {
                 ...formProps,
                 name: 'name',
-                defaultValue: data.name || ''
+                defaultValue: data.name || '',
               })}
 
               {this.renderFormGroup('WP Id', {
                 ...formProps,
                 name: 'wpId',
-                defaultValue: data.wpId || ''
+                defaultValue: data.wpId || '',
               })}
 
               <FormGroup>
-                <ControlLabel>Level</ControlLabel>
+                <ControlLabel>Úroveň</ControlLabel>
                 <Select
                   value={this.state.level}
                   onChange={this.onLevelChange}
@@ -120,32 +120,32 @@ class PackageForm extends React.Component<Props, State> {
             </FormColumn>
 
             <FormColumn>
-              {this.renderFormGroup('Price', {
+              {this.renderFormGroup('Cena', {
                 ...formProps,
                 name: 'price',
                 defaultValue: data.price || 0,
-                type: 'number'
+                type: 'number',
               })}
 
-              {this.renderFormGroup('Duration', {
+              {this.renderFormGroup('Doba trvání', {
                 ...formProps,
                 name: 'duration',
                 defaultValue: data.duration || 0,
-                type: 'number'
+                type: 'number',
               })}
 
-              {this.renderFormGroup('Profit', {
+              {this.renderFormGroup('Zisk', {
                 ...formProps,
                 name: 'profit',
                 defaultValue: data.profit || 0,
-                type: 'number'
+                type: 'number',
               })}
             </FormColumn>
           </FormWrapper>
           <FormWrapper>
             <FormColumn>
               <FormGroup>
-                <ControlLabel>Description</ControlLabel>
+                <ControlLabel>Popis</ControlLabel>
                 <FormControl
                   {...formProps}
                   max={140}
@@ -168,7 +168,7 @@ class PackageForm extends React.Component<Props, State> {
             values: this.generateDoc(values),
             callback: closeModal,
             isSubmitted,
-            object: this.props.data
+            object: this.props.data,
           })}
         </ModalFooter>
       </>

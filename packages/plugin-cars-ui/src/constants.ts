@@ -55,7 +55,7 @@ export const CAR_DATAS = {
 };
 
 export const CAR_BODY_TYPES = [
-  { label: 'Unknown', value: '' },
+  { label: 'Neznámý', value: '' },
   { label: 'Sedan', value: 'Sedan' },
   { label: 'SUV', value: 'SUV' },
   { label: 'Compact', value: 'Compact' },
@@ -68,7 +68,7 @@ export const CAR_BODY_TYPES = [
 ];
 
 export const CAR_FUEL_TYPES = [
-  { label: 'Unknown', value: '' },
+  { label: 'Neznámý', value: '' },
   { label: 'Hybrid', value: 'Hybrid' },
   { label: 'Petrol', value: 'Petrol' },
   { label: 'Diesel', value: 'Diesel' },
@@ -77,7 +77,7 @@ export const CAR_FUEL_TYPES = [
 ];
 
 export const CAR_GEAR_BOXS = [
-  { label: 'Unknown', value: '' },
+  { label: 'Neznámý', value: '' },
   { label: 'Automatic', value: 'Automatic' },
   { label: 'Manual', value: 'Manual' },
   { label: 'CVT', value: 'CVT' },

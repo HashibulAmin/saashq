@@ -96,11 +96,11 @@ const QuickNavigation = ({ currentUser }: { currentUser: IUser }) => {
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item>
-                <Icon icon="user" size={15}/>&nbsp;&nbsp;<Link href="/profile">{__("My Profile")}</Link>
+                <Icon icon="user" size={15}/>&nbsp;&nbsp;<Link href="/profile">{__("Můj Profil")}</Link>
               </Dropdown.Item>
 
               <Dropdown.Divider />
-              <Dropdown.Item><Icon icon="logout" size={15}/>&nbsp;&nbsp;{__("Sign out")}</Dropdown.Item>
+              <Dropdown.Item><Icon icon="logout" size={15}/>&nbsp;&nbsp;{__("Odhlásit se")}</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown> */}
         </RightTopbar>

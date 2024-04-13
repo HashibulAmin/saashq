@@ -4,7 +4,7 @@ export const CAR_SELECT_OPTIONS = {
     { label: 'Deleted', value: 'Deleted' },
   ],
   BODY_TYPES: [
-    { label: 'Unknown', value: '' },
+    { label: 'Neznámý', value: '' },
     { label: 'Sedan', value: 'Sedan' },
     { label: 'SUV', value: 'SUV' },
     { label: 'Compact', value: 'Compact' },
@@ -16,7 +16,7 @@ export const CAR_SELECT_OPTIONS = {
     { label: 'Sport Coupe', value: 'SportCoupe' },
   ],
   FUEL_TYPES: [
-    { label: 'Unknown', value: '' },
+    { label: 'Neznámý', value: '' },
     { label: 'Hybrid', value: 'Hybrid' },
     { label: 'Petrol', value: 'Petrol' },
     { label: 'Diesel', value: 'Diesel' },
@@ -24,7 +24,7 @@ export const CAR_SELECT_OPTIONS = {
     { label: 'Electric', value: 'Electric' },
   ],
   GEARBOX: [
-    { label: 'Unknown', value: '' },
+    { label: 'Neznámý', value: '' },
     { label: 'Automatic', value: 'Automatic' },
     { label: 'Manual', value: 'Manual' },
     { label: 'CVT', value: 'CVT' },

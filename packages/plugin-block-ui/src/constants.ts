@@ -1,6 +1,6 @@
 export const LEVEL = [
-  { label: 'Unknown', value: '' },
-  { label: 'High', value: 'High' },
-  { label: 'Mid', value: 'Mid' },
-  { label: 'Low', value: 'Low' }
+  { label: 'Neznámý', value: '' },
+  { label: 'Vysoký', value: 'High' },
+  { label: 'Střední', value: 'Mid' },
+  { label: 'Nízký', value: 'Low' },
 ];

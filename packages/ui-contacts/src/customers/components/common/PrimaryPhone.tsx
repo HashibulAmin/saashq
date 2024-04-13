@@ -15,9 +15,9 @@ const CallTo = styled.a`
 `;
 
 const Status = styledTS<{ verified: boolean }>(styled.span)`
-  background: ${props =>
+  background: ${(props) =>
     props.verified ? colors.colorCoreGreen : colors.bgGray};
-  color: ${props =>
+  color: ${(props) =>
     props.verified ? colors.colorWhite : colors.textSecondary};
   width: 18px;
   height: 18px;
@@ -31,33 +31,33 @@ const statuses = {
   valid: {
     icon: 'shield-check',
     label: 'Valid',
-    verified: true
+    verified: true,
   },
   invalid: {
     icon: 'shield-slash',
     label: 'Invalid',
-    verified: false
+    verified: false,
   },
   receives_sms: {
     icon: 'comment-alt-message',
     label: 'Can receive sms',
-    verified: true
+    verified: true,
   },
   unknown: {
     icon: 'lock',
-    label: 'Unknown',
-    verified: false
+    label: 'Neznámý',
+    verified: false,
   },
   unverifiable: {
     icon: 'ban',
     label: 'Unverifiable',
-    verified: false
+    verified: false,
   },
   accept_all_unverifiable: {
     icon: 'ban',
     label: 'Unverifiable',
-    verified: false
-  }
+    verified: false,
+  },
 };
 
 function PrimaryPhone({ phone, status }: { phone?: string; status?: string }) {

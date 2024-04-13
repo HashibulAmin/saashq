@@ -3,7 +3,7 @@ import { STATUSES, DEFAULT_SEX_CHOICES } from '@saashq/api-utils/src/constants';
 export const ACTIVITY_CONTENT_TYPES = {
   CUSTOMER: 'customer',
   COMPANY: 'company',
-  ALL: ['customer', 'company']
+  ALL: ['customer', 'company'],
 };
 
 export { STATUSES, DEFAULT_SEX_CHOICES };
@@ -18,14 +18,14 @@ export const COMPANY_SELECT_OPTIONS = {
     { label: 'Prospect', value: 'Prospect' },
     { label: 'Reseller', value: 'Reseller' },
     { label: 'Other', value: 'Other' },
-    { label: 'Unknown', value: '' }
+    { label: 'Neznámý', value: '' },
   ],
   STATUSES,
   DO_NOT_DISTURB: [
     { label: 'Yes', value: 'Yes' },
     { label: 'No', value: 'No' },
-    { label: 'Unknown', value: '' }
-  ]
+    { label: 'Neznámý', value: '' },
+  ],
 };
 
 export const CUSTOMER_SELECT_OPTIONS = {
@@ -43,24 +43,24 @@ export const CUSTOMER_SELECT_OPTIONS = {
     { label: 'yo/yo', value: 19 },
     { label: 'ze/zir', value: 20 },
     { label: 've/vis', value: 21 },
-    { label: 'xe/xem', value: 22 }
+    { label: 'xe/xem', value: 22 },
   ],
   EMAIL_VALIDATION_STATUSES: [
     { label: 'Valid', value: 'valid' },
     { label: 'Invalid', value: 'invalid' },
     { label: 'Accept all unverifiable', value: 'accept_all_unverifiable' },
     { label: 'Unverifiable', value: 'unverifiable' },
-    { label: 'Unknown', value: 'unknown' },
+    { label: 'Neznámý', value: 'unknown' },
     { label: 'Disposable', value: 'disposable' },
     { label: 'Catch all', value: 'catchall' },
-    { label: 'Bad syntax', value: 'badsyntax' }
+    { label: 'Bad syntax', value: 'badsyntax' },
   ],
   PHONE_VALIDATION_STATUSES: [
     { label: 'Valid', value: 'valid' },
     { label: 'Invalid', value: 'invalid' },
-    { label: 'Unknown', value: 'unknown' },
+    { label: 'Neznámý', value: 'unknown' },
     { label: 'Can receive sms', value: 'receives_sms' },
-    { label: 'Unverifiable', value: 'unverifiable' }
+    { label: 'Unverifiable', value: 'unverifiable' },
   ],
   LEAD_STATUS_TYPES: [
     { label: 'New', value: 'new' },
@@ -68,27 +68,27 @@ export const CUSTOMER_SELECT_OPTIONS = {
     { label: 'Working', value: 'inProgress' },
     { label: 'Bad Timing', value: 'badTiming' },
     { label: 'Unqualified', value: 'unqualified' },
-    { label: 'Unknown', value: '' }
+    { label: 'Neznámý', value: '' },
   ],
   STATUSES,
   DO_NOT_DISTURB: [
     { label: 'Yes', value: 'Yes' },
     { label: 'No', value: 'No' },
-    { label: 'Unknown', value: '' }
+    { label: 'Neznámý', value: '' },
   ],
   HAS_AUTHORITY: [
     { label: 'Yes', value: 'Yes' },
     { label: 'No', value: 'No' },
-    { label: 'Unknown', value: '' }
+    { label: 'Neznámý', value: '' },
   ],
   STATE: [
     { label: 'Visitor', value: 'visitor' },
     { label: 'Lead', value: 'lead' },
-    { label: 'Customer', value: 'customer' }
-  ]
+    { label: 'Customer', value: 'customer' },
+  ],
 };
 
 export const TAG_TYPES = {
   CUSTOMER: 'contacts:customer',
-  COMPANY: 'contacts:company'
+  COMPANY: 'contacts:company',
 };

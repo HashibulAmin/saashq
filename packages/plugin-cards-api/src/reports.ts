@@ -157,9 +157,9 @@ const PROBABILITY_TICKET = [
 ];
 const PRIORITY = [
   { label: 'Critical', value: 'Critical' },
-  { label: 'High', value: 'high' },
+  { label: 'Vysoký', value: 'high' },
   { label: 'Medium', value: 'medium' },
-  { label: 'Low', value: 'low' },
+  { label: 'Nízký', value: 'low' },
 ];
 const PIPELINE_TYPE_TICKET = 'ticket';
 const PIPELINE_TYPE_DEAL = 'deal';

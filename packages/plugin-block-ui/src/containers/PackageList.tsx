@@ -29,19 +29,19 @@ const ListContainer = (props: FinalProps) => {
     return <Spinner />;
   }
 
-  const remove = tag => {
-    confirm(`Are you sure?`)
+  const remove = (tag) => {
+    confirm(`Jsi si jistá?`)
       .then(() => {
         packagesRemove({ variables: { _id: tag._id } })
           .then(() => {
-            Alert.success('You successfully deleted a package');
+            Alert.success('Úspěšně jste smazali balíček');
             packagesQuery.refetch();
           })
-          .catch(e => {
+          .catch((e) => {
             Alert.error(e.message);
           });
       })
-      .catch(e => {
+      .catch((e) => {
         Alert.error(e.message);
       });
   };
@@ -50,7 +50,7 @@ const ListContainer = (props: FinalProps) => {
     values,
     isSubmitted,
     callback,
-    object
+    object,
   }: IButtonMutateProps) => {
     return (
       <ButtonMutate
@@ -60,9 +60,9 @@ const ListContainer = (props: FinalProps) => {
         refetchQueries={getRefetchQueries()}
         isSubmitted={isSubmitted}
         type="submit"
-        successMessage={`You successfully ${
-          object ? 'updated' : 'added'
-        } a package`}
+        successMessage={`Ty úspěšně ${
+          object ? 'aktualizováno' : 'přidal'
+        } balík`}
       />
     );
   };
@@ -73,7 +73,7 @@ const ListContainer = (props: FinalProps) => {
     packages: packagesQuery.packages || [],
     loading: packagesQuery.loading,
     remove,
-    renderButton
+    renderButton,
   };
 
   return <PackageList {...updatedProps} />;
@@ -82,21 +82,21 @@ const ListContainer = (props: FinalProps) => {
 const getRefetchQueries = () => {
   return [
     {
-      query: gql(queries.packages)
-    }
+      query: gql(queries.packages),
+    },
   ];
 };
 
 export default withProps<Props>(
   compose(
     graphql<Props, PackagesQueryResponse>(gql(queries.packages), {
-      name: 'packagesQuery'
+      name: 'packagesQuery',
     }),
     graphql<Props, PackageRemoveMutationResponse, { _id: string }>(
       gql(mutations.packagesRemove),
       {
-        name: 'packagesRemove'
-      }
-    )
-  )(ListContainer)
+        name: 'packagesRemove',
+      },
+    ),
+  )(ListContainer),
 );

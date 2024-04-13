@@ -25,7 +25,7 @@ module.exports = {
   ],
   customerRightSidebarSection: [
     {
-      text: 'zákaznická sekce',
+      text: 'Zákaznická sekce',
       component: './customerSidebar',
       scope: 'block'
     }

@@ -153,7 +153,7 @@ const SignatureChooser = ({
           </SignatureHiderButton>
         )}
         <ModalTrigger
-          title={__('Email signatures')}
+          title={__('E-mailové podpisy')}
           trigger={
             <div role="button" aria-label={__('Signature settings')}>
               <Tip text={__('Signature settings')} placement="top">

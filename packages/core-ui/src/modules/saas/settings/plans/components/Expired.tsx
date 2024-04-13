@@ -72,7 +72,7 @@ class Expired extends React.Component<Props> {
                   </Link>
                   <br />
                   <br />
-                  <span onClick={logout}>{__('Sign out')}</span>
+                  <span onClick={logout}>{__('Odhlásit se')}</span>
                 </StatusBox>
               </div>
             </CenterContainer>

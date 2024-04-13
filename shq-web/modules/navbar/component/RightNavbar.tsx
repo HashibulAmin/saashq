@@ -63,7 +63,7 @@ const RightNavbar = () => {
               onClick={() => logout()}
             >
               <LogOut size={16} />
-              Sign out
+              Odhlásit se
             </div>
           </PopoverContent>
         </Popover>

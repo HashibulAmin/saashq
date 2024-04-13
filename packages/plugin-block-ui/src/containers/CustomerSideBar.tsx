@@ -7,7 +7,7 @@ import {
   UpdateVerifyMutationResponse,
   UpdateVerifyMutationVariables,
   BalanceQueryResponse,
-  VerifyQueryResponse
+  VerifyQueryResponse,
 } from '../types';
 import { mutations, queries } from '../graphql';
 
@@ -33,7 +33,7 @@ const CustomerSideBarContainer = (props: FinalProps) => {
     getBalanceQuery,
     isVerifiedQuery,
     addBalanceMutation,
-    updateVerifyMutation
+    updateVerifyMutation,
   } = props;
 
   if (getBalanceQuery.loading || isVerifiedQuery.loading) {
@@ -44,34 +44,34 @@ const CustomerSideBarContainer = (props: FinalProps) => {
   const verified = isVerifiedQuery.isVerified || 'false';
 
   const addBalance = (saashqCustomerId: string, amount: number) => {
-    confirm(`Are you sure?`)
+    confirm(`Jsi si jistá?`)
       .then(() => {
         addBalanceMutation({ variables: { saashqCustomerId, amount } })
           .then(() => {
             getBalanceQuery.refetch();
-            Alert.success('You successfully add a balance');
+            Alert.success('Úspěšně jste přidali zůstatek');
           })
-          .catch(e => {
+          .catch((e) => {
             Alert.error(e.message);
           });
       })
-      .catch(e => {
+      .catch((e) => {
         Alert.error(e.message);
       });
   };
 
   const updateVerify = (saashqCustomerId: string, isVerified: string) => {
-    confirm(`Are you sure?`)
+    confirm(`Jsi si jistá?`)
       .then(() => {
         updateVerifyMutation({ variables: { saashqCustomerId, isVerified } })
           .then(() => {
-            Alert.success('You successfully update a verify');
+            Alert.success('Úspěšně jste aktualizovali ověření');
           })
-          .catch(e => {
+          .catch((e) => {
             Alert.error(e.message);
           });
       })
-      .catch(e => {
+      .catch((e) => {
         Alert.error(e.message);
       });
   };
@@ -82,7 +82,7 @@ const CustomerSideBarContainer = (props: FinalProps) => {
     getBalance,
     verified,
     addBalance,
-    updateVerify
+    updateVerify,
   };
 
   return <CustomerSideBar {...updatedProps} />;
@@ -94,8 +94,8 @@ const getRefetchQueries = () => ({
     'getBalance',
     'isVerified',
     'investments',
-    'totalInvestmentCount'
-  ]
+    'totalInvestmentCount',
+  ],
 });
 
 export default withProps<Props>(
@@ -106,9 +106,9 @@ export default withProps<Props>(
         name: 'getBalanceQuery',
         options: ({ id }) => ({
           fetchPolicy: 'network-only',
-          variables: { saashqCustomerId: id }
-        })
-      }
+          variables: { saashqCustomerId: id },
+        }),
+      },
     ),
     graphql<Props, VerifyQueryResponse, { saashqCustomerId: string }>(
       gql(queries.isVerified),
@@ -116,23 +116,23 @@ export default withProps<Props>(
         name: 'isVerifiedQuery',
         options: ({ id }) => ({
           fetchPolicy: 'network-only',
-          variables: { saashqCustomerId: id }
-        })
-      }
+          variables: { saashqCustomerId: id },
+        }),
+      },
     ),
     graphql<{}, AddBalanceMutationResponse, AddBalanceMutationVariables>(
       gql(mutations.addBalance),
       {
         name: 'addBalanceMutation',
-        options: getRefetchQueries
-      }
+        options: getRefetchQueries,
+      },
     ),
     graphql<{}, UpdateVerifyMutationResponse, UpdateVerifyMutationVariables>(
       gql(mutations.updateVerify),
       {
         name: 'updateVerifyMutation',
-        options: getRefetchQueries
-      }
-    )
-  )(CustomerSideBarContainer)
+        options: getRefetchQueries,
+      },
+    ),
+  )(CustomerSideBarContainer),
 );

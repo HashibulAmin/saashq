@@ -21,16 +21,16 @@ function CustomerSideBar({
   getBalance,
   verified,
   addBalance,
-  updateVerify
+  updateVerify,
 }: Props) {
   const [balance, SetBalance] = useState(0);
   const [verify, SetVerify] = useState(verified);
 
-  const onChangeBalance = e => {
+  const onChangeBalance = (e) => {
     SetBalance(Number(e.target.value));
   };
 
-  const onVerifyChange = option => {
+  const onVerifyChange = (option) => {
     const value = option ? option.value : '';
 
     SetVerify(value);
@@ -47,7 +47,7 @@ function CustomerSideBar({
   return (
     <Box title={__('Block')} name="showOthers">
       <FormGroup>
-        <ControlLabel>{__('Balance')}</ControlLabel>
+        <ControlLabel>{__('Zůstatek')}</ControlLabel>
         <FormControl
           type="number"
           defaultValue={balance}
@@ -58,23 +58,23 @@ function CustomerSideBar({
         Submit
       </Button>
       <FormGroup>
-        <ControlLabel>{__('Verify')}</ControlLabel>
+        <ControlLabel>{__('Ověřte')}</ControlLabel>
         <Select
           value={verify}
           onChange={onVerifyChange}
           options={[
             {
-              label: 'True',
-              value: 'true'
+              label: 'Skutečný',
+              value: 'true',
             },
             {
-              label: 'False',
-              value: 'false'
+              label: 'Nepravdivé',
+              value: 'false',
             },
             {
-              label: 'Loading',
-              value: 'loading'
-            }
+              label: 'Načítání',
+              value: 'loading',
+            },
           ]}
           clearable={false}
         />
@@ -84,7 +84,7 @@ function CustomerSideBar({
       </Button>
       <List>
         <li>
-          <div>{__('Total Balance')}: </div> <span>{getBalance}</span>
+          <div>{__('Celková Rovnováha')}: </div> <span>{getBalance}</span>
         </li>
       </List>
     </Box>

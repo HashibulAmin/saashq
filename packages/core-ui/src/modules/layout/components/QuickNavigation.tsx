@@ -151,29 +151,29 @@ const QuickNavigation = ({
             </NameCardWrapper>
             <Dropdown.Divider />
             <li>
-              <Link to="/profile">{__('My Profile')}</Link>
+              <Link to="/profile">{__('Můj Profil')}</Link>
             </li>
             <li>
               <DropNav>
-                {__('Account Settings')}
+                {__('Nastavení účtu')}
                 <Icon icon="angle-right" />
                 <ul>
                   <ModalTrigger
                     title="Change Password"
                     trigger={
                       <li>
-                        <a href="#change-password">{__('Change password')}</a>
+                        <a href="#change-password">{__('Změnit heslo')}</a>
                       </li>
                     }
                     content={passContent}
                   />
 
                   <ModalTrigger
-                    title="Email signatures"
+                    title="E-mailové podpisy"
                     enforceFocus={false}
                     trigger={
                       <li>
-                        <a href="#email">{__('Email signatures')}</a>
+                        <a href="#email">{__('E-mailové podpisy')}</a>
                       </li>
                     }
                     content={signatureContent}
@@ -217,7 +217,7 @@ const QuickNavigation = ({
               </>
             ) : null}
 
-            <Dropdown.Item onClick={logout}>{__('Sign out')}</Dropdown.Item>
+            <Dropdown.Item onClick={logout}>{__('Odhlásit se')}</Dropdown.Item>
             {release ? (
               <Version>
                 <span>verze</span> <span>{release}</span>
