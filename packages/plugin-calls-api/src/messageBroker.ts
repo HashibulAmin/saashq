@@ -55,7 +55,7 @@ export const setupMessageConsumers = async () => {
       if (!integration) {
         return {
           status: 'error',
-          errorMessage: 'integration not found.',
+          errorMessage: 'integrace nenalezena.',
         };
       }
 
@@ -85,7 +85,7 @@ export const setupMessageConsumers = async () => {
       if (!integration) {
         return {
           status: 'error',
-          errorMessage: 'Integration not found.',
+          errorMessage: 'Integrace nenalezena.',
         };
       }
 
@@ -105,7 +105,7 @@ export const setupMessageConsumers = async () => {
       } else {
         return {
           status: 'error',
-          errorMessage: 'Integration not found.',
+          errorMessage: 'Integrace nenalezena.',
         };
       }
     },

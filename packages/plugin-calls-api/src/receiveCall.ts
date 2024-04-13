@@ -22,7 +22,7 @@ const receiveCall = async (
   });
 
   if (!integration) {
-    throw new Error('Integration not found');
+    throw new Error('Integrace nenalezena');
   }
 
   params.recipientId = integration.phone;
@@ -44,7 +44,7 @@ const receiveCall = async (
     } catch (e) {
       throw new Error(
         e.message.includes('duplicate')
-          ? 'Concurrent request: conversation duplication'
+          ? 'Souběžný požadavek: duplikace konverzace'
           : e,
       );
     }
@@ -67,12 +67,12 @@ const receiveCall = async (
       try {
         await newHistory.save();
       } catch (error) {
-        console.error('Error saving call history:', error);
+        console.error('Při ukládání historie hovorů došlo k chybě:', error);
       }
     } catch (e) {
       throw new Error(
         e.message.includes('duplicate')
-          ? 'Concurrent request: call session duplication'
+          ? 'Souběžný požadavek: duplikace hovoru'
           : e,
       );
     }
@@ -121,7 +121,7 @@ const receiveCall = async (
         {
           conversationClientMessageInserted: {
             _id: Math.random().toString(),
-            content: 'new grandstream message',
+            content: 'nová grandstreamová zpráva',
             createdAt: new Date(),
             customerId: customer.saashqApiId,
             conversationId: conversation.saashqApiId,

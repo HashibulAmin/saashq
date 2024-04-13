@@ -22,7 +22,7 @@ export const getOrCreateCustomer = async (
     } catch (e) {
       throw new Error(
         e.message.includes('duplicate')
-          ? 'Concurrent request: customer duplication'
+          ? 'Souběžný požadavek: duplikace zákazníka'
           : e,
       );
     }

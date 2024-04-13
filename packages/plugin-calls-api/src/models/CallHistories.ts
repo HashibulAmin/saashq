@@ -21,7 +21,7 @@ export const loadCallHistoryClass = (models: IModels) => {
     public static async getCallHistories(selector, user) {
       const integration = await models.Integrations.getIntegration(user?._id);
       if (!integration) {
-        throw new Error('Integration not found');
+        throw new Error('Integrace nenalezena');
       }
       if (selector?.callStatus === 'missed') {
         selector.callStatus = { $ne: 'connected' };

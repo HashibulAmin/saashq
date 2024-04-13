@@ -3,7 +3,7 @@ import { Model } from 'mongoose';
 import { IModels } from '../connectionResolver';
 import {
   conversationSchema,
-  IConversationDocument
+  IConversationDocument,
 } from './definitions/conversations';
 
 export interface IConversationModel extends Model<IConversationDocument> {
@@ -16,7 +16,7 @@ export const loadConversationClass = (models: IModels) => {
       const conversation = await models.Conversations.findOne(selector);
 
       if (!conversation) {
-        throw new Error('Conversation not found');
+        throw new Error('Konverzace nenalezena');
       }
 
       return conversation;

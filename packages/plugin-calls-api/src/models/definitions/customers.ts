@@ -12,11 +12,11 @@ export interface ICustomerDocument extends ICustomer, Document {}
 export const customerSchema: Schema<ICustomerDocument> =
   new Schema<ICustomerDocument>({
     _id: field({ pkey: true }),
-    saashqApiId: { type: String, label: 'Customer id at contacts-api' },
+    saashqApiId: { type: String, label: 'ID zákazníka na contact-api' },
     primaryPhone: {
       type: String,
       unique: true,
-      label: 'Call primary phone',
+      label: 'Zavolejte na primární telefon',
     },
-    inboxIntegrationId: { type: String, label: 'Inbox integration id' },
+    inboxIntegrationId: { type: String, label: 'ID integrace doručené pošty' },
   });

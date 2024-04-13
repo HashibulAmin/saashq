@@ -19,9 +19,9 @@ export interface IIntegrationDocument extends IIntegration, Document {}
 
 export const integrationSchema = new Schema({
   _id: field({ pkey: true }),
-  inboxId: field({ type: String, label: 'inbox id' }),
-  wsServer: field({ type: String, label: 'web socket server' }),
-  phone: field({ type: String, label: 'phone number', unique: true }),
-  operators: field({ type: Object, label: 'Operator maps' }),
-  token: field({ type: String, label: 'token' })
+  inboxId: field({ type: String, label: 'ID doručené pošty' }),
+  wsServer: field({ type: String, label: 'webový soketový server' }),
+  phone: field({ type: String, label: 'telefonní číslo', unique: true }),
+  operators: field({ type: Object, label: 'Mapy operátorů' }),
+  token: field({ type: String, label: 'žeton' }),
 });

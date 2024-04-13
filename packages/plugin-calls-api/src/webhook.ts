@@ -33,7 +33,7 @@ const webhookReceiver = async (req: Request, res: Response): Promise<void> => {
       });
 
       if (!integration) {
-        res.status(401).send('Miss configured integration');
+        res.status(401).send('Špatně nakonfigurovaná integrace');
         return;
       }
 
@@ -74,7 +74,7 @@ const webhookReceiver = async (req: Request, res: Response): Promise<void> => {
 
     res.json({ status: 'success' });
   } catch (e) {
-    res.status(401).send('Unauthorized');
+    res.status(401).send('Neoprávněný');
     return;
   }
 };

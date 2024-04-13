@@ -55,7 +55,7 @@ const callsMutations = {
 
     return {
       customer: customer.saashqApiId && {
-        __typename: 'Customer',
+        __typename: 'Zákazník',
         _id: customer.saashqApiId,
       },
       conversation,
@@ -156,7 +156,7 @@ const callsMutations = {
     const history = await models.CallHistory.findOne({ _id });
 
     if (!history) {
-      throw new Error(`Call history not found with id ${_id}`);
+      throw new Error(`Nebyla nalezena historie hovorů s ID ${_id}`);
     }
 
     return history.deleteOne();

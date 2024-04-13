@@ -10,6 +10,6 @@ export interface IActiveSessionDocument extends IActiveSessions, Document {}
 
 export const activeSessionSchema = new Schema({
   _id: field({ pkey: true }),
-  userId: field({ pkey: true, type: String, label: 'Active user id' }),
-  lastLoginDeviceId: field({ type: String, label: 'Browser session id' }),
+  userId: field({ pkey: true, type: String, label: 'ID aktivního uživatele' }),
+  lastLoginDeviceId: field({ type: String, label: 'ID relace prohlížeče' }),
 });

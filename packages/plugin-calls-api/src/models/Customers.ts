@@ -15,7 +15,7 @@ export const loadCustomerClass = (models: IModels) => {
       }
 
       if (!customer) {
-        throw new Error('Customer not found');
+        throw new Error('Zákazník nenalezen');
       }
 
       return customer;
