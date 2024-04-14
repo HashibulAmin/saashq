@@ -34,7 +34,7 @@ import { customFieldsDataByFieldCode } from '@saashq/api-utils/src/fieldUtils';
 const EXTEND_FIELDS = {
   CUSTOMER: [
     { name: 'companiesPrimaryNames', label: 'Company Primary Names' },
-    { name: 'companiesPrimaryEmails', label: 'Company Primary Emails' },
+    { name: 'companiesPrimaryEmails', label: 'Company Primární Emails' },
   ],
   ALL: [
     { name: 'tag', label: 'Tag' },
@@ -445,7 +445,7 @@ export const generateFields = async ({ subdomain, data }) => {
       fields.push({
         _id: Math.random(),
         name: 'companiesPrimaryEmails',
-        label: 'Company Primary Emails',
+        label: 'Company Primární Emails',
       });
     }
   }

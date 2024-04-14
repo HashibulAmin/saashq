@@ -4,104 +4,105 @@ import { getBoardItemLink } from './models/utils';
 export default {
   actions: [
     {
-      label: 'Deal created',
+      label: 'Dohoda vytvořena',
       action: 'create',
-      type: 'cards:deal'
+      type: 'cards:deal',
     },
     {
-      label: 'Deal updated',
+      label: 'Nabídka aktualizována',
       action: 'update',
-      type: 'cards:deal'
+      type: 'cards:deal',
     },
     {
-      label: 'Deal deleted',
+      label: 'Dohoda smazána',
       action: 'delete',
-      type: 'cards:deal'
+      type: 'cards:deal',
     },
     {
-      label: 'Deal moved',
+      label: 'Dohoda posunuta',
       action: 'createBoardItemMovementLog',
-      type: 'cards:deal'
+      type: 'cards:deal',
     },
     {
-      label: 'Purchase created',
+      label: 'Nákup vytvořen',
       action: 'create',
-      type: 'cards:purchase'
+      type: 'cards:purchase',
     },
     {
-      label: 'Purchase updated',
+      label: 'Nákup aktualizován',
       action: 'update',
-      type: 'cards:purchase'
+      type: 'cards:purchase',
     },
     {
-      label: 'Purchase deleted',
+      label: 'Nákup smazán',
       action: 'delete',
-      type: 'cards:purchase'
+      type: 'cards:purchase',
     },
     {
-      label: 'Purchase moved',
+      label: 'Nákup se přesunul',
       action: 'createBoardItemMovementLog',
-      type: 'cards:purchase'
+      type: 'cards:purchase',
     },
     {
-      label: 'Task created',
+      label: 'Úkol vytvořen',
       action: 'create',
-      type: 'cards:task'
+      type: 'cards:task',
     },
     {
-      label: 'Task updated',
+      label: 'Úkol aktualizován',
       action: 'update',
-      type: 'cards:task'
+      type: 'cards:task',
     },
     {
-      label: 'Task deleted',
+      label: 'Úkol smazán',
       action: 'delete',
-      type: 'cards:task'
+      type: 'cards:task',
     },
     {
-      label: 'Task moved',
+      label: 'Úkol přesunut',
       action: 'createBoardItemMovementLog',
-      type: 'cards:task'
+      type: 'cards:task',
     },
     {
-      label: 'Ticket created',
+      label: 'Lístek vytvořen',
       action: 'create',
-      type: 'cards:ticket'
+      type: 'cards:ticket',
     },
     {
       label: 'Ticket updated',
       action: 'update',
-      type: 'cards:ticket'
+      type: 'cards:ticket',
     },
     {
-      label: 'Ticket deleted',
+      label: 'Lístek smazán',
       action: 'delete',
-      type: 'cards:ticket'
+      type: 'cards:ticket',
     },
     {
-      label: 'Ticket moved',
+      label: 'Lístek posunut',
       action: 'createBoardItemMovementLog',
-      type: 'cards:ticket'
-    }
+      type: 'cards:ticket',
+    },
   ],
   getInfo: async ({
     subdomain,
-    data: { data, contentType, actionText, action }
+    data: { data, contentType, actionText, action },
   }) => {
     const models = await generateModels(subdomain);
 
     if (action === 'createBoardItemMovementLog') {
       return {
-        content: `${contentType} with name ${data.data.item.name ||
-          ''} has moved from ${data.data.activityLogContent.text}`,
-        url: data.data.link
+        content: `${contentType} se jménem ${
+          data.data.item.name || ''
+        } se přestěhoval z ${data.data.activityLogContent.text}`,
+        url: data.data.link,
       };
     }
 
     if (!['create', 'update'].includes(action)) {
       return {
         content: `${contentType} ${actionText}`,
-        url: ''
+        url: '',
       };
     }
 
@@ -109,7 +110,7 @@ export default {
 
     return {
       url: await getBoardItemLink(models, object.stageId, object._id),
-      content: `${contentType} ${actionText}`
+      content: `${contentType} ${actionText}`,
     };
-  }
+  },
 };

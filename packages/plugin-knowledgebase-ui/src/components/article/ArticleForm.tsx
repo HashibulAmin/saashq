@@ -495,7 +495,7 @@ class ArticleForm extends React.Component<Props, State> {
         </FlexContent>
 
         <FormGroup>
-          <ControlLabel>{__('saashq forms')}</ControlLabel>
+          <ControlLabel>{__('SaasHQ Forms')}</ControlLabel>
           <Forms>
             {this.state.saashqForms.map((form) =>
               this.renderSaasHQForm(form, formProps),

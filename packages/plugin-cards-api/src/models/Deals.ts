@@ -23,7 +23,7 @@ export const loadDealClass = (models: IModels, subdomain: string) => {
       const deal = await models.Deals.findOne({ _id });
 
       if (!deal) {
-        throw new Error('Deal not found');
+        throw new Error('Nabídka nenalezena');
       }
 
       return deal;
@@ -39,7 +39,7 @@ export const loadDealClass = (models: IModels, subdomain: string) => {
         });
 
         if (convertedDeal) {
-          throw new Error('Already converted a deal');
+          throw new Error('Již konvertoval dohodu');
         }
       }
 

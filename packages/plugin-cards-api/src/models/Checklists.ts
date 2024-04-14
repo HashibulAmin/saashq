@@ -48,7 +48,7 @@ export const loadClass = (models: IModels, subdomain: string) => {
       const checklist = await models.Checklists.findOne({ _id });
 
       if (!checklist) {
-        throw new Error('Checklist not found');
+        throw new Error('Kontrolní seznam nenalezen');
       }
 
       return checklist;
@@ -116,7 +116,7 @@ export const loadClass = (models: IModels, subdomain: string) => {
       const checklistObj = await models.Checklists.findOne({ _id });
 
       if (!checklistObj) {
-        throw new Error(`Checklist not found with id ${_id}`);
+        throw new Error(`Kontrolní seznam nebyl nalezen s ID ${_id}`);
       }
 
       await models.ChecklistItems.deleteMany({
@@ -144,7 +144,7 @@ export const loadItemClass = (models: IModels, subdomain: string) => {
       const checklistItem = await models.ChecklistItems.findOne({ _id });
 
       if (!checklistItem) {
-        throw new Error('Checklist item not found');
+        throw new Error('Položka kontrolního seznamu nebyla nalezena');
       }
 
       return checklistItem;
@@ -203,7 +203,9 @@ export const loadItemClass = (models: IModels, subdomain: string) => {
       const checklistItem = await models.ChecklistItems.findOne({ _id });
 
       if (!checklistItem) {
-        throw new Error(`Checklist's item not found with id ${_id}`);
+        throw new Error(
+          `Položka kontrolního seznamu nebyla nalezena s ID ${_id}`,
+        );
       }
 
       await putChecklistActivityLog(subdomain, {

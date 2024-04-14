@@ -17,19 +17,19 @@ const modelChanger = (type: string, models: IModels) => {
 export default {
   types: [
     {
-      description: 'Deals',
+      description: 'Nabídky',
       type: 'deal',
     },
     {
-      description: 'Purchases',
+      description: 'Nákupy',
       type: 'purchase',
     },
     {
-      description: 'Tasks',
+      description: 'Úkoly',
       type: 'task',
     },
     {
-      description: 'Tickets',
+      description: 'Vstupenky',
       type: 'ticket',
     },
   ],

@@ -36,7 +36,7 @@ export const loadPipelineLabelClass = (models: IModels) => {
       const pipelineLabel = await models.PipelineLabels.findOne({ _id });
 
       if (!pipelineLabel) {
-        throw new Error('Label not found');
+        throw new Error('Štítek nenalezen');
       }
 
       return pipelineLabel;
@@ -73,7 +73,7 @@ export const loadPipelineLabelClass = (models: IModels) => {
       }).countDocuments();
 
       if (prevLabelsCount !== labelIds.length) {
-        throw new Error('Label not found');
+        throw new Error('Štítek nenalezen');
       }
 
       await collection.updateMany(
@@ -96,7 +96,7 @@ export const loadPipelineLabelClass = (models: IModels) => {
       const isUnique = await models.PipelineLabels.validateUniqueness(filter);
 
       if (!isUnique) {
-        throw new Error('Label duplicated');
+        throw new Error('Štítek duplikován');
       }
 
       return models.PipelineLabels.create(doc);
@@ -112,7 +112,7 @@ export const loadPipelineLabelClass = (models: IModels) => {
       );
 
       if (!isUnique) {
-        throw new Error('Label duplicated');
+        throw new Error('Štítek duplikován');
       }
 
       await models.PipelineLabels.updateOne({ _id }, { $set: doc });
@@ -127,7 +127,7 @@ export const loadPipelineLabelClass = (models: IModels) => {
       const pipelineLabel = await models.PipelineLabels.findOne({ _id });
 
       if (!pipelineLabel) {
-        throw new Error('Label not found');
+        throw new Error('Štítek nenalezen');
       }
 
       const pipeline = await models.Pipelines.getPipeline(

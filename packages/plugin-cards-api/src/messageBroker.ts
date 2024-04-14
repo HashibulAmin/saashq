@@ -100,7 +100,7 @@ export const setupMessageConsumers = async () => {
     if (!itemId || !type || !user || !processId) {
       return {
         status: 'error',
-        errorMessage: 'you must provide some params',
+        errorMessage: 'musíte uvést nějaké parametry',
       };
     }
     const collection = objModels[type];
@@ -137,7 +137,7 @@ export const setupMessageConsumers = async () => {
     if (!parent) {
       return {
         status: 'error',
-        errorMessage: 'Parent not found',
+        errorMessage: 'Rodič nenalezen',
       };
     }
 
@@ -658,7 +658,7 @@ export const setupMessageConsumers = async () => {
       if (!pipelineId) {
         return {
           status: 'error',
-          errorMessage: 'Pipeline not found',
+          errorMessage: 'Potrubí nebylo nalezeno',
         };
       }
 

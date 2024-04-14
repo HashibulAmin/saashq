@@ -417,7 +417,7 @@ function General({
             'tickets',
             <>
               {renderControl({
-                label: 'Tickets',
+                label: 'Vstupenky',
                 subtitle: 'Shown name on menu',
                 formValueName: 'ticketLabel',
                 formValue: ticketLabel,
@@ -439,7 +439,7 @@ function General({
             'deals',
             <>
               {renderControl({
-                label: 'Deals',
+                label: 'Nabídky',
                 subtitle: 'Shown name on menu',
                 formValueName: 'dealLabel',
                 formValue: dealLabel,
@@ -461,7 +461,7 @@ function General({
             'purchases',
             <>
               {renderControl({
-                label: 'Purchases',
+                label: 'Nákupy',
                 subtitle: 'Shown name on menu',
                 formValueName: 'purchaseLabel',
                 formValue: purchaseLabel,

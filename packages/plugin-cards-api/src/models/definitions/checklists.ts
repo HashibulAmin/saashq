@@ -32,26 +32,26 @@ export const checklistSchema = new Schema({
   _id: field({ pkey: true }),
   contentType: field({
     type: String,
-    label: 'Content type',
+    label: 'Typ obsahu',
     index: true,
   }),
   order: field({ type: Number }),
   contentTypeId: field({
     type: String,
-    label: 'Content type item',
+    label: 'Položka typu obsahu',
     index: true,
   }),
-  title: field({ type: String, label: 'Title' }),
-  createdUserId: field({ type: String, label: 'Created by' }),
+  title: field({ type: String, label: 'Titul' }),
+  createdUserId: field({ type: String, label: 'Vytvořil' }),
   createdDate: field({ type: Date, label: 'Vytvořeno v' }),
 });
 
 export const checklistItemSchema = new Schema({
   _id: field({ pkey: true }),
-  checklistId: field({ type: String, label: 'Check list', index: true }),
-  content: field({ type: String, label: 'Content' }),
-  isChecked: field({ type: Boolean, label: 'Is checked' }),
-  createdUserId: field({ type: String, label: 'Created by' }),
+  checklistId: field({ type: String, label: 'Kontrolní seznam', index: true }),
+  content: field({ type: String, label: 'Obsah' }),
+  isChecked: field({ type: Boolean, label: 'Je zaškrtnuto' }),
+  createdUserId: field({ type: String, label: 'Vytvořil' }),
   createdDate: field({ type: Date, label: 'Vytvořeno v' }),
   order: field({ type: Number }),
 });

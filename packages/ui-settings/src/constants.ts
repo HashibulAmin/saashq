@@ -137,7 +137,7 @@ export const EMPTY_CONTENT_SCRIPT = {
 };
 
 export const EMPTY_CONTENT_POPUPS = {
-  title: __('Getting Started with saashq forms'),
+  title: __('Getting Started with SaasHQ Forms'),
   description: __(
     'Never miss a potential lead by capturing them with a customizable Forms',
   ),
@@ -526,9 +526,9 @@ export const WEBHOOK_ACTIONS = [
 ];
 
 export const EMPTY_CONTENT_BOOKINGS = {
-  title: __('Getting Started with saashq Booking'),
+  title: __('Getting Started with SaasHQ Booking'),
   description: __(
-    'saashq Booking widget helps you create listings of your Products and Services and receive bookings with your saashq Form.',
+    'SaasHQ Booking widget helps you create listings of your Products and Services and receive bookings with your saashq Form.',
   ),
   steps: [
     {

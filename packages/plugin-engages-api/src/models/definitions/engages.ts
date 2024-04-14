@@ -180,7 +180,7 @@ export const engageMessageSchema = schemaWrapper(
       optional: true,
       label: 'Brands',
     }),
-    customerIds: field({ type: [String], label: 'Customers' }),
+    customerIds: field({ type: [String], label: 'Zákazníci' }),
     cpId: field({ type: String, label: 'Client Portal Id' }),
     title: field({ type: String, label: 'Title' }),
     fromUserId: field({ type: String, label: 'From user' }),

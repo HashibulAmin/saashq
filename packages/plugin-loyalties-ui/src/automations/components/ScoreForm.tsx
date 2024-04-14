@@ -6,7 +6,7 @@ import {
   SelectTeamMembers,
   TabTitle,
   Tabs,
-  __
+  __,
 } from '@saashq/ui/src';
 import SelectCompanies from '@saashq/ui-contacts/src/companies/containers/SelectCompanies';
 import SelectCustomers from '@saashq/ui-contacts/src/customers/containers/SelectCustomers';
@@ -20,26 +20,26 @@ import { PaddingTop } from '../../styles';
 const OWNER_TYPE_COMPONENTS = {
   customer: SelectCustomers,
   company: SelectCompanies,
-  teamMember: SelectTeamMembers
+  teamMember: SelectTeamMembers,
 };
 
 const OWNER_TYPES = [
   {
     value: '',
-    label: 'Select Choose'
+    label: 'Select Choose',
   },
   {
     value: 'customer',
-    label: 'Customers'
+    label: 'Zákazníci',
   },
   {
     value: 'company',
-    label: 'Companies'
+    label: 'Společnosti',
   },
   {
     value: 'teamMember',
-    label: 'Team Members'
-  }
+    label: 'Team Members',
+  },
 ];
 
 type Props = {
@@ -63,7 +63,7 @@ export default class ScoreForm extends React.Component<Props, State> {
 
     this.state = {
       config: props?.activeAction?.config || null,
-      currentTab: ''
+      currentTab: '',
     };
   }
 
@@ -76,7 +76,7 @@ export default class ScoreForm extends React.Component<Props, State> {
 
     let Component = OWNER_TYPE_COMPONENTS[config?.ownerType];
     const { label } =
-      OWNER_TYPES.find(ot => ot.value === config?.ownerType) || {};
+      OWNER_TYPES.find((ot) => ot.value === config?.ownerType) || {};
 
     return (
       <FormGroup>
@@ -112,18 +112,16 @@ export default class ScoreForm extends React.Component<Props, State> {
   renderDefaultContent(config, handleChange) {
     const { triggerType } = this.props;
 
-    const additionalAttributes: any[] = [
-      'contacts',
-      'user',
-      'posOrder'
-    ].some(c => triggerType.includes(c))
+    const additionalAttributes: any[] = ['contacts', 'user', 'posOrder'].some(
+      (c) => triggerType.includes(c),
+    )
       ? [
           {
             _id: String(Math.random()),
             label: 'Trigger Executor',
             name: 'triggerExecutor',
-            type: 'custom'
-          }
+            type: 'custom',
+          },
         ]
       : [];
 
@@ -135,7 +133,7 @@ export default class ScoreForm extends React.Component<Props, State> {
           inputName="attribution"
           label="Attribution"
           attrTypes={['user', 'contact', 'custom']}
-          onChange={config => this.setState({ config })}
+          onChange={(config) => this.setState({ config })}
           customAttributions={additionalAttributes}
         />
 
@@ -145,7 +143,7 @@ export default class ScoreForm extends React.Component<Props, State> {
           inputName="scoreString"
           label="Score"
           attrTypes={['Number']}
-          onChange={config => this.setState({ config })}
+          onChange={(config) => this.setState({ config })}
         />
       </>
     );
@@ -169,7 +167,7 @@ export default class ScoreForm extends React.Component<Props, State> {
     const { activeAction, closeModal, addAction } = this.props;
     const { config, currentTab } = this.state;
 
-    const handleTabChange = tab => {
+    const handleTabChange = (tab) => {
       this.setState({ currentTab: tab, config: null });
     };
 

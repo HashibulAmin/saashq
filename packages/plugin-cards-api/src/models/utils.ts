@@ -214,7 +214,7 @@ export const getItem = async (models: IModels, type: string, doc: any) => {
   const item = await getCollection(models, type).collection.findOne({ ...doc });
 
   if (!item) {
-    throw new Error(`${type} not found`);
+    throw new Error(`${type} nenalezeno`);
   }
 
   return item;
@@ -499,13 +499,13 @@ const checkBookingConvert = async (subdomain: string, productId: string) => {
   if (dealUOM.length > 0) {
     dealUOM = dealUOM[0];
   } else {
-    throw new Error('Please choose UNIT OF MEASUREMENT from general settings!');
+    throw new Error('Prosím, zvolte JEDNOTKU MĚŘENÍ z obecných nastavení!');
   }
 
   if (dealCurrency.length > 0) {
     dealCurrency = dealCurrency[0];
   } else {
-    throw new Error('Please choose currency from general settings!');
+    throw new Error('Vyberte měnu z obecných nastavení!');
   }
 
   return {

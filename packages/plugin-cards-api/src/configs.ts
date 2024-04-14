@@ -96,7 +96,7 @@ export default {
       }),
     );
 
-    console.log('Debug ....');
+    console.log('Ladit ....');
   },
   setupMessageConsumers,
 };

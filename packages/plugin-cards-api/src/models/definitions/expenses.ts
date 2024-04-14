@@ -20,7 +20,7 @@ export const expenseSchema = schemaWrapper(
     name: field({ type: String, label: 'Název', unique: true }),
     description: field({ type: String, optional: true, label: 'Popis' }),
     status: field({ type: String, default: 'active', label: 'Postavení' }),
-    createdBy: field({ type: String, label: 'Created by' }),
+    createdBy: field({ type: String, label: 'Vytvořil' }),
     createdAt: field({ type: Date, label: 'Vytvořeno v' }),
   }),
 );

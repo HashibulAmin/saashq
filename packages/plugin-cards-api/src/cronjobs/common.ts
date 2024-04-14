@@ -14,32 +14,30 @@ export const sendNotifications = async (subdomain: string) => {
     task: models.Tasks,
     ticket: models.Tickets,
     purchase: models.Purchases,
-    all: ['deal', 'task', 'ticket', 'purchase']
+    all: ['deal', 'task', 'ticket', 'purchase'],
   };
 
   for (const type of collections.all) {
     const objects = await collections[type].find({
       closeDate: {
         $gte: now,
-        $lte: moment()
-          .add(2, 'days')
-          .toDate()
-      }
+        $lte: moment().add(2, 'days').toDate(),
+      },
     });
 
     for (const object of objects) {
       const stage = await models.Stages.getStage(object.stageId || '');
       const pipeline = await models.Pipelines.getPipeline(
-        stage.pipelineId || ''
+        stage.pipelineId || '',
       );
 
       const user = await sendCoreMessage({
         subdomain,
         action: 'users.findOne',
         data: {
-          _id: object.modifiedBy
+          _id: object.modifiedBy,
         },
-        isRPC: true
+        isRPC: true,
       });
 
       if (!user) {
@@ -47,11 +45,11 @@ export const sendNotifications = async (subdomain: string) => {
       }
 
       const diffMinute = Math.floor(
-        (object.closeDate.getTime() - now.getTime()) / 60000
+        (object.closeDate.getTime() - now.getTime()) / 60000,
       );
 
       if (Math.abs(diffMinute - (object.reminderMinute || 0)) < 5) {
-        const content = `${object.name} ${type} is due in upcoming`;
+        const content = `${object.name} ${type} je splatná v nadcházejících`;
 
         await sendNotificationsMessage({
           subdomain,
@@ -66,8 +64,8 @@ export const sendNotifications = async (subdomain: string) => {
             // exclude current user
             contentType: type,
             contentTypeId: object._id,
-            receivers: object.assignedUserIds || []
-          }
+            receivers: object.assignedUserIds || [],
+          },
         });
       }
     }
@@ -77,5 +75,5 @@ export const sendNotifications = async (subdomain: string) => {
 export default {
   handle10MinutelyJob: async ({ subdomain }) => {
     await sendNotifications(subdomain);
-  }
+  },
 };

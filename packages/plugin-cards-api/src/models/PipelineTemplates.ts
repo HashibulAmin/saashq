@@ -2,7 +2,7 @@ import { Model } from 'mongoose';
 import {
   IPipelineTemplateDocument,
   IPipelineTemplateStage,
-  pipelineTemplateSchema
+  pipelineTemplateSchema,
 } from './definitions/pipelineTemplates';
 import { IModels } from '../connectionResolver';
 import { sendFormsMessage } from '../messageBroker';
@@ -19,16 +19,15 @@ export const getDuplicatedStages = async (
   {
     templateId,
     pipelineId,
-    type
+    type,
   }: {
     templateId: string;
     pipelineId?: string;
     type?: string;
-  }
+  },
 ) => {
-  const template = await models.PipelineTemplates.getPipelineTemplate(
-    templateId
-  );
+  const template =
+    await models.PipelineTemplates.getPipelineTemplate(templateId);
 
   const stages: any[] = [];
 
@@ -37,7 +36,7 @@ export const getDuplicatedStages = async (
       subdomain,
       action: 'duplicate',
       data: { formId: stage.formId },
-      isRPC: true
+      isRPC: true,
     });
 
     stages.push({
@@ -45,7 +44,7 @@ export const getDuplicatedStages = async (
       name: stage.name,
       pipelineId,
       type,
-      formId: duplicated._id
+      formId: duplicated._id,
     });
   }
 
@@ -57,12 +56,12 @@ export interface IPipelineTemplateModel
   getPipelineTemplate(_id: string): Promise<IPipelineTemplateDocument>;
   createPipelineTemplate(
     doc: IDoc,
-    stages: IPipelineTemplateStage[]
+    stages: IPipelineTemplateStage[],
   ): Promise<IPipelineTemplateDocument>;
   updatePipelineTemplate(
     _id: string,
     doc: IDoc,
-    stages: IPipelineTemplateStage[]
+    stages: IPipelineTemplateStage[],
   ): Promise<IPipelineTemplateDocument>;
   removePipelineTemplate(_id: string): void;
   duplicatePipelineTemplate(_id: string): Promise<IPipelineTemplateDocument>;
@@ -70,7 +69,7 @@ export interface IPipelineTemplateModel
 
 export const loadPipelineTemplateClass = (
   models: IModels,
-  subdomain: string
+  subdomain: string,
 ) => {
   class PipelineTemplate {
     /*
@@ -80,7 +79,7 @@ export const loadPipelineTemplateClass = (
       const pipelineTemplate = await models.PipelineTemplates.findOne({ _id });
 
       if (!pipelineTemplate) {
-        throw new Error('Pipeline template not found');
+        throw new Error('Šablona potrubí nebyla nalezena');
       }
 
       return pipelineTemplate;
@@ -91,7 +90,7 @@ export const loadPipelineTemplateClass = (
      */
     public static async createPipelineTemplate(
       doc: IDoc,
-      stages: IPipelineTemplateStage[]
+      stages: IPipelineTemplateStage[],
     ) {
       const orderedStages = stages.map((stage, index) => ({ ...stage, index }));
 
@@ -104,13 +103,13 @@ export const loadPipelineTemplateClass = (
     public static async updatePipelineTemplate(
       _id: string,
       doc: IDoc,
-      stages: IPipelineTemplateStage[]
+      stages: IPipelineTemplateStage[],
     ) {
       const orderedStages = stages.map((stage, index) => ({ ...stage, index }));
 
       await models.PipelineTemplates.updateOne(
         { _id },
-        { $set: { ...doc, stages: orderedStages } }
+        { $set: { ...doc, stages: orderedStages } },
       );
 
       return models.PipelineTemplates.findOne({ _id });
@@ -121,26 +120,26 @@ export const loadPipelineTemplateClass = (
      */
     public static async duplicatePipelineTemplate(_id: string) {
       const pipelineTemplate = await models.PipelineTemplates.findOne({
-        _id
+        _id,
       }).lean();
 
       if (!pipelineTemplate) {
-        throw new Error('Pipeline template not found');
+        throw new Error('Šablona potrubí nebyla nalezena');
       }
 
       const duplicated: IDoc = {
         name: `${pipelineTemplate.name} duplicated`,
         description: pipelineTemplate.description || '',
-        type: pipelineTemplate.type
+        type: pipelineTemplate.type,
       };
 
       const stages: any[] = await getDuplicatedStages(models, subdomain, {
-        templateId: pipelineTemplate._id
+        templateId: pipelineTemplate._id,
       });
 
       return models.PipelineTemplates.createPipelineTemplate(
         duplicated,
-        stages
+        stages,
       );
     }
 
@@ -151,14 +150,14 @@ export const loadPipelineTemplateClass = (
       const pipelineTemplate = await models.PipelineTemplates.findOne({ _id });
 
       if (!pipelineTemplate) {
-        throw new Error('Pipeline template not found');
+        throw new Error('Šablona potrubí nebyla nalezena');
       }
 
       for (const stage of pipelineTemplate.stages) {
         sendFormsMessage({
           subdomain,
           action: 'removeForm',
-          data: { formId: stage.formId }
+          data: { formId: stage.formId },
         });
       }
 

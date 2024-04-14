@@ -1,6 +1,6 @@
 import {
   replacePlaceHolders,
-  setProperty
+  setProperty,
 } from '@saashq/api-utils/src/automations';
 import { generateModels, IModels } from './connectionResolver';
 import { sendCommonMessage, sendCoreMessage } from './messageBroker';
@@ -9,7 +9,7 @@ const getRelatedValue = async (
   models: IModels,
   subdomain: string,
   target,
-  targetKey
+  targetKey,
 ) => {
   if (
     [
@@ -17,14 +17,14 @@ const getRelatedValue = async (
       'assignedUserId',
       'closedUserId',
       'ownerId',
-      'createdBy'
+      'createdBy',
     ].includes(targetKey)
   ) {
     const user = await sendCoreMessage({
       subdomain,
       action: 'users.findOne',
       data: { _id: target[targetKey] },
-      isRPC: true
+      isRPC: true,
     });
 
     return (
@@ -34,7 +34,7 @@ const getRelatedValue = async (
 
   if (
     ['participatedUserIds', 'assignedUserIds', 'watchedUserIds'].includes(
-      targetKey
+      targetKey,
     )
   ) {
     const users = await sendCoreMessage({
@@ -42,15 +42,16 @@ const getRelatedValue = async (
       action: 'users.find',
       data: {
         query: {
-          _id: { $in: target[targetKey] }
-        }
+          _id: { $in: target[targetKey] },
+        },
       },
-      isRPC: true
+      isRPC: true,
     });
 
     return (
-      users.map(user => (user.detail && user.detail.fullName) || user.email) ||
-      []
+      users.map(
+        (user) => (user.detail && user.detail.fullName) || user.email,
+      ) || []
     ).join(', ');
   }
 
@@ -59,10 +60,10 @@ const getRelatedValue = async (
       subdomain,
       serviceName: 'tags',
       action: 'find',
-      data: { _id: { $in: target[targetKey] } }
+      data: { _id: { $in: target[targetKey] } },
     });
 
-    return (tags.map(tag => tag.name) || []).join(', ');
+    return (tags.map((tag) => tag.name) || []).join(', ');
   }
 
   return false;
@@ -73,7 +74,7 @@ const getItems = async (
   subdomain: string,
   module: string,
   execution: any,
-  triggerType: string
+  triggerType: string,
 ) => {
   const { target } = execution;
 
@@ -100,9 +101,9 @@ const getItems = async (
       data: {
         mainType: triggerType.split(':')[1],
         mainTypeId: target._id,
-        relTypes: [module.split(':')[1]]
+        relTypes: [module.split(':')[1]],
       },
-      isRPC: true
+      isRPC: true,
     });
 
     return model.find({ _id: { $in: relTypeIds } });
@@ -116,10 +117,10 @@ const getItems = async (
     data: {
       module,
       triggerType,
-      target
+      target,
     },
     isRPC: true,
-    defaultValue: null
+    defaultValue: null,
   });
 
   return filter ? model.find(filter) : [];
@@ -128,7 +129,7 @@ const getItems = async (
 export default {
   receiveActions: async ({
     subdomain,
-    data: { action, execution, triggerType, actionType }
+    data: { action, execution, triggerType, actionType },
   }) => {
     const models = await generateModels(subdomain);
 
@@ -139,7 +140,7 @@ export default {
         subdomain,
         module,
         execution,
-        triggerType
+        triggerType,
       );
 
       return setProperty({
@@ -151,13 +152,13 @@ export default {
         execution,
         sendCommonMessage,
         relatedItems,
-        triggerType
+        triggerType,
       });
     }
   },
   replacePlaceHolders: async ({
     subdomain,
-    data: { target, config, relatedValueProps }
+    data: { target, config, relatedValueProps },
   }) => {
     const models = generateModels(subdomain);
 
@@ -167,7 +168,7 @@ export default {
       getRelatedValue,
       actionData: config,
       target,
-      relatedValueProps
+      relatedValueProps,
     });
   },
   getRecipientsEmails: async ({ subdomain, data }) => {
@@ -175,25 +176,25 @@ export default {
     const { type, config } = data;
 
     const commonFilter = {
-      _id: { $in: config[`${type}Ids`] }
+      _id: { $in: config[`${type}Ids`] },
     };
 
     const CONTACT_TYPES = {
       lead: {
         model: models.Customers,
-        filter: { ...commonFilter, state: 'lead' }
+        filter: { ...commonFilter, state: 'lead' },
       },
       customer: {
         model: models.Customers,
         filter: {
           ...commonFilter,
-          state: 'customer'
-        }
+          state: 'customer',
+        },
       },
       company: {
         model: models.Companies,
-        filter: { ...commonFilter }
-      }
+        filter: { ...commonFilter },
+      },
     };
 
     const { model, filter } = CONTACT_TYPES[type];
@@ -208,7 +209,7 @@ export default {
         icon: 'users-alt',
         label: 'Customer',
         description:
-          'Start with a blank workflow that enralls and is triggered off Customers'
+          'Start with a blank workflow that enralls and is triggered off Customers',
       },
       {
         type: 'contacts:lead',
@@ -216,7 +217,7 @@ export default {
         icon: 'users-alt',
         label: 'Lead',
         description:
-          'Start with a blank workflow that enralls and is triggered off Leads'
+          'Start with a blank workflow that enralls and is triggered off Leads',
       },
       {
         type: 'contacts:company',
@@ -224,25 +225,25 @@ export default {
         icon: 'university',
         label: 'Company',
         description:
-          'Start with a blank workflow that enralls and is triggered off company'
-      }
+          'Start with a blank workflow that enralls and is triggered off company',
+      },
     ],
     emailRecipientTypes: [
       {
         type: 'lead',
         name: 'leadIds',
-        label: 'Leads'
+        label: 'Leads',
       },
       {
         type: 'customer',
         name: 'customerIds',
-        label: 'Customers'
+        label: 'Zákazníci',
       },
       {
         type: 'company',
         name: 'companyIds',
-        label: 'Companies'
-      }
-    ]
-  }
+        label: 'Společnosti',
+      },
+    ],
+  },
 };

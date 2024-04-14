@@ -56,7 +56,7 @@ function LeftSidebar({
     return (
       <Section>
         <SidebarList className="no-link">
-          {renderRow('Primary Email', user.email)}
+          {renderRow('Primární Email', user.email)}
           {renderRow('Operator Phone number', details.operatorPhone)}
           {renderRow('User name', user.username)}
           {renderRow('Short name', details.shortName)}

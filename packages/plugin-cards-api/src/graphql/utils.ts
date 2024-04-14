@@ -79,7 +79,7 @@ export const sendNotifications = async (
   const stage = await models.Stages.getStage(item.stageId);
   const pipeline = await models.Pipelines.getPipeline(stage.pipelineId);
 
-  const title = `${contentType} updated`;
+  const title = `${contentType} aktualizováno`;
 
   if (!content) {
     content = `${contentType} '${item.name}'`;
@@ -97,7 +97,7 @@ export const sendNotifications = async (
     contentType,
     contentTypeId: item._id,
     notifType: type,
-    action: action ? action : `has updated ${contentType}`,
+    action: action ? action : `aktualizoval(a) ${contentType}`,
     content,
     link: `/${contentType}/board?id=${pipeline.boardId}&pipelineId=${pipeline._id}&itemId=${item._id}`,
 
@@ -112,7 +112,7 @@ export const sendNotifications = async (
       ...notificationDoc,
       notifType:
         NOTIFICATION_TYPES[`${contentType.toUpperCase()}_REMOVE_ASSIGN`],
-      action: `removed you from ${contentType}`,
+      action: `vás odebral z ${contentType}`,
       content: `'${item.name}'`,
       receivers: removedUsers.filter((id) => id !== user._id),
     });
@@ -125,7 +125,7 @@ export const sendNotifications = async (
         body: `${
           notificationDoc.createdUser?.details?.fullName ||
           notificationDoc.createdUser?.details?.shortName
-        } removed you from ${contentType}`,
+        } vás odebral z ${contentType}`,
         receivers: removedUsers.filter((id) => id !== user._id),
         data: {
           type: contentType,
@@ -139,7 +139,7 @@ export const sendNotifications = async (
     sendNotification(subdomain, {
       ...notificationDoc,
       notifType: NOTIFICATION_TYPES[`${contentType.toUpperCase()}_ADD`],
-      action: `invited you to the ${contentType}: `,
+      action: `vás pozval na ${contentType}: `,
       content: `'${item.name}'`,
       receivers: invitedUsers.filter((id) => id !== user._id),
     });
@@ -152,7 +152,7 @@ export const sendNotifications = async (
         body: `${
           notificationDoc.createdUser?.details?.fullName ||
           notificationDoc.createdUser?.details?.shortName
-        } invited you to the ${contentType}`,
+        } vás pozval na ${contentType}`,
         receivers: invitedUsers.filter((id) => id !== user._id),
         data: {
           type: contentType,
@@ -275,7 +275,7 @@ export const checkPermission = async (
   }
 
   if (!allowed) {
-    throw new Error('Permission required');
+    throw new Error('Vyžaduje se povolení');
   }
 
   return;
@@ -331,7 +331,7 @@ export const copyPipelineLabels = async (
   const newStage = await models.Stages.findOne({ _id: doc.stageId }).lean();
 
   if (!(oldStage && newStage)) {
-    throw new Error('Stage not found');
+    throw new Error('Fáze nenalezena');
   }
 
   if (oldStage.pipelineId === newStage.pipelineId) {

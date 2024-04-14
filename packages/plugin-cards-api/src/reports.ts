@@ -69,16 +69,16 @@ const returnDateRange = (dateRange: string, startDate: Date, endDate: Date) => {
 };
 
 const DATE_RANGE_TYPES = [
-  { label: 'All time', value: 'all' },
-  { label: 'Today', value: 'today' },
-  { label: 'Yesterday', value: 'yesterday' },
-  { label: 'This Week', value: 'thisWeek' },
-  { label: 'Last Week', value: 'lastWeek' },
-  { label: 'This Month', value: 'thisMonth' },
-  { label: 'Last Month', value: 'lastMonth' },
-  { label: 'This Year', value: 'thisYear' },
-  { label: 'Last Year', value: 'lastYear' },
-  { label: 'Custom Date', value: 'customDate' },
+  { label: 'Pořád', value: 'all' },
+  { label: 'Dnes', value: 'today' },
+  { label: 'Včera', value: 'yesterday' },
+  { label: 'Tento týden', value: 'thisWeek' },
+  { label: 'Minulý Týden', value: 'lastWeek' },
+  { label: 'Tento Měsíc', value: 'thisMonth' },
+  { label: 'Minulý Měsíc', value: 'lastMonth' },
+  { label: 'Tento Rok', value: 'thisYear' },
+  { label: 'Minulý Rok', value: 'lastYear' },
+  { label: 'Vlastní datum', value: 'customDate' },
 ];
 
 const returnStage = (resolve: string | string[]) => {
@@ -128,8 +128,8 @@ const PROBABILITY_DEAL = [
   { label: '70%', value: '70' },
   { label: '80%', value: '80' },
   { label: '90%', value: '90' },
-  { label: 'Won', value: 'Won' },
-  { label: 'Lost', value: 'Lost' },
+  { label: 'Vyhrál', value: 'Won' },
+  { label: 'Ztracený', value: 'Lost' },
 ];
 const PROBABILITY_TASK = [
   { label: '10%', value: '10' },
@@ -153,12 +153,12 @@ const PROBABILITY_TICKET = [
   { label: '70%', value: '70' },
   { label: '80%', value: '80' },
   { label: '90%', value: '90' },
-  { label: 'Resolved', value: 'Resolved' },
+  { label: 'Vyřešeno', value: 'Resolved' },
 ];
 const PRIORITY = [
-  { label: 'Critical', value: 'Critical' },
+  { label: 'Kritické', value: 'Critical' },
   { label: 'Vysoký', value: 'high' },
-  { label: 'Medium', value: 'medium' },
+  { label: 'Střední', value: 'medium' },
   { label: 'Nízký', value: 'low' },
 ];
 const PIPELINE_TYPE_TICKET = 'ticket';
@@ -172,9 +172,9 @@ const CUSTOM_PROPERTIES_TASK = 'cards:task';
 const reportTemplates = [
   {
     serviceType: 'deal',
-    title: 'Deals chart',
+    title: 'Tabulka nabídek',
     serviceName: 'cards',
-    description: 'Deal conversation charts',
+    description: 'Nabídkové konverzační grafy',
     charts: [
       'DealCountTags',
       'DealCountLabel',
@@ -194,9 +194,9 @@ const reportTemplates = [
   },
   {
     serviceType: 'task',
-    title: 'Tasks chart',
+    title: 'Tabulka úkolů',
     serviceName: 'cards',
-    description: 'Cards conversation charts',
+    description: 'Karty konverzační grafy',
     charts: [
       'TaskAverageTimeToCloseByReps',
       'TaskAverageTimeToCloseByLabel',
@@ -216,9 +216,9 @@ const reportTemplates = [
   },
   {
     serviceType: 'ticket',
-    title: 'Tickets chart',
+    title: 'Tabulka vstupenek',
     serviceName: 'cards',
-    description: 'Tickets conversation charts',
+    description: 'Konverzační grafy lístků',
     charts: [
       'TicketCustomProperties',
       'TicketAverageTimeToCloseOverTime',
@@ -239,7 +239,7 @@ const reportTemplates = [
 const chartTemplates = [
   {
     templateType: 'DealCountTags',
-    name: 'Deals Count Tags',
+    name: 'Nabídky Count Tags',
     chartTypes: [
       'bar',
       'line',
@@ -266,7 +266,7 @@ const chartTemplates = [
         PIPELINE_TYPE_DEAL,
         models,
       );
-      const title: string = 'Deal count tags';
+      const title: string = 'Značky počtu nabídek';
 
       let query = await QueryFilter(filterPipelineId, matchedFilter);
       const deals = await models?.Deals.find({
@@ -346,7 +346,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -354,21 +354,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -377,7 +377,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_DEAL}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -393,7 +393,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -408,7 +408,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -416,7 +416,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_DEAL,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -424,7 +424,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte prioritu fáze',
       },
       {
         fieldName: 'tagIds',
@@ -434,14 +434,14 @@ const chartTemplates = [
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${CUSTOM_PROPERTIES_DEAL}", "perPage": 1000}`,
         multi: true,
-        fieldLabel: 'Select tags',
+        fieldLabel: 'Vyberte značky',
       },
     ],
   },
 
   {
     templateType: 'DealCountLabel',
-    name: 'Deal Count Label',
+    name: 'Štítek Počítání Nabídky',
     chartTypes: [
       'bar',
       'line',
@@ -470,7 +470,7 @@ const chartTemplates = [
       );
 
       let query = await QueryFilter(filterPipelineId, matchedFilter);
-      const title = 'Deal Count Label';
+      const title = 'Štítek Počítání Nabídky';
       const deals = await models?.Deals.find({
         ...query,
       }).lean();
@@ -539,7 +539,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -547,21 +547,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -570,7 +570,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_DEAL}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -586,7 +586,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -601,7 +601,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -609,7 +609,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PIPELINE_TYPE_DEAL,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -617,7 +617,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte prioritu fáze',
       },
       {
         fieldName: 'pipelineLabels',
@@ -632,14 +632,14 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'select label',
+        fieldLabel: 'Syberte štítek',
       },
     ],
   },
 
   {
     templateType: 'DealCustomProperties',
-    name: 'Deal Custom Properties',
+    name: 'Vlastní Vlastnosti Nabídky',
     chartTypes: [
       'bar',
       'line',
@@ -668,7 +668,7 @@ const chartTemplates = [
       );
       const customFieldsDataFilter = filter.fieldsGroups;
 
-      const title: string = 'Deal Custom Properties';
+      const title: string = 'Vlastní Vlastnosti Nabídky';
       let query = await QueryFilter(filterPipelineId, matchedFilter);
 
       const deals = await models?.Deals.find({
@@ -754,21 +754,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -777,7 +777,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_DEAL}"}`,
-        fieldLabel: 'Select a board',
+        fieldLabel: 'Vyberte desku',
       },
       {
         fieldName: 'pipelineId',
@@ -793,7 +793,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -808,7 +808,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -816,7 +816,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_DEAL,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -824,7 +824,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
       {
         fieldName: 'contentType',
@@ -833,7 +833,7 @@ const chartTemplates = [
         fieldValueVariable: 'contentType',
         fieldLabelVariable: 'description',
         multi: false,
-        fieldLabel: 'Select properties type ',
+        fieldLabel: 'Vyberte typ vlastností ',
       },
       {
         fieldName: 'fieldsGroups',
@@ -848,13 +848,13 @@ const chartTemplates = [
           },
         ],
         multi: true,
-        fieldLabel: 'Select custom properties',
+        fieldLabel: 'Vyberte uživatelské vlastnosti',
       },
     ],
   },
   {
     templateType: 'DealRevenueByStage',
-    name: 'Deal Revenue By Stage',
+    name: 'Rozdělte Příjmy po Etapách',
     chartTypes: [
       'bar',
       'line',
@@ -917,14 +917,14 @@ const chartTemplates = [
           const labels: string[] = stageNames.map((item) => item.name); // Labels are strings
 
           const finalObject = {
-            title: 'Deal Average Time Spent In Each Stage',
+            title: 'Průměrný čas Sstrávený v Každé Fázi Obchodu',
             data: data,
             labels: labels,
           };
 
           return finalObject;
         } else {
-          throw new Error('namesWithAverage is undefined');
+          throw new Error('namesWithAverage není definováno');
         }
       }
     },
@@ -936,7 +936,7 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'boardId',
@@ -945,7 +945,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_DEAL}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -961,7 +961,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -976,7 +976,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -984,7 +984,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_DEAL,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -992,13 +992,13 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
   {
     templateType: 'ClosedRevenueByMonthWithDealTotalAndClosedRevenueBreakdown',
-    name: 'Closed revenue by month with deal total and closed revenue breakdown',
+    name: 'Uzavřené tržby podle měsíce s celkovým rozpisem obchodů a uzavřených tržeb',
     chartTypes: [
       'bar',
       'line',
@@ -1058,7 +1058,7 @@ const chartTemplates = [
         }
       }
       const title =
-        'Closed revenue by month with deal total and closed revenue breakdown';
+        'Uzavřené tržby podle měsíce s celkovým rozpisem obchodů a uzavřených tržeb';
       const datasets = { title, data: monthlyDealsCount, labels: monthNames };
 
       return datasets;
@@ -1069,7 +1069,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -1077,21 +1077,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -1100,7 +1100,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_DEAL}"}`,
-        fieldLabel: 'Select  board',
+        fieldLabel: 'Vyberte desku',
       },
       {
         fieldName: 'pipelineId',
@@ -1116,7 +1116,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -1131,7 +1131,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -1139,7 +1139,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_DEAL,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -1147,14 +1147,14 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
 
   {
     templateType: 'DealAmountAverageByRep',
-    name: 'Deal amount average by rep',
+    name: 'Průměrná částka obchodu podle rep',
     chartTypes: [
       'bar',
       'line',
@@ -1249,7 +1249,7 @@ const chartTemplates = [
         (t: any) => t.fullName,
       );
 
-      const title = 'Deal amount average by rep';
+      const title = 'Průměrná částka obchodu podle rep';
       const datasets = { title, data: sortedData, labels: sortedLabels };
       return datasets;
     },
@@ -1260,7 +1260,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -1268,21 +1268,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -1291,7 +1291,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_DEAL}"}`,
-        fieldLabel: 'Select  board',
+        fieldLabel: 'Vyberte desku',
       },
       {
         fieldName: 'pipelineId',
@@ -1307,7 +1307,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -1322,7 +1322,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -1330,7 +1330,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_DEAL,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -1338,14 +1338,14 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
 
   {
     templateType: 'DealLeaderBoardAmountClosedByRep',
-    name: 'Deal leader board - amount closed by rep',
+    name: 'Nabídka žebříčku - částka uzavřená rep',
     chartTypes: [
       'bar',
       'line',
@@ -1438,7 +1438,7 @@ const chartTemplates = [
         (t: any) => t.fullName,
       );
 
-      const title = 'Deal amount average by rep';
+      const title = 'Průměrná částka obchodu podle rep';
       const datasets = { title, data: sortedData, labels: sortedLabels };
       return datasets;
     },
@@ -1448,7 +1448,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -1456,21 +1456,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -1479,7 +1479,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_DEAL}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -1495,7 +1495,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -1510,7 +1510,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -1518,7 +1518,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_DEAL,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -1526,14 +1526,14 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
 
   {
     templateType: 'DealsByLastModifiedDate',
-    name: 'Deals by last modified date',
+    name: 'Akce do data poslední změny',
     chartTypes: [
       'bar',
       'line',
@@ -1589,7 +1589,7 @@ const chartTemplates = [
       });
 
       const labels = sortedData?.map((deal: any) => deal.dealName);
-      const label = 'Deals count by modified month';
+      const label = 'Nabídky se počítají podle upraveného měsíce';
 
       const datasets = {
         title: label,
@@ -1605,7 +1605,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -1613,21 +1613,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -1637,7 +1637,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_DEAL}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -1653,7 +1653,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -1668,7 +1668,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -1676,7 +1676,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_DEAL,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -1684,14 +1684,14 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte prioritu Fáze',
       },
     ],
   },
 
   {
     templateType: 'DealsClosedLostAllTimeByRep',
-    name: 'Deals closed lost all time by rep',
+    name: 'Uzavřené obchody prohrály celou dobu podle zástupce',
     chartTypes: [
       'bar',
       'line',
@@ -1789,11 +1789,11 @@ const chartTemplates = [
         const setData = filteredResult.map((item: any) => item.count);
         const setLabels = filteredResult.map((item: any) => item.fullName);
 
-        const title = 'Deals closed lost all time by rep';
+        const title = 'Uzavřené obchody prohrály celou dobu podle zástupce';
         const datasets = { title, data: setData, labels: setLabels };
         return datasets;
       } else {
-        throw new Error('No dealCounts found');
+        throw new Error('Nebyla nalezena žádná nabídkaCounts');
       }
     },
     filterTypes: [
@@ -1802,7 +1802,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -1810,21 +1810,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -1833,7 +1833,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_DEAL}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -1849,7 +1849,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -1864,7 +1864,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -1872,7 +1872,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_DEAL,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -1880,13 +1880,13 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
   {
     templateType: 'DealAverageTimeSpentInEachStage',
-    name: 'Deal Average Time Spent In Each Stage',
+    name: 'Průměrný čas Strávený v Každé Fázi Obchodu',
     chartTypes: [
       'bar',
       'line',
@@ -1987,7 +1987,7 @@ const chartTemplates = [
           const labels: string[] = namesWithAverage.map((item) => item.name); // Labels are strings
 
           const finalObject = {
-            title: 'Deal Average Time Spent In Each Stage',
+            title: 'Průměrný čas Strávený v Každé Fázi Obchodu',
             data: data,
             labels: labels,
           };
@@ -2004,7 +2004,7 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'boardId',
@@ -2013,7 +2013,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_DEAL}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -2029,7 +2029,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -2044,7 +2044,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -2052,7 +2052,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_DEAL,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -2060,13 +2060,13 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
   {
     templateType: 'DealsOpenByCurrentStage',
-    name: 'Deals open by current stage',
+    name: 'Nabídky otevřené podle aktuální fáze',
     chartTypes: [
       'bar',
       'line',
@@ -2101,7 +2101,7 @@ const chartTemplates = [
         models,
       );
       const matchfilter = {};
-      const title = 'Deals open by current stage';
+      const title = 'Nabídky otevřené podle aktuální fáze';
       if (dateRange) {
         const dateFilter = returnDateRange(
           filter.dateRange,
@@ -2147,7 +2147,7 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'boardId',
@@ -2156,7 +2156,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_DEAL}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -2172,7 +2172,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -2187,7 +2187,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -2195,7 +2195,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_DEAL,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -2203,14 +2203,14 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
 
   {
     templateType: 'DealsClosedWonAllTimeByRep',
-    name: 'Deals closed won all time by rep',
+    name: 'Uzavřené obchody vyhrály celou dobu podle rep',
     chartTypes: [
       'bar',
       'line',
@@ -2308,11 +2308,11 @@ const chartTemplates = [
         const setData = filteredResult.map((item: any) => item.count);
         const setLabels = filteredResult.map((item: any) => item.fullName);
 
-        const title = 'Deals closed won all time by rep';
+        const title = 'Uzavřené obchody vyhrály celou dobu podle rep';
         const datasets = { title, data: setData, labels: setLabels };
         return datasets;
       } else {
-        throw new Error('No dealCounts found');
+        throw new Error('Nebyla nalezena žádná nabídkaCounts');
       }
     },
     filterTypes: [
@@ -2321,7 +2321,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -2329,21 +2329,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -2352,7 +2352,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_DEAL}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -2368,7 +2368,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -2383,7 +2383,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -2391,7 +2391,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_DEAL,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -2399,13 +2399,13 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
   {
     templateType: 'DealsSales',
-    name: 'Deals sales',
+    name: 'Nabídky prodeje',
     chartTypes: [
       'bar',
       'line',
@@ -2438,7 +2438,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -2446,21 +2446,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -2469,7 +2469,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_DEAL}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -2485,7 +2485,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -2500,7 +2500,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -2508,7 +2508,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_DEAL,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -2516,7 +2516,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
@@ -2524,7 +2524,7 @@ const chartTemplates = [
   //Task Reports
   {
     templateType: 'TicketCustomProperties',
-    name: 'Ticket Custom Properties',
+    name: 'Uživatelské Vlastnosti Tiketu',
     chartTypes: [
       'bar',
       'line',
@@ -2553,7 +2553,7 @@ const chartTemplates = [
       );
       const customFieldsDataFilter = filter.fieldsGroups;
 
-      const title: string = 'Ticket Custom Properties';
+      const title: string = 'Uživatelské Vlastnosti Tiketu';
       let query = await QueryFilter(filterPipelineId, matchedFilter);
 
       const ticket = await models?.Tickets.find({
@@ -2639,21 +2639,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -2662,7 +2662,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TICKET}"}`,
-        fieldLabel: 'Select a board',
+        fieldLabel: 'Vyberte desku',
       },
       {
         fieldName: 'pipelineId',
@@ -2678,7 +2678,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -2693,7 +2693,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -2701,7 +2701,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TICKET,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -2709,7 +2709,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
       {
         fieldName: 'contentType',
@@ -2718,7 +2718,7 @@ const chartTemplates = [
         fieldValueVariable: 'contentType',
         fieldLabelVariable: 'description',
         multi: false,
-        fieldLabel: 'Select properties type ',
+        fieldLabel: 'Vyberte typ vlastností ',
       },
       {
         fieldName: 'fieldsGroups',
@@ -2733,14 +2733,14 @@ const chartTemplates = [
           },
         ],
         multi: true,
-        fieldLabel: 'Select custom properties',
+        fieldLabel: 'Vyberte uživatelské vlastnosti',
       },
     ],
   },
 
   {
     templateType: 'TaskCustomProperties',
-    name: 'Task Custom Properties',
+    name: 'Uživatelské Vlastnosti úlohy',
     chartTypes: [
       'bar',
       'line',
@@ -2769,7 +2769,7 @@ const chartTemplates = [
       );
       const customFieldsDataFilter = filter.fieldsGroups;
 
-      const title: string = 'Task Custom Properties';
+      const title: string = 'Uživatelské Vlastnosti úlohy';
       let query = await QueryFilter(filterPipelineId, matchedFilter);
 
       const task = await models?.Tasks.find({
@@ -2855,21 +2855,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -2878,7 +2878,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TASK}"}`,
-        fieldLabel: 'Select a board',
+        fieldLabel: 'Vyberte desku',
       },
       {
         fieldName: 'pipelineId',
@@ -2894,7 +2894,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -2909,7 +2909,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -2917,7 +2917,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TASK,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -2925,7 +2925,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
       {
         fieldName: 'contentType',
@@ -2934,7 +2934,7 @@ const chartTemplates = [
         fieldValueVariable: 'contentType',
         fieldLabelVariable: 'description',
         multi: false,
-        fieldLabel: 'Select properties type ',
+        fieldLabel: 'Vyberte typ vlastností ',
       },
       {
         fieldName: 'fieldsGroups',
@@ -2949,13 +2949,13 @@ const chartTemplates = [
           },
         ],
         multi: true,
-        fieldLabel: 'Select custom properties',
+        fieldLabel: 'Vyberte uživatelské vlastnosti',
       },
     ],
   },
   {
     templateType: 'TaskAverageTimeToCloseByReps',
-    name: 'Task average time to close by reps',
+    name: 'Průměrný čas na uzavření podle opakování',
     chartTypes: [
       'bar',
       'line',
@@ -3039,7 +3039,7 @@ const chartTemplates = [
       const data = result.map((t: any) => t.timeDifference);
       const labels = result.map((t: any) => t.FullName);
 
-      const title = 'Task average time to close by reps';
+      const title = 'Průměrný čas na uzavření podle opakování';
 
       const datasets = { title, data, labels };
 
@@ -3051,7 +3051,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -3059,21 +3059,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -3082,7 +3082,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TASK}"}`,
-        fieldLabel: 'Select a board',
+        fieldLabel: 'Vyberte desku',
       },
       {
         fieldName: 'pipelineId',
@@ -3098,7 +3098,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -3113,7 +3113,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -3121,7 +3121,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TASK,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -3129,14 +3129,14 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
 
   {
     templateType: 'TaskAverageTimeToCloseByLabel',
-    name: 'Task average time to close by label',
+    name: 'Průměrná doba uzavření úkolu podle štítku',
     chartTypes: [
       'bar',
       'line',
@@ -3233,7 +3233,7 @@ const chartTemplates = [
           stablesNames.push(flattenedLabels);
         });
 
-      const title = 'Task average time to close by label';
+      const title = 'Průměrná doba uzavření úkolu podle štítku';
 
       const datasets = {
         title,
@@ -3250,21 +3250,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -3273,7 +3273,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TASK}"}`,
-        fieldLabel: 'Select a board',
+        fieldLabel: 'Vyberte desku',
       },
       {
         fieldName: 'pipelineId',
@@ -3289,7 +3289,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -3304,7 +3304,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -3312,7 +3312,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TASK,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -3320,7 +3320,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
       {
         fieldName: 'pipelineLabels',
@@ -3335,14 +3335,14 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'select label',
+        fieldLabel: 'Vyberte štítek',
       },
     ],
   },
 
   {
     templateType: 'TaskAverageTimeToCloseByTags',
-    name: 'Task average time to close by tags',
+    name: 'Průměrný čas na uzavření podle značek',
     chartTypes: [
       'bar',
       'line',
@@ -3421,7 +3421,7 @@ const chartTemplates = [
       const data: number[] = groupedTagData.map((t) => t.timeDifference);
       const labels: string[] = groupedTagData.map((t) => t.name);
 
-      const title: string = 'Task average time to close by tags';
+      const title: string = 'Průměrný čas na uzavření podle značek';
 
       const datasets = {
         title,
@@ -3437,21 +3437,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -3460,7 +3460,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TASK}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -3476,7 +3476,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -3491,7 +3491,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -3499,7 +3499,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TASK,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -3507,7 +3507,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
       {
         fieldName: 'tagIds',
@@ -3517,13 +3517,13 @@ const chartTemplates = [
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${CUSTOM_PROPERTIES_TASK}", "perPage": 1000}`,
         multi: true,
-        fieldLabel: 'Select tags',
+        fieldLabel: 'Vyberte značky',
       },
     ],
   },
   {
     templateType: 'TaskClosedTotalsByReps',
-    name: 'Task closed totals by reps',
+    name: 'Úkol uzavřen součty podle opakování',
     chartTypes: [
       'bar',
       'line',
@@ -3590,7 +3590,7 @@ const chartTemplates = [
         return acc;
       }, {});
 
-      const title = 'View the total number of closed tasks by reps';
+      const title = 'Úkol uzavřen součty podle opakování';
 
       const sort = ownerIds.map((ownerId) => {
         const user = assignedUsersMap[ownerId];
@@ -3614,7 +3614,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -3622,21 +3622,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -3645,7 +3645,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TASK}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -3661,7 +3661,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -3676,7 +3676,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -3684,7 +3684,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TASK,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -3692,13 +3692,13 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
   {
     templateType: 'TaskClosedTotalsByLabel',
-    name: 'Task closed totals by label',
+    name: 'Úkol uzavřel součty podle štítku',
     chartTypes: [
       'bar',
       'line',
@@ -3781,7 +3781,7 @@ const chartTemplates = [
         .map((t) => t.labels)
         .flat()
         .filter((item) => item.length > 0);
-      const title = 'Task closed totals by label';
+      const title = 'Úkol uzavřel součty podle štítku';
 
       const datasets = { title, data, labels: label };
 
@@ -3795,21 +3795,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -3818,7 +3818,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TASK}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -3834,7 +3834,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -3849,7 +3849,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -3857,7 +3857,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TASK,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -3865,7 +3865,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
       {
         fieldName: 'pipelineLabels',
@@ -3880,14 +3880,14 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'select label',
+        fieldLabel: 'Vyberte štítek',
       },
     ],
   },
 
   {
     templateType: 'TaskClosedTotalsByTags',
-    name: 'Task closed totals by tags',
+    name: 'Úkol uzavřel součty podle značek',
     chartTypes: [
       'bar',
       'line',
@@ -3960,7 +3960,7 @@ const chartTemplates = [
           count: count || 0, // Set count to 0 if not found in ticketCounts
         };
       });
-      const title = 'Task closed totals by tags';
+      const title = 'Úkol uzavřel součty podle značek';
       sort.sort((a, b) => a.count - b.count);
       const data = Object.values(sort).map((t: any) => t.count);
       const labels = Object.values(sort).map((t: any) => t.name);
@@ -3979,21 +3979,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -4002,7 +4002,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TASK}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -4018,7 +4018,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -4033,7 +4033,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -4041,7 +4041,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TASK,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -4049,7 +4049,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
       {
         fieldName: 'tagIds',
@@ -4059,13 +4059,13 @@ const chartTemplates = [
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${CUSTOM_PROPERTIES_TASK}", "perPage": 1000}`,
         multi: true,
-        fieldLabel: 'Select tags',
+        fieldLabel: 'Vyberte značky',
       },
     ],
   },
   {
     templateType: 'TasksIncompleteTotalsByReps',
-    name: 'Tasks incomplete totals by reps',
+    name: 'Úkoly neúplné součty podle opakování',
     chartTypes: ['bar'],
     // Bar Chart Table
     getChartResult: async (
@@ -4107,13 +4107,15 @@ const chartTemplates = [
           });
         } else {
           // Handle the case where datats is undefined
-          throw new Error('No tasks found based on the selected user IDs.');
+          throw new Error(
+            'Na základě vybraných ID uživatelů nebyly nalezeny žádné úlohy.',
+          );
         }
       }
 
       // Check if the returned value is not an array
       if (!Array.isArray(tasks)) {
-        throw new Error('Invalid data: tasks is not an array.');
+        throw new Error('Neplatná data: úkoly nejsou pole.');
       }
 
       const taskCounts = calculateTicketCounts(tasks, selectedUserIds);
@@ -4142,7 +4144,7 @@ const chartTemplates = [
         return acc;
       }, {});
 
-      const title = 'Tasks incomplete totals by reps';
+      const title = 'Úkoly neúplné součty podle opakování';
       const sort = ownerIds.map((ownerId) => {
         const user = assignedUsersMap[ownerId];
         const count = taskCounts[ownerId];
@@ -4177,7 +4179,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -4185,21 +4187,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -4208,7 +4210,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TASK}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -4224,7 +4226,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -4239,7 +4241,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -4247,7 +4249,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TASK,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -4255,14 +4257,14 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
 
   {
     templateType: 'TasksIncompleteTotalsByLabel',
-    name: 'Tasks incomplete totals by label',
+    name: 'Úkoly neúplné součty podle štítku',
     chartTypes: [
       'bar',
       'line',
@@ -4308,7 +4310,7 @@ const chartTemplates = [
 
       // Check if the returned value is not an array
       if (!Array.isArray(tasks)) {
-        throw new Error('Invalid data: tasks is not an array.');
+        throw new Error('Neplatná data: úkoly nejsou pole.');
       }
 
       const taskCounts = taskClosedByRep(tasks);
@@ -4360,7 +4362,7 @@ const chartTemplates = [
         .map((t) => t.labels)
         .flat()
         .filter((item) => item.length > 0);
-      const title = 'Tasks incomplete totals by label';
+      const title = 'Úkoly neúplné součty podle štítku';
 
       const datasets = { title, data, labels: label };
 
@@ -4374,21 +4376,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -4397,7 +4399,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TASK}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -4413,7 +4415,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -4428,7 +4430,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -4436,7 +4438,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TASK,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -4444,7 +4446,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
       {
         fieldName: 'pipelineLabels',
@@ -4459,14 +4461,14 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'select label',
+        fieldLabel: 'Vyberte štítek',
       },
     ],
   },
 
   {
     templateType: 'TasksIncompleteTotalsByTags',
-    name: 'Tasks incomplete totals by tags',
+    name: 'Úkoly neúplné součty podle značek',
     chartTypes: [
       'bar',
       'line',
@@ -4512,7 +4514,7 @@ const chartTemplates = [
 
       // Check if the returned value is not an array
       if (!Array.isArray(tasksCount)) {
-        throw new Error('Invalid data: tasks is not an array.');
+        throw new Error('Neplatná data: úkoly nejsou pole.');
       }
 
       const taskCounts = taskClosedByTagsRep(tasksCount);
@@ -4568,7 +4570,7 @@ const chartTemplates = [
         .map((t) => t.labels)
         .flat()
         .filter((item) => item.length > 0);
-      const title = 'Tasks incomplete totals by tags';
+      const title = 'Úkoly neúplné součty podle značek';
 
       const datasets = { title, data, labels: label };
 
@@ -4582,21 +4584,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -4605,7 +4607,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TASK}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -4621,7 +4623,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -4636,7 +4638,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -4644,7 +4646,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TASK,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -4652,7 +4654,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
       {
         fieldName: 'tagIds',
@@ -4662,13 +4664,13 @@ const chartTemplates = [
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${CUSTOM_PROPERTIES_TASK}", "perPage": 1000}`,
         multi: true,
-        fieldLabel: 'Select tags',
+        fieldLabel: 'Vyberte značky',
       },
     ],
   },
   {
     templateType: 'AllTasksIncompleteByDueDate',
-    name: 'All tasks incomplete by due date',
+    name: 'Všechny úkoly nedokončené k termínue',
     chartTypes: [
       'bar',
       'line',
@@ -4717,12 +4719,14 @@ const chartTemplates = [
             );
           });
         } else {
-          throw new Error('No tasks found based on the selected user IDs.');
+          throw new Error(
+            'Na základě vybraných ID uživatelů nebyly nalezeny žádné úlohy.',
+          );
         }
       }
 
       if (!Array.isArray(tasks)) {
-        throw new Error('Invalid data: tasks is not an array.');
+        throw new Error('Neplatná data: úkoly nejsou pole.');
       }
 
       const taskCounts = calculateTicketCounts(tasks, selectedUserIds);
@@ -4778,7 +4782,7 @@ const chartTemplates = [
       const data = filteredSort.map((t: any) => t.count);
       const labels = filteredSort.map((t: any) => t.name);
 
-      const title = 'All tasks incomplete by due date';
+      const title = 'Všechny úkoly nejsou dokončeny v termínu';
 
       const datasets = { title, data, labels };
       return datasets;
@@ -4790,7 +4794,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -4798,21 +4802,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -4821,7 +4825,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TASK}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -4837,7 +4841,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -4852,7 +4856,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -4860,7 +4864,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TASK,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -4868,14 +4872,14 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
 
   {
     templateType: 'TasksIncompleteAssignedToTheTeamByDueDate',
-    name: 'Tasks incomplete assigned to the team by due date',
+    name: 'Úkoly nedokončené přidělené týmu do data splatnosti',
     chartTypes: [
       'bar',
       'line',
@@ -4960,7 +4964,7 @@ const chartTemplates = [
         .map((t) => t.labels)
         .flat()
         .filter((item) => item.length > 0);
-      const title = 'Tasks incomplete assigned to the team by due date';
+      const title = 'Úkoly nedokončené přidělené týmu do data splatnosti';
 
       const datasets = { title, data, labels: label };
 
@@ -4973,7 +4977,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -4981,21 +4985,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -5004,7 +5008,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TASK}"}`,
-        fieldLabel: 'Select a board',
+        fieldLabel: 'Vyberte desku',
       },
       {
         fieldName: 'pipelineId',
@@ -5020,7 +5024,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -5035,7 +5039,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -5043,7 +5047,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TASK,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -5051,14 +5055,14 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
 
   {
     templateType: 'TasksIncompleteAssignedToMeByDueDate',
-    name: 'Tasks incomplete assigned to me by due date',
+    name: 'Nedokončené úkoly, které mi byly přiděleny do termínu',
     chartTypes: [
       'bar',
       'line',
@@ -5150,7 +5154,7 @@ const chartTemplates = [
       });
 
       // Extract data and labels
-      const title = 'Tasks incomplete assigned to me by due date';
+      const title = 'Nedokončené úkoly, které mi byly přiděleny do termínu';
       const data = filteredSort.map((t) => t?.count || 0);
       const labels = filteredSort.map((t) => t?.name || '');
 
@@ -5168,7 +5172,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -5176,21 +5180,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -5199,7 +5203,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TASK}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -5215,7 +5219,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -5230,7 +5234,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -5238,7 +5242,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TASK,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -5246,14 +5250,14 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
 
   {
     templateType: 'TicketsStageDateRange',
-    name: 'Tickets Stage Date Range',
+    name: 'Vstupenky Fáze časové období',
     chartTypes: [
       'bar',
       'line',
@@ -5350,11 +5354,11 @@ const chartTemplates = [
         const setData = filteredResult.map((item: any) => item.count);
         const setLabels = filteredResult.map((item: any) => item.fullName);
 
-        const title = 'Tickets Stage Date Range';
+        const title = 'Vstupenky Fáze časové období';
         const datasets = { title, data: setData, labels: setLabels };
         return datasets;
       } else {
-        throw new Error('No dealCounts found');
+        throw new Error('Nebyla nalezena žádná nabídkaCounts');
       }
     },
 
@@ -5365,21 +5369,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -5389,7 +5393,7 @@ const chartTemplates = [
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TICKET}"}`,
 
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -5405,7 +5409,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -5420,7 +5424,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -5428,7 +5432,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TICKET,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -5436,13 +5440,13 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
   {
     templateType: 'TicketsCardCountAssignedUser',
-    name: 'Tickets Count and  Assigned User',
+    name: 'Počet Vstupenek a Přiřazený Uživatel',
     chartTypes: [
       'bar',
       'line',
@@ -5539,11 +5543,11 @@ const chartTemplates = [
         const setData = filteredResult.map((item: any) => item.count);
         const setLabels = filteredResult.map((item: any) => item.fullName);
 
-        const title = 'Tickets Count and  Assigned User';
+        const title = 'Počet vstupenek a přiřazený uživatel';
         const datasets = { title, data: setData, labels: setLabels };
         return datasets;
       } else {
-        throw new Error('No dealCounts found');
+        throw new Error('Nebyla nalezena žádná nabídkaCounts');
       }
     },
 
@@ -5553,7 +5557,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -5561,21 +5565,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -5584,7 +5588,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TICKET}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -5600,7 +5604,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -5615,7 +5619,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -5623,7 +5627,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TICKET,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -5631,14 +5635,14 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
 
   {
     templateType: 'TicketAverageTimeToCloseOverTime',
-    name: 'Ticket average time to close over time',
+    name: 'Průměrná doba uzavření lístku v průběhu času',
     chartTypes: [
       'bar',
       'line',
@@ -5671,12 +5675,12 @@ const chartTemplates = [
       }).lean();
       if (!ticket || ticket.length === 0) {
         throw new Error(
-          'No ticket found in the database matching the specified criteria.',
+          'V databázi nebyl nalezen žádný tiket odpovídající zadaným kritériím.',
         );
       }
 
       const title =
-        'View the average amount of time it takes your reps to close tickets. See how this tracks over time.';
+        'Podívejte se na průměrnou dobu, kterou vašim zástupcům trvá uzavření tiketů. Podívejte se, jak se to v průběhu času sleduje.';
       const ticketData = await calculateAverageTimeToClose(ticket);
 
       // Create an array of objects containing both duration and label
@@ -5703,7 +5707,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -5711,21 +5715,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -5734,7 +5738,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TICKET}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -5750,7 +5754,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -5765,7 +5769,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -5773,7 +5777,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TICKET,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -5781,14 +5785,14 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
 
   {
     templateType: 'TicketClosedTotalsByRep',
-    name: 'Ticket closed totals by rep',
+    name: 'Celkový počet uzavřených lístků podle zástupce',
     chartTypes: [
       'bar',
       'line',
@@ -5871,7 +5875,7 @@ const chartTemplates = [
       sort.sort((a, b) => b.count - a.count);
 
       const title =
-        'View the total number of tickets closed by their assigned owner';
+        'Podívejte se na celkový počet vstupenek uzavřených jejich přiřazeným vlastníkem';
 
       // Reverse both data and labels arrays to achieve the desired order
       const data = sort.map((t: any) => t.count).reverse();
@@ -5887,7 +5891,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -5895,21 +5899,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -5918,7 +5922,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TICKET}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -5934,7 +5938,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -5949,7 +5953,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -5957,7 +5961,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TICKET,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -5965,13 +5969,13 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
   {
     templateType: 'TicketTotalsByStatus',
-    name: 'Ticket totals by status',
+    name: 'Součty lístků podle stavu',
     chartTypes: [
       'bar',
       'line',
@@ -6014,7 +6018,7 @@ const chartTemplates = [
       countsArray.sort((a, b) => b.count - a.count);
 
       const title =
-        'View the total number of tickets in each part of your support queue';
+        'Podívejte se na celkový počet lístků v každé části vaší fronty podpory';
       countsArray.sort((a, b) => b.count - a.count);
       const labels = Object.values(countsArray).map((t: any) => t.status);
       const data = Object.values(countsArray).map((t: any) => t.count);
@@ -6030,21 +6034,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -6053,7 +6057,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TICKET}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -6069,7 +6073,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -6084,7 +6088,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -6092,7 +6096,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TICKET,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -6100,14 +6104,14 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
 
   {
     templateType: 'TicketTotalsOverTime',
-    name: 'Ticket totals over time',
+    name: 'Součty vstupenek v průběhu času',
     chartTypes: ['bar', 'line', 'pie', 'doughnut', 'radar', 'polarArea'],
 
     // Bar Chart Table
@@ -6163,7 +6167,8 @@ const chartTemplates = [
           startRange = startRange.add(1, 'month');
         }
       }
-      const label = 'View the total number of tickets created over a set time';
+      const label =
+        'Zobrazení celkového počtu tiketů vytvořených za nastavenou dobu';
       const datasets = [
         { label, data: monthlyTickedCount, labels: monthNames },
       ];
@@ -6176,21 +6181,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -6199,7 +6204,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TICKET}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -6215,7 +6220,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -6230,7 +6235,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -6238,7 +6243,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TICKET,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -6246,13 +6251,13 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
   {
     templateType: 'TicketTotalsByLabelPriorityTag',
-    name: 'Ticket totals by label/priority/tag/',
+    name: 'Součty vstupenek podle štítku/priority/značky/',
     chartTypes: [
       'bar',
       'line',
@@ -6286,7 +6291,7 @@ const chartTemplates = [
       }).lean();
 
       if (!Array.isArray(tickets)) {
-        throw new Error('Invalid data: tickets is not an array.');
+        throw new Error('Neplatná data: lístky nejsou pole.');
       }
 
       // Calculate ticket totals by label, priority, and tag
@@ -6336,7 +6341,7 @@ const chartTemplates = [
       );
 
       const title =
-        '  View the total number of ticket totals by label/priority/tag/ ';
+        '  Zobrazit celkový počet vstupenek podle štítku/priority/značky/ ';
 
       const data = Object.values(ticketTotals);
 
@@ -6351,21 +6356,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -6374,7 +6379,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TICKET}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -6390,7 +6395,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -6405,7 +6410,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -6413,7 +6418,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TICKET,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -6421,13 +6426,13 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
   {
     templateType: 'TicketAverageTimeToCloseByRep',
-    name: 'Ticket average time to close by rep',
+    name: 'Průměrná doba uzavření lístku podle zástupce',
     chartTypes: [
       'bar',
       'line',
@@ -6511,7 +6516,7 @@ const chartTemplates = [
       const labels = Object.values(result).map((t: any) => t.FullName);
 
       const title =
-        'View the average amount of time it takes for a rep to close a ticket';
+        'Podívejte se na průměrnou dobu, kterou zástupce potřebuje k uzavření tiketu';
 
       const datasets = {
         title,
@@ -6527,7 +6532,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -6535,21 +6540,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -6558,7 +6563,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TICKET}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -6574,7 +6579,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -6589,7 +6594,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -6597,7 +6602,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TICKET,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -6605,13 +6610,13 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
   {
     templateType: 'TicketTotalsBySource',
-    name: 'Ticket totals by source',
+    name: 'Součty vstupenek podle zdroje',
     chartTypes: ['bar', 'line', 'pie', 'doughnut', 'radar', 'polarArea'],
     // Table
     getChartResult: async (
@@ -6637,12 +6642,12 @@ const chartTemplates = [
       }).lean();
       if (!ticket || ticket.length === 0) {
         throw new Error(
-          'No ticket found in the database matching the specified criteria.',
+          'V databázi nebyl nalezen žádný tiket odpovídající zadaným kritériím.',
         );
       }
       const data = [ticket.length];
       const labels = ['total'];
-      const title = 'Ticket totals by source';
+      const title = 'Součty vstupenek podle zdroje';
 
       const datasets = [{ title, data, labels }];
       return datasets;
@@ -6654,21 +6659,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -6677,7 +6682,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TICKET}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -6693,7 +6698,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -6708,7 +6713,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -6716,7 +6721,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TICKET,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -6724,14 +6729,14 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
 
   {
     templateType: 'TicketAverageTimeToClose',
-    name: 'Ticket average time to close',
+    name: 'Průměrná doba uzavření lístku',
     chartTypes: [
       'bar',
       'line',
@@ -6764,7 +6769,7 @@ const chartTemplates = [
       }).lean();
       if (!ticket || ticket.length === 0) {
         throw new Error(
-          'No ticket found in the database matching the specified criteria.',
+          'V databázi nebyl nalezen žádný tiket odpovídající zadaným kritériím.',
         );
       }
       const data = await calculateAverageTimeToClose(ticket);
@@ -6781,7 +6786,7 @@ const chartTemplates = [
       const sortedData = dataWithLabels.map((entry) => entry.duration);
 
       const title =
-        'View the average amount of time it takes for your reps to close tickets';
+        'Podívejte se na průměrnou dobu, kterou vaši zástupci potřebují k uzavření tiketů';
 
       const datasets = { title, data: sortedData, labels };
 
@@ -6793,7 +6798,7 @@ const chartTemplates = [
         fieldType: 'select',
         multi: true,
         fieldQuery: 'users',
-        fieldLabel: 'Select assigned users',
+        fieldLabel: 'Vyberte přiřazené uživatele',
       },
       {
         fieldName: 'dateRange',
@@ -6801,21 +6806,21 @@ const chartTemplates = [
         multi: true,
         fieldQuery: 'date',
         fieldOptions: DATE_RANGE_TYPES,
-        fieldLabel: 'Select date range',
+        fieldLabel: 'Vyberte časové období',
       },
       {
         fieldName: 'branchIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'branches',
-        fieldLabel: 'Select branches',
+        fieldLabel: 'Vyberte pobočky',
       },
       {
         fieldName: 'departmentIds',
         fieldType: 'select',
         multi: true,
         fieldQuery: 'departments',
-        fieldLabel: 'Select departments',
+        fieldLabel: 'Vyberte oddělení',
       },
       {
         fieldName: 'boardId',
@@ -6824,7 +6829,7 @@ const chartTemplates = [
         fieldValueVariable: '_id',
         fieldLabelVariable: 'name',
         fieldQueryVariables: `{"type": "${PIPELINE_TYPE_TICKET}"}`,
-        fieldLabel: 'Select boards',
+        fieldLabel: 'Vyberte desky',
       },
       {
         fieldName: 'pipelineId',
@@ -6840,7 +6845,7 @@ const chartTemplates = [
             logicFieldVariable: 'boardId',
           },
         ],
-        fieldLabel: 'Select pipeline',
+        fieldLabel: 'Vyberte potrubí',
       },
       {
         fieldName: 'stageId',
@@ -6855,7 +6860,7 @@ const chartTemplates = [
             logicFieldVariable: 'pipelineId',
           },
         ],
-        fieldLabel: 'Select stage',
+        fieldLabel: 'Vyberte fázi',
       },
       {
         fieldName: 'stageType',
@@ -6863,7 +6868,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PROBABILITY_TICKET,
-        fieldLabel: 'Select Probability',
+        fieldLabel: 'Vyberte Pravděpodobnost',
       },
       {
         fieldName: 'priority',
@@ -6871,7 +6876,7 @@ const chartTemplates = [
         multi: false,
         fieldQuery: 'stages',
         fieldOptions: PRIORITY,
-        fieldLabel: 'Select Stage priority',
+        fieldLabel: 'Vyberte Prioritu Fáze',
       },
     ],
   },
@@ -6921,7 +6926,7 @@ function taskClosedByTagsRep(tasks: any) {
 
   // Check if tickets is an array
   if (!Array.isArray(tasks)) {
-    throw new Error('Invalid input: tasks should be an array.');
+    throw new Error('Neplatný vstup: úkoly by měly být pole.');
   }
 
   tasks.forEach((ticket) => {
@@ -6944,7 +6949,7 @@ function departmentCount(tasks: any) {
 
   // Check if tasks is an array
   if (!Array.isArray(tasks)) {
-    throw new Error('Invalid input: tasks should be an array.');
+    throw new Error('Neplatný vstup: úkoly by měly být pole.');
   }
 
   tasks.forEach((task) => {
@@ -6967,7 +6972,7 @@ function calculateTicketCounts(tickets: any, selectedUserIds: any) {
 
   // Check if tickets is an array
   if (!Array.isArray(tickets)) {
-    throw new Error('Invalid input: tickets should be an array.');
+    throw new Error('Neplatný vstup: lístky by měly být pole.');
   }
   if (selectedUserIds.length > 0) {
     selectedUserIds.forEach((userId) => {
@@ -7136,7 +7141,7 @@ const calculateAverageTimeToClose = (tickets) => {
   );
 
   if (closedTickets.length === 0) {
-    throw new Error('No closed tickets found.');
+    throw new Error('Nebyly nalezeny žádné uzavřené vstupenky.');
   }
 
   // Calculate time to close for each ticket in milliseconds
@@ -7156,7 +7161,7 @@ const calculateAverageTimeToClose = (tickets) => {
   );
 
   if (validTimeToCloseArray.length === 0) {
-    throw new Error('No valid time differences found.');
+    throw new Error('Nebyly nalezeny žádné platné časové rozdíly.');
   }
 
   const timeToCloseInHoursArray = validTimeToCloseArray.map((time) =>
@@ -7178,7 +7183,7 @@ const taskAverageTimeToCloseByLabel = async (tasks) => {
   );
 
   if (closedTasks.length === 0) {
-    throw new Error('No closed Tasks found.');
+    throw new Error('Nebyly nalezeny žádné uzavřené úkoly.');
   }
 
   // Calculate time to close for each ticket in milliseconds
@@ -7203,7 +7208,7 @@ const taskAverageTimeToCloseByLabel = async (tasks) => {
   );
 
   if (validTimeToCloseArray.length === 0) {
-    throw new Error('No valid time differences found.');
+    throw new Error('Nebyly nalezeny žádné platné časové rozdíly.');
   }
 
   const timeToCloseInHoursArray = validTimeToCloseArray.map((time) => ({
@@ -7226,7 +7231,7 @@ const calculateAverageTimeToCloseUser = (
   );
 
   if (closedTickets.length === 0) {
-    throw new Error('No closed tickets found.');
+    throw new Error('Nebyly nalezeny žádné uzavřené vstupenky.');
   }
   if (selectedUserIds.length > 0) {
     selectedUserIds.forEach((userId) => {
@@ -7263,7 +7268,7 @@ const calculateAverageTimeToCloseUser = (
   );
 
   if (validTimeToCloseArray.length === 0) {
-    throw new Error('No valid time differences found.');
+    throw new Error('Nebyly nalezeny žádné platné časové rozdíly.');
   }
 
   // Calculate the sum of timeDifference for each unique user
@@ -7463,7 +7468,7 @@ async function pipelineFilterData(
       productCount: deal.productsData?.length,
       totalAmount: dealAmountMap[deal.stageId],
     }));
-    const title = 'Deals sales and average';
+    const title = 'Nabídky prodeje a průměr';
 
     const filteredGroupStage = groupStage.filter(
       (item: any) => typeof item.totalAmount === 'number',
@@ -7475,13 +7480,14 @@ async function pipelineFilterData(
     // Extract sorted data and labels
     const data = filteredGroupStage.map((item: any) => item.totalAmount);
     const labels = filteredGroupStage.map(
-      (item: any) => `Name: ${item.name}, Product Count: ${item.productCount}`,
+      (item: any) =>
+        `Název: ${item.name}, Počet Produktů: ${item.productCount}`,
     );
 
     const datasets = { title, data, labels };
     return datasets;
   } else {
-    throw new Error('No deals found');
+    throw new Error('Nebyly nalezeny žádné nabídky');
   }
 }
 

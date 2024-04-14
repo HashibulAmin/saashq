@@ -3,7 +3,7 @@ import {
   destroyBoardItemRelations,
   fillSearchTextItem,
   createBoardItem,
-  watchItem
+  watchItem,
 } from './utils';
 import { ACTIVITY_CONTENT_TYPES } from './definitions/constants';
 import { ITicket, ITicketDocument, ticketSchema } from './definitions/tickets';
@@ -26,7 +26,7 @@ export const loadTicketClass = (models: IModels, subdomain: string) => {
       const ticket = await models.Tickets.findOne({ _id });
 
       if (!ticket) {
-        throw new Error('Ticket not found');
+        throw new Error('Lístek nenalezen');
       }
 
       return ticket;
@@ -38,11 +38,11 @@ export const loadTicketClass = (models: IModels, subdomain: string) => {
     public static async createTicket(doc: ITicket) {
       if (doc.sourceConversationIds) {
         const convertedTicket = await models.Tickets.findOne({
-          sourceConversationIds: { $in: doc.sourceConversationIds }
+          sourceConversationIds: { $in: doc.sourceConversationIds },
         });
 
         if (convertedTicket) {
-          throw new Error('Already converted a ticket');
+          throw new Error('Již přeměněný tiket');
         }
       }
 
@@ -53,7 +53,10 @@ export const loadTicketClass = (models: IModels, subdomain: string) => {
      * Update Ticket
      */
     public static async updateTicket(_id: string, doc: ITicket) {
-      const searchText = fillSearchTextItem(doc, await models.Tickets.getTicket(_id));
+      const searchText = fillSearchTextItem(
+        doc,
+        await models.Tickets.getTicket(_id),
+      );
 
       await models.Tickets.updateOne({ _id }, { $set: doc, searchText });
 
@@ -66,7 +69,7 @@ export const loadTicketClass = (models: IModels, subdomain: string) => {
     public static async watchTicket(
       _id: string,
       isAdd: boolean,
-      userId: string
+      userId: string,
     ) {
       return watchItem(models.Tickets, _id, isAdd, userId);
     }
@@ -74,7 +77,12 @@ export const loadTicketClass = (models: IModels, subdomain: string) => {
     public static async removeTickets(_ids: string[]) {
       // completely remove all related things
       for (const _id of _ids) {
-        await destroyBoardItemRelations(models, subdomain, _id, ACTIVITY_CONTENT_TYPES.TICKET);
+        await destroyBoardItemRelations(
+          models,
+          subdomain,
+          _id,
+          ACTIVITY_CONTENT_TYPES.TICKET,
+        );
       }
 
       return models.Tickets.deleteMany({ _id: { $in: _ids } });

@@ -429,7 +429,7 @@ const gatherDescriptions = async (
         });
       }
 
-      description = `"${object.name}" has been ${action}d`;
+      description = `"${object.name}" byl ${action}d`;
 
       break;
     case MODULE_NAMES.PIPELINE_DEAL:
@@ -448,11 +448,11 @@ const gatherDescriptions = async (
         );
       }
 
-      description = `"${object.name}" has been ${action}d`;
+      description = `"${object.name}" byl ${action}d`;
 
       break;
     case MODULE_NAMES.DEAL:
-      description = `"${object.name}" has been ${action}d`;
+      description = `"${object.name}" byl ${action}d`;
       extraDesc = await gatherDealFieldNames(models, subdomain, object);
 
       if (updatedDocument) {
@@ -466,7 +466,7 @@ const gatherDescriptions = async (
 
       break;
     case MODULE_NAMES.PURCHASE:
-      description = `"${object.name}" has been ${action}d`;
+      description = `"${object.name}" byl ${action}d`;
       extraDesc = await gatherPurchaseFieldNames(models, subdomain, object);
 
       if (updatedDocument) {
@@ -479,7 +479,7 @@ const gatherDescriptions = async (
       }
       break;
     case MODULE_NAMES.GROWTH_HACK:
-      description = `"${object.name}" has been ${action}d`;
+      description = `"${object.name}" byl ${action}d`;
 
       extraDesc = await gatherGHFieldNames(models, subdomain, object);
 
@@ -494,7 +494,7 @@ const gatherDescriptions = async (
 
       break;
     case MODULE_NAMES.PIPELINE_LABEL:
-      description = `"${object.name}" has been ${action}d`;
+      description = `"${object.name}" byl ${action}d`;
 
       const pipeline = await models.Pipelines.findOne({
         _id: object.pipelineId,
@@ -513,7 +513,7 @@ const gatherDescriptions = async (
     case MODULE_NAMES.PIPELINE_TEMPLATE:
       extraDesc = await gatherPipelineTemplateFieldNames(subdomain, object);
 
-      description = `"${object.name}" has been created`;
+      description = `"${object.name}" byl vytvořen`;
 
       if (updatedDocument) {
         extraDesc = await gatherPipelineTemplateFieldNames(
@@ -525,7 +525,7 @@ const gatherDescriptions = async (
 
       break;
     case MODULE_NAMES.TASK:
-      description = `"${object.name}" has been ${action}d`;
+      description = `"${object.name}" byl ${action}d`;
 
       extraDesc = await gatherBoardItemFieldNames(models, subdomain, object);
 
@@ -540,7 +540,7 @@ const gatherDescriptions = async (
 
       break;
     case MODULE_NAMES.TICKET:
-      description = `"${object.name}" has been ${action}d`;
+      description = `"${object.name}" byl ${action}d`;
 
       extraDesc = await gatherBoardItemFieldNames(models, subdomain, object);
 
@@ -559,7 +559,7 @@ const gatherDescriptions = async (
     case MODULE_NAMES.STAGE_TASK:
     case MODULE_NAMES.STAGE_TICKET:
     case MODULE_NAMES.STAGE_GH:
-      description = `"${object.name}" has been ${action}d`;
+      description = `"${object.name}" byl ${action}d`;
 
       extraDesc = await gatherStageFieldNames(
         models,
@@ -595,17 +595,17 @@ const gatherDescriptions = async (
       if (action === LOG_ACTIONS.CREATE) {
         description = `"${
           object.title
-        }" has been created in ${object.contentType.toUpperCase()} "${itemName}"`;
+        }" byl vytvořen v ${object.contentType.toUpperCase()} "${itemName}"`;
       }
       if (action === LOG_ACTIONS.UPDATE) {
         description = `"${
           object.title
-        }" saved in ${object.contentType.toUpperCase()} "${itemName}" has been edited`;
+        }" uloženo v ${object.contentType.toUpperCase()} "${itemName}" byl upraven`;
       }
       if (action === LOG_ACTIONS.DELETE) {
         description = `"${
           object.title
-        }" from ${object.contentType.toUpperCase()} "${itemName}" has been removed`;
+        }" from ${object.contentType.toUpperCase()} "${itemName}" byla odstraněna`;
       }
 
       break;
@@ -622,13 +622,13 @@ const gatherDescriptions = async (
       extraDesc.push({ checklistId: checklist._id, name: checklist.title });
 
       if (action === LOG_ACTIONS.CREATE) {
-        description = `"${object.content}" has been added to "${checklist.title}"`;
+        description = `"${object.content}" byl přidán do "${checklist.title}"`;
       }
       if (action === LOG_ACTIONS.UPDATE) {
-        description = `"${object.content}" has been edited /checked/`;
+        description = `"${object.content}" bylo upraveno /zkontrolováno/`;
       }
       if (action === LOG_ACTIONS.DELETE) {
-        description = `"${object.content}" has been removed from "${checklist.title}"`;
+        description = `"${object.content}" byl odebrán z "${checklist.title}"`;
       }
 
       break;

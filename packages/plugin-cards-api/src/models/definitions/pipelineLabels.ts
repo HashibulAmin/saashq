@@ -16,9 +16,9 @@ export interface IPipelineLabelDocument extends IPipelineLabel, Document {
 export const pipelineLabelSchema = new Schema({
   _id: field({ pkey: true }),
   name: field({ type: String, label: 'Název' }),
-  colorCode: field({ type: String, label: 'Color code' }),
-  pipelineId: field({ type: String, label: 'Pipeline' }),
-  createdBy: field({ type: String, label: 'Created by' }),
+  colorCode: field({ type: String, label: 'Kód barvy' }),
+  pipelineId: field({ type: String, label: 'Potrubí' }),
+  createdBy: field({ type: String, label: 'Vytvořil' }),
   createdAt: field({
     type: Date,
     default: new Date(),

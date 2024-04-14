@@ -3,7 +3,7 @@ import {
   createBoardItem,
   destroyBoardItemRelations,
   fillSearchTextItem,
-  watchItem
+  watchItem,
 } from './utils';
 import { IItemCommonFields as ITask } from './definitions/boards';
 import { ACTIVITY_CONTENT_TYPES } from './definitions/constants';
@@ -27,7 +27,7 @@ export const loadTaskClass = (models: IModels, subdomain: string) => {
       const task = await models.Tasks.findOne({ _id });
 
       if (!task) {
-        throw new Error('Task not found');
+        throw new Error('Úkol nenalezen');
       }
 
       return task;
@@ -39,11 +39,11 @@ export const loadTaskClass = (models: IModels, subdomain: string) => {
     public static async createTask(doc: ITask) {
       if (doc.sourceConversationIds) {
         const convertedTask = await models.Tasks.findOne({
-          sourceConversationIds: { $in: doc.sourceConversationIds }
+          sourceConversationIds: { $in: doc.sourceConversationIds },
         });
 
         if (convertedTask) {
-          throw new Error('Already converted a task');
+          throw new Error('Úkol byl již převeden');
         }
       }
 
@@ -54,7 +54,10 @@ export const loadTaskClass = (models: IModels, subdomain: string) => {
      * Update Task
      */
     public static async updateTask(_id: string, doc: ITask) {
-      const searchText = fillSearchTextItem(doc, await models.Tasks.getTask(_id));
+      const searchText = fillSearchTextItem(
+        doc,
+        await models.Tasks.getTask(_id),
+      );
 
       await models.Tasks.updateOne({ _id }, { $set: doc, searchText });
 
@@ -71,7 +74,12 @@ export const loadTaskClass = (models: IModels, subdomain: string) => {
     public static async removeTasks(_ids: string[]) {
       // completely remove all related things
       for (const _id of _ids) {
-        await destroyBoardItemRelations(models, subdomain, _id, ACTIVITY_CONTENT_TYPES.TASK);
+        await destroyBoardItemRelations(
+          models,
+          subdomain,
+          _id,
+          ACTIVITY_CONTENT_TYPES.TASK,
+        );
       }
 
       return models.Tasks.deleteMany({ _id: { $in: _ids } });

@@ -3,11 +3,11 @@ import {
   sendContactsMessage,
   sendCoreMessage,
   sendProductsMessage,
-  sendFormsMessage
+  sendFormsMessage,
 } from './messageBroker';
 import * as _ from 'lodash';
 
-const toMoney = value => {
+const toMoney = (value) => {
   return new Intl.NumberFormat().format(value);
 };
 
@@ -20,17 +20,17 @@ const getCustomFields = async ({ subdomain }) => {
       action: 'fields.fieldsCombinedByContentType',
       isRPC: true,
       data: {
-        contentType: `cards:${cardType}`
+        contentType: `cards:${cardType}`,
       },
-      defaultValue: []
+      defaultValue: [],
     });
 
     fields = [
       ...fields,
-      ...items.map(f => ({
+      ...items.map((f) => ({
         value: f.name,
-        name: `${cardType}:${f.label}`
-      }))
+        name: `${cardType}:${f.label}`,
+      })),
     ];
   }
   return fields;
@@ -56,30 +56,30 @@ const commonFields = [
   { value: 'totalAmountWithoutVat', name: 'Total amount without vat' },
   { value: 'discount', name: 'Discount' },
   { value: 'paymentCash', name: 'Payment cash' },
-  { value: 'paymentNonCash', name: 'Payment non cash' }
+  { value: 'paymentNonCash', name: 'Payment non cash' },
 ];
 
 export default {
   types: [
     {
-      label: 'Cards',
+      label: 'Karty',
       type: 'cards',
-      subTypes: ['deal', 'task', 'ticket', 'purchase', 'stageDeal']
-    }
+      subTypes: ['deal', 'task', 'ticket', 'purchase', 'stageDeal'],
+    },
   ],
 
   editorAttributes: async ({ subdomain }) => {
     const customFields = await getCustomFields({ subdomain });
     const uniqueFields = customFields.filter(
-      customField =>
-        !commonFields.some(field => field.value === customField.value)
+      (customField) =>
+        !commonFields.some((field) => field.value === customField.value),
     );
     return [...commonFields, ...uniqueFields];
   },
 
   replaceContent: async ({
     subdomain,
-    data: { stageId, itemId, content, contentype, itemIds, brandId }
+    data: { stageId, itemId, content, contentype, itemIds, brandId },
   }) => {
     const models = await generateModels(subdomain);
     const stage = await models.Stages.findOne({ _id: stageId });
@@ -113,7 +113,7 @@ export default {
     if (contentype == 'cards:stage') {
       const items = await collection.find({
         stageId: stageId,
-        _id: { $in: itemIds.split(',') }
+        _id: { $in: itemIds.split(',') },
       });
 
       if (!items) {
@@ -140,25 +140,25 @@ export default {
     for (const field of simpleFields) {
       replacedContent = replacedContent.replace(
         `{{ ${field} }}`,
-        item[field] || ''
+        item[field] || '',
       );
     }
 
     replacedContent = replacedContent.replace(
       /{{ createdAt }}/g,
-      item.createdAt.toLocaleDateString()
+      item.createdAt.toLocaleDateString(),
     );
 
     if (item.closeDate) {
       replacedContent = replacedContent.replace(
         /{{ closeDate }}/g,
-        item.closeDate.toLocaleDateString()
+        item.closeDate.toLocaleDateString(),
       );
     }
 
     replacedContent = replacedContent.replace(
       /{{ now }}/g,
-      new Date().toLocaleDateString()
+      new Date().toLocaleDateString(),
     );
 
     replacedContent = replacedContent.replace(/{{ stageName }}/g, stage.name);
@@ -169,12 +169,12 @@ export default {
           subdomain,
           action: 'brands.findOne',
           data: { _id: brandId },
-          isRPC: true
+          isRPC: true,
         });
 
         replacedContent = replacedContent.replace(
           /{{ brandName }}/g,
-          brand.name
+          brand.name,
         );
       }
       replacedContent = replacedContent.replace(/{{ brandName }}/g, '');
@@ -186,18 +186,18 @@ export default {
       action: 'users.find',
       isRPC: true,
       data: {
-        query: { _id: { $in: item.assignedUserIds || [] } }
-      }
+        query: { _id: { $in: item.assignedUserIds || [] } },
+      },
     });
 
     replacedContent = replacedContent.replace(
       /{{ assignedUsers }}/g,
       users
         .map(
-          user =>
-            `${user.details.firstName || ''} ${user.details.lastName || ''}`
+          (user) =>
+            `${user.details.firstName || ''} ${user.details.lastName || ''}`,
         )
-        .join(',')
+        .join(','),
     );
 
     if (replacedContent.includes('{{ customers }}')) {
@@ -207,10 +207,10 @@ export default {
         data: {
           mainType: stage.type,
           mainTypeId: item._id,
-          relTypes: ['customer']
+          relTypes: ['customer'],
         },
         isRPC: true,
-        defaultValue: []
+        defaultValue: [],
       });
 
       const activeCustomers = await sendContactsMessage({
@@ -218,7 +218,7 @@ export default {
         action: 'customers.findActiveCustomers',
         data: { selector: { _id: { $in: customerIds } } },
         isRPC: true,
-        defaultValue: []
+        defaultValue: [],
       });
 
       const customerRows: string[] = [];
@@ -229,7 +229,7 @@ export default {
           action: 'customers.getCustomerName',
           data: { customer: item },
           isRPC: true,
-          defaultValue: ''
+          defaultValue: '',
         });
 
         customerRows.push(name);
@@ -237,7 +237,7 @@ export default {
 
       replacedContent = replacedContent.replace(
         /{{ customers }}/g,
-        customerRows.join(',')
+        customerRows.join(','),
       );
     }
 
@@ -248,10 +248,10 @@ export default {
         data: {
           mainType: stage.type,
           mainTypeId: item._id,
-          relTypes: ['company']
+          relTypes: ['company'],
         },
         isRPC: true,
-        defaultValue: []
+        defaultValue: [],
       });
 
       const activeCompanies = await sendContactsMessage({
@@ -259,7 +259,7 @@ export default {
         action: 'companies.findActiveCompanies',
         data: { selector: { _id: { $in: companyIds } } },
         isRPC: true,
-        defaultValue: []
+        defaultValue: [],
       });
 
       const companyRows: string[] = [];
@@ -270,7 +270,7 @@ export default {
           action: 'companies.getCompanyName',
           data: { company: item },
           isRPC: true,
-          defaultValue: ''
+          defaultValue: '',
         });
 
         companyRows.push(name);
@@ -278,7 +278,7 @@ export default {
 
       replacedContent = replacedContent.replace(
         /{{ companies }}/g,
-        companyRows.join(',')
+        companyRows.join(','),
       );
     }
 
@@ -304,7 +304,7 @@ export default {
           subdomain,
           action: 'findOne',
           data: { _id: pd.productId },
-          isRPC: true
+          isRPC: true,
         });
 
         if (!product || product.type !== type) {
@@ -335,7 +335,7 @@ export default {
             <td>${toMoney(pd.unitPrice)}</td>
             <td>${toMoney(tAmount)}</td>
           </tr>
-          `
+          `,
         );
       }
 
@@ -363,7 +363,7 @@ export default {
               window.print();
             </script>
             `
-          : ''
+          : '',
       );
 
       return { totalAmount, discount };
@@ -371,13 +371,13 @@ export default {
 
     const replaceProductsResult = await replaceProducts(
       /{{ productsInfo }}/g,
-      'product'
+      'product',
     );
     const productsTotalAmount = replaceProductsResult.totalAmount;
 
     const replaceServicesResult = await replaceProducts(
       /{{ servicesInfo }}/g,
-      'service'
+      'service',
     );
     const servicesTotalAmount = replaceServicesResult.totalAmount;
 
@@ -387,57 +387,57 @@ export default {
 
     replacedContent = replacedContent.replace(
       /{{ productTotalAmount }}/g,
-      toMoney(productsTotalAmount)
+      toMoney(productsTotalAmount),
     );
 
     replacedContent = replacedContent.replace(
       /{{ servicesTotalAmount }}/g,
-      toMoney(servicesTotalAmount)
+      toMoney(servicesTotalAmount),
     );
 
     replacedContent = replacedContent.replace(
       /{{ totalAmount }}/g,
-      toMoney(totalAmount)
+      toMoney(totalAmount),
     );
 
     replacedContent = replacedContent.replace(
       /{{ totalAmountVat }}/g,
-      toMoney(totalAmountVat)
+      toMoney(totalAmountVat),
     );
 
     replacedContent = replacedContent.replace(
       /{{ totalAmountWithoutVat }}/g,
-      toMoney(totalAmountWithoutVat)
+      toMoney(totalAmountWithoutVat),
     );
 
     const cash = ((item.paymentsData || {}).cash || {}).amount || 0;
 
     replacedContent = replacedContent.replace(
       /{{ paymentCash }}/g,
-      toMoney(cash)
+      toMoney(cash),
     );
 
     replacedContent = replacedContent.replace(
       /{{ paymentNonCash }}/g,
-      toMoney(totalAmount - cash)
+      toMoney(totalAmount - cash),
     );
 
     replacedContent = replacedContent.replace(
       /{{ discount }}/g,
-      toMoney(replaceProductsResult.discount + replaceServicesResult.discount)
+      toMoney(replaceProductsResult.discount + replaceServicesResult.discount),
     );
 
     for (const customFieldData of item.customFieldsData || []) {
       replacedContent = replacedContent.replace(
         new RegExp(`{{ customFieldsData.${customFieldData.field} }}`, 'g'),
-        customFieldData.stringValue
+        customFieldData.stringValue,
       );
     }
 
     const fileds = (await getCustomFields({ subdomain })).filter(
-      customField =>
+      (customField) =>
         customField.name.includes(stage.type) &&
-        !customField.value.includes('customFieldsData')
+        !customField.value.includes('customFieldsData'),
     );
 
     for (const field of fileds) {
@@ -452,12 +452,12 @@ export default {
 
       replacedContent = replacedContent.replace(
         new RegExp(`{{ ${field.value} }}`, 'g'),
-        propertyValue || ''
+        propertyValue || '',
       );
     }
 
     return [replacedContent];
-  }
+  },
 };
 
 const cardsStage = async (items: any[]) => {
@@ -465,12 +465,12 @@ const cardsStage = async (items: any[]) => {
     const itemsArray = items;
     const aggregatedData: Record<string, any> = {
       amount: {
-        AED: 0
+        AED: 0,
       },
-      productsData: []
+      productsData: [],
     };
-    itemsArray.forEach(item => {
-      const combinedNames = itemsArray.map(item => item.name).join(',');
+    itemsArray.forEach((item) => {
+      const combinedNames = itemsArray.map((item) => item.name).join(',');
       aggregatedData.isComplete = item.isComplete;
       aggregatedData.assignedUserIds = item.assignedUserIds;
       aggregatedData.watchedUserIds = item.watchedUserIds;
@@ -492,12 +492,12 @@ const cardsStage = async (items: any[]) => {
       aggregatedData.searchText = combinedNames;
 
       if (item.productsData) {
-        item.productsData.forEach(product => {
+        item.productsData.forEach((product) => {
           const existingProduct = aggregatedData.productsData.find(
-            p =>
+            (p) =>
               p.productId === product.productId &&
               p.branchId === product.branchId &&
-              p.departmentId === product.departmentId
+              p.departmentId === product.departmentId,
           );
 
           if (existingProduct) {
@@ -518,7 +518,7 @@ const cardsStage = async (items: any[]) => {
               productId: product.productId,
               unitPrice: product.unitPrice,
               globalUnitPrice: product.globalUnitPrice,
-              unitPricePercent: product.unitPricePercent
+              unitPricePercent: product.unitPricePercent,
             });
           }
 

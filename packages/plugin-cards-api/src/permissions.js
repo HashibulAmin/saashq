@@ -34,59 +34,59 @@ module.exports = {
       },
       {
         name: 'showDeals',
-        description: 'Show deals'
+        description: 'Ukázat nabídky'
       },
       {
         name: 'dealBoardsAdd',
-        description: 'Add deal board'
+        description: 'Přidat panel nabídek'
       },
       {
         name: 'dealBoardsRemove',
-        description: 'Remove deal board'
+        description: 'Odstraňte panel nabídek'
       },
       {
         name: 'dealPipelinesAdd',
-        description: 'Add deal pipeline'
+        description: 'Přidat kanál nabídek'
       },
       {
         name: 'dealPipelinesEdit',
-        description: 'Edit deal pipeline'
+        description: 'Upravit kanál dohod'
       },
       {
         name: 'dealPipelinesRemove',
-        description: 'Remove deal pipeline'
+        description: 'Odstraňte kanál nabídek'
       },
       {
         name: 'dealPipelinesArchive',
-        description: 'Archive deal pipeline'
+        description: 'Archivační kanál dohod'
       },
       {
         name: 'dealPipelinesCopied',
-        description: 'Duplicate deal pipeline'
+        description: 'Duplicitní kanál dohod'
       },
       {
         name: 'dealPipelinesUpdateOrder',
-        description: 'Update pipeline order'
+        description: 'Aktualizujte pořadí potrubí'
       },
       {
         name: 'dealPipelinesWatch',
-        description: 'Deal pipeline watch'
+        description: 'Deal potrubí hodinky'
       },
       {
         name: 'dealStagesAdd',
-        description: 'Add deal stage'
+        description: 'Přidat fázi dohody'
       },
       {
         name: 'dealStagesEdit',
-        description: 'Edit deal stage'
+        description: 'Upravit fázi dohody'
       },
       {
         name: 'dealStagesUpdateOrder',
-        description: 'Update stage order'
+        description: 'Aktualizujte pořadí etap'
       },
       {
         name: 'dealStagesRemove',
-        description: 'Remove deal stage'
+        description: 'Odebrat fázi dohody'
       },
       {
         name: 'dealsAdd',
@@ -94,37 +94,37 @@ module.exports = {
       },
       {
         name: 'dealsEdit',
-        description: 'Edit deal'
+        description: 'Upravit dohodu'
       },
       {
         name: 'dealsRemove',
-        description: 'Remove deal'
+        description: 'Odebrat dohodu'
       },
       {
         name: 'dealsWatch',
-        description: 'Watch deal'
+        description: 'Sledujte nabídku'
       },
       {
         name: 'dealsArchive',
-        description: 'Archive all deals in a specific stage'
+        description: 'Archivujte všechny nabídky v určité fázi'
       },
       {
         name: 'dealsSort',
-        description: 'Sort all deals in a specific stage'
+        description: 'Seřaďte všechny nabídky v konkrétní fázi'
       },
       {
         name: 'exportDeals',
-        description: 'Export deals'
+        description: 'Exportní nabídky'
       },
       {
         name: 'dealUpdateTimeTracking',
-        description: 'Update time tracking'
+        description: 'Aktualizujte sledování času'
       }
     ]
   },
   purchases: {
     name: 'purchases',
-    description: 'Purchases',
+    description: 'Nákupy',
     actions: [
       {
         name: 'purchasesAll',
@@ -157,97 +157,97 @@ module.exports = {
       },
       {
         name: 'showPurchases',
-        description: 'Show purchases'
+        description: 'Zobrazit nákupy'
       },
       {
         name: 'purchaseBoardsAdd',
-        description: 'Add purchase board'
+        description: 'Přidejte nákupní desku'
       },
       {
         name: 'purchaseBoardsRemove',
-        description: 'Remove purchase board'
+        description: 'Odstraňte nákupní desku'
       },
       {
         name: 'purchasePipelinesAdd',
-        description: 'Add purchase pipeline'
+        description: 'Přidat nákupní kanál'
       },
       {
         name: 'purchasePipelinesEdit',
-        description: 'Edit purchase pipeline'
+        description: 'Upravit nákupní kanál'
       },
       {
         name: 'purchasePipelinesRemove',
-        description: 'Remove purchase pipeline'
+        description: 'Odstraňte nákupní potrubí'
       },
       {
         name: 'purchasePipelinesArchive',
-        description: 'Archive purchase pipeline'
+        description: 'Archivovaný nákupní kanál'
       },
       {
         name: 'purchasePipelinesCopied',
-        description: 'Duplicate purchase pipeline'
+        description: 'Duplicitní nákupní kanál'
       },
       {
         name: 'purchasePipelinesUpdateOrder',
-        description: 'Update pipeline order'
+        description: 'Aktualizujte pořadí potrubí'
       },
       {
         name: 'purchasePipelinesWatch',
-        description: 'purchase pipeline watch'
+        description: 'Nákup potrubí hodinky'
       },
       {
         name: 'purchaseStagesAdd',
-        description: 'Add purchase stage'
+        description: 'Přidat fázi nákupu'
       },
       {
         name: 'purchaseStagesEdit',
-        description: 'Edit purchase stage'
+        description: 'Upravit fázi nákupu'
       },
       {
         name: 'purchaseStagesUpdateOrder',
-        description: 'Update stage order'
+        description: 'Aktualizujte pořadí etap'
       },
       {
         name: 'purchaseStagesRemove',
-        description: 'Remove purchase stage'
+        description: 'Odebrat fázi nákupu'
       },
       {
         name: 'purchasesAdd',
-        description: 'Add purchase'
+        description: 'Přidat nákup'
       },
       {
         name: 'purchasesEdit',
-        description: 'Edit purchase'
+        description: 'Upravit nákup'
       },
       {
         name: 'purchasesRemove',
-        description: 'Remove purchase'
+        description: 'Odebrat nákup'
       },
       {
         name: 'purchasesWatch',
-        description: 'Watch purchase'
+        description: 'Nákup hodinek'
       },
       {
         name: 'purchasesArchive',
-        description: 'Archive all purchases in a specific stage'
+        description: 'Archivujte všechny nákupy v konkrétní fázi'
       },
       {
         name: 'purchasesSort',
-        description: 'Sort all purchases in a specific stage'
+        description: 'Seřaďte všechny nákupy v konkrétní fázi'
       },
       {
         name: 'exportpurchases',
-        description: 'Export purchases'
+        description: 'Exportní nákupy'
       },
       {
         name: 'purchaseUpdateTimeTracking',
-        description: 'Update time tracking'
+        description: 'Aktualizujte sledování času'
       }
     ]
   },
   tickets: {
     name: 'tickets',
-    description: 'Tickets',
+    description: 'Vstupenky',
     actions: [
       {
         name: 'ticketsAll',
@@ -280,101 +280,101 @@ module.exports = {
       },
       {
         name: 'showTickets',
-        description: 'Show tickets'
+        description: 'Ukaž lístky'
       },
       {
         name: 'ticketBoardsAdd',
-        description: 'Add ticket board'
+        description: 'Přidejte desku lístků'
       },
       {
         name: 'ticketBoardsEdit',
-        description: 'Edit ticket board'
+        description: 'Upravit desku lístků'
       },
       {
         name: 'ticketBoardsRemove',
-        description: 'Remove ticket board'
+        description: 'Odstraňte desku lístků'
       },
       {
         name: 'ticketPipelinesAdd',
-        description: 'Add ticket pipeline'
+        description: 'Přidat kanál lístků'
       },
       {
         name: 'ticketPipelinesEdit',
-        description: 'Edit ticket pipeline'
+        description: 'Upravit kanál lístků'
       },
       {
         name: 'ticketPipelinesRemove',
-        description: 'Remove ticket pipeline'
+        description: 'Odstraňte potrubí lístků'
       },
       {
         name: 'ticketPipelinesArchive',
-        description: 'Archive ticket pipeline'
+        description: 'Potrubí archivu lístků'
       },
       {
         name: 'ticketPipelinesCopied',
-        description: 'Duplicate ticket pipeline'
+        description: 'Duplicitní kanál vstupenek'
       },
       {
         name: 'ticketPipelinesWatch',
-        description: 'Ticket pipeline watch'
+        description: 'Hodinky na prodej vstupenek'
       },
       {
         name: 'ticketPipelinesUpdateOrder',
-        description: 'Update pipeline order'
+        description: 'Aktualizujte pořadí potrubí'
       },
       {
         name: 'ticketStagesAdd',
-        description: 'Add ticket stage'
+        description: 'Přidat fázi lístku'
       },
       {
         name: 'ticketStagesEdit',
-        description: 'Edit ticket stage'
+        description: 'Upravit fázi lístku'
       },
       {
         name: 'ticketStagesUpdateOrder',
-        description: 'Update stage order'
+        description: 'Aktualizujte pořadí etap'
       },
       {
         name: 'ticketStagesRemove',
-        description: 'Remove ticket stage'
+        description: 'Odebrat fázi lístku'
       },
       {
         name: 'ticketsAdd',
-        description: 'Add ticket'
+        description: 'Přidat lístek'
       },
       {
         name: 'ticketsEdit',
-        description: 'Edit ticket'
+        description: 'Upravit lístek'
       },
       {
         name: 'ticketsRemove',
-        description: 'Remove ticket'
+        description: 'Odebrat lístek'
       },
       {
         name: 'ticketsWatch',
-        description: 'Watch ticket'
+        description: 'Sledujte lístek'
       },
       {
         name: 'ticketsArchive',
-        description: 'Archive all tickets in a specific stage'
+        description: 'Archivujte všechny vstupenky v určité fázi'
       },
       {
         name: 'ticketsSort',
-        description: 'Sort all tickets in a specific stage'
+        description: 'Seřaďte všechny vstupenky v určité fázi'
       },
       {
         name: 'exportTickets',
-        description: 'Export tickets'
+        description: 'Export lístků'
       },
       {
         name: 'ticketUpdateTimeTracking',
-        description: 'Update time tracking'
+        description: 'Aktualizujte sledování času'
       }
     ]
   },
   growthHacks: {
     name: 'growthHacks',
-    description: 'Growth hacking',
+    description: 'Hacking růstu',
     actions: [
       {
         name: 'growthHacksAll',
@@ -410,11 +410,11 @@ module.exports = {
       },
       {
         name: 'showGrowthHacks',
-        description: 'Show growth hacks'
+        description: 'Ukažte růstové hacky'
       },
       {
         name: 'growthHackBoardsAdd',
-        description: 'Add growth hacking board'
+        description: 'Přidejte desku pro hackování růstu'
       },
       {
         name: 'growthHackBoardsRemove',

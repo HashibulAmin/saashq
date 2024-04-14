@@ -191,7 +191,7 @@ export const customerSchema = schemaWrapper(
 
     primaryEmail: field({
       type: String,
-      label: 'Primary Email',
+      label: 'Primární Email',
       optional: true,
       esType: 'email',
     }),

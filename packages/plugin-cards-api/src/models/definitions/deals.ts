@@ -49,19 +49,22 @@ export const productDataSchema = new Schema(
     name: field({ type: String, esType: 'name' }), // Product name
     uom: field({ type: String, esType: 'keyword' }), // Units of measurement
     currency: field({ type: String, esType: 'keyword' }), // Currency
-    quantity: field({ type: Number, label: 'Quantity' }), // Quantity
+    quantity: field({ type: Number, label: 'Množství' }), // Quantity
     maxQuantity: field({ type: Number, label: 'Max' }), // Max quantity when selected bonus voucher
     unitPrice: field({ type: Number, label: 'Jednotková cena' }), // Unit price
-    globalUnitPrice: field({ type: Number, label: 'Global unit price' }), // Global unit price
-    unitPricePercent: field({ type: Number, label: 'Unit price percent' }), // Unit price percent
-    taxPercent: field({ type: Number, label: 'Tax percent' }), // Tax percent
-    vatPercent: field({ type: Number, label: 'Tax percent' }), // Vat percent
-    tax: field({ type: Number, label: 'Tax' }), // Tax
-    discountPercent: field({ type: Number, label: 'Discount percent' }), // Discount percent
-    discount: field({ type: Number, label: 'Discount' }), // Discount
-    amount: field({ type: Number, label: 'Amount' }), // Amount
-    tickUsed: field({ type: Boolean, label: 'Tick used' }), // TickUsed
-    isVatApplied: field({ type: Boolean, label: 'Is vat applied' }), // isVatApplied
+    globalUnitPrice: field({ type: Number, label: 'Globální jednotková cena' }), // Global unit price
+    unitPricePercent: field({
+      type: Number,
+      label: 'Procento jednotkové ceny',
+    }), // Unit price percent
+    taxPercent: field({ type: Number, label: 'Procento daně' }), // Tax percent
+    vatPercent: field({ type: Number, label: 'Procento daně' }), // Vat percent
+    tax: field({ type: Number, label: 'Daň' }), // Tax
+    discountPercent: field({ type: Number, label: 'Procento slevy' }), // Discount percent
+    discount: field({ type: Number, label: 'Sleva' }), // Discount
+    amount: field({ type: Number, label: 'Množství' }), // Amount
+    tickUsed: field({ type: Boolean, label: 'Použito klíště' }), // TickUsed
+    isVatApplied: field({ type: Boolean, label: 'Je aplikována DPH' }), // isVatApplied
     assignUserId: field({ type: String, optional: true, esType: 'keyword' }), // AssignUserId
     branchId: field({ type: String, optional: true, esType: 'keyword' }),
     departmentId: field({ type: String, optional: true, esType: 'keyword' }),
@@ -72,6 +75,6 @@ export const productDataSchema = new Schema(
 export const dealSchema = new Schema({
   ...commonItemFieldsSchema,
 
-  productsData: field({ type: [productDataSchema], label: 'Products' }),
-  paymentsData: field({ type: Object, optional: true, label: 'Payments' }),
+  productsData: field({ type: [productDataSchema], label: 'Produkty' }),
+  paymentsData: field({ type: Object, optional: true, label: 'Platby' }),
 });

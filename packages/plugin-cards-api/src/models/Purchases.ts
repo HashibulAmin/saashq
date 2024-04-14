@@ -3,13 +3,13 @@ import {
   destroyBoardItemRelations,
   fillSearchTextItem,
   createBoardItem,
-  watchItem
+  watchItem,
 } from './utils';
 import { ACTIVITY_CONTENT_TYPES } from './definitions/constants';
 import {
   purchaseSchema,
   IPurchase,
-  IPurchaseDocument
+  IPurchaseDocument,
 } from './definitions/purchases';
 import { IModels } from '../connectionResolver';
 
@@ -27,7 +27,7 @@ export const loadPurchaseClass = (models: IModels, subdomain: string) => {
       const Purchase = await models.Purchases.findOne({ _id });
 
       if (!Purchase) {
-        throw new Error('Purchase not found');
+        throw new Error('Nákup nenalezen');
       }
 
       return Purchase;
@@ -39,11 +39,11 @@ export const loadPurchaseClass = (models: IModels, subdomain: string) => {
     public static async createPurchase(doc: IPurchase) {
       if (doc.sourceConversationIds) {
         const convertedPurchase = await models.Purchases.findOne({
-          sourceConversationIds: { $in: doc.sourceConversationIds }
+          sourceConversationIds: { $in: doc.sourceConversationIds },
         });
 
         if (convertedPurchase) {
-          throw new Error('Already converted a purchase');
+          throw new Error('Nákup již byl převeden');
         }
       }
 
@@ -56,7 +56,7 @@ export const loadPurchaseClass = (models: IModels, subdomain: string) => {
     public static async updatePurchase(_id: string, doc: IPurchase) {
       const searchText = fillSearchTextItem(
         doc,
-        await models.Purchases.getPurchase(_id)
+        await models.Purchases.getPurchase(_id),
       );
 
       await models.Purchases.updateOne({ _id }, { $set: doc, searchText });
@@ -77,7 +77,7 @@ export const loadPurchaseClass = (models: IModels, subdomain: string) => {
           models,
           subdomain,
           _id,
-          ACTIVITY_CONTENT_TYPES.PURCHASE
+          ACTIVITY_CONTENT_TYPES.PURCHASE,
         );
       }
 

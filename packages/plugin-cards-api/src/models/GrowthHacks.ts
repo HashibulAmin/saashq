@@ -3,7 +3,7 @@ import { fillSearchTextItem, createBoardItem, watchItem } from './utils';
 import {
   growthHackSchema,
   IGrowthHack,
-  IGrowthHackDocument
+  IGrowthHackDocument,
 } from './definitions/growthHacks';
 import { IModels } from '../connectionResolver';
 
@@ -15,7 +15,7 @@ export interface IGrowthHackModel extends Model<IGrowthHackDocument> {
   voteGrowthHack(
     _id: string,
     isVote: boolean,
-    userId: string
+    userId: string,
   ): Promise<IGrowthHackDocument>;
 }
 
@@ -25,7 +25,7 @@ export const loadGrowthHackClass = (models: IModels, subdomain: string) => {
       const growthHack = await models.GrowthHacks.findOne({ _id });
 
       if (!growthHack) {
-        throw new Error('Growth hack not found');
+        throw new Error('Růstový hack nebyl nalezen');
       }
 
       return growthHack;
@@ -44,7 +44,7 @@ export const loadGrowthHackClass = (models: IModels, subdomain: string) => {
     public static async updateGrowthHack(_id: string, doc: IGrowthHack) {
       const searchText = fillSearchTextItem(
         doc,
-        await models.GrowthHacks.getGrowthHack(_id)
+        await models.GrowthHacks.getGrowthHack(_id),
       );
 
       await models.GrowthHacks.updateOne({ _id }, { $set: doc, searchText });
@@ -65,7 +65,7 @@ export const loadGrowthHackClass = (models: IModels, subdomain: string) => {
     public static async voteGrowthHack(
       _id: string,
       isVote: boolean,
-      userId: string
+      userId: string,
     ) {
       const growthHack = await GrowthHack.getGrowthHack(_id);
 
@@ -77,7 +77,7 @@ export const loadGrowthHackClass = (models: IModels, subdomain: string) => {
 
         voteCount++;
       } else {
-        votedUserIds = votedUserIds.filter(id => id !== userId);
+        votedUserIds = votedUserIds.filter((id) => id !== userId);
 
         voteCount--;
       }

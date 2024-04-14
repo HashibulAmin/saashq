@@ -23,23 +23,23 @@ export const growthHackSchema = new Schema({
     type: Number,
     default: 0,
     optional: true,
-    label: 'Vote count'
+    label: 'Vote count',
   }),
-  votedUserIds: field({ type: [String], label: 'Voted users' }),
+  votedUserIds: field({ type: [String], label: 'Hlasovaní uživatelé' }),
 
-  hackStages: field({ type: [String], optional: true, label: 'Stages' }),
-  reach: field({ type: Number, default: 0, optional: true, label: 'React' }),
+  hackStages: field({ type: [String], optional: true, label: 'Etapy' }),
+  reach: field({ type: Number, default: 0, optional: true, label: 'Reagovat' }),
   impact: field({
     type: Number,
     default: 0,
     optional: true,
-    label: 'Impact'
+    label: 'Dopad',
   }),
   confidence: field({
     type: Number,
     default: 0,
     optional: true,
-    label: 'Confidence'
+    label: 'Důvěra',
   }),
-  ease: field({ type: Number, default: 0, optional: true, label: 'Ease' })
+  ease: field({ type: Number, default: 0, optional: true, label: 'Ulehčit' }),
 });

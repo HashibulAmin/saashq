@@ -2,7 +2,7 @@ import {
   FieldStyle,
   SidebarCounter,
   SidebarFlexRow,
-  SidebarList
+  SidebarList,
 } from '@saashq/ui/src/layout/styles';
 
 import { GENDER_TYPES } from '@saashq/ui-contacts/src/customers/constants';
@@ -58,7 +58,7 @@ class DetailInfo extends React.PureComponent<Props> {
   renderEmail(status?: string, email?: string) {
     return (
       <li>
-        <FieldStyle>{__('Primary Email')}:</FieldStyle>
+        <FieldStyle>{__('Primární Email')}:</FieldStyle>
         <SidebarCounter>
           <PrimaryEmail
             email={email}
@@ -101,24 +101,24 @@ class DetailInfo extends React.PureComponent<Props> {
         {this.renderRow('code', customer.code)}
         {this.renderEmail(
           customer.emailValidationStatus,
-          customer.primaryEmail
+          customer.primaryEmail,
         )}
         {this.renderPhone(
           customer.phoneValidationStatus,
-          customer.primaryPhone
+          customer.primaryPhone,
         )}
         {this.renderPosition(customer)}
         {this.renderRow(
           'owner',
           customer.owner && customer.owner.details
             ? customer.owner.details.fullName
-            : ''
+            : '',
         )}
         {this.renderRow('department', customer.department)}
         {this.renderRow('pronoun', GENDER_TYPES()[customer.sex || 0])}
         {this.renderRow(
           'birthDate',
-          customer.birthDate && dayjs(customer.birthDate).format('MMM,DD YYYY')
+          customer.birthDate && dayjs(customer.birthDate).format('MMM,DD YYYY'),
         )}
         {this.renderRow('isSubscribed', customer.isSubscribed)}
         {this.renderRow('score', customer.score)}

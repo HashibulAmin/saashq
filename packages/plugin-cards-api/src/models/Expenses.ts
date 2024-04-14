@@ -27,7 +27,7 @@ export const loadExpenseClass = (models: IModels, subdomain: string) => {
       const expense = await models.Expenses.findOne({ _id });
 
       if (!expense) {
-        throw new Error('expense not found');
+        throw new Error('výdaj nenalezen');
       }
       return expense;
     }
@@ -46,7 +46,7 @@ export const loadExpenseClass = (models: IModels, subdomain: string) => {
       const data = await models.Expenses.getExpense(_id);
 
       if (!data) {
-        throw new Error(`not found with id ${_id}`);
+        throw new Error(`nenalezeno s id ${_id}`);
       }
       return models.Expenses.deleteOne({ _id });
     }

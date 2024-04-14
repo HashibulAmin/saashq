@@ -24,8 +24,8 @@ export interface IPipelineTemplateDocument extends IPipelineTemplate, Document {
 export const stageSchema = new Schema(
   {
     _id: field({ type: String }),
-    name: field({ type: String, label: 'Stage name' }),
-    formId: field({ type: String, optional: true, label: 'Form' }),
+    name: field({ type: String, label: 'Pseudonym' }),
+    formId: field({ type: String, optional: true, label: 'Formulář' }),
     order: field({ type: Number, label: 'Objednat' }),
   },
   { _id: false },
@@ -34,15 +34,15 @@ export const stageSchema = new Schema(
 export const pipelineTemplateSchema = new Schema({
   _id: field({ pkey: true }),
   name: field({ type: String, label: 'Název' }),
-  type: field({ type: String, label: 'Type' }),
+  type: field({ type: String, label: 'Typ' }),
   description: field({ type: String, optional: true, label: 'Popis' }),
-  stages: field({ type: [stageSchema], default: [], label: 'Stages' }),
+  stages: field({ type: [stageSchema], default: [], label: 'Etapy' }),
   isDefinedBySaasHQ: field({
     type: Boolean,
     default: false,
-    label: 'Is defined by SaasHQ',
+    label: 'Je definován SaasHQ',
   }),
-  createdBy: field({ type: String, label: 'Created by' }),
+  createdBy: field({ type: String, label: 'Vytvořil' }),
   createdAt: field({
     type: Date,
     default: new Date(),
