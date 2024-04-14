@@ -133,7 +133,7 @@ class ModifiableSelect extends React.PureComponent<Props, State> {
       this.setState({ inputValue: '' });
     });
 
-    Alert.success('Successfully added');
+    Alert.success('Úspěšně přidáno');
   }
 
   handleSave = () => {
@@ -142,7 +142,7 @@ class ModifiableSelect extends React.PureComponent<Props, State> {
 
     if (options.includes(inputValue)) {
       return Alert.error(
-        `${inputValue} is already in the list. Please write a different option.`,
+        `${inputValue} je již v seznamu. Napište prosím jinou možnost.`,
       );
     }
 
@@ -151,7 +151,7 @@ class ModifiableSelect extends React.PureComponent<Props, State> {
         return this.saveValue();
       }
 
-      return Alert.error('Invalid format');
+      return Alert.error('Nesprávný formát');
     }
 
     return this.saveValue();
@@ -182,7 +182,7 @@ class ModifiableSelect extends React.PureComponent<Props, State> {
       },
     );
 
-    Alert.success('Successfully removed');
+    Alert.success('Úspěšně odstraněno');
   };
 
   setItem = (option) => {
@@ -242,7 +242,7 @@ class ModifiableSelect extends React.PureComponent<Props, State> {
               uppercase={false}
               onClick={this.handleSave}
             >
-              Save
+              Uložit
             </Button>
           </div>
         </Wrapper>
@@ -256,7 +256,7 @@ class ModifiableSelect extends React.PureComponent<Props, State> {
       <Wrapper>
         <FillContent>
           <Select
-            placeholder={`${__('Choose a Primary')} ${__(name)}`}
+            placeholder={`${__('Vyberte Primární')} ${__(name)}`}
             searchable={false}
             value={selectedOption}
             valueComponent={this.renderValue}

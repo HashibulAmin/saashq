@@ -24,7 +24,7 @@ interface ITeamMembers {
 const generateAttributes = (combinedFields?: any[], contentType?: string) => {
   // check - FieldsCombinedByType
   let items: Array<{ name: string; value?: string }> = [
-    { name: 'Customer' },
+    { name: 'Zákazník' },
     { value: 'customer.name', name: 'Name' },
   ];
 
@@ -47,20 +47,20 @@ const generateAttributes = (combinedFields?: any[], contentType?: string) => {
 
   items = [
     ...items,
-    { name: 'User' },
-    { value: 'user.fullName', name: 'Fullname' },
-    { value: 'user.position', name: 'Position' },
-    { value: 'user.email', name: 'Email' },
+    { name: 'Uživatel' },
+    { value: 'user.fullName', name: 'Celé jméno' },
+    { value: 'user.position', name: 'Pozice' },
+    { value: 'user.email', name: 'E-mailem' },
 
-    { name: 'Organization' },
-    { value: 'brandName', name: 'BrandName' },
-    { value: 'domain', name: 'Domain' },
+    { name: 'Organizace' },
+    { value: 'brandName', name: 'Jméno značky' },
+    { value: 'domain', name: 'Doména' },
   ];
 
   return {
     items,
     title: 'Attributes',
-    label: 'Attributes',
+    label: 'Atributy',
   };
 };
 

@@ -32,11 +32,11 @@ class FilterByParams extends React.Component<IProps, State> {
 
     this.state = {
       key: '',
-      parentFieldIds: {}
+      parentFieldIds: {},
     };
   }
 
-  filterItems = e => {
+  filterItems = (e) => {
     this.setState({ key: e.target.value });
 
     const { update } = this.props;
@@ -107,19 +107,12 @@ class FilterByParams extends React.Component<IProps, State> {
   }
 
   renderItems() {
-    const {
-      history,
-      fields,
-      paramKey,
-      icon,
-      searchable,
-      multiple,
-      treeView
-    } = this.props;
+    const { history, fields, paramKey, icon, searchable, multiple, treeView } =
+      this.props;
     const { key } = this.state;
 
     if (fields.length === 0) {
-      return <EmptyState icon={icon} text="No templates" size="full" />;
+      return <EmptyState icon={icon} text="Žádné šablony" size="full" />;
     }
 
     const renderFieldItem = (field: any, isOpen?: boolean) => {
@@ -162,17 +155,17 @@ class FilterByParams extends React.Component<IProps, State> {
 
     const renderContent = () => {
       if (!treeView) {
-        return fields.map(field => {
+        return fields.map((field) => {
           return renderFieldItem(field);
         });
       }
 
-      const subFields = fields.filter(f => f.parentId);
-      const parents = fields.filter(f => !f.parentId);
+      const subFields = fields.filter((f) => f.parentId);
+      const parents = fields.filter((f) => !f.parentId);
 
       const groupByParent = this.groupByParent(subFields);
 
-      const renderTree = field => {
+      const renderTree = (field) => {
         const childrens = groupByParent[field._id];
 
         if (childrens) {
@@ -190,7 +183,7 @@ class FilterByParams extends React.Component<IProps, State> {
 
                 {renderFieldItem(field, isOpen)}
                 {isOpen &&
-                  childrens.map(childField => {
+                  childrens.map((childField) => {
                     return renderTree(childField);
                   })}
               </ChildList>
@@ -201,7 +194,7 @@ class FilterByParams extends React.Component<IProps, State> {
         return renderFieldItem(field);
       };
 
-      return parents.map(field => {
+      return parents.map((field) => {
         return renderTree(field);
       });
     };

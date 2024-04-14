@@ -43,7 +43,7 @@ class UserConfirmationContainer extends React.Component<FinalProps> {
         },
       })
         .then(() => {
-          Alert.success('You successfully verified');
+          Alert.success('Úspěšně jste ověřili');
           history.push('/');
         })
         .catch((e) => {

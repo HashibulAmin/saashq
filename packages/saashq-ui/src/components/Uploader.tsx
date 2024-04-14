@@ -201,7 +201,7 @@ class Uploader extends React.Component<Props, State> {
       return (
         <UploadIconBtn>
           <label>
-            <Tip text={__('Attach file')} placement="top">
+            <Tip text={__('Přiložit soubor')} placement="top">
               <Icon icon={icon || 'attach'} />
             </Tip>
 
@@ -220,7 +220,7 @@ class Uploader extends React.Component<Props, State> {
       return (
         <UploadBtn>
           <label>
-            {__('Upload an attachment')}
+            {__('Nahrajte přílohu')}
             <input
               type="file"
               multiple={multiple}
@@ -237,7 +237,7 @@ class Uploader extends React.Component<Props, State> {
         <label>
           {icon ? <Icon icon={icon} /> : null}
           <div>
-            <span>{text ? __(text) : __('Upload an attachment')}</span>
+            <span>{text ? __(text) : __('Nahrajte přílohu')}</span>
             <Meta>
               <span>{warningText}</span>
             </Meta>
@@ -285,7 +285,7 @@ class Uploader extends React.Component<Props, State> {
     return (
       <LoadingContainer>
         <Spinner objective={true} size={18} />
-        {__('Uploading')}...
+        {__('Nahrávání')}...
       </LoadingContainer>
     );
   }

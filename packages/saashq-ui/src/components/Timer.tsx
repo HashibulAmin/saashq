@@ -10,7 +10,7 @@ const Container = styledTS<{ isComplete: boolean }>(styled.div)`
   padding: 15px 20px 20px 20px;
   color: #243B53;
 
-  ${props =>
+  ${(props) =>
     props.isComplete &&
     css`
       background-color: #e3f9e5;
@@ -58,13 +58,13 @@ export const STATUS_TYPES = {
   COMPLETED: 'completed',
   STOPPED: 'stopped',
   STARTED: 'started',
-  PAUSED: 'paused'
+  PAUSED: 'paused',
 };
 
 function formatNumber(n: number) {
   return n.toLocaleString('en-US', {
     minimumIntegerDigits: 2,
-    useGrouping: false
+    useGrouping: false,
   });
 }
 
@@ -108,9 +108,9 @@ type Props = {
       _id,
       status,
       timeSpent,
-      startDate
+      startDate,
     }: { _id: string; status: string; timeSpent: number; startDate?: string },
-    callback?: () => void
+    callback?: () => void,
   ) => void;
 };
 
@@ -138,7 +138,7 @@ class TaskTimer extends React.Component<Props, State> {
 
     this.state = {
       status,
-      timeSpent: absentTime ? timeSpent + absentTime : timeSpent
+      timeSpent: absentTime ? timeSpent + absentTime : timeSpent,
     };
   }
 
@@ -157,7 +157,7 @@ class TaskTimer extends React.Component<Props, State> {
     const doc: any = {
       _id: taskId,
       status,
-      timeSpent
+      timeSpent,
     };
 
     if (status === STATUS_TYPES.STARTED && timeSpent === 0) {
@@ -183,8 +183,8 @@ class TaskTimer extends React.Component<Props, State> {
 
   startTimer() {
     this.timer = setInterval(() => {
-      this.setState(prevState => ({
-        timeSpent: prevState.timeSpent + 1
+      this.setState((prevState) => ({
+        timeSpent: prevState.timeSpent + 1,
       }));
     }, 1000);
   }
@@ -199,7 +199,7 @@ class TaskTimer extends React.Component<Props, State> {
     const isComplete = status === STATUS_TYPES.COMPLETED;
 
     const handleComplete = () => {
-      Alert.info('Task completed!');
+      Alert.info('Úkol splněn!');
 
       this.stopTimer();
 
@@ -209,7 +209,7 @@ class TaskTimer extends React.Component<Props, State> {
     };
 
     return (
-      <Tip text={isComplete ? 'Completed' : 'Complete'} placement="top">
+      <Tip text={isComplete ? 'Dokončeno' : 'Kompletní'} placement="top">
         <Button
           disabled={isComplete}
           btnStyle={isComplete ? 'success' : 'default'}
@@ -246,7 +246,7 @@ class TaskTimer extends React.Component<Props, State> {
         {[
           STATUS_TYPES.COMPLETED,
           STATUS_TYPES.PAUSED,
-          STATUS_TYPES.STOPPED
+          STATUS_TYPES.STOPPED,
         ].includes(status) ? (
           <Tip text="Start" placement="top">
             <Button
@@ -257,12 +257,12 @@ class TaskTimer extends React.Component<Props, State> {
             />
           </Tip>
         ) : (
-          <Tip text="Pause" placement="top">
+          <Tip text="Pauza" placement="top">
             <Button btnStyle="danger" icon="pause-1" onClick={handleClick} />
           </Tip>
         )}
 
-        <Tip text="Reset" placement="top">
+        <Tip text="Resetovat" placement="top">
           <Button btnStyle="warning" icon="redo" onClick={this.handleReset} />
         </Tip>
         {this.renderButton()}
@@ -276,7 +276,7 @@ class TaskTimer extends React.Component<Props, State> {
     return (
       <TimeWrapper>
         <label>
-          Time spent on this task <span>({status})</span>
+          Čas strávený na tomto úkolu <span>({status})</span>
         </label>
         {getSpentTime(timeSpent)}
       </TimeWrapper>
@@ -288,7 +288,7 @@ class TaskTimer extends React.Component<Props, State> {
     const isComplete = status === STATUS_TYPES.COMPLETED;
 
     return (
-      <Box title="Time tracking" isOpen={true} name="showCustomers">
+      <Box title="Sledování času" isOpen={true} name="showCustomers">
         <Container isComplete={isComplete}>
           {this.renderTime()}
           {this.renderActions()}

@@ -77,8 +77,8 @@ function AttachmentsGallery(props: Props) {
   const renderToggleButton = (hiddenCount: number) => {
     if (hiddenCount > 0) {
       const buttonText = hideOthers
-        ? `${__('View all attachments')} (${hiddenCount} ${__('hidden')})`
-        : `${__('Show fewer attachments')}`;
+        ? `${__('Zobrazit všechny přílohy')} (${hiddenCount} ${__('skrytý')})`
+        : `${__('Zobrazit méně příloh')}`;
 
       return (
         <ToggleButton onClick={toggleAttachments}>{buttonText}</ToggleButton>

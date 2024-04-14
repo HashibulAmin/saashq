@@ -44,7 +44,7 @@ const BrandForm = (props: Props) => {
           icon="times-circle"
           onClick={closeModal}
         >
-          Cancel
+          Zrušení
         </Button>
 
         {renderButton({
@@ -67,7 +67,7 @@ const BrandForm = (props: Props) => {
 
     return (
       <EmailConfigForm
-        emailText="Set an email address you wish to send your transactional emails to your customers. For example, chat reply notification to offline customers."
+        emailText="Nastavte e-mailovou adresu, na kterou chcete svým zákazníkům zasílat transakční e-maily. Například oznámení o odpovědi na chat offline zákazníkům."
         emailConfig={emailConfig}
         setEmailConfig={setEmailConfig}
         templateName="conversationCron"
@@ -80,7 +80,7 @@ const BrandForm = (props: Props) => {
     return (
       <>
         <FormGroup>
-          <ControlLabel required={true}>Name</ControlLabel>
+          <ControlLabel required={true}>Název</ControlLabel>
 
           <FormControl
             {...formProps}
@@ -92,7 +92,7 @@ const BrandForm = (props: Props) => {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>Description</ControlLabel>
+          <ControlLabel>Popis</ControlLabel>
 
           <FormControl
             {...formProps}

@@ -49,26 +49,28 @@ class Confirmation extends React.Component<{
   renderContent() {
     return (
       <AuthBox>
-        <h2>{__('Set up your password')}</h2>
+        <h2>{__('Nastavte si heslo')}</h2>
         <form onSubmit={this.onSubmit}>
           <FormGroup>
-            <ControlLabel>{__('Full name')}</ControlLabel>
+            <ControlLabel>{__('Celé jméno')}</ControlLabel>
             <FormControl id="fullName" />
           </FormGroup>
           <FormGroup>
-            <ControlLabel>{__('Username')}</ControlLabel>
+            <ControlLabel>{__('Uživatelské jméno')}</ControlLabel>
             <FormControl id="username" />
           </FormGroup>
           <FormGroup>
-            <ControlLabel>{__('New Password')}</ControlLabel>
+            <ControlLabel>{__('Nové Heslo')}</ControlLabel>
             <FormControl type="password" id="password" />
           </FormGroup>
           <FormGroup>
-            <ControlLabel>{__('Re-type Password to confirm')}</ControlLabel>
+            <ControlLabel>
+              {__('Pro potvrzení zadejte heslo znovu')}
+            </ControlLabel>
             <FormControl type="password" id="passwordConfirmation" />
           </FormGroup>
           <Button btnStyle="success" type="submit" block={true}>
-            Submit
+            Předložit
           </Button>
         </form>
       </AuthBox>

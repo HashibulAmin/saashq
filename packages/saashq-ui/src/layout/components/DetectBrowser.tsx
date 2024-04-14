@@ -56,15 +56,15 @@ class DetectBrowser extends React.PureComponent<{}, State> {
         >
           <OldBrowserWarning type="error">
             <b>
-              {__('Please upgrade your browser to use saashq!')}
+              {__('Upgradujte svůj prohlížeč, abyste mohli používat SaasHQ!')}
               <Icon icon="cancel" size={10} onClick={this.closeAlert} />
             </b>
             <div>
               {__(
-                'Unfortunately, You are running on a browser that may not be fully compatible with saashq',
+                'Bohužel používáte prohlížeč, který nemusí být plně kompatibilní se SaasHQ',
               )}{' '}
-              {__(`Please use recommended version`)} - {name.replace('/', '')}{' '}
-              {minVersion}+.
+              {__(`Použijte prosím doporučenou verzi`)} -{' '}
+              {name.replace('/', '')} {minVersion}+.
             </div>
           </OldBrowserWarning>
         </RTG.CSSTransition>

@@ -110,7 +110,7 @@ class ButtonMutate extends React.Component<Props, { isLoading: boolean }> {
       .catch((error) => {
         if (error.message.includes('Invalid login')) {
           Alert.error(
-            'The email address or password you entered is incorrect.',
+            'E-mailová adresa nebo heslo, které jste zadali, jsou nesprávné.',
           );
         } else {
           Alert.error(error.message);
@@ -130,7 +130,7 @@ class ButtonMutate extends React.Component<Props, { isLoading: boolean }> {
     const { confirmationUpdate } = this.props;
 
     if (confirmationUpdate) {
-      return confirm('This will permanently update are you absolutely sure?', {
+      return confirm('Toto se trvale aktualizuje, jste si naprosto jisti?', {
         hasUpdateConfirm: true,
       })
         .then(() => {

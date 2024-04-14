@@ -15,7 +15,7 @@ type Props = {
 const PerPageChooser = ({ history }: Props) => {
   const currentPerPage = Number(router.getParam(history, 'perPage')) || 20;
 
-  const onClick = perPage => {
+  const onClick = (perPage) => {
     if (perPage !== currentPerPage) {
       router.setParams(history, { perPage });
       router.setParams(history, { page: 1 });
@@ -34,7 +34,7 @@ const PerPageChooser = ({ history }: Props) => {
     }
   };
 
-  const renderOption = n => {
+  const renderOption = (n) => {
     return (
       <Option>
         <a href="#number" onClick={onClick.bind(null, n)}>
@@ -48,7 +48,7 @@ const PerPageChooser = ({ history }: Props) => {
     <Dropdown className="dropdown-btn" drop="up">
       <Dropdown.Toggle as={DropdownToggle} id="per-page-chooser">
         <PerPageButton>
-          {currentPerPage} {__('per page')} <Icon icon="angle-up" />
+          {currentPerPage} {__('na stránku')} <Icon icon="angle-up" />
         </PerPageButton>
       </Dropdown.Toggle>
       <Dropdown.Menu>

@@ -355,7 +355,7 @@ const Map = (props: IMapProps) => {
           lng: center.lng,
         },
         map,
-        title: center.description || 'your location',
+        title: center.description || 'vaše pozice',
         draggable: true,
         icon: getIconAttributes(MAP_MARKERS.default, colors.colorPrimary),
       });
@@ -363,7 +363,7 @@ const Map = (props: IMapProps) => {
       (marker as IMarker).tag = 'current';
 
       marker.setPosition(center);
-      addListeners(marker, 'your location');
+      addListeners(marker, 'vaše pozice');
     }
   };
 

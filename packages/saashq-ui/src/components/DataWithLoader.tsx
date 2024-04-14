@@ -17,11 +17,11 @@ type Props = {
 
 class DataWithLoader extends React.Component<Props> {
   static defaultProps = {
-    emptyText: 'There is no data',
+    emptyText: 'Nejsou žádná data',
     emptyIcon: '',
     emptyImage: '',
     size: 'full',
-    objective: false
+    objective: false,
   };
 
   showData() {
@@ -35,7 +35,7 @@ class DataWithLoader extends React.Component<Props> {
       size,
       objective,
       emptyContent,
-      loadingContent
+      loadingContent,
     } = this.props;
 
     if (loading) {
@@ -53,7 +53,7 @@ class DataWithLoader extends React.Component<Props> {
 
       return (
         <EmptyState
-          text={emptyText || 'There is no data'}
+          text={emptyText || 'Nejsou žádná data'}
           size={size}
           icon={emptyIcon}
           image={emptyImage}

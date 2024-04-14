@@ -30,7 +30,7 @@ class AuthLayout extends React.Component<Props, {}> {
             <div>{__(desciption)}</div>
           </div>
           <Button btnStyle="link" size="small" href={link}>
-            {__('Get')}
+            {__('Dostat')}
           </Button>
         </CenterContent>
       </MobileRecommend>

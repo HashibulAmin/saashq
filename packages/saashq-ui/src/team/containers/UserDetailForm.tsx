@@ -67,7 +67,7 @@ const UserDetailFormContainer = (props: Props & FinalProps) => {
     confirm().then(() => {
       userExcludeSkill({ variables: { _id: skillId, memberIds: [userId] } })
         .then(() => {
-          Alert.success('Successfully removed from the skill.');
+          Alert.success('Úspěšně odebráno z dovednosti.');
 
           skillsQuery.refetch();
         })
@@ -107,9 +107,9 @@ const UserDetailFormContainer = (props: Props & FinalProps) => {
         isSubmitted={isSubmitted}
         type="submit"
         icon="check-circle"
-        successMessage={`You successfully ${
-          object ? 'updated' : 'added'
-        } a ${name}`}
+        successMessage={`Ty úspěšně ${
+          object ? 'aktualizováno' : 'přidal'
+        } A ${name}`}
       />
     );
   };

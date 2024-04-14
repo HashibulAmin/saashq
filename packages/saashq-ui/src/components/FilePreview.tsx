@@ -82,7 +82,7 @@ export default function FilePreview({ fileUrl, fileName }: Props) {
     const attr = {
       rel: 'noopener noreferrer',
       href: readFile(fileUrl),
-      target: '_blank'
+      target: '_blank',
     };
 
     return (
@@ -104,7 +104,7 @@ export default function FilePreview({ fileUrl, fileName }: Props) {
         <Content>
           <video controls={true} loop={true}>
             <source src={fileUrl} type="video/mp4" />
-            Your browser does not support the video tag.
+            Váš prohlížeč nepodporuje značku videa.
           </video>
         </Content>
       </Wrapper>
@@ -119,9 +119,9 @@ export default function FilePreview({ fileUrl, fileName }: Props) {
       sources: [
         {
           src: fileUrl,
-          type: 'application/x-mpegURL'
-        }
-      ]
+          type: 'application/x-mpegURL',
+        },
+      ],
     };
 
     return (

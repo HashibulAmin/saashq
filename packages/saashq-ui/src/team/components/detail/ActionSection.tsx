@@ -39,7 +39,7 @@ class ActionSection extends React.Component<Props> {
           btnStyle={operatorPhone ? 'primary' : 'simple'}
           disabled={operatorPhone ? false : true}
         >
-          <Tip text="Call" placement="top-end">
+          <Tip text="Volání" placement="top-end">
             <Icon icon="phone" />
           </Tip>
         </Button>
@@ -73,8 +73,8 @@ class ActionSection extends React.Component<Props> {
     return (
       <li>
         <ModalTrigger
-          title="Edit basic info"
-          trigger={<a href="#edit">{__('Edit Profile')}</a>}
+          title="Upravit základní informace"
+          trigger={<a href="#edit">{__('Upravit Profil')}</a>}
           size="lg"
           content={userForm}
         />
@@ -96,7 +96,7 @@ class ActionSection extends React.Component<Props> {
     return (
       <li>
         <a href="#resend" onClick={onClick}>
-          {__('Resend Invitation')}
+          {__('Znovu poslat pozvánku')}
         </a>
       </li>
     );
@@ -112,7 +112,7 @@ class ActionSection extends React.Component<Props> {
     return (
       <li>
         <a href="#deactivate" onClick={onClick}>
-          {user.isActive ? __('Deactivate') : __('Activate')}
+          {user.isActive ? __('Deaktivovat') : __('Aktivovat')}
         </a>
       </li>
     );
@@ -125,10 +125,10 @@ class ActionSection extends React.Component<Props> {
 
     return (
       <ModalTrigger
-        title="Reset member password"
+        title="Obnovit heslo člena"
         trigger={
           <li>
-            <a href="#reset">{__('Reset Password')}</a>
+            <a href="#reset">{__('Obnovit Heslo')}</a>
           </li>
         }
         content={content}

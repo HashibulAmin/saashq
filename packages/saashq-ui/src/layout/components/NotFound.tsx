@@ -12,12 +12,12 @@ function NotFound() {
           <div className="col-md-7">
             <div className="auth-description not-found">
               <img src="/images/not-found.png" alt="saashq" />
-              <h1>{__('Page not found')}</h1>
+              <h1>{__('Stránka nenalezena')}</h1>
               <p>
-                {__('Sorry but the page you are looking for cannot be found')}
+                {__('Omlouváme se, ale stránku, kterou hledáte, nelze najít')}
               </p>
               <Button href="/welcome">
-                <Icon icon="arrow-left" /> {__('Back to home')}
+                <Icon icon="arrow-left" /> {__('Zpátky domů')}
               </Button>
             </div>
           </div>

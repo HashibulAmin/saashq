@@ -109,7 +109,7 @@ const CloseAttachment = styled.div`
 const KEYCODES = {
   ESCAPE: 27,
   ARROWRIGHT: 39,
-  ARROWLEFT: 37
+  ARROWLEFT: 37,
 };
 
 type Props = {
@@ -137,7 +137,7 @@ class AttachmentWithPreview extends React.Component<Props, State> {
     document.removeEventListener('keydown', this.handleKeydown);
   }
 
-  handleKeydown = e => {
+  handleKeydown = (e) => {
     const { currentIndex, visible } = this.state;
     const activeIndex =
       currentIndex !== 0 ? currentIndex : this.props.index || 0;
@@ -178,7 +178,7 @@ class AttachmentWithPreview extends React.Component<Props, State> {
     return this.setState({ currentIndex: indexValue });
   };
 
-  renderDocViewer = url => {
+  renderDocViewer = (url) => {
     return (
       <iframe
         src={
@@ -231,7 +231,7 @@ class AttachmentWithPreview extends React.Component<Props, State> {
           <div>
             <h4>{galleryAttachment.name}</h4>
             <p>
-              {__('Size')} -{' '}
+              {__('Velikost')} -{' '}
               {galleryAttachment.size &&
                 Math.round(galleryAttachment.size / 1000)}
               kB
@@ -239,19 +239,19 @@ class AttachmentWithPreview extends React.Component<Props, State> {
             <Actions>
               <a
                 href={`https://docs.google.com/viewerng/viewer?url=${readFile(
-                  galleryAttachment.url || ''
+                  galleryAttachment.url || '',
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Icon icon="external-link-alt" size={12} />{' '}
-                {__('Open in new tab')}
+                {__('Otevřít na nové kartě')}
               </a>
               <a
                 href={readFile(galleryAttachment.url || '')}
                 rel="noopener noreferrer"
               >
-                <Icon icon="download-1" size={12} /> {__('Download')}
+                <Icon icon="download-1" size={12} /> {__('Stažení')}
               </a>
             </Actions>
           </div>
@@ -269,7 +269,7 @@ class AttachmentWithPreview extends React.Component<Props, State> {
           onClick={() =>
             this.onSlide(
               'right',
-              currentIndex !== 0 ? currentIndex : index || 0
+              currentIndex !== 0 ? currentIndex : index || 0,
             )
           }
         >

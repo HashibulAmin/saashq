@@ -73,7 +73,7 @@ class InfoSection extends React.Component<Props> {
 
     return (
       <ModalTrigger
-        title="Edit basic info"
+        title="Upravit základní informace"
         trigger={<Icon icon="pen-1" />}
         size="lg"
         content={customerForm}

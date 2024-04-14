@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import AlertStyled from './Alert';
 
 const AlertsWrapper = styled.div.attrs({
-  id: 'alerts-wrapper'
+  id: 'alerts-wrapper',
 })`
   position: fixed;
   display: flex;
@@ -79,22 +79,22 @@ const createAlert = (type: string, text: string, time?: number) => {
       >
         {T.translate(text)}
       </AlertStyled>,
-      alertContainer
+      alertContainer,
     );
   }
 };
 
 const success = (text: string, time?: number) =>
-  createAlert('success', text, time);
+  createAlert('úspěch', text, time);
 
 const error = (text: string, time?: number) => {
   if (text) {
-    createAlert('error', text.replace('GraphQL error:', ''), time);
+    createAlert('chyba', text.replace('GraphQL error:', ''), time);
   }
 };
 
 const warning = (text: string, time?: number) =>
-  createAlert('warning', text, time);
+  createAlert('varování', text, time);
 
 const info = (text: string, time?: number) => createAlert('info', text, time);
 
@@ -102,7 +102,7 @@ const Alert = {
   success,
   error,
   warning,
-  info
+  info,
 };
 
 export default Alert;

@@ -19,13 +19,13 @@ function EmptyContent({ content, vertical, maxItemWidth }: Props) {
     buttonUrl: string,
     text: string,
     isOutside: boolean,
-    target: string
+    target: string,
   ) => {
     if (!buttonUrl) {
       return null;
     }
 
-    const buttonText = __(text) || __('Learn More');
+    const buttonText = __(text) || __('Další Informace');
 
     if (isOutside) {
       return (
@@ -72,7 +72,7 @@ function EmptyContent({ content, vertical, maxItemWidth }: Props) {
                 step.url,
                 step.urlText,
                 step.isOutside,
-                step.target
+                step.target,
               )}
             </Action>
           </ItemContent>

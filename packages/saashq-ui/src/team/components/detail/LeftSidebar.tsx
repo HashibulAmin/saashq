@@ -57,25 +57,25 @@ function LeftSidebar({
       <Section>
         <SidebarList className="no-link">
           {renderRow('Primární Email', user.email)}
-          {renderRow('Operator Phone number', details.operatorPhone)}
-          {renderRow('User name', user.username)}
-          {renderRow('Short name', details.shortName)}
-          {renderRow('Location', details.location)}
+          {renderRow('Telefonní číslo Operátora', details.operatorPhone)}
+          {renderRow('Uživatelské jméno', user.username)}
+          {renderRow('Krátké jméno', details.shortName)}
+          {renderRow('Umístění', details.location)}
           {renderRow(
-            'Birthdate',
+            'Datum narození',
             details.birthDate
               ? dayjs(details.birthDate).format('YYYY-MM-DD')
               : '-',
           )}
-          {renderRow('Position', details.position)}
-          {renderRow('Score', user.score)}
+          {renderRow('Pozice', details.position)}
+          {renderRow('Skóre', user.score)}
           {renderRow(
-            'Joined date',
+            'Datum připojení',
             details.workStartedDate
               ? dayjs(details.workStartedDate).format('YYYY-MM-DD')
               : '-',
           )}
-          {renderRow('Description', details.description, true)}
+          {renderRow('Popis', details.description, true)}
         </SidebarList>
       </Section>
     );
@@ -84,7 +84,7 @@ function LeftSidebar({
   function renderChannels() {
     return (
       <Section>
-        <Title>{__('Channels')}</Title>
+        <Title>{__('Kanály')}</Title>
         <List>
           {channels.map((channel) => {
             return (
@@ -108,10 +108,10 @@ function LeftSidebar({
 
     return (
       <Section>
-        <Title>{__('Skills')}</Title>
+        <Title>{__('Dovednosti')}</Title>
         <Section.QuickButtons>
           <ModalTrigger
-            title="Edit"
+            title="Upravit"
             trigger={<Button btnStyle="simple" size="small" icon="cog" />}
             content={getContent}
           />
@@ -150,7 +150,7 @@ function LeftSidebar({
 
     const extraButton = (
       <ModalTrigger
-        title="Properties"
+        title="Vlastnosti"
         trigger={
           <Icon icon="expand-arrows-alt" style={{ cursor: 'pointer' }} />
         }

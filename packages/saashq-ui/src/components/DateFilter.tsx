@@ -14,8 +14,9 @@ import asyncComponent from './AsyncComponent';
 import Button from './Button';
 import Icon from './Icon';
 
-const Datetime = asyncComponent(() =>
-  import(/* webpackChunkName: "Datetime" */ '@nateradebaugh/react-datetime')
+const Datetime = asyncComponent(
+  () =>
+    import(/* webpackChunkName: "Datetime" */ '@nateradebaugh/react-datetime'),
 );
 
 const FlexRow = styled.div`
@@ -66,7 +67,7 @@ class DateFilter extends React.Component<Props & ApolloClientProps, State> {
     const state: State = {
       startDate: new Date(),
       endDate: new Date(),
-      totalCount: 0
+      totalCount: 0,
     };
 
     if (startDate) {
@@ -92,7 +93,7 @@ class DateFilter extends React.Component<Props & ApolloClientProps, State> {
 
   onDateChange = <T extends keyof State>(type: T, date: State[T]) => {
     if (typeof date !== 'string') {
-      this.setState(({ [type]: date } as unknown) as Pick<State, keyof State>);
+      this.setState({ [type]: date } as unknown as Pick<State, keyof State>);
     }
   };
 
@@ -112,15 +113,15 @@ class DateFilter extends React.Component<Props & ApolloClientProps, State> {
     client
       .query({
         query: gql(countQuery),
-        variables
+        variables,
       })
 
       .then(({ data }) => {
         this.setState({
-          totalCount: data[countQueryParam]
+          totalCount: data[countQueryParam],
         });
       })
-      .catch(e => {
+      .catch((e) => {
         Alert.error(e.message);
       });
   };
@@ -132,11 +133,13 @@ class DateFilter extends React.Component<Props & ApolloClientProps, State> {
     const formattedEndDate = dayjs(endDate).format(format);
 
     if (formattedStartDate > formattedEndDate) {
-      return Alert.error('The start date must be earlier than the end date.');
+      return Alert.error(
+        'Datum zahájení musí být dřívější než datum ukončení.',
+      );
     }
     setParams(this.props.history, {
       startDate: formattedStartDate,
-      endDate: formattedEndDate
+      endDate: formattedEndDate,
     });
 
     if (this.props.countQuery) {
@@ -162,19 +165,19 @@ class DateFilter extends React.Component<Props & ApolloClientProps, State> {
 
   renderPopover = () => {
     const props = {
-      inputProps: { placeholder: __('Select a date') },
+      inputProps: { placeholder: __('Vyberte datum') },
       timeFormat: 'HH:mm',
       dateFormat: 'YYYY/MM/DD',
-      closeOnSelect: false
+      closeOnSelect: false,
     };
 
-    const onChangeStart = date => {
+    const onChangeStart = (date) => {
       if (typeof date !== 'string') {
         this.onDateChange('startDate', date);
       }
     };
 
-    const onChangeEnd = date => {
+    const onChangeEnd = (date) => {
       if (typeof date !== 'string') {
         this.onDateChange('endDate', date);
       }
@@ -182,10 +185,10 @@ class DateFilter extends React.Component<Props & ApolloClientProps, State> {
 
     return (
       <Popover id="date-popover">
-        <Popover.Title as="h3">{__('Filter by date')}</Popover.Title>
+        <Popover.Title as="h3">{__('Filtrovat podle data')}</Popover.Title>
         <FlexRow>
           <div>
-            <DateName>Start Date</DateName>
+            <DateName>Datum Zahájení</DateName>
             <Datetime
               {...props}
               input={false}
@@ -195,7 +198,7 @@ class DateFilter extends React.Component<Props & ApolloClientProps, State> {
           </div>
 
           <div>
-            <DateName>End Date</DateName>
+            <DateName>Datum Ukončení</DateName>
             <Datetime
               {...props}
               input={false}
@@ -230,7 +233,7 @@ class DateFilter extends React.Component<Props & ApolloClientProps, State> {
         rootClose={true}
       >
         <PopoverButton>
-          {__('Date')}
+          {__('Datum')}
           <Icon icon="angle-down" />
         </PopoverButton>
       </OverlayTrigger>

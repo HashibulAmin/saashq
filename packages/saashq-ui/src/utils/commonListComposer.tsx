@@ -79,7 +79,7 @@ function commonListComposer<ComponentProps>(options) {
             listQuery.refetch();
             totalCountQuery.refetch();
 
-            Alert.success(`You successfully deleted a ${text}.`);
+            Alert.success(`Úspěšně jste smazali a ${text}.`);
           })
           .catch((error) => {
             Alert.error(error.message);
@@ -94,7 +94,7 @@ function commonListComposer<ComponentProps>(options) {
             listQuery.refetch();
             totalCountQuery.refetch();
 
-            Alert.success(`You successfully copied a ${text}`);
+            Alert.success(`Úspěšně jste zkopírovali a ${text}`);
           })
           .catch((error) => {
             Alert.error(error.message);
@@ -120,16 +120,16 @@ function commonListComposer<ComponentProps>(options) {
       };
 
       let mutation = stringAddMutation;
-      let successAction = 'added';
+      let successAction = 'přidal';
 
       if (object) {
         mutation = stringEditMutation;
-        successAction = 'updated';
+        successAction = 'aktualizováno';
       }
 
       if (copy === true && stringCopyMutation && gqlCopyMutation) {
         mutation = stringCopyMutation;
-        successAction = 'copied';
+        successAction = 'zkopírován';
       }
 
       return (
@@ -140,7 +140,7 @@ function commonListComposer<ComponentProps>(options) {
           isSubmitted={isSubmitted}
           type="submit"
           confirmationUpdate={confirmationUpdate}
-          successMessage={`You successfully ${successAction} a ${name}`}
+          successMessage={`Ty úspěšně ${successAction} A ${name}`}
         />
       );
     };

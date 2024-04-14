@@ -192,7 +192,7 @@ class CollapsibleList extends React.Component<Props, State> {
     if (items.length === 0) {
       return (
         <EmptyState
-          text="There aren’t any data at the moment."
+          text="Momentálně nejsou žádná data."
           icon="clipboard-blank"
         />
       );

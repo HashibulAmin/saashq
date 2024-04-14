@@ -31,8 +31,8 @@ class RuleForm extends React.Component<Props, State> {
     return (
       <>
         <FormGroup>
-          <ControlLabel>Rules</ControlLabel>
-          <p> Add rules as many as you want</p>
+          <ControlLabel>Pravidla</ControlLabel>
+          <p> Přidejte pravidla, kolik chcete</p>
 
           <FormControl componentClass="select" onChange={this.onSelect}>
             {VISITOR_AUDIENCE_RULES.map((rule, index) => (

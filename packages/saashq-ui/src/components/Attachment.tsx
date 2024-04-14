@@ -52,10 +52,10 @@ const Download = styled.a`
 `;
 
 const PreviewWrapper = styledTS<{ large?: boolean; small?: boolean }>(
-  styled.div
+  styled.div,
 )`
-  width: ${props => (props.large ? '300px' : props.small ? '55px' : '110px')};
-  height: ${props => (props.large ? '220px' : props.small ? '40px' : '80px')};
+  width: ${(props) => (props.large ? '300px' : props.small ? '55px' : '110px')};
+  height: ${(props) => (props.large ? '220px' : props.small ? '40px' : '80px')};
   background: ${rgba(colors.colorCoreDarkBlue, 0.08)};
   display: flex;
   justify-content: center;
@@ -164,7 +164,7 @@ class Attachment extends React.Component<Props> {
     }
   }
 
-  renderOtherInfo = attachment => {
+  renderOtherInfo = (attachment) => {
     const { small } = this.props;
     const name = attachment.name || attachment.url || '';
 
@@ -184,12 +184,12 @@ class Attachment extends React.Component<Props> {
           <span>
             {attachment.size && (
               <div>
-                {__('Size')}: {this.renderFileSize(attachment.size)}
+                {__('Velikost')}: {this.renderFileSize(attachment.size)}
               </div>
             )}
             {!small && attachment.type && (
               <div>
-                {__('Type')}: {attachment.type}
+                {__('Typ')}: {attachment.type}
               </div>
             )}
           </span>
@@ -253,9 +253,9 @@ class Attachment extends React.Component<Props> {
       sources: [
         {
           src: readFile(attachment.url),
-          type: 'video/mp4'
-        }
-      ]
+          type: 'video/mp4',
+        },
+      ],
     };
 
     if (simple) {
@@ -280,9 +280,9 @@ class Attachment extends React.Component<Props> {
       sources: [
         {
           src: attachment.url,
-          type: 'application/x-mpegURL'
-        }
-      ]
+          type: 'application/x-mpegURL',
+        },
+      ],
     };
 
     if (simple) {

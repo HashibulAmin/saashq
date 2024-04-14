@@ -26,11 +26,11 @@ class Form extends React.Component<Props, State> {
     this.state = {
       errors: {},
       values: {},
-      isSubmitted: false
+      isSubmitted: false,
     };
   }
 
-  registerChild = child => {
+  registerChild = (child) => {
     this.children.push(child);
   };
 
@@ -48,7 +48,7 @@ class Form extends React.Component<Props, State> {
     }
 
     this.setState({ errors, values }, () => {
-      const hasErrors = Object.values(errors).some(error => error !== null);
+      const hasErrors = Object.values(errors).some((error) => error !== null);
 
       if (hasErrors) {
         return;
@@ -66,7 +66,7 @@ class Form extends React.Component<Props, State> {
     return document.querySelector(`#${this.formId} [name='${name}']`) as any;
   };
 
-  getValue = child => {
+  getValue = (child) => {
     const element = this.getSelector(child.props.name);
 
     if (element) {
@@ -76,26 +76,28 @@ class Form extends React.Component<Props, State> {
     return '';
   };
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
     this.runValidations();
   };
 
-  validate = child => {
+  validate = (child) => {
     const { props } = child;
     const element = this.getSelector(props.name);
     const value = element ? element.value : '';
 
     if (props.required && !value) {
-      return <Error>{__('Required field')}</Error>;
+      return <Error>{__('Povinné pole')}</Error>;
     }
 
     if (props.type === 'email' && !validator.isEmail(value)) {
       return (
         <Error>
-          {__('Invalid email format! Please enter a valid email address')}
+          {__(
+            'Neplatný formát e-mailu! Prosím zadejte platnou emailovou adresu',
+          )}
         </Error>
       );
     }
@@ -106,13 +108,13 @@ class Form extends React.Component<Props, State> {
     ) {
       return (
         <Error>
-          {__('Maximum length is')} {props.max} {__('characters')}
+          {__('Maximální délka je')} {props.max} {__('postavy')}
         </Error>
       );
     }
 
     if (value && props.type === 'url' && !validator.isURL(value)) {
-      return <Error>{__('Invalid link')}</Error>;
+      return <Error>{__('Neplatný odkaz')}</Error>;
     }
 
     if (
@@ -123,13 +125,13 @@ class Form extends React.Component<Props, State> {
     ) {
       return (
         <Error>
-          {__('Invalid number format! Please enter a valid number')}
+          {__('Neplatný formát čísla! Prosím zadejte platné číslo')}
         </Error>
       );
     }
 
     if (value && props.name === 'username' && !isValidUsername(value)) {
-      return <Error>{__('Invalid Username')}</Error>;
+      return <Error>{__('Neplatné uživatelské jméno')}</Error>;
     }
 
     return null;
@@ -149,7 +151,7 @@ class Form extends React.Component<Props, State> {
           registerChild: this.registerChild,
           runValidations: this.runValidations,
           isSubmitted: this.state.isSubmitted,
-          resetSubmit: this.resetSubmit
+          resetSubmit: this.resetSubmit,
         })}
       </form>
     );

@@ -24,16 +24,16 @@ const UserResetPasswordContainer = (
     }
 
     if (!newPassword || newPassword === 0) {
-      return Alert.error('Please enter a new password');
+      return Alert.error('Zadejte prosím nové heslo');
     }
 
     if (newPassword !== repeatPassword) {
-      return Alert.error("Password didn't match");
+      return Alert.error('Heslo se neshodovalo');
     }
 
     usersResetMemberPassword({ variables: { _id, newPassword } })
       .then(() => {
-        Alert.success('Your password has been changed and updated');
+        Alert.success('Vaše heslo bylo změněno a aktualizováno');
         props.closeModal();
       })
       .catch((error) => {

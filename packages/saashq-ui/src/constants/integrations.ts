@@ -1,16 +1,16 @@
 import { __ } from '@saashq/ui/src/utils';
 
 export const days = [
-  { value: 'everyday', label: __('Everyday') },
-  { value: 'weekdays', label: __('Weekdays') },
-  { value: 'weekends', label: __('Weekends') },
-  { value: 'monday', label: __('Monday') },
-  { value: 'tuesday', label: __('Tuesday') },
-  { value: 'wednesday', label: __('Wednesday') },
-  { value: 'thursday', label: __('Thursday') },
-  { value: 'friday', label: __('Friday') },
-  { value: 'saturday', label: __('Saturday') },
-  { value: 'sunday', label: __('Sunday') },
+  { value: 'everyday', label: __('Každý den') },
+  { value: 'weekdays', label: __('Všední dny') },
+  { value: 'weekends', label: __('Víkendy') },
+  { value: 'monday', label: __('Pondělí') },
+  { value: 'tuesday', label: __('úterý') },
+  { value: 'wednesday', label: __('Středa') },
+  { value: 'thursday', label: __('Čtvrtek') },
+  { value: 'friday', label: __('Pátek') },
+  { value: 'saturday', label: __('Sobota') },
+  { value: 'sunday', label: __('Neděle') },
 ];
 
 export const hours = [

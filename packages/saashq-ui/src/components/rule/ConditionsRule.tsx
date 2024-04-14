@@ -59,22 +59,22 @@ class ConditionsRule extends React.Component<Props, State> {
     switch (rule.kind) {
       case 'browserLanguage':
         description =
-          'Recognizes which language is set for visitor’s browser. Insert only Language codes in value field as appointed in ISO-639, i.e “en” for English, “fr” for French, “de” for German etc.';
+          'Rozpozná, jaký jazyk je nastaven pro prohlížeč návštěvníka. Do pole hodnoty vložte pouze kódy jazyků, jak je stanoveno v ISO-639, tj. "en" pro angličtinu, "fr" pro francouzštinu, "de" pro němčinu atd.';
         break;
       case 'currentPageUrl':
         description =
-          'Write your desired page URL, excluding domain name. For example: If you want to place your engagement message on https://office.saashq.io/pricing - then write /pricing';
+          'Napište požadovanou adresu URL stránky, kromě názvu domény. Například: Pokud chcete umístit svou angažovanost na https://office.saashq.org/pricing – napište /pricing';
         break;
       case 'country':
         description =
-          'Locates visitor’s physical location in country  resolution. Insert only Country codes in value field as appointed in ISO-3166 standard, i.e “gb” for Great Britain, “fr” for French, “de” for German, “jp” for Japanese etc.';
+          'Vyhledá fyzickou polohu návštěvníka v rozlišení země. Do pole hodnoty vložte pouze kódy zemí podle normy ISO-3166, tj. "gb" pro Velkou Británii, "fr" pro francouzštinu, "de" pro němčinu, "jp" pro japonštinu atd.';
         break;
       case 'city':
         description =
-          'Locates visitor’s physical location in city resolution. Write a name of the City in value field. If Country’s not set, every city with same name will meet the criteria.';
+          'Vyhledá fyzickou polohu návštěvníka v rozlišení města. Do pole hodnoty napište název města. Pokud není země nastavena, kritéria splní každé město se stejným názvem.';
         break;
       default:
-        description = 'Counts individual visitor’s visitting number.';
+        description = 'Počítá návštěvnost jednotlivých návštěvníků.';
         break;
     }
 
@@ -159,7 +159,11 @@ class ConditionsRule extends React.Component<Props, State> {
     const content = (props) => <RuleForm {...props} onChange={this.addRule} />;
 
     return (
-      <ModalTrigger title="Add rule" trigger={trigger} content={content} />
+      <ModalTrigger
+        title="Přidat pravidlo"
+        trigger={trigger}
+        content={content}
+      />
     );
   };
 
@@ -169,10 +173,10 @@ class ConditionsRule extends React.Component<Props, State> {
     return (
       <FlexPad overflow="auto" direction="column">
         <FormGroup>
-          <ControlLabel>Add rules</ControlLabel>
+          <ControlLabel>Přidejte pravidla</ControlLabel>
           <RuleDescription>
             {description ||
-              'Rules are used when you wish to target the audience of the form according to custom rules. For example, you can show the form only if a visitor views the webpage more than 5 times.'}
+              'Pravidla se používají, když chcete cílit na publikum formuláře podle vlastních pravidel. Formulář můžete například zobrazit pouze v případě, že návštěvník zobrazí webovou stránku více než 5krát.'}
           </RuleDescription>
           <FormControl componentClass="select" onChange={this.addRule}>
             {VISITOR_AUDIENCE_RULES.map((rule, index) => (

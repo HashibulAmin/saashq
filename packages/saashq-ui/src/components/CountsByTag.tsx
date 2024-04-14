@@ -38,7 +38,7 @@ function CountsByTag({ history, tags, counts, manageUrl, loading }: IProps) {
   return (
     <Box
       extraButtons={extraButtons}
-      title={__('Filter by tags')}
+      title={__('Filtrujte podle značek')}
       collapsible={tags.length > 7}
       name="showFilterByTags"
     >

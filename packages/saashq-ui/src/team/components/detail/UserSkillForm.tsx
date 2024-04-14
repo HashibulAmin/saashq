@@ -37,7 +37,7 @@ function UserSkillForm({
     e.preventDefault();
 
     if (skillIds.length === 0) {
-      return Alert.error('Please choose a skills');
+      return Alert.error('Vyberte prosím dovednost');
     }
 
     setSubmitted(true);
@@ -78,18 +78,18 @@ function UserSkillForm({
     return (
       <>
         <FormGroup>
-          <ControlLabel>Skill type</ControlLabel>
+          <ControlLabel>Typ dovednosti</ControlLabel>
           <Select
-            placeholder={__('Choose a skill type')}
+            placeholder={__('Vyberte typ dovednosti')}
             value={type}
             options={generateOptions(skillTypes)}
             onChange={handleTypeSelect}
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>Skills</ControlLabel>
+          <ControlLabel>Dovednosti</ControlLabel>
           <Select
-            placeholder={__('Choose a skill type first')}
+            placeholder={__('Nejprve si vyberte typ dovednosti')}
             value={skillIds}
             isLoading={loading}
             options={generateOptions(skills)}
@@ -104,7 +104,7 @@ function UserSkillForm({
             onClick={closeModal}
             icon="cancel-1"
           >
-            Cancel
+            Zrušení
           </Button>
           <ButtonMutate
             mutation={mutations.userAddSkill}
@@ -112,7 +112,7 @@ function UserSkillForm({
             callback={closeModal}
             refetchQueries={handleRefetch}
             isSubmitted={isSubmitted}
-            successMessage="You successfully added in skill"
+            successMessage="Úspěšně jste přidali dovednost"
             type="submit"
           />
         </ModalFooter>

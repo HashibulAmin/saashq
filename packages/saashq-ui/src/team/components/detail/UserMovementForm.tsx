@@ -104,7 +104,7 @@ class UserMovementForm extends React.Component<Props> {
               {(list || []).map((movement) => this.renderRow(movement))}
             </Timeline>
           }
-          emptyText="No movements of user"
+          emptyText="Žádné pohyby uživatele"
           emptyImage="/images/actions/5.svg"
         />
       </ActivityContent>

@@ -238,19 +238,19 @@ class FullPreviewStep extends React.Component<Props, State> {
               className={currentTab === 'desktop' ? 'active' : ''}
               onClick={this.onChangeTab.bind(this, 'desktop')}
             >
-              <Icon icon="monitor-1" /> {__('Desktop')}
+              <Icon icon="monitor-1" /> {__('Plocha počítače')}
             </TabTitle>
             <TabTitle
               className={currentTab === 'tablet' ? 'active' : ''}
               onClick={this.onChangeTab.bind(this, 'tablet')}
             >
-              <Icon icon="tablet" /> {__('Tablet')}
+              <Icon icon="tablet" /> {__('Tableta')}
             </TabTitle>
             <TabTitle
               className={currentTab === 'mobile' ? 'active' : ''}
               onClick={this.onChangeTab.bind(this, 'mobile')}
             >
-              <Icon icon="mobile-android" /> {__('Mobile')}
+              <Icon icon="mobile-android" /> {__('Mobilní')}
             </TabTitle>
           </Tabs>
           {this.renderResolutionPreview()}

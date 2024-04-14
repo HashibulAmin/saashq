@@ -31,7 +31,7 @@ class AuthLayout extends React.Component<Props, {}> {
             <div>{__(desciption)}</div>
           </div>
           <Button btnStyle="link" size="small" href={link}>
-            {__('Get')}
+            {__('Dostat')}
           </Button>
         </CenterContent>
       </MobileRecommend>
@@ -44,7 +44,7 @@ class AuthLayout extends React.Component<Props, {}> {
     if (userAgent.indexOf('Mobile') !== -1) {
       if (userAgent.match(/Android/i)) {
         return this.renderContent(
-          'Download android app for free on the Google play',
+          'Stáhněte si aplikaci pro Android zdarma na Google Play',
           'https://play.google.com/store/apps/details?id=io.saashq.saashq_android&fbclid=IwAR1bVPBSE0pC_KUNNjOJQA4upb1AuTUfqFcDaHTHTptyke7rNvuvb2mgwb0',
         );
       }
@@ -67,13 +67,13 @@ class AuthLayout extends React.Component<Props, {}> {
 
     return (
       <AuthDescription backgroundColor={backgroundColor} textColor={textColor}>
-        <h1>{__('Grow your business better and faster')}</h1>
+        <h1>{__('Rozvíjejte své podnikání lépe a rychleji')}</h1>
         {currentOrganization.description ? (
           <h2>{currentOrganization.description}</h2>
         ) : (
           <h2>
-            Single <b>experience operating system (SHQ)</b> to align your entire
-            business
+            Jediný <b>zážitkový operační systém (SHQ)</b> pro sladění vašeho
+            celku podnikání
           </h2>
         )}
       </AuthDescription>

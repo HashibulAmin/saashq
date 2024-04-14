@@ -128,7 +128,7 @@ class AvatarUpload extends React.Component<Props, State> {
         }
 
         if (status === 'ok') {
-          Alert.info('Looking good!');
+          Alert.info('Vypadáš dobře!');
         } else {
           Alert.error(response);
         }

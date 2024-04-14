@@ -44,7 +44,7 @@ function Brands({ history, counts, brands, loading, emptyText }: IProps) {
 
   return (
     <Box
-      title={__('Filter by brand')}
+      title={__('Filtrujte podle značky')}
       collapsible={brands.length > 5}
       name="showFilterByBrand"
       isOpen={router.getParam(history, 'brand')}
@@ -62,4 +62,4 @@ function Brands({ history, counts, brands, loading, emptyText }: IProps) {
   );
 }
 
-export default withRouter<IProps>(Brands);
+export default withRouter<IProps, any>(Brands);

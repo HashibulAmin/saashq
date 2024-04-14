@@ -76,7 +76,7 @@ class ConfirmDialog extends React.Component<Props, State> {
     this.state = {
       show: true,
       confirm: '',
-      errors: {}
+      errors: {},
     };
   }
 
@@ -109,8 +109,8 @@ class ConfirmDialog extends React.Component<Props, State> {
             <Error>
               Enter <strong>delete</strong> to confirm
             </Error>
-          )
-        }
+          ),
+        },
       });
     }
 
@@ -125,8 +125,8 @@ class ConfirmDialog extends React.Component<Props, State> {
             <Error>
               Enter <strong>update</strong> to confirm
             </Error>
-          )
-        }
+          ),
+        },
       });
     }
 
@@ -141,15 +141,15 @@ class ConfirmDialog extends React.Component<Props, State> {
             <Error>
               Enter <strong>password</strong> to confirm
             </Error>
-          )
-        }
+          ),
+        },
       });
     }
 
     return this.invokeProceed();
   };
 
-  handleKeydown = e => {
+  handleKeydown = (e) => {
     if (e.key === 'Enter') {
       this.proceed();
     }
@@ -163,7 +163,7 @@ class ConfirmDialog extends React.Component<Props, State> {
     document.removeEventListener('keydown', this.handleKeydown);
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ confirm: e.target.value });
   };
 
@@ -172,7 +172,7 @@ class ConfirmDialog extends React.Component<Props, State> {
     const {
       hasDeleteConfirm = false,
       hasUpdateConfirm = false,
-      hasPasswordConfirm = false
+      hasPasswordConfirm = false,
     } = this.props.options || {};
 
     if (!hasDeleteConfirm && !hasUpdateConfirm && !hasPasswordConfirm) {
@@ -185,19 +185,19 @@ class ConfirmDialog extends React.Component<Props, State> {
       case hasDeleteConfirm:
         label = (
           <>
-            Type <strong>delete</strong> in the field below to confirm.
+            Typ <strong>vymazat</strong> v poli níže pro potvrzení.
           </>
         );
         break;
       case hasUpdateConfirm:
         label = (
           <>
-            Type <strong>update</strong> in the field below to confirm.
+            Typ <strong>aktualizace</strong> v poli níže pro potvrzení.
           </>
         );
         break;
       case hasPasswordConfirm:
-        label = <>Enter your password in the field below to confirm.</>;
+        label = <>Zadejte své heslo do pole níže pro potvrzení.</>;
         break;
       default:
         break;
@@ -222,13 +222,13 @@ class ConfirmDialog extends React.Component<Props, State> {
   }
 
   render() {
-    const { confirmation = 'Are you sure?', options = {} } = this.props;
+    const { confirmation = 'Jsi si jistá?', options = {} } = this.props;
     const { hasDeleteConfirm, hasUpdateConfirm, hasPasswordConfirm } = options;
 
     const {
-      okLabel = 'Yes, I am',
-      cancelLabel = 'No, Cancel',
-      enableEscape = true
+      okLabel = 'Ano jsem',
+      cancelLabel = 'Ne, Zrušit',
+      enableEscape = true,
     } = options;
 
     return (

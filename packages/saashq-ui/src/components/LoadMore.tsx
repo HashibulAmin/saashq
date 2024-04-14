@@ -16,7 +16,7 @@ function LoadMore({
   perPage = 20,
   all,
   paramName = 'limit',
-  loading
+  loading,
 }: IProps) {
   const loaded = parseInt(router.getParam(history, paramName), 10) || perPage;
 
@@ -32,7 +32,7 @@ function LoadMore({
       icon="redo"
       uppercase={false}
     >
-      {loading ? 'Loading...' : 'Load more'}
+      {loading ? 'Načítání...' : 'Načíst další'}
     </Button>
   ) : null;
 }

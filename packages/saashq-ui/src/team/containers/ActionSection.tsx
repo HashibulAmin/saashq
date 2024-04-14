@@ -34,7 +34,7 @@ const ActionSectionContainer = (props: FinalProps) => {
       variables: { _id: id },
     })
       .then(() => {
-        Alert.success('Congrats, Successfully updated.');
+        Alert.success('Gratulujeme, úspěšně aktualizováno.');
       })
       .catch((error: Error) => {
         Alert.error(error.message);
@@ -48,7 +48,7 @@ const ActionSectionContainer = (props: FinalProps) => {
         variables: { email },
       })
       .then(() => {
-        Alert.success('Successfully resent the invitation');
+        Alert.success('Úspěšně znovu odeslat pozvánku');
       })
       .catch((e) => {
         Alert.error(e.message);

@@ -58,7 +58,7 @@ class Step extends React.Component<Props> {
 
     return (
       <StepButton onClick={() => back && back(stepNumber)}>
-        {__('Back')}
+        {__('Zadní')}
       </StepButton>
     );
   };
@@ -71,7 +71,7 @@ class Step extends React.Component<Props> {
     if (direction === 'horizontal')
       return (
         <StepButton next={true} onClick={() => next && next(0)}>
-          {__('Export')}
+          {__('Vývozní')}
         </StepButton>
       );
 
@@ -82,7 +82,7 @@ class Step extends React.Component<Props> {
         icon="arrow-right"
         onClick={() => next && next(0)}
       >
-        Next
+        Další
       </Button>
     );
   };

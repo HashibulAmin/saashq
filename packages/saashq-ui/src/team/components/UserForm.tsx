@@ -74,11 +74,11 @@ class UserForm extends React.Component<Props, State> {
 
     return (
       <FormGroup>
-        <ControlLabel>Choose the user groups</ControlLabel>
+        <ControlLabel>Vyberte skupiny uživatelů</ControlLabel>
         <br />
 
         <Select
-          placeholder={__('Choose groups')}
+          placeholder={__('Vyberte skupiny')}
           value={self.state.selectedGroups}
           options={self.generateParams(groups)}
           onChange={onChange}
@@ -102,11 +102,11 @@ class UserForm extends React.Component<Props, State> {
 
     return (
       <FormGroup>
-        <ControlLabel>Choose the brands</ControlLabel>
+        <ControlLabel>Vyberte si značky</ControlLabel>
         <br />
 
         <SelectBrands
-          label="Brand"
+          label="Značka"
           initialValue={self.state.selectedBrandIds}
           onSelect={onChange}
           name="selectedBrandIds"
@@ -126,11 +126,11 @@ class UserForm extends React.Component<Props, State> {
 
     return (
       <FormGroup>
-        <ControlLabel>Choose the channels</ControlLabel>
+        <ControlLabel>Vyberte kanály</ControlLabel>
         <br />
 
         <Select
-          placeholder={__('Choose channels')}
+          placeholder={__('Vyberte kanály')}
           value={self.state.selectedChannels}
           options={self.generateParams(channels)}
           onChange={onChange}
@@ -194,7 +194,7 @@ class UserForm extends React.Component<Props, State> {
           formProps={formProps}
         />
 
-        <CollapseContent title={__('Other')} compact={true}>
+        <CollapseContent title={__('Jiný')} compact={true}>
           {this.renderChannels()}
           {this.renderGroups()}
           {this.renderBrands()}

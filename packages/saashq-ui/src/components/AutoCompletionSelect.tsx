@@ -49,11 +49,11 @@ function Option(props: {
   const { option, onSelect } = props;
   const { onRemove } = option;
 
-  const onClick = e => {
+  const onClick = (e) => {
     onSelect(option, e);
   };
 
-  const onRemoveClick = e => {
+  const onRemoveClick = (e) => {
     e.stopPropagation();
 
     onRemove(option.value);
@@ -63,7 +63,7 @@ function Option(props: {
     return (
       <OptionWrapper>
         <FillContent>{option.label}</FillContent>
-        <small>({__('Already exist')})</small>
+        <small>({__('Již existuje')})</small>
       </OptionWrapper>
     );
   }
@@ -112,7 +112,7 @@ function AutoCompletionSelect({
   defaultValue,
   required,
   checkFormat,
-  onChange
+  onChange,
 }: Props) {
   const selectRef = React.useRef<{ handleInputBlur: () => void }>(null);
 
@@ -121,7 +121,7 @@ function AutoCompletionSelect({
     const addedOptions = currentFields.added.options;
 
     const filteredOptions = addedOptions.filter(
-      option => option.value !== value
+      (option) => option.value !== value,
     );
 
     currentFields.added.options = filteredOptions;
@@ -131,54 +131,54 @@ function AutoCompletionSelect({
     setFields(currentFields);
 
     onChange({
-      options: currentFields.added.options.map(item => item.label),
-      selectedOption: null
+      options: currentFields.added.options.map((item) => item.label),
+      selectedOption: null,
     });
   };
 
   const [fields, setFields] = useState<Field>({
     added: {
-      label: __(`Possible ${autoCompletionType}`),
-      options: defaultOptions.map(item => ({
+      label: __(`Možný ${autoCompletionType}`),
+      options: defaultOptions.map((item) => ({
         label: item,
         value: item,
-        onRemove: handleRemove
-      }))
+        onRemove: handleRemove,
+      })),
     },
     search: {
-      label: __('Search result'),
-      options: []
-    }
+      label: __('Výsledek hledání'),
+      options: [],
+    },
   });
 
   const [selectedValue, setSelectedValue] = useState<Option | null>(
-    defaultValue ? { label: defaultValue, value: defaultValue } : null
+    defaultValue ? { label: defaultValue, value: defaultValue } : null,
   );
   const [searchValue, setSearchValue] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
 
   const generateOptions = useCallback(
-    list => {
+    (list) => {
       if (list.length === 0) {
         return [];
       }
 
       const options: string[] = [];
 
-      list.map(item => options.push(...item[autoCompletionType]));
+      list.map((item) => options.push(...item[autoCompletionType]));
 
-      return options.map(item => ({
+      return options.map((item) => ({
         label: item,
-        value: item
+        value: item,
       }));
     },
-    [autoCompletionType]
+    [autoCompletionType],
   );
 
   const setFetchResult = useCallback(
-    list => {
+    (list) => {
       const options = generateOptions(list).filter(
-        item => item.label !== defaultValue
+        (item) => item.label !== defaultValue,
       );
 
       const currentFields = { ...fields };
@@ -188,7 +188,7 @@ function AutoCompletionSelect({
       setLoading(false);
       setFields(currentFields);
     },
-    [defaultValue, fields, generateOptions]
+    [defaultValue, fields, generateOptions],
   );
 
   const fetch = useCallback(() => {
@@ -200,8 +200,8 @@ function AutoCompletionSelect({
         variables: {
           searchValue,
           autoCompletionType,
-          autoCompletion: true
-        }
+          autoCompletion: true,
+        },
       })
       .then(({ data }) => {
         setFetchResult(data[queryName]);
@@ -216,16 +216,16 @@ function AutoCompletionSelect({
     debounce(() => fetch(), 400)();
   }, [searchValue, fetch]);
 
-  const handleChange = option => {
+  const handleChange = (option) => {
     setSearchValue('');
     setSelectedValue(option);
 
     if (option) {
-      const values = fields.added.options.map(item => item.label);
+      const values = fields.added.options.map((item) => item.label);
 
       onChange({
         options: values,
-        selectedOption: option.value
+        selectedOption: option.value,
       });
     }
   };
@@ -240,7 +240,7 @@ function AutoCompletionSelect({
     const newItem = {
       label: searchValue,
       value: searchValue,
-      onRemove: handleRemove
+      onRemove: handleRemove,
     };
 
     const currentFields = { ...fields };
@@ -256,8 +256,8 @@ function AutoCompletionSelect({
     }
 
     onChange({
-      options: addedOptions.map(item => item.label),
-      selectedOption: searchValue
+      options: addedOptions.map((item) => item.label),
+      selectedOption: searchValue,
     });
   };
 
@@ -265,7 +265,7 @@ function AutoCompletionSelect({
     const { added, search } = fields;
 
     const hasSearchResult = search.options.length > 0;
-    const currentPossibleValues = added.options.map(item => item.label);
+    const currentPossibleValues = added.options.map((item) => item.label);
 
     const isDuplicated = currentPossibleValues.includes(searchValue);
 
@@ -278,7 +278,7 @@ function AutoCompletionSelect({
         return handleSave();
       }
 
-      return Alert.error('Invalid format');
+      return Alert.error('Nesprávný formát');
     }
 
     return handleSave();
@@ -292,7 +292,7 @@ function AutoCompletionSelect({
     setFields(currentFields);
   };
 
-  const handleKeyDown = event => {
+  const handleKeyDown = (event) => {
     // enter key
     if (event.keyCode === 13 && searchValue.length !== 0) {
       event.preventDefault();
@@ -319,7 +319,7 @@ function AutoCompletionSelect({
     );
   }
 
-  const inputRenderer = props => {
+  const inputRenderer = (props) => {
     return <input {...props} value={searchValue} />;
   };
 

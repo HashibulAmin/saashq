@@ -7,7 +7,7 @@ type Props = {
   onChange: (e) => void;
 };
 
-function Filter({ placeholder = 'Search', onChange }: Props) {
+function Filter({ placeholder = 'Vyhledávání', onChange }: Props) {
   return (
     <FormControl
       type="text"

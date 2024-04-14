@@ -151,14 +151,19 @@ class CommonChooser extends React.Component<Props, State> {
       );
     }
 
-    return <EmptyState text="No items added" icon="list-ul" />;
+    return <EmptyState text="Nebyly přidány žádné položky" icon="list-ul" />;
   }
 
   content() {
     const { datas, loading } = this.props;
 
     if (datas.length === 0) {
-      return <EmptyState text="No matching items found" icon="list-ul" />;
+      return (
+        <EmptyState
+          text="Nebyly nalezeny žádné odpovídající položky"
+          icon="list-ul"
+        />
+      );
     }
 
     return (
@@ -172,7 +177,7 @@ class CommonChooser extends React.Component<Props, State> {
               onClick={this.loadMore}
               icon="angle-double-down"
             >
-              {loading ? 'Loading' : 'Load More'}
+              {loading ? 'Načítání' : 'Načíst Další'}
             </Button>
           </CenterContent>
         )}
@@ -195,8 +200,8 @@ class CommonChooser extends React.Component<Props, State> {
 
     const addTrigger = (
       <p>
-        {__("Don't see the result you're looking for?")}&nbsp;&nbsp;
-        <span>{__(`Create a new ${title}`)}</span>
+        {__('Nevidíte výsledek, který hledáte?')}&nbsp;&nbsp;
+        <span>{__(`Vytvoř nový ${title}`)}</span>
       </p>
     );
 
@@ -226,7 +231,7 @@ class CommonChooser extends React.Component<Props, State> {
           <Footer>
             {renderForm && (
               <ModalTrigger
-                title={`New ${title}`}
+                title={`Nový ${title}`}
                 trigger={addTrigger}
                 size={modalSize || 'lg'}
                 content={renderForm}
@@ -240,7 +245,7 @@ class CommonChooser extends React.Component<Props, State> {
                 onClick={closeModal}
                 icon="times-circle"
               >
-                Cancel
+                Zrušení
               </Button>
               <Button
                 btnStyle="success"
@@ -248,7 +253,7 @@ class CommonChooser extends React.Component<Props, State> {
                 icon="check-circle"
                 uppercase={false}
               >
-                Select
+                Vybrat
               </Button>
             </div>
           </Footer>
