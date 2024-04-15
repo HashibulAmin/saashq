@@ -7,7 +7,7 @@ import {
   Wrapper,
   BarItems,
   FormControl,
-  ControlLabel
+  ControlLabel,
 } from '@saashq/ui/src';
 import { IRouterProps, IQueryParams } from '@saashq/ui/src/types';
 import React from 'react';
@@ -35,7 +35,7 @@ class Orders extends React.Component<IProps, {}> {
     super(props);
   }
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -50,7 +50,7 @@ class Orders extends React.Component<IProps, {}> {
       onSearch,
       isFiltered,
       clearFilter,
-      summary
+      summary,
     } = this.props;
 
     const rightMenuProps = {
@@ -59,7 +59,7 @@ class Orders extends React.Component<IProps, {}> {
       onSearch,
       isFiltered,
       clearFilter,
-      queryParams
+      queryParams,
     };
 
     const actionBarRight = (
@@ -68,7 +68,7 @@ class Orders extends React.Component<IProps, {}> {
         <FormControl
           value={queryParams.groupField}
           componentClass="select"
-          onChange={e =>
+          onChange={(e) =>
             this.props.onFilter({ groupField: (e.target as any).value })
           }
         >
@@ -84,8 +84,8 @@ class Orders extends React.Component<IProps, {}> {
     const { amounts, columns } = summary;
     const staticKeys = ['count', 'totalAmount', 'cashAmount', 'mobileAmount'];
     const otherPayTitles = (columns ? Object.keys(columns) || [] : [])
-      .filter(a => !['_id'].includes(a))
-      .filter(a => !staticKeys.includes(a))
+      .filter((a) => !['_id'].includes(a))
+      .filter((a) => !staticKeys.includes(a))
       .sort();
 
     const header = (
@@ -115,22 +115,22 @@ class Orders extends React.Component<IProps, {}> {
               <th>
                 <SortHandler sortField={''} label={__('Mobile Amount')} />
               </th>
-              {otherPayTitles.map(key => (
+              {otherPayTitles.map((key) => (
                 <th key={Math.random()}>{__(key)}</th>
               ))}
               <th>
-                <SortHandler sortField={''} label={__('Amount')} />
+                <SortHandler sortField={''} label={__('Množství')} />
               </th>
             </tr>
           </thead>
           <tbody id="orders">
-            {(amounts || []).map(item => (
+            {(amounts || []).map((item) => (
               <tr key={Math.random()}>
                 <td>{item.paidDate}</td>
                 <td>{item.count}</td>
                 <td>{item.cashAmount}</td>
                 <td>{item.mobileAmount}</td>
-                {otherPayTitles.map(key => (
+                {otherPayTitles.map((key) => (
                   <td key={Math.random()}>{item[key]}</td>
                 ))}
                 <td>{item.totalAmount}</td>

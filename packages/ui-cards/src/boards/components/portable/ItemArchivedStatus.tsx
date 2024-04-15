@@ -5,7 +5,7 @@ import { Status } from '../../styles/item';
 
 function ItemArchivedStatus({
   status,
-  skipContainer
+  skipContainer,
 }: {
   status: string;
   skipContainer: boolean;
@@ -16,7 +16,7 @@ function ItemArchivedStatus({
 
   const renderStatus = () => (
     <span style={{ backgroundColor: colors.colorCoreYellow, float: 'right' }}>
-      {__('Archived')}
+      {__('Archivováno')}
     </span>
   );
 

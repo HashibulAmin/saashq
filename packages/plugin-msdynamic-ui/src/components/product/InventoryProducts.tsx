@@ -35,7 +35,7 @@ const InventoryProducts = ({
     <BarItems>
       <span>{items && items.matched && `Matched: ${items.matched.count}`}</span>
       <SelectBrands
-        label={__('Choose brands')}
+        label={__('Vyberte si značky')}
         onSelect={(brand) => setBrand(brand as string)}
         initialValue={queryParams.brandId}
         multi={false}
@@ -130,7 +130,7 @@ const InventoryProducts = ({
             <tr>
               <th>{__('Code')}</th>
               <th>{__('Název')}</th>
-              <th>{__('Unit price')}</th>
+              <th>{__('Jednotková cena')}</th>
               {action === 'UPDATE' ? <th>{__('Update Status')}</th> : <></>}
               {action === 'CREATE' ? <th>{__('Create Status')}</th> : <></>}
               {action === 'DELETE' ? <th>{__('Delete Status')}</th> : <></>}

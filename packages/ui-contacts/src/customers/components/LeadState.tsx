@@ -76,7 +76,7 @@ class LeadState extends React.Component<IProps, { currentState: string }> {
           btnStyle="danger"
           onClick={this.convertToCustomer}
         >
-          Mark as Complete
+          Označit jako Dokončené
         </Button>
       </LeadStateWrapper>
     );

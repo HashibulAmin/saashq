@@ -122,7 +122,7 @@ class List extends React.Component<IProps, State> {
           <thead>
             <tr>
               <th>{__('Work')}</th>
-              <th>{__('Type')}</th>
+              <th>{__('Typ')}</th>
               <th>{__('StartAt')}</th>
               <th>{__('EndAt')}</th>
               <th>{__('Count')}</th>

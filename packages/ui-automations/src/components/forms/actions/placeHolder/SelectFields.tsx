@@ -93,10 +93,13 @@ class SelectFields extends React.Component<Props, State> {
           <React.Fragment>
             <FormGroup>
               <ControlLabel>{__('Vyhledávání')}</ControlLabel>
-              <FormControl placeholder="type a search" onChange={onSearch} />
+              <FormControl
+                placeholder="zadejte vyhledávání"
+                onChange={onSearch}
+              />
             </FormGroup>
             <li>
-              <b>{__('Fields')}</b>
+              <b>{__('Pole')}</b>
             </li>
             {attributions
               .filter(

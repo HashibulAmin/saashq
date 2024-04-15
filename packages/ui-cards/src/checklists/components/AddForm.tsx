@@ -22,7 +22,7 @@ class AddForm extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      title: 'Checklist'
+      title: 'Kontrolní seznam',
     };
   }
 
@@ -39,11 +39,11 @@ class AddForm extends React.Component<IProps, State> {
     return {
       title: finalValues.title || title,
       contentType: type,
-      contentTypeId: itemId
+      contentTypeId: itemId,
     };
   };
 
-  onChangeTitle = e =>
+  onChangeTitle = (e) =>
     this.setState({ title: (e.currentTarget as HTMLInputElement).value });
 
   close = () => {
@@ -54,7 +54,7 @@ class AddForm extends React.Component<IProps, State> {
     }
   };
 
-  handleFocus = event => event.target.select();
+  handleFocus = (event) => event.target.select();
 
   renderContent = (formProps: IFormProps) => {
     const { renderButton } = this.props;
@@ -69,7 +69,7 @@ class AddForm extends React.Component<IProps, State> {
             autoFocus={true}
             onChange={this.onChangeTitle}
             value={this.state.title}
-            placeholder="Checklist"
+            placeholder="Kontrolní seznam"
             onFocus={this.handleFocus}
             name="title"
             required={true}
@@ -82,13 +82,13 @@ class AddForm extends React.Component<IProps, State> {
             onClick={this.close}
             size="small"
           >
-            Close
+            Zavřít
           </Button>
 
           {renderButton({
             values: this.generateDoc(values),
             isSubmitted,
-            callback: this.close
+            callback: this.close,
           })}
         </FormFooter>
       </>

@@ -117,7 +117,7 @@ function List({
           <th>{__('Název')}</th>
           <th>{__('Total item counts')}</th>
           <th>{__('Item counts')}</th>
-          <th>{__('Type')}</th>
+          <th>{__('Typ')}</th>
           <th>{__('Akce')}</th>
         </tr>
       </thead>

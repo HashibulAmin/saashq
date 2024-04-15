@@ -46,7 +46,7 @@ class ChooseLabel extends React.Component<
     this.setState({ selectedLabelIds });
 
     this.props.doLabel(selectedLabelIds);
-    Alert.success('You successfully updated a label');
+    Alert.success('Úspěšně jste aktualizovali štítek');
   };
 
   renderOverlay() {
@@ -60,7 +60,7 @@ class ChooseLabel extends React.Component<
       toggleConfirm,
       onClose: this.onOverlayClose,
       onSelectLabels: this.onSelectLabels,
-      onChangeRefresh
+      onChangeRefresh,
     };
 
     return <Overlay {...props} />;
@@ -70,7 +70,7 @@ class ChooseLabel extends React.Component<
     return (
       <ChooseLabelWrapper>
         <OverlayTrigger
-          ref={overlayTrigger => {
+          ref={(overlayTrigger) => {
             this.overlayTrigger = overlayTrigger;
           }}
           trigger="click"
@@ -81,7 +81,7 @@ class ChooseLabel extends React.Component<
         >
           <ColorButton>
             <Icon icon="label-alt" />
-            {__('Labels')}
+            {__('Štítky')}
           </ColorButton>
         </OverlayTrigger>
       </ChooseLabelWrapper>

@@ -32,7 +32,7 @@ class OverallWorks extends React.Component<IProps, {}> {
         <Table whiteSpace="nowrap" bordered={true} hover={true}>
           <thead>
             <tr>
-              <th>{__('Type')}</th>
+              <th>{__('Typ')}</th>
               <th>{__('Job')}</th>
               <th>{__('Product')}</th>
               <th>{__('Count')}</th>

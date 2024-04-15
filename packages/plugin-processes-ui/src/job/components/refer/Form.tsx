@@ -18,7 +18,7 @@ import { IJobCategory, IJobRefer } from '../../types';
 import {
   FormColumn,
   FormWrapper,
-  ModalFooter
+  ModalFooter,
 } from '@saashq/ui/src/styles/main';
 import { ProductButton } from '@saashq/ui-cards/src/deals/styles';
 import { Row } from '@saashq/ui-inbox/src/settings/integrations/styles';
@@ -49,7 +49,7 @@ class Form extends React.Component<Props, State> {
     this.state = {
       jobType: productRefer.type || 'job',
       needProducts: needProducts || [],
-      resultProducts: resultProducts || []
+      resultProducts: resultProducts || [],
     };
   }
 
@@ -70,7 +70,7 @@ class Form extends React.Component<Props, State> {
       return {
         ...finalValues,
         needProducts: [],
-        resultProducts
+        resultProducts,
       };
     }
 
@@ -78,7 +78,7 @@ class Form extends React.Component<Props, State> {
       return {
         ...finalValues,
         needProducts,
-        resultProducts: []
+        resultProducts: [],
       };
     }
 
@@ -86,7 +86,7 @@ class Form extends React.Component<Props, State> {
       return {
         ...finalValues,
         needProducts,
-        resultProducts: needProducts
+        resultProducts: needProducts,
       };
     }
 
@@ -95,20 +95,20 @@ class Form extends React.Component<Props, State> {
         ...finalValues,
         needProducts,
         resultProducts:
-          resultProducts.length > 1 ? [resultProducts[0]] : resultProducts
+          resultProducts.length > 1 ? [resultProducts[0]] : resultProducts,
       };
     }
 
     return {
       ...finalValues,
       needProducts,
-      resultProducts
+      resultProducts,
     };
   };
 
   onClickRemoveButton = (id, type) => {
     const products = this.state[type];
-    const filteredUoms = products.filter(product => product._id !== id);
+    const filteredUoms = products.filter((product) => product._id !== id);
 
     this.setState({ [type]: filteredUoms } as any);
   };
@@ -134,7 +134,7 @@ class Form extends React.Component<Props, State> {
   };
 
   renderFormTrigger(trigger: React.ReactNode) {
-    const content = props => (
+    const content = (props) => (
       <CategoryForm {...props} categories={this.props.jobCategories} />
     );
 
@@ -156,11 +156,11 @@ class Form extends React.Component<Props, State> {
   renderProductModal = (type: 'needProducts' | 'resultProducts') => {
     const productOnChange = (products: IProduct[]) => {
       const currentProducts = this.state[type];
-      const currentProductIds = currentProducts.map(p => p.productId);
-      const chosenProductIds = products.map(p => p._id);
+      const currentProductIds = currentProducts.map((p) => p.productId);
+      const chosenProductIds = products.map((p) => p._id);
 
       for (const product of products.filter(
-        p => !currentProductIds.includes(p._id)
+        (p) => !currentProductIds.includes(p._id),
       ) || []) {
         const productId = product ? product._id : '';
         const uom = product.uom || '';
@@ -170,14 +170,14 @@ class Form extends React.Component<Props, State> {
           productId,
           quantity: 1,
           uom,
-          product
+          product,
         };
 
         currentProducts.push(inputData);
       }
 
       const chosenProducts =
-        currentProducts.filter(p => chosenProductIds.includes(p.productId)) ||
+        currentProducts.filter((p) => chosenProductIds.includes(p.productId)) ||
         [];
       this.setState({ [type]: chosenProducts } as any);
     };
@@ -187,15 +187,15 @@ class Form extends React.Component<Props, State> {
         ? this.state.needProducts
         : this.state.resultProducts;
 
-    const content = props => (
+    const content = (props) => (
       <ProductChooser
         {...props}
         onSelect={productOnChange}
         data={{
           name: 'Product',
           products: (currentProducts || [])
-            .filter(p => p.product)
-            .map(p => p.product)
+            .filter((p) => p.product)
+            .map((p) => p.product),
         }}
         limit={
           this.state.jobType === 'end' && type === 'resultProducts' ? 1 : 50
@@ -235,7 +235,7 @@ class Form extends React.Component<Props, State> {
           <thead>
             <tr>
               <th>{__('Product')}</th>
-              <th>{__('Quantity')}</th>
+              <th>{__('Množství')}</th>
               <th>{__('UOM')}</th>
               {type === 'resultProducts' &&
                 jobType === 'job' &&
@@ -244,14 +244,14 @@ class Form extends React.Component<Props, State> {
             </tr>
           </thead>
           <tbody>
-            {products.map(product => {
+            {products.map((product) => {
               const uoms = Array.from(
                 new Set([
                   product.uom,
                   product.product.uom,
-                  ...product.product.subUoms.map(su => su.uom)
-                ])
-              ).filter(u => u);
+                  ...product.product.subUoms.map((su) => su.uom),
+                ]),
+              ).filter((u) => u);
 
               return (
                 <tr>
@@ -272,7 +272,7 @@ class Form extends React.Component<Props, State> {
                         this,
                         product._id,
                         type,
-                        'quantity'
+                        'quantity',
                       )}
                     />
                   </td>
@@ -284,10 +284,10 @@ class Form extends React.Component<Props, State> {
                         this,
                         product._id,
                         type,
-                        'uom'
+                        'uom',
                       )}
                     >
-                      {uoms.map(u => (
+                      {uoms.map((u) => (
                         <option key={u} value={u}>
                           {u}
                         </option>
@@ -306,7 +306,7 @@ class Form extends React.Component<Props, State> {
                             this,
                             product._id,
                             type,
-                            'proportion'
+                            'proportion',
                           )}
                         />
                       </td>
@@ -319,7 +319,7 @@ class Form extends React.Component<Props, State> {
                           onClick={this.onClickRemoveButton.bind(
                             this,
                             product._id,
-                            type
+                            type,
                           )}
                           icon="times-circle"
                         />
@@ -438,7 +438,7 @@ class Form extends React.Component<Props, State> {
                   required={true}
                 >
                   <option value="" />
-                  {jobCategories.map(categoryMap => (
+                  {jobCategories.map((categoryMap) => (
                     <option key={categoryMap._id} value={categoryMap._id}>
                       {categoryMap.name}
                     </option>
@@ -459,13 +459,13 @@ class Form extends React.Component<Props, State> {
                 componentClass="select"
                 defaultValue={type}
                 required={true}
-                onChange={e =>
+                onChange={(e) =>
                   this.setState({
-                    jobType: (e.currentTarget as HTMLInputElement).value
+                    jobType: (e.currentTarget as HTMLInputElement).value,
                   })
                 }
               >
-                {Object.keys(JOB_TYPE_CHOISES).map(value => (
+                {Object.keys(JOB_TYPE_CHOISES).map((value) => (
                   <option key={value} value={value}>
                     {JOB_TYPE_CHOISES[value]}
                   </option>
@@ -524,7 +524,7 @@ class Form extends React.Component<Props, State> {
             values: this.generateDoc(values),
             isSubmitted,
             callback: closeModal,
-            object: jobRefer
+            object: jobRefer,
           })}
         </ModalFooter>
       </>

@@ -85,10 +85,13 @@ export default class SelectOption extends React.Component<Props, State> {
           <React.Fragment>
             <FormGroup>
               <ControlLabel>{__('Vyhledávání')}</ControlLabel>
-              <FormControl placeholder="type a search" onChange={onSearch} />
+              <FormControl
+                placeholder="zadejte vyhledávání"
+                onChange={onSearch}
+              />
             </FormGroup>
             <li>
-              <b>Default Options</b>
+              <b>Výchozí možnosti</b>
             </li>
             {options.map((item) => (
               <li key={item.label} onClick={this.onChange.bind(this, item)}>
@@ -114,7 +117,7 @@ export default class SelectOption extends React.Component<Props, State> {
         container={this}
       >
         <span>
-          {__('Options')} <Icon icon="angle-down" />
+          {__('Možnosti')} <Icon icon="angle-down" />
         </span>
       </OverlayTrigger>
     );

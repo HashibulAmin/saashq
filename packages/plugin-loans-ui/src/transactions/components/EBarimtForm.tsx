@@ -11,7 +11,7 @@ import {
   FormGroup,
   MainStyleFormWrapper as FormWrapper,
   MainStyleModalFooter as ModalFooter,
-  MainStyleScrollWrapper as ScrollWrapper
+  MainStyleScrollWrapper as ScrollWrapper,
 } from '@saashq/ui/src';
 import { IButtonMutateProps, IFormProps } from '@saashq/ui/src/types';
 import { ITransaction, ITransactionDoc } from '../types';
@@ -22,7 +22,7 @@ import { IInvoice } from '../../invoices/types';
 import React from 'react';
 import { __ } from 'coreui/utils';
 import SelectContracts, {
-  Contracts
+  Contracts,
 } from '../../contracts/components/common/SelectContract';
 import dayjs from 'dayjs';
 import client from '@saashq/ui/src/apolloClient';
@@ -70,7 +70,7 @@ class EBarimtForm extends React.Component<Props, State> {
       customerId:
         transaction.customerId || (invoice && invoice.customerId) || '',
       invoice: invoice || transaction.invoice || null,
-      paymentInfo: null
+      paymentInfo: null,
     };
   }
 
@@ -88,11 +88,11 @@ class EBarimtForm extends React.Component<Props, State> {
       ...this.state,
       isManual: true,
       payDate: finalValues.payDate,
-      total: Number(this.state.total)
+      total: Number(this.state.total),
     };
   };
 
-  onFieldClick = e => {
+  onFieldClick = (e) => {
     e.target.select();
   };
 
@@ -157,7 +157,7 @@ class EBarimtForm extends React.Component<Props, State> {
         <>
           <FormWrapper>
             <FormColumn>
-              <ControlLabel>{__('Type')}</ControlLabel>
+              <ControlLabel>{__('Typ')}</ControlLabel>
             </FormColumn>
             <FormColumn>
               <ControlLabel>Transaction</ControlLabel>
@@ -204,7 +204,7 @@ class EBarimtForm extends React.Component<Props, State> {
   renderButton = ({ name, values, isSubmitted, object }: any) => {
     const { closeModal } = this.props;
 
-    const afterSave = data => {
+    const afterSave = (data) => {
       closeModal();
     };
 
@@ -229,27 +229,28 @@ class EBarimtForm extends React.Component<Props, State> {
     const { closeModal } = this.props;
     const { values, isSubmitted } = formProps;
 
-    const getCompanyName = register => {
+    const getCompanyName = (register) => {
       if (register && register.length === 7)
         client
           .query({
             query: gql(queries.getCompanyName),
-            variables: { companyRd: register }
+            variables: { companyRd: register },
           })
           .then(({ data }) => {
             data?.ebarimtGetCompany?.info;
             this.setState({
-              organizationName: data?.ebarimtGetCompany?.info?.name
+              organizationName: data?.ebarimtGetCompany?.info?.name,
             });
           });
     };
 
-    const onChangeField = e => {
+    const onChangeField = (e) => {
       if ((e.target as HTMLInputElement).name === 'total') {
         const value = Number((e.target as HTMLInputElement).value);
 
         if (value > this.state.paymentInfo.closeAmount) {
-          (e.target as HTMLInputElement).value = this.state.paymentInfo.closeAmount;
+          (e.target as HTMLInputElement).value =
+            this.state.paymentInfo.closeAmount;
         }
       }
       if (
@@ -268,7 +269,7 @@ class EBarimtForm extends React.Component<Props, State> {
           ? (e.target as HTMLInputElement).checked
           : (e.target as HTMLInputElement).value;
       this.setState({
-        [(e.target as HTMLInputElement).name]: value
+        [(e.target as HTMLInputElement).name]: value,
       } as any);
     };
 
@@ -355,7 +356,7 @@ class EBarimtForm extends React.Component<Props, State> {
               name: 'transaction',
               values: this.generateDoc(values),
               isSubmitted,
-              object: this.props.transaction
+              object: this.props.transaction,
             })}
         </ModalFooter>
       </>

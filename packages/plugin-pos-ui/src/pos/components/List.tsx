@@ -83,7 +83,10 @@ class List extends React.Component<Props, {}> {
             <th>{__('Oddělení')}</th>
             <th>{__('Vytvořil')}</th>
             <th>
-              <SortHandler sortField={'createdDate'} label={__('Created at')} />
+              <SortHandler
+                sortField={'createdDate'}
+                label={__('Vytvořeno v')}
+              />
             </th>
             <th>{__('Akce')}</th>
           </tr>
@@ -114,7 +117,7 @@ class List extends React.Component<Props, {}> {
             emptyContent={
               <EmptyContent
                 content={{
-                  title: __('Getting Started with SaasHQ POS'),
+                  title: __('Začínáme se SaasHQ POS'),
                   description: __('replace description text'),
                   steps: [
                     {

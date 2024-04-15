@@ -34,7 +34,7 @@ function ArchivedItem(props: ItemProps) {
   const renderActions = () => {
     return (
       <>
-        <span onClick={sendToBoard}>{__('Send to Board')}</span>
+        <span onClick={sendToBoard}>{__('Odeslat na Tabuli')}</span>
         {' - '}
         <span onClick={remove}>{__('Vymazat')}</span>
       </>
@@ -101,7 +101,7 @@ class ArchivedItems extends React.Component<Props, State> {
     if (!this.props.items || this.props.items.length === 0) {
       return (
         <EmptyState
-          text={`There aren’t any archived ${type}.`}
+          text={`Nejsou žádné archivované ${type}.`}
           icon="archive-alt"
         />
       );
@@ -124,7 +124,7 @@ class ArchivedItems extends React.Component<Props, State> {
         {hasMore ? (
           <LoadMore onClick={loadMore}>
             <Icon icon="redo" />
-            {__('Load More')}
+            {__('Načíst Další')}
           </LoadMore>
         ) : null}
       </>

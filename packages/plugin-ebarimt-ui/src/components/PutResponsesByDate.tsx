@@ -111,7 +111,7 @@ class PutResponsesByDate extends React.Component<IProps, State> {
               <th>{__('Count')}</th>
               <th>{__('CityTax')}</th>
               <th>{__('Vat')}</th>
-              <th>{__('Amount')}</th>
+              <th>{__('Množství')}</th>
             </tr>
           </thead>
           <tbody id="putResponses">

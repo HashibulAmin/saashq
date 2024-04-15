@@ -293,9 +293,9 @@ class Form extends React.Component<Props, State> {
     return (
       <>
         <Block>
-          <h4>{__('Stage')}</h4>
+          <h4>{__('Etapa')}</h4>
           <FormGroup>
-            <ControlLabel>{__('Type')}</ControlLabel>
+            <ControlLabel>{__('Typ')}</ControlLabel>
             <Select
               placeholder={__('Select Type')}
               value={cardType}

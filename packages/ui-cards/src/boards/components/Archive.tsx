@@ -10,7 +10,7 @@ import {
   ArchiveWrapper,
   TopBar,
   CustomRangeContainer,
-  FilterBox
+  FilterBox,
 } from '../styles/rightMenu';
 import { IOptions } from '../types';
 import SelectTeamMembers from '@saashq/ui/src/team/containers/SelectTeamMembers';
@@ -28,7 +28,7 @@ type Props = {
   queryParams: any;
 };
 
-const priorityValues = PRIORITIES.map(p => ({ label: p, value: p }));
+const priorityValues = PRIORITIES.map((p) => ({ label: p, value: p }));
 
 function Archive(props: Props) {
   const [type, changeType] = useState('item');
@@ -97,9 +97,9 @@ function Archive(props: Props) {
     return (
       <FilterBox>
         <SelectTeamMembers
-          label="Filter by created members"
+          label="Filtrujte podle vytvořených členů"
           name="userIds"
-          onSelect={v => {
+          onSelect={(v) => {
             if (typeof v === 'string') {
               if (!v) {
                 setUserIds([]);
@@ -112,19 +112,19 @@ function Archive(props: Props) {
           }}
         />
         <Select
-          placeholder={__('Filter by priority')}
+          placeholder={__('Filtrujte podle priority')}
           value={priorities}
           options={priorityValues}
           name="priority"
-          onChange={arr => setPriorities(arr.map(v => v.value))}
+          onChange={(arr) => setPriorities(arr.map((v) => v.value))}
           multi={true}
-          loadingPlaceholder={__('Loading...')}
+          loadingPlaceholder={__('Načítání...')}
         />
 
         <SelectTeamMembers
-          label="Filter by team members"
+          label="Filtrujte podle členů týmu"
           name="assignedUserIds"
-          onSelect={v => {
+          onSelect={(v) => {
             if (typeof v === 'string') {
               if (!v) {
                 setAssignedUserIds([]);
@@ -139,7 +139,7 @@ function Archive(props: Props) {
 
         <SelectLabel
           name="labelIds"
-          onSelect={v => {
+          onSelect={(v) => {
             if (typeof v === 'string') {
               if (!v) {
                 setLabelIds([]);
@@ -156,9 +156,9 @@ function Archive(props: Props) {
 
         {options.type === 'deal' && (
           <SelectProducts
-            label={__('Filter by products')}
+            label={__('Filtrujte podle produktů')}
             name="productIds"
-            onSelect={v => {
+            onSelect={(v) => {
               if (typeof v === 'string') {
                 if (!v) {
                   setProductIds([]);
@@ -174,9 +174,9 @@ function Archive(props: Props) {
 
         {options.type === 'purchase' && (
           <SelectProducts
-            label={__('Filter by products')}
+            label={__('Filtrujte podle produktů')}
             name="productIds"
-            onSelect={v => {
+            onSelect={(v) => {
               if (typeof v === 'string') {
                 if (!v) {
                   setProductIds([]);
@@ -192,40 +192,40 @@ function Archive(props: Props) {
 
         {options.type === 'ticket' && (
           <Select
-            placeholder={__('Choose a source')}
+            placeholder={__('Vyberte zdroj')}
             value={sources}
-            options={INTEGRATION_KINDS.ALL.map(kind => ({
+            options={INTEGRATION_KINDS.ALL.map((kind) => ({
               label: kind.text,
-              value: kind.value
+              value: kind.value,
             }))}
             name="source"
-            onChange={xs => setSources(xs.map(x => x.value))}
+            onChange={(xs) => setSources(xs.map((x) => x.value))}
             multi={true}
-            loadingPlaceholder={__('Loading...')}
+            loadingPlaceholder={__('Načítání...')}
           />
         )}
 
         {options.type === 'growthHack' && (
           <Select
-            placeholder="Choose a growth funnel"
+            placeholder="Vyberte růstový trychtýř"
             value={hackStages}
-            options={HACKSTAGES.map(hs => ({ value: hs, label: hs }))}
+            options={HACKSTAGES.map((hs) => ({ value: hs, label: hs }))}
             name="hackStage"
-            onChange={xs => setHackStages(xs.map(x => x.value))}
+            onChange={(xs) => setHackStages(xs.map((x) => x.value))}
             multi={true}
-            loadingPlaceholder={__('Loading...')}
+            loadingPlaceholder={__('Načítání...')}
           />
         )}
 
-        <ControlLabel>Close Date range:</ControlLabel>
+        <ControlLabel>Zavřít časové Období:</ControlLabel>
 
         <CustomRangeContainer>
           <DateControl
             value={startDate}
             required={false}
             name="startDate"
-            onChange={date => onChangeRangeFilter(setStartDate, date)}
-            placeholder={'Start date'}
+            onChange={(date) => onChangeRangeFilter(setStartDate, date)}
+            placeholder={'Datum zahájení'}
             dateFormat={'YYYY-MM-DD'}
           />
 
@@ -233,8 +233,8 @@ function Archive(props: Props) {
             value={endDate}
             required={false}
             name="endDate"
-            placeholder={'End date'}
-            onChange={date => onChangeRangeFilter(setEndDate, date)}
+            placeholder={'Datum ukončení'}
+            onChange={(date) => onChangeRangeFilter(setEndDate, date)}
             dateFormat={'YYYY-MM-DD'}
           />
         </CustomRangeContainer>
@@ -248,14 +248,14 @@ function Archive(props: Props) {
         <FormControl
           type="text"
           autoFocus={true}
-          placeholder={`Search ${type}...`}
+          placeholder={`Vyhledávání ${type}...`}
           value={searchInputValue}
-          onChange={e =>
+          onChange={(e) =>
             setSearchInputValue((e.target as HTMLInputElement).value)
           }
         />
         <HeaderButton hasBackground={true} onClick={toggleType}>
-          {__('Switch To')} {switchType()}
+          {__('Přepnout Ta')} {switchType()}
           {'s'}
         </HeaderButton>
       </TopBar>
@@ -270,7 +270,7 @@ function Archive(props: Props) {
           icon="times-circle"
           style={{ marginBottom: '20px' }}
         >
-          {__('Clear Filter')}
+          {__('Vymazat Filtr')}
         </Button>
       )}
 
@@ -289,7 +289,7 @@ function Archive(props: Props) {
           startDate,
           endDate,
           sources,
-          hackStages
+          hackStages,
         }}
         type={type}
       />

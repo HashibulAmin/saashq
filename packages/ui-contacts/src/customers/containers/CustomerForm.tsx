@@ -1,11 +1,11 @@
 import {
   IButtonMutateProps,
   IQueryParams,
-  IRouterProps
+  IRouterProps,
 } from '@saashq/ui/src/types';
 import {
   PropertyConsumer,
-  PropertyProvider
+  PropertyProvider,
 } from '@saashq/ui-contacts/src/customers/propertyContext';
 import { mutations, queries } from '../graphql';
 import { mutations as conformityMutations } from '@saashq/ui-cards/src/conformity/graphql';
@@ -40,7 +40,7 @@ class CustomerFormContainer extends React.Component<FinalProps, State> {
     super(props);
 
     this.state = {
-      redirectType: undefined
+      redirectType: undefined,
     };
   }
 
@@ -57,9 +57,9 @@ class CustomerFormContainer extends React.Component<FinalProps, State> {
       values,
       isSubmitted,
       object,
-      resetSubmit
+      resetSubmit,
     }: IButtonMutateProps) => {
-      const afterSave = data => {
+      const afterSave = (data) => {
         if (
           values.relationData &&
           Object.keys(values.relationData).length > 0
@@ -74,8 +74,8 @@ class CustomerFormContainer extends React.Component<FinalProps, State> {
                   mainType: 'customer',
                   mainTypeId: data.customersAdd._id,
                   relType: key,
-                  relTypeIds: relationData[key]
-                }
+                  relTypeIds: relationData[key],
+                },
               });
             }
           }
@@ -114,9 +114,9 @@ class CustomerFormContainer extends React.Component<FinalProps, State> {
           icon="check-circle"
           resetSubmit={resetSubmit}
           uppercase={false}
-          successMessage={`You successfully ${
-            object ? 'updated' : 'added'
-          } a ${passedName}`}
+          successMessage={`Ty úspěšně ${
+            object ? 'aktualizováno' : 'přidal'
+          } A ${passedName}`}
         />
       );
     };
@@ -124,7 +124,7 @@ class CustomerFormContainer extends React.Component<FinalProps, State> {
     const updatedProps = {
       ...this.props,
       changeRedirectType: this.changeRedirectType,
-      renderButton
+      renderButton,
     };
 
     return (

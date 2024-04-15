@@ -72,7 +72,7 @@ const Description = (props: DescProps) => {
           size="small"
           onClick={toggleEdit}
         >
-          Cancel
+          Zrušení
         </Button>
         {item.description !== description && (
           <Button
@@ -81,7 +81,7 @@ const Description = (props: DescProps) => {
             size="small"
             icon="check-circle"
           >
-            Save
+            Uložit
           </Button>
         )}
       </EditorActions>
@@ -104,7 +104,7 @@ const Description = (props: DescProps) => {
             dangerouslySetInnerHTML={{
               __html: item.description
                 ? xss(item.description)
-                : `${__('Add a more detailed description')}...`,
+                : `${__('Přidejte podrobnější popis')}...`,
             }}
           />
         ) : (
@@ -188,7 +188,7 @@ const Left = (props: Props) => {
           <TitleRow>
             <ControlLabel>
               <Icon icon="label-alt" />
-              {__('Labels')}
+              {__('Štítky')}
             </ControlLabel>
           </TitleRow>
 
@@ -200,7 +200,7 @@ const Left = (props: Props) => {
         <TitleRow>
           <ControlLabel>
             <Icon icon="paperclip" />
-            {__('Attachments')}
+            {__('Přílohy')}
           </ControlLabel>
         </TitleRow>
 

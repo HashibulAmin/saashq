@@ -7,7 +7,7 @@ import Timeline, {
   SidebarHeader,
   DateHeader,
   TimelineMarkers,
-  TodayMarker
+  TodayMarker,
 } from 'react-calendar-timeline';
 // make sure you include the timeline stylesheet or the timeline will not be styled
 import 'react-calendar-timeline/lib/Timeline.css';
@@ -44,11 +44,11 @@ export class TimeView extends React.Component<Props, State> {
       closeTime: null,
       startTime: null,
       isModalOpen: false,
-      groupId: ''
+      groupId: '',
     };
   }
 
-  onSelectItem = itemId => {
+  onSelectItem = (itemId) => {
     this.setState({ selectedItem: itemId });
   };
 
@@ -60,7 +60,7 @@ export class TimeView extends React.Component<Props, State> {
       return null;
     }
 
-    const dbDataRow = items.find(row => row._id === selectedItem);
+    const dbDataRow = items.find((row) => row._id === selectedItem);
 
     if (!dbDataRow || !dbDataRow.stage) {
       return null;
@@ -113,7 +113,7 @@ export class TimeView extends React.Component<Props, State> {
 
     newResourceId.push(resources[newGroupOrder].id);
 
-    const filteredItem = items.find(item => (item || {})._id === itemId);
+    const filteredItem = items.find((item) => (item || {})._id === itemId);
 
     if (filteredItem) {
       endDate = new Date(filteredItem.closeDate).getTime();
@@ -123,7 +123,7 @@ export class TimeView extends React.Component<Props, State> {
     this.props.itemMoveResizing(itemId, {
       startDate: new Date(dragTime),
       [groupBy]: groupBy === 'stageId' ? newResourceId[0] : newResourceId,
-      closeDate: dragTime + (endDate - startDate)
+      closeDate: dragTime + (endDate - startDate),
     });
   };
 
@@ -166,15 +166,15 @@ export class TimeView extends React.Component<Props, State> {
       [key]: value,
       startDate: new Date(startTime),
       closeDate: new Date(startTime + 3600000),
-      showStageSelect: groupType !== 'stage' ? true : false
+      showStageSelect: groupType !== 'stage' ? true : false,
     };
 
-    const content = props => <AddForm {...props} {...formProps} />;
+    const content = (props) => <AddForm {...props} {...formProps} />;
 
     return (
       <Modal size="lg" show={isModalOpen} onHide={this.closeModal}>
         <Modal.Header closeButton={true}>
-          <Modal.Title>{__(addText)}</Modal.Title>
+          <Modal.Title>{__(přidejtext)}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <RTG.Transition in={isModalOpen} timeout={300} unmountOnExit={true}>
@@ -222,7 +222,7 @@ export class TimeView extends React.Component<Props, State> {
               {({ styles }) => {
                 const customStyles = {
                   ...styles,
-                  backgroundColor: 'red'
+                  backgroundColor: 'red',
                 };
 
                 return <div style={customStyles} />;

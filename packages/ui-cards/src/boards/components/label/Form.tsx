@@ -38,8 +38,8 @@ class FormComponent extends React.Component<IProps, State> {
       return {
         label: nextProps.label || {
           colorCode: COLORS[0],
-          name: ''
-        }
+          name: '',
+        },
       };
     }
 
@@ -52,7 +52,7 @@ class FormComponent extends React.Component<IProps, State> {
     const { label } = props;
 
     this.state = {
-      label: label ? { ...label } : this.getDefaultLabel()
+      label: label ? { ...label } : this.getDefaultLabel(),
     };
   }
 
@@ -105,7 +105,7 @@ class FormComponent extends React.Component<IProps, State> {
     return (
       <>
         <FormGroup>
-          <ControlLabel required={true}>Name</ControlLabel>
+          <ControlLabel required={true}>Název</ControlLabel>
           <FormControl
             {...formProps}
             name="name"
@@ -117,7 +117,7 @@ class FormComponent extends React.Component<IProps, State> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel required={true}>Select a color</ControlLabel>
+          <ControlLabel required={true}>Vyberte barvu</ControlLabel>
           <ColorChooserWrapper>
             <TwitterPicker
               colors={COLORS}
@@ -135,7 +135,7 @@ class FormComponent extends React.Component<IProps, State> {
             icon="cancel-1"
             onClick={this.onRemove}
           >
-            Delete
+            Vymazat
           </Button>
         )}
 
@@ -143,11 +143,11 @@ class FormComponent extends React.Component<IProps, State> {
           name: 'label',
           values: {
             name: label.name,
-            colorCode: label.colorCode
+            colorCode: label.colorCode,
           },
           isSubmitted,
           callback: afterSave,
-          object: label || {}
+          object: label || {},
         })}
       </>
     );

@@ -23,11 +23,11 @@ class TaggerSection extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      isTaggerVisible: false
+      isTaggerVisible: false,
     };
   }
 
-  toggleTagger = e => {
+  toggleTagger = (e) => {
     e.preventDefault();
 
     this.setState({ isTaggerVisible: !this.state.isTaggerVisible });
@@ -35,7 +35,7 @@ class TaggerSection extends React.Component<Props, State> {
 
   renderTags(tags) {
     if (!tags.length) {
-      return <EmptyState icon="tag-alt" text="Not tagged yet" size="small" />;
+      return <EmptyState icon="tag-alt" text="Zatím neoznačeno" size="small" />;
     }
 
     return (
@@ -62,7 +62,7 @@ class TaggerSection extends React.Component<Props, State> {
 
     return (
       <Box
-        title={__('Tags')}
+        title={__('Tagy')}
         name="showTags"
         extraButtons={extraButtons}
         callback={collapseCallback}

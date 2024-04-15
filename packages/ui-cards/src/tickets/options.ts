@@ -7,13 +7,13 @@ const options = {
   EditForm: TicketEditForm,
   Item: TicketItem,
   type: 'ticket',
-  title: 'Ticket',
+  title: 'Lístek',
   queriesName: {
     itemsQuery: 'tickets',
     itemsTotalCountQuery: 'ticketsTotalCount',
     detailQuery: 'ticketDetail',
     archivedItemsQuery: 'archivedTickets',
-    archivedItemsCountQuery: 'archivedTicketsCount'
+    archivedItemsCountQuery: 'archivedTicketsCount',
   },
   mutationsName: {
     addMutation: 'ticketsAdd',
@@ -22,14 +22,14 @@ const options = {
     changeMutation: 'ticketsChange',
     watchMutation: 'ticketsWatch',
     archiveMutation: 'ticketsArchive',
-    copyMutation: 'ticketsCopy'
+    copyMutation: 'ticketsCopy',
   },
   queries: {
     itemsQuery: queries.tickets,
     itemsTotalCountQuery: queries.ticketsTotalCount,
     detailQuery: queries.ticketDetail,
     archivedItemsQuery: queries.archivedTickets,
-    archivedItemsCountQuery: queries.archivedTicketsCount
+    archivedItemsCountQuery: queries.archivedTicketsCount,
   },
   mutations: {
     addMutation: mutations.ticketsAdd,
@@ -38,14 +38,14 @@ const options = {
     changeMutation: mutations.ticketsChange,
     watchMutation: mutations.ticketsWatch,
     archiveMutation: mutations.ticketsArchive,
-    copyMutation: mutations.ticketsCopy
+    copyMutation: mutations.ticketsCopy,
   },
   texts: {
-    addText: 'Add a ticket',
-    updateSuccessText: 'You successfully updated a ticket',
-    deleteSuccessText: 'You successfully deleted a ticket',
-    copySuccessText: 'You successfully copied a ticket',
-    changeSuccessText: 'You successfully changed a ticket'
+    addText: 'Přidejte lístek',
+    updateSuccessText: 'Úspěšně jste aktualizovali tiket',
+    deleteSuccessText: 'Úspěšně jste smazali tiket',
+    copySuccessText: 'Úspěšně jste zkopírovali lístek',
+    changeSuccessText: 'Úspěšně jste změnili tiket',
   },
   isMove: true,
   getExtraParams: (queryParams: any) => {
@@ -62,7 +62,7 @@ const options = {
       startDateStartDate,
       startDateEndDate,
       closeDateStartDate,
-      closeDateEndDate
+      closeDateEndDate,
     } = queryParams;
     const extraParams: any = {};
 
@@ -117,7 +117,7 @@ const options = {
     }
 
     return extraParams;
-  }
+  },
 };
 
 export default options;

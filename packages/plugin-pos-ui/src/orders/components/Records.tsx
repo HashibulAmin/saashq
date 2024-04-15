@@ -57,7 +57,7 @@ class Orders extends React.Component<IProps, {}> {
     { name: 'branch', title: __('Větev') },
     { name: 'department', title: __('Oddělení') },
     { name: 'cashier', title: __('Cashier') },
-    { name: 'type', title: __('Type') },
+    { name: 'type', title: __('Typ') },
     { name: 'billType', title: __('Bill Type') },
     { name: 'companyRD', title: __('Company RD') },
     { name: 'customerType', title: __('Customer type') },
@@ -73,7 +73,7 @@ class Orders extends React.Component<IProps, {}> {
     { name: 'discount', title: __('Discount') },
     { name: 'discountType', title: __('Discount type') },
     { name: 'salePrice', title: __('Sale price') },
-    { name: 'amount', title: __('Amount') },
+    { name: 'amount', title: __('Množství') },
     { name: 'payType', title: __('Payment type') },
   ];
 

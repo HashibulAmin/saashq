@@ -61,7 +61,7 @@ class MainActionBar extends React.Component<Props, State> {
   static defaultProps = {
     viewType: 'board',
     boardText: 'Board',
-    pipelineText: 'Pipeline',
+    pipelineText: 'Potrubí',
   };
 
   constructor(props: Props) {
@@ -77,7 +77,7 @@ class MainActionBar extends React.Component<Props, State> {
     const { currentBoard, boards } = this.props;
     if ((currentBoard && boards.length === 1) || boards.length === 0) {
       return (
-        <EmptyState icon="web-grid-alt" text="No other boards" size="small" />
+        <EmptyState icon="web-grid-alt" text="Žádné další desky" size="small" />
       );
     }
 
@@ -175,7 +175,7 @@ class MainActionBar extends React.Component<Props, State> {
     if (currentPipeline.visibility === 'public') {
       return (
         <HeaderButton isActive={true}>
-          <Icon icon="earthgrid" /> {__('Public')}
+          <Icon icon="earthgrid" /> {__('Veřejnost')}
         </HeaderButton>
       );
     }
@@ -185,7 +185,7 @@ class MainActionBar extends React.Component<Props, State> {
     return (
       <>
         <HeaderButton isActive={true}>
-          <Icon icon="users-alt" /> {__('Private')}
+          <Icon icon="users-alt" /> {__('Soukromé')}
         </HeaderButton>
         <Participators participatedUsers={members} limit={3} />
       </>
@@ -202,10 +202,10 @@ class MainActionBar extends React.Component<Props, State> {
     return (
       <GroupByContent>
         <SelectType
-          title={__('Group by:')}
+          title={__('Skupina vytvořená:')}
           icon="list-2"
           list={viewType === 'list' ? groupByList : groupByGantt}
-          text={__('Stage')}
+          text={__('Etapa')}
           queryParamName="groupBy"
           queryParams={queryParams}
         />
@@ -223,19 +223,19 @@ class MainActionBar extends React.Component<Props, State> {
     return (
       <GroupByContent>
         <SelectType
-          title={__('Chart Type:')}
+          title={__('Typ grafu:')}
           icon="chart-bar"
           list={chartTypes}
-          text={__('Stacked Bar Chart')}
+          text={__('Skládaný pruhový graf')}
           queryParamName="chartType"
           queryParams={queryParams}
         />
         &nbsp;&nbsp;&nbsp;
         <SelectType
-          title={__('Stack By:')}
+          title={__('Skládejte podle:')}
           icon="list-2"
           list={stackByChart}
-          text={__('Stage')}
+          text={__('Etapa')}
           queryParamName="stackBy"
           queryParams={queryParams}
         />
@@ -253,10 +253,10 @@ class MainActionBar extends React.Component<Props, State> {
     return (
       <GroupByContent>
         <SelectType
-          title={__('Group by:')}
+          title={__('Skupina vytvořená:')}
           icon="list-2"
           list={showByTime}
-          text={__('Stage')}
+          text={__('Etapa')}
           queryParamName="groupBy"
           queryParams={queryParams}
         />
@@ -293,7 +293,7 @@ class MainActionBar extends React.Component<Props, State> {
                 to={onFilterClick('board')}
                 className={viewType === 'board' ? 'active' : ''}
               >
-                {__('Board')}
+                {__('Deska')}
               </Link>
             </li>
             <li key="calendar">
@@ -301,7 +301,7 @@ class MainActionBar extends React.Component<Props, State> {
                 to={onFilterClick('calendar')}
                 className={viewType === 'calendar' ? 'active' : ''}
               >
-                {__('Calendar')}
+                {__('Kalendář')}
               </Link>
             </li>
             {options.type === 'deal' && (
@@ -310,7 +310,7 @@ class MainActionBar extends React.Component<Props, State> {
                   to={onFilterClick('conversion')}
                   className={viewType === 'conversion' ? 'active' : ''}
                 >
-                  {__('Conversion')}
+                  {__('Konverze')}
                 </Link>
               </li>
             )}
@@ -320,7 +320,7 @@ class MainActionBar extends React.Component<Props, State> {
                   to={onFilterClick('conversion')}
                   className={viewType === 'conversion' ? 'active' : ''}
                 >
-                  {__('Conversion')}
+                  {__('Konverze')}
                 </Link>
               </li>
             )}
@@ -329,7 +329,7 @@ class MainActionBar extends React.Component<Props, State> {
                 to={onFilterClick('activity')}
                 className={viewType === 'activity' ? 'active' : ''}
               >
-                {__('Activity')}
+                {__('Aktivita')}
               </Link>
             </li>
             <li key="list">
@@ -337,7 +337,7 @@ class MainActionBar extends React.Component<Props, State> {
                 to={onFilterClick('list')}
                 className={viewType === 'list' ? 'active' : ''}
               >
-                {__('List')}
+                {__('Seznam')}
               </Link>
             </li>
             <li key="chart">
@@ -345,7 +345,7 @@ class MainActionBar extends React.Component<Props, State> {
                 to={onFilterClick('chart')}
                 className={viewType === 'chart' ? 'active' : ''}
               >
-                {__('Chart')}
+                {__('Schéma')}
               </Link>
             </li>
             <li key="gantt">
@@ -393,7 +393,7 @@ class MainActionBar extends React.Component<Props, State> {
           icon={this.state.showDetail ? 'eye-slash' : 'eye'}
           onClick={() => this.onDetailShowHandler()}
         >
-          {this.state.showDetail ? 'Hide detail' : 'Show detail'}
+          {this.state.showDetail ? 'Skrýt detail' : 'Zobrazit detail'}
         </Button>
       );
     }
@@ -427,7 +427,7 @@ class MainActionBar extends React.Component<Props, State> {
         <Dropdown>
           <Dropdown.Toggle as={DropdownToggle} id="dropdown-board">
             <HeaderButton rightIconed={true}>
-              {(currentBoard && currentBoard.name) || __('Choose board')}
+              {(currentBoard && currentBoard.name) || __('Vyberte desku')}
               <Icon icon="angle-down" />
             </HeaderButton>
           </Dropdown.Toggle>
@@ -440,14 +440,14 @@ class MainActionBar extends React.Component<Props, State> {
           <Dropdown.Toggle as={DropdownToggle} id="dropdown-pipeline">
             <HeaderButton rightIconed={true}>
               {(currentPipeline && currentPipeline.name) ||
-                __('Choose pipeline')}
+                __('Vyberte potrubí')}
               <Icon icon="angle-down" />
             </HeaderButton>
           </Dropdown.Toggle>
           <Dropdown.Menu>{this.renderPipelines()}</Dropdown.Menu>
         </Dropdown>
         <HeaderLink>
-          <Tip text={__('Manage Board & Pipeline')} placement="bottom">
+          <Tip text={__('Správa Představenstva a Potrubí')} placement="bottom">
             <Link
               to={`/settings/boards/${type}?boardId=${
                 currentBoard ? currentBoard._id : ''

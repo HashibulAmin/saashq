@@ -22,7 +22,7 @@ class ChecklistAdd extends React.Component<Props> {
   renderForm() {
     return (
       <Popover id="checklist-popover">
-        <Popover.Title as="h3">Add checklist</Popover.Title>
+        <Popover.Title as="h3">Přidat kontrolní seznam</Popover.Title>
         <Popover.Content>
           <Wrapper>
             <AddForm {...this.props} afterSave={this.hidePopover} />
@@ -35,7 +35,7 @@ class ChecklistAdd extends React.Component<Props> {
   render() {
     return (
       <OverlayTrigger
-        ref={overlayTrigger => {
+        ref={(overlayTrigger) => {
           this.overlayTrigger = overlayTrigger;
         }}
         trigger="click"
@@ -45,7 +45,7 @@ class ChecklistAdd extends React.Component<Props> {
       >
         <ColorButton>
           <Icon icon="check-square" />
-          {__('Checklist')}
+          {__('Kontrolní seznam')}
         </ColorButton>
       </OverlayTrigger>
     );

@@ -22,7 +22,7 @@ class AddForm extends React.Component<Props, State> {
 
     this.state = {
       disabled: false,
-      name: ''
+      name: '',
     };
   }
 
@@ -30,14 +30,14 @@ class AddForm extends React.Component<Props, State> {
     this.setState({ name: (e.currentTarget as HTMLInputElement).value });
   };
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
 
     const { name } = this.state;
     const { add, closeModal } = this.props;
 
     if (!name) {
-      return Alert.error('Enter name');
+      return Alert.error('Napište jméno');
     }
 
     // before save, disable save button
@@ -69,7 +69,7 @@ class AddForm extends React.Component<Props, State> {
             onClick={this.props.closeModal}
             icon="times-circle"
           >
-            Close
+            Zavřít
           </Button>
 
           <Button
@@ -78,7 +78,7 @@ class AddForm extends React.Component<Props, State> {
             icon="check-circle"
             type="submit"
           >
-            Save
+            Uložit
           </Button>
         </FormFooter>
       </form>

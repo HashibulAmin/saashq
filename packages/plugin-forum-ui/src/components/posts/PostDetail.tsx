@@ -132,7 +132,7 @@ function PostDetail(props: Props) {
         <FlexContent>
           <FlexItem>
             <FlexRow>
-              <label>{__('Created at')}</label>
+              <label>{__('Vytvořeno v')}</label>
               <strong>{dayjs(post.createdAt).format('lll')}</strong>
             </FlexRow>
           </FlexItem>

@@ -470,7 +470,7 @@ class Form extends React.Component<Props, State> {
                 {__(title)} {(productsData || []).length}
               </th>
               <th>{__('UOM')}</th>
-              <th>{__('Quantity')}</th>
+              <th>{__('Množství')}</th>
               <th>{__('Akce')}</th>
             </tr>
           </thead>
@@ -508,8 +508,8 @@ class Form extends React.Component<Props, State> {
                 {__('Receipt Products')} {(productsData || []).length}
               </th>
               <th>{__('UOM')}</th>
-              <th>{__('Quantity')}</th>
-              <th>{__('Amount')}</th>
+              <th>{__('Množství')}</th>
+              <th>{__('Množství')}</th>
             </tr>
           </thead>
           <tbody>

@@ -31,7 +31,7 @@ export default function List(props: Props) {
           <th>{__('isPriority')}</th>
           <th>{__('Apply type')}</th>
           <th>{__('Vytvořil')}</th>
-          <th>{__('Created at')}</th>
+          <th>{__('Vytvořeno v')}</th>
           <th>{__('Last updated at')}</th>
           <th>{__('Akce')}</th>
         </tr>

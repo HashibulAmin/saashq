@@ -210,7 +210,7 @@ class VoucherCampaigns extends React.Component<Props, State> {
             <th>{__('Start Date')}</th>
             <th>{__('End Date')}</th>
             <th>{__('Finish Date of Use')}</th>
-            <th>{__('Type')}</th>
+            <th>{__('Typ')}</th>
             <th>{__('Postavení')}</th>
             <th>{__('Akce')}</th>
           </tr>

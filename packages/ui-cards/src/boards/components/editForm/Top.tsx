@@ -60,7 +60,7 @@ function Top(props: Props) {
     const itemName = (e.target as HTMLInputElement).value;
 
     setName(itemName);
-    localStorage.setItem(`${props.item._id}Name`, itemName);
+    localStorage.setItem(`${props.item._id}Název`, itemName);
   };
 
   const renderScore = () => {
@@ -72,7 +72,7 @@ function Top(props: Props) {
 
     return (
       <HeaderContentSmall>
-        <ControlLabel>Score</ControlLabel>
+        <ControlLabel>Skóre</ControlLabel>
         <p>{score.toLocaleString()}</p>
       </HeaderContentSmall>
     );
@@ -87,7 +87,7 @@ function Top(props: Props) {
 
     return (
       <HeaderContentSmall>
-        <ControlLabel>Number</ControlLabel>
+        <ControlLabel>Číslo</ControlLabel>
         <p>{number}</p>
       </HeaderContentSmall>
     );

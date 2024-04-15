@@ -2,14 +2,14 @@ import {
   BodyContent,
   PreviewBody,
   PreviewTitle,
-  PrintButton
+  PrintButton,
 } from '@saashq/ui/src/components/step/preview/styles';
 import {
   CellWrapper,
   FieldWrapper,
   FormMessageInput,
   FormTable,
-  ProductItem
+  ProductItem,
 } from '../styles';
 import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
 
@@ -43,8 +43,8 @@ export default class FormMessage extends React.Component<Props, {}> {
         return null;
       }
 
-      return subFields.map(e => {
-        return e.map(e2 => {
+      return subFields.map((e) => {
+        return e.map((e2) => {
           return this.renderField(e2);
         });
       });
@@ -66,7 +66,7 @@ export default class FormMessage extends React.Component<Props, {}> {
       return (
         <div
           dangerouslySetInnerHTML={{
-            __html: data.value
+            __html: data.value,
           }}
         />
       );
@@ -78,7 +78,7 @@ export default class FormMessage extends React.Component<Props, {}> {
         return null;
       }
 
-      return data.value.map(obj => {
+      return data.value.map((obj) => {
         return (
           <>
             {Object.entries(obj).map((e, index) => {
@@ -126,13 +126,13 @@ export default class FormMessage extends React.Component<Props, {}> {
     return (
       <Select
         value={value}
-        options={selectValues.map(e => ({ value: e, label: e }))}
+        options={selectValues.map((e) => ({ value: e, label: e }))}
         multi={true}
       />
     );
   }
 
-  renderProductData = field => {
+  renderProductData = (field) => {
     if (!field.value.hasOwnProperty('product')) {
       return <FormMessageInput>{this.displayValue(field)}</FormMessageInput>;
     }
@@ -149,8 +149,8 @@ export default class FormMessage extends React.Component<Props, {}> {
             <thead>
               <tr>
                 <th style={{ width: '40%' }}>{__('Product name')}</th>
-                <th style={{ width: '20%' }}>{__('Unit price')}</th>
-                <th style={{ width: '20%' }}>{__('Quantity')}</th>
+                <th style={{ width: '20%' }}>{__('Jednotková cena')}</th>
+                <th style={{ width: '20%' }}>{__('Množství')}</th>
                 <th style={{ width: '20%' }}>{__('Sub total')}</th>
               </tr>
             </thead>
@@ -211,13 +211,13 @@ export default class FormMessage extends React.Component<Props, {}> {
     const { formWidgetData, content } = this.props.message;
 
     return (
-      <FormTable ref={el => (this.componentRef = el)}>
+      <FormTable ref={(el) => (this.componentRef = el)}>
         <PreviewTitle style={{ backgroundColor: '#6569DF' }}>
           <div>{content}</div>
         </PreviewTitle>
         <PreviewBody embedded="embedded">
           <BodyContent>
-            {formWidgetData.map(field => this.renderField(field))}
+            {formWidgetData.map((field) => this.renderField(field))}
           </BodyContent>
         </PreviewBody>
         {this.renderPrintBtn()}

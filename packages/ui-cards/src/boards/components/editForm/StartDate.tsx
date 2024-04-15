@@ -5,7 +5,7 @@ import {
   CalenderWrapper,
   CloseDateContent,
   CloseDateWrapper,
-  DateGrid
+  DateGrid,
 } from '../../styles/popup';
 import ControlLabel from '@saashq/ui/src/components/form/Label';
 import React from 'react';
@@ -18,7 +18,7 @@ type Props = {
   reminderMinute: number;
   onChangeField: (
     name: 'startDate' | 'reminderMinute' | 'isComplete',
-    value: any
+    value: any,
   ) => void;
 };
 
@@ -36,15 +36,15 @@ class StartDate extends React.Component<Props, State> {
     this.ref = React.createRef();
 
     this.state = {
-      startDate: props.startDate || dayjs()
+      startDate: props.startDate || dayjs(),
     };
   }
 
-  setOverlay = overlay => {
+  setOverlay = (overlay) => {
     this.overlay = overlay;
   };
 
-  dateOnChange = date => {
+  dateOnChange = (date) => {
     this.setState({ startDate: date });
   };
 
@@ -70,7 +70,7 @@ class StartDate extends React.Component<Props, State> {
     const day = dayjs(startDate).format('YYYY-MM-DD');
     const time = dayjs(startDate).format('HH:mm');
 
-    const onChangeDateTime = e => {
+    const onChangeDateTime = (e) => {
       const type = e.target.type;
       const value = e.target.value;
 
@@ -95,11 +95,11 @@ class StartDate extends React.Component<Props, State> {
           {startDate && (
             <DateGrid>
               <div>
-                <ControlLabel>Date</ControlLabel>
+                <ControlLabel>Datum</ControlLabel>
                 <input type="date" value={day} onChange={onChangeDateTime} />
               </div>
               <div>
-                <ControlLabel>Time</ControlLabel>
+                <ControlLabel>Čas</ControlLabel>
                 <input type="time" value={time} onChange={onChangeDateTime} />
               </div>
             </DateGrid>
@@ -107,7 +107,7 @@ class StartDate extends React.Component<Props, State> {
 
           <CalenderWrapper>
             <Datetime
-              inputProps={{ placeholder: 'Click to select a date' }}
+              inputProps={{ placeholder: 'Kliknutím vyberte datum' }}
               dateFormat="YYYY/MM/DD"
               timeFormat="HH:mm"
               value={startDate}
@@ -123,10 +123,10 @@ class StartDate extends React.Component<Props, State> {
           </CalenderWrapper>
           <DateGrid>
             <Button colorName="red" onClick={this.remove}>
-              Remove
+              Odstranit
             </Button>
             <Button colorName="green" onClick={this.onSave}>
-              Save
+              Uložit
             </Button>
           </DateGrid>
         </CloseDateContent>
@@ -142,7 +142,7 @@ class StartDate extends React.Component<Props, State> {
       <Button colorName={generateButtonStart(startDate)}>
         {startDate
           ? `${dayjs(startDate).format('MMM DD')} at ${time}`
-          : 'Start date'}
+          : 'Datum zahájení'}
       </Button>
     );
 

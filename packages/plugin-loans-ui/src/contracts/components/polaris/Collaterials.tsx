@@ -20,8 +20,8 @@ function CollateralsInfo(props: IProps) {
     <Table>
       <thead>
         <tr>
-          <th>{__('Currency')}</th>
-          <th>{__('Amount')}</th>
+          <th>{__('Měna')}</th>
+          <th>{__('Množství')}</th>
           <th>{__('Název')}</th>
         </tr>
       </thead>

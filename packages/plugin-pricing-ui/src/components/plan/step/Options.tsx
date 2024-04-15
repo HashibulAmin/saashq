@@ -30,7 +30,7 @@ export default function Options(props: Props) {
           name="departmentIds"
           label="Choose Departments"
           initialValue={formValues.departmentIds || []}
-          onSelect={departments => handleState('departmentIds', departments)}
+          onSelect={(departments) => handleState('departmentIds', departments)}
           multi={true}
         />
       </FormGroup>
@@ -40,7 +40,7 @@ export default function Options(props: Props) {
           name="branchIds"
           label="Choose Branches"
           initialValue={formValues.branchIds || []}
-          onSelect={branches => handleState('branchIds', branches)}
+          onSelect={(branches) => handleState('branchIds', branches)}
           multi={true}
         />
       </FormGroup>
@@ -51,18 +51,18 @@ export default function Options(props: Props) {
     if (isEnabled('cards'))
       return (
         <Block>
-          <h4>{__('Stage')}</h4>
+          <h4>{__('Etapa')}</h4>
           <BoardSelectContainer
             type="deal"
             autoSelectStage={false}
             boardId={formValues.boardId}
             pipelineId={formValues.pipelineId}
             stageId={formValues.stageId}
-            onChangeBoard={boardId => handleState('boardId', boardId)}
-            onChangePipeline={pipelineId =>
+            onChangeBoard={(boardId) => handleState('boardId', boardId)}
+            onChangePipeline={(pipelineId) =>
               handleState('pipelineId', pipelineId)
             }
-            onChangeStage={stageId => handleState('stageId', stageId)}
+            onChangeStage={(stageId) => handleState('stageId', stageId)}
           />
         </Block>
       );

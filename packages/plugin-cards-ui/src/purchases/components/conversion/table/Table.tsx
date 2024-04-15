@@ -17,12 +17,12 @@ class Table extends React.Component<Props, {}> {
     return (
       <TableView>
         <HeadRow>
-          <span>{__('Stage')}</span>
+          <span>{__('Etapa')}</span>
           <span>{__('Stayed')}</span>
           <span>{__('In progress')}</span>
           <span>{__('Lost')}</span>
         </HeadRow>
-        {stages.map(stage => (
+        {stages.map((stage) => (
           <Stage
             key={stage._id}
             stage={stage}

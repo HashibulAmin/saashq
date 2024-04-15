@@ -1,7 +1,7 @@
 import {
   FieldStyle,
   SidebarCounter,
-  SidebarList
+  SidebarList,
 } from '@saashq/ui/src/layout/styles';
 
 import Box from '@saashq/ui/src/components/Box';
@@ -35,7 +35,7 @@ class WebsiteActivity extends React.Component<Props> {
   constructor(props, context) {
     super(props, context);
 
-    props.urlVisits.map(visitPage => {
+    props.urlVisits.map((visitPage) => {
       return (this.totalVisits = this.totalVisits + visitPage.count);
     });
   }
@@ -44,12 +44,16 @@ class WebsiteActivity extends React.Component<Props> {
     const { urlVisits } = this.props;
 
     if (urlVisits.length === 0) {
-      return <EmptyState icon="chart-line" text="No activity" size="small" />;
+      return (
+        <EmptyState icon="chart-line" text="Žádná aktivita" size="small" />
+      );
     }
 
     return (
       <SidebarList className="no-link">
-        <Description>{__('Most visited pages on your website')}</Description>
+        <Description>
+          {__('Nejnavštěvovanější stránky na vašem webu')}
+        </Description>
         {this.props.urlVisits.map((data, index) => (
           <li key={index}>
             <FieldStyle>
@@ -67,7 +71,7 @@ class WebsiteActivity extends React.Component<Props> {
 
   render() {
     return (
-      <Box title={__('Website Activity')} name="webActivity">
+      <Box title={__('Aktivita na Webu')} name="webActivity">
         {this.renderContent()}
       </Box>
     );

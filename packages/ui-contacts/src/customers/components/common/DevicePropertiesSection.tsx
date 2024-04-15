@@ -1,7 +1,7 @@
 import {
   FieldStyle,
   SidebarCounter,
-  SidebarList
+  SidebarList,
 } from '@saashq/ui/src/layout/styles';
 
 import Box from '@saashq/ui/src/components/Box';
@@ -41,7 +41,7 @@ class DevicePropertiesSection extends React.Component<Props> {
     field: string,
     value?: any,
     secondValue?: string,
-    nowrap?: boolean
+    nowrap?: boolean,
   ) => {
     const { deviceFieldsVisibility, isDetail } = this.props;
 
@@ -72,7 +72,7 @@ class DevicePropertiesSection extends React.Component<Props> {
     const location = customer.location;
 
     if (!location) {
-      return <EmptyState icon="placeholder" text="No location" size="small" />;
+      return <EmptyState icon="placeholder" text="Bez umístění" size="small" />;
     }
 
     const ua = parse(location.userAgent || ' ');
@@ -83,24 +83,24 @@ class DevicePropertiesSection extends React.Component<Props> {
           'Location',
           'location',
           renderFlag(location.countryCode),
-          location.country
+          location.country,
         )}
         {this.renderDeviceProperty(
           'Browser',
           'browser',
           ua.browser.name,
-          ua.browser.version
+          ua.browser.version,
         )}
         {this.renderDeviceProperty(
           'Platform',
           'platform',
           ua.os.name,
-          ua.os.version
+          ua.os.version,
         )}
         {this.renderDeviceProperty(
           'IP Address',
           'ipAddress',
-          location.remoteAddress
+          location.remoteAddress,
         )}
         {this.renderDeviceProperty('Hostname', 'hostName', location.hostname)}
         {this.renderDeviceProperty('Language', 'language', location.language)}
@@ -109,7 +109,7 @@ class DevicePropertiesSection extends React.Component<Props> {
           'agent',
           location.userAgent,
           '',
-          true
+          true,
         )}
       </SidebarList>
     );
@@ -124,7 +124,7 @@ class DevicePropertiesSection extends React.Component<Props> {
 
     return (
       <Box
-        title={__('Device properties')}
+        title={__('Vlastnosti zařízení')}
         name="showDeviceProperties"
         callback={collapseCallback}
       >

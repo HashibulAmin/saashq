@@ -17,15 +17,13 @@ type Props = {
 };
 
 export default (props: Props) => {
-  const title = props.url
-    ? __('Go to a purchase')
-    : __('Convert to a purchase');
+  const title = props.url ? __('Přejít na nákup') : __('Převést na nákup');
 
   const extendedProps = {
     ...props,
     options,
     title,
-    autoOpenKey: 'showPurchaseConvertModal'
+    autoOpenKey: 'showPurchaseConvertModal',
   };
 
   return <ConvertTrigger {...extendedProps} />;

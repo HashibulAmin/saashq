@@ -263,37 +263,37 @@ export const COMPANY_DATAS = {
   links: 'Links',
 
   ALL: [
-    { field: 'owner', label: 'Owner' },
-    { field: 'parentCompany', label: 'Parent Company' },
-    { field: 'links', label: 'Links' },
+    { field: 'owner', label: 'Majitel' },
+    { field: 'parentCompany', label: 'Mateřská společnost' },
+    { field: 'links', label: 'Odkazy' },
   ],
 };
 
 export const COMPANY_INFO = {
-  avatar: 'Logo',
-  primaryName: 'Primary Name',
-  size: 'Size',
-  industry: 'Industry',
-  plan: 'Plan',
+  avatar: 'Emblém',
+  primaryName: 'Primární Jméno',
+  size: 'Velikost',
+  industry: 'Průmysl',
+  plan: 'Plán',
   primaryEmail: 'Primární Email',
-  primaryPhone: 'Primary Phone',
-  businessType: 'Business Type',
-  description: 'Description',
-  isSubscribed: 'Subscribed',
-  location: 'Headquarters Country',
+  primaryPhone: 'Hlavní Telefon',
+  businessType: 'Typ Podnikání',
+  description: 'Popis',
+  isSubscribed: 'Odebíráno',
+  location: 'Země ústředí',
 
   ALL: [
-    { field: 'avatar', label: 'Logo' },
-    { field: 'primaryName', label: 'Primary Name' },
-    { field: 'size', label: 'Size' },
-    { field: 'industry', label: 'Industry' },
-    { field: 'plan', label: 'Plan' },
+    { field: 'avatar', label: 'Emblém' },
+    { field: 'primaryName', label: 'Primární Jméno' },
+    { field: 'size', label: 'Velikost' },
+    { field: 'industry', label: 'Průmysl' },
+    { field: 'plan', label: 'Plán' },
     { field: 'primaryEmail', label: 'Primární Email' },
-    { field: 'primaryPhone', label: 'Primary Phone' },
-    { field: 'businessType', label: 'Business Type' },
+    { field: 'primaryPhone', label: 'Hlavní Telefon' },
+    { field: 'businessType', label: 'Typ Podnikání' },
     { field: 'description', label: 'Popis' },
-    { field: 'isSubscribed', label: 'Subscribed' },
-    { field: 'location', label: 'Headquarters Country' },
+    { field: 'isSubscribed', label: 'Odebíráno' },
+    { field: 'location', label: 'Země ústředí' },
   ],
 };
 
@@ -304,7 +304,7 @@ export const COMPANY_LINKS = {
   instagram: 'Instagram',
   youtube: 'Youtube',
   github: 'Github',
-  website: 'Website',
+  website: 'Webová stránka',
 
   ALL: [
     { field: 'linkedIn', label: 'LinkedIn' },
@@ -313,6 +313,6 @@ export const COMPANY_LINKS = {
     { field: 'instagram', label: 'Instagram' },
     { field: 'youtube', label: 'Youtube' },
     { field: 'github', label: 'Github' },
-    { field: 'website', label: 'Website' },
+    { field: 'website', label: 'Webová stránka' },
   ],
 };

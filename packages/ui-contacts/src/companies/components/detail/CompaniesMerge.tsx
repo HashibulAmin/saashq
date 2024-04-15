@@ -1,12 +1,12 @@
 import {
   COMPANY_DATAS,
   COMPANY_INFO,
-  COMPANY_LINKS
+  COMPANY_LINKS,
 } from '@saashq/ui-contacts/src/companies/constants';
 import { Column, Columns, Title } from '@saashq/ui/src/styles/chooser';
 import {
   ICompany,
-  ICompanyLinks
+  ICompanyLinks,
 } from '@saashq/ui-contacts/src/companies/types';
 import { Info, InfoTitle, ModalFooter } from '@saashq/ui/src/styles/main';
 import { InfoAvatar, InfoDetail } from '../../../customers/styles';
@@ -30,11 +30,11 @@ class CompaniesMerge extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      selectedValues: {}
+      selectedValues: {},
     };
   }
 
-  save = e => {
+  save = (e) => {
     e.preventDefault();
     const { objects } = this.props;
     const selectedValues = { ...this.state.selectedValues };
@@ -54,11 +54,11 @@ class CompaniesMerge extends React.Component<Props, State> {
     }
 
     this.props.save({
-      ids: objects.map(company => company._id),
+      ids: objects.map((company) => company._id),
       data: { ...selectedValues },
       callback: () => {
         this.props.closeModal();
-      }
+      },
     });
   };
 
@@ -71,7 +71,7 @@ class CompaniesMerge extends React.Component<Props, State> {
       if (key === 'links') {
         const links = Object.assign(
           { ...this.state.selectedValues.links },
-          value
+          value,
         );
         selectedValues[key] = links;
       }
@@ -89,7 +89,7 @@ class CompaniesMerge extends React.Component<Props, State> {
       <React.Fragment>
         <Title>{company.primaryName || company.website}</Title>
         <ul>
-          {properties.map(info => {
+          {properties.map((info) => {
             const key = info.field;
 
             if (!company[key]) {
@@ -141,7 +141,7 @@ class CompaniesMerge extends React.Component<Props, State> {
   renderOwner(data) {
     return (
       <Info>
-        <InfoTitle>Name: </InfoTitle>
+        <InfoTitle>Název: </InfoTitle>
         <InfoDetail>{data.details.fullName}</InfoDetail>
       </Info>
     );
@@ -150,14 +150,14 @@ class CompaniesMerge extends React.Component<Props, State> {
   renderParentCompany(data) {
     return (
       <Info>
-        <InfoTitle>Name: </InfoTitle>
+        <InfoTitle>Název: </InfoTitle>
         <InfoDetail>{data.primaryName}</InfoDetail>
       </Info>
     );
   }
 
   renderLinks(data: ICompanyLinks, icon: string) {
-    return COMPANY_LINKS.ALL.map(info => {
+    return COMPANY_LINKS.ALL.map((info) => {
       const field = info.field;
       const value = data[field];
 
@@ -169,7 +169,7 @@ class CompaniesMerge extends React.Component<Props, State> {
         <li
           key={field}
           onClick={this.handleChange.bind(this, icon, `links`, {
-            [field]: value
+            [field]: value,
           })}
         >
           <InfoTitle>{info.label}:</InfoTitle>
@@ -203,10 +203,10 @@ class CompaniesMerge extends React.Component<Props, State> {
 
         <ModalFooter>
           <Button btnStyle="simple" onClick={closeModal} icon="times-circle">
-            Cancel
+            Zrušení
           </Button>
           <Button type="submit" btnStyle="success" icon="check-circle">
-            Save
+            Uložit
           </Button>
         </ModalFooter>
       </form>

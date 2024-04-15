@@ -16,7 +16,7 @@ class Watch extends React.Component<IProps> {
     const {
       onChangeWatch,
       item: { isWatched },
-      isSmall
+      isSmall,
     } = this.props;
 
     const onClick = () => onChangeWatch(!isWatched);
@@ -25,14 +25,14 @@ class Watch extends React.Component<IProps> {
       return (
         <ColorButton onClick={onClick}>
           <Icon icon={isWatched ? 'eye' : 'eye-slash'} />
-          {__('Watch')}
+          {__('Hodinky')}
         </ColorButton>
       );
     }
 
     return (
       <RightButton icon="eye" onClick={onClick}>
-        {__('Watch')}
+        {__('Hodinky')}
         {isWatched && (
           <WatchIndicator>
             <Icon icon="check-1" />

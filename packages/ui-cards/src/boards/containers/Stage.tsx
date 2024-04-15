@@ -15,7 +15,7 @@ import {
   ItemsQueryResponse,
   RemoveStageMutation,
   SaveItemMutation,
-  StagesSortItemsMutationResponse
+  StagesSortItemsMutationResponse,
 } from '../types';
 
 type StageProps = {
@@ -74,17 +74,17 @@ class StageContainer extends React.PureComponent<FinalStageProps> {
           stageId: stage._id,
           pipelineId: stage.pipelineId,
           skip: items.length,
-          ...getFilterParams(queryParams, options.getExtraParams)
+          ...getFilterParams(queryParams, options.getExtraParams),
         },
-        fetchPolicy: 'network-only'
+        fetchPolicy: 'network-only',
       })
       .then(({ data }: any) => {
         onLoad(stage._id, [
           ...items,
-          ...(data[options.queriesName.itemsQuery] || [])
+          ...(data[options.queriesName.itemsQuery] || []),
         ]);
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e.message);
       });
   };
@@ -93,17 +93,17 @@ class StageContainer extends React.PureComponent<FinalStageProps> {
     const { removeStageMutation, refetchStages, stage } = this.props;
 
     const message =
-      'This will permanently delete any items related to this stage. Are you absolutely sure?';
+      'Tím trvale odstraníte všechny položky související s touto fází. jsi si naprosto jistý?';
 
     confirm(message, { hasDeleteConfirm: true })
       .then(() => {
         removeStageMutation({ variables: { _id: id } }).then(() => {
-          Alert.success('You have successfully removed a stage');
+          Alert.success('Úspěšně jste odebrali fázi');
 
           refetchStages({ pipelineId: stage.pipelineId });
         });
       })
-      .catch(e => {
+      .catch((e) => {
         Alert.error(e.message);
       });
   };
@@ -113,7 +113,7 @@ class StageContainer extends React.PureComponent<FinalStageProps> {
 
     const stageId = stage._id;
 
-    confirm(__('Archive All Cards in This List?')).then(() => {
+    confirm(__('Archivovat všechny karty v tomto seznamu?')).then(() => {
       const proccessId = Math.random().toString();
       localStorage.setItem('proccessId', proccessId);
 
@@ -124,12 +124,12 @@ class StageContainer extends React.PureComponent<FinalStageProps> {
           refetchQueries: [
             {
               query: gql(queries.stageDetail),
-              variables: { _id: stageId, proccessId }
-            }
-          ]
+              variables: { _id: stageId, proccessId },
+            },
+          ],
         })
         .then(() => {
-          Alert.success('Archive Items has been archived.');
+          Alert.success('Archivovat položky byly archivovány.');
 
           onLoad(stageId, []);
         })
@@ -144,7 +144,7 @@ class StageContainer extends React.PureComponent<FinalStageProps> {
 
     const stageId = stage._id;
 
-    confirm(__(`Are you sure to sort by ${description} ?`)).then(() => {
+    confirm(__(`Určitě třídíte podle ${description} ?`)).then(() => {
       const proccessId = Math.random().toString();
       localStorage.setItem('proccessId', proccessId);
       stagesSortItemsMutation({
@@ -152,8 +152,8 @@ class StageContainer extends React.PureComponent<FinalStageProps> {
           stageId,
           type: options.type,
           proccessId,
-          sortType: type
-        }
+          sortType: type,
+        },
       })
         .then(() => {
           this.props.refetchStage(stageId);
@@ -167,18 +167,18 @@ class StageContainer extends React.PureComponent<FinalStageProps> {
   archiveList = () => {
     const { stage, refetchStages, options } = this.props;
 
-    confirm(__('Archive this list?')).then(() => {
+    confirm(__('Archivovat tento seznam?')).then(() => {
       client
         .mutate({
           mutation: gql(mutations.stagesEdit),
           variables: {
             _id: stage._id,
             type: options.type,
-            status: 'archived'
-          }
+            status: 'archived',
+          },
         })
         .then(() => {
-          Alert.success('Archive List has been archived.');
+          Alert.success('Seznam archivů byl archivován.');
 
           refetchStages({ pipelineId: stage.pipelineId });
         })
@@ -198,7 +198,7 @@ class StageContainer extends React.PureComponent<FinalStageProps> {
       options,
       onAddItem,
       onRemoveItem,
-      loadingState
+      loadingState,
     } = this.props;
 
     const loadingItems = () => {
@@ -231,7 +231,7 @@ class StageContainer extends React.PureComponent<FinalStageProps> {
 
 const getFilterParams = (
   queryParams: IFilterParams,
-  getExtraParams: (queryParams) => any
+  getExtraParams: (queryParams) => any,
 ) => {
   if (!queryParams) {
     return {};
@@ -252,7 +252,7 @@ const getFilterParams = (
     assignedToMe: queryParams.assignedToMe,
     startDate: queryParams.startDate,
     endDate: queryParams.endDate,
-    ...getExtraParams(queryParams)
+    ...getExtraParams(queryParams),
   };
 };
 
@@ -268,23 +268,23 @@ const withQuery = ({ options }) => {
           variables: {
             stageId: stage._id,
             pipelineId: stage.pipelineId,
-            ...getFilterParams(queryParams, options.getExtraParams)
+            ...getFilterParams(queryParams, options.getExtraParams),
           },
           context: {
-            fetchOptions: { signal: abortController && abortController.signal }
+            fetchOptions: { signal: abortController && abortController.signal },
           },
           fetchPolicy:
             loadingState === 'readyToLoad' ? 'network-only' : 'cache-only',
-          notifyOnNetworkStatusChange: loadingState === 'readyToLoad'
-        })
+          notifyOnNetworkStatusChange: loadingState === 'readyToLoad',
+        }),
       }),
       graphql<WithQueryProps>(gql(mutations.stagesRemove), {
-        name: 'removeStageMutation'
+        name: 'removeStageMutation',
       }),
       graphql<WithQueryProps>(gql(mutations.stagesSortItems), {
-        name: 'stagesSortItemsMutation'
-      })
-    )(StageContainer)
+        name: 'stagesSortItemsMutation',
+      }),
+    )(StageContainer),
   );
 };
 
@@ -308,7 +308,7 @@ class WithData extends React.Component<StageProps> {
 
     const updatedProps = {
       ...this.props,
-      abortController: this.abortController
+      abortController: this.abortController,
     };
 
     return <Component {...updatedProps} />;

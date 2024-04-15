@@ -59,7 +59,7 @@ class GrowthHacks extends React.Component<Props> {
           <thead>
             <tr>
               <th>{__('Experiment name')}</th>
-              <th>{__('Stage')}</th>
+              <th>{__('Etapa')}</th>
               <th>{__('Priority')}</th>
               <th>{__('Assigned user')}</th>
             </tr>

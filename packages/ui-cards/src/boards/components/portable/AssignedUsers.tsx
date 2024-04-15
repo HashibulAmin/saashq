@@ -11,7 +11,7 @@ type Props = {
 export default function AssignedUsers(props: Props) {
   const { field } = props;
 
-  const onChange = userIds => {
+  const onChange = (userIds) => {
     const { onChangeField } = props;
 
     onChangeField(field.field, userIds);
@@ -23,7 +23,7 @@ export default function AssignedUsers(props: Props) {
         {field.text}
       </ControlLabel>
       <SelectTeamMembers
-        label="Choose users"
+        label="Vyberte uživatele"
         name="assignedUserIds"
         onSelect={onChange}
       />

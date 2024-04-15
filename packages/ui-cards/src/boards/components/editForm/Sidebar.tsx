@@ -15,7 +15,7 @@ type Props = {
   item: IItem;
   saveItem: (doc: { [key: string]: any }) => void;
   sidebar?: (
-    saveItem?: (doc: { [key: string]: any }) => void
+    saveItem?: (doc: { [key: string]: any }) => void,
   ) => React.ReactNode;
   options: IOptions;
   renderItems: () => React.ReactNode;
@@ -23,9 +23,9 @@ type Props = {
     {
       _id,
       status,
-      timeSpent
+      timeSpent,
     }: { _id: string; status: string; timeSpent: number; startDate?: string },
-    callback?: () => void
+    callback?: () => void,
   ) => void;
   childrenSection: () => any;
   currentUser: IUser;
@@ -33,50 +33,45 @@ type Props = {
 
 class Sidebar extends React.Component<Props> {
   render() {
-    const {
-      item,
-      saveItem,
-      sidebar,
-      childrenSection,
-      currentUser
-    } = this.props;
+    const { item, saveItem, sidebar, childrenSection, currentUser } =
+      this.props;
 
-    const userOnChange = usrs => saveItem({ assignedUserIds: usrs });
+    const userOnChange = (usrs) => saveItem({ assignedUserIds: usrs });
     const onChangeStructure = (values, name) => saveItem({ [name]: values });
-    const assignedUserIds = (item.assignedUsers || []).map(user => user._id);
+    const assignedUserIds = (item.assignedUsers || []).map((user) => user._id);
     const branchIds = currentUser.branchIds;
     const departmentIds = currentUser.departmentIds;
 
     return (
       <RightContent>
         <FormGroup>
-          <ControlLabel>Assigned to</ControlLabel>
+          <ControlLabel>Přiřazen</ControlLabel>
           <SelectTeamMembers
-            label="Choose users"
+            label="Vyberte uživatele"
             name="assignedUserIds"
             initialValue={assignedUserIds}
             onSelect={userOnChange}
             filterParams={{
               isAssignee: true,
               departmentIds,
-              branchIds
+              branchIds,
             }}
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Branches')}</ControlLabel>
+          <ControlLabel>{__('Větve')}</ControlLabel>
           <SelectBranches
             name="branchIds"
-            label="Choose branches"
+            label="Vyberte pobočky"
             initialValue={item?.branchIds}
             onSelect={onChangeStructure}
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>{__('Departments')}</ControlLabel>
+          <ControlLabel>{__('Oddělení')}</ControlLabel>
           <SelectDepartments
             name="departmentIds"
-            label="Choose departments"
+            label="Vyberte si oddělení"
             onSelect={onChangeStructure}
             initialValue={item?.departmentIds}
           />

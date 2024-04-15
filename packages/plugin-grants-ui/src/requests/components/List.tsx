@@ -73,7 +73,7 @@ class List extends React.Component<Props, State> {
                 onChange={handleSelectAll}
               />
             </th>
-            <th>{__('Type')}</th>
+            <th>{__('Typ')}</th>
             <th>{__('Název')}</th>
             <th>{__('Requester')}</th>
             <th>{__('Recipients')}</th>

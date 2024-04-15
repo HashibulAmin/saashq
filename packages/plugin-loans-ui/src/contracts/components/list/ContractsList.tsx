@@ -140,7 +140,7 @@ class ContractsList extends React.Component<IProps, State> {
                 />
               </th>
               <th>
-                <SortHandler sortField={'type'} label={__('Type')} />
+                <SortHandler sortField={'type'} label={__('Typ')} />
               </th>
               <th>
                 <SortHandler

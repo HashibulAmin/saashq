@@ -107,7 +107,7 @@ function List(props: FinalProps) {
           <th>{__('Last updated by')}</th>
           <th>{__('Vytvořil')}</th>
           <th>{__('Last updated at')}</th>
-          <th>{__('Created at')}</th>
+          <th>{__('Vytvořeno v')}</th>
           <th>{__('Tags')}</th>
           <th>{__('Akce')}</th>
         </tr>

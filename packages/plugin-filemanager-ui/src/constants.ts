@@ -46,7 +46,7 @@ export const EMPTY_CONTENT_FOLDERS = {
 };
 
 export const EMPTY_CONTENT_FILES = {
-  title: __('Getting Started with SaasHQ Knowledgebase'),
+  title: __('Začínáme s Bází Znalostí SaasHQ'),
   description: __(
     'Educate your customers and staff by creating help articles to reach higher levels of satisfaction',
   ),

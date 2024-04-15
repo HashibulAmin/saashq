@@ -22,21 +22,21 @@ class WatchContainer extends React.Component<FinalProps> {
       const {
         watchMutation,
         pipeline: { _id },
-        type
+        type,
       } = this.props;
 
       watchMutation({ variables: { _id, isAdd, type } })
         .then(() => {
-          Alert.success('You successfully changed');
+          Alert.success('Úspěšně jste se změnili');
         })
-        .catch(error => {
+        .catch((error) => {
           Alert.error(error.message);
         });
     };
 
     const updatedProps = {
       ...this.props,
-      onChangeWatch
+      onChangeWatch,
     };
 
     return <PipelineWatch {...updatedProps} />;
@@ -53,11 +53,11 @@ export default withProps<IProps>(
           refetchQueries: [
             {
               query: gql(queries.pipelineDetail),
-              variables: { _id: pipeline._id }
-            }
-          ]
-        })
-      }
-    )
-  )(WatchContainer)
+              variables: { _id: pipeline._id },
+            },
+          ],
+        }),
+      },
+    ),
+  )(WatchContainer),
 );

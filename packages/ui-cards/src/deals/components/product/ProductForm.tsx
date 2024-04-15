@@ -238,7 +238,7 @@ class ProductForm extends React.Component<Props, State> {
 
     if (productsData.length === 0) {
       return (
-        <EmptyState size="full" text="No product or services" icon="box" />
+        <EmptyState size="full" text="Žádný produkt ani služby" icon="box" />
       );
     }
 
@@ -298,24 +298,24 @@ class ProductForm extends React.Component<Props, State> {
         <Table>
           <thead>
             <tr>
-              <th>{__('Type')}</th>
-              <th>{__('Product / Service')}</th>
-              <th style={{ width: '30px' }}>{__('Quantity')}</th>
-              <th>{__('Unit price')}</th>
-              <th style={{ width: '90px' }}>{__('Discount %')}</th>
-              <th>{__('Discount')}</th>
-              <th style={avStyle}>{__('Tax %')}</th>
-              <th style={avStyle}>{__('Tax')}</th>
-              <th>{__('Amount')}</th>
-              <th style={avStyle}>{__('Currency')}</th>
+              <th>{__('Typ')}</th>
+              <th>{__('Produkt / Služba')}</th>
+              <th style={{ width: '30px' }}>{__('Množství')}</th>
+              <th>{__('Jednotková cena')}</th>
+              <th style={{ width: '90px' }}>{__('Sleva %')}</th>
+              <th>{__('Sleva')}</th>
+              <th style={avStyle}>{__('Daň %')}</th>
+              <th style={avStyle}>{__('Daň')}</th>
+              <th>{__('Množství')}</th>
+              <th style={avStyle}>{__('Měna')}</th>
               <th style={avStyle}>{__('UOM')}</th>
-              <th>{__('Is tick used')}</th>
-              <th>{__('Is vat applied')}</th>
-              <th>{__('Assigned to')}</th>
+              <th>{__('Je použito klíště')}</th>
+              <th>{__('Je aplikována DPH')}</th>
+              <th>{__('Přiřazen')}</th>
               <th style={avStyle}>{__('Větev')}</th>
               <th style={avStyle}>{__('Oddělení')}</th>
-              <th style={avStyle}>{__('Unit price (global)')}</th>
-              <th style={avStyle}>{__('Unit price percent')}</th>
+              <th style={avStyle}>{__('Jednotková cena (globální)')}</th>
+              <th style={avStyle}>{__('Procento jednotkové ceny')}</th>
               <th />
               <th />
             </tr>
@@ -376,17 +376,15 @@ class ProductForm extends React.Component<Props, State> {
     if (productsData.length !== 0) {
       for (const data of productsData) {
         if (!data.product) {
-          return Alert.error('Please choose a product');
+          return Alert.error('Vyberte prosím produkt');
         }
 
         if (!data.unitPrice && data.unitPrice !== 0) {
-          return Alert.error(
-            'Please enter an unit price. It should be a number',
-          );
+          return Alert.error('Zadejte jednotkovou cenu. Mělo by to být číslo');
         }
 
         if (!data.currency) {
-          return Alert.error('Please choose a currency');
+          return Alert.error('Vyberte měnu');
         }
 
         if (
@@ -394,7 +392,7 @@ class ProductForm extends React.Component<Props, State> {
           data.tickUsed &&
           !data.assignUserId
         ) {
-          return Alert.error('Please choose a Assigned to any service');
+          return Alert.error('Vyberte možnost Přiřazeno jakékoli službě');
         }
       }
     }
@@ -409,18 +407,18 @@ class ProductForm extends React.Component<Props, State> {
         // warning greater pay
         if (changePayData[key] > 0) {
           alertMsg =
-            alertMsg + `Greater than total: ${changePayData[key]} ${key},`;
+            alertMsg + `Větší než celkem: ${changePayData[key]} ${key},`;
         }
 
         // warning less pay
         if (changePayData[key] < 0) {
           alertMsg =
-            alertMsg + `Less than total: ${changePayData[key]} ${key},`;
+            alertMsg + `Méně než celkem: ${changePayData[key]} ${key},`;
         }
       }
 
       if (alertMsg) {
-        Alert.warning('Change payment has problem: (' + alertMsg + ')');
+        Alert.warning('Změna platby má problém: (' + alertMsg + ')');
       }
     }
 
@@ -460,7 +458,7 @@ class ProductForm extends React.Component<Props, State> {
     return (
       <FlexRowGap>
         <FormGroup>
-          <ControlLabel>By product</ControlLabel>
+          <ControlLabel>Podle produktu</ControlLabel>
           <FormControl
             type="text"
             placeholder={__('Zadejte a vyhledejte')}
@@ -469,7 +467,7 @@ class ProductForm extends React.Component<Props, State> {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>By category</ControlLabel>
+          <ControlLabel>Podle kategorie</ControlLabel>
           <ProductCategoryChooser
             categories={this.props.categories}
             currentId={filterValues.category}
@@ -485,9 +483,9 @@ class ProductForm extends React.Component<Props, State> {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>By branch</ControlLabel>
+          <ControlLabel>Podle pobočky</ControlLabel>
           <SelectBranches
-            label="Choose branch"
+            label="Vyberte pobočku"
             name="branches"
             initialValue={filterValues.branches}
             multi={true}
@@ -495,9 +493,9 @@ class ProductForm extends React.Component<Props, State> {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>By department</ControlLabel>
+          <ControlLabel>Podle oddělení</ControlLabel>
           <SelectDepartments
-            label="Choose department"
+            label="Vyberte oddělení"
             name="departments"
             initialValue={filterValues.departments}
             multi={true}
@@ -507,9 +505,9 @@ class ProductForm extends React.Component<Props, State> {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>By vendor</ControlLabel>
+          <ControlLabel>Podle prodejce</ControlLabel>
           <SelectCompanies
-            label="Choose vendor"
+            label="Vyberte prodejce"
             name="vendors"
             initialValue={filterValues.vendors}
             multi={true}
@@ -517,13 +515,13 @@ class ProductForm extends React.Component<Props, State> {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>By brand</ControlLabel>
+          <ControlLabel>Podle značky</ControlLabel>
           <SelectBrands
-            label="Choose brand"
+            label="Vyberte značku"
             name="brands"
             initialValue={filterValues.brands}
             customOption={{
-              label: 'No Brand',
+              label: 'Žádná Značka',
               value: 'noBrand',
             }}
             multi={false}
@@ -536,7 +534,7 @@ class ProductForm extends React.Component<Props, State> {
           icon="times-circle"
           size="small"
         >
-          Clear filter
+          Vymazat filtr
         </Button>
       </FlexRowGap>
     );
@@ -617,7 +615,7 @@ class ProductForm extends React.Component<Props, State> {
         {...props}
         onSelect={productOnChange}
         data={{
-          name: 'Product',
+          name: 'Produkt',
           products: [],
         }}
       />
@@ -626,14 +624,14 @@ class ProductForm extends React.Component<Props, State> {
     const trigger = (
       <Add>
         <Button btnStyle="primary" icon="plus-circle">
-          Add Product / Service
+          Přidat Produkt / Službu
         </Button>
       </Add>
     );
 
     return (
       <ModalTrigger
-        title="Choose product & service"
+        title="Vyberte produkt a službu"
         trigger={trigger}
         dialogClassName="modal-1400w"
         size="xl"
@@ -684,27 +682,27 @@ class ProductForm extends React.Component<Props, State> {
           <table>
             <tbody>
               <tr style={avStyle}>
-                <td>{__('Discount')}:</td>
+                <td>{__('Sleva')}:</td>
                 <td>{this.renderTotal(discount, 'discount')}</td>
               </tr>
               <tr style={avStyle}>
-                <td>{__('Tax')}:</td>
+                <td>{__('Daň')}:</td>
                 <td>{this.renderTotal(tax, 'tax')}</td>
               </tr>
               <tr>
-                <td>{__('Total')}:</td>
+                <td>{__('Celkový')}:</td>
                 <td>{totalContent}</td>
               </tr>
               {(Object.keys(unUsedTotal).length && (
                 <tr>
-                  <td>{__('Un used Total')}:</td>
+                  <td>{__('Nepoužité Celkem')}:</td>
                   <td>{this.renderTotal(unUsedTotal, 'unUsedTotal')}</td>
                 </tr>
               )) ||
                 ''}
               {(Object.keys(unUsedTotal).length && (
                 <tr>
-                  <td>{__('Both Total')}:</td>
+                  <td>{__('Oba Celkem')}:</td>
                   <td>{this.renderTotal(bothTotal, 'bothTotal')}</td>
                 </tr>
               )) ||
@@ -714,7 +712,7 @@ class ProductForm extends React.Component<Props, State> {
                 <td colSpan={6}>
                   <ApplyVatWrapper>
                     <FormControl
-                      placeholder="Vat percent"
+                      placeholder="Procento DPH"
                       type="number"
                       onChange={this.onChangeVatPercent}
                     />
@@ -724,7 +722,7 @@ class ProductForm extends React.Component<Props, State> {
                       icon="plus-circle"
                       onClick={this.applyVat}
                     >
-                      Apply vat
+                      Aplikujte vat
                     </Button>
                   </ApplyVatWrapper>
                 </td>
@@ -757,14 +755,14 @@ class ProductForm extends React.Component<Props, State> {
             onClick={this.onTabClick.bind(this, 'products')}
           >
             <Icon icon="box" />
-            {__('Products')}
+            {__('Produkty')}
           </TabTitle>
           <TabTitle
             className={currentTab === 'payments' ? 'active' : ''}
             onClick={this.onTabClick.bind(this, 'payments')}
           >
             <Icon icon="atm-card" />
-            {__('Payments')}
+            {__('Platby')}
           </TabTitle>
         </Tabs>
 
@@ -776,7 +774,7 @@ class ProductForm extends React.Component<Props, State> {
             icon="plus-circle"
             onClick={this.toggleAdvancedView}
           >
-            {advancedView ? 'Compact view' : 'Advanced view'}
+            {advancedView ? 'Kompaktní pohled' : 'Pokročilý pohled'}
           </Button>
 
           <Button
@@ -784,11 +782,11 @@ class ProductForm extends React.Component<Props, State> {
             onClick={this.props.closeModal}
             icon="times-circle"
           >
-            Cancel
+            Zrušení
           </Button>
 
           <Button btnStyle="success" onClick={this.onClick} icon="check-circle">
-            Save
+            Uložit
           </Button>
         </ModalFooter>
       </>

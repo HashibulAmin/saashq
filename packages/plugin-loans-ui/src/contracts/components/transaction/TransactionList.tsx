@@ -24,7 +24,7 @@ class TransactionList extends React.Component<IProps> {
         <thead>
           <tr>
             <th>{__('Date')}</th>
-            <th>{__('Type')}</th>
+            <th>{__('Typ')}</th>
             <th>{__('Loan Payment')}</th>
             <th>{__('Interest')}</th>
             <th>{__('Loss')}</th>
@@ -32,7 +32,7 @@ class TransactionList extends React.Component<IProps> {
           </tr>
         </thead>
         <tbody id="schedules">
-          {transactions.map(transaction => (
+          {transactions.map((transaction) => (
             <TransactionRow
               transaction={transaction}
               key={transaction._id}

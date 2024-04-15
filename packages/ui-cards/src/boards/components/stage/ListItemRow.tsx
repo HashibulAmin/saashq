@@ -11,7 +11,7 @@ import {
   PriceContainer,
   ColumnChild,
   LabelColumn,
-  StageColumn
+  StageColumn,
 } from '../../styles/item';
 import { IOptions } from '../../types';
 import { __ } from '@saashq/ui/src/utils';
@@ -115,7 +115,7 @@ class ListItemRow extends React.PureComponent<Props> {
       isComplete,
       labels,
       assignedUsers,
-      products
+      products,
     } = item;
 
     return (
@@ -124,7 +124,8 @@ class ListItemRow extends React.PureComponent<Props> {
           <ColumnChild>
             <h5>{item.name}</h5>
             <LastUpdate>
-              {__('Last updated')}: {this.renderDate(item.modifiedAt)}
+              {__('Naposledy aktualizováno')}:{' '}
+              {this.renderDate(item.modifiedAt)}
             </LastUpdate>
           </ColumnChild>
           {this.renderStage()}
@@ -137,7 +138,7 @@ class ListItemRow extends React.PureComponent<Props> {
           <td>
             {this.checkNull(
               Boolean(closeDate || isComplete),
-              <DueDateLabel closeDate={closeDate} isComplete={isComplete} />
+              <DueDateLabel closeDate={closeDate} isComplete={isComplete} />,
             )}
           </td>
           {groupType !== 'assignee' && (
@@ -148,7 +149,7 @@ class ListItemRow extends React.PureComponent<Props> {
                   <Left>
                     <Assignees users={assignedUsers} />
                   </Left>
-                </PriceContainer>
+                </PriceContainer>,
               )}
             </td>
           )}
@@ -156,20 +157,20 @@ class ListItemRow extends React.PureComponent<Props> {
             <td>
               {this.checkNull(
                 products > 0,
-                <Details color="#63D2D6" items={products || []} />
+                <Details color="#63D2D6" items={products || []} />,
               )}
             </td>
           )}
           <td>
             {this.checkNull(
               customers.length > 0,
-              <Details color="#F7CE53" items={customers || []} />
+              <Details color="#F7CE53" items={customers || []} />,
             )}
           </td>
           <ColumnChild>
             {this.checkNull(
               companies.length > 0,
-              <Details color="#EA475D" items={companies || []} />
+              <Details color="#EA475D" items={companies || []} />,
             )}
           </ColumnChild>
         </tr>

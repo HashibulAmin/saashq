@@ -49,7 +49,7 @@ class WithStages extends Component<WithStagesProps> {
       viewType,
       pipeline,
       tagsQuery,
-      usersQuery
+      usersQuery,
     } = this.props;
 
     let groupType = 'stage';
@@ -61,7 +61,7 @@ class WithStages extends Component<WithStagesProps> {
     }
 
     if (queryParams.groupBy === 'priority') {
-      groups = PRIORITIES.map(p => ({ _id: p, name: p } || []));
+      groups = PRIORITIES.map((p) => ({ _id: p, name: p }) || []);
       groupType = 'priority';
     }
 
@@ -74,29 +74,29 @@ class WithStages extends Component<WithStagesProps> {
       const renderLink = () => [
         {
           _id: 'overDue',
-          name: 'Overdue',
-          value: 'overdue'
+          name: 'Zpožděný',
+          value: 'overdue',
         },
         {
           _id: 'dueTomorrow',
-          name: 'Due tomorrow',
-          value: 'nextDay'
+          name: 'Do zítřka',
+          value: 'nextDay',
         },
         {
           _id: 'dueWeek',
-          name: 'Due next week',
-          value: 'nextWeek'
+          name: 'Termín příští týden',
+          value: 'nextWeek',
         },
         {
           _id: 'dueMonth',
-          name: 'Due next month',
-          value: 'nextMonth'
+          name: 'Splatnost příští měsíc',
+          value: 'nextMonth',
         },
         {
           _id: 'noCloseDate',
-          name: 'Has no close date',
-          value: 'noCloseDate'
-        }
+          name: 'Nemá žádné datum uzavření',
+          value: 'noCloseDate',
+        },
       ];
       groups = renderLink();
       groupType = 'dueDate';
@@ -116,7 +116,7 @@ class WithStages extends Component<WithStagesProps> {
       return (
         <EmptyState
           image="/images/actions/8.svg"
-          text="No value in this pipeline"
+          text="Žádná hodnota v tomto potrubí"
           size="large"
           light={true}
         />
@@ -183,25 +183,25 @@ export default withProps<Props>(
           extraParams: getExtraParams(queryParams),
           closeDateType: queryParams.closeDateType,
           userIds: queryParams.userIds,
-          assignedToMe: queryParams.assignedToMe
-        }
-      })
+          assignedToMe: queryParams.assignedToMe,
+        },
+      }),
     }),
     graphql<Props, StagesQueryResponse>(gql(queries.pipelineLabels), {
       name: 'pipelineLabelsQuery',
       options: ({ pipeline }) => ({
         variables: {
-          pipelineId: pipeline._id
-        }
-      })
+          pipelineId: pipeline._id,
+        },
+      }),
     }),
     graphql<Props, StagesQueryResponse>(gql(queries.pipelineAssignedUsers), {
       name: 'pipelineAssigneeQuery',
       options: ({ pipeline }) => ({
         variables: {
-          _id: pipeline._id
-        }
-      })
+          _id: pipeline._id,
+        },
+      }),
     }),
     graphql<Props, TagsQueryResponse, { type: string }>(gql(tagQueries.tags), {
       name: 'tagsQuery',
@@ -209,9 +209,9 @@ export default withProps<Props>(
       options: ({ pipeline, options }: Props) => ({
         variables: {
           type: `cards:${options.type}`,
-          parentId: pipeline.tagId
-        }
-      })
+          parentId: pipeline.tagId,
+        },
+      }),
     }),
     graphql<Props, AllUsersQueryResponse>(gql(userQueries.allUsers), {
       name: 'usersQuery',
@@ -219,9 +219,9 @@ export default withProps<Props>(
         variables: {
           isActive: true,
           assignedToMe: queryParams?.assignedToMe,
-          ids: queryParams?.assignedUserIds
-        }
-      })
-    })
-  )(WithStages)
+          ids: queryParams?.assignedUserIds,
+        },
+      }),
+    }),
+  )(WithStages),
 );

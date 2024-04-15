@@ -180,7 +180,10 @@ class List extends React.Component<Props, {}> {
             <th>{__('Brand')}</th>
             <th>{__('Vytvořil')}</th>
             <th>
-              <SortHandler sortField={'createdDate'} label={__('Created at')} />
+              <SortHandler
+                sortField={'createdDate'}
+                label={__('Vytvořeno v')}
+              />
             </th>
             {isEnabled('tags') && <th>{__('Tags')}</th>}
             <th>{__('Flow type')}</th>

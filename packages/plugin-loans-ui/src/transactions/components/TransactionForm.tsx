@@ -166,7 +166,7 @@ class TransactionForm extends React.Component<Props, State> {
         <>
           <FormWrapper>
             <FormColumn>
-              <ControlLabel>{__('Type')}</ControlLabel>
+              <ControlLabel>{__('Typ')}</ControlLabel>
             </FormColumn>
             <FormColumn>
               <ControlLabel>Transaction</ControlLabel>

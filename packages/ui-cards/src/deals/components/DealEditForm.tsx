@@ -33,9 +33,9 @@ type Props = {
     {
       _id,
       status,
-      timeSpent
+      timeSpent,
     }: { _id: string; status: string; timeSpent: number; startDate?: string },
-    callback?: () => void
+    callback?: () => void,
   ) => void;
   currentUser: IUser;
 };
@@ -60,17 +60,17 @@ export default class DealEditForm extends React.Component<Props, State> {
     this.state = {
       amount: item.amount || {},
       unUsedAmount: item.unUsedAmount || {},
-      productsData: item.products ? item.products.map(p => ({ ...p })) : [],
+      productsData: item.products ? item.products.map((p) => ({ ...p })) : [],
       // collecting data for ItemCounter component
       products: item.products
-        ? item.products.map(p => {
+        ? item.products.map((p) => {
             p.product.quantity = p.quantity;
             if (p.product.uom !== p.uom) {
               p.product.subUoms = Array.from(
                 new Set([
                   ...(p.product.subUoms || []),
-                  { uom: p.product.uom, ratio: 1 }
-                ])
+                  { uom: p.product.uom, ratio: 1 },
+                ]),
               );
               p.product.uom = p.uom;
             }
@@ -79,7 +79,7 @@ export default class DealEditForm extends React.Component<Props, State> {
         : [],
       paymentsData: item.paymentsData,
       changePayData: {},
-      refresh: false
+      refresh: false,
     };
   }
 
@@ -91,7 +91,7 @@ export default class DealEditForm extends React.Component<Props, State> {
     return (
       <HeaderContentSmall>
         <ControlLabel>{__(title)}</ControlLabel>
-        {Object.keys(amount || {}).map(key => (
+        {Object.keys(amount || {}).map((key) => (
           <p key={key}>
             {amount[key].toLocaleString()} {key}
           </p>
@@ -104,8 +104,8 @@ export default class DealEditForm extends React.Component<Props, State> {
     const { amount, unUsedAmount } = this.state;
     return (
       <>
-        {this.amountHelper('Un used Amount', unUsedAmount)}
-        {this.amountHelper('Amount', amount)}
+        {this.amountHelper('Nevyužitá částka', unUsedAmount)}
+        {this.amountHelper('Množství', amount)}
       </>
     );
   };
@@ -116,7 +116,7 @@ export default class DealEditForm extends React.Component<Props, State> {
 
   onChangeRefresh = () => {
     this.setState({
-      refresh: !this.state.refresh
+      refresh: !this.state.refresh,
     });
   };
 
@@ -128,7 +128,7 @@ export default class DealEditForm extends React.Component<Props, State> {
     const unUsedAmount: any = {};
     const filteredProductsData: any = [];
 
-    productsData.forEach(data => {
+    productsData.forEach((data) => {
       // products
       if (data.product) {
         if (data.currency) {
@@ -154,7 +154,7 @@ export default class DealEditForm extends React.Component<Props, State> {
       }
     });
 
-    Object.keys(paymentsData || {}).forEach(key => {
+    Object.keys(paymentsData || {}).forEach((key) => {
       const perData = paymentsData[key];
 
       if (!perData.currency || !perData.amount || perData.amount === 0) {
@@ -168,13 +168,13 @@ export default class DealEditForm extends React.Component<Props, State> {
         products,
         amount,
         unUsedAmount,
-        paymentsData
+        paymentsData,
       },
       () => {
-        saveItem({ productsData, paymentsData }, updatedItem => {
+        saveItem({ productsData, paymentsData }, (updatedItem) => {
           this.setState({ updatedItem });
         });
-      }
+      },
     );
   };
 
@@ -198,9 +198,9 @@ export default class DealEditForm extends React.Component<Props, State> {
   renderProductSection = () => {
     const { products, productsData, paymentsData } = this.state;
 
-    const pDataChange = pData => this.onChangeField('productsData', pData);
-    const prsChange = prs => this.onChangeField('products', prs);
-    const payDataChange = payData =>
+    const pDataChange = (pData) => this.onChangeField('productsData', pData);
+    const prsChange = (prs) => this.onChangeField('products', prs);
+    const payDataChange = (payData) =>
       this.onChangeField('paymentsData', payData);
 
     return (
@@ -227,7 +227,7 @@ export default class DealEditForm extends React.Component<Props, State> {
       stageId: item.stageId,
       pipelineId: item.pipeline._id,
       options,
-      queryParams: queryString.parse(window.location.search) || {}
+      queryParams: queryString.parse(window.location.search) || {},
     };
 
     return <ChildrenSection {...updatedProps} />;
@@ -249,7 +249,7 @@ export default class DealEditForm extends React.Component<Props, State> {
     saveItem,
     onChangeStage,
     copy,
-    remove
+    remove,
   }: IEditFormContent) => {
     const {
       item,
@@ -258,7 +258,7 @@ export default class DealEditForm extends React.Component<Props, State> {
       onUpdate,
       addItem,
       sendToBoard,
-      updateTimeTrack
+      updateTimeTrack,
     } = this.props;
 
     return (
@@ -306,7 +306,7 @@ export default class DealEditForm extends React.Component<Props, State> {
       sidebar: this.renderProductSection,
       formContent: this.renderFormContent,
       beforePopupClose: this.beforePopupClose,
-      refresh: this.state.refresh
+      refresh: this.state.refresh,
     };
 
     return <EditForm {...extendedProps} />;

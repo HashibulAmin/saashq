@@ -5,10 +5,10 @@ export const STORAGE_PIPELINE_KEY = 'saashqCurrentPipelineId';
 export const PRIORITIES = ['Critical', 'High', 'Medium', 'Low'];
 
 export const DATERANGES = [
-  { name: 'Created date', value: 'createdAt' },
-  { name: 'Stage changed date', value: 'stageChangedDate' },
-  { name: 'Start date', value: 'startDate' },
-  { name: 'Close date', value: 'closeDate' }
+  { name: 'Datum vytvoření', value: 'createdAt' },
+  { name: 'Změna data etapy', value: 'stageChangedDate' },
+  { name: 'Datum zahájení', value: 'startDate' },
+  { name: 'Datum uzavření', value: 'closeDate' },
 ];
 
 export const TEXT_COLORS = [
@@ -21,207 +21,207 @@ export const TEXT_COLORS = [
   '#444',
   '#333',
   '#222',
-  '#000'
+  '#000',
 ];
 
 export const REMINDER_MINUTES = [
-  { _id: '0', name: 'At Time of Due Date' },
-  { _id: '5', name: '5 Minutes Before' },
-  { _id: '10', name: '10 Minutes Before' },
-  { _id: '15', name: '15 Minutes Before' },
-  { _id: '60', name: '1 Hour Before' },
-  { _id: '120', name: '2 Hour Before' },
-  { _id: '1440', name: '1 Day Before' },
-  { _id: '2880', name: '2 Day Before' }
+  { _id: '0', name: 'V den splatnosti' },
+  { _id: '5', name: 'Před 5 minutami' },
+  { _id: '10', name: 'Před 10 minutami' },
+  { _id: '15', name: 'Před 15 minutami' },
+  { _id: '60', name: 'Před 1 hodinou' },
+  { _id: '120', name: 'Před 2 hodinami' },
+  { _id: '1440', name: '1 den předem' },
+  { _id: '2880', name: '2 den předem' },
 ];
 
 export const PIPELINE_UPDATE_STATUSES = {
   START: __('start'),
-  END: __('end'),
-  NEW_REQUEST: __('newRequest')
+  END: __('konec'),
+  NEW_REQUEST: __('nová žádost'),
 };
 
 export const EMPTY_CONTENT_DEAL = {
-  title: __('Getting Started with Sales Pipeline'),
+  title: __('Začínáme s prodejním kanálem'),
   description: __(
-    `Drive leads to a successful close with our Kanban-style boards`
+    `Drive vede k úspěšnému uzavření s našimi deskami ve stylu Kanban`,
   ),
   steps: [
     {
-      title: __('Create Boards and Pipelines'),
+      title: __('Vytvářejte desky a potrubí'),
       description: `${__(
-        'Track your entire sales pipeline from one dashboard'
-      )}${__('You can also restrict access to your sales pipelines')}`,
+        'Sledujte celý svůj prodejní kanál z jednoho řídicího panelu',
+      )}${__('Můžete také omezit přístup ke svým prodejním kanálům')}`,
       url: '/settings/boards/deal',
-      urlText: __('Go to Board & Pipeline')
+      urlText: __('Přejděte na Palubu a Potrubí'),
     },
     {
-      title: __('Tip: Choose different views'),
+      title: __('Tip: Vyberte různá zobrazení'),
       description: __(
-        'Click on “Boards, Calendar, Conversions” to filter deals'
+        'Kliknutím na "Nástěnky, Kalendář, Konverze" Vyfiltrujete Nabídky',
       ),
-      icon: 'lightbulb-alt'
-    }
-  ]
+      icon: 'lightbulb-alt',
+    },
+  ],
 };
 
 export const EMPTY_CONTENT_PURCHASE = {
-  title: __('Getting Started with Purchase'),
+  title: __('Začínáme s Nákupem'),
   description: __(
-    `Drive leads to a successful close with our Kanban-style boards`
+    `Drive vede k úspěšnému uzavření s našimi deskami ve stylu Kanban`,
   ),
   steps: [
     {
-      title: __('Create Boards and purchases Pipeline'),
+      title: __('Vytvořte Nástěnky a Kanál Nákupů'),
       description: `${__(
-        'Track your entire purchases pipeline from one dashboard'
-      )}${__('You can also restrict access to your purchases pipelines')}`,
+        'Sledujte celý svůj kanál nákupů z jednoho řídicího panelu',
+      )}${__('Můžete také omezit přístup ke svým nákupním kanálům')}`,
       url: '/settings/boards/purchase',
-      urlText: __('Go to Board & purchases pipeline')
+      urlText: __('Přejít na Palubu a Nákup Potrubí'),
     },
     {
-      title: __('Tip: Choose different views'),
+      title: __('Tip: Vyberte různá zobrazení'),
       description: __(
-        'Click on “Boards, Calendar, Conversions” to filter purchases pipeline'
+        'Kliknutím na "Tabule, Kalendář, Konverze" Můžete Filtrovat Kanál Nákupů',
       ),
-      icon: 'lightbulb-alt'
-    }
-  ]
+      icon: 'lightbulb-alt',
+    },
+  ],
 };
 
 export const EMPTY_CONTENT_TASK = {
-  title: __('Getting Started with Tasks'),
+  title: __('Začínáme s Úkoly'),
   description: __(
-    'Create a more collaborative, self-reliant and cross-linked team with our Kanban-style boards'
+    'Vytvořte více spolupracující, soběstačný a propojený tým s našimi deskami ve stylu Kanban',
   ),
   steps: [
     {
-      title: __('Create your first Task Board'),
+      title: __('Vytvořte svůj první úkolovník'),
       description: __(
-        'Tip: This could be equivalent to your brands or you can organize by year/project/etc.'
+        'Tip: Může to být ekvivalentní vašim značkám nebo můžete organizovat podle roku/projektu/atd.',
       ),
       url: '/settings/boards/task',
-      urlText: __('Go to Board & Pipeline')
+      urlText: __('Přejděte na Palubu a Potrubí'),
     },
     {
-      title: __('Tip: Filter'),
+      title: __('Tip: Filtr'),
       description: __(
-        'Click on “Show Menu” to filter tasks by assigned team members, customers, date, etc.'
+        'Kliknutím na "Zobrazit nabídku" můžete úkoly filtrovat podle přiřazených členů týmu, zákazníků, data atd.',
       ),
-      icon: 'lightbulb-alt'
-    }
-  ]
+      icon: 'lightbulb-alt',
+    },
+  ],
 };
 
 export const groupByList = [
   {
     name: 'stage',
-    title: 'Stage'
+    title: 'Etapa',
   },
   {
     name: 'label',
-    title: 'Label'
+    title: 'Označení',
   },
   {
-    name: 'priority',
-    title: 'Priority'
+    name: 'přednost',
+    title: 'Priority',
   },
   {
-    name: 'assignee',
-    title: 'Assignee'
+    name: 'zmocněnec',
+    title: 'Assignee',
   },
   {
-    name: 'dueDate',
-    title: 'Due Date'
-  }
+    name: 'datum splatnosti',
+    title: 'Due Date',
+  },
 ];
 
 export const groupByGantt = [
   {
-    name: 'stage',
-    title: 'Stage'
+    name: 'etapa',
+    title: 'Stage',
   },
   {
-    name: 'label',
-    title: 'Label'
+    name: 'označení',
+    title: 'Label',
   },
   {
-    name: 'priority',
-    title: 'Priority'
+    name: 'přednost',
+    title: 'Priority',
   },
   {
-    name: 'assignee',
-    title: 'Assignee'
-  }
+    name: 'zmocněnec',
+    title: 'Assignee',
+  },
 ];
 
 export const showByTime = [
   {
-    name: 'stage',
-    title: 'Stage'
+    name: 'etapa',
+    title: 'Stage',
   },
   {
-    name: 'tags',
-    title: 'Tags'
+    name: 'značky',
+    title: 'Tags',
   },
   {
-    name: 'members',
-    title: 'Members'
-  }
+    name: 'členů',
+    title: 'Members',
+  },
 ];
 
 export const stackByChart = [
   {
-    name: 'stage',
-    title: 'Stage'
+    name: 'etapa',
+    title: 'Stage',
   },
   {
-    name: 'label',
-    title: 'Label'
+    name: 'označení',
+    title: 'Label',
   },
   {
-    name: 'priority',
-    title: 'Priority'
+    name: 'přednost',
+    title: 'Priority',
   },
   {
-    name: 'dueDate',
-    title: 'Due Date'
-  }
+    name: 'datum splatnosti',
+    title: 'Due Date',
+  },
 ];
 
 export const chartTypes = [
   {
     name: 'line',
-    title: 'Line Chart',
-    icon: 'chart-line'
+    title: 'Spojnicový Graf',
+    icon: 'chart-line',
   },
   {
     name: 'area',
-    title: 'Area Chart',
-    icon: 'arrow-growth'
+    title: 'Plošný Graf',
+    icon: 'arrow-growth',
   },
   {
     name: 'simpleBar',
-    title: 'Simple Bar Chart',
-    icon: 'chart-bar'
+    title: 'Jednoduchý Sloupcový Graf',
+    icon: 'chart-bar',
   },
   {
     name: 'stackedBar',
-    title: 'Stacked Bar Chart',
-    icon: 'chart'
-  }
+    title: 'Skládaný Pruhový Graf',
+    icon: 'chart',
+  },
 ];
 
 export const SEARCH_ACTIVITY_CHECKBOX = [
-  { action: 'create', value: 'added new card', title: 'Added new card' },
-  { action: 'moved', value: 'moved card', title: 'Moved card' },
-  { action: 'archive', value: 'archived card', title: 'Archived card' },
+  { action: 'create', value: 'added new card', title: 'Přidána nová karta' },
+  { action: 'moved', value: 'moved card', title: 'Přesunutá karta' },
+  { action: 'archive', value: 'archived card', title: 'Archivovaná karta' },
   {
     action: 'delete',
     value: 'deleted archived card',
-    title: 'Deleted archived card'
+    title: 'Archivovaná karta byla smazána',
   },
-  { action: 'addNote', value: 'added notes on', title: 'Added notes' }
+  { action: 'addNote', value: 'added notes on', title: 'Přidány poznámky' },
 ];
 
 export const TYPES = {
@@ -229,7 +229,7 @@ export const TYPES = {
   WEEK: 'week',
   MONTH: 'month',
   YEAR: 'year',
-  all: ['day', 'week', 'month', 'year']
+  all: ['day', 'week', 'month', 'year'],
 };
 
 // type from growthHack
@@ -239,5 +239,5 @@ export const HACKSTAGES = [
   'Activation',
   'Retention',
   'Revenue',
-  'Referrals'
+  'Referrals',
 ];

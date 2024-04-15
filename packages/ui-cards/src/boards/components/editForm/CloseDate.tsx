@@ -119,11 +119,11 @@ class CloseDate extends React.Component<Props, State> {
           {dueDate && (
             <DateGrid>
               <div>
-                <ControlLabel>Date</ControlLabel>
+                <ControlLabel>Datum</ControlLabel>
                 <input type="date" value={day} onChange={onChangeDateTime} />
               </div>
               <div>
-                <ControlLabel>Time</ControlLabel>
+                <ControlLabel>Čas</ControlLabel>
                 <input type="time" value={time} onChange={onChangeDateTime} />
               </div>
             </DateGrid>
@@ -147,7 +147,7 @@ class CloseDate extends React.Component<Props, State> {
             />
           </CalenderWrapper>
 
-          <ControlLabel>Set reminder</ControlLabel>
+          <ControlLabel>Nastavit připomenutí</ControlLabel>
 
           <Select
             isRequired={true}
@@ -159,10 +159,10 @@ class CloseDate extends React.Component<Props, State> {
 
           <DateGrid>
             <Button colorName="red" onClick={this.remove}>
-              Remove
+              Odstranit
             </Button>
             <Button colorName="green" onClick={this.onSave}>
-              Save
+              Uložit
             </Button>
           </DateGrid>
         </CloseDateContent>

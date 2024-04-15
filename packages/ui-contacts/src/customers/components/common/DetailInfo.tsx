@@ -40,7 +40,7 @@ class DetailInfo extends React.PureComponent<Props> {
     if (type === 'description') {
       return (
         <SidebarFlexRow>
-          {__(`Description`)}:<span>{value || '-'}</span>
+          {__(`Popis`)}:<span>{value || '-'}</span>
         </SidebarFlexRow>
       );
     }
@@ -73,7 +73,7 @@ class DetailInfo extends React.PureComponent<Props> {
   renderPhone(status?: string, phone?: string) {
     return (
       <li>
-        <FieldStyle>{__('Primary phone')}:</FieldStyle>
+        <FieldStyle>{__('Hlavní telefon')}:</FieldStyle>
         <SidebarCounter>
           <PrimaryPhone phone={phone} status={status} />
         </SidebarCounter>
@@ -98,7 +98,7 @@ class DetailInfo extends React.PureComponent<Props> {
 
     return (
       <SidebarList className="no-link">
-        {this.renderRow('code', customer.code)}
+        {this.renderRow('kód', customer.code)}
         {this.renderEmail(
           customer.emailValidationStatus,
           customer.primaryEmail,
@@ -109,20 +109,20 @@ class DetailInfo extends React.PureComponent<Props> {
         )}
         {this.renderPosition(customer)}
         {this.renderRow(
-          'owner',
+          'majitel',
           customer.owner && customer.owner.details
             ? customer.owner.details.fullName
             : '',
         )}
-        {this.renderRow('department', customer.department)}
-        {this.renderRow('pronoun', GENDER_TYPES()[customer.sex || 0])}
+        {this.renderRow('oddělení', customer.department)}
+        {this.renderRow('zájmeno', GENDER_TYPES()[customer.sex || 0])}
         {this.renderRow(
-          'birthDate',
+          'datum narození',
           customer.birthDate && dayjs(customer.birthDate).format('MMM,DD YYYY'),
         )}
-        {this.renderRow('isSubscribed', customer.isSubscribed)}
-        {this.renderRow('score', customer.score)}
-        {this.renderRow('description', customer.description, 'description')}
+        {this.renderRow('je Předplaceno', customer.isSubscribed)}
+        {this.renderRow('skóre', customer.score)}
+        {this.renderRow('popis', customer.description, 'description')}
       </SidebarList>
     );
   }

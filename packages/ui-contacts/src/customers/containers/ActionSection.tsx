@@ -11,7 +11,7 @@ import {
   MergeMutationResponse,
   MergeMutationVariables,
   RemoveMutationResponse,
-  RemoveMutationVariables
+  RemoveMutationVariables,
 } from '../types';
 import React from 'react';
 import { graphql } from '@apollo/client/react/hoc';
@@ -36,20 +36,20 @@ const ActionSectionContainer = (props: FinalProps) => {
     customersRemove,
     customersMerge,
     customersChangeState,
-    history
+    history,
   } = props;
 
   const { _id } = customer;
 
   const remove = () => {
     customersRemove({
-      variables: { customerIds: [_id] }
+      variables: { customerIds: [_id] },
     })
       .then(() => {
-        Alert.success('You successfully deleted a customer');
+        Alert.success('Úspěšně jste smazali zákazníka');
         history.push('/contacts/customer');
       })
-      .catch(e => {
+      .catch((e) => {
         Alert.error(e.message);
       });
   };
@@ -58,13 +58,13 @@ const ActionSectionContainer = (props: FinalProps) => {
     customersChangeState({
       variables: {
         _id,
-        value
-      }
+        value,
+      },
     })
       .then(() => {
-        Alert.success('You successfully changed the state');
+        Alert.success('Úspěšně jste změnili stav');
       })
-      .catch(e => {
+      .catch((e) => {
         Alert.error(e.message);
       });
   };
@@ -73,33 +73,33 @@ const ActionSectionContainer = (props: FinalProps) => {
     customersMerge({
       variables: {
         customerIds: ids,
-        customerFields: data
-      }
+        customerFields: data,
+      },
     })
-      .then(response => {
-        Alert.success('You successfully merged a customer');
+      .then((response) => {
+        Alert.success('Úspěšně jste sloučili zákazníka');
         history.push(`/contacts/details/${response.data.customersMerge._id}`);
       })
-      .catch(e => {
+      .catch((e) => {
         Alert.error(e.message);
       });
   };
 
   const searchCustomer = (
     searchValue: string,
-    callback: (data?: any) => void
+    callback: (data?: any) => void,
   ) => {
     client
       .query({
         query: gql(queries.customers),
-        variables: { searchValue, page: 1, perPage: 10 }
+        variables: { searchValue, page: 1, perPage: 10 },
       })
       .then((response: any) => {
         if (typeof callback === 'function') {
           callback(response.data.customers);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         Alert.error(error.message);
       });
   };
@@ -111,14 +111,14 @@ const ActionSectionContainer = (props: FinalProps) => {
     remove,
     merge,
     changeState,
-    search: searchCustomer
+    search: searchCustomer,
   };
 
   return <ActionSection {...updatedProps} />;
 };
 
 const generateOptions = () => ({
-  refetchQueries: ['customersMain', 'customerCounts', 'customerDetail']
+  refetchQueries: ['customersMain', 'customerCounts', 'customerDetail'],
 });
 
 export default withProps<Props>(
@@ -128,22 +128,22 @@ export default withProps<Props>(
       gql(mutations.customersRemove),
       {
         name: 'customersRemove',
-        options: generateOptions()
-      }
+        options: generateOptions(),
+      },
     ),
     graphql<Props, MergeMutationResponse, MergeMutationVariables>(
       gql(mutations.customersMerge),
       {
         name: 'customersMerge',
-        options: generateOptions()
-      }
+        options: generateOptions(),
+      },
     ),
     graphql<Props, ChangeStateMutationResponse, ChangeStateMutationVariables>(
       gql(mutations.customersChangeState),
       {
         name: 'customersChangeState',
-        options: generateOptions()
-      }
-    )
-  )(withRouter<FinalProps>(ActionSectionContainer))
+        options: generateOptions(),
+      },
+    ),
+  )(withRouter<FinalProps>(ActionSectionContainer)),
 );

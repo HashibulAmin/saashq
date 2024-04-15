@@ -215,7 +215,7 @@ class List extends React.Component<Props> {
             <th>{__('Titul')}</th>
             <th>{__('Postavení')}</th>
             <th>{__('Total')}</th>
-            <th>{__('Type')}</th>
+            <th>{__('Typ')}</th>
             <th>{__('Brand')}</th>
             <th>{__('From')}</th>
             <th>{__('Vytvořil')}</th>

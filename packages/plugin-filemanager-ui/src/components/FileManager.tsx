@@ -126,7 +126,7 @@ class FileManager extends React.Component<Props, State> {
           isClearable={true}
           name="type"
           onChange={onTypeSelect}
-          loadingPlaceholder={__('Loading...')}
+          loadingPlaceholder={__('Načítání...')}
         />
         <ControlLabel>Podle data vytvoření</ControlLabel>
         <CustomRangeContainer>

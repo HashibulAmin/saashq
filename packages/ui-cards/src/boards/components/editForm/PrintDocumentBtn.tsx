@@ -32,8 +32,8 @@ export const ActionButton = styledTS<{ color?: string }>(styled.div)`
   font-weight: 500;
   line-height: 25px;
   font-size: 12px;
-  background-color: ${props => rgba(props.color || colors.colorPrimary, 0.1)};
-  color: ${props => props.color || colors.colorPrimaryDark};
+  background-color: ${(props) => rgba(props.color || colors.colorPrimary, 0.1)};
+  color: ${(props) => props.color || colors.colorPrimaryDark};
   padding: 0 10px;
   transition: background 0.3s ease;
   > i {
@@ -44,7 +44,7 @@ export const ActionButton = styledTS<{ color?: string }>(styled.div)`
   }
   &:hover {
     cursor: pointer;
-    background-color: ${props => rgba(props.color || colors.colorPrimary, 0.2)};
+    background-color: ${(props) => rgba(props.color || colors.colorPrimary, 0.2)};
   }
 `;
 
@@ -71,7 +71,7 @@ export default class PrintActionButton extends React.Component<Props, State> {
     client
       .mutate({
         mutation: gql(queries.documents),
-        variables: { contentType: 'cards', subType: item.stage?.type }
+        variables: { contentType: 'cards', subType: item.stage?.type },
       })
       .then(({ data }) => {
         this.setState({ documents: data.documents });
@@ -82,13 +82,13 @@ export default class PrintActionButton extends React.Component<Props, State> {
       });
   };
 
-  print = _id => {
+  print = (_id) => {
     const { item } = this.props;
 
     window.open(
       `${getEnv().REACT_APP_API_URL}/pl:documents/print?_id=${_id}&itemId=${
         item._id
-      }&stageId=${item.stageId}`
+      }&stageId=${item.stageId}`,
     );
   };
 
@@ -97,7 +97,7 @@ export default class PrintActionButton extends React.Component<Props, State> {
 
     const trigger = (
       <ActionButton onClick={this.loadDocuments}>
-        {loading ? 'loading' : __('Print document')}
+        {loading ? 'loading' : __('Tisk dokumentu')}
       </ActionButton>
     );
 
@@ -109,7 +109,7 @@ export default class PrintActionButton extends React.Component<Props, State> {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            {documents.map(item => (
+            {documents.map((item) => (
               <li key={item._id}>
                 <ActionItem onClick={this.print.bind(this, item._id)}>
                   {item.name}

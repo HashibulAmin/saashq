@@ -20,7 +20,7 @@ const GetConformity = asyncComponent(
     isEnabled('cards') &&
     import(
       /* webpackChunkName: "GetConformity" */ '@saashq/ui-cards/src/conformity/containers/GetConformity'
-    )
+    ),
 );
 
 export type Props = {
@@ -42,9 +42,9 @@ function Component({
   mainTypeId = '',
   onSelect,
   actionSection,
-  title = ''
+  title = '',
 }: Props) {
-  const renderRelatedCustomerChooser = props => {
+  const renderRelatedCustomerChooser = (props) => {
     return (
       <CustomerChooser
         {...props}
@@ -56,20 +56,20 @@ function Component({
 
   const relCustomerTrigger = (
     <ButtonRelated>
-      <span>{__('See related customers..')}</span>
+      <span>{__('Viz související zákazníci..')}</span>
     </ButtonRelated>
   );
 
   const relQuickButtons = (
     <ModalTrigger
-      title="Related Associate"
+      title="Související spolupracovník"
       trigger={relCustomerTrigger}
       size="lg"
       content={renderRelatedCustomerChooser}
     />
   );
 
-  const renderActionSection = customer => {
+  const renderActionSection = (customer) => {
     if (!actionSection) {
       return;
     }
@@ -93,14 +93,14 @@ function Component({
           </SectionBodyItem>
         ))}
         {customersObj.length === 0 && (
-          <EmptyState icon="user-6" text="No customer" />
+          <EmptyState icon="user-6" text="Žádný zákazník" />
         )}
         {mainTypeId && mainType && relQuickButtons}
       </div>
     );
   };
 
-  const customerChooser = props => {
+  const customerChooser = (props) => {
     return (
       <CustomerChooser
         {...props}
@@ -112,7 +112,7 @@ function Component({
 
   const extraButtons = (
     <ModalTrigger
-      title="Associate"
+      title="Spolupracovník"
       size="lg"
       trigger={
         <button>
@@ -125,7 +125,7 @@ function Component({
 
   return (
     <Box
-      title={__(`${title || 'Customers'}`)}
+      title={__(`${title || 'Zákazníci'}`)}
       extraButtons={extraButtons}
       isOpen={true}
       name="showCustomers"

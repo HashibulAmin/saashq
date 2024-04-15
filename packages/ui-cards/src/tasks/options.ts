@@ -7,13 +7,13 @@ const options = {
   EditForm: TaskEditForm,
   Item: TaskItem,
   type: 'task',
-  title: 'Task',
+  title: 'Úkol',
   queriesName: {
     itemsQuery: 'tasks',
     itemsTotalCountQuery: 'tasksTotalCount',
     detailQuery: 'taskDetail',
     archivedItemsQuery: 'archivedTasks',
-    archivedItemsCountQuery: 'archivedTasksCount'
+    archivedItemsCountQuery: 'archivedTasksCount',
   },
   mutationsName: {
     addMutation: 'tasksAdd',
@@ -23,14 +23,14 @@ const options = {
     watchMutation: 'tasksWatch',
     archiveMutation: 'tasksArchive',
     copyMutation: 'tasksCopy',
-    updateTimeTrackMutation: 'updateTimeTrack'
+    updateTimeTrackMutation: 'updateTimeTrack',
   },
   queries: {
     itemsQuery: queries.tasks,
     itemsTotalCountQuery: queries.tasksTotalCount,
     detailQuery: queries.taskDetail,
     archivedItemsQuery: queries.archivedTasks,
-    archivedItemsCountQuery: queries.archivedTasksCount
+    archivedItemsCountQuery: queries.archivedTasksCount,
   },
   mutations: {
     addMutation: mutations.tasksAdd,
@@ -39,14 +39,14 @@ const options = {
     changeMutation: mutations.tasksChange,
     watchMutation: mutations.tasksWatch,
     archiveMutation: mutations.tasksArchive,
-    copyMutation: mutations.tasksCopy
+    copyMutation: mutations.tasksCopy,
   },
   texts: {
-    addText: 'Add a task',
-    updateSuccessText: 'You successfully updated a task',
-    deleteSuccessText: 'You successfully deleted a task',
-    copySuccessText: 'You successfully copied a task',
-    changeSuccessText: 'You successfully changed a task'
+    addText: 'Přidejte úkol',
+    updateSuccessText: 'Úspěšně jste aktualizovali úkol',
+    deleteSuccessText: 'Úspěšně jste smazali úkol',
+    copySuccessText: 'Úspěšně jste zkopírovali úkol',
+    changeSuccessText: 'Úspěšně jste změnili úkol',
   },
   isMove: true,
   getExtraParams: (queryParams: any) => {
@@ -62,7 +62,7 @@ const options = {
       startDateStartDate,
       startDateEndDate,
       closeDateStartDate,
-      closeDateEndDate
+      closeDateEndDate,
     } = queryParams;
     const extraParams: any = {};
 
@@ -113,7 +113,7 @@ const options = {
     }
 
     return extraParams;
-  }
+  },
 };
 
 export default options;

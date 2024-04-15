@@ -7,7 +7,7 @@ import {
   ListStageFooter,
   StageTitle,
   GroupTitle,
-  ColumnLastChild
+  ColumnLastChild,
 } from '../../styles/stage';
 import EmptyState from '@saashq/ui/src/components/EmptyState';
 import Icon from '@saashq/ui/src/components/Icon';
@@ -67,10 +67,10 @@ class ListGroupBy extends React.Component<Props> {
       showSelect: false,
       callback: (item: IItem) => onAddItem(groupObj._id, item),
       stageId: groupObj._id,
-      aboveItemId: ''
+      aboveItemId: '',
     };
 
-    const content = props => <AddForm {...props} {...formProps} />;
+    const content = (props) => <AddForm {...props} {...formProps} />;
 
     return <ModalTrigger title={addText} trigger={trigger} content={content} />;
   }
@@ -80,7 +80,7 @@ class ListGroupBy extends React.Component<Props> {
 
     routerUtils.setParams(history, {
       itemId: `${item._id}${groupObj._id}`,
-      key: ''
+      key: '',
     });
   };
 
@@ -107,11 +107,11 @@ class ListGroupBy extends React.Component<Props> {
     const { groupObj, items, options, groupType } = this.props;
 
     if (!groupObj) {
-      return <EmptyState icon="grid" text="No stage" size="small" />;
+      return <EmptyState icon="grid" text="Žádné pódium" size="small" />;
     }
 
     if (!items || items.length === 0) {
-      return <EmptyState icon="grid" text="No item" size="small" />;
+      return <EmptyState icon="grid" text="Žádná položka" size="small" />;
     }
 
     return (
@@ -119,18 +119,20 @@ class ListGroupBy extends React.Component<Props> {
         <Table hover={true} bordered={true}>
           <thead>
             <tr>
-              <th>{__('Card Title')}</th>
-              <th>{groupType === 'stage' ? __('Label') : __('Stage')}</th>
+              <th>{__('Název Karty')}</th>
+              <th>{groupType === 'stage' ? __('Označení') : __('Etapa')}</th>
               {(groupType === 'assignee' || groupType === 'dueDate') && (
                 <th>{__('Label')}</th>
               )}
-              <th>{groupType === 'priority' ? __('Label') : __('Priority')}</th>
+              <th>
+                {groupType === 'priority' ? __('Označení') : __('Přednost')}
+              </th>
               <th>{__('Due Date')}</th>
-              {groupType !== 'assignee' && <th>{__('Assignee')}</th>}
+              {groupType !== 'assignee' && <th>{__('Zmocněnec')}</th>}
               {options.type === 'deal' ||
-                (options.type === 'purchase' && <th>{__('Products')}</th>)}
-              <th>{__('Associated Customer')}</th>
-              <ColumnLastChild>{__('Associated Company')}</ColumnLastChild>
+                (options.type === 'purchase' && <th>{__('Produkty')}</th>)}
+              <th>{__('Přidružený Zákazník')}</th>
+              <ColumnLastChild>{__('Přidružená Sspolečnost')}</ColumnLastChild>
             </tr>
           </thead>
           <tbody id="groupByList">

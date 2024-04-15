@@ -31,10 +31,10 @@ function ProductSection({
   onChangeProductsData,
   onChangePaymentsData,
   saveProductsData,
-  dealQuery
+  dealQuery,
 }: Props) {
   const contentWithId = (productId?: string) => {
-    const content = props => (
+    const content = (props) => (
       <ProductForm
         {...props}
         currentProduct={productId}
@@ -60,7 +60,7 @@ function ProductSection({
       result.push(
         <CustomField key={index}>
           <b>{field.text}:</b> {field.data}
-        </CustomField>
+        </CustomField>,
       );
     });
 
@@ -69,11 +69,11 @@ function ProductSection({
 
   const renderProductFormModal = (
     trigger: React.ReactNode,
-    productId?: string
+    productId?: string,
   ) => {
     return (
       <ModalTrigger
-        title="Manage Product & Service"
+        title="Správa Produktů a Služeb"
         size="xl"
         dialogClassName="wide-modal extra-wide-modal"
         trigger={trigger}
@@ -86,7 +86,7 @@ function ProductSection({
     productName: string,
     quantity: number,
     uom: string,
-    productId: string
+    productId: string,
   ) => {
     return renderProductFormModal(
       <ProductName>
@@ -100,7 +100,7 @@ function ProductSection({
         </div>
         <Icon icon="pen-1" />
       </ProductName>,
-      productId
+      productId,
     );
   };
 
@@ -112,7 +112,7 @@ function ProductSection({
             product.name,
             product.quantity || 0,
             product.uom || '',
-            product._id
+            product._id,
           )}
         </Tip>
       );
@@ -122,18 +122,18 @@ function ProductSection({
       product.name,
       product.quantity || 0,
       product.uom || '',
-      product._id
+      product._id,
     );
   };
 
   return (
     <Box
-      title={__('Product & Service')}
+      title={__('Produkt a Služba')}
       isOpen={products.length > 0}
       extraButtons={renderProductFormModal(
         <button>
           <Icon icon="edit-3" />
-        </button>
+        </button>,
       )}
       name="showProductAndService"
     >

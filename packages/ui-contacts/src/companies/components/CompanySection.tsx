@@ -19,7 +19,7 @@ const GetConformity = asyncComponent(
     isEnabled('cards') &&
     import(
       /* webpackChunkName: "GetConformity" */ '@saashq/ui-cards/src/conformity/containers/GetConformity'
-    )
+    ),
 );
 
 type Props = {
@@ -41,10 +41,10 @@ function Component(
     mainTypeId = '',
     onSelect,
     collapseCallback,
-    title
-  }: Props
+    title,
+  }: Props,
 ) {
-  const renderCompanyChooser = props => {
+  const renderCompanyChooser = (props) => {
     return (
       <CompanyChooser
         {...props}
@@ -54,7 +54,7 @@ function Component(
     );
   };
 
-  const renderRelatedCompanyChooser = props => {
+  const renderRelatedCompanyChooser = (props) => {
     return (
       <CompanyChooser
         {...props}
@@ -72,13 +72,13 @@ function Component(
 
   const relCompanyTrigger = (
     <ButtonRelated>
-      <span>{__('See related companies')}</span>
+      <span>{__('Viz související společnosti')}</span>
     </ButtonRelated>
   );
 
   const quickButtons = (
     <ModalTrigger
-      title="Associate"
+      title="Spolupracovník"
       trigger={companyTrigger}
       size="lg"
       content={renderCompanyChooser}
@@ -87,14 +87,14 @@ function Component(
 
   const relQuickButtons = (
     <ModalTrigger
-      title="Related Associate"
+      title="Související spolupracovník"
       trigger={relCompanyTrigger}
       size="lg"
       content={renderRelatedCompanyChooser}
     />
   );
 
-  const renderExternaleWebsite = links => {
+  const renderExternaleWebsite = (links) => {
     if (!links || !links.website) {
       return null;
     }
@@ -118,14 +118,16 @@ function Component(
           {renderExternaleWebsite(company.links)}
         </SectionBodyItem>
       ))}
-      {items.length === 0 && <EmptyState icon="building" text="No company" />}
+      {items.length === 0 && (
+        <EmptyState icon="building" text="Žádná společnost" />
+      )}
       {mainTypeId && mainType && relQuickButtons}
     </div>
   );
 
   return (
     <Box
-      title={__(`${title || 'Companies'}`)}
+      title={__(`${title || 'Společnosti'}`)}
       name="showCompanies"
       extraButtons={quickButtons}
       isOpen={true}

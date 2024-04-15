@@ -21,7 +21,7 @@ export const BOOKING_DISPLAY_BLOCK = {
 };
 
 export const EMPTY_CONTENT_BOOKINGS = {
-  title: __('Getting Started with SaasHQ Booking'),
+  title: __('Začínáme s Rezervací SaasHQ'),
   description: __(
     'SaasHQ Booking widget helps you create listings of your Products and Services and receive bookings with your saashq Form.',
   ),

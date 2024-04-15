@@ -29,7 +29,7 @@ class Items extends React.Component<Props, { openItemId?: string }> {
     super(props);
 
     this.state = {
-      openItemId: ''
+      openItemId: '',
     };
   }
 
@@ -46,7 +46,7 @@ class Items extends React.Component<Props, { openItemId?: string }> {
     const { onChangeItem, items, data } = this.props;
 
     if (items.length === 0) {
-      return <EmptyState icon="folder-2" text={`No ${data.options.type}`} />;
+      return <EmptyState icon="folder-2" text={`Ne ${data.options.type}`} />;
     }
 
     const Item = data.options.Item;
@@ -80,7 +80,7 @@ class Items extends React.Component<Props, { openItemId?: string }> {
       onChangeItem,
       items,
       relType,
-      hideQuickButtons
+      hideQuickButtons,
     } = this.props;
 
     const trigger = (
@@ -91,11 +91,11 @@ class Items extends React.Component<Props, { openItemId?: string }> {
 
     const relTrigger = (
       <ButtonRelated>
-        <span>{__('See related ' + data.options.title + '..')}</span>
+        <span>{__('Viz související ' + data.options.title + '..')}</span>
       </ButtonRelated>
     );
 
-    const content = props => (
+    const content = (props) => (
       <ItemChooser
         {...props}
         data={{
@@ -103,14 +103,14 @@ class Items extends React.Component<Props, { openItemId?: string }> {
           options: data.options,
           mainType,
           mainTypeId,
-          items
+          items,
         }}
         callback={onChangeItem}
         showSelect={true}
       />
     );
 
-    const relContent = props => (
+    const relContent = (props) => (
       <ItemChooser
         {...props}
         data={{
@@ -118,7 +118,7 @@ class Items extends React.Component<Props, { openItemId?: string }> {
           mainType,
           mainTypeId,
           items,
-          isRelated: true
+          isRelated: true,
         }}
         callback={onChangeItem}
         showSelect={true}
@@ -136,7 +136,7 @@ class Items extends React.Component<Props, { openItemId?: string }> {
 
     const relQuickButtons = (
       <ModalTrigger
-        title="Related Associate"
+        title="Související spolupracovník"
         trigger={relTrigger}
         size="lg"
         content={relContent}
@@ -146,7 +146,7 @@ class Items extends React.Component<Props, { openItemId?: string }> {
     const boxProps = {
       extraButtons: !hideQuickButtons && quickButtons,
       title: __(data.options.title),
-      name: relType && `show${relType}`
+      name: relType && `show${relType}`,
     };
 
     return (

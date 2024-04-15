@@ -2,7 +2,7 @@ import {
   ChecklistItem,
   ChecklistText,
   FormControlWrapper,
-  FormWrapper
+  FormWrapper,
 } from '../styles';
 import React, { useEffect, useState } from 'react';
 
@@ -21,7 +21,7 @@ type Props = {
   item: IChecklistItem;
   editItem: (
     doc: { content: string; isChecked: boolean },
-    callback?: () => void
+    callback?: () => void,
   ) => void;
   convertToCard: (name: string, callback: () => void) => void;
   removeItem: (checklistItemId: string) => void;
@@ -108,7 +108,7 @@ function Item(props: Props) {
   }
 
   function renderContent() {
-    const onChangeContent = e => {
+    const onChangeContent = (e) => {
       setContent((e.currentTarget as HTMLTextAreaElement).value);
     };
 
@@ -162,12 +162,12 @@ function Item(props: Props) {
           <Dropdown.Menu>
             <li>
               <a onClick={onConvert} href="#convert">
-                Convert to Card
+                Převést na Kartu
               </a>
             </li>
             <li>
               <a onClick={onRemove} href="#remove">
-                Delete
+                Vymazat
               </a>
             </li>
           </Dropdown.Menu>

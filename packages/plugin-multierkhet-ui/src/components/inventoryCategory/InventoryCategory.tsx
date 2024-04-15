@@ -135,7 +135,7 @@ class InventoryCategory extends React.Component<Props, State> {
     const checkButton = (
       <BarItems>
         <SelectBrands
-          label={__('Choose brands')}
+          label={__('Vyberte si značky')}
           onSelect={(brand) => this.props.setBrand(brand as string)}
           initialValue={this.props.queryParams.brandId}
           multi={false}

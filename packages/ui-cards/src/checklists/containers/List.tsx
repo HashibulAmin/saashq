@@ -14,7 +14,7 @@ import {
   IChecklistItemDoc,
   IChecklistItemsUpdateOrderDoc,
   RemoveMutationResponse,
-  UpdateItemsOrderMutationResponse
+  UpdateItemsOrderMutationResponse,
 } from '../types';
 
 type Props = {
@@ -41,7 +41,7 @@ function ListContainer(props: FinalProps) {
       variables: { _id: listId },
       updateQuery: () => {
         checklistDetailQuery.refetch();
-      }
+      },
     });
   });
 
@@ -51,8 +51,8 @@ function ListContainer(props: FinalProps) {
     checklistItemsOrderMutation({
       variables: {
         _id: sourceItem._id,
-        destinationIndex
-      }
+        destinationIndex,
+      },
     });
   }
 
@@ -62,10 +62,10 @@ function ListContainer(props: FinalProps) {
     confirm().then(() => {
       removeMutation({ variables: { _id: checklistId } })
         .then(() => {
-          Alert.success('You successfully deleted a checklist');
+          Alert.success('Úspěšně jste smazali kontrolní seznam');
           localStorage.removeItem(checklistId);
         })
-        .catch(e => {
+        .catch((e) => {
           Alert.error(e.message);
         });
     });
@@ -77,8 +77,8 @@ function ListContainer(props: FinalProps) {
     addItemMutation({
       variables: {
         checklistId: listId,
-        content
-      }
+        content,
+      },
     });
   }
 
@@ -87,7 +87,7 @@ function ListContainer(props: FinalProps) {
 
     const afterConvert = () => {
       callback();
-      Alert.success('You successfully converted a card');
+      Alert.success('Úspěšně jste převedli kartu');
     };
 
     props.addItem({ stageId, name }, afterConvert);
@@ -126,7 +126,7 @@ function ListContainer(props: FinalProps) {
     renderButton,
     remove,
     convertToCard,
-    updateOrderItems
+    updateOrderItems,
   };
 
   return <List {...listProps} />;
@@ -136,9 +136,9 @@ const options = (props: Props) => ({
   refetchQueries: [
     {
       query: gql(queries.checklistDetail),
-      variables: { _id: props.listId }
-    }
-  ]
+      variables: { _id: props.listId },
+    },
+  ],
 });
 
 export default withProps<Props>(
@@ -147,16 +147,16 @@ export default withProps<Props>(
       name: 'checklistDetailQuery',
       options: ({ listId }) => ({
         variables: {
-          _id: listId
-        }
-      })
+          _id: listId,
+        },
+      }),
     }),
     graphql<Props, AddItemMutationResponse, IChecklistItemDoc>(
       gql(mutations.checklistItemsAdd),
       {
         name: 'addItemMutation',
-        options
-      }
+        options,
+      },
     ),
     graphql<
       Props,
@@ -164,16 +164,16 @@ export default withProps<Props>(
       IChecklistItemsUpdateOrderDoc
     >(gql(mutations.checklistItemsOrder), {
       name: 'checklistItemsOrderMutation',
-      options
+      options,
     }),
     graphql<Props, RemoveMutationResponse, { _id: string }>(
       gql(mutations.checklistsRemove),
       {
         name: 'removeMutation',
         options: () => ({
-          refetchQueries: ['checklists']
-        })
-      }
-    )
-  )(ListContainer)
+          refetchQueries: ['checklists'],
+        }),
+      },
+    ),
+  )(ListContainer),
 );

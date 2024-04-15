@@ -222,7 +222,7 @@ class ContractTypeForm extends React.Component<Props, State> {
               })}
 
               <FormGroup>
-                <ControlLabel required={true}>{__('Currency')}</ControlLabel>
+                <ControlLabel required={true}>{__('Měna')}</ControlLabel>
                 <FormControl
                   {...formProps}
                   name="currency"

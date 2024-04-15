@@ -1,10 +1,10 @@
 export const PAYMENT_TYPES = [
-  { name: 'prepay', title: 'Prepayment' },
-  { name: 'cash', title: 'Cash' },
-  { name: 'bank', title: 'Bank transaction' },
-  { name: 'pos', title: 'POS terminal' },
-  { name: 'wallet', title: 'Wallet' },
-  { name: 'barter', title: 'Barter' },
-  { name: 'after', title: 'Receivable' },
-  { name: 'other', title: 'Other' }
+  { name: 'prepay', title: 'Platba předem' },
+  { name: 'cash', title: 'Hotovost' },
+  { name: 'bank', title: 'Bankovní transakce' },
+  { name: 'pos', title: 'POS terminál' },
+  { name: 'wallet', title: 'Peněženka' },
+  { name: 'barter', title: 'Výměnný obchod' },
+  { name: 'after', title: 'Pohledávka' },
+  { name: 'other', title: 'Jiný' },
 ];

@@ -174,7 +174,7 @@ const GrowthHackMainActionBar = (props: IProps) => {
         name="hackStage"
         onChange={onChangeHackStage}
         multi={true}
-        loadingPlaceholder={__('Loading...')}
+        loadingPlaceholder={__('Načítání...')}
       />
     </>
   );

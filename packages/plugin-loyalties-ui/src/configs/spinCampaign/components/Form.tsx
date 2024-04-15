@@ -183,7 +183,7 @@ class Form extends React.Component<Props, State> {
             }))}
             name="voucherCampaignId"
             onChange={onChangeVoucherCampaign}
-            loadingPlaceholder={__('Loading...')}
+            loadingPlaceholder={__('Načítání...')}
           />
         </FormColumn>
         <FormColumn>

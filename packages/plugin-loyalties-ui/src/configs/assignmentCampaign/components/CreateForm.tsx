@@ -233,7 +233,7 @@ class CreateForm extends React.Component<Props, State> {
             }))}
             name="voucherCampaignId"
             onChange={onChangeVoucherCampaign}
-            loadingPlaceholder={__('Loading...')}
+            loadingPlaceholder={__('Načítání...')}
           />
         </FormGroup>
         <FormGroup>

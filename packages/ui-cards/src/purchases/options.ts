@@ -6,14 +6,14 @@ import { mutations, queries } from './graphql';
 const options = {
   EditForm: PurchaseEditForm,
   Item: PurchaseItem,
-  title: 'purchase',
+  title: 'nákup',
   type: 'purchase',
   queriesName: {
     itemsQuery: 'purchases',
     itemsTotalCountQuery: 'purchasesTotalCount',
     detailQuery: 'purchaseDetail',
     archivedItemsQuery: 'archivedPurchases',
-    archivedItemsCountQuery: 'archivedPurchasesCount'
+    archivedItemsCountQuery: 'archivedPurchasesCount',
   },
   mutationsName: {
     addMutation: 'purchasesAdd',
@@ -23,14 +23,14 @@ const options = {
     watchMutation: 'purchasesWatch',
     archiveMutation: 'purchasesArchive',
     copyMutation: 'purchasesCopy',
-    updateTimeTrackMutation: 'updateTimeTrack'
+    updateTimeTrackMutation: 'updateTimeTrack',
   },
   queries: {
     itemsQuery: queries.purchases,
     itemsTotalCountQuery: queries.purchasesTotalCount,
     detailQuery: queries.purchaseDetail,
     archivedItemsQuery: queries.archivedPurchases,
-    archivedItemsCountQuery: queries.archivedPurchasesCount
+    archivedItemsCountQuery: queries.archivedPurchasesCount,
   },
   mutations: {
     addMutation: mutations.purchasesAdd,
@@ -40,15 +40,15 @@ const options = {
     watchMutation: mutations.purchasesWatch,
     archiveMutation: mutations.purchasesArchive,
     copyMutation: mutations.purchasesCopy,
-    updateTimeTrackMutation: ``
+    updateTimeTrackMutation: ``,
   },
 
   texts: {
-    addText: 'Add a purchase',
-    updateSuccessText: 'You successfully updated a purchase',
-    deleteSuccessText: 'You successfully deleted a purchase',
-    changeSuccessText: 'You successfully changed a purchase',
-    copySuccessText: 'You successfully copied a purchase'
+    addText: 'Přidat nákup',
+    updateSuccessText: 'Úspěšně jste aktualizovali nákup',
+    deleteSuccessText: 'Úspěšně jste smazali nákup',
+    changeSuccessText: 'Úspěšně jste změnili nákup',
+    copySuccessText: 'Úspěšně jste zkopírovali nákup',
   },
   isMove: true,
   getExtraParams: (queryParams: any) => {
@@ -65,7 +65,7 @@ const options = {
       startDateStartDate,
       startDateEndDate,
       closeDateStartDate,
-      closeDateEndDate
+      closeDateEndDate,
     } = queryParams;
     const extraParams: any = {};
 
@@ -120,7 +120,7 @@ const options = {
     }
 
     return extraParams;
-  }
+  },
 };
 
 export default options;

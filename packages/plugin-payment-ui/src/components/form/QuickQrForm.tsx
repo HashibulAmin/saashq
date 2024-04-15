@@ -195,7 +195,7 @@ const QuickQrForm = (props: Props) => {
           {renderItem('name', 'Name')}
 
           <FormGroup>
-            <ControlLabel>{__('Type')}</ControlLabel>
+            <ControlLabel>{__('Typ')}</ControlLabel>
             <FormControl
               componentClass="select"
               required={true}

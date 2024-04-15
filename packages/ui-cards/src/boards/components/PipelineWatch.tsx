@@ -1,8 +1,8 @@
-import { IPipeline } from "../types";
-import Icon from "@saashq/ui/src/components/Icon";
-import { __ } from "coreui/utils";
-import * as React from "react";
-import { HeaderButton } from "../styles/header";
+import { IPipeline } from '../types';
+import Icon from '@saashq/ui/src/components/Icon';
+import { __ } from 'coreui/utils';
+import * as React from 'react';
+import { HeaderButton } from '../styles/header';
 
 type IProps = {
   pipeline: IPipeline;
@@ -21,7 +21,7 @@ class Watch extends React.Component<IProps> {
     return (
       <HeaderButton onClick={onClick} hasBackground={true} isActive={isWatched}>
         <Icon icon="eye" />
-        {isWatched ? __("Watching") : __("Watch")}
+        {isWatched ? __('Sledování') : __('Hodinky')}
       </HeaderButton>
     );
   }

@@ -54,7 +54,7 @@ export default class RightSidebar extends React.Component<Props> {
         <Box title={__('Other')} name="showOthers">
           <List>
             <li>
-              <div>{__('Created at')}: </div>{' '}
+              <div>{__('Vytvořeno v')}: </div>{' '}
               <span>{dayjs(company.createdAt).format('lll')}</span>
             </li>
             <li>

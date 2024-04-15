@@ -7,13 +7,13 @@ import styled from 'styled-components';
 import styledTS from 'styled-components-ts';
 
 export const DateWrapper = styledTS<{ color: string; hasValue?: boolean }>(
-  styled.div
+  styled.div,
 )`
 	position: relative;
 
 	input {
-		background-color: ${props => rgba(props.color, 0.1)};
-		color: ${props => props.color};
+		background-color: ${(props) => rgba(props.color, 0.1)};
+		color: ${(props) => props.color};
 		border: none;
 		box-shadow: none;
 		outline: 0;
@@ -22,11 +22,11 @@ export const DateWrapper = styledTS<{ color: string; hasValue?: boolean }>(
 		border-radius: 2px;
 		font-weight: 500;
 		line-height: 25px;
-		width: ${props => (props.hasValue ? '130px' : '100px')};
+		width: ${(props) => (props.hasValue ? '130px' : '100px')};
 		font-size: 12px;
 
 		&:hover {
-			background: ${props => rgba(props.color, 0.15)};
+			background: ${(props) => rgba(props.color, 0.15)};
 			cursor: pointer;
 		}
 
@@ -35,14 +35,14 @@ export const DateWrapper = styledTS<{ color: string; hasValue?: boolean }>(
 		}
 
 		::placeholder { 
-			color: ${props => props.color};
+			color: ${(props) => props.color};
 			font-weight: 500;
 			opacity: 1;
 		}
 	}
 
 	> i {
-		color: ${props => props.color};
+		color: ${(props) => props.color};
 		line-height: 25px;
 		position: absolute;
 		left: 7px;
@@ -56,12 +56,12 @@ export const DateWrapper = styledTS<{ color: string; hasValue?: boolean }>(
 		padding: 0;
 		width: 20px;
 		border: none;
-		color: ${props => props.color};
+		color: ${(props) => props.color};
 		border-radius: 2px;
-		background-color: ${props => rgba(props.color, 0.15)};
+		background-color: ${(props) => rgba(props.color, 0.15)};
 
 		&:hover {
-			background: ${props => rgba(props.color, 0.3)};
+			background: ${(props) => rgba(props.color, 0.3)};
 			cursor: pointer;
 		}
 	}
@@ -86,7 +86,7 @@ class DueDateChanger extends React.Component<IProps> {
       <DateWrapper color={color} hasValue={this.hasValue()}>
         <Icon icon="clock-eight" />
         <Datetime
-          inputProps={{ placeholder: 'Due date' }}
+          inputProps={{ placeholder: 'Datum splatnosti' }}
           dateFormat="MMM,DD YYYY"
           timeFormat={false}
           value={value}

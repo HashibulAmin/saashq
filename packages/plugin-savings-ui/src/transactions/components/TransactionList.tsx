@@ -123,7 +123,7 @@ class TransactionsList extends React.Component<IProps> {
                 <SortHandler sortField={'total'} label={__('Total')} />
               </th>
               <th>
-                <SortHandler sortField={'type'} label={__('Type')} />
+                <SortHandler sortField={'type'} label={__('Typ')} />
               </th>
 
               <th></th>

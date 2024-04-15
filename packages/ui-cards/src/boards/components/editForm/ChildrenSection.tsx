@@ -4,7 +4,7 @@ import {
   Box,
   EmptyState,
   Tip,
-  Icon
+  Icon,
 } from '@saashq/ui/src/components';
 import React from 'react';
 import { AddForm } from '@saashq/ui-cards/src/boards/containers/portable';
@@ -38,7 +38,7 @@ class ChildrenSection extends React.Component<Props, State> {
 
     this.state = {
       openChildId: '',
-      openParentId: ''
+      openParentId: '',
     };
   }
 
@@ -47,20 +47,20 @@ class ChildrenSection extends React.Component<Props, State> {
       const updateProps = {
         ...this.props,
         parentId: this.props.itemId,
-        closeModal
+        closeModal,
       };
       return <AddForm {...updateProps} />;
     };
     const trigger = (
       <Button btnStyle="link">
-        <Tip text={__('Add Child Card')}>
+        <Tip text={__('Přidat dětskou kartu')}>
           <Icon icon="plus-circle" />
         </Tip>
       </Button>
     );
     return (
       <ModalTrigger
-        title="Add New Child Card"
+        title="Přidat kartu nového dítěte"
         trigger={trigger}
         content={content}
       />
@@ -85,13 +85,13 @@ class ChildrenSection extends React.Component<Props, State> {
       itemId: parentId,
       stageId: stageId,
       isPopupVisible: openParentId === parentId,
-      beforePopupClose: closeModal
+      beforePopupClose: closeModal,
     };
 
     return (
       <>
         <Button btnStyle="link" onClick={openModal}>
-          <Tip text={__('See Parent Card')}>
+          <Tip text={__('Viz Karta Rodiče')}>
             <Icon icon="technology" />
           </Tip>
         </Button>
@@ -118,7 +118,7 @@ class ChildrenSection extends React.Component<Props, State> {
       parentId: this.props.itemId,
       stageId: child.stageId,
       isPopupVisible: openChildId === child._id,
-      beforePopupClose: closeModal
+      beforePopupClose: closeModal,
     };
 
     return (
@@ -142,17 +142,17 @@ class ChildrenSection extends React.Component<Props, State> {
     };
 
     return (
-      <Box title="Children" extraButtons={extraButtons()} isOpen={true}>
+      <Box title="Děti" extraButtons={extraButtons()} isOpen={true}>
         {children?.length ? (
-          (children as Array<
-            IDeal | ITicket | ITask | IPurchase
-          >).map(child => (
-            <SectionBodyItem key={child._id}>
-              {this.renderChildForm(child)}
-            </SectionBodyItem>
-          ))
+          (children as Array<IDeal | ITicket | ITask | IPurchase>).map(
+            (child) => (
+              <SectionBodyItem key={child._id}>
+                {this.renderChildForm(child)}
+              </SectionBodyItem>
+            ),
+          )
         ) : (
-          <EmptyState text="No Children" icon="list-ui-alt" />
+          <EmptyState text="Žádné Děti" icon="list-ui-alt" />
         )}
       </Box>
     );

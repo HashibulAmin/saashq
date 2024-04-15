@@ -62,14 +62,14 @@ class ActionSection extends React.Component<Props, { customerState: string }> {
         )}
         <ModalTrigger
           dialogClassName="middle"
-          title={`Send SMS to (${primaryPhone})`}
+          title={`Odeslat SMS na (${primaryPhone})`}
           trigger={
             <Button
               disabled={primaryPhone ? false : true}
               size="small"
               btnStyle={primaryPhone ? 'primary' : 'simple'}
             >
-              <Tip text="Send SMS" placement="top-end">
+              <Tip text="Pošli SMS" placement="top-end">
                 <Icon icon="message" />
               </Tip>
             </Button>
@@ -82,7 +82,7 @@ class ActionSection extends React.Component<Props, { customerState: string }> {
           btnStyle={primaryPhone ? 'primary' : 'simple'}
           disabled={primaryPhone ? false : true}
         >
-          <Tip text="Call" placement="top-end">
+          <Tip text="Volání" placement="top-end">
             <Icon icon="phone" />
           </Tip>
         </Button>
@@ -120,7 +120,7 @@ class ActionSection extends React.Component<Props, { customerState: string }> {
     return (
       <li>
         <ModalTrigger
-          title="Edit basic info"
+          title="Upravit základní informace"
           trigger={<a>{__('Upravit')}</a>}
           size="lg"
           content={cocType === 'company' ? companyForm : customerForm}
@@ -158,18 +158,20 @@ class ActionSection extends React.Component<Props, { customerState: string }> {
     const options = [
       {
         value: 'lead',
-        desc: __('A person who preparing to buy some service or product'),
+        desc: __(
+          'Osoba, která se připravuje na nákup nějaké služby nebo produktu',
+        ),
       },
       {
         value: 'customer',
-        desc: __('A person who already bought some service or product'),
+        desc: __('Osoba, která již koupila nějakou službu nebo produkt'),
       },
     ];
 
     const modalContent = () => {
       return (
         <>
-          <ControlLabel>Change State</ControlLabel>
+          <ControlLabel>Změnit Stav</ControlLabel>
           <States>
             {options.map((option, index) =>
               this.renderBox(index, option.value, option.desc),
@@ -181,8 +183,8 @@ class ActionSection extends React.Component<Props, { customerState: string }> {
 
     return (
       <ModalTrigger
-        title={__('Change state')}
-        trigger={<a>{__('Change state')}</a>}
+        title={__('Změnit stav')}
+        trigger={<a>{__('Změnit stav')}</a>}
         content={modalContent}
         hideHeader={true}
         centered={true}

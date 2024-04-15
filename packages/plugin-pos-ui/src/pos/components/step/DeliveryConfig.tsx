@@ -35,12 +35,12 @@ class DeliveryConfig extends React.Component<Props, State> {
             stageId: '',
             watchedUserIds: [],
             assignedUserIds: [],
-            productId: ''
+            productId: '',
           };
 
     this.state = {
       config,
-      fieldsCombined: []
+      fieldsCombined: [],
     };
 
     if (isEnabled('forms')) {
@@ -48,12 +48,12 @@ class DeliveryConfig extends React.Component<Props, State> {
         .query({
           query: gql(formQueries.fieldsCombinedByContentType),
           variables: {
-            contentType: 'cards:deal'
-          }
+            contentType: 'cards:deal',
+          },
         })
         .then(({ data }) => {
           this.setState({
-            fieldsCombined: data ? data.fieldsCombinedByContentType : [] || []
+            fieldsCombined: data ? data.fieldsCombinedByContentType : [] || [],
           });
         });
     }
@@ -69,9 +69,9 @@ class DeliveryConfig extends React.Component<Props, State> {
   };
 
   selectConfigOptions = (array: string[] = [], CONSTANT: any) => {
-    return array.map(item => ({
+    return array.map((item) => ({
       value: item,
-      label: CONSTANT.find(el => el.value === item).label
+      label: CONSTANT.find((el) => el.value === item).label,
     }));
   };
 
@@ -90,20 +90,20 @@ class DeliveryConfig extends React.Component<Props, State> {
       this.onChangeConfig('stageId', stageId);
     };
 
-    const onWatchedUsersSelect = users => {
+    const onWatchedUsersSelect = (users) => {
       this.onChangeConfig('watchedUserIds', users);
     };
 
-    const onAssignedUsersSelect = users => {
+    const onAssignedUsersSelect = (users) => {
       this.onChangeConfig('assignedUserIds', users);
     };
 
-    const onMapCustomFieldChange = option => {
+    const onMapCustomFieldChange = (option) => {
       const value = !option ? '' : option.value.toString();
       this.onChangeConfig('mapCustomField', value);
     };
 
-    const onChangeProduct = option => {
+    const onChangeProduct = (option) => {
       this.onChangeConfig('productId', option);
     };
 
@@ -113,7 +113,7 @@ class DeliveryConfig extends React.Component<Props, State> {
           <LeftItem>
             {(isEnabled('cards') && (
               <Block>
-                <h4>{__('Stage')}</h4>
+                <h4>{__('Etapa')}</h4>
                 <BlockRow>
                   <BoardSelectContainer
                     type="deal"
@@ -133,9 +133,9 @@ class DeliveryConfig extends React.Component<Props, State> {
                       name="mapCustomField"
                       value={config.mapCustomField}
                       onChange={onMapCustomFieldChange}
-                      options={(fieldsCombined || []).map(f => ({
+                      options={(fieldsCombined || []).map((f) => ({
                         value: f.name,
-                        label: f.label
+                        label: f.label,
                       }))}
                     />
                   </FormGroup>

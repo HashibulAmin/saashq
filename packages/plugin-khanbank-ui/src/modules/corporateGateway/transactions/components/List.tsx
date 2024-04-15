@@ -80,7 +80,7 @@ const List = (props: Props) => {
           <th>{__('Popis')}</th>
           <th>{__('Begin balance')}</th>
           <th>{__('End balance')}</th>
-          <th>{__('Amount')}</th>
+          <th>{__('Množství')}</th>
           <th>{__('Related account')}</th>
         </tr>
       </thead>

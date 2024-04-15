@@ -39,7 +39,7 @@ function Common(props: Props) {
           </Button>
 
           <Button btnStyle="success" icon="checked-1" onClick={onSave}>
-            Save
+            Uložit
           </Button>
         </ModalFooter>
       </ActionFooter>

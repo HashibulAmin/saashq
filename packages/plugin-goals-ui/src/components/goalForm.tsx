@@ -13,7 +13,7 @@ import {
   MainStyleFormColumn as FormColumn,
   MainStyleFormWrapper as FormWrapper,
   MainStyleModalFooter as ModalFooter,
-  MainStyleScrollWrapper as ScrollWrapper
+  MainStyleScrollWrapper as ScrollWrapper,
 } from '@saashq/ui/src';
 import client from '@saashq/ui/src/apolloClient';
 import { DateContainer } from '@saashq/ui/src/styles/main';
@@ -28,7 +28,7 @@ import {
   ENTITY,
   GOAL_STRUCTURE,
   GOAL_TYPE,
-  SPECIFIC_PERIOD_GOAL
+  SPECIFIC_PERIOD_GOAL,
 } from '../constants';
 import { IGoalType, IGoalTypeDoc } from '../types';
 import SelectBranches from '@saashq/ui/src/team/containers/SelectBranches';
@@ -98,15 +98,15 @@ class GoalTypeForm extends React.Component<Props, State> {
       stageId: goalType.stageId,
       pipelineId: goalType.pipelineId,
       boardId: goalType.boardId,
-      target: goalType.target || 0
+      target: goalType.target || 0,
     };
   }
 
-  onChangeStartDate = value => {
+  onChangeStartDate = (value) => {
     this.setState({ startDate: value });
   };
 
-  onChangeTargetPeriod = event => {
+  onChangeTargetPeriod = (event) => {
     const { value } = event.target;
     const parsedValue = parseInt(value);
     this.setState({ target: parsedValue });
@@ -120,38 +120,38 @@ class GoalTypeForm extends React.Component<Props, State> {
     //   // You can also display an error message to the user
     // }
   };
-  onChangeBranchId = value => {
+  onChangeBranchId = (value) => {
     this.setState({ branch: value });
   };
-  onChangeDepartments = value => {
+  onChangeDepartments = (value) => {
     this.setState({ department: value });
   };
-  onChangeUnites = value => {
+  onChangeUnites = (value) => {
     this.setState({ unit: value });
   };
 
-  onChangeStage = stgId => {
+  onChangeStage = (stgId) => {
     this.setState({ stageId: stgId });
   };
 
-  onChangePipeline = plId => {
+  onChangePipeline = (plId) => {
     client
       .query({
         query: gql(pipelineQuery.pipelineLabels),
         fetchPolicy: 'network-only',
-        variables: { pipelineId: plId }
+        variables: { pipelineId: plId },
       })
-      .then(data => {
+      .then((data) => {
         this.setState({ pipelineLabels: data.data.pipelineLabels });
       })
-      .catch(e => {
+      .catch((e) => {
         Alert.error(e.message);
       });
 
     this.setState({ pipelineId: plId });
   };
 
-  onChangeBoard = brId => {
+  onChangeBoard = (brId) => {
     this.setState({ boardId: brId });
   };
 
@@ -179,7 +179,7 @@ class GoalTypeForm extends React.Component<Props, State> {
       goalTypeChoose,
       teamGoalType,
       pipelineLabels,
-      periodGoal
+      periodGoal,
     } = this.state;
     const finalValues = values;
     if (goalType) {
@@ -210,7 +210,7 @@ class GoalTypeForm extends React.Component<Props, State> {
       periodGoal,
       startDate,
       endDate,
-      target
+      target,
     };
   };
 
@@ -222,7 +222,7 @@ class GoalTypeForm extends React.Component<Props, State> {
       </FormGroup>
     );
   };
-  onChangeField = e => {
+  onChangeField = (e) => {
     const name = (e.target as HTMLInputElement).name;
     const value =
       e.target.type === 'checkbox'
@@ -232,19 +232,19 @@ class GoalTypeForm extends React.Component<Props, State> {
     this.setState({ [name]: value } as any);
   };
 
-  onChangeEndDate = value => {
+  onChangeEndDate = (value) => {
     const { periodGoal } = this.state;
 
     this.setState({
       endDate: value,
-      periodGoal: periodGoal || 'Weekly' // Use 'Weekly' if periodGoal is falsy
+      periodGoal: periodGoal || 'Weekly', // Use 'Weekly' if periodGoal is falsy
     });
   };
 
-  onUserChange = userId => {
+  onUserChange = (userId) => {
     this.setState({ contribution: userId });
   };
-  onChangeSegments = values => {
+  onChangeSegments = (values) => {
     this.setState({ segmentIds: values });
   };
 
@@ -252,31 +252,31 @@ class GoalTypeForm extends React.Component<Props, State> {
     const { specificPeriodGoals, periodGoal } = this.state;
     const { value } = event.target;
     const parsedValue = parseInt(value);
-    const updatedSpecificPeriodGoals = specificPeriodGoals.map(goal =>
-      goal.addMonthly === date ? { ...goal, addTarget: parsedValue } : goal
+    const updatedSpecificPeriodGoals = specificPeriodGoals.map((goal) =>
+      goal.addMonthly === date ? { ...goal, addTarget: parsedValue } : goal,
     );
     // Add new periods to specificPeriodGoals if they don't exist
     const periods =
       periodGoal === 'Monthly' ? this.mapMonths() : this.mapWeeks();
 
-    periods.forEach(period => {
+    periods.forEach((period) => {
       const exists = updatedSpecificPeriodGoals.some(
-        goal => goal.addMonthly === period
+        (goal) => goal.addMonthly === period,
       );
       if (!exists) {
         updatedSpecificPeriodGoals.push({
           _id: Math.random().toString(),
           addMonthly: period,
-          addTarget: NaN
+          addTarget: NaN,
         });
       }
     });
 
     // Update the state with the modified specificPeriodGoals
     const filteredGoals = updatedSpecificPeriodGoals.filter(
-      goal =>
+      (goal) =>
         (periodGoal === 'Monthly' && goal.addMonthly.includes('Month')) ||
-        (periodGoal === 'Weekly' && goal.addMonthly.includes('Week'))
+        (periodGoal === 'Weekly' && goal.addMonthly.includes('Week')),
     );
 
     this.setState({ specificPeriodGoals: filteredGoals });
@@ -301,7 +301,7 @@ class GoalTypeForm extends React.Component<Props, State> {
       'September',
       'October',
       'November',
-      'December'
+      'December',
     ];
     const months: string[] = [];
 
@@ -367,7 +367,7 @@ class GoalTypeForm extends React.Component<Props, State> {
                   onChange={this.onChangeField}
                   inline={true}
                 >
-                  {__('Stage')}
+                  {__('Etapa')}
                 </FormControl>
                 <FormControl
                   {...formProps}
@@ -391,7 +391,7 @@ class GoalTypeForm extends React.Component<Props, State> {
                           contentTypes={[`cards:${this.state.entity}`]}
                           initialValue={this.state.segmentIds}
                           multi={true}
-                          onSelect={segmentIds =>
+                          onSelect={(segmentIds) =>
                             this.onChangeSegments(segmentIds)
                           }
                         />
@@ -597,7 +597,7 @@ class GoalTypeForm extends React.Component<Props, State> {
           </FormWrapper>
           {this.state.periodGoal === 'Monthly' && (
             <div>
-              {months.map(month => (
+              {months.map((month) => (
                 <FormWrapper key={month}>
                   <FormColumn>
                     <ControlLabel>{__('Period (Monthly)')}</ControlLabel>
@@ -613,10 +613,10 @@ class GoalTypeForm extends React.Component<Props, State> {
                         name="target"
                         value={
                           this.state.specificPeriodGoals.find(
-                            goal => goal.addMonthly === month
+                            (goal) => goal.addMonthly === month,
                           )?.addTarget
                         }
-                        onChange={event => this.onChangeTarget(month, event)}
+                        onChange={(event) => this.onChangeTarget(month, event)}
                       />
                     </FormGroup>
                   </FormColumn>
@@ -626,7 +626,7 @@ class GoalTypeForm extends React.Component<Props, State> {
           )}
           {this.state.periodGoal === 'Weekly' && (
             <div>
-              {weeks.map(week => (
+              {weeks.map((week) => (
                 <FormWrapper key={week}>
                   <FormColumn>
                     <ControlLabel>{__('Period (Weekly)')}</ControlLabel>
@@ -642,10 +642,10 @@ class GoalTypeForm extends React.Component<Props, State> {
                         name="target"
                         value={
                           this.state.specificPeriodGoals.find(
-                            goal => goal.addMonthly === week
+                            (goal) => goal.addMonthly === week,
                           )?.addTarget
                         }
-                        onChange={event => this.onChangeTarget(week, event)}
+                        onChange={(event) => this.onChangeTarget(week, event)}
                       />
                     </FormGroup>
                   </FormColumn>
@@ -662,7 +662,7 @@ class GoalTypeForm extends React.Component<Props, State> {
             name: 'goalType',
             values: this.generateDoc(values),
             isSubmitted,
-            object: this.props.goalType
+            object: this.props.goalType,
           })}
         </ModalFooter>
       </>

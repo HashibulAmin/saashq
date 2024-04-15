@@ -2,7 +2,7 @@ import {
   ContentColumn,
   ContentRowTitle,
   Divider,
-  WrongLess
+  WrongLess,
 } from '../../styles';
 
 import CURRENCIES from '@saashq/ui/src/constants/currencies';
@@ -37,7 +37,7 @@ class PaymentForm extends React.Component<Props, State> {
     const { payments } = this.props;
 
     this.state = {
-      paymentsData: payments || {}
+      paymentsData: payments || {},
     };
   }
 
@@ -53,7 +53,7 @@ class PaymentForm extends React.Component<Props, State> {
   }
 
   renderTotal(value) {
-    return Object.keys(value).map(key => (
+    return Object.keys(value).map((key) => (
       <div key={key}>
         {this.renderAmount(value[key])} <b>{key}</b>
       </div>
@@ -74,7 +74,7 @@ class PaymentForm extends React.Component<Props, State> {
     onChangePaymentsData(paymentsData);
   };
 
-  selectOption = option => (
+  selectOption = (option) => (
     <div className="simple-option">
       <span>{option.label}</span>
     </div>
@@ -84,7 +84,7 @@ class PaymentForm extends React.Component<Props, State> {
     const { currencies, changePayData } = this.props;
     const { paymentsData } = this.state;
 
-    const onChange = e => {
+    const onChange = (e) => {
       if (
         (!paymentsData[type.name] || !paymentsData[type.name].currency) &&
         currencies.length > 0
@@ -95,7 +95,7 @@ class PaymentForm extends React.Component<Props, State> {
       this.paymentStateChange(
         'amount',
         type.name,
-        parseFloat((e.target as HTMLInputElement).value || '0')
+        parseFloat((e.target as HTMLInputElement).value || '0'),
       );
     };
 
@@ -103,12 +103,12 @@ class PaymentForm extends React.Component<Props, State> {
       this.paymentStateChange(
         'currency',
         type.name,
-        currency ? currency.value : ''
+        currency ? currency.value : '',
       );
     };
 
     const onClick = () => {
-      Object.keys(changePayData).forEach(key => {
+      Object.keys(changePayData).forEach((key) => {
         if (
           changePayData[key] > 0 &&
           (!paymentsData[type.name] || !paymentsData[type.name].amount)
@@ -141,7 +141,7 @@ class PaymentForm extends React.Component<Props, State> {
               paymentsData[type.name] ? paymentsData[type.name].amount : ''
             }
             type="number"
-            placeholder={__('Type amount')}
+            placeholder={__('Zadejte částku')}
             min={0}
             name={type.name}
             onChange={onChange}
@@ -151,7 +151,7 @@ class PaymentForm extends React.Component<Props, State> {
         <ContentColumn>
           <Select
             name={type.name}
-            placeholder={__('Choose currency')}
+            placeholder={__('Vyberte měnu')}
             value={
               paymentsData[type.name] ? paymentsData[type.name].currency : 0
             }
@@ -165,7 +165,7 @@ class PaymentForm extends React.Component<Props, State> {
   }
 
   renderPayments() {
-    return PAYMENT_TYPES.map(type => this.renderPaymentsByType(type));
+    return PAYMENT_TYPES.map((type) => this.renderPaymentsByType(type));
   }
 
   render() {
@@ -175,18 +175,18 @@ class PaymentForm extends React.Component<Props, State> {
       <>
         <ContentRowTitle>
           <ContentColumn>
-            <ControlLabel>Total</ControlLabel>
+            <ControlLabel>Celkový</ControlLabel>
             {this.renderTotal(total)}
           </ContentColumn>
           <ContentColumn>
-            <ControlLabel>Change</ControlLabel>
+            <ControlLabel>Změna</ControlLabel>
             {this.renderTotal(this.props.changePayData)}
           </ContentColumn>
         </ContentRowTitle>
         <Divider />
 
         {this.renderPayments()}
-        {pluginsOfPaymentForm(type => this.renderPaymentsByType(type))}
+        {pluginsOfPaymentForm((type) => this.renderPaymentsByType(type))}
       </>
     );
   }

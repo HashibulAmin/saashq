@@ -9,7 +9,7 @@ import { IUser } from '@saashq/ui/src/auth/types';
 import {
   CUSTOMER_BASIC_INFO,
   CUSTOMER_DATAS,
-  CUSTOMER_LINKS
+  CUSTOMER_LINKS,
 } from '../../constants';
 import { InfoAvatar, InfoDetail } from '../../styles';
 import { Info, InfoTitle } from '@saashq/ui/src/styles/main';
@@ -17,7 +17,7 @@ import {
   ICustomer,
   ICustomerDoc,
   ICustomerLinks,
-  IVisitorContact
+  IVisitorContact,
 } from '../../types';
 
 type Props = {
@@ -40,7 +40,7 @@ class CustomersMerge extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      selectedValues: {}
+      selectedValues: {},
     };
   }
 
@@ -57,18 +57,18 @@ class CustomersMerge extends React.Component<Props, State> {
     }
 
     this.props.save({
-      ids: objects.map(customer => customer._id),
+      ids: objects.map((customer) => customer._id),
       data: { ...selectedValues },
       callback: () => {
         this.props.closeModal();
-      }
+      },
     });
   };
 
   handleChange = (
     type: string,
     key: string,
-    value: string | ICustomerLinks
+    value: string | ICustomerLinks,
   ) => {
     const selectedValues = { ...this.state.selectedValues };
 
@@ -78,7 +78,7 @@ class CustomersMerge extends React.Component<Props, State> {
       if (key === 'links') {
         const links = Object.assign(
           { ...this.state.selectedValues.links },
-          value
+          value,
         );
         selectedValues[key] = links;
       }
@@ -96,7 +96,7 @@ class CustomersMerge extends React.Component<Props, State> {
       <React.Fragment>
         <Title>{renderFullName(customer)}</Title>
         <ul>
-          {properties.map(info => {
+          {properties.map((info) => {
             const key = info.field;
 
             if (!customer[key]) {
@@ -148,9 +148,9 @@ class CustomersMerge extends React.Component<Props, State> {
   renderVisitorContactInfo(data: IVisitorContact) {
     return (
       <Info>
-        <InfoTitle>{__('E-mail')}: </InfoTitle>
+        <InfoTitle>{__('E-mailem')}: </InfoTitle>
         <InfoDetail>{data.email}</InfoDetail>
-        <InfoTitle>{__('Phone')}: </InfoTitle>
+        <InfoTitle>{__('Telefon')}: </InfoTitle>
         <InfoDetail>{data.phone}</InfoDetail>
       </Info>
     );
@@ -159,14 +159,14 @@ class CustomersMerge extends React.Component<Props, State> {
   renderOwner(data: IUser) {
     return (
       <Info>
-        <InfoTitle>Name: </InfoTitle>
+        <InfoTitle>Název: </InfoTitle>
         <InfoDetail>{data.details && data.details.fullName}</InfoDetail>
       </Info>
     );
   }
 
   renderLinks = (data: ICustomerLinks, icon: string) => {
-    return CUSTOMER_LINKS.ALL.map(info => {
+    return CUSTOMER_LINKS.ALL.map((info) => {
       const field = info.field;
       const value = data[field];
 
@@ -178,7 +178,7 @@ class CustomersMerge extends React.Component<Props, State> {
         <li
           key={field}
           onClick={this.handleChange.bind(this, icon, `links`, {
-            [field]: value
+            [field]: value,
           })}
         >
           <InfoTitle>{info.label}:</InfoTitle>
@@ -212,7 +212,7 @@ class CustomersMerge extends React.Component<Props, State> {
 
         <ModalFooter>
           <Button btnStyle="simple" onClick={closeModal} icon="times-circle">
-            Cancel
+            Zrušení
           </Button>
           <Button
             type="submit"
@@ -221,7 +221,7 @@ class CustomersMerge extends React.Component<Props, State> {
             disabled={mergeCustomerLoading}
           >
             {mergeCustomerLoading && <SmallLoader />}
-            Save
+            Uložit
           </Button>
         </ModalFooter>
       </form>

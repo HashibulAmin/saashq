@@ -200,7 +200,7 @@ const Form = (props: Props) => {
               }
               inline={true}
             >
-              {__('Stage')}
+              {__('Etapa')}
             </FormControl>
             <FormControl
               {...formProps}

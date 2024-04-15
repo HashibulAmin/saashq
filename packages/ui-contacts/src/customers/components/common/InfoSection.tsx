@@ -60,7 +60,7 @@ class InfoSection extends React.Component<Props> {
       return null;
     }
 
-    const customerForm = props => {
+    const customerForm = (props) => {
       return (
         <CustomerForm {...props} size="lg" customer={this.props.customer} />
       );
@@ -68,7 +68,7 @@ class InfoSection extends React.Component<Props> {
 
     return (
       <ModalTrigger
-        title="Edit basic info"
+        title="Upravit základní informace"
         trigger={<Icon icon="pen-1" />}
         size="lg"
         content={customerForm}

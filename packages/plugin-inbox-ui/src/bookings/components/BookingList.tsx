@@ -120,7 +120,7 @@ function BookingList(props: Props) {
           <th>{__('Views')}</th>
           <th>{__('Postavení')}</th>
           <th>{__('Vytvořil')}</th>
-          <th>{__('Created at')}</th>
+          <th>{__('Vytvořeno v')}</th>
           <th>{__('Tags')}</th>
           <th>{__('Akce')}</th>
         </tr>

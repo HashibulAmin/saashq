@@ -177,7 +177,7 @@ class List extends React.Component<IProps, State> {
               </th>
               <th>{__('Code')}</th>
               <th>{__('Název')}</th>
-              <th>{__('Type')}</th>
+              <th>{__('Typ')}</th>
               <th>{__('Category')}</th>
               <th>{__('Unit Price')}</th>
               <th>{__('Tags')}</th>

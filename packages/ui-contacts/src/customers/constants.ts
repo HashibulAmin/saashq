@@ -1,49 +1,49 @@
 import { getConstantFromStore } from '@saashq/ui/src/utils';
 
 export const LEAD_CHOICES = [
-  { label: 'New', value: 'new' },
-  { label: 'Contacted', value: 'attemptedToContact' },
-  { label: 'Working', value: 'inProgress' },
-  { label: 'Bad timing', value: 'badTiming' },
-  { label: 'Unqualified', value: 'unqualified' },
+  { label: 'Nový', value: 'new' },
+  { label: 'Kontaktováno', value: 'attemptedToContact' },
+  { label: 'Pracovní', value: 'inProgress' },
+  { label: 'Špatné načasování', value: 'badTiming' },
+  { label: 'Nekvalifikovaný', value: 'unqualified' },
 ];
 
 export const CUSTOMER_BASIC_INFO = {
   avatar: 'Avatar',
-  firstName: 'First Name',
-  lastName: 'Last Name',
-  primaryEmail: 'Primary E-mail',
-  primaryPhone: 'Primary Phone',
-  position: 'Position',
-  department: 'Department',
-  hasAuthority: 'Has Authority',
-  description: 'Description',
-  isSubscribed: 'Subscribed',
+  firstName: 'Jméno',
+  lastName: 'Příjmení',
+  primaryEmail: 'Primární Email',
+  primaryPhone: 'Hlavní Telefon',
+  position: 'Pozice',
+  department: 'Oddělení',
+  hasAuthority: 'Má Autoritu',
+  description: 'Popis',
+  isSubscribed: 'Odebíráno',
 
   ALL: [
     { field: 'avatar', label: 'Avatar' },
-    { field: 'firstName', label: 'First Name' },
-    { field: 'middleName', label: 'Middle Name' },
-    { field: 'lastName', label: 'Last Name' },
-    { field: 'primaryEmail', label: 'Primary E-mail' },
-    { field: 'primaryPhone', label: 'Primary Phone' },
-    { field: 'position', label: 'Position' },
-    { field: 'department', label: 'Department' },
-    { field: 'hasAuthority', label: 'Has Authority' },
+    { field: 'firstName', label: 'Jméno' },
+    { field: 'middleName', label: 'Prostřední Jméno' },
+    { field: 'lastName', label: 'Příjmení' },
+    { field: 'primaryEmail', label: 'Primární Email' },
+    { field: 'primaryPhone', label: 'Hlavní Telefon' },
+    { field: 'position', label: 'Pozice' },
+    { field: 'department', label: 'Oddělení' },
+    { field: 'hasAuthority', label: 'Má Autoritu' },
     { field: 'description', label: 'Popis' },
-    { field: 'isSubscribed', label: 'Subscribed' },
+    { field: 'isSubscribed', label: 'Odebíráno' },
   ],
 };
 
 export const CUSTOMER_DATAS = {
-  visitorContactInfo: 'Visitor contact info',
-  owner: 'Owner',
-  links: 'Links',
+  visitorContactInfo: 'Kontaktní údaje návštěvníka',
+  owner: 'Majitel',
+  links: 'Odkazy',
 
   ALL: [
-    { field: 'visitorContactInfo', label: 'Visitor contact info' },
-    { field: 'owner', label: 'Owner' },
-    { field: 'links', label: 'Links' },
+    { field: 'visitorContactInfo', label: 'Kontaktní údaje návštěvníka' },
+    { field: 'owner', label: 'Majitel' },
+    { field: 'links', label: 'Odkazy' },
   ],
 };
 
@@ -54,7 +54,7 @@ export const CUSTOMER_LINKS = {
   instagram: 'Instagram',
   youtube: 'Youtube',
   github: 'Github',
-  website: 'Website',
+  website: 'Webová stránka',
 
   ALL: [
     { field: 'linkedIn', label: 'LinkedIn' },
@@ -63,41 +63,41 @@ export const CUSTOMER_LINKS = {
     { field: 'instagram', label: 'Instagram' },
     { field: 'youtube', label: 'Youtube' },
     { field: 'github', label: 'Github' },
-    { field: 'website', label: 'Website' },
+    { field: 'website', label: 'Webová stránka' },
   ],
 };
 
 export const LEAD_STATUS_TYPES = {
-  new: 'New',
-  attemptedToContact: 'Contacted',
-  inProgress: 'Working',
-  badTiming: 'Bad Timing',
-  unqualified: 'Unqualified',
+  new: 'Nový',
+  attemptedToContact: 'Kontaktováno',
+  inProgress: 'Pracovní',
+  badTiming: 'Špatné načasování',
+  unqualified: 'Nekvalifikovaný',
 };
 
 export const GENDER_TYPES = () => getConstantFromStore('sex_choices', true);
 
 export const EMAIL_VALIDATION_STATUSES = [
-  { label: 'Valid', value: 'valid' },
-  { label: 'Invalid', value: 'invalid' },
-  { label: 'Accept all unverifiable', value: 'accept_all_unverifiable' },
+  { label: 'Platný', value: 'valid' },
+  { label: 'Neplatný', value: 'invalid' },
+  { label: 'Přijměte vše neověřitelné', value: 'accept_all_unverifiable' },
   { label: 'Neznámý', value: 'unknown' },
-  { label: 'Disposable', value: 'disposable' },
+  { label: 'Jednorázový', value: 'disposable' },
   { label: 'Catchall', value: 'catchall' },
-  { label: 'Bad syntax', value: 'badsyntax' },
-  { label: 'Unverifiable', value: 'unverifiable' },
-  { label: 'Not checked', value: 'Not checked' },
+  { label: 'Špatná syntaxe', value: 'badsyntax' },
+  { label: 'Neověřitelné', value: 'unverifiable' },
+  { label: 'Nekontrolováno', value: 'Not checked' },
 ];
 
 export const PHONE_VALIDATION_STATUSES = [
-  { label: 'Valid', value: 'valid' },
-  { label: 'Invalid', value: 'invalid' },
+  { label: 'Platný', value: 'valid' },
+  { label: 'Neplatný', value: 'invalid' },
   { label: 'Neznámý', value: 'unknown' },
-  { label: 'Unverifiable', value: 'unverifiable' },
-  { label: 'Mobile phone', value: 'receives_sms' },
+  { label: 'Neověřitelné', value: 'unverifiable' },
+  { label: 'Mobilní telefon', value: 'receives_sms' },
 ];
 
 export const CUSTOMER_STATE_OPTIONS = [
-  { label: 'Customer', value: 'customer' },
-  { label: 'Lead', value: 'lead' },
+  { label: 'Zákazník', value: 'customer' },
+  { label: 'Vést', value: 'lead' },
 ];

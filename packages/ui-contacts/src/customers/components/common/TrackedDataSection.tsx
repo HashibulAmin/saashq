@@ -64,7 +64,7 @@ class TrackedDataSection extends React.Component<Props> {
     const trackedData = customer.trackedData || [];
 
     if (!trackedData) {
-      return <EmptyState icon="chat" text="Empty" size="small" />;
+      return <EmptyState icon="chat" text="Prázdný" size="small" />;
     }
 
     return (
@@ -80,11 +80,11 @@ class TrackedDataSection extends React.Component<Props> {
           </SidebarCounter>
         </li>
         <li>
-          <FieldStyle>{__('Last online')}</FieldStyle>
+          <FieldStyle>{__('Poslední on-line')}</FieldStyle>
           <SidebarCounter>{dayjs(lastSeenAt).format('lll')}</SidebarCounter>
         </li>
         <li>
-          <FieldStyle>{__('Session count')}</FieldStyle>
+          <FieldStyle>{__('Počet relací')}</FieldStyle>
           <SidebarCounter>{sessionCount}</SidebarCounter>
         </li>
         {this.renderTrackedData(trackedData)}
@@ -97,7 +97,7 @@ class TrackedDataSection extends React.Component<Props> {
 
     return (
       <Box
-        title={__('Tracked data')}
+        title={__('Sledovaná data')}
         name="showTrackedData"
         callback={collapseCallback}
       >

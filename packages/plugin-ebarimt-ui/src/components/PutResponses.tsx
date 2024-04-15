@@ -2,7 +2,7 @@ import {
   DataWithLoader,
   Pagination,
   SortHandler,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import { router, __ } from '@saashq/ui/src/utils';
 import { Wrapper, BarItems } from '@saashq/ui/src/layout';
@@ -45,11 +45,11 @@ class PutResponses extends React.Component<IProps, State> {
     super(props);
 
     this.state = {
-      searchValue: this.props.searchValue
+      searchValue: this.props.searchValue,
     };
   }
 
-  search = e => {
+  search = (e) => {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -64,7 +64,7 @@ class PutResponses extends React.Component<IProps, State> {
     }, 500);
   };
 
-  moveCursorAtTheEnd = e => {
+  moveCursorAtTheEnd = (e) => {
     const tmpValue = e.target.value;
     e.target.value = '';
     e.target.value = tmpValue;
@@ -83,7 +83,7 @@ class PutResponses extends React.Component<IProps, State> {
       onFilter,
       onSelect,
       isFiltered,
-      clearFilter
+      clearFilter,
     } = this.props;
     const mainContent = (
       <TableWrapper>
@@ -109,7 +109,7 @@ class PutResponses extends React.Component<IProps, State> {
                 <SortHandler sortField={'taxType'} label={__('Tax Type')} />
               </th>
               <th>
-                <SortHandler sortField={'amount'} label={__('Amount')} />
+                <SortHandler sortField={'amount'} label={__('Množství')} />
               </th>
               <th>
                 <SortHandler sortField={'message'} label={__('Message')} />
@@ -124,7 +124,7 @@ class PutResponses extends React.Component<IProps, State> {
             </tr>
           </thead>
           <tbody id="putResponses">
-            {(putResponses || []).map(putResponse => (
+            {(putResponses || []).map((putResponse) => (
               <PutResponseRow
                 putResponse={putResponse}
                 key={putResponse._id}
@@ -142,7 +142,7 @@ class PutResponses extends React.Component<IProps, State> {
       onSearch,
       isFiltered,
       clearFilter,
-      queryParams
+      queryParams,
     };
 
     const actionBarRight = (

@@ -31,12 +31,12 @@ class EmailTemplate extends React.Component<FinalProps> {
     }
 
     if (emailTemplateQuery.error) {
-      return <EmptyState text="Not Found" icon="info-circle" />;
+      return <EmptyState text="Nenalezeno" icon="info-circle" />;
     }
 
     const updatedProps = {
       ...this.props,
-      template: emailTemplateQuery.emailTemplate || {}
+      template: emailTemplateQuery.emailTemplate || {},
     };
 
     return <EmailTemplateComponent {...updatedProps} />;
@@ -48,8 +48,8 @@ export default withProps<Props>(
     graphql<Props>(gql(queries.emailTemplate), {
       name: 'emailTemplateQuery',
       options: ({ templateId }) => ({
-        variables: { _id: templateId }
-      })
-    })
-  )(EmailTemplate)
+        variables: { _id: templateId },
+      }),
+    }),
+  )(EmailTemplate),
 );

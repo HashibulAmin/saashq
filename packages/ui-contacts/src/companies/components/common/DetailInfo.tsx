@@ -2,7 +2,7 @@ import {
   FieldStyle,
   SidebarCounter,
   SidebarFlexRow,
-  SidebarList
+  SidebarList,
 } from '@saashq/ui/src/layout/styles';
 
 import { ICompany } from '@saashq/ui-contacts/src/companies/types';
@@ -19,7 +19,7 @@ class DetailInfo extends React.Component<Props> {
   renderRow = (field, value) => {
     const { fields = [] } = this.props;
 
-    const property = fields.find(e => e.type === field);
+    const property = fields.find((e) => e.type === field);
 
     if (property && !property.isVisible) {
       return null;
@@ -39,7 +39,7 @@ class DetailInfo extends React.Component<Props> {
   renderParentCompany(parentCompany?: string) {
     return (
       <li>
-        <FieldStyle>{__('Parent company')}:</FieldStyle>
+        <FieldStyle>{__('Mateřská společnost')}:</FieldStyle>
         <SidebarCounter>{parentCompany || '-'}</SidebarCounter>
       </li>
     );
@@ -48,7 +48,7 @@ class DetailInfo extends React.Component<Props> {
   renderDescription(description?: string) {
     const { fields = [] } = this.props;
 
-    const descriptionField = fields.find(e => e.type === 'description');
+    const descriptionField = fields.find((e) => e.type === 'description');
 
     if (descriptionField && !descriptionField.isVisible) {
       return null;
@@ -57,7 +57,7 @@ class DetailInfo extends React.Component<Props> {
     return (
       <SidebarFlexRow>
         {descriptionField && descriptionField.isVisible}
-        {__(`Description`)}:<span>{description || '-'}</span>
+        {__(`Popis`)}:<span>{description || '-'}</span>
       </SidebarFlexRow>
     );
   }
@@ -67,24 +67,24 @@ class DetailInfo extends React.Component<Props> {
 
     return (
       <SidebarList className="no-link">
-        {this.renderRow('code', company.code)}
-        {this.renderRow('size', company.size)}
-        {this.renderRow('industry', company.industry)}
+        {this.renderRow('kód', company.code)}
+        {this.renderRow('velikost', company.size)}
+        {this.renderRow('průmysl', company.industry)}
         {this.renderParentCompany(
-          company.parentCompany ? company.parentCompany.primaryName : '-'
+          company.parentCompany ? company.parentCompany.primaryName : '-',
         )}
-        {this.renderRow('primaryEmail', company.primaryEmail)}
+        {this.renderRow('Primární email', company.primaryEmail)}
         {this.renderRow(
-          'owner',
+          'majitel',
           company.owner && company.owner.details
             ? company.owner.details.fullName
-            : '-'
+            : '-',
         )}
-        {this.renderRow('primaryPhone', company.primaryPhone)}
-        {this.renderRow('location', company.location)}
-        {this.renderRow('businessType', company.businessType)}
-        {this.renderRow('isSubscribed', company.isSubscribed)}
-        {this.renderRow('score', company.score)}
+        {this.renderRow('hlavní telefon', company.primaryPhone)}
+        {this.renderRow('umístění', company.location)}
+        {this.renderRow('obchodní typ', company.businessType)}
+        {this.renderRow('je Předplaceno', company.isSubscribed)}
+        {this.renderRow('skóre', company.score)}
         {this.renderDescription(company.description)}
       </SidebarList>
     );

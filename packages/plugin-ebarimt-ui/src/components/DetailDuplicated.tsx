@@ -75,7 +75,7 @@ class DetailDuplicated extends React.Component<IProps, State> {
             <th>{__('Resp')} </th>
             <th>{__('BillT')} </th>
             <th>{__('TaxT')} </th>
-            <th>{__('Amount')} </th>
+            <th>{__('Množství')} </th>
             <th>{__('Return BillID')}</th>
             <th>Actions</th>
           </tr>

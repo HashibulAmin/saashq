@@ -15,7 +15,7 @@ const CompanySection = asyncComponent(
     isEnabled('contacts') &&
     import(
       /* webpackChunkName: "CompanySection" */ '@saashq/ui-contacts/src/companies/components/CompanySection'
-    )
+    ),
 );
 
 const CustomerSection = asyncComponent(
@@ -23,7 +23,7 @@ const CustomerSection = asyncComponent(
     isEnabled('contacts') &&
     import(
       /* webpackChunkName: "CustomerSection" */ '@saashq/ui-contacts/src/customers/components/CustomerSection'
-    )
+    ),
 );
 
 type Props = {
@@ -59,7 +59,7 @@ export default class RightSidebar extends React.Component<Props> {
         <Box title={__('Other')} name="showOthers">
           <List>
             <li>
-              <div>{__('Created at')}: </div>{' '}
+              <div>{__('Vytvořeno v')}: </div>{' '}
               <span>{dayjs(car.createdAt).format('lll')}</span>
             </li>
             <li>

@@ -63,7 +63,7 @@ export default function Component(props: Props) {
           <thead>
             <tr>
               <th>{__('Kind')}</th>
-              <th>{__('Amount')}</th>
+              <th>{__('Množství')}</th>
               <th>{__('Postavení')}</th>
             </tr>
           </thead>

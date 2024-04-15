@@ -50,7 +50,7 @@ class Delay extends React.Component<Props, State> {
     return (
       <DrawerDetail>
         <FormGroup>
-          <ControlLabel required={true}>{__('Type')}</ControlLabel>
+          <ControlLabel required={true}>{__('Typ')}</ControlLabel>
 
           <Select
             value={config.type || 'hour'}

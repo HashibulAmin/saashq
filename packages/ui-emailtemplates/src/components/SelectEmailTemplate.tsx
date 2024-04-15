@@ -20,9 +20,9 @@ class EmailTemplates extends React.Component<EmailTemplatesProps> {
 
     return (
       <>
-        <ControlLabel>{`Total:${totalCount}`}</ControlLabel>
+        <ControlLabel>{`Celkový:${totalCount}`}</ControlLabel>
         <TemplateWrapper>
-          {templates.map(template => (
+          {templates.map((template) => (
             <EmailTemplate
               key={template._id}
               template={template}

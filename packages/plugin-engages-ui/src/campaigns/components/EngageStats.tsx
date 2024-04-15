@@ -144,7 +144,7 @@ class EmailStatistics extends React.Component<Props> {
             <strong>{message.totalCustomersCount}</strong>
           </FlexRow>
           <FlexRow>
-            <label>{__('Created at')}:</label>
+            <label>{__('Vytvořeno v')}:</label>
             <strong>
               {' '}
               {dayjs(message.createdAt).format('DD MMM YYYY, HH:MM')}

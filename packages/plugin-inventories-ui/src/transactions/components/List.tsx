@@ -29,7 +29,7 @@ const List = (props: Props) => {
           <th>{__('Větev')}</th>
           <th>{__('Oddělení')}</th>
           <th>{__('Content Type')}</th>
-          <th>{__('Created at')}</th>
+          <th>{__('Vytvořeno v')}</th>
           <th>{__('Akce')}</th>
         </tr>
       </thead>

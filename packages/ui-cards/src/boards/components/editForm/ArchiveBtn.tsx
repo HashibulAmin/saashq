@@ -35,7 +35,7 @@ export const ArchiveBtn = (props: IProps) => {
         </ColorButton>
         <ColorButton onClick={onSendToBoard}>
           <Icon icon="redo" />
-          {__('Send to board')}
+          {__('Odeslat na palubu')}
         </ColorButton>
       </>
     );
@@ -51,7 +51,7 @@ export const ArchiveBtn = (props: IProps) => {
   return (
     <ColorButton onClick={onArchive}>
       <Icon icon="archive-alt" />
-      {__('Archive')}
+      {__('Archiv')}
     </ColorButton>
   );
 };

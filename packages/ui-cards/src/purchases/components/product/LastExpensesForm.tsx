@@ -7,12 +7,12 @@ function LastExpensesForm({ expenseAmountData }) {
     <Table whiteSpace="nowrap" hover={true}>
       <thead>
         <tr>
-          <th>{__('PRODUCT / SERVICE')}</th>
-          <th>{__('QUANTITY')}</th>
-          <th>{__('AMOUNT')}</th>
-          <th>{__('UNIT PRICE')}</th>
-          <th>{__('EXPENSE')}</th>
-          <th>{__('AMOUNT WITH EXPENSE')}</th>
+          <th>{__('PRODUKT / SLUŽBA')}</th>
+          <th>{__('MNOŽSTVÍ')}</th>
+          <th>{__('MNOŽSTVÍ')}</th>
+          <th>{__('JEDNOTKOVÁ CENA')}</th>
+          <th>{__('NÁKLADY')}</th>
+          <th>{__('ČÁSTKA S NÁKLADEM')}</th>
         </tr>
       </thead>
       <tbody>

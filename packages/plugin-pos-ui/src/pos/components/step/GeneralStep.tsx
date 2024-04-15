@@ -250,7 +250,7 @@ class GeneralStep extends React.Component<Props, State> {
                 <FormGroup>
                   <ControlLabel>Brand</ControlLabel>
                   <SelectBrands
-                    label={__('Choose brands')}
+                    label={__('Vyberte si značky')}
                     onSelect={(brand) =>
                       this.onChangeFunction('pos', {
                         ...pos,

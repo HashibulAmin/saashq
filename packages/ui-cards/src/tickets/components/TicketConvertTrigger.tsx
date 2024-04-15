@@ -17,13 +17,13 @@ type Props = {
 };
 
 export default function TicketConvertTrigger(props: Props) {
-  const title = props.url ? __('Go to a ticket') : __('Convert to a ticket');
+  const title = props.url ? __('Přejít na lístek') : __('Převést na lístek');
 
   const extendedProps = {
     ...props,
     options,
     title,
-    autoOpenKey: 'showTicketConvertModal'
+    autoOpenKey: 'showTicketConvertModal',
   };
 
   return <ConvertTrigger {...extendedProps} />;

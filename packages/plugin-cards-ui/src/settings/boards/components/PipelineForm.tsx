@@ -274,7 +274,7 @@ class PipelineForm extends React.Component<Props, State> {
       <FormGroup>
         <ControlLabel required={true}>Board</ControlLabel>
         <Select
-          placeholder={__('Choose a board')}
+          placeholder={__('Vyberte desku')}
           value={this.state.boardId}
           options={boardOptions}
           onChange={onChange}

@@ -25,7 +25,7 @@ class Form extends React.Component<Props> {
       isSubmitted,
       callback,
       confirmationUpdate,
-      object
+      object,
     }: IButtonMutateProps) => {
       const afterMutate = () => {
         if (callback) {
@@ -34,11 +34,11 @@ class Form extends React.Component<Props> {
       };
 
       let mutation = mutations.emailTemplatesAdd;
-      let successAction = 'added';
+      let successAction = 'přidal';
 
       if (object) {
         mutation = mutations.emailTemplatesEdit;
-        successAction = 'updated';
+        successAction = 'aktualizováno';
       }
 
       return (
@@ -50,23 +50,23 @@ class Form extends React.Component<Props> {
           refetchQueries={[
             {
               query: gql(queries.emailTemplates),
-              variables: { ...this.props.params }
+              variables: { ...this.props.params },
             },
             {
               query: gql(queries.totalCount),
-              variables: { ...this.props.params }
-            }
+              variables: { ...this.props.params },
+            },
           ]}
           type="submit"
           confirmationUpdate={confirmationUpdate}
-          successMessage={`You successfully ${successAction} a ${name}`}
+          successMessage={`Ty úspěšně ${successAction} A ${name}`}
         />
       );
     };
 
     const updatedProps = {
       ...this.props,
-      renderButton
+      renderButton,
     };
 
     return <FormComponent {...updatedProps} />;

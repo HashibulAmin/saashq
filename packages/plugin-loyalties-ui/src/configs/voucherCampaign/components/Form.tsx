@@ -196,7 +196,7 @@ class Form extends React.Component<Props, State> {
                 }))}
                 name="lotteryCampaignId"
                 onChange={this.onChangeCombo.bind(this, 'lotteryCampaignId')}
-                loadingPlaceholder={__('Loading...')}
+                loadingPlaceholder={__('Načítání...')}
               />
             </FormGroup>
           </FormColumn>
@@ -233,7 +233,7 @@ class Form extends React.Component<Props, State> {
                 }))}
                 name="spinCampaignId"
                 onChange={this.onChangeCombo.bind(this, 'spinCampaignId')}
-                loadingPlaceholder={__('Loading...')}
+                loadingPlaceholder={__('Načítání...')}
               />
             </FormGroup>
           </FormColumn>

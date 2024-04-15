@@ -36,15 +36,15 @@ class SchedulesList extends React.Component<IProps> {
           <thead>
             <tr>
               <th>{__('Date')}</th>
-              <th>{__('Type')}</th>
+              <th>{__('Typ')}</th>
               <th>{__('Saving Balance')}</th>
-              <th>{__('Amount')}</th>
+              <th>{__('Množství')}</th>
               <th>{__('Stored Interest')}</th>
               <th>{__('Total')}</th>
             </tr>
           </thead>
           <tbody id="schedules">
-            {transactions.map(transaction => (
+            {transactions.map((transaction) => (
               <ScheduleRow
                 transaction={transaction}
                 key={transaction._id}

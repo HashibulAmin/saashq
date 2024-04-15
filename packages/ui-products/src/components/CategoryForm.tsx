@@ -11,16 +11,16 @@ import Uploader from '@saashq/ui/src/components/Uploader';
 import {
   FormColumn,
   FormWrapper,
-  ModalFooter
+  ModalFooter,
 } from '@saashq/ui/src/styles/main';
 import {
   IAttachment,
   IButtonMutateProps,
-  IFormProps
+  IFormProps,
 } from '@saashq/ui/src/types';
 import {
   extractAttachment,
-  generateCategoryOptions
+  generateCategoryOptions,
 } from '@saashq/ui/src/utils';
 import { ICategory } from '@saashq/ui/src/utils/categories';
 import { __ } from '@saashq/ui/src/utils/core';
@@ -63,7 +63,7 @@ class CategoryForm extends React.Component<Props, State> {
       code: category.code || '',
       scopeBrandIds: category.scopeBrandIds || [],
       isSimilarity: category.isSimilarity || false,
-      similarities: category.similarities || []
+      similarities: category.similarities || [],
     };
   }
 
@@ -78,7 +78,7 @@ class CategoryForm extends React.Component<Props, State> {
       code,
       scopeBrandIds,
       isSimilarity,
-      similarities
+      similarities,
     } = this.state;
 
     if (category) {
@@ -88,7 +88,7 @@ class CategoryForm extends React.Component<Props, State> {
     let genMaskType = maskType;
     let genMask = maskType && mask;
 
-    const parentCategory = categories.find(c => c._id === parentId);
+    const parentCategory = categories.find((c) => c._id === parentId);
     if (parentCategory && parentCategory.maskType === 'hard') {
       genMaskType = parentCategory.maskType;
       genMask = parentCategory.mask;
@@ -110,7 +110,7 @@ class CategoryForm extends React.Component<Props, State> {
       scopeBrandIds,
       attachment,
       isSimilarity,
-      similarities: isSimilarity ? similarities : undefined
+      similarities: isSimilarity ? similarities : undefined,
     };
   };
 
@@ -118,35 +118,35 @@ class CategoryForm extends React.Component<Props, State> {
     this.setState({ attachment: files ? files[0] : undefined });
   };
 
-  onChange = e => {
+  onChange = (e) => {
     const { categories } = this.props;
 
     const name = e.target.name;
     const value = e.target.value;
 
-    const initMask = code => {
+    const initMask = (code) => {
       const { mask } = this.state;
-      const values = (mask?.values || []).filter(v => v.title !== 'category');
+      const values = (mask?.values || []).filter((v) => v.title !== 'category');
       values.unshift({
         id: 'category',
         title: 'category',
         len: code.length,
-        static: code
+        static: code,
       });
       this.setState({ mask: { ...mask, values } });
     };
 
     const { maskType, parentId } = this.state;
-    const parentCategory = categories.find(c => c._id === value);
+    const parentCategory = categories.find((c) => c._id === value);
     this.setState(
       {
-        [name]: value
+        [name]: value,
       } as any,
       () => {
         if (name === 'parentId') {
           this.setState({
             maskType: parentCategory?.maskType || '',
-            mask: parentCategory?.mask || {}
+            mask: parentCategory?.mask || {},
           });
         }
         if (['code', 'maskType'].includes(name) && maskType) {
@@ -158,14 +158,14 @@ class CategoryForm extends React.Component<Props, State> {
             this.setState({ mask: parentCategory?.mask || {} });
           }
         }
-      }
+      },
     );
   };
 
   generateMaskTypes = () => {
     const { categories } = this.props;
     const { parentId } = this.state;
-    const parentCategory = categories.find(c => c._id === parentId);
+    const parentCategory = categories.find((c) => c._id === parentId);
 
     if (parentCategory?.maskType === 'hard') {
       return <option value="hard">{__('Hard: Заавал удамших')}</option>;
@@ -197,7 +197,7 @@ class CategoryForm extends React.Component<Props, State> {
       return null;
     }
 
-    const parentCategory = categories.find(c => c._id === parentId);
+    const parentCategory = categories.find((c) => c._id === parentId);
 
     const changeCode = (code: string) => {
       this.setState({ code });
@@ -218,7 +218,7 @@ class CategoryForm extends React.Component<Props, State> {
               defaultChecked={mask.isSimilar}
               onChange={(e: any) =>
                 this.setState({
-                  mask: { ...mask, isSimilar: e.target.checked }
+                  mask: { ...mask, isSimilar: e.target.checked },
                 })
               }
             />
@@ -240,11 +240,11 @@ class CategoryForm extends React.Component<Props, State> {
   addRule = () => {
     const { similarities } = this.state;
     this.setState({
-      similarities: [...similarities, { id: Math.random().toString() }]
+      similarities: [...similarities, { id: Math.random().toString() }],
     });
   };
 
-  onChangeSimilarity = e => {
+  onChangeSimilarity = (e) => {
     const { similarities } = this.state;
     const checked = e.target.checked;
     this.setState({ isSimilarity: checked }, () => {
@@ -258,13 +258,13 @@ class CategoryForm extends React.Component<Props, State> {
     const { fieldGroups } = this.props;
     const { similarities } = this.state;
 
-    const onRemove = id => {
-      this.setState({ similarities: similarities.filter(c => c.id !== id) });
+    const onRemove = (id) => {
+      this.setState({ similarities: similarities.filter((c) => c.id !== id) });
     };
 
     const editRule = (id, rule) => {
-      const updated = (similarities || []).map(r =>
-        r.id === id ? { ...r, ...rule } : r
+      const updated = (similarities || []).map((r) =>
+        r.id === id ? { ...r, ...rule } : r,
       );
       this.setState({ similarities: updated });
     };
@@ -281,7 +281,7 @@ class CategoryForm extends React.Component<Props, State> {
       editRule(id, { [name]: value, fieldId: '' });
     };
 
-    return (similarities || []).map(rule => (
+    return (similarities || []).map((rule) => (
       <GroupWrapper key={rule.id}>
         <FormWrapper>
           <FormColumn>
@@ -302,10 +302,10 @@ class CategoryForm extends React.Component<Props, State> {
                 componentClass="select"
                 options={[
                   { value: '', label: 'Empty' },
-                  ...(fieldGroups || []).map(fg => ({
+                  ...(fieldGroups || []).map((fg) => ({
                     value: fg._id,
-                    label: `${fg.code} - ${fg.name}`
-                  }))
+                    label: `${fg.code} - ${fg.name}`,
+                  })),
                 ]}
                 value={rule.groupId}
                 onChange={onChangeFieldGroup.bind(this, rule.id)}
@@ -324,10 +324,10 @@ class CategoryForm extends React.Component<Props, State> {
                     (
                       (
                         (fieldGroups || []).find(
-                          fg => fg._id === rule.groupId
+                          (fg) => fg._id === rule.groupId,
                         ) || {}
                       ).fields || []
-                    ).filter(f =>
+                    ).filter((f) =>
                       [
                         'input',
                         'textarea',
@@ -338,13 +338,13 @@ class CategoryForm extends React.Component<Props, State> {
                         'product',
                         'branch',
                         'department',
-                        'map'
-                      ].includes(f.type)
+                        'map',
+                      ].includes(f.type),
                     ) || []
-                  ).map(f => ({
+                  ).map((f) => ({
                     value: f._id,
-                    label: `${f.code} - ${f.text}`
-                  }))
+                    label: `${f.code} - ${f.text}`,
+                  })),
                 ]}
                 value={rule.fieldId}
                 onChange={onChangeControl.bind(this, rule.id)}
@@ -435,8 +435,8 @@ class CategoryForm extends React.Component<Props, State> {
         <FormGroup>
           <ControlLabel>Brand</ControlLabel>
           <SelectBrands
-            label={__('Choose brands')}
-            onSelect={brandIds => {
+            label={__('Vyberte si značky')}
+            onSelect={(brandIds) => {
               this.setState({ scopeBrandIds: brandIds as string[] });
             }}
             initialValue={scopeBrandIds}
@@ -522,7 +522,7 @@ class CategoryForm extends React.Component<Props, State> {
             values: this.generateDoc(values),
             isSubmitted,
             callback: closeModal,
-            object: category
+            object: category,
           })}
         </ModalFooter>
       </>

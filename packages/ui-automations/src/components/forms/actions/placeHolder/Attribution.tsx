@@ -110,13 +110,13 @@ export default class Attribution extends React.Component<Props, State> {
             <FormGroup>
               <ControlLabel>{__('Vyhledávání')}</ControlLabel>
               <FormControl
-                placeholder="type a search"
+                placeholder="zadejte vyhledávání"
                 value={searchValue}
                 onChange={onSearch}
               />
             </FormGroup>
             <li>
-              <b>{__('Attributions')}</b>
+              <b>{__('Atribuce')}</b>
             </li>
             {filterAttrs.map((item) => (
               <li
@@ -145,7 +145,7 @@ export default class Attribution extends React.Component<Props, State> {
         container={this}
       >
         <span>
-          {__('Attribution')} <Icon icon="angle-down" />
+          {__('Atribuce')} <Icon icon="angle-down" />
         </span>
       </OverlayTrigger>
     );

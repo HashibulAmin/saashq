@@ -28,11 +28,11 @@ const CompanyFromContainer = (props: FinalProps) => {
     name,
     values,
     isSubmitted,
-    object
+    object,
   }: IButtonMutateProps) => {
     const { closeModal, getAssociatedCompany } = props;
 
-    const afterSave = data => {
+    const afterSave = (data) => {
       if (values.relationData && Object.keys(values.relationData).length > 0) {
         const { relationData } = values;
 
@@ -44,8 +44,8 @@ const CompanyFromContainer = (props: FinalProps) => {
                 mainType: 'company',
                 mainTypeId: data.companiesAdd._id,
                 relType: key,
-                relTypeIds: relationData[key]
-              }
+                relTypeIds: relationData[key],
+              },
             });
           }
         }
@@ -66,16 +66,16 @@ const CompanyFromContainer = (props: FinalProps) => {
         refetchQueries={getRefetchQueries()}
         isSubmitted={isSubmitted}
         type="submit"
-        successMessage={`You successfully ${
-          object ? 'updated' : 'added'
-        } a ${name}`}
+        successMessage={`Ty úspěšně ${
+          object ? 'aktualizováno' : 'přidal'
+        } A ${name}`}
       />
     );
   };
 
   const updatedProps = {
     ...props,
-    renderButton
+    renderButton,
   };
 
   return (
@@ -97,7 +97,7 @@ const getRefetchQueries = () => {
     'companyDetail',
     // companies for customer detail company associate
     'companies',
-    'companyCounts'
+    'companyCounts',
   ];
 };
 

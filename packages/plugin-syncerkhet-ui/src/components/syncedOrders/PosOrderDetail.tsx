@@ -8,7 +8,7 @@ import {
   FieldStyle,
   SidebarCounter,
   SidebarList,
-  Table
+  Table,
 } from '@saashq/ui/src';
 import { DetailRow, FinanceAmount, FlexRow } from '../../styles';
 import { ICustomer } from '@saashq/ui-contacts/src/customers/types';
@@ -53,7 +53,7 @@ class OrderDetail extends React.Component<Props> {
   }
 
   renderEditPaid() {
-    return this.props.order.paidAmounts.map(paidAmount => {
+    return this.props.order.paidAmounts.map((paidAmount) => {
       return (
         <li key={paidAmount._id}>
           <FlexRow key={paidAmount._id}>
@@ -79,7 +79,7 @@ class OrderDetail extends React.Component<Props> {
     return this.renderRow('Delivery info', deliveryInfo.description);
   }
 
-  generateLabel = customer => {
+  generateLabel = (customer) => {
     const { firstName, primaryEmail, primaryPhone, lastName } =
       customer || ({} as ICustomer);
 
@@ -105,12 +105,12 @@ class OrderDetail extends React.Component<Props> {
       <SidebarList>
         {this.renderRow(
           `${(order.customerType || 'Customer').toLocaleUpperCase()}`,
-          order.customer ? this.generateLabel(order.customer) : ''
+          order.customer ? this.generateLabel(order.customer) : '',
         )}
         {this.renderRow('Bill Number', order.number)}
         {this.renderRow(
           'Date',
-          dayjs(order.paidDate || order.createdAt).format('lll')
+          dayjs(order.paidDate || order.createdAt).format('lll'),
         )}
         {this.renderDeliveryInfo()}
         {order.syncErkhetInfo
@@ -122,11 +122,11 @@ class OrderDetail extends React.Component<Props> {
               'Deal',
               <Link to={order.dealLink || ''}>
                 {order.deal?.name || 'deal'}
-              </Link>
+              </Link>,
             )
           : ''}
         <>
-          {(order.putResponses || []).map(p => {
+          {(order.putResponses || []).map((p) => {
             return (
               <DetailRow key={Math.random()}>
                 {this.renderRow('Bill ID', p.billId)}
@@ -142,12 +142,12 @@ class OrderDetail extends React.Component<Props> {
               <th>{__('Product')}</th>
               <th>{__('Count')}</th>
               <th>{__('Unit Price')}</th>
-              <th>{__('Amount')}</th>
+              <th>{__('Množství')}</th>
               <th>{__('Diff')}</th>
             </tr>
           </thead>
           <tbody id="orderItems">
-            {(order.items || []).map(item => (
+            {(order.items || []).map((item) => (
               <tr key={item._id}>
                 <td>{item.productName}</td>
                 <td>{item.count}</td>
@@ -161,7 +161,7 @@ class OrderDetail extends React.Component<Props> {
 
         {this.renderRow(
           'Total Amount',
-          this.displayValue(order, 'totalAmount')
+          this.displayValue(order, 'totalAmount'),
         )}
 
         <ul>

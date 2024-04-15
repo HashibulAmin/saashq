@@ -44,7 +44,7 @@ class Comment extends React.Component<Props, State> {
       <>
         <ColorButton onClick={() => handleShow()}>
           <Icon icon="comment-alt-message" />
-          {__('Comment')}
+          {__('Komentář')}
         </ColorButton>
 
         <Modal
@@ -55,7 +55,7 @@ class Comment extends React.Component<Props, State> {
           keyboard={false}
         >
           <Modal.Header closeButton={true}>
-            <Modal.Title>{__('Comments')}</Modal.Title>
+            <Modal.Title>{__('Komentář')}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <SpaceFormsWrapper>
@@ -89,7 +89,7 @@ class Comment extends React.Component<Props, State> {
                             />
                           </CommentContent>
                           <span>
-                            Created at{' '}
+                            Vytvořeno v{' '}
                             {dayjs(comment.createdAt).format(
                               'YYYY-MM-DD HH:mm',
                             )}
@@ -98,7 +98,7 @@ class Comment extends React.Component<Props, State> {
                         {createdUser?._id === currentUser._id && (
                           <div className="actions">
                             <span onClick={() => remove(comment._id)}>
-                              Delete
+                              Vymazat
                             </span>
                           </div>
                         )}

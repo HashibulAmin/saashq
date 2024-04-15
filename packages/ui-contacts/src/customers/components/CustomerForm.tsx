@@ -4,16 +4,16 @@ import {
   FormColumn,
   FormWrapper,
   ModalFooter,
-  ScrollWrapper
+  ScrollWrapper,
 } from '@saashq/ui/src/styles/main';
 import {
   EMAIL_VALIDATION_STATUSES,
-  PHONE_VALIDATION_STATUSES
+  PHONE_VALIDATION_STATUSES,
 } from '../constants';
 import {
   IButtonMutateProps,
   IFormProps,
-  IQueryParams
+  IQueryParams,
 } from '@saashq/ui/src/types';
 import { ICustomer, ICustomerDoc } from '../types';
 import { IUser, IUserLinks } from '@saashq/ui/src/auth/types';
@@ -74,7 +74,7 @@ class CustomerForm extends React.Component<Props, State> {
       birthDate: customer.birthDate,
       avatar: customer.avatar,
       primaryEmail: customer.primaryEmail,
-      primaryPhone: customer.primaryPhone
+      primaryPhone: customer.primaryPhone,
     };
   }
 
@@ -88,7 +88,7 @@ class CustomerForm extends React.Component<Props, State> {
 
     const links = {};
 
-    getConstantFromStore('social_links').forEach(link => {
+    getConstantFromStore('social_links').forEach((link) => {
       links[link.value] = finalValues[link.value];
     });
 
@@ -107,11 +107,11 @@ class CustomerForm extends React.Component<Props, State> {
       emailValidationStatus: finalValues.emailValidationStatus,
       phoneValidationStatus: finalValues.phoneValidationStatus,
       links,
-      relationData: this.state.relationData
+      relationData: this.state.relationData,
     };
   };
 
-  onAvatarUpload = url => {
+  onAvatarUpload = (url) => {
     this.setState({ avatar: url });
   };
 
@@ -211,16 +211,16 @@ class CustomerForm extends React.Component<Props, State> {
     this.setState({ phones: options, primaryPhone: selectedOption });
   };
 
-  onOwnerChange = ownerId => {
+  onOwnerChange = (ownerId) => {
     this.setState({ ownerId });
   };
 
-  onDateChange = birthDate => {
+  onDateChange = (birthDate) => {
     const currentDate = new Date();
     if (currentDate > birthDate) {
       this.setState({ birthDate });
     } else {
-      Alert.error('Please enter a valid "Date".');
+      Alert.error('Prosím vložte správné "datum".');
     }
   };
 
@@ -232,7 +232,7 @@ class CustomerForm extends React.Component<Props, State> {
     }
   };
 
-  onEmailVerificationStatusChange = e => {
+  onEmailVerificationStatusChange = (e) => {
     const { changeVerificationStatus } = this.props;
 
     if (changeVerificationStatus) {
@@ -240,7 +240,7 @@ class CustomerForm extends React.Component<Props, State> {
     }
   };
 
-  onPhoneVerificationStatusChange = e => {
+  onPhoneVerificationStatusChange = (e) => {
     const { changeVerificationStatus } = this.props;
 
     if (changeVerificationStatus) {
@@ -266,9 +266,9 @@ class CustomerForm extends React.Component<Props, State> {
         ...formProps,
         name: link.value,
         defaultValue: links[link.value] || '',
-        type: 'url'
+        type: 'url',
       },
-      'link'
+      'link',
     );
   }
 
@@ -283,7 +283,7 @@ class CustomerForm extends React.Component<Props, State> {
       <>
         <ScrollWrapper>
           <CollapseContent
-            title={__('General information')}
+            title={__('Obecná informace')}
             compact={true}
             open={true}
           >
@@ -295,29 +295,29 @@ class CustomerForm extends React.Component<Props, State> {
                 />
               </FormColumn>
               <FormColumn>
-                {this.renderFormGroup('Code', {
+                {this.renderFormGroup('Kód', {
                   ...formProps,
                   name: 'code',
-                  defaultValue: customer.code || ''
+                  defaultValue: customer.code || '',
                 })}
 
                 {this.renderFormGroup(
-                  'Owner',
+                  'Majitel',
                   {
-                    label: 'Choose an owner',
+                    label: 'Vyberte vlastníka',
                     name: 'ownerId',
                     initialValue: ownerId,
                     onSelect: this.onOwnerChange,
-                    multi: false
+                    multi: false,
                   },
-                  'selectMember'
+                  'selectMember',
                 )}
               </FormColumn>
             </FormWrapper>
             <FormWrapper>
               <FormColumn>
                 <FormGroup>
-                  <ControlLabel required={true}>First Name</ControlLabel>
+                  <ControlLabel required={true}>Jméno</ControlLabel>
                   <FormControl
                     {...formProps}
                     defaultValue={customer.firstName || ''}
@@ -328,7 +328,7 @@ class CustomerForm extends React.Component<Props, State> {
                 </FormGroup>
 
                 <FormGroup>
-                  <ControlLabel>Middle Name</ControlLabel>
+                  <ControlLabel>Prostřední Jméno</ControlLabel>
                   <FormControl
                     {...formProps}
                     name="middleName"
@@ -337,13 +337,13 @@ class CustomerForm extends React.Component<Props, State> {
                 </FormGroup>
 
                 <FormGroup>
-                  <ControlLabel required={true}>Email</ControlLabel>
+                  <ControlLabel required={true}>E-mailem</ControlLabel>
                   <AutoCompletionSelect
                     required={true}
                     defaultValue={primaryEmail}
                     defaultOptions={this.getEmailsOptions(customer)}
                     autoCompletionType="emails"
-                    placeholder="Enter an email"
+                    placeholder="Zadejte e-mail"
                     queryName="customers"
                     query={autoCompletionQuery}
                     checkFormat={validator.isEmail}
@@ -352,7 +352,7 @@ class CustomerForm extends React.Component<Props, State> {
                 </FormGroup>
 
                 <FormGroup>
-                  <ControlLabel>Primary email verification status</ControlLabel>
+                  <ControlLabel>Primární stav ověření e-mailu</ControlLabel>
                   <FormControl
                     {...formProps}
                     name="emailValidationStatus"
@@ -362,31 +362,31 @@ class CustomerForm extends React.Component<Props, State> {
                   />
                 </FormGroup>
 
-                {this.renderFormGroup('Pronoun', {
+                {this.renderFormGroup('Zájmeno', {
                   ...formProps,
                   name: 'sex',
                   componentClass: 'select',
                   defaultValue: customer.sex || 0,
-                  options: genderChoices(__)
+                  options: genderChoices(__),
                 })}
 
-                {this.renderFormGroup('Department', {
+                {this.renderFormGroup('Oddělení', {
                   ...formProps,
                   name: 'department',
-                  defaultValue: customer.department || ''
+                  defaultValue: customer.department || '',
                 })}
 
-                {this.renderFormGroup('Description', {
+                {this.renderFormGroup('Popis', {
                   ...formProps,
                   name: 'description',
                   defaultValue: customer.description || '',
                   max: 140,
-                  componentClass: 'textarea'
+                  componentClass: 'textarea',
                 })}
               </FormColumn>
               <FormColumn>
                 <FormGroup>
-                  <ControlLabel>Last Name</ControlLabel>
+                  <ControlLabel>Příjmení</ControlLabel>
                   <FormControl
                     {...formProps}
                     name="lastName"
@@ -395,25 +395,25 @@ class CustomerForm extends React.Component<Props, State> {
                 </FormGroup>
 
                 {this.renderFormGroup(
-                  'Birthday',
+                  'Narozeniny',
                   {
                     ...formProps,
                     required: false,
                     name: 'birthDate',
-                    placeholder: 'Birthday',
+                    placeholder: 'Narozeniny',
                     value: this.state.birthDate,
-                    onChange: this.onDateChange
+                    onChange: this.onDateChange,
                   },
-                  'date'
+                  'date',
                 )}
 
                 <FormGroup>
-                  <ControlLabel>Phone</ControlLabel>
+                  <ControlLabel>Telefon</ControlLabel>
                   <AutoCompletionSelect
                     defaultValue={primaryPhone}
                     defaultOptions={this.getPhonesOptions(customer)}
                     autoCompletionType="phones"
-                    placeholder="Enter an phone"
+                    placeholder="Zadejte telefon"
                     queryName="customers"
                     query={autoCompletionQuery}
                     checkFormat={isValidPhone}
@@ -422,7 +422,7 @@ class CustomerForm extends React.Component<Props, State> {
                 </FormGroup>
 
                 <FormGroup>
-                  <ControlLabel>Primary phone verification status</ControlLabel>
+                  <ControlLabel>Stav primárního ověření telefonu</ControlLabel>
                   <FormControl
                     {...formProps}
                     name="phoneValidationStatus"
@@ -432,13 +432,13 @@ class CustomerForm extends React.Component<Props, State> {
                   />
                 </FormGroup>
 
-                {this.renderFormGroup('Position', {
+                {this.renderFormGroup('Pozice', {
                   ...formProps,
                   name: 'position',
-                  defaultValue: customer.position || ''
+                  defaultValue: customer.position || '',
                 })}
 
-                {this.renderFormGroup('Has Authority', {
+                {this.renderFormGroup('Má Autoritu', {
                   ...formProps,
                   name: 'hasAuthority',
                   componentClass: 'radio',
@@ -447,20 +447,20 @@ class CustomerForm extends React.Component<Props, State> {
                       childNode: 'Yes',
                       value: 'Yes',
                       checked: this.state.hasAuthority === 'Yes',
-                      onChange: e =>
-                        this.setState({ hasAuthority: e.target.value })
+                      onChange: (e) =>
+                        this.setState({ hasAuthority: e.target.value }),
                     },
                     {
                       childNode: 'No',
                       value: 'No',
                       checked: this.state.hasAuthority === 'No',
-                      onChange: e =>
-                        this.setState({ hasAuthority: e.target.value })
-                    }
-                  ]
+                      onChange: (e) =>
+                        this.setState({ hasAuthority: e.target.value }),
+                    },
+                  ],
                 })}
 
-                {this.renderFormGroup('Subscribed', {
+                {this.renderFormGroup('Odebíráno', {
                   ...formProps,
                   name: 'isSubscribed',
                   componentClass: 'radio',
@@ -469,39 +469,39 @@ class CustomerForm extends React.Component<Props, State> {
                       childNode: 'Yes',
                       value: 'Yes',
                       checked: this.state.isSubscribed === 'Yes',
-                      onChange: e =>
-                        this.setState({ isSubscribed: e.target.value })
+                      onChange: (e) =>
+                        this.setState({ isSubscribed: e.target.value }),
                     },
                     {
                       childNode: 'No',
                       value: 'No',
                       checked: this.state.isSubscribed === 'No',
-                      onChange: e =>
-                        this.setState({ isSubscribed: e.target.value })
-                    }
-                  ]
+                      onChange: (e) =>
+                        this.setState({ isSubscribed: e.target.value }),
+                    },
+                  ],
                 })}
               </FormColumn>
             </FormWrapper>
           </CollapseContent>
-          <CollapseContent title={__('Links')} compact={true}>
+          <CollapseContent title={__('Odkazy')} compact={true}>
             <FormWrapper>
               <FormColumn>
-                {getConstantFromStore('social_links').map(link =>
-                  this.renderLink(formProps, link)
+                {getConstantFromStore('social_links').map((link) =>
+                  this.renderLink(formProps, link),
                 )}
               </FormColumn>
             </FormWrapper>
           </CollapseContent>
           {isEnabled('forms') && (
-            <CollapseContent title={__('Relations')} compact={true}>
+            <CollapseContent title={__('Vztahy')} compact={true}>
               <FormWrapper>
                 <FormColumn>
                   {!this.props.customer &&
                     loadDynamicComponent('relationForm', {
                       ...this.props,
                       onChange: this.onRelationsChange,
-                      contentType: 'contacts:customer'
+                      contentType: 'contacts:customer',
                     })}
                 </FormColumn>
               </FormWrapper>
@@ -515,7 +515,7 @@ class CustomerForm extends React.Component<Props, State> {
             onClick={closeModal}
             icon="times-circle"
           >
-            Close
+            Zavřít
           </Button>
 
           {renderButton({
@@ -523,7 +523,7 @@ class CustomerForm extends React.Component<Props, State> {
             values: this.generateDoc(values),
             isSubmitted,
             object: this.props.customer,
-            resetSubmit
+            resetSubmit,
           })}
 
           {!this.props.customer && (
@@ -536,7 +536,7 @@ class CustomerForm extends React.Component<Props, State> {
                 onClick={this.saveAndRedirect.bind(this, 'detail')}
                 disabled={isSubmitted}
               >
-                Save & View
+                Uložit a Zobrazit
               </Button>
               <Button
                 type="submit"
@@ -545,7 +545,7 @@ class CustomerForm extends React.Component<Props, State> {
                 disabled={isSubmitted}
                 icon="user-plus"
               >
-                Save & New
+                Uložit & Nový
               </Button>
             </>
           )}

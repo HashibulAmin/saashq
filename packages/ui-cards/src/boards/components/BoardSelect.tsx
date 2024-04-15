@@ -21,7 +21,7 @@ type Props = {
 };
 
 class BoardSelect extends React.Component<Props> {
-  renderOptions = option => {
+  renderOptions = (option) => {
     return (
       <div className="simple-option">
         <span>{option.label}</span>
@@ -54,7 +54,7 @@ class BoardSelect extends React.Component<Props> {
       onChangeBoard,
       onChangePipeline,
       onChangeStage,
-      callback
+      callback,
     } = this.props;
 
     const __ = (key: string, options?: any) => {
@@ -68,32 +68,32 @@ class BoardSelect extends React.Component<Props> {
     return (
       <>
         <FormGroup>
-          <ControlLabel>Board</ControlLabel>
+          <ControlLabel>Deska</ControlLabel>
           {this.renderSelect(
-            __('Choose a board'),
+            __('Vyberte desku'),
             boardId,
-            board => onChangeBoard(board.value),
-            selectOptions(boards)
+            (board) => onChangeBoard(board.value),
+            selectOptions(boards),
           )}
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>Pipeline</ControlLabel>
+          <ControlLabel>Potrubí</ControlLabel>
           {this.renderSelect(
-            __('Choose a pipeline'),
+            __('Vyberte potrubí'),
             pipelineId,
-            pipeline => onChangePipeline(pipeline.value),
-            selectOptions(pipelines)
+            (pipeline) => onChangePipeline(pipeline.value),
+            selectOptions(pipelines),
           )}
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>Stage</ControlLabel>
+          <ControlLabel>Etapa</ControlLabel>
           {this.renderSelect(
-            __('Choose a stage'),
+            __('Vyberte fázi'),
             stageId,
-            stage => onChangeStage(stage.value, callback),
-            selectOptions(stages)
+            (stage) => onChangeStage(stage.value, callback),
+            selectOptions(stages),
           )}
         </FormGroup>
       </>

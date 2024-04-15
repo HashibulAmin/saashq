@@ -17,9 +17,9 @@ type Props = {
 class Contacts extends React.Component<Props> {
   renderContacts(users) {
     const { customerId } = this.props;
-    const customers = users.filter(user => user._id !== customerId);
+    const customers = users.filter((user) => user._id !== customerId);
 
-    return customers.map(customer => (
+    return customers.map((customer) => (
       <Contact key={customer._id}>
         <NameCard.Avatar customer={customer} size={30} />
         {renderFullName(customer)}
@@ -35,17 +35,17 @@ class Contacts extends React.Component<Props> {
     const { companies } = this.props;
 
     if (!companies) {
-      return <EmptyState icon="user-1" text="No contacts" />;
+      return <EmptyState icon="user-1" text="Žádné kontakty" />;
     }
 
-    const customers = companies.map(company => company.customers);
+    const customers = companies.map((company) => company.customers);
 
-    return customers.map(users => this.renderContacts(users));
+    return customers.map((users) => this.renderContacts(users));
   }
 
   render() {
     return (
-      <Box title={__('Contacts')} name="showContacts">
+      <Box title={__('Kontakty')} name="showContacts">
         {this.renderContent()}
       </Box>
     );

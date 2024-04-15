@@ -47,7 +47,7 @@ class RelatedFileList extends React.Component<Props> {
                 <ItemName>{__('Size')}</ItemName>
               </th>
               <th>
-                <ItemName>{__('Type')}</ItemName>
+                <ItemName>{__('Typ')}</ItemName>
               </th>
             </tr>
           </thead>

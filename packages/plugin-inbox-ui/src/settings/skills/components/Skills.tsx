@@ -101,7 +101,7 @@ function Skills(props: Props) {
         <thead>
           <tr>
             <th>{__('Název')}</th>
-            <th>{__('Type')}</th>
+            <th>{__('Typ')}</th>
             <th>{__('Akce')}</th>
           </tr>
         </thead>

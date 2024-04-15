@@ -30,17 +30,17 @@ const Status = styledTS<{ verified: boolean }>(styled.span)`
 const statuses = {
   valid: {
     icon: 'shield-check',
-    label: 'Valid',
+    label: 'Platný',
     verified: true,
   },
   invalid: {
     icon: 'shield-slash',
-    label: 'Invalid',
+    label: 'Neplatný',
     verified: false,
   },
   receives_sms: {
     icon: 'comment-alt-message',
-    label: 'Can receive sms',
+    label: 'Může přijímat SMS',
     verified: true,
   },
   unknown: {
@@ -50,12 +50,12 @@ const statuses = {
   },
   unverifiable: {
     icon: 'ban',
-    label: 'Unverifiable',
+    label: 'Neověřitelné',
     verified: false,
   },
   accept_all_unverifiable: {
     icon: 'ban',
-    label: 'Unverifiable',
+    label: 'Neověřitelné',
     verified: false,
   },
 };
@@ -64,7 +64,7 @@ function PrimaryPhone({ phone, status }: { phone?: string; status?: string }) {
   const renderStatus = () => {
     if (status && statuses[status]) {
       return (
-        <Tip text={`Status: ${statuses[status].label}`} placement="top">
+        <Tip text={`Postavení: ${statuses[status].label}`} placement="top">
           <Status verified={statuses[status].verified}>
             <Icon icon={statuses[status].icon} />
           </Status>

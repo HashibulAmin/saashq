@@ -103,14 +103,14 @@ export default class StageModal extends React.Component<Props, State> {
     const { item, selectedDocumentId, copies, width, brandId } = this.state;
 
     const apiUrl = getEnv().REACT_APP_API_URL; // Replace this with your API URL
-    if (!selectedDocumentId) return Alert.error('Please select document !!!');
+    if (!selectedDocumentId) return Alert.error('Vyberte prosím dokument !!!');
     try {
       const checkedItemIds = item
         .filter((item) => item.checked) // Filter only checked items
         .map((item) => item._id); // Map to an array of _id values
 
       if (checkedItemIds.length === 0) {
-        return Alert.error('Please select item !!!');
+        return Alert.error('Vyberte položku !!!');
       }
 
       const url = `${apiUrl}/pl:documents/print?_id=${selectedDocumentId}&itemIds=${checkedItemIds}&stageId=${this.props.stage._id}&copies=${copies}&width=${width}&brandId=${brandId}&contentype=cards:stage`;
@@ -142,8 +142,8 @@ export default class StageModal extends React.Component<Props, State> {
         <Dropdown.Toggle variant="success" id="dropdown-basic">
           {selectedDocumentId
             ? documents.find((item) => item._id === selectedDocumentId)?.name ||
-              'Select Document'
-            : 'Select Document'}
+              'Vyberte Dokument'
+            : 'Vyberte Dokument'}
           {}
         </Dropdown.Toggle>
 
@@ -172,13 +172,13 @@ export default class StageModal extends React.Component<Props, State> {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>{__('Print document')}</Modal.Title>
+          <Modal.Title>{__('Tisk dokumentu')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <FormWrapper>
             <FormColumn>
               <FormGroup>
-                <ControlLabel required={true}>Copies</ControlLabel>
+                <ControlLabel required={true}>Kopie</ControlLabel>
                 <FormControl
                   type="number"
                   name="copies"
@@ -202,13 +202,13 @@ export default class StageModal extends React.Component<Props, State> {
             </FormColumn>
             <FormColumn>
               <FormGroup>
-                <ControlLabel>Brand</ControlLabel>
+                <ControlLabel>Značka</ControlLabel>
                 <SelectBrands
-                  label={__('Choose brands')}
+                  label={__('Vyberte si značky')}
                   initialValue={this.state.brandId}
                   name="brandId"
                   customOption={{
-                    label: 'No Brand (noBrand)',
+                    label: 'Žádná značka (noBrand)',
                     value: 'noBrand',
                   }}
                   onSelect={(brandId) => this.onChangeBrand(brandId)}
@@ -216,7 +216,7 @@ export default class StageModal extends React.Component<Props, State> {
                 />
               </FormGroup>
               <FormGroup>
-                <ControlLabel required={true}>Select a document</ControlLabel>
+                <ControlLabel required={true}>Vyberte dokument</ControlLabel>
                 {this.renderDropdown()}
               </FormGroup>
             </FormColumn>
@@ -224,7 +224,7 @@ export default class StageModal extends React.Component<Props, State> {
           <Table>
             <thead>
               <tr>
-                <th>{__('Number')}</th>
+                <th>{__('Číslo')}</th>
                 <th>{__('Název')}</th>
                 <th>{__('Akce')}</th>
               </tr>
@@ -248,7 +248,7 @@ export default class StageModal extends React.Component<Props, State> {
             </tbody>
             <Modal.Footer>
               <Button onClick={this.print} icon="print">
-                Print
+                Tisk
               </Button>
             </Modal.Footer>
           </Table>

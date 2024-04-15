@@ -64,7 +64,7 @@ function List({
         <tr>
           <th>{__('Startted')}</th>
           <th>{__('Code')}</th>
-          <th>{__('Type')}</th>
+          <th>{__('Typ')}</th>
           <th>{__('Akce')}</th>
         </tr>
       </thead>

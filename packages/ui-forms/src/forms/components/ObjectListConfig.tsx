@@ -2,7 +2,7 @@ import Button from '@saashq/ui/src/components/Button';
 import {
   ControlLabel,
   FormControl,
-  FormGroup
+  FormGroup,
 } from '@saashq/ui/src/components/form';
 import { IObjectListConfig } from '@saashq/ui/src/types';
 import { __ } from '@saashq/ui/src/utils';
@@ -10,7 +10,7 @@ import React from 'react';
 import {
   LogicItem,
   LogicRow,
-  RowSmall
+  RowSmall,
 } from '@saashq/ui-forms/src/forms/styles';
 import { Column } from '@saashq/ui/src/styles/main';
 
@@ -24,17 +24,17 @@ type Props = {
 function LocationOption(props: Props) {
   const { option, onChangeOption, removeOption, index } = props;
 
-  const onChangeType = e => {
+  const onChangeType = (e) => {
     option.type = e.target.value;
     onChangeOption(option, index);
   };
 
-  const onChangeKey = e => {
+  const onChangeKey = (e) => {
     option.key = e.target.value;
     onChangeOption(option, index);
   };
 
-  const onChangeLabel = e => {
+  const onChangeLabel = (e) => {
     option.label = e.target.value;
     onChangeOption(option, index);
   };
@@ -68,7 +68,7 @@ function LocationOption(props: Props) {
             </RowSmall>
             <RowSmall>
               <Column>
-                <ControlLabel>{__('Type')}:</ControlLabel>
+                <ControlLabel>{__('Typ')}:</ControlLabel>
                 <FormControl
                   value={option.type}
                   name="type"

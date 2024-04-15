@@ -10,7 +10,7 @@ import { mutations, queries } from '../../graphql';
 import {
   AddPipelineLabelMutationResponse,
   PipelineLabelDetailQueryResponse,
-  RemovePipelineLabelMutationResponse
+  RemovePipelineLabelMutationResponse,
 } from '../../types';
 
 type Props = {
@@ -34,8 +34,8 @@ const getRefetchQueries = (pipelineId: string) => {
   return [
     {
       query: gql(queries.pipelineLabels),
-      variables: { pipelineId }
-    }
+      variables: { pipelineId },
+    },
   ];
 };
 
@@ -50,31 +50,31 @@ class FormContainer extends React.Component<FinalProps> {
       showForm,
       selectedLabelIds,
       onSelectLabels,
-      onChangeRefresh
+      onChangeRefresh,
     } = this.props;
 
     const remove = (pipelineLabelId: string) => {
       toggleConfirm(() => {
-        confirm('Are you sure? This cannot be undone.', {
+        confirm('Jsi si jistá? To nelze vrátit zpět.', {
           beforeDismiss: () => {
             toggleConfirm();
-          }
+          },
         }).then(() => {
           removeMutation({
-            variables: { _id: pipelineLabelId }
+            variables: { _id: pipelineLabelId },
           })
             .then(() => {
-              Alert.success('You successfully deleted a label.');
+              Alert.success('Úspěšně jste smazali štítek.');
 
               if (selectedLabelIds.includes(pipelineLabelId)) {
                 const remained = selectedLabelIds.filter(
-                  (id: string) => pipelineLabelId !== id
+                  (id: string) => pipelineLabelId !== id,
                 );
 
                 onSelectLabels(remained);
               }
             })
-            .catch(error => {
+            .catch((error) => {
               Alert.error(error.message);
             });
         });
@@ -86,7 +86,7 @@ class FormContainer extends React.Component<FinalProps> {
       values,
       isSubmitted,
       callback,
-      object
+      object,
     }: IButtonMutateProps) => {
       const callbackResponse = () => {
         onChangeRefresh();
@@ -106,7 +106,7 @@ class FormContainer extends React.Component<FinalProps> {
           variables={{
             _id: object && object._id ? object._id : undefined,
             pipelineId,
-            ...values
+            ...values,
           }}
           callback={callbackResponse}
           refetchQueries={getRefetchQueries(pipelineId)}
@@ -114,9 +114,9 @@ class FormContainer extends React.Component<FinalProps> {
           type="submit"
           btnSize="small"
           block={!this.props.labelId && true}
-          successMessage={`You successfully ${
-            object && object._id ? 'updated' : 'added'
-          } a ${name}`}
+          successMessage={`Ty úspěšně ${
+            object && object._id ? 'aktualizováno' : 'přidal'
+          } A ${name}`}
         />
       );
     };
@@ -128,7 +128,7 @@ class FormContainer extends React.Component<FinalProps> {
       remove,
       label: pipelineLabelDetailQuery
         ? pipelineLabelDetailQuery.pipelineLabelDetail
-        : undefined
+        : undefined,
     };
 
     return <Form {...updatedProps} />;
@@ -143,18 +143,18 @@ export default withProps<Props>(
         name: 'pipelineLabelDetailQuery',
         options: ({ labelId }) => ({
           variables: { _id: labelId || '' },
-          fetchPolicy: 'network-only'
-        })
-      }
+          fetchPolicy: 'network-only',
+        }),
+      },
     ),
     graphql<Props, RemovePipelineLabelMutationResponse, { _id: string }>(
       gql(mutations.pipelineLabelsRemove),
       {
         name: 'removeMutation',
         options: ({ pipelineId }) => ({
-          refetchQueries: getRefetchQueries(pipelineId)
-        })
-      }
-    )
-  )(FormContainer)
+          refetchQueries: getRefetchQueries(pipelineId),
+        }),
+      },
+    ),
+  )(FormContainer),
 );

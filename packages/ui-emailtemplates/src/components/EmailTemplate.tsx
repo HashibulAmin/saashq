@@ -41,7 +41,7 @@ class EmailTemplate extends React.Component<Props> {
   renderView(content) {
     const trigger = (
       <div>
-        <Icon icon="eye" /> View
+        <Icon icon="eye" /> Pohled
       </div>
     );
     const form = () => {
@@ -76,7 +76,7 @@ class EmailTemplate extends React.Component<Props> {
         {this.renderView(content)}
         {!onlyPreview && (
           <div onClick={handleSelect && handleSelect.bind(this, templateId)}>
-            <Icon icon="clicker" /> Select
+            <Icon icon="clicker" /> Vybrat
           </div>
         )}
       </Actions>
@@ -102,11 +102,11 @@ class EmailTemplate extends React.Component<Props> {
           <h5>{name}</h5>
           <div>
             <TemplateInfo>
-              <p>{createdAt === modifiedAt ? `Created at` : `Modified at`}</p>
+              <p>{createdAt === modifiedAt ? `Vytvořeno v` : `Upraveno v`}</p>
               <p>{this.renderDate(createdAt, modifiedAt)}</p>
             </TemplateInfo>
             <TemplateInfo>
-              <p>Created by</p>
+              <p>Vytvořil</p>
               {createdUser ? (
                 createdUser.details.fullName && (
                   <p>{createdUser.details.fullName}</p>

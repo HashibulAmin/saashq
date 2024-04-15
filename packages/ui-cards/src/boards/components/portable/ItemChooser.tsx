@@ -15,7 +15,7 @@ type Props = {
   filterStageId?: (
     stageId?: string,
     boardId?: string,
-    pipelineId?: string
+    pipelineId?: string,
   ) => void;
   loading?: boolean;
   onLoadMore?: () => void;
@@ -40,7 +40,7 @@ class ItemChooser extends React.Component<Props, State> {
     this.state = {
       stageId: stageId || '',
       boardId: boardId || '',
-      pipelineId: pipelineId || ''
+      pipelineId: pipelineId || '',
     };
   }
 
@@ -48,7 +48,7 @@ class ItemChooser extends React.Component<Props, State> {
     this.ref.hide();
   };
 
-  clearFilter = e => {
+  clearFilter = (e) => {
     e.stopPropagation();
     this.onChangeField('stageId', '');
     this.onChangeField('pipelineId', '');
@@ -59,9 +59,9 @@ class ItemChooser extends React.Component<Props, State> {
     const { data } = this.props;
     const { stageId, pipelineId, boardId } = this.state;
 
-    const stgIdOnChange = stgId => this.onChangeField('stageId', stgId);
-    const plIdOnChange = plId => this.onChangeField('pipelineId', plId);
-    const brIdOnChange = brId => this.onChangeField('boardId', brId);
+    const stgIdOnChange = (stgId) => this.onChangeField('stageId', stgId);
+    const plIdOnChange = (plId) => this.onChangeField('pipelineId', plId);
+    const brIdOnChange = (brId) => this.onChangeField('boardId', brId);
 
     return (
       <Popover id="board-popover">
@@ -89,7 +89,7 @@ class ItemChooser extends React.Component<Props, State> {
     return (
       <div>
         <OverlayTrigger
-          ref={overlayTrigger => {
+          ref={(overlayTrigger) => {
             this.ref = overlayTrigger;
           }}
           trigger="click"
@@ -99,7 +99,7 @@ class ItemChooser extends React.Component<Props, State> {
           container={this}
         >
           <Select>
-            {translator ? translator('Filter') : 'Filter'}
+            {translator ? translator('Filter') : 'Filtr'}
             <span>
               {filtered && <Icon icon="times" onClick={this.clearFilter} />}
               <Icon icon="angle-down" />
@@ -117,7 +117,7 @@ class ItemChooser extends React.Component<Props, State> {
       filterStageId(value as string, this.state.boardId, this.state.pipelineId);
     }
 
-    this.setState(({ [name]: value } as unknown) as Pick<State, keyof State>);
+    this.setState({ [name]: value } as unknown as Pick<State, keyof State>);
   };
 
   render() {

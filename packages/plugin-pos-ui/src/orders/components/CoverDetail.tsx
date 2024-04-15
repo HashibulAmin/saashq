@@ -4,7 +4,7 @@ import {
   SidebarCounter,
   SidebarList,
   Table,
-  __
+  __,
 } from '@saashq/ui/src';
 import Button from '@saashq/ui/src/components/Button';
 import FormControl from '@saashq/ui/src/components/form/Control';
@@ -32,7 +32,7 @@ class CoverDetail extends React.Component<Props, State> {
     const { cover, pos } = this.props;
 
     this.state = {
-      note: cover.note || ''
+      note: cover.note || '',
     };
   }
 
@@ -54,7 +54,7 @@ class CoverDetail extends React.Component<Props, State> {
 
   renderEditRow(label, key) {
     const value = this.state[key];
-    const onChangeValue = e => {
+    const onChangeValue = (e) => {
       this.setState({ [key]: Number(e.target.value) } as any);
     };
     return (
@@ -67,10 +67,10 @@ class CoverDetail extends React.Component<Props, State> {
     );
   }
 
-  onChangeNote = e => {
+  onChangeNote = (e) => {
     const value = e.target.value;
     this.setState({
-      note: value
+      note: value,
     });
   };
 
@@ -81,7 +81,7 @@ class CoverDetail extends React.Component<Props, State> {
     this.props.onChangeNote(this.props.cover._id || '', note || '');
   };
 
-  generateLabel = customer => {
+  generateLabel = (customer) => {
     const { firstName, primaryEmail, primaryPhone, lastName } =
       customer || ({} as ICustomer);
 
@@ -119,18 +119,18 @@ class CoverDetail extends React.Component<Props, State> {
       <SidebarList>
         {this.renderRow(
           'Begin Date',
-          moment(cover.beginDate).format('YYYY-MM-DD HH:mm')
+          moment(cover.beginDate).format('YYYY-MM-DD HH:mm'),
         )}
         {this.renderRow(
           'End Date',
-          moment(cover.endDate).format('YYYY-MM-DD HH:mm')
+          moment(cover.endDate).format('YYYY-MM-DD HH:mm'),
         )}
         {this.renderRow('User', cover.user.email)}
         {this.renderRow('POS', cover.posName)}
 
         {this.renderRow(
           'Total Amount',
-          this.displayValue(cover, 'totalAmount')
+          this.displayValue(cover, 'totalAmount'),
         )}
 
         {this.renderRow('Description', cover.description)}
@@ -138,20 +138,20 @@ class CoverDetail extends React.Component<Props, State> {
         <Table whiteSpace="nowrap" bordered={true} hover={true}>
           <thead>
             <tr>
-              <th colSpan={3}>{__('Type')}</th>
+              <th colSpan={3}>{__('Typ')}</th>
               <th>{__('Summary')}</th>
               <th>{__('Detail')}</th>
             </tr>
           </thead>
           <tbody id="coverDetails">
-            {(cover.details || []).map(detail => (
+            {(cover.details || []).map((detail) => (
               <>
                 <tr key={detail._id}>
                   <td colSpan={3}>{detail.paidType}</td>
                   <td>
                     {(detail.paidSummary || []).reduce(
                       (sum, cur) => sum + cur.amount,
-                      0
+                      0,
                     )}
                   </td>
                   <td>{this.renderDetail(detail.paidDetail)}</td>
@@ -163,7 +163,7 @@ class CoverDetail extends React.Component<Props, State> {
                   <td>Value</td>
                   <td>amount</td>
                 </tr>
-                {(detail.paidSummary || []).map(s => (
+                {(detail.paidSummary || []).map((s) => (
                   <tr key={`${detail._id}_${s._id || Math.random()}`}>
                     <td></td>
                     <td>{s.kind}</td>

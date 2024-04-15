@@ -6,14 +6,14 @@ import { mutations, queries } from './graphql';
 const options = {
   EditForm: DealEditForm,
   Item: DealItem,
-  title: 'Deal',
+  title: 'Obchod',
   type: 'deal',
   queriesName: {
     itemsQuery: 'deals',
     itemsTotalCountQuery: 'dealsTotalCount',
     detailQuery: 'dealDetail',
     archivedItemsQuery: 'archivedDeals',
-    archivedItemsCountQuery: 'archivedDealsCount'
+    archivedItemsCountQuery: 'archivedDealsCount',
   },
   mutationsName: {
     addMutation: 'dealsAdd',
@@ -23,14 +23,14 @@ const options = {
     watchMutation: 'dealsWatch',
     archiveMutation: 'dealsArchive',
     copyMutation: 'dealsCopy',
-    updateTimeTrackMutation: 'updateTimeTrack'
+    updateTimeTrackMutation: 'updateTimeTrack',
   },
   queries: {
     itemsQuery: queries.deals,
     itemsTotalCountQuery: queries.dealsTotalCount,
     detailQuery: queries.dealDetail,
     archivedItemsQuery: queries.archivedDeals,
-    archivedItemsCountQuery: queries.archivedDealsCount
+    archivedItemsCountQuery: queries.archivedDealsCount,
   },
   mutations: {
     addMutation: mutations.dealsAdd,
@@ -40,14 +40,14 @@ const options = {
     watchMutation: mutations.dealsWatch,
     archiveMutation: mutations.dealsArchive,
     copyMutation: mutations.dealsCopy,
-    updateTimeTrackMutation: ``
+    updateTimeTrackMutation: ``,
   },
   texts: {
-    addText: 'Add a deal',
-    updateSuccessText: 'You successfully updated a deal',
-    deleteSuccessText: 'You successfully deleted a deal',
-    changeSuccessText: 'You successfully changed a deal',
-    copySuccessText: 'You successfully copied a deal'
+    addText: 'Přidat nabídku',
+    updateSuccessText: 'Úspěšně jste aktualizovali dohodu',
+    deleteSuccessText: 'Úspěšně jste smazali dohodu',
+    changeSuccessText: 'Úspěšně jste změnili dohodu',
+    copySuccessText: 'Úspěšně jste zkopírovali dohodu',
   },
   isMove: true,
   getExtraParams: (queryParams: any) => {
@@ -64,7 +64,7 @@ const options = {
       startDateStartDate,
       startDateEndDate,
       closeDateStartDate,
-      closeDateEndDate
+      closeDateEndDate,
     } = queryParams;
     const extraParams: any = {};
 
@@ -119,7 +119,7 @@ const options = {
     }
 
     return extraParams;
-  }
+  },
 };
 
 export default options;

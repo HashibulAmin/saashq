@@ -4,7 +4,7 @@ import {
   AddMutationResponse,
   CustomersQueryResponse,
   ICustomer,
-  ICustomerDoc
+  ICustomerDoc,
 } from '../types';
 import { mutations, queries } from '../graphql';
 import { renderFullName, withProps } from '@saashq/ui/src/utils';
@@ -21,7 +21,7 @@ const ConformityChooser = asyncComponent(
     isEnabled('cards') &&
     import(
       /* webpackChunkName: "ConformityChooser" */ '@saashq/ui-cards/src/conformity/containers/ConformityChooser'
-    )
+    ),
 );
 
 type Props = {
@@ -42,7 +42,7 @@ class CustomerChooser extends React.Component<
     super(props);
 
     this.state = {
-      newCustomer: undefined
+      newCustomer: undefined,
     };
   }
 
@@ -69,13 +69,13 @@ class CustomerChooser extends React.Component<
         datas: data.customers,
         mainTypeId: data.mainTypeId,
         mainType: data.mainType,
-        relType: data.relType || 'customer'
+        relType: data.relType || 'customer',
       },
       search,
       clearState: () => search(''),
-      title: 'Customer',
+      title: 'Zákazník',
       renderName: renderFullName,
-      renderForm: formProps => (
+      renderForm: (formProps) => (
         <CustomerForm
           {...formProps}
           getAssociatedCustomer={getAssociatedCustomer}
@@ -84,7 +84,7 @@ class CustomerChooser extends React.Component<
       newItem: this.state.newCustomer,
       resetAssociatedItem: this.resetAssociatedItem,
       datas: customersQuery.customers || [],
-      refetchQuery: queries.customers
+      refetchQuery: queries.customers,
     };
 
     return <ConformityChooser {...updatedProps} />;
@@ -109,11 +109,11 @@ const WithQuery = withProps<Props>(
             isRelated: data.isRelated,
             relType: data.relType,
             sortField: 'createdAt',
-            sortDirection: -1
+            sortDirection: -1,
           },
-          fetchPolicy: data.isRelated ? 'network-only' : 'cache-first'
+          fetchPolicy: data.isRelated ? 'network-only' : 'cache-first',
         };
-      }
+      },
     }),
     // mutations
     graphql<Props, AddMutationResponse, ICustomerDoc>(
@@ -122,12 +122,12 @@ const WithQuery = withProps<Props>(
         name: 'customersAdd',
         options: () => {
           return {
-            refetchQueries: ['customersMain', 'customers', 'customerCounts']
+            refetchQueries: ['customersMain', 'customers', 'customerCounts'],
           };
-        }
-      }
-    )
-  )(CustomerChooser)
+        },
+      },
+    ),
+  )(CustomerChooser),
 );
 
 type WrapperProps = {

@@ -11,7 +11,7 @@ import { withRouter } from 'react-router-dom';
 import {
   EMPTY_CONTENT_DEAL,
   EMPTY_CONTENT_TASK,
-  EMPTY_CONTENT_PURCHASE
+  EMPTY_CONTENT_PURCHASE,
 } from '../constants';
 import { queries } from '../graphql';
 import { RootBack, ScrolledContent, ChartBack } from '../styles/common';
@@ -46,8 +46,8 @@ class Board extends React.Component<Props> {
               type === 'deal'
                 ? EMPTY_CONTENT_DEAL
                 : type === 'task'
-                ? EMPTY_CONTENT_TASK
-                : EMPTY_CONTENT_PURCHASE
+                  ? EMPTY_CONTENT_TASK
+                  : EMPTY_CONTENT_PURCHASE
             }
             maxItemWidth="400px"
           />
@@ -57,7 +57,7 @@ class Board extends React.Component<Props> {
       return (
         <EmptyState
           image="/images/actions/18.svg"
-          text="Oh boy, looks like you need to get a head start on your board"
+          text="Oh, chlapče, vypadá to, že potřebuješ získat náskok na své desce"
           size="small"
           light={true}
         />
@@ -159,9 +159,9 @@ export default withProps<WrapperProps>(
         name: 'pipelineDetailQuery',
         skip: ({ queryParams }) => !queryParams.pipelineId,
         options: ({ queryParams }) => ({
-          variables: { _id: queryParams && queryParams.pipelineId }
-        })
-      }
-    )
-  )(withRouter(Board))
+          variables: { _id: queryParams && queryParams.pipelineId },
+        }),
+      },
+    ),
+  )(withRouter(Board)),
 );

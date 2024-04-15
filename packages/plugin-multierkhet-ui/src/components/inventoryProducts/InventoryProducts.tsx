@@ -106,7 +106,7 @@ class InventoryProducts extends React.Component<Props, State> {
               <th>{__('Code')}</th>
               <th>{__('Název')}</th>
               <th>{__('Barcode')}</th>
-              <th>{__('Unit price')}</th>
+              <th>{__('Jednotková cena')}</th>
               {action === 'UPDATE' ? <th>{__('Update Status')}</th> : <></>}
               {action === 'CREATE' ? <th>{__('Create Status')}</th> : <></>}
               {action === 'DELETE' ? <th>{__('Delete Status')}</th> : <></>}
@@ -143,7 +143,7 @@ class InventoryProducts extends React.Component<Props, State> {
     const checkButton = (
       <BarItems>
         <SelectBrands
-          label={__('Choose brands')}
+          label={__('Vyberte si značky')}
           onSelect={(brand) => this.props.setBrand(brand as string)}
           initialValue={this.props.queryParams.brandId}
           multi={false}

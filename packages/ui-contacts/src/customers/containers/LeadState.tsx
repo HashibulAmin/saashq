@@ -7,7 +7,7 @@ import {
   CustomersQueryResponse,
   EditMutationResponse,
   ICustomer,
-  ICustomerDoc
+  ICustomerDoc,
 } from '../types';
 
 import LeadState from '../components/LeadState';
@@ -32,31 +32,34 @@ class CustomerChooser extends React.Component<FinalProps> {
     const { customersEdit, customer, customersChangeState } = this.props;
 
     const changeState = (value: string) => {
-      confirm(__('Are your sure you want to convert lead to customer?')).then(
-        () =>
-          customersChangeState({
-            variables: {
-              _id: customer._id,
-              value
-            }
+      confirm(
+        __(
+          'Jste si jisti, že chcete převést potenciálního zákazníka na zákazníka?',
+        ),
+      ).then(() =>
+        customersChangeState({
+          variables: {
+            _id: customer._id,
+            value,
+          },
+        })
+          .then(() => {
+            Alert.success('Úspěšně jste převedli na zákazníka');
           })
-            .then(() => {
-              Alert.success('You successfully converted to customer');
-            })
-            .catch(e => {
-              Alert.error(e.message);
-            })
+          .catch((e) => {
+            Alert.error(e.message);
+          }),
       );
     };
 
     const saveState = (state: string) => {
       customersEdit({
-        variables: { _id: customer._id, leadStatus: state }
+        variables: { _id: customer._id, leadStatus: state },
       })
         .then(() => {
-          Alert.success('You successfully updated state');
+          Alert.success('Úspěšně jste aktualizovali stav');
         })
-        .catch(e => {
+        .catch((e) => {
           Alert.error(e.message);
         });
     };
@@ -79,18 +82,18 @@ export default compose(
       name: 'customersEdit',
       options: () => {
         return {
-          refetchQueries: ['customersMain', 'customers']
+          refetchQueries: ['customersMain', 'customers'],
         };
-      }
-    }
+      },
+    },
   ),
   graphql<Props, ChangeStateMutationResponse, ChangeStateMutationVariables>(
     gql(mutations.customersChangeState),
     {
       name: 'customersChangeState',
       options: {
-        refetchQueries: ['customersMain', 'customerCounts', 'customerDetail']
-      }
-    }
-  )
+        refetchQueries: ['customersMain', 'customerCounts', 'customerDetail'],
+      },
+    },
+  ),
 )(CustomerChooser);

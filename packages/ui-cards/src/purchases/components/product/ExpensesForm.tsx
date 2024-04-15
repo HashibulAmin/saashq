@@ -32,7 +32,7 @@ const ExpensesForm = ({
 
   const addElement = () => {
     if (!nameOptions.length) {
-      Alert.error('Please fill expense refers');
+      Alert.error('Vyplňte prosím výdajové odkazy');
       return;
     }
 
@@ -46,8 +46,8 @@ const ExpensesForm = ({
     onChangeExpensesData([...expensesData, newElement]);
   };
   const options = [
-    { value: 'quantity', label: 'by quantity' },
-    { value: 'amount', label: 'by amount' },
+    { value: 'quantity', label: 'podle množství' },
+    { value: 'amount', label: 'podle částky' },
   ];
 
   const nameOptions = (expensesQueryData || []).map((result) => ({
@@ -65,9 +65,9 @@ const ExpensesForm = ({
       <Table whiteSpace="nowrap" hover={true}>
         <thead>
           <tr>
-            <th>{__('Type')}</th>
+            <th>{__('Typ')}</th>
             <th>{__('Název')}</th>
-            <th>{__('Price')}</th>
+            <th>{__('Cena')}</th>
             <th>{__('Akce')}</th>
           </tr>
         </thead>
@@ -76,7 +76,7 @@ const ExpensesForm = ({
             <tr key={index}>
               <td>
                 <Select
-                  placeholder={__('Select a type')}
+                  placeholder={__('Vyberte typ')}
                   value={element.type}
                   options={typeOptions}
                   onChange={(value: any) =>
@@ -88,7 +88,7 @@ const ExpensesForm = ({
 
               <td>
                 <Select
-                  placeholder={__('Select a name')}
+                  placeholder={__('Vyberte jméno')}
                   value={element.name}
                   options={nameOptions}
                   onChange={(value: any) =>
@@ -101,7 +101,7 @@ const ExpensesForm = ({
                 <FormControl
                   type="number"
                   defaultValue={element.value}
-                  placeholder="Enter expense"
+                  placeholder="Zadejte výdaj"
                   onChange={(e: any) =>
                     onChangeField('value', e.target.value, element._id)
                   }
@@ -125,7 +125,7 @@ const ExpensesForm = ({
         icon="plus-1"
         onClick={addElement}
       >
-        {__('Add another expense')}
+        {__('Přidejte další výdaj')}
       </Button>
     </>
   );

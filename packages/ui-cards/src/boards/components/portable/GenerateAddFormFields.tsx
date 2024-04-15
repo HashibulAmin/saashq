@@ -21,21 +21,21 @@ type Props = {
 };
 
 function GenerateAddFormFields(props: Props) {
-  const customFields = props.fields.filter(f => !f.isDefinedBySaasHQ);
-  const fields = props.fields.filter(f => f.isDefinedBySaasHQ);
+  const customFields = props.fields.filter((f) => !f.isDefinedBySaasHQ);
+  const fields = props.fields.filter((f) => f.isDefinedBySaasHQ);
 
   const { customFieldsData, onChangeField } = props;
 
   const onCustomFieldsDataChange = ({
     _id,
     value,
-    extraValue
+    extraValue,
   }: {
     _id: string;
     value: any;
     extraValue?: string;
   }) => {
-    const field = customFieldsData.find(c => c.field === _id);
+    const field = customFieldsData.find((c) => c.field === _id);
 
     // check nested logics and clear field value
     for (const f of customFields) {
@@ -45,11 +45,13 @@ function GenerateAddFormFields(props: Props) {
         continue;
       }
 
-      if (logics.findIndex(l => l.fieldId && l.fieldId.includes(_id)) === -1) {
+      if (
+        logics.findIndex((l) => l.fieldId && l.fieldId.includes(_id)) === -1
+      ) {
         continue;
       }
 
-      customFieldsData.forEach(c => {
+      customFieldsData.forEach((c) => {
         if (c.field === f._id) {
           c.value = '';
         }
@@ -66,13 +68,13 @@ function GenerateAddFormFields(props: Props) {
     } else {
       onChangeField('customFieldsData', [
         ...customFieldsData,
-        { field: _id, value, extraValue }
+        { field: _id, value, extraValue },
       ]);
     }
   };
 
   const onFieldsDataChange = ({ _id, value }) => {
-    const field = fields.find(c => c._id === _id);
+    const field = fields.find((c) => c._id === _id);
 
     if (field && field.field) {
       onChangeField(field.field, value);
@@ -102,13 +104,13 @@ function GenerateAddFormFields(props: Props) {
           if (field.field === 'branchIds') {
             return (
               <FormGroup>
-                <ControlLabel>Branches</ControlLabel>
+                <ControlLabel>Větve</ControlLabel>
                 <SelectBranches
-                  label="Choose branch"
+                  label="Vyberte pobočku"
                   name="branches"
                   initialValue={[]}
                   multi={true}
-                  onSelect={branchIds => {
+                  onSelect={(branchIds) => {
                     onChangeField('branchIds', branchIds);
                   }}
                 />
@@ -119,13 +121,13 @@ function GenerateAddFormFields(props: Props) {
           if (field.field === 'departmentIds') {
             return (
               <FormGroup>
-                <ControlLabel>Departments</ControlLabel>
+                <ControlLabel>Oddělení</ControlLabel>
                 <SelectDepartments
-                  label="Choose department"
+                  label="Vyberte oddělení"
                   name="departments"
                   initialValue={[]}
                   multi={true}
-                  onSelect={departmentIds => {
+                  onSelect={(departmentIds) => {
                     onChangeField('departmentIds', departmentIds);
                   }}
                 />
@@ -154,11 +156,11 @@ function GenerateAddFormFields(props: Props) {
         if (field.logics && field.logics.length > 0) {
           const data = {};
 
-          customFieldsData.forEach(f => {
+          customFieldsData.forEach((f) => {
             data[f.field] = f.value;
           });
 
-          const logics: LogicParams[] = field.logics.map(logic => {
+          const logics: LogicParams[] = field.logics.map((logic) => {
             let { fieldId = '' } = logic;
 
             if (fieldId.includes('customFieldsData')) {
@@ -166,10 +168,10 @@ function GenerateAddFormFields(props: Props) {
               return {
                 fieldId,
                 operator: logic.logicOperator,
-                validation: fields.find(e => e._id === fieldId)?.validation,
+                validation: fields.find((e) => e._id === fieldId)?.validation,
                 logicValue: logic.logicValue,
                 fieldValue: data[fieldId],
-                type: field.type
+                type: field.type,
               };
             }
 
@@ -180,8 +182,8 @@ function GenerateAddFormFields(props: Props) {
               operator: logic.logicOperator,
               logicValue: logic.logicValue,
               fieldValue: object[logic.fieldId || ''] || '',
-              validation: fields.find(e => e._id === fieldId)?.validation,
-              type: field.type
+              validation: fields.find((e) => e._id === fieldId)?.validation,
+              type: field.type,
             };
           });
 

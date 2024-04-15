@@ -68,20 +68,20 @@ class PurchaseItem extends React.PureComponent<Props> {
     }
 
     if (stage.probability === 'Lost') {
-      return this.renderStatusLabel('Lost', colors.colorCoreRed);
+      return this.renderStatusLabel('Ztracený', colors.colorCoreRed);
     }
 
     if (stage.probability === 'Won') {
-      return this.renderStatusLabel('Won', colors.colorCoreGreen);
+      return this.renderStatusLabel('Vyhrál', colors.colorCoreGreen);
     }
 
-    return this.renderStatusLabel('In Progress', colors.colorCoreBlue);
+    return this.renderStatusLabel('Probíhá', colors.colorCoreBlue);
   }
 
   renderContent() {
     const { item } = this.props;
 
-    const renderProduct = p => {
+    const renderProduct = (p) => {
       p.product.quantity = p.quantity;
       p.product.uom = p.uom;
 
@@ -89,12 +89,12 @@ class PurchaseItem extends React.PureComponent<Props> {
     };
 
     const products = (item.products || [])
-      .filter(p => p.tickUsed)
-      .map(p => renderProduct(p));
+      .filter((p) => p.tickUsed)
+      .map((p) => renderProduct(p));
 
     const exProducts = (item.products || [])
-      .filter(p => !p.tickUsed)
-      .map(p => renderProduct(p));
+      .filter((p) => !p.tickUsed)
+      .map((p) => renderProduct(p));
 
     const {
       customers,
@@ -102,7 +102,7 @@ class PurchaseItem extends React.PureComponent<Props> {
       startDate,
       closeDate,
       isComplete,
-      customProperties
+      customProperties,
     } = item;
 
     return (

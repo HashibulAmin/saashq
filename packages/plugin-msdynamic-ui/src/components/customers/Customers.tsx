@@ -35,7 +35,7 @@ const Customers = ({
     <BarItems>
       <span>{items && items.matched && `Matched: ${items.matched.count}`}</span>
       <SelectBrands
-        label={__('Choose brands')}
+        label={__('Vyberte si značky')}
         onSelect={(brand) => setBrand(brand as string)}
         initialValue={queryParams.brandId}
         multi={false}

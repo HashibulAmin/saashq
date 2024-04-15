@@ -143,7 +143,7 @@ class ContractTypeForm extends React.Component<Props, IContractTypeDoc> {
                 max: 20,
               })}
               <FormGroup>
-                <ControlLabel required={true}>{__('Currency')}</ControlLabel>
+                <ControlLabel required={true}>{__('Měna')}</ControlLabel>
                 <FormControl
                   {...formProps}
                   name="currency"

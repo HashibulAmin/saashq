@@ -16,7 +16,7 @@ import {
   ChecklistWrapper,
   FormControlWrapper,
   FormWrapper,
-  Progress
+  Progress,
 } from '../styles';
 import { IChecklist, IChecklistItem } from '../types';
 
@@ -35,13 +35,13 @@ function List(props: Props) {
   const [items, setItems] = React.useState(item.items);
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [isAddingItem, setIsAddingItem] = useState(
-    item.items.length === 0 ? true : false
+    item.items.length === 0 ? true : false,
   );
   const [isHidden, setIsHidden] = useState(
-    localStorage.getItem('isHidden') === 'true' ? true : false
+    localStorage.getItem('isHidden') === 'true' ? true : false,
   );
   const [itemContent, setItemContent] = useState(
-    getUnsavedContent(props.item._id) || ''
+    getUnsavedContent(props.item._id) || '',
   );
   const [title, setTitle] = useState(item.title);
   const [beforeTitle, setBeforeTitle] = useState(item.title);
@@ -124,10 +124,10 @@ function List(props: Props) {
     // for sorting alphanumerical strings
     const collator = new Intl.Collator(undefined, {
       numeric: true,
-      sensitivity: 'base'
+      sensitivity: 'base',
     });
 
-    content.sort(collator.compare).map(text => props.addItem(text));
+    content.sort(collator.compare).map((text) => props.addItem(text));
 
     setItemContent('');
     setIsAddingItem(false);
@@ -140,10 +140,10 @@ function List(props: Props) {
       setIsHidden(!isHidden);
       localStorage.setItem('isHidden', `${!isHidden}`);
     };
-    const checkedItems = item.items.filter(data => data.isChecked);
+    const checkedItems = item.items.filter((data) => data.isChecked);
     const btnText = isHidden
-      ? `Show checked items (${isHidden && checkedItems.length})`
-      : 'Hide completed items';
+      ? `Zobrazit zaškrtnuté položky (${isHidden && checkedItems.length})`
+      : 'Skrýt dokončené položky';
 
     if (item.percent) {
       return (
@@ -179,7 +179,7 @@ function List(props: Props) {
   function generateDoc(values: { title: string }) {
     return {
       _id: item._id,
-      title: values.title || title
+      title: values.title || title,
     };
   }
 
@@ -195,7 +195,7 @@ function List(props: Props) {
       setTitle(beforeTitle);
     };
 
-    const onChangeTitle = e =>
+    const onChangeTitle = (e) =>
       setTitle((e.currentTarget as HTMLTextAreaElement).value);
 
     const onSubmit = () => {
@@ -218,7 +218,7 @@ function List(props: Props) {
         {props.renderButton({
           values: generateDoc(values),
           isSubmitted,
-          callback: onSubmit
+          callback: onSubmit,
         })}
 
         <Button
@@ -245,7 +245,7 @@ function List(props: Props) {
   }
 
   function renderItems() {
-    const child = childItem => {
+    const child = (childItem) => {
       if (isHidden && childItem.isChecked) {
         return null;
       }
@@ -280,7 +280,7 @@ function List(props: Props) {
           <FormControlWrapper onBlur={onBlur}>
             <FormControl
               componentClass="textarea"
-              placeholder="Add an item"
+              placeholder="Přidat položku"
               onChange={onContentChange}
               onKeyPress={onKeyPressAddItem}
               autoFocus={true}
@@ -306,7 +306,7 @@ function List(props: Props) {
 
     return (
       <Button size="small" btnStyle="simple" onClick={onAddItemClick}>
-        {__('Add an item')}
+        {__('Přidat položku')}
       </Button>
     );
   }

@@ -5,7 +5,7 @@ import {
   CollapseContent,
   DataWithLoader,
   Pagination,
-  Table
+  Table,
 } from '@saashq/ui/src/components';
 import { BarItems } from '@saashq/ui/src/layout/styles';
 import Button from '@saashq/ui/src/components/Button';
@@ -29,20 +29,20 @@ const InventoryPrice = ({
   queryParams,
   setBrand,
   toCheckPrices,
-  toSyncPrices
+  toSyncPrices,
 }: Props) => {
   const checkButton = (
     <BarItems>
       <span>{items && items.matched && `Matched: ${items.matched.count}`}</span>
       <SelectBrands
-        label={__('Choose brands')}
-        onSelect={brand => setBrand(brand as string)}
+        label={__('Vyberte si značky')}
+        onSelect={(brand) => setBrand(brand as string)}
         initialValue={queryParams.brandId}
         multi={false}
         name="selectedBrands"
         customOption={{
           label: 'No Brand (noBrand)',
-          value: ''
+          value: '',
         }}
       />
 
@@ -70,12 +70,12 @@ const InventoryPrice = ({
           data = data.slice(
             Number(queryParams.page - 1) * queryParams.perPage,
             Number((queryParams.page - 1) * queryParams.perPage) +
-              Number(queryParams.perPage)
+              Number(queryParams.perPage),
           );
         } else {
           data = data.slice(
             (queryParams.page - 1) * 20,
-            (queryParams.page - 1) * 20 + 20
+            (queryParams.page - 1) * 20 + 20,
           );
         }
       }
@@ -90,7 +90,7 @@ const InventoryPrice = ({
     data = calculatePagination(data);
 
     const excludeSyncTrue = (syncData: any) => {
-      return syncData.filter(d => d.syncStatus === false);
+      return syncData.filter((d) => d.syncStatus === false);
     };
 
     const onClickSync = () => {
@@ -103,7 +103,7 @@ const InventoryPrice = ({
         rowData = rowData.slice(0, 100);
       }
 
-      return rowData.map(p => (
+      return rowData.map((p) => (
         <Row key={p.code} price={p} action={rowSction} />
       ));
     };
@@ -130,7 +130,7 @@ const InventoryPrice = ({
           <thead>
             <tr>
               <th>{__('Code')}</th>
-              <th>{__('Unit price')}</th>
+              <th>{__('Jednotková cena')}</th>
               <th>{__('Ending Date')}</th>
               {action === 'UPDATE' ? <th>{__('Update Status')}</th> : <></>}
               {action === 'CREATE' ? <th>{__('Create Status')}</th> : <></>}
@@ -150,7 +150,7 @@ const InventoryPrice = ({
       <CollapseContent
         title={__(
           'Update product price' +
-            (items.update ? ':  ' + items.update.count : '')
+            (items.update ? ':  ' + items.update.count : ''),
         )}
       >
         <>
@@ -171,7 +171,7 @@ const InventoryPrice = ({
       <CollapseContent
         title={__(
           'Not created product' +
-            (items.create ? ':  ' + items.create.count : '')
+            (items.create ? ':  ' + items.create.count : ''),
         )}
       >
         <>
@@ -191,7 +191,8 @@ const InventoryPrice = ({
 
       <CollapseContent
         title={__(
-          'Unmatched product' + (items.delete ? ':  ' + items.delete.count : '')
+          'Unmatched product' +
+            (items.delete ? ':  ' + items.delete.count : ''),
         )}
       >
         <>

@@ -44,7 +44,7 @@ class Sidebar extends React.Component<Props, State> {
     const { history } = this.props;
 
     const checkboxes: any = document.getElementsByName(
-      'activityLogViewGeneral'
+      'activityLogViewGeneral',
     );
 
     const action: any = [];
@@ -58,34 +58,34 @@ class Sidebar extends React.Component<Props, State> {
     router.setParams(history, { action: action.toString() });
   };
 
-  onChangeAll = e => {
+  onChangeAll = (e) => {
     const { history } = this.props;
 
     router.setParams(history, {
       action: e.target.checked
-        ? SEARCH_ACTIVITY_CHECKBOX.map(a => a.action).toString()
-        : ''
+        ? SEARCH_ACTIVITY_CHECKBOX.map((a) => a.action).toString()
+        : '',
     });
   };
 
   render() {
     const { isChecked } = this.props;
-    const activityValues = SEARCH_ACTIVITY_CHECKBOX.map(p => ({
+    const activityValues = SEARCH_ACTIVITY_CHECKBOX.map((p) => ({
       label: p,
-      title: p
+      title: p,
     }));
 
     const actionQP: string = (this.props.queryParams || {}).action || '';
 
     return (
       <Wrapper.Sidebar>
-        <Section.Title>{__('General')}</Section.Title>
+        <Section.Title>{__('Všeobecné')}</Section.Title>
         <SidebarList
           id={'checkboxList'}
           style={{
             backgroundColor: 'white',
             marginBottom: '10px',
-            padding: '10px 0'
+            padding: '10px 0',
           }}
         >
           <li key="0">

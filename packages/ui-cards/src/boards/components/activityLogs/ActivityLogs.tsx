@@ -31,7 +31,7 @@ class ActivityLogs extends React.Component<Props> {
         <EmptyState
           image="/images/actions/26.svg"
           size="large"
-          text="There is no activity at the moment!"
+          text="Momentálně neprobíhá žádná aktivita!"
         />
       );
     }
@@ -41,7 +41,7 @@ class ActivityLogs extends React.Component<Props> {
         <ActivityLogsByActionRow
           key={activityLog._id}
           activityLog={activityLog}
-        />
+        />,
       );
     }
 

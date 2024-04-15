@@ -160,7 +160,7 @@ class List extends React.Component<IProps, State> {
               </th>
               <th>{__('Název')}</th>
               <th>{__('Code')}</th>
-              <th>{__('Type')}</th>
+              <th>{__('Typ')}</th>
               <th>{__('Need Products')}</th>
               <th>{__('Result Products')}</th>
               <th>{__('Akce')}</th>

@@ -10,7 +10,7 @@ import {
   LoadingContent,
   StageFooter,
   StageRoot,
-  StageTitle
+  StageTitle,
 } from '../../styles/stage';
 import { Dropdown, OverlayTrigger, Popover } from 'react-bootstrap';
 import { IItem, IOptions, IStage } from '../../types';
@@ -59,7 +59,7 @@ export default class Stage extends React.Component<Props, State> {
     this.state = {
       showSortOptions: false,
       renderModal: false,
-      items: []
+      items: [],
     };
   }
 
@@ -131,8 +131,8 @@ export default class Stage extends React.Component<Props, State> {
   };
 
   toggleModal = () => {
-    this.setState(prevState => ({
-      renderModal: !prevState.renderModal
+    this.setState((prevState) => ({
+      renderModal: !prevState.renderModal,
     }));
     this.onClosePopover();
   };
@@ -163,19 +163,19 @@ export default class Stage extends React.Component<Props, State> {
           ) : (
             <>
               <li onClick={archiveItems} key="archive-items">
-                {__('Archive All Cards in This List')}
+                {__('Archivujte Všechny Karty v Tomto Seznamu')}
               </li>
               <li onClick={archiveList} key="archive-list">
-                {__('Archive This List')}
+                {__('Tento seznam archivujte')}
               </li>
               <li onClick={removeStage} key="remove-stage">
-                {__('Remove stage')}
+                {__('Odstraňte scénu')}
               </li>
               <Dropdown.Divider />
-              <li onClick={this.toggleSortOptions}>{__('Sort By')}</li>
+              <li onClick={this.toggleSortOptions}>{__('Seřazeno podle')}</li>
               {isEnabled('documents') && options.type === 'deal' && (
                 <li>
-                  <a onClick={this.toggleModal}>{__('Print document')}</a>
+                  <a onClick={this.toggleModal}>{__('Tisk dokumentu')}</a>
                 </li>
               )}
             </>
@@ -188,7 +188,7 @@ export default class Stage extends React.Component<Props, State> {
   renderCtrl() {
     return (
       <OverlayTrigger
-        ref={overlayTrigger => {
+        ref={(overlayTrigger) => {
           this.overlayTrigger = overlayTrigger;
         }}
         trigger="click"
@@ -218,7 +218,7 @@ export default class Stage extends React.Component<Props, State> {
 
     return (
       <>
-        <li onClick={this.toggleSortOptions}>Back</li>
+        <li onClick={this.toggleSortOptions}>Zadní</li>
 
         <Dropdown.Divider />
 
@@ -226,60 +226,60 @@ export default class Stage extends React.Component<Props, State> {
           onClick={sortItems.bind(
             this,
             'created-desc',
-            'date created (newest first)'
+            'date created (newest first)',
           )}
         >
-          Date created (Newest first)
+          Datum vytvoření (od nejnovějších)
         </li>
         <li
           onClick={sortItems.bind(
             this,
             'created-asc',
-            'date created (oldest first)'
+            'date created (oldest first)',
           )}
         >
-          Date created (Oldest first)
+          Datum vytvoření (od nejstarších)
         </li>
         <li
           onClick={sortItems.bind(
             this,
             'modified-desc',
-            'date modified (newest first)'
+            'date modified (newest first)',
           )}
         >
-          Date modified (Newest first)
+          Datum úpravy (od nejnovějších)
         </li>
         <li
           onClick={sortItems.bind(
             this,
             'modified-asc',
-            'date modified (oldest first)'
+            'date modified (oldest first)',
           )}
         >
-          Date modified (Oldest first)
+          Datum změny (od nejstarších)
         </li>
         <li
           onClick={sortItems.bind(
             this,
             'close-asc',
-            'date assigned (Earliest first)'
+            'date assigned (Earliest first)',
           )}
         >
-          Date assigned (Earliest first)
+          Datum přidělení (od nejdřívějšího)
         </li>
         <li
           onClick={sortItems.bind(
             this,
             'close-desc',
-            'date assigned (Latest first)'
+            'date assigned (Latest first)',
           )}
         >
-          Date assigned (Latest first)
+          Datum přidělení (od nejnovějšího)
         </li>
         <li
           onClick={sortItems.bind(this, 'alphabetically-asc', 'alphabetically')}
         >
-          Alphabetically
+          Abecedně
         </li>
       </>
     );
@@ -303,7 +303,7 @@ export default class Stage extends React.Component<Props, State> {
       <StageFooter>
         <AddNew>
           <Icon icon="plus-1" />
-          {__(addText)}
+          {__('přidejText')}
         </AddNew>
       </StageFooter>
     );
@@ -314,10 +314,10 @@ export default class Stage extends React.Component<Props, State> {
       callback: (item: IItem) => onAddItem(stage._id, item),
       stageId: stage._id,
       pipelineId: stage.pipelineId,
-      aboveItemId: ''
+      aboveItemId: '',
     };
 
-    const content = props => <AddForm {...props} {...formProps} />;
+    const content = (props) => <AddForm {...props} {...formProps} />;
 
     return <ModalTrigger title={addText} trigger={trigger} content={content} />;
   }

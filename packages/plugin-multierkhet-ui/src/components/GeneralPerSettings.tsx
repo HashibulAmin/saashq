@@ -3,7 +3,7 @@ import {
   CollapseContent,
   ControlLabel,
   FormControl,
-  FormGroup
+  FormGroup,
 } from '@saashq/ui/src/components';
 import SelectBrands from '@saashq/ui/src/brands/containers/SelectBrands';
 import { __ } from '@saashq/ui/src/utils';
@@ -15,7 +15,7 @@ import { isEnabled, loadDynamicComponent } from '@saashq/ui/src/utils/core';
 import {
   FormColumn,
   FormWrapper,
-  ModalFooter
+  ModalFooter,
 } from '@saashq/ui/src/styles/main';
 
 type Props = {
@@ -37,11 +37,11 @@ class PerSettings extends React.Component<Props, State> {
 
     this.state = {
       config: props.config,
-      hasOpen: false
+      hasOpen: false,
     };
   }
 
-  onSave = e => {
+  onSave = (e) => {
     e.preventDefault();
     const { configsMap, currentConfigKey } = this.props;
 
@@ -53,7 +53,7 @@ class PerSettings extends React.Component<Props, State> {
     this.props.save(configsMap);
   };
 
-  onDelete = e => {
+  onDelete = (e) => {
     e.preventDefault();
 
     this.props.delete(this.props.currentConfigKey);
@@ -75,7 +75,7 @@ class PerSettings extends React.Component<Props, State> {
     this.setState({ config: { ...this.state.config, brandId } });
   };
 
-  onChangePayments = ids => {
+  onChangePayments = (ids) => {
     this.setState({ config: { ...this.state.config, paymentIds: ids } });
   };
 
@@ -110,14 +110,14 @@ class PerSettings extends React.Component<Props, State> {
                 <FormGroup>
                   <ControlLabel>Brand</ControlLabel>
                   <SelectBrands
-                    label={__('Choose brands')}
-                    onSelect={brand => this.onChangeBrand(brand as string)}
+                    label={__('Vyberte si značky')}
+                    onSelect={(brand) => this.onChangeBrand(brand as string)}
                     initialValue={config.brandId}
                     multi={false}
                     name="selectedBrands"
                     customOption={{
                       label: 'No Brand (noBrand)',
-                      value: 'noBrand'
+                      value: 'noBrand',
                     }}
                   />
                 </FormGroup>
@@ -134,21 +134,21 @@ class PerSettings extends React.Component<Props, State> {
               <FormColumn>
                 {this.renderItem(
                   'costAccount',
-                  'Cost Account fullCode on erkhet'
+                  'Cost Account fullCode on erkhet',
                 )}
                 {this.renderItem(
                   'saleAccount',
-                  'Sale Account fullCode on erkhet'
+                  'Sale Account fullCode on erkhet',
                 )}
               </FormColumn>
               <FormColumn>
                 {this.renderItem(
                   'productCategoryCode',
-                  'Default Category Code on erkhet inventory'
+                  'Default Category Code on erkhet inventory',
                 )}
                 {this.renderItem(
                   'consumeDescription',
-                  'Set description when incoming erkhet inventory'
+                  'Set description when incoming erkhet inventory',
                 )}
               </FormColumn>
             </FormWrapper>
@@ -159,18 +159,18 @@ class PerSettings extends React.Component<Props, State> {
                 {this.renderItem('checkCompanyUrl')}
                 {this.renderItem(
                   'customerDefaultName',
-                  'Customer default name on erkhet'
+                  'Customer default name on erkhet',
                 )}
                 {this.renderItem('debtAccounts', 'Split "," account fullcode')}
               </FormColumn>
               <FormColumn>
                 {this.renderItem(
                   'customerCategoryCode',
-                  'Customer default category code on erkhet'
+                  'Customer default category code on erkhet',
                 )}
                 {this.renderItem(
                   'companyCategoryCode',
-                  'Company default category code on erkhet'
+                  'Company default category code on erkhet',
                 )}
               </FormColumn>
             </FormWrapper>
@@ -180,7 +180,7 @@ class PerSettings extends React.Component<Props, State> {
               {this.renderItem('userEmail', 'user email')}
               {this.renderItem(
                 'defaultCustomer',
-                'Customer default code on erkhet'
+                'Customer default code on erkhet',
               )}
             </CollapseContent>
           )}
@@ -190,7 +190,7 @@ class PerSettings extends React.Component<Props, State> {
                 <FormColumn>
                   {loadDynamicComponent('selectPayments', {
                     defaultValue: config.paymentIds || [],
-                    onChange: (ids: string[]) => this.onChangePayments(ids)
+                    onChange: (ids: string[]) => this.onChangePayments(ids),
                   })}
                 </FormColumn>
               </FormWrapper>

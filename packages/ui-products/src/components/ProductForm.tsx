@@ -702,7 +702,7 @@ class Form extends React.Component<Props, State> {
             <FormGroup>
               <ControlLabel>Brand</ControlLabel>
               <SelectBrands
-                label={__('Choose brands')}
+                label={__('Vyberte si značky')}
                 onSelect={(brandIds) =>
                   this.onChangeBrand(brandIds as string[])
                 }

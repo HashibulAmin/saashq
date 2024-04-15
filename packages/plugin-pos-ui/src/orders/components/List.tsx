@@ -122,7 +122,7 @@ class Orders extends React.Component<IProps, {}> {
                 <th key={Math.random()}>{__(key)}</th>
               ))}
               <th>
-                <SortHandler sortField={'totalAmount'} label={__('Amount')} />
+                <SortHandler sortField={'totalAmount'} label={__('Množství')} />
               </th>
               <th>
                 <SortHandler sortField={'customerId'} label={__('Zákazník')} />
@@ -131,7 +131,7 @@ class Orders extends React.Component<IProps, {}> {
                 <SortHandler sortField={'posName'} label={__('Pos')} />
               </th>
               <th>
-                <SortHandler sortField={'type'} label={__('Type')} />
+                <SortHandler sortField={'type'} label={__('Typ')} />
               </th>
               <th>
                 <SortHandler sortField={'user'} label={__('Uživatel')} />

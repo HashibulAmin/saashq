@@ -98,7 +98,7 @@ class List extends React.Component<Props, State> {
             </th>
             <th>{__('Board')}</th>
             <th>{__('Pipeline')}</th>
-            <th>{__('Stage')}</th>
+            <th>{__('Etapa')}</th>
             <th>{__('Field')}</th>
             <th>{__('Risk Assessment')}</th>
             <th>
@@ -163,7 +163,7 @@ class List extends React.Component<Props, State> {
       >
         <Padding horizontal>
           <FormGroup>
-            <ControlLabel>{__('Type')}</ControlLabel>
+            <ControlLabel>{__('Typ')}</ControlLabel>
             <Select
               placeholder={__('Select Type')}
               value={queryParams?.cardType}

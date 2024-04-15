@@ -17,9 +17,9 @@ const MailTo = styled.a`
 `;
 
 const Status = styledTS<{ verified: boolean }>(styled.span)`
-  background: ${props =>
+  background: ${(props) =>
     props.verified ? colors.colorCoreGreen : colors.bgGray};
-  color: ${props =>
+  color: ${(props) =>
     props.verified ? colors.colorWhite : colors.textSecondary};
   width: 18px;
   height: 18px;
@@ -36,7 +36,7 @@ function PrimaryEmail({
   customerId,
   email,
   status,
-  showDefault
+  showDefault,
 }: {
   customerId: string;
   email?: string;
@@ -46,7 +46,7 @@ function PrimaryEmail({
   const renderStatus = () => {
     if (status) {
       return (
-        <Tip text={`Status: ${status}`} placement="top">
+        <Tip text={`Postavení: ${status}`} placement="top">
           <Status verified={status === 'valid'}>
             <Icon icon={status === 'valid' ? 'shield-check' : 'shield-slash'} />
           </Status>

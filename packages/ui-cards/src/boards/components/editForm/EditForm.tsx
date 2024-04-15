@@ -118,7 +118,7 @@ class EditForm extends React.Component<Props, State> {
       return (
         <ArchiveStatus>
           <Icon icon="archive-alt" />
-          <span>{__('This card is archived.')}</span>
+          <span>{__('Tato karta je archivována.')}</span>
         </ArchiveStatus>
       );
     }

@@ -72,7 +72,7 @@ class ContractDetails extends React.Component<Props, State> {
                 <ItemLabel>{__('Account')}</ItemLabel>
               </td>
               <td style={{ padding: 10 }}>
-                <ItemLabel>{__('Amount')}</ItemLabel>
+                <ItemLabel>{__('Množství')}</ItemLabel>
               </td>
               <td style={{ padding: 10 }}>
                 <ItemLabel>{__('Side')}</ItemLabel>
@@ -139,7 +139,7 @@ class ContractDetails extends React.Component<Props, State> {
                     <ItemLabel>{__('number')}</ItemLabel>
                   </td>
                   <td style={{ padding: 10 }}>
-                    <ItemLabel>{__('Amount')}</ItemLabel>
+                    <ItemLabel>{__('Množství')}</ItemLabel>
                   </td>
                   <td style={{ padding: 10 }}>
                     <ItemLabel>{__('Popis')}</ItemLabel>

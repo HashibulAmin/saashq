@@ -4,7 +4,7 @@ import {
   FilterButton,
   MenuFooter,
   RightMenuContainer,
-  TabContent
+  TabContent,
 } from '../styles/rightMenu';
 import { DATERANGES, PRIORITIES } from '../constants';
 import { TabTitle, Tabs } from '@saashq/ui/src/components/tabs';
@@ -60,7 +60,7 @@ export default class RightMenu extends React.Component<Props, State> {
       currentTab: 'Filter',
       dateRangeType: '',
       showMenu: false,
-      dateRange: {} as any
+      dateRange: {} as any,
     };
 
     this.setWrapperRef = this.setWrapperRef.bind(this);
@@ -79,7 +79,7 @@ export default class RightMenu extends React.Component<Props, State> {
     document.removeEventListener('click', this.handleClickOutside, true);
   }
 
-  handleClickOutside = event => {
+  handleClickOutside = (event) => {
     if (
       this.wrapperRef &&
       !this.wrapperRef.contains(event.target) &&
@@ -104,36 +104,36 @@ export default class RightMenu extends React.Component<Props, State> {
     this.setState({ [name]: value } as Pick<StringState, keyof StringState>);
   };
 
-  onTypeChange = type => {
+  onTypeChange = (type) => {
     return this.setState({ dateRangeType: type.value }, () => {
       switch (this.state.dateRangeType) {
         case 'createdAt':
           return this.setState({
             dateRange: {
               startDate: 'createdStartDate',
-              endDate: 'createdEndDate'
-            }
+              endDate: 'createdEndDate',
+            },
           });
         case 'stageChangedDate':
           return this.setState({
             dateRange: {
               startDate: 'stateChangedStartDate',
-              endDate: 'stateChangedEndDate'
-            }
+              endDate: 'stateChangedEndDate',
+            },
           });
         case 'startDate':
           return this.setState({
             dateRange: {
               startDate: 'startDateStartDate',
-              endDate: 'startDateEndDate'
-            }
+              endDate: 'startDateEndDate',
+            },
           });
         case 'closeDate':
           return this.setState({
             dateRange: {
               startDate: 'closeDateStartDate',
-              endDate: 'closeDateEndDate'
-            }
+              endDate: 'closeDateEndDate',
+            },
           });
       }
     });
@@ -222,12 +222,20 @@ export default class RightMenu extends React.Component<Props, State> {
 
     return (
       <>
-        {this.renderLink('Assigned to me', 'assignedToMe', 'true')}
-        {this.renderLink('Due tomorrow', 'closeDateType', 'nextDay')}
-        {this.renderLink('Due next week', 'closeDateType', 'nextWeek')}
-        {this.renderLink('Due next month', 'closeDateType', 'nextMonth')}
-        {this.renderLink('Has no close date', 'closeDateType', 'noCloseDate')}
-        {this.renderLink('Overdue', 'overdue', 'closeDateType')}
+        {this.renderLink('Přiděleno mně', 'assignedToMe', 'true')}
+        {this.renderLink('Do zítřka', 'closeDateType', 'nextDay')}
+        {this.renderLink('Termín příští týden', 'closeDateType', 'nextWeek')}
+        {this.renderLink(
+          'Splatnost příští měsíc',
+          'closeDateType',
+          'nextMonth',
+        )}
+        {this.renderLink(
+          'Nemá žádné datum uzavření',
+          'closeDateType',
+          'noCloseDate',
+        )}
+        {this.renderLink('Zpožděný', 'overdue', 'closeDateType')}
       </>
     );
   }
@@ -237,7 +245,7 @@ export default class RightMenu extends React.Component<Props, State> {
 
     const selected = queryParams[key] === value;
 
-    const onClick = _e => {
+    const onClick = (_e) => {
       onSelect(value, key);
     };
 
@@ -253,67 +261,67 @@ export default class RightMenu extends React.Component<Props, State> {
     const { queryParams, onSelect, extraFilter, options } = this.props;
     const { dateRangeType, dateRange } = this.state;
 
-    const priorityValues = PRIORITIES.map(p => ({
+    const priorityValues = PRIORITIES.map((p) => ({
       label: p,
-      value: p
+      value: p,
     }));
-    const daterangeValues = DATERANGES.map(p => ({
+    const daterangeValues = DATERANGES.map((p) => ({
       label: p.name,
-      value: p.value
+      value: p.value,
     }));
     const priorities = queryParams ? queryParams.priority : [];
 
     const onPrioritySelect = (ops: IOption[]) =>
       onSelect(
-        ops.map(option => option.value),
-        'priority'
+        ops.map((option) => option.value),
+        'priority',
       );
 
     return (
       <FilterBox>
         <FormControl
           defaultValue={queryParams.search}
-          placeholder={__('Search ...')}
+          placeholder={__('Vyhledávání ...')}
           onKeyPress={this.onSearch}
           autoFocus={true}
         />
 
         <SelectTeamMembers
-          label="Filter by created members"
+          label="Filtrujte podle vytvořených členů"
           name="userIds"
           queryParams={queryParams}
           onSelect={onSelect}
         />
         <SelectBranches
           name="branchIds"
-          label="Filter by branches"
+          label="Filtrujte podle větví"
           initialValue={queryParams.branchIds}
           onSelect={onSelect}
         />
         <SelectDepartments
           name="departmentIds"
-          label="Filter by departments"
+          label="Filtrujte podle oddělení"
           initialValue={queryParams.departmentIds}
           onSelect={onSelect}
         />
         <Select
-          placeholder={__('Filter by priority')}
+          placeholder={__('Filtrujte podle priority')}
           value={priorities}
           options={priorityValues}
           name="priority"
           onChange={onPrioritySelect}
           multi={true}
-          loadingPlaceholder={__('Loading...')}
+          loadingPlaceholder={__('Načítání...')}
         />
 
         <SelectTeamMembers
-          label="Filter by team members"
+          label="Filtrujte podle členů týmu"
           name="assignedUserIds"
           queryParams={queryParams}
           onSelect={onSelect}
           customOption={{
             value: '',
-            label: 'Assigned to no one'
+            label: 'Nikomu přiděleno',
           }}
         />
 
@@ -322,18 +330,18 @@ export default class RightMenu extends React.Component<Props, State> {
           name="labelIds"
           onSelect={onSelect}
           filterParams={{
-            pipelineId: queryParams.pipelineId || ''
+            pipelineId: queryParams.pipelineId || '',
           }}
           multi={true}
-          customOption={{ value: '', label: 'No label chosen' }}
+          customOption={{ value: '', label: 'Nebyl vybrán žádný štítek' }}
         />
 
         {extraFilter}
 
-        <ControlLabel>Date range:</ControlLabel>
+        <ControlLabel>Časové období:</ControlLabel>
 
         <Select
-          placeholder={__('Choose date range type')}
+          placeholder={__('Vyberte typ období')}
           value={this.dateRangeType() || dateRangeType}
           options={daterangeValues}
           name="daterangeType"
@@ -345,10 +353,10 @@ export default class RightMenu extends React.Component<Props, State> {
             value={this.startDateValue()}
             required={false}
             name={dateRange.startDate}
-            onChange={date =>
+            onChange={(date) =>
               this.onChangeRangeFilter(dateRange.startDate, date)
             }
-            placeholder={'Start date'}
+            placeholder={'Datum zahájení'}
             dateFormat={'YYYY-MM-DD'}
           />
 
@@ -356,8 +364,10 @@ export default class RightMenu extends React.Component<Props, State> {
             value={this.endDateValue()}
             required={false}
             name={dateRange.endDate}
-            placeholder={'End date'}
-            onChange={date => this.onChangeRangeFilter(dateRange.endDate, date)}
+            placeholder={'Datum ukončení'}
+            onChange={(date) =>
+              this.onChangeRangeFilter(dateRange.endDate, date)
+            }
             dateFormat={'YYYY-MM-DD'}
           />
         </CustomRangeContainer>
@@ -390,7 +400,7 @@ export default class RightMenu extends React.Component<Props, State> {
                 onClick={clearFilter}
                 icon="times-circle"
               >
-                {__('Clear Filter')}
+                {__('Vymazat Filtr')}
               </Button>
             </MenuFooter>
           )}
@@ -423,11 +433,11 @@ export default class RightMenu extends React.Component<Props, State> {
             icon="times-circle"
             onClick={this.props.clearFilter}
           >
-            {__('Clear Filter')}
+            {__('Vymazat Filtrr')}
           </Button>
         )}
         <Button btnStyle="simple" icon="bars" onClick={this.toggleMenu}>
-          {showMenu ? __('Hide Menu') : __('Show Menu')}
+          {showMenu ? __('Skrýt Nabídku') : __('Zobrazit Nabídku')}
         </Button>
 
         <RTG.CSSTransition
@@ -442,13 +452,13 @@ export default class RightMenu extends React.Component<Props, State> {
                 className={currentTab === 'Filter' ? 'active' : ''}
                 onClick={tabOnClick.bind(this, 'Filter')}
               >
-                {__('Filter')}
+                {__('Filtr')}
               </TabTitle>
               <TabTitle
                 className={currentTab === 'Archived items' ? 'active' : ''}
-                onClick={tabOnClick.bind(this, 'Archived items')}
+                onClick={tabOnClick.bind(this, 'Archivované položky')}
               >
-                {__('Archived items')}
+                {__('Archivované položky')}
               </TabTitle>
             </Tabs>
             {this.renderTabContent()}

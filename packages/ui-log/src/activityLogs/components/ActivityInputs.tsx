@@ -15,7 +15,7 @@ const TicketCommentForm = asyncComponent(
     isEnabled('cards') &&
     import(
       /* webpackChunkName: "TicketCommentForm" */ '@saashq/ui-cards/src/boards/containers/TicketCommentForm'
-    )
+    ),
 );
 
 type Props = {
@@ -39,12 +39,12 @@ class ActivityInputs extends React.PureComponent<Props, State> {
       currentTab: isEnabled('internalnotes')
         ? 'newNote'
         : isEnabled('clientportal')
-        ? 'newComment'
-        : ''
+          ? 'newComment'
+          : '',
     };
   }
 
-  onChangeTab = currentTab => {
+  onChangeTab = (currentTab) => {
     this.setState({ currentTab });
   };
 
@@ -95,11 +95,11 @@ class ActivityInputs extends React.PureComponent<Props, State> {
     const tabs: any = [];
 
     if (showEmail) {
-      tabs.push(this.renderTabTitle('email', 'envelope-add', 'Email'));
+      tabs.push(this.renderTabTitle('email', 'envelope-add', 'E-mailem'));
     }
 
     if (contentType === 'ticket') {
-      tabs.push(this.renderTabTitle('ticket', 'ticket', 'Ticket reply'));
+      tabs.push(this.renderTabTitle('ticket', 'ticket', 'Odpověď na lístek'));
     }
 
     return (
@@ -116,10 +116,14 @@ class ActivityInputs extends React.PureComponent<Props, State> {
         <WhiteBoxRoot>
           <Tabs>
             {isEnabled('internalnotes') &&
-              this.renderTabTitle('newNote', 'file-plus', 'New note')}
+              this.renderTabTitle('newNote', 'file-plus', 'Nová poznámka')}
 
             {isEnabled('clientportal') &&
-              this.renderTabTitle('newComment', 'comment-plus', 'New comment')}
+              this.renderTabTitle(
+                'newComment',
+                'comment-plus',
+                'Nový komentář',
+              )}
 
             {this.renderExtraTab()}
           </Tabs>

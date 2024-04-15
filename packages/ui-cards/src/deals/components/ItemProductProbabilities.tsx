@@ -19,7 +19,7 @@ class ItemProductProbabilities extends React.Component<Props, {}> {
 
     return (
       <div>
-        <span>{__('Forecasted') + `(${probabilityPercentage}%)`}</span>
+        <span>{__('Předpovězeno') + `(${probabilityPercentage}%)`}</span>
         {renderPercentedAmount(totalAmount, probabilityPercentage)}
       </div>
     );
@@ -28,7 +28,7 @@ class ItemProductProbabilities extends React.Component<Props, {}> {
   renderSum(currencies) {
     const sumByName = {};
 
-    currencies.forEach(item => {
+    currencies.forEach((item) => {
       const { name, amount, probability = 100 } = item;
       if (sumByName[name] === undefined) {
         sumByName[name] = (amount * probability) / 100;
@@ -40,7 +40,7 @@ class ItemProductProbabilities extends React.Component<Props, {}> {
     return Object.keys(sumByName).map((key, index) => (
       <div key={index}>
         {sumByName[key].toLocaleString(undefined, {
-          maximumFractionDigits: 0
+          maximumFractionDigits: 0,
         })}{' '}
         <span>
           {key}
@@ -50,8 +50,8 @@ class ItemProductProbabilities extends React.Component<Props, {}> {
     ));
   }
 
-  renderPercentage = value => {
-    return value === 'Won' ? '100%' : value === 'Lost' ? '0%' : value;
+  renderPercentage = (value) => {
+    return value === 'Vyhrál' ? '100%' : value === 'Ztracený' ? '0%' : value;
   };
 
   renderInfo = () => {
@@ -60,7 +60,7 @@ class ItemProductProbabilities extends React.Component<Props, {}> {
       totalAmount,
       unusedTotalAmount,
       deals = [] as IDeal[],
-      dealTotalAmounts = []
+      dealTotalAmounts = [],
     } = this.props;
 
     const forecastArray: Array<{
@@ -71,21 +71,21 @@ class ItemProductProbabilities extends React.Component<Props, {}> {
     const totalAmountArray: Array<{ amount: number; name: string }> = [];
 
     if (dealTotalAmounts.length > 0) {
-      dealTotalAmounts.map(total =>
-        total.currencies.map(currency => totalAmountArray.push(currency))
+      dealTotalAmounts.map((total) =>
+        total.currencies.map((currency) => totalAmountArray.push(currency)),
       );
     }
 
-    deals.map(deal => {
+    deals.map((deal) => {
       const percentage = deal.stage?.probability || null;
 
       if (percentage) {
-        Object.keys(deal.amount).map(key =>
+        Object.keys(deal.amount).map((key) =>
           forecastArray.push({
             name: key,
             amount: deal.amount[key] as number,
-            probability: parseInt(this.renderPercentage(percentage), 10)
-          })
+            probability: parseInt(this.renderPercentage(percentage), 10),
+          }),
         );
       }
     });
@@ -95,13 +95,13 @@ class ItemProductProbabilities extends React.Component<Props, {}> {
         <StageInfo>
           {Object.keys(totalAmount).length > 0 && (
             <div>
-              <span>{__('Total')}</span>
+              <span>{__('Celkový')}</span>
               {renderAmount(totalAmount)}
             </div>
           )}
           {unusedTotalAmount && Object.keys(unusedTotalAmount).length > 0 && (
             <div>
-              <span>{__('Unused Total')}</span>
+              <span>{__('Nepoužité Celkem')}</span>
               {renderAmount(unusedTotalAmount)}
             </div>
           )}
@@ -109,7 +109,7 @@ class ItemProductProbabilities extends React.Component<Props, {}> {
             (window.location.pathname.includes('deal/board') ||
               window.location.pathname.includes('deal/calendar')) &&
             this.renderForecast(
-              parseInt(this.renderPercentage(probability), 10)
+              parseInt(this.renderPercentage(probability), 10),
             )}
         </StageInfo>
       );
@@ -118,13 +118,13 @@ class ItemProductProbabilities extends React.Component<Props, {}> {
     return (
       <>
         <li>
-          <span>Total </span>
+          <span>Celkový </span>
           {this.renderSum(totalAmountArray)}
         </li>
         {forecastArray.length > 0 &&
           window.location.pathname.includes('deal/calendar') && (
             <li>
-              <span>Forecasted </span>
+              <span>Předpovězeno </span>
               {this.renderSum(forecastArray)}
             </li>
           )}

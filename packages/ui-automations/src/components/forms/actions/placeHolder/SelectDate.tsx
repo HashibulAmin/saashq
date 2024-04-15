@@ -23,7 +23,7 @@ export default class SelectDate extends React.Component<Props> {
   renderContent() {
     const { config, setConfig, inputName = 'value' } = this.props;
 
-    const onDateChange = date => {
+    const onDateChange = (date) => {
       config[inputName] = `${dayjs(date).format('YYYY-MM-DD, HH:mm:ss')}`;
       setConfig(config);
     };
@@ -31,7 +31,7 @@ export default class SelectDate extends React.Component<Props> {
     return (
       <Popover id="select-date-popover">
         <Datetime
-          inputProps={{ placeholder: 'Click to select a date' }}
+          inputProps={{ placeholder: 'Kliknutím vyberte datum' }}
           dateFormat="YYYY/MM/DD"
           timeFormat="HH:mm"
           closeOnSelect={true}
@@ -51,7 +51,7 @@ export default class SelectDate extends React.Component<Props> {
   render() {
     return (
       <OverlayTrigger
-        ref={overlay => {
+        ref={(overlay) => {
           this.overlay = overlay;
         }}
         trigger="click"
@@ -61,7 +61,7 @@ export default class SelectDate extends React.Component<Props> {
         container={this}
       >
         <span>
-          {__('Date')} <Icon icon="angle-down" />
+          {__('Datum')} <Icon icon="angle-down" />
         </span>
       </OverlayTrigger>
     );

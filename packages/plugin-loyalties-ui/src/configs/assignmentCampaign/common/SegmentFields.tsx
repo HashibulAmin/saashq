@@ -8,7 +8,7 @@ import Select from 'react-select-plus';
 function SegmentFields({
   assignmentCampaign,
   segmentIds,
-  onChange
+  onChange,
 }: {
   assignmentCampaign: any;
   segmentIds: string[];
@@ -23,9 +23,9 @@ function SegmentFields({
     {
       variables: {
         contentType: 'contacts:customer',
-        segmentId: segmentIds[0]
-      }
-    }
+        segmentId: segmentIds[0],
+      },
+    },
   );
 
   if (loading) {
@@ -35,8 +35,10 @@ function SegmentFields({
   const { fieldsCombinedByContentType } = data;
 
   const options = fieldsCombinedByContentType
-    .filter(field => field?.type === 'input' && field?.validation === 'number')
-    .map(field => {
+    .filter(
+      (field) => field?.type === 'input' && field?.validation === 'number',
+    )
+    .map((field) => {
       let value = field._id;
 
       if (field.name.includes('customFieldsData')) {
@@ -53,7 +55,7 @@ function SegmentFields({
         options={options}
         value={assignmentCampaign.fieldId}
         name="fieldId"
-        loadingPlaceholder={__('Loading...')}
+        loadingPlaceholder={__('Načítání...')}
         onChange={({ value }) => onChange(value, 'fieldId')}
       />
     </FormGroup>

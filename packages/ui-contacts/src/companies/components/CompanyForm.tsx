@@ -208,7 +208,7 @@ class CompanyForm extends React.Component<Props, State> {
       <>
         <ScrollWrapper>
           <CollapseContent
-            title={__('General information')}
+            title={__('Obecná informace')}
             compact={true}
             open={true}
           >
@@ -222,16 +222,16 @@ class CompanyForm extends React.Component<Props, State> {
               </FormColumn>
 
               <FormColumn>
-                {this.renderFormGroup('Code', {
+                {this.renderFormGroup('Kód', {
                   ...formProps,
                   name: 'code',
                   defaultValue: company.code || '',
                 })}
 
                 <FormGroup>
-                  <ControlLabel>Owner</ControlLabel>
+                  <ControlLabel>Majitel</ControlLabel>
                   <SelectTeamMembers
-                    label="Choose an owner"
+                    label="Vyberte vlastníka"
                     name="ownerId"
                     initialValue={ownerId}
                     onSelect={onSelectOwner}
@@ -243,13 +243,13 @@ class CompanyForm extends React.Component<Props, State> {
             <FormWrapper>
               <FormColumn>
                 <FormGroup>
-                  <ControlLabel required={true}>Name</ControlLabel>
+                  <ControlLabel required={true}>Název</ControlLabel>
                   <AutoCompletionSelect
                     required={true}
                     defaultValue={primaryName}
                     defaultOptions={names || []}
                     autoCompletionType="names"
-                    placeholder="Enter company name"
+                    placeholder="Zadejte název společnosti"
                     queryName="companies"
                     query={autoCompletionQuery}
                     onChange={this.onChange.bind(this, 'names', 'primaryName')}
@@ -257,7 +257,7 @@ class CompanyForm extends React.Component<Props, State> {
                 </FormGroup>
 
                 <FormGroup>
-                  <ControlLabel>Industries</ControlLabel>
+                  <ControlLabel>Průmyslová odvětví</ControlLabel>
                   <Select
                     value={this.state.industry}
                     onChange={this.onIndustryChange}
@@ -270,12 +270,12 @@ class CompanyForm extends React.Component<Props, State> {
                 </FormGroup>
 
                 <FormGroup>
-                  <ControlLabel>Email</ControlLabel>
+                  <ControlLabel>E-mailem</ControlLabel>
                   <AutoCompletionSelect
                     defaultValue={primaryEmail}
                     defaultOptions={emails || []}
                     autoCompletionType="emails"
-                    placeholder="Enter company email"
+                    placeholder="Zadejte firemní email"
                     queryName="companies"
                     query={autoCompletionQuery}
                     onChange={this.onChange.bind(
@@ -288,7 +288,7 @@ class CompanyForm extends React.Component<Props, State> {
                 </FormGroup>
 
                 <FormGroup>
-                  <ControlLabel>Description</ControlLabel>
+                  <ControlLabel>Popis</ControlLabel>
                   <FormControl
                     {...formProps}
                     max={140}
@@ -298,21 +298,21 @@ class CompanyForm extends React.Component<Props, State> {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <ControlLabel>Headquarters Country</ControlLabel>
+                  <ControlLabel>Země ústředí</ControlLabel>
                   <Select
                     value={this.state.location}
                     onChange={this.onCountryChange}
                     options={this.generateConstantParams(COUNTRIES)}
-                    placeholder={__('Select country')}
+                    placeholder={__('Vyberte zemi')}
                     clearable={true}
                   />
                 </FormGroup>
               </FormColumn>
               <FormColumn>
                 <FormGroup>
-                  <ControlLabel>Parent Company</ControlLabel>
+                  <ControlLabel>Mateřská společnost</ControlLabel>
                   <SelectCompanies
-                    label="Choose parent company"
+                    label="Vyberte mateřskou společnost"
                     name="parentCompanyId"
                     initialValue={parentCompanyId}
                     onSelect={onSelectParentCompany}
@@ -320,7 +320,7 @@ class CompanyForm extends React.Component<Props, State> {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <ControlLabel>Business Type</ControlLabel>
+                  <ControlLabel>Typ Podnikání</ControlLabel>
                   <Select
                     value={this.state.businessType}
                     onChange={this.onBusinessChange}
@@ -333,12 +333,12 @@ class CompanyForm extends React.Component<Props, State> {
                 </FormGroup>
 
                 <FormGroup>
-                  <ControlLabel>Phone</ControlLabel>
+                  <ControlLabel>Telefon</ControlLabel>
                   <AutoCompletionSelect
                     defaultValue={primaryPhone}
                     defaultOptions={phones || []}
                     autoCompletionType="phones"
-                    placeholder="Enter company phone"
+                    placeholder="Zadejte firemní telefon"
                     queryName="companies"
                     query={autoCompletionQuery}
                     onChange={this.onChange.bind(
@@ -379,7 +379,7 @@ class CompanyForm extends React.Component<Props, State> {
               </FormColumn>
             </FormWrapper>
           </CollapseContent>
-          <CollapseContent title={__('Links')} compact={true} open={true}>
+          <CollapseContent title={__('Odkazy')} compact={true} open={true}>
             <FormWrapper>
               <FormColumn>
                 {getConstantFromStore('social_links').map((link) =>
@@ -389,7 +389,7 @@ class CompanyForm extends React.Component<Props, State> {
             </FormWrapper>
           </CollapseContent>
           {isEnabled('forms') && (
-            <CollapseContent title={__('Relations')} compact={true}>
+            <CollapseContent title={__('Vztahy')} compact={true}>
               <FormWrapper>
                 <FormColumn>
                   {!this.props.company &&
@@ -406,7 +406,7 @@ class CompanyForm extends React.Component<Props, State> {
 
         <ModalFooter>
           <Button btnStyle="simple" onClick={closeModal} icon="cancel-1">
-            Close
+            Zavřít
           </Button>
 
           {renderButton({

@@ -5,7 +5,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer
+  ResponsiveContainer,
 } from 'recharts';
 
 type Props = {
@@ -17,7 +17,7 @@ type Props = {
 export default function MainChart({ component, data, children }: Props) {
   const ChartComponent = component;
 
-  const CustomizedAxisTick = props => {
+  const CustomizedAxisTick = (props) => {
     const { x, y, payload } = props;
 
     return (
@@ -54,9 +54,9 @@ export default function MainChart({ component, data, children }: Props) {
         />
         <YAxis
           label={{
-            value: 'Number of tasks by stages',
+            value: 'Počet úkolů podle etap',
             angle: -90,
-            position: 'insideLeft'
+            position: 'insideLeft',
           }}
           padding={{ right: 10 }}
         />

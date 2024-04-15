@@ -16,13 +16,13 @@ type Props = {
 };
 
 export default (props: Props) => {
-  const title = props.url ? __('Go to a task') : __('Convert to a task');
+  const title = props.url ? __('Přejít na úkol') : __('Převést na úkol');
 
   const extendedProps = {
     ...props,
     options,
     title,
-    autoOpenKey: 'showTaskConvertModal'
+    autoOpenKey: 'showTaskConvertModal',
   };
 
   return <ConvertTrigger {...extendedProps} />;
