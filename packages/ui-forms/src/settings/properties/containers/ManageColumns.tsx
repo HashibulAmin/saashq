@@ -53,7 +53,7 @@ const ManageColumnsContainer = (props: FinalProps) => {
   let save = (config: any, importType?: string) => {
     localStorage.setItem(storageKey, JSON.stringify(config));
 
-    Alert.success('Success');
+    Alert.success('Úspěch');
 
     if (history && location) {
       history.push(location.pathname);

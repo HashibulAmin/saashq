@@ -132,8 +132,8 @@ class ManageColumns extends React.Component<Props, State> {
           />
         </FormGroup>
         <Header>
-          <span>{__('Column name')}</span>
-          <span>{__('Visible')}</span>
+          <span>{__('Název sloupce')}</span>
+          <span>{__('Viditelné')}</span>
         </Header>
 
         <ScrollWrapper calcHeight="320">
@@ -151,24 +151,24 @@ class ManageColumns extends React.Component<Props, State> {
             btnStyle="simple"
             onClick={this.props.closeModal}
           >
-            Cancel
+            Zrušení
           </Button>
 
           {type && type === 'import' ? (
             <Button type="submit" onClick={onclickCsv}>
-              Download csv
+              Stáhnout csv
             </Button>
           ) : null}
 
           {type && type === 'export' ? (
             <Button type="submit" onClick={this.onSubmit}>
-              Export {contentType}
+              Vývozní {contentType}
             </Button>
           ) : null}
 
           {!['export', 'import'].includes(type) ? (
             <Button type="submit" onClick={this.onSubmit}>
-              Save
+              Uložit
             </Button>
           ) : null}
         </Footer>

@@ -49,7 +49,7 @@ function LocationOption(props: Props) {
         <Column>
           <LogicRow>
             <RowSmall>
-              <ControlLabel>{__('Key')}:</ControlLabel>
+              <ControlLabel>{__('Klíč')}:</ControlLabel>
               <FormControl
                 value={option.key}
                 name="key"
@@ -58,7 +58,7 @@ function LocationOption(props: Props) {
             </RowSmall>
             <RowSmall>
               <Column>
-                <ControlLabel>{__('Label')}:</ControlLabel>
+                <ControlLabel>{__('Označení')}:</ControlLabel>
                 <FormControl
                   value={option.label}
                   name="label"
@@ -79,7 +79,7 @@ function LocationOption(props: Props) {
                     {__('Text')}
                   </option>
                   <option key="textarea" value="textarea">
-                    {__('Text Area')}
+                    {__('Textová oblast')}
                   </option>
                 </FormControl>
               </Column>

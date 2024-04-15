@@ -15,10 +15,10 @@ type Props = {
 const GroupedField = (props: Props) => {
   const { field } = props;
   const [subFieldIds, setSubFieldIds] = React.useState<string[]>(
-    field?.subFieldIds || []
+    field?.subFieldIds || [],
   );
 
-  const otherFields = props.fields.filter(f => {
+  const otherFields = props.fields.filter((f) => {
     if (f.type === 'parentField') {
       return false;
     }
@@ -31,7 +31,7 @@ const GroupedField = (props: Props) => {
   });
 
   if (otherFields.length === 0) {
-    return <p>There are no fields yet.</p>;
+    return <p>Zatím zde nejsou žádná pole.</p>;
   }
 
   React.useEffect(() => {
@@ -43,19 +43,19 @@ const GroupedField = (props: Props) => {
   return (
     <FormGroup>
       <ControlLabel>Fields</ControlLabel>
-      <p>{__('Please select a subfields')}</p>
+      <p>{__('Vyberte podpole')}</p>
       <Info>
         {__(
-          'Note: If subfields have logics, they will be ignored. But main field logics will be applied.'
+          'Poznámka: Pokud mají podpole logiku, budou ignorována. Ale bude použita logika hlavního pole.',
         )}
       </Info>
       <Select
-        placeholder={__('Choose')}
-        options={otherFields.map(f => ({ label: f.text, value: f._id }))}
+        placeholder={__('Vybrat')}
+        options={otherFields.map((f) => ({ label: f.text, value: f._id }))}
         onChange={(values: any) => {
           props.onChange({
             ...field,
-            subFieldIds: values.map(v => v.value)
+            subFieldIds: values.map((v) => v.value),
           });
         }}
         clearable={true}

@@ -1,7 +1,7 @@
 import {
   Link,
   NewEmailHeader,
-  WidgetButton
+  WidgetButton,
 } from '@saashq/ui-inbox/src/settings/integrations/components/mail/styles';
 
 import Button from '@saashq/ui/src/components/Button';
@@ -40,21 +40,21 @@ class Widget extends React.Component<Props, State> {
       shrink: localStorage.getItem('emailWidgetShrink') || 'false',
       clear: false,
       isFullscreen: false,
-      isEmptyEmail: false
+      isEmptyEmail: false,
     };
   }
 
   changeState = (state: boolean) => {
     this.setState({
       shrink: 'false',
-      clear: false
+      clear: false,
     });
     localStorage.setItem(
       'emailWidgetShow',
       JSON.stringify({
         type: this.props.type || 'widget',
-        show: state
-      })
+        show: state,
+      }),
     );
     localStorage.setItem('emailWidgetShrink', 'false');
   };
@@ -84,7 +84,7 @@ class Widget extends React.Component<Props, State> {
       buttonSize,
       buttonText,
       emailTo,
-      emailStatus
+      emailStatus,
     } = this.props;
 
     if (type === 'action' || type === 'tab') {
@@ -95,7 +95,7 @@ class Widget extends React.Component<Props, State> {
           disabled={disabled}
           size={buttonSize}
         >
-          <Tip text="Send e-mail" placement="top-end">
+          <Tip text="Poslat e-mailem" placement="top-end">
             <Icon icon="envelope-alt" />
           </Tip>
           {buttonText && buttonText}
@@ -114,7 +114,7 @@ class Widget extends React.Component<Props, State> {
 
     return (
       <WidgetButton>
-        <Tip text={__('New Email')} placement="bottom">
+        <Tip text={__('Nový E-mailem')} placement="bottom">
           <Icon
             icon="envelope-alt"
             size={20}
@@ -135,7 +135,7 @@ class Widget extends React.Component<Props, State> {
       this.setState({ shrink: shrink === 'true' ? 'false' : 'true' });
       localStorage.setItem(
         'emailWidgetShrink',
-        shrink === 'true' ? 'false' : 'true'
+        shrink === 'true' ? 'false' : 'true',
       );
     };
 
@@ -146,8 +146,8 @@ class Widget extends React.Component<Props, State> {
         'emailWidgetShow',
         JSON.stringify({
           type: this.props.type || 'widget',
-          show: false
-        })
+          show: false,
+        }),
       );
     };
 
@@ -171,14 +171,14 @@ class Widget extends React.Component<Props, State> {
           shrink={isShrink}
           show={isWidgetShow.show}
           fullScreen={isFullscreen}
-          onClick={e => {
+          onClick={(e) => {
             e.stopPropagation();
           }}
         >
           <NewEmailHeader>
-            <span onClick={changeShrink}>{__('New Email')}</span>
+            <span onClick={changeShrink}>{__('Nový E-mailem')}</span>
             <div>
-              <Tip text={'Minimize'} placement="top">
+              <Tip text={'Minimalizovat'} placement="top">
                 <Icon
                   size={10}
                   icon={shrink === 'true' ? 'plus' : 'minus'}
@@ -186,7 +186,9 @@ class Widget extends React.Component<Props, State> {
                 />
               </Tip>
               <Tip
-                text={isFullscreen ? 'Exit full screen' : 'Full screen'}
+                text={
+                  isFullscreen ? 'Ukončete celou obrazovku' : 'Celá obrazovka'
+                }
                 placement="top"
               >
                 <Icon
@@ -195,7 +197,7 @@ class Widget extends React.Component<Props, State> {
                   onClick={handleExpand}
                 />
               </Tip>
-              <Tip text={'Close'} placement="top">
+              <Tip text={'Zavřít'} placement="top">
                 <Icon size={10} icon="cancel" onClick={onClose} />
               </Tip>
             </div>

@@ -56,17 +56,17 @@ class RefreshPermissionForm extends React.PureComponent<Props, CommonTypes> {
       const { REACT_APP_API_URL } = getEnv();
       const url = `${REACT_APP_API_URL}/pl:facebook/fblogin?kind=facebook`;
 
-      this.popupWindow(url, 'Integration', window, 660, 750);
+      this.popupWindow(url, 'Integrace', window, 660, 750);
     };
 
     return (
       <>
         <Info>
           {__(
-            'Page permissions can be dropped by Messenger platform if the admin of the page changes their account password or due to some other unexpected reason. In case of any trouble with message sending, or in using some other service, please refresh your permissions using the below button.',
+            'Oprávnění ke stránce může platforma Messenger zrušit, pokud správce stránky změní heslo k účtu nebo z jiného neočekávaného důvodu. V případě jakýchkoliv problémů s odesíláním zpráv nebo s používáním jiné služby prosím obnovte svá oprávnění pomocí níže uvedeného tlačítka.',
           )}
           <RefreshPermission onClick={onClick}>
-            Refresh permissions
+            Obnovit oprávnění
           </RefreshPermission>
         </Info>
       </>
@@ -78,17 +78,17 @@ class RefreshPermissionForm extends React.PureComponent<Props, CommonTypes> {
       const { REACT_APP_API_URL } = getEnv();
       const url = `${REACT_APP_API_URL}/pl:instagram/iglogin?kind=instagram`;
 
-      this.popupWindow(url, 'Integration', window, 660, 750);
+      this.popupWindow(url, 'Integrace', window, 660, 750);
     };
 
     return (
       <>
         <Info>
           {__(
-            'Page permissions can be dropped by Messenger platform if the admin of the page changes their account password or due to some other unexpected reason. In case of any trouble with message sending, or in using some other service, please refresh your permissions using the below button.',
+            'Oprávnění ke stránce může platforma Messenger zrušit, pokud správce stránky změní heslo k účtu nebo z jiného neočekávaného důvodu. V případě jakýchkoliv problémů s odesíláním zpráv nebo s používáním jiné služby prosím obnovte svá oprávnění pomocí níže uvedeného tlačítka.',
           )}
           <RefreshPermission onClick={onClick}>
-            Refresh permissions
+            Obnovit oprávnění
           </RefreshPermission>
         </Info>
       </>
@@ -110,7 +110,7 @@ class RefreshPermissionForm extends React.PureComponent<Props, CommonTypes> {
             onClick={closeModal}
             icon="times-circle"
           >
-            Cancel
+            Zrušení
           </Button>
         </ModalFooter>
       </>

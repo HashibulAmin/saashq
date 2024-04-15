@@ -10,7 +10,7 @@ import { ModalFooter } from '@saashq/ui/src/styles/main';
 import {
   IButtonMutateProps,
   IFieldLogic,
-  IFormProps
+  IFormProps,
 } from '@saashq/ui/src/types';
 import { __ } from '@saashq/ui/src/utils';
 import { RenderDynamicComponent } from '@saashq/ui/src/utils/core';
@@ -61,7 +61,7 @@ class PropertyGroupForm extends React.Component<Props, State> {
       isVisibleInDetail,
       alwaysOpen,
       logics: props.group && props.group.logics ? props.group.logics : [],
-      logicAction: props.group && props.group.logicAction
+      logicAction: props.group && props.group.logicAction,
     };
   }
 
@@ -91,11 +91,11 @@ class PropertyGroupForm extends React.Component<Props, State> {
       alwaysOpen: this.state.alwaysOpen,
       config,
       logicAction,
-      logics
+      logics,
     };
   };
 
-  multipleHandler = e => {
+  multipleHandler = (e) => {
     if (e.target.id === 'multiple') {
       const isMultiple = e.target.checked;
 
@@ -103,7 +103,7 @@ class PropertyGroupForm extends React.Component<Props, State> {
     }
   };
 
-  alwaysOpenHandler = e => {
+  alwaysOpenHandler = (e) => {
     if (e.target.id === 'alwaysOpen') {
       const alwaysOpen = e.target.checked;
 
@@ -111,7 +111,7 @@ class PropertyGroupForm extends React.Component<Props, State> {
     }
   };
 
-  visibleHandler = e => {
+  visibleHandler = (e) => {
     if (e.target.id === 'visible') {
       const isVisible = e.target.checked;
 
@@ -128,12 +128,12 @@ class PropertyGroupForm extends React.Component<Props, State> {
       return null;
     }
 
-    const Checked = () => <span>And</span>;
-    const UnChecked = () => <span>Or</span>;
+    const Checked = () => <span>A</span>;
+    const UnChecked = () => <span>Nebo</span>;
 
     return (
       <FormGroup>
-        <ControlLabel>Visible</ControlLabel>
+        <ControlLabel>Viditelné</ControlLabel>
         <div>
           <Toggle
             id="visible"
@@ -153,15 +153,15 @@ class PropertyGroupForm extends React.Component<Props, State> {
 
     return (
       <FormGroup>
-        <ControlLabel>Visible in detail</ControlLabel>
+        <ControlLabel>Viditelné v detailu</ControlLabel>
         <div>
           <Toggle
             id="visibleDetail"
             checked={this.state.isVisibleInDetail}
             onChange={this.visibleHandler}
             icons={{
-              checked: <span>Yes</span>,
-              unchecked: <span>No</span>
+              checked: <span>Ano</span>,
+              unchecked: <span>Ne</span>,
             }}
           />
         </div>
@@ -178,11 +178,11 @@ class PropertyGroupForm extends React.Component<Props, State> {
     this.setState({ config: { boardsPipelines } });
   };
 
-  onChangeLogicAction = value => {
+  onChangeLogicAction = (value) => {
     this.setState({ logicAction: value });
   };
 
-  onChangeLogics = logics => {
+  onChangeLogics = (logics) => {
     this.setState({ logics });
   };
 
@@ -201,7 +201,7 @@ class PropertyGroupForm extends React.Component<Props, State> {
             injectedProps={{
               config,
               type,
-              onChangeItems: this.onChangeItems
+              onChangeItems: this.onChangeItems,
             }}
           />
         );
@@ -220,7 +220,7 @@ class PropertyGroupForm extends React.Component<Props, State> {
     return (
       <>
         <FormGroup>
-          <ControlLabel required={true}>Name</ControlLabel>
+          <ControlLabel required={true}>Název</ControlLabel>
           <FormControl
             {...formProps}
             name="name"
@@ -231,7 +231,7 @@ class PropertyGroupForm extends React.Component<Props, State> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel required={true}>Description</ControlLabel>
+          <ControlLabel required={true}>Popis</ControlLabel>
           <FormControl
             {...formProps}
             name="description"
@@ -241,12 +241,12 @@ class PropertyGroupForm extends React.Component<Props, State> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>Code</ControlLabel>
+          <ControlLabel>Kód</ControlLabel>
           <FormControl {...formProps} name="code" defaultValue={object.code} />
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>Parent group:</ControlLabel>
+          <ControlLabel>Rodičovská skupina:</ControlLabel>
           <Row>
             <FormControl
               {...formProps}
@@ -256,8 +256,8 @@ class PropertyGroupForm extends React.Component<Props, State> {
             >
               <option value="" />
               {groups
-                .filter(e => !e.isDefinedBySaasHQ)
-                .map(g => {
+                .filter((e) => !e.isDefinedBySaasHQ)
+                .map((g) => {
                   return (
                     <option key={g._id} value={g._id}>
                       {g.name}
@@ -278,37 +278,37 @@ class PropertyGroupForm extends React.Component<Props, State> {
         )}
 
         <FormGroup>
-          <ControlLabel>{__('Always open')} </ControlLabel>
-          <p>{__('Whether this group is always open in a sidebar')}</p>
+          <ControlLabel>{__('Vždy otevřeno')} </ControlLabel>
+          <p>{__('Zda je tato skupina vždy otevřená na postranním panelu')}</p>
           <div>
             <Toggle
               id="alwaysOpen"
               checked={this.state.alwaysOpen}
               onChange={this.alwaysOpenHandler}
               icons={{
-                checked: <span>Checked</span>,
-                unchecked: <span>Unchecked</span>
+                checked: <span>Kontrolovány</span>,
+                unchecked: <span>Nezaškrtnuto</span>,
               }}
             />
           </div>
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>Multiple</ControlLabel>
+          <ControlLabel>Násobek</ControlLabel>
           <div>
             <Toggle
               id="multiple"
               checked={this.state.isMultiple}
               onChange={this.multipleHandler}
               icons={{
-                checked: <span>Checked</span>,
-                unchecked: <span>Unchecked</span>
+                checked: <span>Kontrolovány</span>,
+                unchecked: <span>Nezaškrtnuto</span>,
               }}
             />
           </div>
         </FormGroup>
 
-        <CollapseContent title={__('Logic')} compact={true}>
+        <CollapseContent title={__('Logika')} compact={true}>
           <PropertyLogics
             contentType={this.props.type}
             logics={this.state.logics || []}
@@ -320,7 +320,7 @@ class PropertyGroupForm extends React.Component<Props, State> {
 
         <ModalFooter>
           <Button btnStyle="simple" onClick={closeModal} icon="times-circle">
-            Close
+            Zavřít
           </Button>
 
           {renderButton({
@@ -328,7 +328,7 @@ class PropertyGroupForm extends React.Component<Props, State> {
             values: this.generateDoc(values),
             isSubmitted,
             callback: closeModal,
-            object: group
+            object: group,
           })}
         </ModalFooter>
       </>

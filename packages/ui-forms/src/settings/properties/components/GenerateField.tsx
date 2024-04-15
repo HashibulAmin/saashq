@@ -92,7 +92,7 @@ export default class GenerateField extends React.Component<Props, State> {
     return (
       <FormControl componentClass="select" {...attrs}>
         <option key={''} value="">
-          Choose option
+          Vyberte možnost
         </option>
         {options.map((option, index) => (
           <option key={index} value={option}>
@@ -110,7 +110,7 @@ export default class GenerateField extends React.Component<Props, State> {
     return (
       <FormControl componentClass="select" {...attrs}>
         <option key={''} value="">
-          Choose option
+          Vyberte možnost
         </option>
         {options.map((option, index) => (
           <option key={index} value={option.key}>
@@ -301,7 +301,7 @@ export default class GenerateField extends React.Component<Props, State> {
 
     return (
       <SelectCustomers
-        label="Filter by customers"
+        label="Filtrujte podle zákazníků"
         name="customerIds"
         multi={false}
         initialValue={value}
@@ -323,7 +323,7 @@ export default class GenerateField extends React.Component<Props, State> {
 
     return (
       <SelectProducts
-        label="Filter by products"
+        label="Filtrujte podle produktů"
         name="productIds"
         multi={false}
         initialValue={value}
@@ -345,7 +345,7 @@ export default class GenerateField extends React.Component<Props, State> {
 
     return (
       <SelectBranches
-        label="Filter by branches"
+        label="Filtrujte podle větví"
         name="branchIds"
         multi={false}
         initialValue={value}
@@ -367,7 +367,7 @@ export default class GenerateField extends React.Component<Props, State> {
 
     return (
       <SelectDepartments
-        label="Filter by departments"
+        label="Filtrujte podle oddělení"
         name="departmentIds"
         multi={false}
         initialValue={value}
@@ -434,7 +434,7 @@ export default class GenerateField extends React.Component<Props, State> {
       <ModifiableList
         options={options}
         onChangeOption={onChange}
-        addButtonLabel={__('Add a value')}
+        addButtonLabel={__('Přidejte hodnotu')}
         showAddButton={true}
       />
     );
@@ -627,7 +627,7 @@ export default class GenerateField extends React.Component<Props, State> {
         return this.renderMultiSelect(options, attrs);
 
       case 'pronoun':
-        return this.renderSelect(['Male', 'Female', 'Not applicable'], attrs);
+        return this.renderSelect(['Mužský', 'ženský', 'Nelze použít'], attrs);
 
       case 'check':
         try {
@@ -711,7 +711,7 @@ export default class GenerateField extends React.Component<Props, State> {
 
       case 'product': {
         if (!isEnabled('products')) {
-          return <p>Products service is not enabled</p>;
+          return <p>Služba produktů není povolena</p>;
         }
         return this.renderProduct(attrs);
       }
@@ -738,7 +738,7 @@ export default class GenerateField extends React.Component<Props, State> {
 
       case 'selectProductCategory': {
         if (!isEnabled('products')) {
-          return <p>Products service is not enabled</p>;
+          return <p>Služba produktů není povolena</p>;
         }
         return this.renderSelectCategory(attrs);
       }
@@ -814,7 +814,7 @@ export default class GenerateField extends React.Component<Props, State> {
         </ControlLabel>
         {this.renderAddButton()}
 
-        {hasLogic && <LogicIndicator>Logic</LogicIndicator>}
+        {hasLogic && <LogicIndicator>Logika</LogicIndicator>}
         {subFieldIds.includes(field._id) && (
           <LogicIndicator>Sub Field</LogicIndicator>
         )}

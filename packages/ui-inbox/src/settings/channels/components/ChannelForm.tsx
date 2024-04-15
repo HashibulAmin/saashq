@@ -26,7 +26,7 @@ class ChannelForm extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      selectedMembers: props.selectedMembers || []
+      selectedMembers: props.selectedMembers || [],
     };
   }
 
@@ -44,7 +44,7 @@ class ChannelForm extends React.Component<Props, State> {
 
     return {
       ...finalValues,
-      memberIds: this.state.selectedMembers
+      memberIds: this.state.selectedMembers,
     };
   };
 
@@ -55,14 +55,14 @@ class ChannelForm extends React.Component<Props, State> {
     const object = channel || ({} as IChannel);
     const self = this;
 
-    const onChange = items => {
+    const onChange = (items) => {
       self.setState({ selectedMembers: items });
     };
 
     return (
       <>
         <FormGroup>
-          <ControlLabel required={true}>Name</ControlLabel>
+          <ControlLabel required={true}>Název</ControlLabel>
 
           <FormControl
             {...formProps}
@@ -74,7 +74,7 @@ class ChannelForm extends React.Component<Props, State> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>Description</ControlLabel>
+          <ControlLabel>Popis</ControlLabel>
 
           <FormControl
             {...formProps}
@@ -86,10 +86,10 @@ class ChannelForm extends React.Component<Props, State> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>Members</ControlLabel>
+          <ControlLabel>členové</ControlLabel>
 
           <SelectTeamMembers
-            label="Choose members"
+            label="Vyberte členy"
             name="selectedMembers"
             initialValue={selectedMembers}
             onSelect={onChange}
@@ -102,7 +102,7 @@ class ChannelForm extends React.Component<Props, State> {
             icon="cancel-1"
             onClick={closeModal}
           >
-            Cancel
+            Zrušení
           </Button>
 
           {renderButton({
@@ -110,7 +110,7 @@ class ChannelForm extends React.Component<Props, State> {
             values: this.generateDoc(values),
             isSubmitted,
             callback: closeModal,
-            object: channel
+            object: channel,
           })}
         </ModalFooter>
       </>

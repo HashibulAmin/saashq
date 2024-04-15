@@ -49,14 +49,14 @@ class Form extends React.Component<Props, State> {
 
     this.state = {
       fields: (props.formData ? props.formData.fields : props.fields) || [],
-      title: form.title || 'Form Title',
+      title: form.title || 'Název formuláře',
       description: form.description || '',
-      buttonText: form.buttonText || 'Send',
+      buttonText: form.buttonText || 'Poslat',
       currentMode: undefined,
       currentField: undefined,
       type: props.type || '',
       numberOfPages: form.numberOfPages || 1,
-      currentPage: 1
+      currentPage: 1,
     };
   }
 
@@ -66,7 +66,7 @@ class Form extends React.Component<Props, State> {
 
     if (nextProps.formData && nextProps.formData !== formData) {
       this.setState({
-        fields: nextProps.formData.fields || []
+        fields: nextProps.formData.fields || [],
       });
     }
 
@@ -79,8 +79,8 @@ class Form extends React.Component<Props, State> {
               description,
               buttonText,
               fields,
-              type
-            }
+              type,
+            },
       );
     }
   }
@@ -93,7 +93,7 @@ class Form extends React.Component<Props, State> {
     const { onDocChange } = this.props;
     const { title, buttonText, description, numberOfPages } = this.state;
 
-    const onChangeField = e => {
+    const onChangeField = (e) => {
       const name: keyof State = e.target.name;
       const value = (e.currentTarget as HTMLInputElement).value;
 
@@ -107,7 +107,7 @@ class Form extends React.Component<Props, State> {
     return (
       <>
         <FormGroup>
-          <ControlLabel required={true}>{__('Form title')}</ControlLabel>
+          <ControlLabel required={true}>{__('Název formuláře')}</ControlLabel>
           <FormControl
             required={true}
             name="title"
@@ -117,7 +117,7 @@ class Form extends React.Component<Props, State> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>{__('Form description')}</ControlLabel>
+          <ControlLabel>{__('Popis formuláře')}</ControlLabel>
           <FormControl
             componentClass="textarea"
             name="description"
@@ -127,7 +127,7 @@ class Form extends React.Component<Props, State> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>{__('Number of pages')}</ControlLabel>
+          <ControlLabel>{__('Počet stran')}</ControlLabel>
           <FormControl
             name="numberOfPages"
             value={numberOfPages}
@@ -138,7 +138,7 @@ class Form extends React.Component<Props, State> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>{__('Form button text')}</ControlLabel>
+          <ControlLabel>{__('Text tlačítka formuláře')}</ControlLabel>
           <FormControl
             name="buttonText"
             value={buttonText}
@@ -155,8 +155,8 @@ class Form extends React.Component<Props, State> {
       currentField: {
         _id: `tempId${Math.random().toString()}`,
         contentType: 'form',
-        type: choice
-      }
+        type: choice,
+      },
     });
   };
 
@@ -173,7 +173,7 @@ class Form extends React.Component<Props, State> {
     if (currentMode === 'create') {
       selector = {
         fields: [...fields, field],
-        currentField: undefined
+        currentField: undefined,
       };
     }
 
@@ -186,7 +186,7 @@ class Form extends React.Component<Props, State> {
 
   onFieldDelete = (field: IField) => {
     // remove field from state
-    const fields = this.state.fields.filter(f => f._id !== field._id);
+    const fields = this.state.fields.filter((f) => f._id !== field._id);
 
     this.setState({ fields, currentField: undefined });
   };
@@ -195,13 +195,13 @@ class Form extends React.Component<Props, State> {
     this.setState({ currentField: undefined });
   };
 
-  onChangeFieldsOrder = fields => {
+  onChangeFieldsOrder = (fields) => {
     const { onDocChange } = this.props;
 
     const allFields = this.state.fields;
 
     for (const field of fields) {
-      const index = allFields.map(e => e._id).indexOf(field._id);
+      const index = allFields.map((e) => e._id).indexOf(field._id);
 
       if (index !== -1) {
         allFields[index] = field;
@@ -217,13 +217,8 @@ class Form extends React.Component<Props, State> {
 
   render() {
     const { renderPreviewWrapper } = this.props;
-    const {
-      currentMode,
-      currentField,
-      fields,
-      description,
-      numberOfPages
-    } = this.state;
+    const { currentMode, currentField, fields, description, numberOfPages } =
+      this.state;
 
     const renderer = () => {
       return (
@@ -241,9 +236,9 @@ class Form extends React.Component<Props, State> {
       <FlexContent>
         <LeftItem>
           <FormTop>{this.renderOptionalFields()}</FormTop>
-          <Title>{__('Add a new field')}</Title>
+          <Title>{__('Přidejte nové pole')}</Title>
           <Description>
-            {__('Choose a field type from the options below.')}
+            {__('Vyberte typ pole z níže uvedených možností.')}
           </Description>
           <FieldChoices
             type={this.props.type}

@@ -20,8 +20,8 @@ type Props = {
 };
 
 const showOptions = [
-  { value: 'show', label: 'Show this field' },
-  { value: 'hide', label: 'Hide this field' }
+  { value: 'show', label: 'Zobrazit toto pole' },
+  { value: 'hide', label: 'Skryjte toto pole' },
 ];
 
 function FieldLogics(props: Props) {
@@ -34,10 +34,10 @@ function FieldLogics(props: Props) {
           fieldId,
           tempFieldId,
           logicOperator,
-          logicValue
+          logicValue,
         };
-      }
-    )
+      },
+    ),
   );
 
   useEffect(() => {
@@ -45,7 +45,7 @@ function FieldLogics(props: Props) {
   }, [logics, onLogicsChange]);
 
   const [isEnabled, toggleState] = useState(
-    props.logics ? props.logics.length > 0 : false
+    props.logics ? props.logics.length > 0 : false,
   );
 
   const onChangeLogic = (name, value, index) => {
@@ -68,8 +68,8 @@ function FieldLogics(props: Props) {
         fieldId: '',
         tempFieldId: '',
         logicOperator: 'is',
-        logicValue: ''
-      }
+        logicValue: '',
+      },
     ]);
   };
 
@@ -110,7 +110,7 @@ function FieldLogics(props: Props) {
           ))}
 
           <LinkButton onClick={addLogic}>
-            <Icon icon="plus-1" /> Add Logic Rule
+            <Icon icon="plus-1" /> Přidat Logické Pravidlo
           </LinkButton>
         </>
       );
@@ -123,7 +123,7 @@ function FieldLogics(props: Props) {
         icon="check-circle"
         onClick={onEnableLogic}
       >
-        Enable Logic
+        Povolit Logiku
       </Button>
     );
   };
@@ -132,7 +132,7 @@ function FieldLogics(props: Props) {
     <>
       <Info>
         {__(
-          'Create rules to show or hide this element depending on the values of other properties'
+          'Vytvořte pravidla pro zobrazení nebo skrytí tohoto prvku v závislosti na hodnotách ostatních vlastností',
         )}
       </Info>
       {renderContent()}

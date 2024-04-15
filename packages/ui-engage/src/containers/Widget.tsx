@@ -64,11 +64,11 @@ const WidgetContainer = (props: FinalProps) => {
     doc.forceCreateConversation = props.forceCreateConversation;
 
     if (doc.method === METHODS.EMAIL && !doc.email.content) {
-      return Alert.warning('Please fill in email content');
+      return Alert.warning('Vyplňte prosím obsah emailu');
     }
 
     if (doc.method === METHODS.MESSENGER && !doc.messenger.content) {
-      return Alert.warning('Please fill in message content');
+      return Alert.warning('Vyplňte prosím obsah zprávy');
     }
 
     messagesAddMutation({
@@ -77,7 +77,7 @@ const WidgetContainer = (props: FinalProps) => {
       .then(() => {
         callback();
 
-        Alert.success(`Úspěšně jste přidali a engagement message`);
+        Alert.success(`Úspěšně jste přidali a zpráva o zapojení`);
 
         if (emptyBulk) {
           emptyBulk();

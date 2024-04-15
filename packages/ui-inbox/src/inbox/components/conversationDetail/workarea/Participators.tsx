@@ -50,7 +50,7 @@ class Participators extends React.Component<Props, { toggle: boolean }> {
     const { toggle } = this.state;
     const length = participatedUsers.length;
 
-    const Trigger = user => {
+    const Trigger = (user) => {
       const name =
         (user.details && user.details.fullName) || user.username || '';
 
@@ -66,7 +66,7 @@ class Participators extends React.Component<Props, { toggle: boolean }> {
     };
 
     const Tooltip = (
-      <Tip placement="top" text={__('View more')}>
+      <Tip placement="top" text={__('Ukázat více')}>
         <More>{`+${limit && length - limit}`}</More>
       </Tip>
     );
@@ -75,7 +75,7 @@ class Participators extends React.Component<Props, { toggle: boolean }> {
       <ParticipatorWrapper onClick={this.toggleParticipator}>
         {participatedUsers
           .slice(0, limit && toggle ? limit : length)
-          .map(user => Trigger(user))}
+          .map((user) => Trigger(user))}
         {limit && toggle && length - limit > 0 && Tooltip}
       </ParticipatorWrapper>
     );

@@ -9,7 +9,7 @@ import {
   From,
   Meta,
   RightSide,
-  Title
+  Title,
 } from './style';
 import { IMail, IMessage } from '../../../../types';
 
@@ -41,19 +41,19 @@ class MailHeader extends React.Component<Props, State> {
 
     this.state = {
       dateFormat: 'MMM D, h:mm A',
-      isDetailExpanded: false
+      isDetailExpanded: false,
     };
   }
 
-  toggleDateFormat = e => {
+  toggleDateFormat = (e) => {
     e.stopPropagation();
 
     this.setState({
-      dateFormat: this.state.dateFormat === 'lll' ? 'MMM D, h:mm A' : 'lll'
+      dateFormat: this.state.dateFormat === 'lll' ? 'MMM D, h:mm A' : 'lll',
     });
   };
 
-  toggleExpand = e => {
+  toggleExpand = (e) => {
     if (this.props.isContentCollapsed) {
       return;
     }
@@ -65,7 +65,7 @@ class MailHeader extends React.Component<Props, State> {
   onToggleMailForm = ({
     event,
     replyToAll = false,
-    isForward = false
+    isForward = false,
   }: {
     event: any;
     replyToAll?: boolean;
@@ -81,10 +81,10 @@ class MailHeader extends React.Component<Props, State> {
       return null;
     }
 
-    const onToggleReply = event => this.onToggleMailForm({ event });
-    const onToggleReplyAll = event =>
+    const onToggleReply = (event) => this.onToggleMailForm({ event });
+    const onToggleReplyAll = (event) =>
       this.onToggleMailForm({ event, replyToAll: true });
-    const onToggleForward = event =>
+    const onToggleForward = (event) =>
       this.onToggleMailForm({ event, isForward: true });
 
     return (
@@ -102,13 +102,13 @@ class MailHeader extends React.Component<Props, State> {
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <li>
-              <a onClick={onToggleReply}>Reply</a>
+              <a onClick={onToggleReply}>Odpověď</a>
             </li>
             <li>
-              <a onClick={onToggleReplyAll}>Reply all</a>
+              <a onClick={onToggleReplyAll}>Odpovědět všem</a>
             </li>
             <li>
-              <a onClick={onToggleForward}>Forward</a>
+              <a onClick={onToggleForward}>Vpřed</a>
             </li>
           </Dropdown.Menu>
         </Dropdown>
@@ -177,7 +177,7 @@ class MailHeader extends React.Component<Props, State> {
     );
   };
 
-  renderSecondaryContent = mailData => {
+  renderSecondaryContent = (mailData) => {
     const { message, isContentCollapsed } = this.props;
 
     if (isContentCollapsed) {
@@ -189,7 +189,7 @@ class MailHeader extends React.Component<Props, State> {
 
     return (
       <AddressContainer isExpanded={this.state.isDetailExpanded}>
-        {this.renderAddress('To:', mailData.to)}
+        {this.renderAddress('Na:', mailData.to)}
         {this.renderAddress('Cc:', mailData.cc)}
         {this.renderAddress('Bcc:', mailData.bcc)}
       </AddressContainer>

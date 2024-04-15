@@ -12,26 +12,26 @@ import FieldLogic from './FieldLogic';
 type Props = {
   onFieldChange: (
     name: string,
-    value: string | boolean | string[] | IFieldLogic[]
+    value: string | boolean | string[] | IFieldLogic[],
   ) => void;
   fields: IField[];
   currentField: IField;
 };
 
 const showOptions = [
-  { value: 'show', label: 'Show this field' },
-  { value: 'hide', label: 'Hide this field' }
+  { value: 'show', label: 'Zobrazit toto pole' },
+  { value: 'hide', label: 'Skryjte toto pole' },
 ];
 
 function FieldLogics(props: Props) {
   const { currentField, onFieldChange } = props;
   const subFieldIds = props.fields
-    .filter(f => f.subFieldIds)
-    .map(f => f.subFieldIds)
+    .filter((f) => f.subFieldIds)
+    .map((f) => f.subFieldIds)
     .flat();
 
   const fields = props.fields.filter(
-    f => f._id !== currentField._id && !subFieldIds.includes(f._id)
+    (f) => f._id !== currentField._id && !subFieldIds.includes(f._id),
   );
 
   const [logics, setLogics] = useState(
@@ -41,10 +41,10 @@ function FieldLogics(props: Props) {
           fieldId,
           tempFieldId,
           logicOperator,
-          logicValue
+          logicValue,
         };
-      }
-    )
+      },
+    ),
   );
 
   useEffect(() => {
@@ -52,10 +52,10 @@ function FieldLogics(props: Props) {
   }, [logics, onFieldChange]);
 
   const [isEnabled, toggleState] = useState(
-    currentField.logics ? currentField.logics.length > 0 : false
+    currentField.logics ? currentField.logics.length > 0 : false,
   );
 
-  const onChangeLogicAction = e =>
+  const onChangeLogicAction = (e) =>
     onFieldChange('logicAction', e.currentTarget.value);
 
   const onChangeLogic = (name, value, index) => {
@@ -78,8 +78,8 @@ function FieldLogics(props: Props) {
         fieldId: '',
         tempFieldId: '',
         logicOperator: 'is',
-        logicValue: ''
-      }
+        logicValue: '',
+      },
     ]);
   };
 
@@ -118,7 +118,7 @@ function FieldLogics(props: Props) {
           ))}
 
           <LinkButton onClick={addLogic}>
-            <Icon icon="plus-1" /> Add Logic Rule
+            <Icon icon="plus-1" /> Přidat Logické Pravidlo
           </LinkButton>
         </>
       );
@@ -131,7 +131,7 @@ function FieldLogics(props: Props) {
         icon="check-circle"
         onClick={onEnableLogic}
       >
-        Enable Logic
+        Povolit Logiku
       </Button>
     );
   };
@@ -140,7 +140,7 @@ function FieldLogics(props: Props) {
     <>
       <Info>
         {__(
-          'Create rules to show or hide this element depending on the values of other fields'
+          'Vytvořte pravidla pro zobrazení nebo skrytí tohoto prvku v závislosti na hodnotách ostatních polí',
         )}
       </Info>
       {renderContent()}

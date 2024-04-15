@@ -126,7 +126,7 @@ class GenerateGroup extends React.Component<Props, State> {
 
         this.cancelEditing();
 
-        return Alert.success('Success');
+        return Alert.success('Úspěch');
       },
       extraValues,
     );
@@ -240,7 +240,7 @@ class GenerateGroup extends React.Component<Props, State> {
         </Button>
         <div>
           {this.props.fieldGroup.isMultiple && isModal && (
-            <Tip placement="top" text="Add Group Input">
+            <Tip placement="top" text="Přidat Skupinový Vstup">
               <Button btnStyle="primary" onClick={this.onAddGroupInput}>
                 <Icon icon="plus-circle" />
               </Button>
@@ -533,7 +533,7 @@ class GenerateGroup extends React.Component<Props, State> {
               paddingContent="less-padding"
             />
           }
-          <Tip placement="top" text="Add Group Input">
+          <Tip placement="top" text="Přidat Skupinový Vstup">
             <button onClick={this.onAddGroupInput}>
               <Icon icon="plus-circle" />
             </button>

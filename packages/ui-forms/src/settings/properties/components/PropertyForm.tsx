@@ -253,7 +253,7 @@ class PropertyForm extends React.Component<Props, State> {
 
     return (
       <FormGroup>
-        <ControlLabel>Object List Configs:</ControlLabel>
+        <ControlLabel>Konfigurace seznamu objektů:</ControlLabel>
 
         <ObjectListConfigs
           objectListConfigs={objectListConfigs}
@@ -272,7 +272,7 @@ class PropertyForm extends React.Component<Props, State> {
 
     return (
       <FormGroup>
-        <ControlLabel htmlFor="locationOptions">Options:</ControlLabel>
+        <ControlLabel htmlFor="locationOptions">Možnosti:</ControlLabel>
         {locationOptions.length > 0 && (
           <Map
             id={this.props.field?._id || Math.random().toString(10)}
@@ -306,13 +306,13 @@ class PropertyForm extends React.Component<Props, State> {
 
     return (
       <FormGroup>
-        <ControlLabel>Show in card</ControlLabel>
+        <ControlLabel>Zobrazit na kartě</ControlLabel>
         <Toggle
           checked={showInCard}
           onChange={this.onSwitchChange}
           icons={{
-            checked: <span>Yes</span>,
-            unchecked: <span>No</span>,
+            checked: <span>Ano</span>,
+            unchecked: <span>Ne</span>,
           }}
         />
       </FormGroup>
@@ -322,14 +322,18 @@ class PropertyForm extends React.Component<Props, State> {
   renderAddGroup = () => {
     const { queryParams } = this.props;
 
-    const trigger = <Button>Create group</Button>;
+    const trigger = <Button>Vytvořit skupinu</Button>;
 
     const content = (props) => (
       <PropertyGroupForm {...props} queryParams={queryParams} />
     );
 
     return (
-      <ModalTrigger title="Create group" trigger={trigger} content={content} />
+      <ModalTrigger
+        title="Vytvořit skupinu"
+        trigger={trigger}
+        content={content}
+      />
     );
   };
 
@@ -344,7 +348,7 @@ class PropertyForm extends React.Component<Props, State> {
     return (
       <>
         <FormGroup>
-          <ControlLabel required={true}>Name:</ControlLabel>
+          <ControlLabel required={true}>Název:</ControlLabel>
           <FormControl
             {...formProps}
             name="text"
@@ -355,7 +359,7 @@ class PropertyForm extends React.Component<Props, State> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>Description:</ControlLabel>
+          <ControlLabel>Popis:</ControlLabel>
           <FormControl
             {...formProps}
             name="description"
@@ -365,7 +369,7 @@ class PropertyForm extends React.Component<Props, State> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>Code:</ControlLabel>
+          <ControlLabel>Kód:</ControlLabel>
           <FormControl
             {...formProps}
             name="code"
@@ -374,7 +378,7 @@ class PropertyForm extends React.Component<Props, State> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel required={true}>Group:</ControlLabel>
+          <ControlLabel required={true}>Skupina:</ControlLabel>
           <Row>
             <FormControl
               {...formProps}
@@ -398,7 +402,7 @@ class PropertyForm extends React.Component<Props, State> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel required={true}>Type:</ControlLabel>
+          <ControlLabel required={true}>Typ:</ControlLabel>
 
           <FormControl
             {...formProps}
@@ -425,7 +429,7 @@ class PropertyForm extends React.Component<Props, State> {
 
         {type === 'input' && (
           <FormGroup>
-            <ControlLabel>Validation:</ControlLabel>
+            <ControlLabel>Validace:</ControlLabel>
 
             <FormControl
               {...formProps}
@@ -434,10 +438,10 @@ class PropertyForm extends React.Component<Props, State> {
               defaultValue={object.validation || ''}
             >
               <option />
-              <option value="email">Email</option>
-              <option value="number">Number</option>
-              <option value="date">Date</option>
-              <option value="datetime">Date Time</option>
+              <option value="email">E-mailem</option>
+              <option value="number">Číslo</option>
+              <option value="date">Datum</option>
+              <option value="datetime">Čas Schůzky</option>
             </FormControl>
           </FormGroup>
         )}
@@ -449,12 +453,12 @@ class PropertyForm extends React.Component<Props, State> {
             checked={searchable}
             onChange={this.onChangeSearchable}
           >
-            {__('Searchable')}
+            {__('Prohledávatelné')}
           </FormControl>
         </FormGroup>
 
         {type.length > 0 && (
-          <CollapseContent title={__('Logic')} compact={true}>
+          <CollapseContent title={__('Logika')} compact={true}>
             <PropertyLogics
               contentType={this.props.queryParams.type}
               logics={this.state.logics || []}
@@ -469,7 +473,7 @@ class PropertyForm extends React.Component<Props, State> {
 
         <ModalFooter>
           <Button btnStyle="simple" onClick={closeModal} icon="times-circle">
-            Close
+            Zavřít
           </Button>
 
           {renderButton({

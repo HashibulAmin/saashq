@@ -187,7 +187,7 @@ class FieldForm extends React.Component<Props, State> {
 
     return (
       <FormGroup>
-        <ControlLabel htmlFor="validation">Validation:</ControlLabel>
+        <ControlLabel htmlFor="validation">Validace:</ControlLabel>
 
         <FormControl
           id="validation"
@@ -196,11 +196,11 @@ class FieldForm extends React.Component<Props, State> {
           onChange={validation}
         >
           <option />
-          <option value="email">{__('Email')}</option>
-          <option value="number">{__('Number')}</option>
-          <option value="datetime">{__('Date Time')}</option>
-          <option value="date">{__('Date')}</option>
-          <option value="phone">{__('Phone')}</option>
+          <option value="email">{__('E-mailem')}</option>
+          <option value="number">{__('Číslo')}</option>
+          <option value="datetime">{__('Čas Schůzky')}</option>
+          <option value="date">{__('Datum')}</option>
+          <option value="phone">{__('Telefon')}</option>
         </FormControl>
       </FormGroup>
     );
@@ -221,7 +221,7 @@ class FieldForm extends React.Component<Props, State> {
 
     return (
       <FormGroup>
-        <ControlLabel htmlFor="type">Options:</ControlLabel>
+        <ControlLabel htmlFor="type">Možnosti:</ControlLabel>
 
         <FormControl
           id="options"
@@ -242,7 +242,7 @@ class FieldForm extends React.Component<Props, State> {
 
     return (
       <FormGroup>
-        <ControlLabel htmlFor="locationOptions">Options:</ControlLabel>
+        <ControlLabel htmlFor="locationOptions">Možnosti:</ControlLabel>
         <LocationOptions
           locationOptions={field.locationOptions || []}
           onChange={this.onChangeLocation}
@@ -265,7 +265,7 @@ class FieldForm extends React.Component<Props, State> {
 
     return (
       <Button btnStyle="danger" onClick={onDelete} icon="minus-circle-1">
-        Delete
+        Vymazat
       </Button>
     );
   }
@@ -288,13 +288,13 @@ class FieldForm extends React.Component<Props, State> {
       <FormGroup>
         <FlexRow>
           <ControlLabel htmlFor="description">
-            {__('Select multiple values')}
+            {__('Vyberte více hodnot')}
           </ControlLabel>
           <Toggle
             defaultChecked={field.type === 'multiSelect'}
             icons={{
-              checked: <span>Yes</span>,
-              unchecked: <span>No</span>,
+              checked: <span>Ano</span>,
+              unchecked: <span>Ne</span>,
             }}
             onChange={onChange}
           />
@@ -313,7 +313,7 @@ class FieldForm extends React.Component<Props, State> {
     return (
       <FormGroup>
         <ControlLabel htmlFor="objectListConfigs">
-          Object List Configs:
+          Konfigurace seznamu objektů:
         </ControlLabel>
         <ObjectListConfigs
           objectListConfigs={field.objectListConfigs || []}
@@ -335,9 +335,9 @@ class FieldForm extends React.Component<Props, State> {
 
     if (['select', 'radio'].includes(field.type)) {
       return (
-        <CollapseContent title={__('Field Value')}>
+        <CollapseContent title={__('Hodnota Pole')}>
           <FormGroup>
-            <ControlLabel>{__('Value')}</ControlLabel>
+            <ControlLabel>{__('Hodnota')}</ControlLabel>
             <FormControl
               id="FieldValue"
               componentClass="textarea"
@@ -370,7 +370,7 @@ class FieldForm extends React.Component<Props, State> {
 
     return (
       <FormGroup>
-        <ControlLabel htmlFor="pageNumber">Page number</ControlLabel>
+        <ControlLabel htmlFor="pageNumber">Číslo stránky</ControlLabel>
         <Select
           isRequired={true}
           value={field.pageNumber || 1}
@@ -413,13 +413,13 @@ class FieldForm extends React.Component<Props, State> {
     return (
       <>
         <CollapseContent
-          title={__('General settings')}
+          title={__('Obecné nastavení')}
           compact={true}
           open={true}
         >
           <FormGroup>
             <ControlLabel htmlFor="text" required={true}>
-              Field Label
+              Štítek Pole
             </ControlLabel>
 
             <FormControl
@@ -432,7 +432,7 @@ class FieldForm extends React.Component<Props, State> {
           </FormGroup>
 
           <FormGroup>
-            <ControlLabel htmlFor="description">Field description</ControlLabel>
+            <ControlLabel htmlFor="description">Popis pole</ControlLabel>
             <RichTextEditor
               content={field.description || ''}
               toolbar={[
@@ -460,20 +460,20 @@ class FieldForm extends React.Component<Props, State> {
           <FormGroup>
             <FlexRow>
               <ControlLabel htmlFor="description">
-                {__('Field is required')}
+                {__('Políčko je vyžadováno')}
               </ControlLabel>
               <Toggle
                 defaultChecked={field.isRequired || false}
                 icons={{
-                  checked: <span>Yes</span>,
-                  unchecked: <span>No</span>,
+                  checked: <span>Ano</span>,
+                  unchecked: <span>Ne</span>,
                 }}
                 onChange={toggle}
               />
             </FlexRow>
             {isEnabled('payment') && field.type === 'productCategory' && (
               <p>
-                {__('If you need to enable payment, field must be required!')}
+                {__('Pokud potřebujete povolit platbu, pole musí být povinné!')}
               </p>
             )}
           </FormGroup>
@@ -499,7 +499,7 @@ class FieldForm extends React.Component<Props, State> {
           {this.renderCustomProperty()}
         </CollapseContent>
         {fields.length > 0 && (
-          <CollapseContent title={__('Logic')} compact={true}>
+          <CollapseContent title={__('Logika')} compact={true}>
             <FieldLogics
               fields={fields.filter(
                 (f) => !(field.subFieldIds || []).includes(f._id),
@@ -530,7 +530,7 @@ class FieldForm extends React.Component<Props, State> {
               icon="times-circle"
               onClick={onCancel}
             >
-              Cancel
+              Zrušení
             </Button>
 
             {this.renderExtraButton()}
@@ -550,7 +550,7 @@ class FieldForm extends React.Component<Props, State> {
             <FieldPreview field={field} otherFields={this.props.fields} />
 
             <ShowPreview>
-              <Icon icon="eye" /> {__('Field preview')}
+              <Icon icon="eye" /> {__('Náhled pole')}
             </ShowPreview>
           </Preview>
         </PreviewSection>
@@ -582,7 +582,7 @@ class FieldForm extends React.Component<Props, State> {
     return (
       <>
         <FormGroup>
-          <ControlLabel>Property type:</ControlLabel>
+          <ControlLabel>Typ majetku:</ControlLabel>
           <FormControl
             id="propertyGroup"
             componentClass="select"
@@ -590,8 +590,8 @@ class FieldForm extends React.Component<Props, State> {
             onChange={this.onPropertyGroupChange}
           >
             <option value={''} />
-            <option value={'contacts:customer'}>Customer</option>
-            <option value={'contacts:company'}>Company</option>
+            <option value={'contacts:customer'}>Zákazník</option>
+            <option value={'contacts:company'}>Společnost</option>
           </FormControl>
         </FormGroup>
       </>
@@ -616,7 +616,7 @@ class FieldForm extends React.Component<Props, State> {
     return (
       <>
         <FormGroup>
-          <ControlLabel>Categories:</ControlLabel>
+          <ControlLabel>Kategorie:</ControlLabel>
           <FormControl
             id="productCategories"
             componentClass="select"
@@ -650,7 +650,7 @@ class FieldForm extends React.Component<Props, State> {
 
     return (
       <FormGroup>
-        <ControlLabel htmlFor="validation">Field width:</ControlLabel>
+        <ControlLabel htmlFor="validation">Šířka pole:</ControlLabel>
 
         <FormControl
           id="validation"
@@ -658,10 +658,10 @@ class FieldForm extends React.Component<Props, State> {
           value={field.column || ''}
           onChange={onChangeColumn}
         >
-          <option value={1}>Full width</option>
-          <option value={2}>Half width</option>
-          <option value={3}>1/3 width</option>
-          <option value={4}>1/4 width</option>
+          <option value={1}>Plná šířka</option>
+          <option value={2}>Poloviční šířka</option>
+          <option value={3}>1/3 šířka</option>
+          <option value={4}>1/4 šířka</option>
         </FormControl>
       </FormGroup>
     );
@@ -714,9 +714,9 @@ class FieldForm extends React.Component<Props, State> {
     return (
       <FormGroup>
         <ControlLabel htmlFor="text" required={false}>
-          Group Name
+          Skupinové Jméno
         </ControlLabel>
-        <p>Use with logic and group multiple fields</p>
+        <p>Použijte s logikou a seskupte více polí</p>
         <FormControl
           id="GroupName"
           type="text"
@@ -745,7 +745,7 @@ class FieldForm extends React.Component<Props, State> {
           <SelectProperty
             queryParams={{ type: group }}
             defaultValue={defaultValue}
-            description="Any data collected through this field will copy to:"
+            description="Všechna data shromážděná prostřednictvím tohoto pole se zkopírují do:"
             onChange={this.onPropertyChange}
           />
         </FormGroup>
@@ -766,7 +766,7 @@ class FieldForm extends React.Component<Props, State> {
       >
         <Modal.Header closeButton={true}>
           <Modal.Title>
-            {mode === 'create' ? 'Add' : 'Edit'} {field.type} field
+            {mode === 'create' ? 'Přidat' : 'Upravit'} {field.type} pole
           </Modal.Title>
         </Modal.Header>
         <Modal.Body id="ModalBody" className="md-padding">

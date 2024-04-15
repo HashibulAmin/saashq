@@ -29,18 +29,18 @@ class Widget extends React.Component<Props> {
 
     return (
       <Button btnStyle="success" size="small" icon="envelope-alt">
-        Message
+        Zpráva
       </Button>
     );
   };
 
   render() {
-    const content = props => <WidgetForm {...this.props} {...props} />;
+    const content = (props) => <WidgetForm {...this.props} {...props} />;
 
     return (
       <ModalTrigger
         size="lg"
-        title="Quick message"
+        title="Rychlá zpráva"
         trigger={this.getTrigger()}
         content={content}
         enforceFocus={false}

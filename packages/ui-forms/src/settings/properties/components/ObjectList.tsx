@@ -65,7 +65,7 @@ export default function ObjectList(props: Props) {
           onClick={onClickCancel}
           icon="times-circle"
         >
-          Discard
+          Vyřadit
         </Button>
         <Button
           btnStyle="danger"
@@ -73,7 +73,7 @@ export default function ObjectList(props: Props) {
           onClick={onClickRemove}
           icon="minus-circle"
         >
-          Remove
+          Odstranit
         </Button>
       </>
     );

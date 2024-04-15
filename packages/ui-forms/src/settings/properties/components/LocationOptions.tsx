@@ -19,9 +19,9 @@ function LocationOptions(props: Props) {
       return {
         lat,
         lng,
-        description
+        description,
       };
-    })
+    }),
   );
 
   useEffect(() => {
@@ -45,7 +45,7 @@ function LocationOptions(props: Props) {
     const option: any = currentLocation || {
       lat: 0.0,
       lng: 0.0,
-      description: ''
+      description: '',
     };
 
     setOptions([...options, option]);
@@ -68,7 +68,7 @@ function LocationOptions(props: Props) {
       ))}
       <FormGroup>
         <LinkButton onClick={addOption}>
-          <Icon icon="plus-1" /> Add option
+          <Icon icon="plus-1" /> Přidat možnost
         </LinkButton>
       </FormGroup>
     </>

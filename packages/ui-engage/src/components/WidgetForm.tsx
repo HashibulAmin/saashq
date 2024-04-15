@@ -131,7 +131,7 @@ class WidgetForm extends React.Component<Props, State> {
   renderReceivers() {
     return (
       <FormGroup>
-        <ControlLabel>Sending to:</ControlLabel>
+        <ControlLabel>Odesílání na:</ControlLabel>
         <Recipients>
           {this.props.customers.map((customer) => (
             <Recipient key={customer._id}>
@@ -152,14 +152,14 @@ class WidgetForm extends React.Component<Props, State> {
     return (
       <Half>
         <FormGroup>
-          <ControlLabel>Channel:</ControlLabel>
+          <ControlLabel>Kanál:</ControlLabel>
           <FormControl
             componentClass="select"
             onChange={this.onChannelChange}
             defaultValue={this.state.channel}
           >
-            <option value="email">{__('Email')}</option>
-            <option value="messenger">{__('Messenger')}</option>
+            <option value="email">{__('E-mailem')}</option>
+            <option value="messenger">{__('Posel')}</option>
           </FormControl>
         </FormGroup>
       </Half>
@@ -191,7 +191,7 @@ class WidgetForm extends React.Component<Props, State> {
         <FlexContent>
           <FlexItem>
             <FormGroup>
-              <ControlLabel required={true}>Brand:</ControlLabel>
+              <ControlLabel required={true}>Značka:</ControlLabel>
 
               <FormControl id="brandId" componentClass="select" required={true}>
                 <option />
@@ -206,7 +206,7 @@ class WidgetForm extends React.Component<Props, State> {
               <FlexContent>
                 <FlexItem>
                   <FormGroup>
-                    <ControlLabel required={true}>Messenger kind:</ControlLabel>
+                    <ControlLabel required={true}>Posel druh:</ControlLabel>
 
                     <FormControl
                       id="messengerKind"
@@ -224,7 +224,7 @@ class WidgetForm extends React.Component<Props, State> {
                 </FlexItem>
                 <FlexItem hasSpace={true}>
                   <FormGroup>
-                    <ControlLabel>Sent as:</ControlLabel>
+                    <ControlLabel>Odesláno jako:</ControlLabel>
 
                     <FormControl
                       id="sentAs"
@@ -265,13 +265,13 @@ class WidgetForm extends React.Component<Props, State> {
       <>
         <Half>
           <FormGroup>
-            <ControlLabel>Email subject:</ControlLabel>
+            <ControlLabel>Předmět emailu:</ControlLabel>
             <FormControl id="emailSubject" type="text" required={true} />
           </FormGroup>
 
           <FormGroup>
-            <ControlLabel>Email templates:</ControlLabel>
-            <p>{__('Insert email template to content')}</p>
+            <ControlLabel>Šablony e-mailů:</ControlLabel>
+            <p>{__('Vložte šablonu e-mailu do obsahu')}</p>
 
             <Select
               value={this.state.templateId}
@@ -285,7 +285,7 @@ class WidgetForm extends React.Component<Props, State> {
         <FormGroup>{editor({ height: 300 })}</FormGroup>
 
         <FormGroup>
-          <ControlLabel>Attachments:</ControlLabel>
+          <ControlLabel>Přílohy:</ControlLabel>
           <Uploader defaultFileList={attachments} onChange={onChange} />
         </FormGroup>
       </>
@@ -300,7 +300,7 @@ class WidgetForm extends React.Component<Props, State> {
 
         <Half>
           <FormGroup>
-            <ControlLabel required={true}>Title:</ControlLabel>
+            <ControlLabel required={true}>Titul:</ControlLabel>
             <FormControl
               autoFocus={true}
               id="title"
@@ -314,10 +314,10 @@ class WidgetForm extends React.Component<Props, State> {
 
         <ModalFooter>
           <Button btnStyle="simple" icon="times-circle" onClick={this.close}>
-            Close
+            Zavřít
           </Button>
           <Button type="submit" btnStyle="success" icon="message">
-            Send
+            Poslat
           </Button>
         </ModalFooter>
       </form>

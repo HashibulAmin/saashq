@@ -8,7 +8,7 @@ import {
   AttachmentsContainer,
   Download,
   FileInfo,
-  FileName
+  FileName,
 } from './style';
 
 type Props = {
@@ -53,7 +53,7 @@ class Attachments extends React.PureComponent<Props, {}> {
       attachmentId,
       content_type,
       mimeType = '',
-      filename = ''
+      filename = '',
     } = attachment;
     const type = mimeType ? mimeType : content_type;
 
@@ -64,7 +64,7 @@ class Attachments extends React.PureComponent<Props, {}> {
 
         <FileInfo>
           <span>{this.formatSize(size)}</span>
-          <Tip text={__('Download')} placement="top">
+          <Tip text={__('Stažení')} placement="top">
             <Download
               href={this.createLink(id || attachmentId, filename, type)}
               target="_blank"
@@ -86,7 +86,7 @@ class Attachments extends React.PureComponent<Props, {}> {
 
     return (
       <AttachmentsContainer>
-        {attachments.map(attach => this.renderAttach(attach))}
+        {attachments.map((attach) => this.renderAttach(attach))}
       </AttachmentsContainer>
     );
   }

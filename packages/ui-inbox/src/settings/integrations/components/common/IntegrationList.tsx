@@ -80,7 +80,7 @@ class IntegrationList extends React.Component<Props, State> {
 
       return (
         <EmptyState
-          text="Start adding integrations now!"
+          text="Začněte přidávat integrace hned teď!"
           image="/images/actions/2.svg"
         />
       );
@@ -89,18 +89,18 @@ class IntegrationList extends React.Component<Props, State> {
     return (
       <>
         <Count>
-          {integrationsCount} {kind} integration{integrationsCount > 1 && 's'}
+          {integrationsCount} {kind} integrace{integrationsCount > 1 && 's'}
         </Count>
         <Table>
           <thead>
             <tr>
               <th>{__('Název')}</th>
-              <th>{__('Kind')}</th>
-              <th>{__('Brand')}</th>
+              <th>{__('Druh')}</th>
+              <th>{__('Značka')}</th>
               <th>{__('Postavení')}</th>
-              <th>{__('Health status')}</th>
+              <th>{__('Zdravotní stav')}</th>
               {this.state.showExternalInfo ? (
-                <th>{__('External info')}</th>
+                <th>{__('Externí informace')}</th>
               ) : null}
               <th style={{ width: 130 }}>{__('Akce')}</th>
             </tr>

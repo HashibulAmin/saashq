@@ -11,7 +11,7 @@ import Button from '@saashq/ui/src/components/Button';
 const ExtendSubscriptionForm = ({
   user = {} as any,
   renderButton,
-  closeModal
+  closeModal,
 }) => {
   const generateDoc = (values: {
     multiplier?: string;
@@ -26,7 +26,7 @@ const ExtendSubscriptionForm = ({
       multiplier: parseInt(finalValues.multiplier, 10),
       unit: finalValues.unit,
       price: parseInt(finalValues.price, 10),
-      userType: user.type
+      userType: user.type,
     };
   };
 
@@ -36,7 +36,7 @@ const ExtendSubscriptionForm = ({
     return (
       <>
         <FormGroup>
-          <ControlLabel required={true}>Multiplier</ControlLabel>
+          <ControlLabel required={true}>Násobitel</ControlLabel>
           <FormControl
             {...formProps}
             name="multiplier"
@@ -47,7 +47,7 @@ const ExtendSubscriptionForm = ({
         <FormGroup>
           <ControlLabel>Unit</ControlLabel>
           <FormControl {...formProps} name="unit" componentClass="select">
-            {timeDuractionUnits.map(tdu => (
+            {timeDuractionUnits.map((tdu) => (
               <option value={tdu} key={tdu}>
                 {tdu}
               </option>
@@ -55,7 +55,7 @@ const ExtendSubscriptionForm = ({
           </FormControl>
         </FormGroup>
         <FormGroup>
-          <ControlLabel required={true}>Price</ControlLabel>
+          <ControlLabel required={true}>Cena</ControlLabel>
           <FormControl
             {...formProps}
             name="price"
@@ -66,13 +66,13 @@ const ExtendSubscriptionForm = ({
 
         <ModalFooter id={'ExtendSubscriptionButtons'}>
           <Button btnStyle="simple" onClick={closeModal} icon="times-circle">
-            Cancel
+            Zrušení
           </Button>
 
           {renderButton({
             values: generateDoc(values),
             isSubmitted,
-            callback: closeModal
+            callback: closeModal,
           })}
         </ModalFooter>
       </>

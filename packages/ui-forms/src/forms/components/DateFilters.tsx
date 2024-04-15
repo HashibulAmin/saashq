@@ -1,7 +1,7 @@
 import {
   CustomRangeContainer,
   FilterContainer,
-  EndDateContainer
+  EndDateContainer,
 } from '../styles';
 import React, { useEffect, useState } from 'react';
 import { __, router } from '@saashq/ui/src/utils/core';
@@ -54,7 +54,7 @@ function DateFilters(props: IProps) {
 
     const value: any = (filterParams[key] && filterParams[key]) || {
       gte: '',
-      lte: ''
+      lte: '',
     };
 
     value[op] = formattedDate;
@@ -72,10 +72,10 @@ function DateFilters(props: IProps) {
 
   const data = (
     <FilterContainer>
-      {fields.map(field => {
+      {fields.map((field) => {
         return (
           <React.Fragment key={field._id}>
-            <ControlLabel>{field.label} range:</ControlLabel>
+            <ControlLabel>{field.label} rozsah:</ControlLabel>
 
             <CustomRangeContainer id="CustomRangeContainer">
               <DateControl
@@ -86,10 +86,10 @@ function DateFilters(props: IProps) {
                 }
                 required={false}
                 name="startDate"
-                onChange={date =>
+                onChange={(date) =>
                   onChangeRangeFilter(`${field.name}`, 'gte', date)
                 }
-                placeholder={'Start date'}
+                placeholder={'Datum zahájení'}
                 dateFormat={'YYYY-MM-DD'}
               />
 
@@ -102,8 +102,8 @@ function DateFilters(props: IProps) {
                   }
                   required={false}
                   name="endDate"
-                  placeholder={'End date'}
-                  onChange={date =>
+                  placeholder={'Datum ukončení'}
+                  onChange={(date) =>
                     onChangeRangeFilter(`${field.name}`, 'lte', date)
                   }
                   dateFormat={'YYYY-MM-DD'}
@@ -120,14 +120,14 @@ function DateFilters(props: IProps) {
         onClick={onChangeFilters}
         icon="filter"
       >
-        {__('Filter')}
+        {__('Filtr')}
       </Button>
     </FilterContainer>
   );
 
   return (
     <Box
-      title={__('Filter by date')}
+      title={__('Filtrovat podle data')}
       collapsible={fields.length > 5}
       extraButtons={extraButtons}
       name="showFilterByBrand"
@@ -136,7 +136,7 @@ function DateFilters(props: IProps) {
         data={data}
         loading={loading}
         count={fields.length}
-        emptyText={emptyText || 'Empty'}
+        emptyText={emptyText || 'Prázdný'}
         emptyIcon="leaf"
         size="small"
         objective={true}

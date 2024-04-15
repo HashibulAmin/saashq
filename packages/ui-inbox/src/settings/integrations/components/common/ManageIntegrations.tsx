@@ -182,7 +182,7 @@ class ManageIntegrations extends React.Component<Props, State> {
                     onClick={this.loadMore}
                     icon="angle-double-down"
                   >
-                    Load More
+                    Načíst Další
                   </Button>
                 </CenterContent>
               )}
@@ -191,7 +191,7 @@ class ManageIntegrations extends React.Component<Props, State> {
           <Column>
             <Title full={true}>
               {current.name}
-              &apos;s integration
+              &apos;s integrace
               <span>({selectedIntegrations.length})</span>
             </Title>
             <ul>

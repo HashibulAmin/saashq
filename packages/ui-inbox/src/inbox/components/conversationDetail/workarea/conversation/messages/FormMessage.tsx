@@ -148,10 +148,10 @@ export default class FormMessage extends React.Component<Props, {}> {
           <Table>
             <thead>
               <tr>
-                <th style={{ width: '40%' }}>{__('Product name')}</th>
+                <th style={{ width: '40%' }}>{__('Jméno výrobku')}</th>
                 <th style={{ width: '20%' }}>{__('Jednotková cena')}</th>
                 <th style={{ width: '20%' }}>{__('Množství')}</th>
-                <th style={{ width: '20%' }}>{__('Sub total')}</th>
+                <th style={{ width: '20%' }}>{__('Mezisoučet')}</th>
               </tr>
             </thead>
             <tbody>
@@ -197,7 +197,7 @@ export default class FormMessage extends React.Component<Props, {}> {
         <ReactToPrint content={() => this.componentRef}>
           <PrintContextConsumer>
             {({ handlePrint }) => (
-              <Tip text={__('Print responses')} placement="top">
+              <Tip text={__('Tisk odpovědí')} placement="top">
                 <Button btnStyle="link" onClick={handlePrint} icon="print" />
               </Tip>
             )}

@@ -19,16 +19,16 @@ export default class AppMessage extends React.Component<Props, {}> {
         <AppMessageBox>
           <UserInfo>
             <NameCard.Avatar customer={messengerAppData.customer} size={60} />
-            <h4>Meet with {customerName}</h4>
+            <h4>Setkat se s {customerName}</h4>
           </UserInfo>
           <CallButton>
-            <h5>Meeting Ready</h5>
+            <h5>Schůzka Připravena</h5>
             <a
               href={messengerAppData.hangoutLink}
-              target='_blank'
-              rel='noopener noreferrer'
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <Button>Join Call</Button>
+              <Button>Připojte se k Hovoru</Button>
             </a>
           </CallButton>
         </AppMessageBox>

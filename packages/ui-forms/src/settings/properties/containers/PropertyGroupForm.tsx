@@ -27,7 +27,7 @@ const PropertyGroupFormContainer = (props: FinalProps) => {
     values,
     isSubmitted,
     callback,
-    object
+    object,
   }: IButtonMutateProps) => {
     values.contentType = queryParams.type;
 
@@ -42,8 +42,8 @@ const PropertyGroupFormContainer = (props: FinalProps) => {
         isSubmitted={isSubmitted}
         type="submit"
         icon="check-circle"
-        successMessage={`You successfully ${
-          object ? 'updated' : 'added'
+        successMessage={`Ty úspěšně ${
+          object ? 'aktualizováno' : 'přidal'
         } a ${name}`}
       />
     );
@@ -54,18 +54,18 @@ const PropertyGroupFormContainer = (props: FinalProps) => {
     type,
     groups: fieldsGroupsQuery.fieldsGroups,
     renderButton,
-    selectedItems: []
+    selectedItems: [],
   };
 
   return <PropertyGroupForm {...updatedProps} />;
 };
 
-const getRefetchQueries = queryParams => {
+const getRefetchQueries = (queryParams) => {
   return [
     {
       query: gql(queries.fieldsGroups),
-      variables: { contentType: queryParams.type }
-    }
+      variables: { contentType: queryParams.type },
+    },
   ];
 };
 
@@ -77,10 +77,10 @@ export default withProps<Props>(
         name: 'fieldsGroupsQuery',
         options: ({ queryParams }) => ({
           variables: {
-            contentType: queryParams.type
-          }
-        })
-      }
-    )
-  )(PropertyGroupFormContainer)
+            contentType: queryParams.type,
+          },
+        }),
+      },
+    ),
+  )(PropertyGroupFormContainer),
 );

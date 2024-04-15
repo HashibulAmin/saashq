@@ -69,7 +69,7 @@ class CommonFieldForm extends React.PureComponent<Props, CommonTypes> {
     return (
       <>
         <FormGroup>
-          <ControlLabel required={false}>Token</ControlLabel>
+          <ControlLabel required={false}>Žeton</ControlLabel>
           <FormControl
             name="token"
             required={false}
@@ -80,7 +80,7 @@ class CommonFieldForm extends React.PureComponent<Props, CommonTypes> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel required={false}>Origin</ControlLabel>
+          <ControlLabel required={false}>Původ</ControlLabel>
           <FormControl
             name="origin"
             required={false}
@@ -91,7 +91,7 @@ class CommonFieldForm extends React.PureComponent<Props, CommonTypes> {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel required={false}>{__('Script')}</ControlLabel>
+          <ControlLabel required={false}>{__('Skript')}</ControlLabel>
           <FormControl
             name="script"
             componentClass="textarea"
@@ -174,9 +174,7 @@ class CommonFieldForm extends React.PureComponent<Props, CommonTypes> {
           isRequired={true}
           defaultValue={brandId}
           onChange={onBrandChange}
-          description={__(
-            'Which specific Brand does this integration belong to?',
-          )}
+          description={__('Které konkrétní značce tato integrace patří?')}
         />
         <SelectChannels
           defaultValue={channelIds}
@@ -191,7 +189,7 @@ class CommonFieldForm extends React.PureComponent<Props, CommonTypes> {
             onClick={closeModal}
             icon="times-circle"
           >
-            Cancel
+            Zrušení
           </Button>
           <Button
             onClick={saveIntegration}

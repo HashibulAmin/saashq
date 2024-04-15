@@ -22,7 +22,7 @@ const openWindow = (conversationId: string, url: string, name: string) => {
   window.open(
     `/videoCall?url=${url}&name=${name}&conversationId=${conversationId}`,
     '_blank',
-    `toolbar=no,titlebar=no,directories=no,menubar=no,location=no,scrollbars=yes,status=no,height=${height},width=${width},top=${y},left=${x}`
+    `toolbar=no,titlebar=no,directories=no,menubar=no,location=no,scrollbars=yes,status=no,height=${height},width=${width},top=${y},left=${x}`,
   );
 };
 
@@ -32,7 +32,7 @@ const VideoCallMessage = (props: Props) => {
   const videoCallData = message.videoCallData || {
     status: 'end',
     url: '',
-    recordingLinks: []
+    recordingLinks: [],
   };
 
   const renderRecordings = () => {
@@ -58,7 +58,7 @@ const VideoCallMessage = (props: Props) => {
           <UserInfo>
             <strong>
               <Icon icon="phone-slash" color="#EA475D" size={15} />{' '}
-              {__('Video call ended')}
+              {__('Videohovor ukončen')}
             </strong>
             {renderRecordings()}
           </UserInfo>
@@ -71,7 +71,7 @@ const VideoCallMessage = (props: Props) => {
     <>
       <AppMessageBox>
         <UserInfo>
-          <h5>{__('Video call invitation sent')}</h5>
+          <h5>{__('Pozvánka na videohovor odeslána')}</h5>
           <h3>
             <Icon icon="user-plus" color="#3B85F4" />
           </h3>
@@ -82,12 +82,12 @@ const VideoCallMessage = (props: Props) => {
             openWindow(
               message.conversationId,
               videoCallData.url,
-              videoCallData.name || ''
+              videoCallData.name || '',
             );
           }}
         >
           <a target="_blank" rel="noopener noreferrer">
-            {__('Join a call')}
+            {__('Připojte se k hovoru')}
           </a>
         </CallButton>
       </AppMessageBox>

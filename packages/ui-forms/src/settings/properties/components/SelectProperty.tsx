@@ -1,7 +1,7 @@
 import { IButtonMutateProps, IOption } from '@saashq/ui/src/types';
 import {
   LeftContent,
-  Row
+  Row,
 } from '@saashq/ui-inbox/src/settings/integrations/styles';
 
 import Button from '@saashq/ui/src/components/Button';
@@ -35,7 +35,7 @@ class SelectProperty extends React.Component<Props, {}> {
       </Button>
     );
 
-    const content = props => (
+    const content = (props) => (
       <PropertyForm
         {...props}
         renderButton={renderButton}
@@ -53,13 +53,13 @@ class SelectProperty extends React.Component<Props, {}> {
   };
 
   generateUserOptions(array: IField[] = []): IOption[] {
-    return array.map(e => ({ label: e.text || '', value: e._id }));
+    return array.map((e) => ({ label: e.text || '', value: e._id }));
   }
 
-  onChangeProperty = option => {
+  onChangeProperty = (option) => {
     if (this.props.onChange) {
       const { properties } = this.props;
-      const customProperty = properties.find(e => e._id === option.value);
+      const customProperty = properties.find((e) => e._id === option.value);
       if (customProperty) {
         this.props.onChange(customProperty);
       }
@@ -71,12 +71,12 @@ class SelectProperty extends React.Component<Props, {}> {
 
     return (
       <FormGroup>
-        <ControlLabel>Property</ControlLabel>
+        <ControlLabel>Vlastnictví</ControlLabel>
         <p>{description}</p>
         <Row>
           <LeftContent>
             <Select
-              placeholder={__('Select property')}
+              placeholder={__('Vyberte vlastnost')}
               value={defaultValue}
               onChange={this.onChangeProperty}
               options={this.generateUserOptions(properties)}

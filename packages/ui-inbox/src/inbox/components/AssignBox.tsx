@@ -24,7 +24,7 @@ type Props = {
   // from containers
   assign: (
     doc: { conversationIds?: string[]; assignedUserId: string },
-    callback: (error: Error) => void
+    callback: (error: Error) => void,
   ) => void;
   clear: (userIds: string[], callback: (error: Error) => void) => void;
 };
@@ -46,7 +46,7 @@ class AssignBox extends React.Component<Props, State> {
       verifiedUsers: [],
       loading: true,
       keysPressed: {},
-      cursor: 0
+      cursor: 0,
     };
   }
 
@@ -57,14 +57,14 @@ class AssignBox extends React.Component<Props, State> {
 
   componentDidUpdate(
     prevProps: Readonly<Props>,
-    prevState: Readonly<State>
+    prevState: Readonly<State>,
   ): void {
     if (prevState.cursor !== this.state.cursor) {
       this.setState({
         assigneesForList: this.generateAssignParams(
           this.state.verifiedUsers,
-          this.props.targets
-        )
+          this.props.targets,
+        ),
       });
     }
   }
@@ -79,7 +79,7 @@ class AssignBox extends React.Component<Props, State> {
     const maxCursor: number = this.state.assigneesForList.length;
 
     const element = document.getElementsByClassName(
-      'team-members-' + cursor
+      'team-members-' + cursor,
     )[0] as HTMLElement;
 
     switch (event.keyCode) {
@@ -119,8 +119,8 @@ class AssignBox extends React.Component<Props, State> {
           query: gql(queries.userList),
           variables: {
             perPage: 20,
-            searchValue
-          }
+            searchValue,
+          },
         })
         .then((response: { loading: boolean; data: { users?: IUser[] } }) => {
           this.setState({ verifiedUsers: response.data.users || [] });
@@ -129,11 +129,11 @@ class AssignBox extends React.Component<Props, State> {
             loading: response.loading,
             assigneesForList: this.generateAssignParams(
               this.state.verifiedUsers,
-              this.props.targets
-            )
+              this.props.targets,
+            ),
           });
         })
-        .catch(error => {
+        .catch((error) => {
           Alert.error(error.message);
         });
     }, 500)();
@@ -168,7 +168,7 @@ class AssignBox extends React.Component<Props, State> {
         avatar: getUserAvatar(assignee, 60),
         selectedBy: state,
         itemClassName: `team-members-${i}`,
-        itemActiveClass: this.state.cursor === i && 'active'
+        itemActiveClass: this.state.cursor === i && 'active',
       };
     });
   }
@@ -178,14 +178,14 @@ class AssignBox extends React.Component<Props, State> {
 
     assign(
       {
-        conversationIds: targets.map(a => a._id),
-        assignedUserId: id
+        conversationIds: targets.map((a) => a._id),
+        assignedUserId: id,
       },
-      error => {
+      (error) => {
         if (error) {
           Alert.error(error.message);
         }
-      }
+      },
     );
 
     if (afterSave) {
@@ -197,12 +197,12 @@ class AssignBox extends React.Component<Props, State> {
     const { clear, targets, afterSave } = this.props;
 
     clear(
-      targets.map(t => t._id),
-      error => {
+      targets.map((t) => t._id),
+      (error) => {
         if (error) {
-          Alert.error(`Error: ${error.message}`);
+          Alert.error(`Chyba: ${error.message}`);
         }
-      }
+      },
     );
 
     if (afterSave) {
@@ -215,10 +215,10 @@ class AssignBox extends React.Component<Props, State> {
 
     const links = [
       {
-        title: __('Remove assignee'),
+        title: __('Odebrat příjemce'),
         href: window.location.pathname + window.location.search,
-        onClick: this.removeAssignee
-      }
+        onClick: this.removeAssignee,
+      },
     ];
 
     const props = {
@@ -227,7 +227,7 @@ class AssignBox extends React.Component<Props, State> {
       selectable: true,
       loading: this.state.loading,
       items: this.state.assigneesForList,
-      onSearch: this.fetchUsers
+      onSearch: this.fetchUsers,
     };
 
     if (event) {

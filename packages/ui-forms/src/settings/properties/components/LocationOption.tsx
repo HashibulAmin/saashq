@@ -47,7 +47,9 @@ function LocationOption(props: Props) {
         <Column>
           <LogicRow>
             <RowSmall>
-              <ControlLabel htmlFor="lat">{__('Latitude')}:</ControlLabel>
+              <ControlLabel htmlFor="lat">
+                {__('Zeměpisná šířka')}:
+              </ControlLabel>
               <FormControl
                 value={option.lat}
                 name="lat"
@@ -56,7 +58,9 @@ function LocationOption(props: Props) {
               />
             </RowSmall>
             <Column>
-              <ControlLabel htmlFor="lng">{__('Longitude')}:</ControlLabel>
+              <ControlLabel htmlFor="lng">
+                {__('Zeměpisná délka')}:
+              </ControlLabel>
               <FormControl
                 value={option.lng}
                 name="lng"

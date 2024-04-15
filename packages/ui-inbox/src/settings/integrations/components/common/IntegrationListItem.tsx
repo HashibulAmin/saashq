@@ -67,7 +67,7 @@ class IntegrationListItem extends React.Component<Props, State> {
 
     return (
       <WithPermission action="integrationsArchive">
-        <Tip text={__('Archive')} placement="top">
+        <Tip text={__('Archiv')} placement="top">
           <Button btnStyle="link" onClick={onClick} icon="archive-alt" />
         </Tip>
       </WithPermission>
@@ -85,7 +85,7 @@ class IntegrationListItem extends React.Component<Props, State> {
 
     return (
       <WithPermission action="integrationsArchive">
-        <Tip text={__('Unarchive')} placement="top">
+        <Tip text={__('Zrušit archivaci')} placement="top">
           <Button btnStyle="link" onClick={onClick} icon="redo" />
         </Tip>
       </WithPermission>
@@ -102,7 +102,7 @@ class IntegrationListItem extends React.Component<Props, State> {
 
     const showTrigger = (
       <Button btnStyle="link">
-        <Tip text="Show" placement="top">
+        <Tip text="Ukázat" placement="top">
           <Icon icon="eye" />
         </Tip>
       </Button>
@@ -113,15 +113,15 @@ class IntegrationListItem extends React.Component<Props, State> {
 
       return (
         <div>
-          <b>Name</b>: {integration.name} <br />
+          <b>Název</b>: {integration.name} <br />
           <div>
             <b>URL</b>: {REACT_APP_API_URL}/webhooks/{integration._id} <br />
-            <b>Token</b>: {webhookData.token}
+            <b>Žeton</b>: {webhookData.token}
           </div>
           <p>
-            {'For more information, please review the '}
+            {'Pro více informací si prosím prohlédněte '}
             <a target="_blank" rel="noopener noreferrer" href={WEBHOOK_DOC_URL}>
-              documentaion.
+              dokumentace.
             </a>
           </p>
         </div>
@@ -132,7 +132,7 @@ class IntegrationListItem extends React.Component<Props, State> {
       <WithPermission action="showIntegrations">
         <ActionButtons>
           <ModalTrigger
-            title="Integration detail"
+            title="Detail integrace"
             trigger={showTrigger}
             content={content}
           />
@@ -150,7 +150,7 @@ class IntegrationListItem extends React.Component<Props, State> {
 
     const editTrigger = (
       <Button btnStyle="link">
-        <Tip text="Edit" placement="top">
+        <Tip text="Upravit" placement="top">
           <Icon icon="edit-3" />
         </Tip>
       </Button>
@@ -174,7 +174,7 @@ class IntegrationListItem extends React.Component<Props, State> {
       <WithPermission action="integrationsEdit">
         <ActionButtons>
           <ModalTrigger
-            title="Edit integration"
+            title="Upravit integraci"
             trigger={editTrigger}
             content={content}
           />
@@ -189,7 +189,7 @@ class IntegrationListItem extends React.Component<Props, State> {
     if (kind === INTEGRATION_KINDS.MESSENGER) {
       const editTrigger = (
         <Button btnStyle="link">
-          <Tip text="Install code" placement="top">
+          <Tip text="Nainstalujte kód" placement="top">
             <Icon icon="code" />
           </Tip>
         </Button>
@@ -201,7 +201,7 @@ class IntegrationListItem extends React.Component<Props, State> {
 
       return (
         <ActionButtons>
-          <Tip text={__('Edit messenger integration')} placement="top">
+          <Tip text={__('Upravit integraci messengeru')} placement="top">
             <Link
               to={`/settings/integrations/editMessenger/${integration._id}`}
             >
@@ -211,7 +211,7 @@ class IntegrationListItem extends React.Component<Props, State> {
 
           <ModalTrigger
             isOpen={this.props._id === integration._id}
-            title="Install code"
+            title="Nainstalujte kód"
             size="lg"
             trigger={editTrigger}
             content={content}
@@ -259,7 +259,7 @@ class IntegrationListItem extends React.Component<Props, State> {
     ) {
       const editTrigger = (
         <Button btnStyle="link">
-          <Tip text={__('Repair')} placement="top">
+          <Tip text={__('Opravit')} placement="top">
             <Icon icon="refresh" />
           </Tip>
         </Button>
@@ -270,7 +270,7 @@ class IntegrationListItem extends React.Component<Props, State> {
       return (
         <ActionButtons>
           <ModalTrigger
-            title="Edit integration"
+            title="Upravit integraci"
             trigger={editTrigger}
             content={content}
           />
@@ -278,7 +278,7 @@ class IntegrationListItem extends React.Component<Props, State> {
       );
     } else {
       return (
-        <Tip text={__('Repair')} placement="top">
+        <Tip text={__('Opravit')} placement="top">
           <Button btnStyle="link" onClick={onClick} icon="refresh" />
         </Tip>
       );
@@ -295,7 +295,7 @@ class IntegrationListItem extends React.Component<Props, State> {
     }
 
     if (!externalData) {
-      return <td>No data</td>;
+      return <td>Žádná data</td>;
     }
 
     switch (kind) {
@@ -334,7 +334,7 @@ class IntegrationListItem extends React.Component<Props, State> {
             externalData: data.integrationsGetIntegrationDetail,
           });
           this.props.showExternalInfoColumn();
-          Alert.success('success');
+          Alert.success('úspěch');
         })
         .catch((e) => {
           Alert.error(e.message);
@@ -342,7 +342,7 @@ class IntegrationListItem extends React.Component<Props, State> {
     };
 
     return (
-      <Tip text={__('Fetch external data')} placement="top">
+      <Tip text={__('Načíst externí data')} placement="top">
         <Button btnStyle="link" icon="download-1" onClick={onClick} />
       </Tip>
     );
@@ -361,10 +361,10 @@ class IntegrationListItem extends React.Component<Props, State> {
       : '';
 
     const labelStyle = integration.isActive ? 'success' : 'danger';
-    const status = integration.isActive ? __('Active') : __('Archived');
+    const status = integration.isActive ? __('Aktivní') : __('Archivováno');
     const labelStyleHealthy = healthStatus === 'healthy' ? 'success' : 'danger';
     const healthStatusText =
-      healthStatus === 'healthy' ? __('Healthy') : __('Unhealthy');
+      healthStatus === 'healthy' ? __('Zdravý') : __('Nezdravý');
 
     return (
       <tr key={integration._id}>

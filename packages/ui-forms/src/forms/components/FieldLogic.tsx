@@ -8,7 +8,7 @@ import React from 'react';
 import {
   dateTypeChoices,
   numberTypeChoices,
-  stringTypeChoices
+  stringTypeChoices,
 } from '../constants';
 import { DateWrapper, LogicItem, LogicRow, RowSmall } from '../styles';
 import { Column } from '@saashq/ui/src/styles/main';
@@ -17,7 +17,7 @@ type Props = {
   onChangeLogic: (
     name: string,
     value: string | number | Date,
-    index: number
+    index: number,
   ) => void;
   logic: IFieldLogic;
   fields: IField[];
@@ -30,7 +30,7 @@ function FieldLogic(props: Props) {
 
   const getSelectedField = () => {
     return fields.find(
-      field => field._id === logic.fieldId || field._id === logic.tempFieldId
+      (field) => field._id === logic.fieldId || field._id === logic.tempFieldId,
     );
   };
 
@@ -50,28 +50,28 @@ function FieldLogic(props: Props) {
     return stringTypeChoices;
   };
 
-  const onChangeFieldId = e => {
+  const onChangeFieldId = (e) => {
     const value = e.target.value;
     onChangeLogic('fieldId', '', index);
     onChangeLogic(
       value.startsWith('tempId') ? 'tempFieldId' : 'fieldId',
       value,
-      index
+      index,
     );
 
     const operators = getOperatorOptions();
     onChangeLogic('logicOperator', operators[1].value, index);
   };
 
-  const onChangeLogicOperator = e => {
+  const onChangeLogicOperator = (e) => {
     onChangeLogic('logicOperator', e.target.value, index);
   };
 
-  const onChangeLogicValue = e => {
+  const onChangeLogicValue = (e) => {
     onChangeLogic('logicValue', e.target.value, index);
   };
 
-  const onDateChange = value => {
+  const onDateChange = (value) => {
     onChangeLogic('logicValue', value, index);
   };
 
@@ -97,7 +97,7 @@ function FieldLogic(props: Props) {
           >
             <option value="" />
             {selectedField.options &&
-              selectedField.options.map(option => (
+              selectedField.options.map((option) => (
                 <option key={option} value={option}>
                   {option}
                 </option>
@@ -110,7 +110,7 @@ function FieldLogic(props: Props) {
         return (
           <DateWrapper>
             <DateControl
-              placeholder={__('pick a date')}
+              placeholder={__('vyber datum')}
               value={logic.logicValue}
               timeFormat={
                 selectedField.validation === 'datetime' ? true : false
@@ -156,7 +156,7 @@ function FieldLogic(props: Props) {
               onChange={onChangeFieldId}
             >
               <option value="" />
-              {fields.map(field => (
+              {fields.map((field) => (
                 <option key={field._id} value={field._id}>
                   {field.text}
                 </option>

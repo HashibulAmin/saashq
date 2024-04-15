@@ -10,7 +10,7 @@ import {
   AssignMutationVariables,
   IConversation,
   UnAssignMutationResponse,
-  UnAssignMutationVariables
+  UnAssignMutationVariables,
 } from '@saashq/ui-inbox/src/inbox/types';
 import { refetchSidebarConversationsOptions } from '@saashq/ui-inbox/src/inbox/utils';
 
@@ -28,20 +28,20 @@ const AssignBoxContainer = (props: FinalProps) => {
   const assign = (
     {
       conversationIds,
-      assignedUserId
+      assignedUserId,
     }: { conversationIds?: string[]; assignedUserId: string },
-    callback: (e) => void
+    callback: (e) => void,
   ) => {
     assignMutation({
       variables: {
         conversationIds,
-        assignedUserId
-      }
+        assignedUserId,
+      },
     })
       .then(() => {
-        Alert.success('The conversation Assignee has been renewed.');
+        Alert.success('Konverzace Účastník byla obnovena.');
       })
-      .catch(e => {
+      .catch((e) => {
         callback(e);
         Alert.error(e.message);
       });
@@ -50,13 +50,13 @@ const AssignBoxContainer = (props: FinalProps) => {
   const clear = (conversationIds: string[]) => {
     conversationsUnassign({
       variables: {
-        _ids: conversationIds
-      }
+        _ids: conversationIds,
+      },
     })
       .then(() => {
-        Alert.success('The conversation Assignee removed');
+        Alert.success('Účastník konverzace byl odstraněn');
       })
-      .catch(e => {
+      .catch((e) => {
         Alert.error(e.message);
       });
   };
@@ -64,7 +64,7 @@ const AssignBoxContainer = (props: FinalProps) => {
   const updatedProps = {
     ...props,
     assign,
-    clear
+    clear,
   };
 
   return <AssignBox {...updatedProps} />;
@@ -76,15 +76,15 @@ export default withProps<Props>(
       gql(mutations.conversationsAssign),
       {
         name: 'assignMutation',
-        options: () => refetchSidebarConversationsOptions()
-      }
+        options: () => refetchSidebarConversationsOptions(),
+      },
     ),
     graphql<Props, UnAssignMutationResponse, UnAssignMutationVariables>(
       gql(mutations.conversationsUnassign),
       {
         name: 'conversationsUnassign',
-        options: () => refetchSidebarConversationsOptions()
-      }
-    )
-  )(AssignBoxContainer)
+        options: () => refetchSidebarConversationsOptions(),
+      },
+    ),
+  )(AssignBoxContainer),
 );

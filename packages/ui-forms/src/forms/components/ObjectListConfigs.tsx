@@ -19,9 +19,9 @@ function ObjectListConfigs(props: Props) {
       return {
         key,
         label,
-        type
+        type,
       };
-    })
+    }),
   );
 
   useEffect(() => {
@@ -45,7 +45,7 @@ function ObjectListConfigs(props: Props) {
     const option: any = currentLocation || {
       key: '',
       label: '',
-      type: 'text'
+      type: 'text',
     };
 
     setOptions([...options, option]);
@@ -68,7 +68,7 @@ function ObjectListConfigs(props: Props) {
       ))}
       <FormGroup>
         <LinkButton onClick={addOption}>
-          <Icon icon="plus-1" /> Add option
+          <Icon icon="plus-1" /> Přidat možnost
         </LinkButton>
       </FormGroup>
     </>

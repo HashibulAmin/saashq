@@ -36,25 +36,25 @@ function FieldChoices(props: Props) {
       <FieldChoice
         {...props}
         type="input"
-        text={__('Text input')}
+        text={__('Zadávání textu')}
         icon="edit-alt"
       />
       <FieldChoice
         {...props}
         type="textarea"
-        text={__('Text area')}
+        text={__('Textová oblast')}
         icon="paragraph"
       />
       <FieldChoice
         {...props}
         type="check"
-        text={__('Checkbox')}
+        text={__('Zaškrtávací políčko')}
         icon="check-square"
       />
       <FieldChoice
         {...props}
         type="radio"
-        text={__('Radio button')}
+        text={__('Přepínač')}
         icon="check-circle"
       />
       <FieldChoice
@@ -67,63 +67,63 @@ function FieldChoices(props: Props) {
       <FieldChoice
         {...props}
         type="email"
-        text={__('Email')}
+        text={__('E-mailem')}
         icon="envelope-alt"
       />
       <FieldChoice {...props} type="phone" text={__('Phone')} icon="phone" />
       <FieldChoice
         {...props}
         type="firstName"
-        text={__('First name')}
+        text={__('Jméno')}
         icon="user-6"
       />
       <FieldChoice
         {...props}
         type="middleName"
-        text={__('Middle name')}
+        text={__('Prostřední jméno')}
         icon="user-6"
       />
       <FieldChoice
         {...props}
         type="lastName"
-        text={__('Last name')}
+        text={__('Příjmení')}
         icon="user-6"
       />
       <FieldChoice
         {...props}
         type="company_primaryName"
-        text={__('Company name')}
+        text={__('Jméno společnosti')}
         icon="building"
       />
       <FieldChoice
         {...props}
         type="company_primaryEmail"
-        text={__('Company Email')}
+        text={__('E-mail společnosti')}
         icon="envelope-alt"
       />
       <FieldChoice
         {...props}
         type="company_primaryPhone"
-        text={__('Company Phone')}
+        text={__('Firemní telefon')}
         icon="phone"
       />
       <FieldChoice
         {...props}
         type="map"
-        text={__('Location/Map')}
+        text={__('Umístění/Mapa')}
         icon="map-marker"
       />
       <FieldChoice {...props} type="html" text={__('HTML')} icon="code" />
       <FieldChoice
         {...props}
         type="objectList"
-        text={__('Object List')}
+        text={__('Seznam objektů')}
         icon="sort-amount-down"
       />
       <FieldChoice
         {...props}
         type="parentField"
-        text={__('Group')}
+        text={__('Skupina')}
         icon="sort-amount-down"
       />
       {loadDynamicComponent('extendFormFieldChoice', props, true)}

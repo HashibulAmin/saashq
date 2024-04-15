@@ -99,14 +99,16 @@ class Facebook extends React.Component<Props, State> {
     }
 
     if (pages.length === 0) {
-      return <EmptyState icon="folder-2" text={__('There is no pages')} />;
+      return (
+        <EmptyState icon="folder-2" text={__('Nejsou zde žádné stránky')} />
+      );
     }
 
     return (
       <FlexItem>
         <LeftItem>
           <AccountBox>
-            <AccountTitle>{__('Facebook Pages')}</AccountTitle>
+            <AccountTitle>{__('Facebook Stránky')}</AccountTitle>
             {pages.map((page) => (
               <AccountItem key={page.id}>
                 {page.name}
@@ -121,7 +123,7 @@ class Facebook extends React.Component<Props, State> {
                   onClick={this.onSelectPages.bind(this, page.id)}
                 >
                   {this.state.selectedPages.includes(page.id)
-                    ? __('Selected')
+                    ? __('Vybraný')
                     : __('Vybrat')}
                 </Button>
               </AccountItem>
@@ -159,21 +161,23 @@ class Facebook extends React.Component<Props, State> {
             </FlexItem>
           </Step>
 
-          <Step img="/images/icons/saashq-04.svg" title="Connect Your Pages">
+          <Step img="/images/icons/saashq-04.svg" title="Připojte Své Stránky">
             {this.renderPages()}
           </Step>
 
           <Step
             img="/images/icons/saashq-16.svg"
-            title="Integration Setup"
+            title="Nastavení Integrace"
             noButton={true}
           >
             <FlexItem>
               <LeftItem>
                 <FormGroup>
-                  <ControlLabel required={true}>Integration Name</ControlLabel>
+                  <ControlLabel required={true}>Název Integrace</ControlLabel>
                   <p>
-                    {__('Name this integration to differentiate from the rest')}
+                    {__(
+                      'Pojmenujte tuto integraci, abyste ji odlišili od ostatních',
+                    )}
                   </p>
                   <FormControl
                     {...formProps}
@@ -185,7 +189,7 @@ class Facebook extends React.Component<Props, State> {
                 <SelectBrand
                   isRequired={true}
                   description={__(
-                    'Which specific Brand does this integration belong to?',
+                    'Které konkrétní značce tato integrace patří?',
                   )}
                   formProps={formProps}
                 />
@@ -201,13 +205,13 @@ class Facebook extends React.Component<Props, State> {
         </Steps>
         <ControlWrapper>
           <Indicator>
-            {__('You are creating')}
-            <strong> {this.props.kind}</strong> {__('integration')}
+            {__('Vy tvoříte')}
+            <strong> {this.props.kind}</strong> {__('integrace')}
           </Indicator>
           <Button.Group>
             <Link to="/settings/integrations">
               <Button btnStyle="simple" icon="times-circle">
-                Cancel
+                Zrušení
               </Button>
             </Link>
             {renderButton({
@@ -227,21 +231,21 @@ class Facebook extends React.Component<Props, State> {
   };
 
   render() {
-    let title = __('Facebook Posts');
+    let title = __('Příspěvky na Facebooku');
     let description = __(
-      'Connect your Facebook Posts to start receiving Facebook post and comments in your team inbox',
+      'Propojte své příspěvky na Facebooku a začněte přijímat příspěvky a komentáře na Facebooku do vaší týmové schránky',
     );
 
     if (this.props.kind === INTEGRATION_KINDS.FACEBOOK_MESSENGER) {
       title = __('Facebook Messenger');
       description = __(
-        'Connect your Facebook Messenger to start receiving Facebook messages in your team inbox',
+        'Připojte svůj Facebook Messenger a začněte přijímat zprávy z Facebooku do vaší týmové schránky',
       );
     }
 
     const breadcrumb = [
       { title: __('Nastavení'), link: '/settings' },
-      { title: __('integrations'), link: '/settings/integrations' },
+      { title: __('integrací'), link: '/settings/integrations' },
       { title },
     ];
 
@@ -256,7 +260,7 @@ class Facebook extends React.Component<Props, State> {
               <ImageWrapper>
                 <TextWrapper>
                   <h1>
-                    {__('Connect your')} {title}
+                    {__('Připojte svůj')} {title}
                   </h1>
                   <p>{description}</p>
                   <img alt={title} src="/images/previews/facebook.png" />

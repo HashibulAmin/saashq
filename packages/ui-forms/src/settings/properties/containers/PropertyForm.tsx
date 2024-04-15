@@ -11,7 +11,7 @@ import {
   FieldsAddMutationResponse,
   FieldsEditMutationResponse,
   FieldsGroupsQueryResponse,
-  FieldsInputTypesQueryResponse
+  FieldsInputTypesQueryResponse,
 } from '../types';
 import { updateCustomFieldsCache } from '../utils';
 
@@ -40,13 +40,13 @@ const PropertyFormContainer = (props: FinalProps) => {
       values,
       isSubmitted,
       callback,
-      object
+      object,
     }: IButtonMutateProps) => {
       const handleCallback = () => {
         updateCustomFieldsCache({
           type,
           doc: values,
-          ...(object ? { id: object._id } : {})
+          ...(object ? { id: object._id } : {}),
         });
 
         if (callback) {
@@ -63,9 +63,9 @@ const PropertyFormContainer = (props: FinalProps) => {
           isSubmitted={isSubmitted}
           type="submit"
           icon="check-circle"
-          successMessage={`You successfully ${
-            object ? 'updated' : 'added'
-          } a ${name}`}
+          successMessage={`Ty úspěšně ${
+            object ? 'aktualizováno' : 'přidal'
+          } A ${name}`}
         />
       );
     };
@@ -77,18 +77,18 @@ const PropertyFormContainer = (props: FinalProps) => {
     renderButton,
     groups: fieldsGroupsQuery.fieldsGroups,
     inputTypes: fieldsInputTypes?.getFieldsInputTypes || [],
-    refetchQueries: getRefetchQueries(queryParams)
+    refetchQueries: getRefetchQueries(queryParams),
   };
 
   return <PropertyForm {...updatedProps} />;
 };
 
-const getRefetchQueries = queryParams => {
+const getRefetchQueries = (queryParams) => {
   return [
     {
       query: gql(queries.fieldsGroups),
-      variables: { contentType: queryParams.type }
-    }
+      variables: { contentType: queryParams.type },
+    },
   ];
 };
 
@@ -100,13 +100,13 @@ export default withProps<Props>(
         name: 'fieldsGroupsQuery',
         options: ({ queryParams }) => ({
           variables: {
-            contentType: queryParams.type
-          }
-        })
-      }
+            contentType: queryParams.type,
+          },
+        }),
+      },
     ),
     graphql<Props>(gql(queries.getFieldsInputTypes), {
-      name: 'fieldsInputTypes'
-    })
-  )(PropertyFormContainer)
+      name: 'fieldsInputTypes',
+    }),
+  )(PropertyFormContainer),
 );

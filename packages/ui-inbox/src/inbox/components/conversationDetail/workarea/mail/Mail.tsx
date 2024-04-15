@@ -36,7 +36,7 @@ class Mail extends React.PureComponent<Props, State> {
       isReply: false,
       isForward: false,
       replyAll: false,
-      isCollapsed: !props.isLast
+      isCollapsed: !props.isLast,
     };
   }
 
@@ -61,8 +61,8 @@ class Mail extends React.PureComponent<Props, State> {
       return null;
     }
 
-    const toggleReplyAll = e => this.toggleReply(e, true);
-    const toggleForward = e => this.toggleReply(e, false, true);
+    const toggleReplyAll = (e) => this.toggleReply(e, true);
+    const toggleForward = (e) => this.toggleReply(e, false, true);
 
     return (
       <Reply>
@@ -72,7 +72,7 @@ class Mail extends React.PureComponent<Props, State> {
           onClick={this.toggleReply}
           btnStyle="primary"
         >
-          Reply
+          Odpověď
         </Button>
         {addressLength > 1 && (
           <Button
@@ -81,7 +81,7 @@ class Mail extends React.PureComponent<Props, State> {
             onClick={toggleReplyAll}
             btnStyle="primary"
           >
-            Reply to all
+            Odpovědět všem
           </Button>
         )}
         <Button
@@ -90,7 +90,7 @@ class Mail extends React.PureComponent<Props, State> {
           onClick={toggleForward}
           btnStyle="primary"
         >
-          Forward
+          Vpřed
         </Button>
       </Reply>
     );
@@ -111,7 +111,7 @@ class Mail extends React.PureComponent<Props, State> {
       customerId,
       brandId,
       mails,
-      conversationStatus
+      conversationStatus,
     } = this.props;
 
     return (
@@ -196,7 +196,7 @@ class Mail extends React.PureComponent<Props, State> {
               <MailSubject>
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: message.mailData.subject || ''
+                    __html: message.mailData.subject || '',
                   }}
                 />
               </MailSubject>

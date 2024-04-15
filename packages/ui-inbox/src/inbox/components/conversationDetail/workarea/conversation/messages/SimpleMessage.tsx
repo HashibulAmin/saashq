@@ -3,7 +3,7 @@ import {
   MessageBody,
   MessageContent,
   MessageItem,
-  UserInfo
+  UserInfo,
 } from '../styles';
 
 import Attachment from '@saashq/ui/src/components/Attachment';
@@ -62,7 +62,7 @@ export default class SimpleMessage extends React.Component<Props, {}> {
         <UserInfo>
           <strong>
             <Icon icon="exclamation-triangle" color="#EA475D" size={15} />{' '}
-            {__('You have received a video call request')}
+            {__('Obdrželi jste žádost o videohovor')}
           </strong>
         </UserInfo>
       </CallBox>
@@ -112,7 +112,7 @@ export default class SimpleMessage extends React.Component<Props, {}> {
     const classes = classNames({
       ...(this.props.classes || []),
       attachment: hasAttachment,
-      same: isSameUser
+      same: isSameUser,
     });
 
     if (message.fromBot) {

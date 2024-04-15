@@ -16,19 +16,19 @@ type Props = {
 
 class SelectCategories extends React.Component<Props, {}> {
   generateUserOptions(array: ICategory[] = []): IOption[] {
-    return array.map(item => {
+    return array.map((item) => {
       const category = item || ({} as ICategory);
 
       return {
         value: category._id,
-        label: category.name
+        label: category.name,
       };
     });
   }
 
-  onChangeCategory = values => {
+  onChangeCategory = (values) => {
     if (this.props.onChange) {
-      this.props.onChange(values.map(item => item.value) || []);
+      this.props.onChange(values.map((item) => item.value) || []);
     }
   };
 
@@ -37,12 +37,12 @@ class SelectCategories extends React.Component<Props, {}> {
 
     return (
       <FormGroup>
-        <ControlLabel>{'Categories'}</ControlLabel>
+        <ControlLabel>{'Kategorie'}</ControlLabel>
         <p>
-          {__('In which Category(s) do you want to add this property group?')}
+          {__('Do kterých kategorií chcete přidat tuto skupinu vlastností?')}
         </p>
         <Select
-          placeholder={__('Select category')}
+          placeholder={__('Vyberte kategorii')}
           value={defaultValue}
           onChange={this.onChangeCategory}
           options={this.generateUserOptions(categories)}
